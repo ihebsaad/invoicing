@@ -87,12 +87,10 @@ class QuotesController extends Controller
      */
     public function update(Request $request, Quote $quote)
     {
-        $request->validate([
-            'name' => 'required',
-            'description' => 'required',
-        ]);
-    
-        $quote->update($request->all());
+        $data=$request->all();
+        $data['date']=Carbon::parse($data['date'])->format('Y-m-d');
+
+        $quote->update($data);
     
         return redirect()->route('quotes.index')
                         ->with('success','Devis modifié avec succès');

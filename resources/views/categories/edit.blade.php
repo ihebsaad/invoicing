@@ -11,7 +11,7 @@
     <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="float-left">
-                <h2>Modifier</h2>
+                <h2>Catégorie {{$categorie->name }}</h2>
             </div>
             <div class="float-right">
                 <a class="btn btn-primary" href="{{ route('categories.index') }}"> Retour</a>

@@ -12,7 +12,7 @@
   <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="float-left">
-                <h2>Modifier</h2>
+                <h2> Devis {{$quote->id}} </h2>
             </div>
             <div class="float-right">
                 <a class="btn btn-primary" href="{{ route('quotes.index') }}"> Retour</a>
@@ -43,14 +43,14 @@
 					<div class="col-xs-12 col-sm-12 col-md-7">
 						<div class="form-group">
 							<strong>Date:</strong>
-							<input type="text" class="form-control datepicker"  autocomplete="off" name="date" placeholder="jj/mm/aaaa" />
+							<input type="text" class="form-control datepicker"  autocomplete="off" name="date" placeholder="jj/mm/aaaa" value="{{ date('d-m-Y', strtotime($quote->date)) }}"/>
 						</div>
 					</div>
 
 					<div class="col-xs-12 col-sm-12 col-md-7">
 						<div class="form-group">
 							<strong>Description:</strong>
-							<textarea class="form-control summernote" style="height:150px" name="description" placeholder="Description">{{old('description')}}</textarea>
+							<textarea class="form-control summernote" style="height:150px" name="description" placeholder="Description">{{$quote->description}}</textarea>
 						</div>
 					</div>
 

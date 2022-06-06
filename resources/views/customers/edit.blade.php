@@ -11,7 +11,7 @@
     <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="float-left">
-                <h2>Modifier</h2>
+                <h2>Client {{$customer->name}} {{$customer->lastname}} </h2>
             </div>
             <div class="float-right">
                 <a class="btn btn-primary" href="{{ route('customers.index') }}"> Retour</a>

@@ -12,7 +12,7 @@
     <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="float-left">
-                <h2>Modifier</h2>
+                <h2>Utilisateur {{$user->name}} {{$user->lastname}}</h2>
             </div>
             <div class="float-right">
                 <a class="btn btn-primary" href="{{ route('users.index') }}"> Retour</a>

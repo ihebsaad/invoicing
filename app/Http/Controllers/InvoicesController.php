@@ -88,7 +88,10 @@ class InvoicesController extends Controller
     public function update(Request $request, Invoice $invoice)
     {
     
-        $invoice->update($request->all());
+        $data=$request->all();
+        $data['date']=Carbon::parse($data['date'])->format('Y-m-d');
+
+        $invoice->update($data);
     
         return redirect()->route('invoices.index')
                         ->with('success','Facture modifiée avec succès');
