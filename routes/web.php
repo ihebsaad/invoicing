@@ -51,3 +51,12 @@ Route::post('/desactiver/{id}', [UsersController::class, 'desactiver'])->name('d
 Route::get('signatures', [App\Http\Controllers\SignaturePadController::class, 'index']);
 Route::get('signature/{quote_id}', [App\Http\Controllers\SignaturePadController::class, 'signature'])->name('signature');
 Route::post('signature-pad', [App\Http\Controllers\SignaturePadController::class, 'save'])->name('signpad.save');
+
+//invoices
+Route::get('/invoices/download_pdf/{id}', [InvoicesController::class, 'download_pdf'])->name('invoices.download_pdf');
+Route::get('/invoices/show_pdf/{id}', [InvoicesController::class, 'show_pdf'])->name('invoices.show_pdf');
+
+//quotes
+Route::get('/quotes/download_pdf/{id}', [QuotesController::class, 'download_pdf'])->name('quotes.download_pdf');
+Route::get('/quotes/download_pdf_signature/{id}', [QuotesController::class, 'download_pdf_signature'])->name('quotes.download_pdf_signature');
+Route::get('/quotes/show_pdf/{id}', [QuotesController::class, 'show_pdf'])->name('quotes.show_pdf');

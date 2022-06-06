@@ -6,7 +6,9 @@ use App\Models\Quote;
 use App\Models\Invoice;
 use App\Models\Customer;
 use Illuminate\Http\Request;
-  
+use Carbon\Carbon;
+use Barryvdh\DomPDF\Facade\Pdf;
+
 class QuotesController extends Controller
 {
     /**
@@ -28,7 +30,8 @@ class QuotesController extends Controller
      */
     public function create()
     {
-        return view('quotes.create');
+        $customers = Customer::all();
+        return view('quotes.create',compact('customers'));
     }
     
     /**
@@ -40,13 +43,15 @@ class QuotesController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required',
-            'description' => 'required',
+            'customer' => 'required',
         ]);
+
+        $data=$request->all();
+        $data['date']=Carbon::parse($data['date'])->format('Y-m-d');
     
-        Quote::create($request->all());
+        $quote=Quote::create($data);
      
-        return redirect()->route('quotes.index')
+        return redirect()->route('quotes.edit',['quote'=>$quote])
                         ->with('success','Devis créé avec succès.');
     }
      
@@ -69,7 +74,8 @@ class QuotesController extends Controller
      */
     public function edit(Quote $quote)
     {
-        return view('quotes.edit',compact('quote'));
+        $customers = Customer::all();
+        return view('quotes.edit',compact('quote','customers'));
     }
     
     /**
@@ -107,4 +113,27 @@ class QuotesController extends Controller
     }
 	
 
+    public function show_pdf($id)
+	{   
+        $quote = Quote::find($id);
+        $pdf = PDF::loadView('quotes.quote', compact('quote'));
+        return $pdf->stream('quote-'.$id.'.pdf');
+
+    }
+
+    public function download_pdf($id)
+	{   
+        $quote = Quote::find($id);
+        $pdf = PDF::loadView('quotes.quote', compact('quote'));
+        return $pdf->download('quote-'.$id.'.pdf');
+
+    }
+
+    public function download_pdf_signature($id)
+	{   
+        $quote = Quote::find($id);
+        $pdf = PDF::loadView('quotes.quote-sign', compact('quote'));
+        return $pdf->download('quote-'.$id.'.pdf');
+
+    }
 }

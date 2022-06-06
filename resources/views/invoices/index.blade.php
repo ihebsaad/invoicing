@@ -37,10 +37,12 @@
        <tr>
             <td>{!! sprintf('%04d',$invoice->id) !!}</td>
             <td>{{ $invoice->customer()->first()->name }} {{ $invoice->customer()->first()->lastname }}</td>
-            <td>{{ $invoice->total_ttc }}</td>
+            <td>{{ $invoice->total_ttc }} €</td>
             <td>
-			    <a class="btn btn-primary mb-3" href="{{ route('invoices.edit',$invoice->id) }}" style="float:left" title="Modifier"><i class="fas fa-edit"></i></a>
-                <form action="{{ route('invoices.destroy',$invoice->id) }}" method="POST" style="float:left" class="mr-2 ml-2">
+			    <a class="btn btn-primary mb-3 mr-2" href="{{ route('invoices.edit',$invoice->id) }}" style="float:left" title="Modifier"><i class="fas fa-edit"></i></a>
+			    <a class="btn btn-success mb-3 mr-2 " href="{{ route('invoices.show_pdf',$invoice->id) }}" style="float:left" title="Ouvrir en PDF"><i class="fas fa-file-pdf"></i></a>
+			    <a class="btn btn-secondary mb-3 mr-2 " href="{{ route('invoices.download_pdf',$invoice->id) }}" style="float:left" title="Télécharger"><i class="fas fa-download"></i></a>
+                <form action="{{ route('invoices.destroy',$invoice->id) }}" method="POST" style="float:left" class="mr-2  ">
                     @csrf
                     @method('DELETE')
                     <button type="submit" class="btn btn-danger mb-3" title="Supprimer"><i class="fas fa-trash"></i></button>
@@ -77,7 +79,7 @@
                     extend: 'print',
                     text: '<i class="fa fa-print"></i>  Imprimer',
                     exportOptions: {
-                 //   columns: [  1,2,3,4,5,6  ],
+                    columns: [  0,1,2 ]
                 	}
                     },
                     {

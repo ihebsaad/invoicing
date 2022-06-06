@@ -7,6 +7,7 @@ use App\Models\Customer;
 use App\Models\Quote;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class InvoicesController extends Controller
 {
@@ -108,6 +109,19 @@ class InvoicesController extends Controller
     }
 	
 
-	
-	
+    public function show_pdf($id)
+	{   
+        $invoice = Invoice::find($id);
+        $pdf = PDF::loadView('invoices.invoice', compact('invoice'));
+        return $pdf->stream('invoice-'.$id.'.pdf');
+
+    }
+
+    public function download_pdf($id)
+	{   
+        $invoice = Invoice::find($id);
+        $pdf = PDF::loadView('invoices.invoice', compact('invoice'));
+        return $pdf->download('invoice-'.$id.'.pdf');
+
+    }
 }
