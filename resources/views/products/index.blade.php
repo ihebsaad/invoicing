@@ -12,10 +12,10 @@
     <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="float-left">
-                <h2>Liste</h2>
+                <h2>Liste des produits</h2>
             </div>
             <div class="float-right mb-3"  >
-                <a class="btn btn-success" href="{{ route('products.create') }}"><i class="fas fa-plus"></i> Créer</a>
+                <a class="btn btn-success" href="{{ route('products.create') }}"><i class="fas fa-plus"></i> Ajouter un produit</a>
             </div>
         </div>
     </div>
@@ -28,6 +28,8 @@
             <tr>
             <th>No</th>
             <th>Nom</th>
+            <th>Catégorie</th>
+            <th>Prix</th>
             <th>Description</th>
             <th class="no-sort"  style="width:20%"  >Action</th>
             </tr>
@@ -36,6 +38,8 @@
 		<tr>
             <td>{!! sprintf('%04d',$product->id) !!}</td>
             <td>{{ $product->name }}</td>
+            <td>{{ $product->categorie()->first()->name }}</td>
+            <td>{{ $product->prix }}</td>
             <td>{!!nl2br($product->description) !!}</td>
             <td>
 			    <a class="btn btn-primary mb-3" href="{{ route('products.edit',$product->id) }}" style="float:left" title="Modifier"><i class="fas fa-edit"></i></a>

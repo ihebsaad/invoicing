@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
    
 use App\Models\Product;
+use App\Models\Categorie;
 use Illuminate\Http\Request;
   
 class ProductsController extends Controller
@@ -14,11 +15,9 @@ class ProductsController extends Controller
      */
     public function index()
     {
-       // $products = Product::latest()->paginate(5);
         $products = Product::all();
     
         return view('products.index',compact('products'));
-        //    ->with('i', (request()->input('page', 1) - 1) * 5);
     }
      
     /**
@@ -28,7 +27,8 @@ class ProductsController extends Controller
      */
     public function create()
     {
-        return view('products.create');
+        $categories=Categorie::all();
+        return view('products.create',compact('categories'));
     }
     
     /**
@@ -41,7 +41,6 @@ class ProductsController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'description' => 'required',
         ]);
     
         Product::create($request->all());
@@ -58,7 +57,8 @@ class ProductsController extends Controller
      */
     public function show(Product $product)
     {
-        return view('products.show',compact('product'));
+        $categories=Categorie::all();
+        return view('products.show',compact('product','categories'));
     } 
      
     /**
@@ -68,8 +68,9 @@ class ProductsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit(Product $product)
-    {
-        return view('products.edit',compact('product'));
+    {        
+        $categories=Categorie::all();
+        return view('products.edit',compact('product','categories'));
     }
     
     /**
@@ -83,7 +84,6 @@ class ProductsController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'description' => 'required',
         ]);
     
         $product->update($request->all());
@@ -107,11 +107,6 @@ class ProductsController extends Controller
     }
 	
 
-	
-    public static function ChampById($champ,$id)
-    {
-     $product = Product::find($id);
-	 return  isset($product[$champ]) ? $product[$champ] : '';
-    }
+
 	
 }
