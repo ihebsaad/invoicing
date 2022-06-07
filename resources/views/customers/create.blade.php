@@ -18,6 +18,16 @@
      <div class="row pl-5">
         <div class="col-xs-12 col-sm-12 col-md-7">
             <div class="form-group">
+                <strong>Civilité:</strong>
+                <select   name="civility" class="form-control" placeholder="civility" >
+                    <option value="Mr">Mr</option>
+                    <option value="Mme">Mme</option>
+                    <option value="Mlle">Mlle</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-7">
+            <div class="form-group">
                 <strong>Prénom:</strong>
                 <input type="text" name="name" class="form-control" placeholder="Prénom" value="{{old('name')}}">
             </div>

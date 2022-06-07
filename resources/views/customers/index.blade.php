@@ -37,7 +37,7 @@
         @foreach ($customers as $customer)
 		<tr>
             <td>{!! sprintf('%04d',$customer->id) !!}</td>
-            <td>{{ $customer->name }} {{ $customer->lastname }}</td>
+            <td>{{$customer->civility}} {{ $customer->name }} {{ $customer->lastname }}</td>
             <td>{{ $customer->phone }}</td>
             <td>{{ $customer->email }}</td>
             <td>{{ $customer->address }} - {{ $customer->city }} </td>

@@ -33,7 +33,7 @@
 							<select class="form-control select2" name="customer" required>
 								<option></option>
 								@foreach($customers as $customer)
-									<option value="{{$customer->id}}" @if($customer->id==$quote->customer) selected="selected" @endif>{{$customer->name}} {{$customer->lastname}}</option>
+									<option value="{{$customer->id}}" @if($customer->id==$quote->customer) selected="selected" @endif>{{$customer->civility}} {{$customer->name}} {{$customer->lastname}}</option>
 								@endforeach
 							</select>
 						</div>
@@ -81,7 +81,7 @@
 
     $('.datepicker').datepicker({ changeMonth: true,
       //changeYear: true,
-      dateFormat: 'dd-mm-yy' }).val();
+      dateFormat: 'dd/mm/yy' }).val();
 
   });
   

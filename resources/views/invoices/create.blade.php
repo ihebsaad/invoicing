@@ -32,7 +32,7 @@
                 <select class="form-control select2" name="customer" required>
                     <option></option>
                     @foreach($customers as $customer)
-                        <option value="{{$customer->id}}">{{$customer->name}} {{$customer->lastname}}</option>
+                        <option value="{{$customer->id}}">{{$customer->civility}} {{$customer->name}} {{$customer->lastname}}</option>
                     @endforeach
                 </select>
             </div>
@@ -42,7 +42,7 @@
         <div class="col-xs-12 col-sm-12 col-md-7">
             <div class="form-group">
                 <strong>Date:</strong>
-                <input type="text" class="form-control datepicker"   name="date" placeholder="jj/mm/aaaa" />
+                <input type="text" class="form-control datepicker" autocomplete="off"  name="date" placeholder="jj/mm/aaaa"  value="{{date('d/m/Y')}}"/>
             </div>
         </div>
 
