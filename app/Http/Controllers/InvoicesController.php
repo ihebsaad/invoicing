@@ -115,16 +115,24 @@ class InvoicesController extends Controller
     public function show_pdf($id)
 	{   
         $invoice = Invoice::find($id);
-        $pdf = PDF::loadView('invoices.invoice', compact('invoice'));
-        return $pdf->stream('invoice-'.$id.'.pdf');
+        $date=Carbon::parse($invoice->created_at)->format('Y-m');
+        $date_facture=Carbon::parse($invoice->date)->format('d/m/Y');
+        //$reference= $date.'-'.sprintf('%05d',$invoice->id);
+        $reference= sprintf('%05d',$invoice->id);
+        $pdf = PDF::loadView('invoices.invoice', compact('invoice','reference','date_facture'));
+        return $pdf->stream('Facture-'.$reference.'.pdf');
 
     }
 
     public function download_pdf($id)
 	{   
         $invoice = Invoice::find($id);
-        $pdf = PDF::loadView('invoices.invoice', compact('invoice'));
-        return $pdf->download('invoice-'.$id.'.pdf');
+        $date=Carbon::parse($invoice->created_at)->format('Y-m');
+        $date_facture=Carbon::parse($invoice->date)->format('d/m/Y');
+        //$reference= $date.'-'.sprintf('%05d',$invoice->id);
+        $reference= sprintf('%05d',$invoice->id) ;
+        $pdf = PDF::loadView('invoices.invoice', compact('invoice','reference','date_facture'));
+        return $pdf->download('Facture-'.$reference.'.pdf');
 
     }
 }

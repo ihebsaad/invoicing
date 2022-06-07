@@ -114,7 +114,10 @@ class QuotesController extends Controller
     public function show_pdf($id)
 	{   
         $quote = Quote::find($id);
-        $pdf = PDF::loadView('quotes.quote', compact('quote'));
+        $date=Carbon::parse($quote->created_at)->format('Y-m');
+        $date_facture=Carbon::parse($quote->date)->format('d/m/Y');
+        $reference= sprintf('%05d',$quote->id);
+        $pdf = PDF::loadView('quotes.quote', compact('quote','reference','date_facture'));
         return $pdf->stream('quote-'.$id.'.pdf');
 
     }
@@ -122,16 +125,22 @@ class QuotesController extends Controller
     public function download_pdf($id)
 	{   
         $quote = Quote::find($id);
-        $pdf = PDF::loadView('quotes.quote', compact('quote'));
-        return $pdf->download('quote-'.$id.'.pdf');
+        $date=Carbon::parse($quote->created_at)->format('Y-m');
+        $date_facture=Carbon::parse($quote->date)->format('d/m/Y');
+        $reference= sprintf('%05d',$quote->id);
+        $pdf = PDF::loadView('quotes.quote', compact('quote','reference','date_facture'));
+        return $pdf->download('quote-'.$reference.'.pdf');
 
     }
 
     public function download_pdf_signature($id)
 	{   
         $quote = Quote::find($id);
-        $pdf = PDF::loadView('quotes.quote-sign', compact('quote'));
-        return $pdf->download('quote-'.$id.'.pdf');
+        $date=Carbon::parse($quote->created_at)->format('Y-m');
+        $date_facture=Carbon::parse($quote->date)->format('d/m/Y');
+        $reference= sprintf('%05d',$quote->id);
+        $pdf = PDF::loadView('quotes.quote-sign', compact('quote','reference','date_facture'));
+        return $pdf->download('quote-'.$reference.'.pdf');
 
     }
 }
