@@ -41,11 +41,21 @@
 				 Date d'émission : {{ $date_facture }}
 			 </div>
 			 <div style="width:50%;float:left;">
-				 Règlement: par chèque
+				 Règlement par: {{ $quote->modalite }}
 			 </div>
 		 </div>
- 
- 
+		 <br>
+		<div style="width:100%;">
+		
+			@if(\App\Models\Signature::where('quote',$quote->id)->exists())
+				@php 
+					$url_img=\App\Models\Signature::where('quote',$quote->id)->first()->user_image;
+				@endphp
+				<b>Signature:</b><br>
+				<img src="{{$url_img}}" width= '200'     height= ''/>
+			@endif
+	 	</div>
 	 </div>
+
  @endsection
  

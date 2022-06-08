@@ -36,7 +36,7 @@
         @foreach ($invoices as $invoice)
        <tr>
             <td>{!! sprintf('%04d',$invoice->id) !!}</td>
-            <td>{{ $invoice->customer()->first()->name }} {{ $invoice->customer()->first()->lastname }}</td>
+            <td>{{ $quote->customer()->first()->civility }} {{ $invoice->customer()->first()->name }} {{ $invoice->customer()->first()->lastname }}</td>
             <td>{{ $invoice->total_ttc }} €</td>
             <td>
 			    <a class="btn btn-primary mb-3 mr-2" href="{{ route('invoices.edit',$invoice->id) }}" style="float:left" title="Modifier"><i class="fas fa-edit"></i></a>

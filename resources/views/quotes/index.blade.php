@@ -29,19 +29,21 @@
             <th>No</th>
             <th>Client</th>
             <th>Total</th>
-            <th class="no-sort"  style="width:20%"  >Action</th>
+            <th class="no-sort"  style="width:25%"  >Action</th>
             </tr>
         </thead>
         @foreach ($quotes as $quote)
 		<tr>
             <td>{!! sprintf('%04d',$quote->id) !!}</td>
-            <td>{{ $quote->customer()->first()->name }} {{ $quote->customer()->first()->lastname }}</td>
+            <td>{{ $quote->customer()->first()->civility }} {{ $quote->customer()->first()->name }} {{ $quote->customer()->first()->lastname }}</td>
             <td>{{ ($quote->total_ttc) }} €</td>
             <td>
             <a class="btn btn-primary mb-3 mr-2" href="{{ route('quotes.edit',$quote->id) }}" style="float:left" title="Modifier"><i class="fas fa-edit"></i></a>
 			    <a class="btn btn-success mb-3 mr-2 " href="{{ route('quotes.show_pdf',$quote->id) }}" style="float:left" title="Ouvrir en PDF"><i class="fas fa-file-pdf"></i></a>
 			    <a class="btn btn-secondary mb-3 mr-2 " href="{{ route('quotes.download_pdf',$quote->id) }}" style="float:left" title="Télécharger"><i class="fas fa-download"></i></a>
-                <a class="btn btn-dark mb-3 mr-2 " href="{{ route('quotes.download_pdf_signature',$quote->id) }}" style="float:left" title="Télécharger avec signature"><i class="fas fa-signature"></i></a>
+                @if(\App\Models\Signature::where('quote',$quote->id)->exists())
+                    <a class="btn btn-dark mb-3 mr-2 " href="{{ route('quotes.download_pdf_signature',$quote->id) }}" style="float:left" title="Télécharger avec signature"><i class="fas fa-signature"></i></a>
+                @endif
                 <form action="{{ route('quotes.destroy',$quote->id) }}" method="POST" style="float:left" class="mr-2" >
                     @csrf
                     @method('DELETE')

@@ -34,6 +34,6 @@ class SignaturePadController extends Controller
         );
 
         Signature::create($form_data);
-       return back()->with('success', 'Ajouté avec succès');
+       return back()->with('success', 'Signature enregistrée avec succès');
     }
 }

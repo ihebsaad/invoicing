@@ -43,7 +43,7 @@
 				Date d'émission : {{ $date_facture }}
 			</div>
 			<div style="width:50%;float:left;">
-				Règlement: par chèque
+				Règlement: {{ $invoice->modalite }}
 			</div>
 		</div>
 

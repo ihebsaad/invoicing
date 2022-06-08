@@ -50,6 +50,12 @@
 	<style>
 		.select2-selection__choice{color:black!important;}
 		.select2-container .select2-selection--single {height:38px!important;}
+		.datepicker,.date{
+			width:130px!important;
+		}
+		body{
+			font-family:'Nunito'!important;
+		}
 	</style>
 
   	@yield('styles')
