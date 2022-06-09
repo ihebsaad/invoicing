@@ -4,10 +4,17 @@ namespace App\Http\Controllers;
    
 use App\Models\Product;
 use App\Models\Categorie;
+use App\Models\Item;
 use Illuminate\Http\Request;
   
 class ProductsController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    } 
+
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +22,7 @@ class ProductsController extends Controller
      */
     public function index()
     {
-        $products = Product::all();
+        $products = Product::orderBy('id','desc')->get();
     
         return view('products.index',compact('products'));
     }
@@ -107,6 +114,23 @@ class ProductsController extends Controller
     }
 	
 
+    public function add_item(Request $request)
+    {
+        $product=$request->get('product');
+        $qty=$request->get('qty');
+        $tva=$request->get('tva');
+        $price=$request->get('price');
+        $quote=$request->get('quote');
+        $invoice=$request->get('invoice');
 
+        Item::create([
+            'product'=>$product,
+            'qty'=>$qty,
+            'tva'=>$tva,
+            'price'=>$price,
+            'quote'=>$quote,
+            'invoice'=>$invoice,
+        ]);
+    }
 	
 }

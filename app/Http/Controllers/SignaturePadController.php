@@ -6,6 +6,12 @@ use Illuminate\Http\Request;
 
 class SignaturePadController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    } 
+
     public function index()
     {
         $books = Signature::all();

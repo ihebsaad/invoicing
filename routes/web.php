@@ -60,3 +60,6 @@ Route::get('/invoices/show_pdf/{id}', [InvoicesController::class, 'show_pdf'])->
 Route::get('/quotes/download_pdf/{id}', [QuotesController::class, 'download_pdf'])->name('quotes.download_pdf');
 Route::get('/quotes/download_pdf_signature/{id}', [QuotesController::class, 'download_pdf_signature'])->name('quotes.download_pdf_signature');
 Route::get('/quotes/show_pdf/{id}', [QuotesController::class, 'show_pdf'])->name('quotes.show_pdf');
+
+//products
+Route::post('/add_item',[ProductsController::class, 'add_item'])->name('add_item');

@@ -48,14 +48,7 @@
 	<link rel="stylesheet" type="text/css"    href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 	<style>
-		.select2-selection__choice{color:black!important;}
-		.select2-container .select2-selection--single {height:38px!important;}
-		.datepicker,.date{
-			width:130px!important;
-		}
-		body{
-			font-family:'Nunito'!important;
-		}
+
 	</style>
 
   	@yield('styles')

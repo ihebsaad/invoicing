@@ -93,3 +93,14 @@ h1,h2{
 #mytable_wrapper{
 	min-height:400px;
 }
+
+
+.select2-selection__choice{color:black!important;}
+.select2-container .select2-selection--single {height:38px!important;}
+.datepicker,.date{
+  width:130px!important;
+}
+body{
+  font-family:'Nunito'!important;
+}
+

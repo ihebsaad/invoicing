@@ -75,6 +75,7 @@
   $(function () {
     $("#mytable").DataTable({
       "responsive": true, "lengthChange": false, "autoWidth": false,
+      order: [[ 0, 'desc' ]],
       buttons: [						 
                     {
                     extend: 'print',

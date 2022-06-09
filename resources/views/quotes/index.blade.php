@@ -36,7 +36,7 @@
 		<tr>
             <td>{!! sprintf('%04d',$quote->id) !!}</td>
             <td>{{ $quote->customer()->first()->civility }} {{ $quote->customer()->first()->name }} {{ $quote->customer()->first()->lastname }}</td>
-            <td>{{ ($quote->total_ttc) }} €</td>
+            <td>{{ ($quote->total_ttc ?? 0) }} €</td>
             <td>
             <a class="btn btn-primary mb-3 mr-2" href="{{ route('quotes.edit',$quote->id) }}" style="float:left" title="Modifier"><i class="fas fa-edit"></i></a>
 			    <a class="btn btn-success mb-3 mr-2 " href="{{ route('quotes.show_pdf',$quote->id) }}" style="float:left" title="Ouvrir en PDF"><i class="fas fa-file-pdf"></i></a>
@@ -76,6 +76,7 @@
   $(function () {
     $("#mytable").DataTable({
       "responsive": true, "lengthChange": false, "autoWidth": false,
+      order: [[ 0, 'desc' ]],
       buttons: [						 
                     {
                     extend: 'print',

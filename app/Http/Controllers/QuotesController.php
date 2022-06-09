@@ -5,12 +5,20 @@ namespace App\Http\Controllers;
 use App\Models\Quote;
 use App\Models\Invoice;
 use App\Models\Customer;
+use App\Models\Product;
+use App\Models\Item;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Barryvdh\DomPDF\Facade\Pdf;
 
 class QuotesController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    } 
+    
     /**
      * Display a listing of the resource.
      *
@@ -18,8 +26,7 @@ class QuotesController extends Controller
      */
     public function index()
     {
-        $quotes = Quote::all();
-    
+        $quotes = Quote::orderBy('id','desc')->get();
         return view('quotes.index',compact('quotes'));
     }
      
@@ -75,7 +82,9 @@ class QuotesController extends Controller
     public function edit(Quote $quote)
     {
         $customers = Customer::all();
-        return view('quotes.edit',compact('quote','customers'));
+        $products = Product::all();
+        $items = Item::where('quote',$quote->id)->get();
+        return view('quotes.edit',compact('quote','customers','products','items'));
     }
     
     /**

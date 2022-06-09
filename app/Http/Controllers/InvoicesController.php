@@ -5,12 +5,20 @@ namespace App\Http\Controllers;
 use App\Models\Invoice;
 use App\Models\Customer;
 use App\Models\Quote;
+use App\Models\Product;
+use App\Models\Item;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Barryvdh\DomPDF\Facade\Pdf;
 
 class InvoicesController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    } 
+    
     /**
      * Display a listing of the resource.
      *
@@ -18,7 +26,7 @@ class InvoicesController extends Controller
      */
     public function index()
     {
-        $invoices = Invoice::all();
+        $invoices = Invoice::orderBy('id','desc')->get();
     
         return view('invoices.index',compact('invoices'));
     }
@@ -75,7 +83,9 @@ class InvoicesController extends Controller
     public function edit(Invoice $invoice)
     {
         $customers = Customer::all();
-        return view('invoices.edit',compact('invoice','customers'));
+        $products = Product::all();
+        $items = Item::where('invoice',$invoice->id)->get();
+        return view('invoices.edit',compact('invoice','customers','products','items'));
     }
     
     /**
