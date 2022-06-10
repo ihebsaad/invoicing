@@ -10,6 +10,7 @@ use App\Models\Item;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Barryvdh\DomPDF\Facade\Pdf;
+use App\Http\Controllers\CustomersController;
 
 class QuotesController extends Controller
 {
@@ -38,9 +39,20 @@ class QuotesController extends Controller
     public function create()
     {
         $customers = Customer::all();
-        return view('quotes.create',compact('customers'));
+        $countries = CustomersController::countries();
+        $customer_id=0;
+        return view('quotes.create',compact('customers','countries','customer_id'));
     }
     
+
+    public function add($customer_id)
+    {
+        $customers = Customer::all();
+        $countries = CustomersController::countries();
+
+        return view('quotes.create',compact('customers','countries','customer_id'));
+    }
+
     /**
      * Store a newly created resource in storage.
      *

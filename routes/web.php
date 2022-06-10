@@ -55,12 +55,14 @@ Route::post('signature-pad', [App\Http\Controllers\SignaturePadController::class
 //invoices
 Route::get('/invoices/download_pdf/{id}', [InvoicesController::class, 'download_pdf'])->name('invoices.download_pdf');
 Route::get('/invoices/show_pdf/{id}', [InvoicesController::class, 'show_pdf'])->name('invoices.show_pdf');
+Route::get('/invoices/add/{customer_id}', [InvoicesController::class, 'add'])->name('invoices.add');
 
 //quotes
 Route::get('/quotes/download_pdf/{id}', [QuotesController::class, 'download_pdf'])->name('quotes.download_pdf');
 Route::get('/quotes/download_pdf_signature/{id}', [QuotesController::class, 'download_pdf_signature'])->name('quotes.download_pdf_signature');
 Route::get('/quotes/show_pdf/{id}', [QuotesController::class, 'show_pdf'])->name('quotes.show_pdf');
 Route::post('/update_totals',[QuotesController::class, 'update_totals'])->name('update_totals');
+Route::get('/quotes/add/{customer_id}', [QuotesController::class, 'add'])->name('quotes.add');
 
 //products
 Route::post('/add_item',[ProductsController::class, 'add_item'])->name('add_item');

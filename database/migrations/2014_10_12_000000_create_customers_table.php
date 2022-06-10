@@ -15,20 +15,20 @@ class CreateCustomersTable extends Migration
     {
         Schema::create('customers', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name');
-            $table->string('lastname')->nullable();
+            $table->string('name',50);
+            $table->string('lastname',50)->nullable();
             $table->string('email')->nullable();
-            $table->string('phone')->nullable();
+            $table->string('phone',50)->nullable();
             $table->string('address')->nullable();
-            $table->string('city')->nullable();
-            $table->string('postal')->nullable();
-            $table->string('civility')->nullable();
-            $table->string('country')->nullable();
+            $table->string('city',50)->nullable();
+            $table->string('postal',50)->nullable();
+            $table->string('civility',50)->nullable();
+            $table->string('country',50)->nullable();
 
             $table->string('delivery_address')->nullable();
-            $table->string('delivery_city')->nullable();
-            $table->string('delivery_postal')->nullable();
-            $table->string('delivery_country')->nullable();
+            $table->string('delivery_city',50)->nullable();
+            $table->string('delivery_postal',50)->nullable();
+            $table->string('delivery_country',50)->nullable();
 
             $table->timestamps();
         });
