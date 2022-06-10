@@ -23,6 +23,13 @@ class CreateCustomersTable extends Migration
             $table->string('city')->nullable();
             $table->string('postal')->nullable();
             $table->string('civility')->nullable();
+            $table->string('country')->nullable();
+
+            $table->string('delivery_address')->nullable();
+            $table->string('delivery_city')->nullable();
+            $table->string('delivery_postal')->nullable();
+            $table->string('delivery_country')->nullable();
+
             $table->timestamps();
         });
     }

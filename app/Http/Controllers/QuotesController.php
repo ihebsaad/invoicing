@@ -97,12 +97,14 @@ class QuotesController extends Controller
     public function update(Request $request, Quote $quote)
     {
         $data=$request->all();
+
+        if(isset($data['date']))
         $data['date']=Carbon::parse($data['date'])->format('Y-m-d');
 
         $quote->update($data);
     
-        return redirect()->route('quotes.index')
-                        ->with('success','Devis modifié avec succès');
+        return redirect()->route('quotes.edit',['quote'=>$quote])
+                        ->with('success','Devis modifié avec succès.');
     }
     
     /**
@@ -120,13 +122,38 @@ class QuotesController extends Controller
     }
 	
 
+
+    public function update_totals(Request $request)
+    {
+        $total_ht=$request->get('total_ht');
+        $total_tva=$request->get('total_tva');
+        $total_ttc=$request->get('total_ttc');
+        $total_remise=$request->get('total_remise');
+        $remise=$request->get('remise');
+        $quote=$request->get('quote');
+
+        Quote::where('id',$quote)->update(
+            [
+                'total_ht'=>$total_ht,
+                'total_tva'=>$total_tva,
+                'remise'=>$remise,
+                'total_ttc'=>$total_ttc,
+                'total_remise'=>$total_remise,
+            ]
+        );
+    }
+
+
     public function show_pdf($id)
 	{   
         $quote = Quote::find($id);
         $date=Carbon::parse($quote->created_at)->format('Y-m');
         $date_facture=Carbon::parse($quote->date)->format('d/m/Y');
         $reference= sprintf('%05d',$quote->id);
-        $pdf = PDF::loadView('quotes.quote', compact('quote','reference','date_facture'));
+        $products = Product::all();
+        $items = Item::where('quote',$id)->get();
+
+        $pdf = PDF::loadView('quotes.quote', compact('quote','reference','date_facture','products','items'));
         return $pdf->stream('quote-'.$id.'.pdf');
 
     }
@@ -137,7 +164,9 @@ class QuotesController extends Controller
         $date=Carbon::parse($quote->created_at)->format('Y-m');
         $date_facture=Carbon::parse($quote->date)->format('d/m/Y');
         $reference= sprintf('%05d',$quote->id);
-        $pdf = PDF::loadView('quotes.quote', compact('quote','reference','date_facture'));
+        $products = Product::all();
+        $items = Item::where('quote',$id)->get();
+        $pdf = PDF::loadView('quotes.quote', compact('quote','reference','date_facture','products','items'));
         return $pdf->download('quote-'.$reference.'.pdf');
 
     }
@@ -148,7 +177,9 @@ class QuotesController extends Controller
         $date=Carbon::parse($quote->created_at)->format('Y-m');
         $date_facture=Carbon::parse($quote->date)->format('d/m/Y');
         $reference= sprintf('%05d',$quote->id);
-        $pdf = PDF::loadView('quotes.quote-sign', compact('quote','reference','date_facture'));
+        $products = Product::all();
+        $items = Item::where('quote',$id)->get();
+        $pdf = PDF::loadView('quotes.quote-sign', compact('quote','reference','date_facture','products','items'));
         return $pdf->download('quote-'.$reference.'.pdf');
 
     }

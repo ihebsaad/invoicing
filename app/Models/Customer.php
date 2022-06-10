@@ -18,8 +18,14 @@ class Customer extends Model
         'phone',
         'address',
         'city',
+        'country',
         'postal',
         'civility',
+        'delivery_address',
+        'delivery_city',
+        'delivery_postal',
+        'delivery_country',
+
     ];
 
 }

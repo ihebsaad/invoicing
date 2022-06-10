@@ -132,5 +132,14 @@ class ProductsController extends Controller
             'invoice'=>$invoice,
         ]);
     }
+
+
+    public function delete_item(Request $request)
+    {
+        $item_id=$request->get('item');
+        $item=Item::find($item_id);
+        $item->delete();
+        
+    }
 	
 }

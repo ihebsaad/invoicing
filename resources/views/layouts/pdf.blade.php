@@ -44,12 +44,7 @@
     font-weight:bold;
 }
 </style>
- <!--	<link rel="stylesheet" href="{{ URL::asset('bootstrap/css/bootstrap.min.css') }}">
-	<link rel="stylesheet" href="{{ URL::asset('front/css/default.css') }}">
-	<link  href="{{ asset('sbadmin/css/sb-admin-2.css') }}"    rel="stylesheet">
-	<link href="{{ asset('sbadmin/fontawesome-free/css/all.min.css') }}"    rel="stylesheet" type="text/css">
-	<link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
--->
+
 </head>
 
 <body id="page-top">

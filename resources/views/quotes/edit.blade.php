@@ -16,7 +16,7 @@
      /*   #sigpad canvas{ width: 100% !important; height: auto;}*/
 		#signature{cursor:pointer;}
 		.th-products{
-			background-color:#ff6633;color:white;padding:10px 20px;
+			background-color:#f07f32;color:white;padding:10px 20px;
 			letter-spacing:2px;
 			text-align:center;
 		}
@@ -35,16 +35,26 @@
 		.totals{
 			margin-top:40px;
 			float:right;
-			width:200px;
+			width:280px;
 			font-weight:bold;
+			background-color:#f6f6f6;
 		}
+		.totals td{
+			padding:5px 2px 2px 12px;
+		}
+
 		.bg-grey{
 			background-color:#e3e8ea;
 		}
 		.bg-lightgrey{
 			background-color:#f6f6f6;
 		}
-		
+		.total-prod{
+			background-color:transparent;
+		}
+		.numbers{
+			max-width:80px!important;
+		}
 
  </style> 
 
@@ -71,8 +81,11 @@
                     <a class="nav-link active" id="custom-tabs-three-details-tab" data-toggle="pill" href="#custom-tabs-three-details" role="tab" aria-controls="custom-tabs-three-details" aria-selected="true">Détails</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" id="custom-tabs-three-prods-tab" data-toggle="pill" href="#custom-tabs-three-prods" role="tab" aria-controls="custom-tabs-three-prods" aria-selected="false">Contenu</a>
+                    <a class="nav-link" id="custom-tabs-three-prods-tab" data-toggle="pill" href="#custom-tabs-three-prods" role="tab" aria-controls="custom-tabs-three-prods" aria-selected="false">Produits</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="custom-tabs-three-finance-tab" data-toggle="pill" href="#custom-tabs-three-finance" role="tab" aria-controls="custom-tabs-three-finance" aria-selected="false">Financement</a>
+                </li>				
                 <li class="nav-item">
                     <a class="nav-link" id="custom-tabs-three-signature-tab" data-toggle="pill" href="#custom-tabs-three-signature" role="tab" aria-controls="custom-tabs-three-signature" aria-selected="false">Signature</a>
                 </li>
@@ -97,7 +110,17 @@
 									<i class="fas fa-map-marker mr-2"></i> {{$customer->address}} - {{$customer->city}} 
 								</div>
 							</div>
-
+							<div class="col-xs-12 col-sm-12 col-md-5">
+								<div class="form-group">
+									<strong>Chaudière à :</strong>
+									<select  class="form-control"   name="chaudiere" style="width:180px" >
+										<option value=""></option>
+										<option  @if($quote->chaudiere=='Gaz') selected="selected" @endif value="Gaz">Gaz</option>
+										<option  @if($quote->chaudiere=='Fioul') selected="selected" @endif value="Fioul">Fioul</option>
+										<option  @if($quote->chaudiere=='Charbon') selected="selected" @endif value="Charbon">Charbon</option>
+									</select>
+								</div>
+							</div>
 							
 							<div class="col-xs-12 col-sm-12 col-md-7">
 								<div class="form-group">
@@ -133,13 +156,15 @@
 									<th style="width:45%">Produit</th><th style="width:8%">Prix U</th><th style="width:8%">Qté</th><th style="width:8%">TVA</th><th style="width:14%">Total</th><th style="width:10%">+/-</th>
 								</tr>
 							</thead>
-							<tbody>
+							<tbody style="min-height:300px">
 								<tr class="product bg-lightgrey">
-									<td>POMPE A CHALEUR AIR/EAU TOSHIBA - ESTIA 8 MONO</td><td> 650 €</td><td><input type="number" step="1" min="1" class="number"/></td><td><input type="number" step="0.5" min="5.5" class="number" value="5.5" /> %</td><td><input type="number"   class="number" value="" readonly /></td><td></td>
 									@foreach($items as $item)
-									@php $product=\App\Models\Product::find($item->product); @endphp
+									@php 
+										$product=\App\Models\Product::find($item->product); 
+										$total_prod=floatval($product->prix) * intval($item->qty);
+									@endphp
 									<tr class="product bg-lightgrey">
-										<td>{{$product->name}}</td><td>{{$product->prix}} €</td><td><input type="number" step="1" min="1" class="number" value="{{$item->qty}}"/></td><td><input  step="0.5" min="5.5" type="number" step="1" min="1" class="number" value="{{$item->tva}}"/> %</td><td>{!! floatval($product->prix) * intval($item->qty) !!} €</td><td></td>
+										<td>{{$product->name}}</td><td>{{$product->prix}} €</td><td><input type="number" step="1" min="1" class="number" value="{{$item->qty}}"/></td><td><input  step="0.5" min="5.5" type="number" step="1" min="1" class="number" value="{{$item->tva}}"/> %</td><td><input id="total-{{$item->id}}" type="number" readonly class="total-prod number" value="{{$total_prod}}"/> €</td><td><button id="delete_item"   class="btn btn-danger" onclick="delete_item({{$item->id}})"><i class="fas fa-trash "></i></td>
 									</tr>
 									@endforeach								
 								
@@ -154,20 +179,106 @@
 										</select>
 									</td>
 									<td><span  id="price"  >0</span> €</td>
-									<td><input  id="qty" type="number" step="1" min="1" value="1" class="number" style="width:60px" onchange="total_prod()" /></td><td><input id="tva" type="number" step="0.5" min="5.5" class="number" value="5.5" style="width:60px"/> %</td><td><input id="total_prod" type="number"   class="number" value="0" readonly /> €</td><td><button class="btn btn-success" onclick="add_product()"><i class="fas fa-plus "></i></td>
+									<td><input  id="qty" type="number" step="1" min="1" value="1" class="number" style="width:60px" onchange="total_prod()" /></td><td><input id="tva" type="number" step="0.5" min="5.5" class="number" value="5.5" style="width:60px"/> %</td><td><input id="total_prod" type="number"   class="number" value="0" readonly /> €</td><td><button id="add_product" disabled class="btn btn-success" onclick="add_product()"><i class="fas fa-plus "></i></td>
 								</tr>								
 							</tbody>
 						</table>
 						<table class="totals">
-							<tr><td colspan="2">Sous Total</td><td>5100€</td></tr>
-							<tr><td colspan="2">Total TVA</td><td>380€</td></tr>
-							<tr><td>Remise</td><td>0%</td><td>0€</td></tr>
-							<tr><td colspan="2">Total</td><td>6300€</td></tr>
+							<tr><td colspan="2">Sous Total</td><td><input id="total_ht" type="number"  class="number numbers" readonly  value="{{$quote->total_ht}}"/> €</td></tr>
+							<tr><td colspan="2">Total TVA</td><td><input id="total_tva" type="number"  class="number numbers"  readonly  value="{{$quote->total_tva}}"/> €</td></tr>
+							<tr><td>Remise</td><td><input id="remise" type="number"  class="number numbers" style="width:42px" value="{{$quote->remise}}" onchange="calcul()"/>%</td><td><input id="total_remise" readonly type="number"  class="number numbers" value="{{$quote->total_remise}}"/> €</td></tr>
+							<tr><td colspan="2">Total</td><td><input id="total_ttc" type="number" readonly  class="number numbers" value="{{$quote->total_ttc}}" /> €</td></tr>
 						</table>
 					</div>
 
 				</div>
 
+				<div class="tab-pane fade" id="custom-tabs-three-finance" role="tabpanel" aria-labelledby="custom-tabs-three-finance-tab"  style="width:100%">
+					<form action="{{ route('quotes.update',$quote->id) }}" method="POST">
+						@csrf
+						@method('PUT')
+						<div class="row">
+							<div class="col-xs-12 col-sm-12 col-md-6">
+								<div class="form-group">
+									<strong>Modalité :</strong>
+									<select  class="form-control"   id="modalite" name="modalite" style="width:180px" onchange="check_finances()">
+										<option value=""></option>
+										<option @if($quote->modalite=='Chèque') selected="selected" @endif value="Chèque">Chèque</option>
+										<option  @if($quote->modalite=='Financement') selected="selected" @endif value="Financement">Financement</option>
+									</select>
+								</div>
+							</div>
+						</div>
+						<hr>
+						<div class="row">	
+							<div id="finances"  @if($quote->modalite=='Chèque') style="display:none" @else style="display:contents"  @endif >
+								<div class="col-xs-12 col-sm-12 col-md-6">
+									<div class="form-group">
+										<strong>Montant financé :</strong>
+										<input type="number"  class="form-control"  min="0"  name="montant_finance" style="width:180px" value="{{$quote->montant_finance}}" >
+									</div>
+								</div>
+
+								<div class="col-xs-12 col-sm-12 col-md-6">
+									<div class="form-group">
+										<strong>Report 1ère échéance :</strong>
+										<input type="number"  class="form-control" min="0"   name="report_echeance" style="width:180px" value="{{$quote->report_echeance}}">
+									</div>
+								</div>
+
+								<div class="col-xs-12 col-sm-12 col-md-6">
+									<div class="form-group">
+										<strong>Nombre de mensualités :</strong>
+										<input type="number"  class="form-control" min="0"  name="mensualites" style="width:180px" value="{{$quote->mensualites}}" >
+									</div>
+								</div>
+
+								<div class="col-xs-12 col-sm-12 col-md-6">
+									<div class="form-group">
+										<strong>Montant Mensuel :</strong>
+										<input type="number"  class="form-control"  min="0"  name="montant_mensuel" style="width:180px" value="{{$quote->montant_mensuel}}" >
+									</div>
+								</div>
+
+								<div class="col-xs-12 col-sm-12 col-md-6">
+									<div class="form-group">
+										<strong>Montant assurance :</strong>
+										<input type="number"  class="form-control" min="0"  name="montant_assurance" style="width:180px" value="{{$quote->montant_assurance}}">
+									</div>
+								</div>
+
+								<div class="col-xs-12 col-sm-12 col-md-6">
+									<div class="form-group">
+										<strong>Taux nominal :</strong>
+										<input type="number"  class="form-control" min="0"  name="taux_nominal" style="width:180px" value="{{$quote->taux_nominal}}" >
+									</div>
+								</div>
+
+								<div class="col-xs-12 col-sm-12 col-md-6">
+									<div class="form-group">
+										<strong>TAEG :</strong>
+										<input type="number"  class="form-control" min="0"  name="taeg" style="width:180px" value="{{$quote->taeg}}" >
+									</div>
+								</div>
+
+								<div class="col-xs-12 col-sm-12 col-md-6">
+									<div class="form-group">
+										<strong>Solde de la pose :</strong>
+										<input type="number"  class="form-control"   min="0" name="pose" style="width:180px" value="{{$quote->pose}}">
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-xs-12 col-sm-12 col-md-7 mt-5">
+								<button type="submit" class="btn btn-primary">Enregistrer</button>
+						</div>
+
+
+					</form>
+
+
+				</div>
 				
             	<div class="tab-pane fade" id="custom-tabs-three-signature" role="tabpanel" aria-labelledby="custom-tabs-three-signature-tab"   >
 					@if(\App\Models\Signature::where('quote',$quote->id)->exists())
@@ -214,28 +325,7 @@
 <script src="{{ asset('plugins/summernote/summernote-bs4.min.js') }}" ></script>
 
 <script>
-	function set_price(){
-		var price= $('#product option:selected').data("price");
-		$('#price').html(price);
-		$('#qty').focus();
-		total_prod();
-	}
-
-	function init(){
-		$('#product').val(0);
-		$('#product').select2().trigger('change');
-
-		$("#product").prop("selectedIndex", 0);
-		$('#price').html('0');
-		$('#qty').val(1);
-		$('#product').focus();
-		total_prod();
-	}
-	function total_prod(){
-		$('#total_prod').val(parseFloat($('#price').html())*$('#qty').val());
-	}
-
-  $(function () {
+  	$(function () {
     // Summernote
     $('.summernote').summernote();
 
@@ -246,7 +336,45 @@
       //changeYear: true,
       dateFormat: 'dd/mm/yy' }).val();
 
-  });
+  	});
+	
+	function calcul(){
+
+	update_totals();
+	}
+
+
+	function check_finances(){
+		if($('#modalite').val()=='Financement'){
+			$('#finances').css('display','contents');
+		}else{
+			$('#finances').hide('slow');
+		}
+	}
+
+	function set_price(){
+		var price= $('#product option:selected').data("price");
+		$('#price').html(price);
+		$('#qty').focus();
+		$('#add_product').prop('disabled',false);
+		total_prod();
+	}
+
+	function init(){
+		$('#product').val(0);
+		$('#product').select2().trigger('change');
+		$("#product").prop("selectedIndex", 0);
+		$('#price').html('0');
+		$('#qty').val(1);
+		$('#product').focus();
+		$('#add_product').prop('disabled',true);
+		total_prod();
+	}
+	function total_prod(){
+		$('#total_prod').val(parseFloat($('#price').html())*$('#qty').val());
+	}
+
+
   
   	function add_product(){
 
@@ -267,18 +395,50 @@
 	});
 	}
 
-</script>
- <!-- signature -->
+	function delete_item(item){
+	var _token = $('input[name="_token"]').val();
 
-<!-- jQuery signature plugin js -->
+	$.ajax({
+		url: "{{ route('delete_item') }}",
+		method: "POST",
+		data: {item:item,_token:_token},
+		success: function (data) {
+			init();
+		}
+	});
+	}
+
+
+	function update_totals(){
+	var quote=	$('#quote').val();
+	var _token = $('input[name="_token"]').val();
+	var total_ht= $("#total_ht").val();
+	var total_tva=	$('#total_tva').html();
+	var total_ttc=	$('#total_ttc').val();
+	var total_remise=	$('#total_remise').val();
+	var remise=	$('#remise').val();
+
+	$.ajax({
+		url: "{{ route('update_totals') }}",
+		method: "POST",
+		data: {total_ht:total_ht,total_tva:total_tva,total_ttc:total_ttc,total_remise:total_remise,remise:remise,quote:quote, _token:_token},
+		success: function (data) {
+			init();
+		}
+	});
+
+	}
+</script>
+
+ <!-- signature -->
 <script type="text/javascript" src="http://keith-wood.name/js/jquery.signature.js"></script>
 <script type="text/javascript">
-  var sigpad = $('#sigpad').signature({syncField: '#signature', syncFormat: 'PNG'});
-  $('#clear').click(function(e) {
-   e.preventDefault();
-   sigpad.signature('clear');
-   $("#signature").val('');
-  });
+	var sigpad = $('#sigpad').signature({syncField: '#signature', syncFormat: 'PNG'});
+		$('#clear').click(function(e) {
+		e.preventDefault();
+		sigpad.signature('clear');
+		$("#signature").val('');
+	});
 </script>
 
 @endsection
