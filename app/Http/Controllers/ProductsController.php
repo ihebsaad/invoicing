@@ -123,7 +123,7 @@ class ProductsController extends Controller
         $quote=$request->get('quote');
         $invoice=$request->get('invoice');
 
-        Item::create([
+        $item=Item::create([
             'product'=>$product,
             'qty'=>$qty,
             'tva'=>$tva,
@@ -131,6 +131,8 @@ class ProductsController extends Controller
             'quote'=>$quote,
             'invoice'=>$invoice,
         ]);
+
+        return $item->id;
     }
 
 

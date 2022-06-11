@@ -42,6 +42,7 @@
 			width:280px;
 			font-weight:bold;
 			background-color:#f6f6f6;
+			border:2px solid #f07f32;
 		}
 		.totals td{
 			padding:5px 2px 2px 12px;
@@ -58,6 +59,9 @@
 		}
 		.numbers{
 			max-width:80px!important;
+		}
+		.bg-transparent{
+			background-color:transparent;
 		}
 
  </style> 
@@ -166,12 +170,12 @@
 										<select class="form-control select2"  id='product' onchange="set_price()">
 											<option value="0">Sélectionnez le produit</option>
 												@foreach($products as $prod)
-													<option data-price="{{$prod->prix}}"  data-text="{{$prod->name}}" data-priceht="{{$prod->prix_ht}}"   value="{{$prod->id}}">{{$prod->id}}- {{$prod->name}}  ({{$prod->prix}}€)</option>
+													<option data-price="{{$prod->prix}}"  data-text="{{$prod->name}}" data-tva="{{$prod->tva}}" data-priceht="{{$prod->prix_ht}}"   value="{{$prod->id}}">{{$prod->id}}- {{$prod->name}}  ({{$prod->prix}}€)</option>
 												@endforeach
 										</select>
 									</td>
-									<td><span  id="price"  >0</span> €</td>
-									<td><input  id="qty" type="number" step="1" min="1" value="1" class="number" style="width:60px" onchange="total_prod()" /></td><td><input readonly id="tva" type="number" step="0.5" min="5.5" class="number" value="5.5" style="width:60px"/> %</td><td><input id="total_prod" type="number"   class="number" value="0" readonly /> €</td><td><button id="add_product" disabled class="btn btn-success add-prod" onclick="add_product()"><i class="fas fa-plus "></i></td>
+									<td><input  class="number bg-transparent"  id="price"  value="0" /> €</td>
+									<td><input  id="qty" type="number" step="1" min="1" value="1" class="number" style="width:60px" onchange="total_prod()" /></td><td><input readonly id="tva" type="number"  class="number bg-transparent" value="0" style="width:60px"/> %</td><td><input id="total_prod" type="number"   class="number bg-transparent" value="0" readonly /> €</td><td><button id="add_product" disabled class="btn btn-success add-prod" onclick="add_product();  "><i class="fas fa-plus "></i></td>
 								</tr>							
 								@php $c=0;  @endphp
 								@foreach($items as $item)
@@ -181,18 +185,41 @@
 										$c++;
 									@endphp
 									<tr class="myproduct product bg-lightgrey tr-prod" id="row-{{$c}}">
-										<td class="myproducttd" data-prix="{{$product->prix}}" data-prixht="{{$product->prix_ht}}" data-id="{{$item->id}}"  >{{$product->name}}</td><td >{{$product->prix}} €</td><td><input id="qty-{{$item->id}}" type="number" step="1" min="1" class="number" value="{{$item->qty}}"/></td><td><input readonly step="0.5" min="5.5" type="number" step="1" min="1" class="number" value="{{$item->tva}}"/> %</td><td><input id="total-{{$item->id}}" type="number" readonly class="total-prod number" value="{{$total_prod}}"/> €</td><td><button id="delete_item"   class="btn btn-danger" onclick="delete_item({{$item->id}},{{$c}})"><i class="fas fa-trash " data-id="{{$c}}"></i></td>
+										<td class="myproducttd" data-prix="{{$product->prix}}" data-prixht="{{$product->prix_ht}}" data-id="{{$item->id}}"  >{{$product->name}}</td><td >{{$product->prix}} €</td><td><input id="qty-{{$item->id}}" type="number" step="1" min="1" class="number" value="{{$item->qty}}"  onchange="calcul()"/></td><td><input readonly step="0.5" min="5.5" type="number" step="1" min="1" class="number bg-transparent" value="{{$item->tva}}"/> %</td><td><input id="total-{{$item->id}}" type="number" readonly class="total-prod number" value="{{$total_prod}}"/> €</td><td><button id="delete_item"   class="btn btn-danger" onclick="delete_item({{$item->id}},{{$c}})"><i class="fas fa-trash " data-id="{{$c}}"></i></td>
 									</tr>
 								@endforeach								
 								
 							</tbody>
 						</table>
-						<table class="totals">
-							<tr><td colspan="2">Sous Total</td><td><input id="total_ht" type="number"  class="number numbers" readonly  value="{{$quote->total_ht}}"/> €</td></tr>
-							<tr><td colspan="2">Total TVA</td><td><input id="total_tva" type="number"  class="number numbers"  readonly  value="{{$quote->total_tva}}"/> €</td></tr>
-							<tr><td>Remise</td><td><input id="remise" type="number"  class="number numbers" style="width:42px" value="{{$quote->remise}}" onchange="calcul()"/>%</td><td><input id="total_remise" readonly type="number"  class="number numbers" value="{{$quote->total_remise}}"/> €</td></tr>
-							<tr><td colspan="2">Total</td><td><input id="total_ttc" type="number" readonly  class="number numbers" value="{{$quote->total_ttc}}" /> €</td></tr>
-						</table>
+						<div class="row">
+							<div class="col-md-6 row pt-3 pl-3">
+								<div class="col-xs-12 col-sm-12 col-md-6">
+									<div class="form-group">
+										<strong>Type d'aide éligible:</strong>
+										<select class="form-control" style="width:180px" name="type_aide" id="type_aide" >
+											<option @if($quote->type_aide=='Prime Renov') selected="selected" @endif value="Prime Renov">Prime Renov</option>
+											<option @if($quote->type_aide=='Prime B') selected="selected" @endif value="Prime B">Prime B</option>
+											<option @if($quote->type_aide=='Prime C') selected="selected" @endif value="Prime C">Prime C</option>
+										</select>
+									</div>
+								</div>
+								<div class="col-xs-12 col-sm-12 col-md-6">
+									<div class="form-group">
+										<strong>Montant:</strong>
+										<input type="number" class="form-control" style="width:100px" min="0" value="{{$quote->aide}}" id="aide" onchange="calcul();"/>
+									</div>
+								</div>								
+							</div>
+							<div class="col-md-6">
+								<table class="totals">
+									<tr><td colspan="2">Sous Total</td><td><input id="total_ht" type="number"  class="number numbers bg-transparent" readonly  value="{{$quote->total_ht}}"/> €</td></tr>
+									<tr><td colspan="2">Total TVA</td><td><input id="total_tva" type="number"  class="number numbers bg-transparent"  readonly  value="{{$quote->total_tva}}"/> €</td></tr>
+									<tr><td>Remise</td><td><input id="remise" type="number"  class="number numbers" style="width:42px" value="{{$quote->remise}}" onchange="calcul()"/>%</td><td><input id="total_remise" readonly type="number"  class="number numbers bg-transparent" value="{{$quote->total_remise}}" /> €</td></tr>
+									<tr><td colspan="2">TOTAL TTC</td><td><input id="total_ttc" type="number" readonly  class="number numbers bg-transparent" value="{{$quote->total_ttc}}" /> €</td></tr>
+									<tr><td colspan="2">Net à payer</td><td><input id="net" type="number" readonly  class="number numbers bg-transparent" value="{{$quote->net}}" /> €</td></tr>
+								</table>
+							</div>
+						</div>
 					</div>
 
 				</div>
@@ -215,7 +242,7 @@
 						</div>
 						<hr>
 						<div class="row">	
-							<div id="finances"  @if($quote->modalite=='Chèque') style="display:none" @else style="display:contents"  @endif >
+							<div id="finances"  @if($quote->modalite=='Chèque' || $quote->modalite== '') style="display:none" @else style="display:contents"  @endif >
 								<div class="col-xs-12 col-sm-12 col-md-6">
 									<div class="form-group">
 										<strong>Montant financé :</strong>
@@ -350,9 +377,9 @@
 		$('#list-prods .myproduct').each(function(){
     		$(this).find('.myproducttd').each(function(){
 				id_item=$(this).data('id');
-				qty= $('#qty-'+id).val();
-				total_ht+=( $(this).data('prix')* qty );
-				total_ttc+=( $(this).data('prixht') *  qty);
+				qty= parseInt($('#qty-'+id_item).val());
+				total_ht+=parseFloat(( $(this).data('prixht')* qty ));
+				total_ttc+=parseFloat(( $(this).data('prix') *  qty));
 
     	})
 		});
@@ -361,14 +388,20 @@
 		total_tva = total_ttc-total_ht;
 	    $('#total_tva').val(total_tva);
 
-		var remise=	$('#remise').val();
+		var remise=parseFloat($('#remise').val());
+		var total_remise=0;
 		if(parseFloat(remise)>0){
 			var total_remise = (total_ttc* remise)/100;
-			$('#total_remise').html(total_remise);
+			$('#total_remise').val(total_remise);
 			total_ttc= total_ttc- total_remise ;
+		}else{
+			$('#total_remise').val(0);
 		}
 	    $('#total_ttc').val(total_ttc);
 
+		var aide=parseFloat($('#aide').val());
+		var net=total_ttc-aide;
+		$('#net').val(net);
 		update_totals();
 	}
 
@@ -383,24 +416,33 @@
 
 	function set_price(){
 		var price= $('#product option:selected').data("price");
-		$('#price').html(price);
+		var tva= $('#product option:selected').data("tva");
+		$('#tva').val(tva);
+		$('#price').val(price);
 		$('#qty').focus();
 		$('#add_product').prop('disabled',false);
-		total_prod();
+ 		var total_prod=parseFloat($('#price').val()) * parseInt($('#qty').val()) ;
+		$('#total_prod').val(total_prod);
 	}
 
 	function init(){
 		$('#product').val(0);
 		$('#product').select2().trigger('change');
 		$("#product").prop("selectedIndex", 0);
-		$('#price').html('0');
+		$('#tva').val('0');
+		$('#total_prod').val('0');
+		$('#price').val('0');
 		$('#qty').val(1);
 		$('#product').focus();
 		$('#add_product').prop('disabled',true);
-		total_prod();
+		//total_prod();
 	}
 	function total_prod(){
-		$('#total_prod').val(parseFloat($('#price').html())*$('#qty').val());
+		alert($('#price').val());
+		alert($('#qty').val());
+		var total_prod=parseFloat($('#price').val()) * parseInt($('#qty').val()) ;
+		//alert(total_prod);
+		$('#total_prod').val(total_prod);
 	}
 
 
@@ -408,26 +450,33 @@
   	function add_product(){
 
   	var _token = $('input[name="_token"]').val();
-	var product= $("#product").val();
+	var product= parseInt($("#product").val());
 	var product_text= $("#product option:selected").data("text");
-	var price_ht= $("#product option:selected").data("priceht");
-	var price=	$('#price').html();
-	var qty=	$('#qty').val();
-	var total=price*qty;
-	var tva=	$('#tva').val();
-	var quote=	$('#quote').val();
+	var price_ht= parseFloat($("#product option:selected").data("priceht"));
+	var price=	parseFloat($('#price').val());
+	var qty=	parseInt($('#qty').val());
+	var total= price*qty;
+	var tva=	parseFloat($('#tva').val());
+	var quote=	parseInt($('#quote').val());
 
   	$.ajax({
         url: "{{ route('add_item') }}",
         method: "POST",
+		async:false,
         data: {product:product,price:price,qty:qty,tva:tva, quote:quote,_token:_token},
         success: function (data) {
 			init();
-			var row='<tr class="product bg-lightgrey tr-prod" ><td>'+product_text+'</td><td>'+price+' €</td><td><input type="number" step="1" min="1" class="number" value="'+qty+'"/></td><td><input  step="0.5" min="5.5" type="number" step="1" min="1" class="number" value="'+tva+'"/> %</td><td><input id="total-'+product+'" type="number" readonly class="total-prod number" value="'+total+'"/> €</td><td><button id="delete_item"   class="btn btn-danger" onclick="delete_item(product)"><i class="fas fa-trash "  ></i></td></tr>';
+			var row='<tr class="myproduct product bg-lightgrey tr-prod" ><td class="myproducttd"  data-prix="'+price+'" data-prixht="'+price_ht+'" data-id="'+data+'"  >'+product_text+'</td><td>'+price+' €</td><td><input type="number" step="1" min="1" class="number" value="'+qty+'"  id="qty-'+data+'"/></td><td><input  step="0.5" min="5.5" type="number" step="1" min="1" class="number bg-transparent" value="'+tva+'"/> %</td><td><input id="total-'+data+'" type="number" readonly class="total-prod number" value="'+total+'"/> €</td><td><button id="delete_item"   class="btn btn-danger" onclick="delete_item(product)"><i class="fas fa-minus "  ></i></td></tr>';
 			$('#list-prods').append(row);
-
+			
 		}
 	});
+	// attendre une seconde puis calculer
+	/*setTimeout(function(){
+    	calcul();
+	}, 1000);*/
+	calcul();
+
 	}
 
 	function delete_item(item,id){
@@ -440,6 +489,7 @@
 		success: function (data) {
 			init();
 			$('#row-'+id).html('');
+			calcul();
 		}
 	});
 	}
@@ -453,11 +503,14 @@
 	var total_ttc=	$('#total_ttc').val();
 	var total_remise=	$('#total_remise').val();
 	var remise=	$('#remise').val();
+	var aide=	$('#aide').val();
+	var type_aide=	$('#type_aide').val();
+	var net=	$('#net').val();
 
 	$.ajax({
 		url: "{{ route('update_totals') }}",
 		method: "POST",
-		data: {total_ht:total_ht,total_tva:total_tva,total_ttc:total_ttc,total_remise:total_remise,remise:remise,quote:quote, _token:_token},
+		data: {total_ht:total_ht,total_tva:total_tva,total_ttc:total_ttc,total_remise:total_remise,remise:remise,quote:quote,aide:aide,type_aide:type_aide,net:net, _token:_token},
 		success: function (data) {
 			init();
 		}

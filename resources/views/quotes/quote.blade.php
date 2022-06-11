@@ -100,9 +100,13 @@
 						<tr class="product ">
 							<td>{{$product->name}}</td><td>{{$product->prix}} €</td><td>{{$item->qty}}</td><td>{{$item->tva}} %</td><td>{{$total_prod}} €</td>
 						</tr>
-					@endforeach								
-								
-				</tr>				
+					@endforeach											
+				</tr>
+				@if($quote->type_aide!='')
+				<tr class="product" style="color:#f07f32">
+					<td>{{$quote->type_aide}}</td><td>- {{$quote->aide}}  €</td><td>1</td><td></td><td>- {{$quote->aide}}  €</td>
+				</tr>			
+				@endif
 			</tbody>
 		</table>
 
@@ -111,9 +115,10 @@
 			<tr><td colspan="2">Sous Total</td><td>{{$quote->total_ht}} €</td></tr>
 			<tr><td colspan="2">Total TVA</td><td>{{$quote->total_tva}} €</td></tr>
 			@if($quote->remise>0)
-			<tr><td>Remise</td><td>{{$quote->remise}}%</td><td>{{$quote->total_remise}} €</td></tr>
+			<tr style="color:#f07f32"><td>Remise</td><td>{{$quote->remise}}%</td><td>- {{$quote->total_remise}} €</td></tr>
 			@endif
-			<tr><td colspan="2">Total</td><td>{{$quote->total_ttc}} €</td></tr>
+			<tr><td colspan="2">Total TTC</td><td>{{$quote->total_ttc}} €</td></tr>
+			<tr><td colspan="2">Net à payer</td><td>{{$quote->net}} €</td></tr>
 		</table>
 		<div style="width:100%;">
 			<br>

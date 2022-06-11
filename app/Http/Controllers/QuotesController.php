@@ -143,6 +143,9 @@ class QuotesController extends Controller
         $total_remise=$request->get('total_remise');
         $remise=$request->get('remise');
         $quote=$request->get('quote');
+        $aide=$request->get('aide');
+        $type_aide=$request->get('type_aide');
+        $net=$request->get('net');
 
         Quote::where('id',$quote)->update(
             [
@@ -151,6 +154,9 @@ class QuotesController extends Controller
                 'remise'=>$remise,
                 'total_ttc'=>$total_ttc,
                 'total_remise'=>$total_remise,
+                'aide'=>$aide,
+                'type_aide'=>$type_aide,
+                'net'=>$net,
             ]
         );
     }

@@ -33,6 +33,7 @@ class Quote extends Model
         'taeg',
         'pose',
         'customer',
+        'net'
     ];
 	
 		public function customer()

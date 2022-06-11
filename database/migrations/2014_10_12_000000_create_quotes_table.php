@@ -30,16 +30,17 @@ class CreateQuotesTable extends Migration
             $table->double('total_ttc', 8, 2)->nullable();;
 
             $table->string('type_aide')->nullable();
-            $table->double('aide', 8, 2)->nullable();
+            $table->double('aide', 8, 2)->default(0)->nullable();
+            $table->double('net', 8, 2)->default(0)->nullable();
 
-            $table->double('montant_finance', 8, 2)->nullable();
-            $table->double('report_echeance', 8, 2)->nullable();
-            $table->double('mensualites', 8, 2)->nullable();
-            $table->double('montant_mensuel', 8, 2)->nullable();
-            $table->double('montant_assurance', 8, 2)->nullable();
-            $table->double('taux_nominal', 8, 2)->nullable();
-            $table->double('taeg', 8, 2)->nullable();
-            $table->double('pose', 8, 2)->nullable();            
+            $table->double('montant_finance', 8, 2)->default(0)->nullable();
+            $table->double('report_echeance', 8, 2)->default(0)->nullable();
+            $table->double('mensualites', 8, 2)->default(0)->nullable();
+            $table->double('montant_mensuel', 8, 2)->default(0)->nullable();
+            $table->double('montant_assurance', 8, 2)->default(0)->nullable();
+            $table->double('taux_nominal', 8, 2)->default(0)->nullable();
+            $table->double('taeg', 8, 2)->default(0)->nullable();
+            $table->double('pose', 8, 2)->default(0)->nullable();            
 
 
             $table->unsignedBigInteger('customer')->nullable();
