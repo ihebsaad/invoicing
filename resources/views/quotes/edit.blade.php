@@ -15,10 +15,14 @@
         .kbw-signature { width: 100%; height: 200px;}
      /*   #sigpad canvas{ width: 100% !important; height: auto;}*/
 		#signature{cursor:pointer;}
+		.tab-products{
+			width:100%;
+		}
 		.th-products{
 			background-color:#f07f32;color:white;padding:10px 20px;
 			letter-spacing:2px;
 			text-align:center;
+			
 		}
 		.tab-content{
 			min-height:400px;
@@ -150,37 +154,37 @@
             	<div class="tab-pane fade" id="custom-tabs-three-prods" role="tabpanel" aria-labelledby="custom-tabs-three-prods-tab"  style="width:100%">
 
 					<div class="">
-						<table class="tab-products">
+						<table class="tab-products" style="width:100%">
 							<thead class="th-products">
 								<tr>
 									<th style="width:45%">Produit</th><th style="width:8%">Prix U</th><th style="width:8%">Qté</th><th style="width:8%">TVA</th><th style="width:14%">Total</th><th style="width:10%">+/-</th>
 								</tr>
 							</thead>
-							<tbody style="min-height:300px">
-								<tr class="product bg-lightgrey">
-									@foreach($items as $item)
-									@php 
-										$product=\App\Models\Product::find($item->product); 
-										$total_prod=floatval($product->prix) * intval($item->qty);
-									@endphp
-									<tr class="product bg-lightgrey">
-										<td>{{$product->name}}</td><td>{{$product->prix}} €</td><td><input type="number" step="1" min="1" class="number" value="{{$item->qty}}"/></td><td><input  step="0.5" min="5.5" type="number" step="1" min="1" class="number" value="{{$item->tva}}"/> %</td><td><input id="total-{{$item->id}}" type="number" readonly class="total-prod number" value="{{$total_prod}}"/> €</td><td><button id="delete_item"   class="btn btn-danger" onclick="delete_item({{$item->id}})"><i class="fas fa-trash "></i></td>
-									</tr>
-									@endforeach								
-								
-								</tr>
-								<tr class="product bg-grey">
+							<tbody id="list-prods" style="min-height:300px list-prods">
+								<tr class="product bg-grey new-prod">
 									<td>
 										<select class="form-control select2"  id='product' onchange="set_price()">
 											<option value="0">Sélectionnez le produit</option>
-											@foreach($products as $prod)
-												<option data-price="{{$prod->prix}}"    value="{{$prod->id}}">{{$prod->id}}- {{$prod->name}}  ({{$prod->prix}}€)</option>
-											@endforeach
+												@foreach($products as $prod)
+													<option data-price="{{$prod->prix}}"  data-text="{{$prod->name}}" data-priceht="{{$prod->prix_ht}}"   value="{{$prod->id}}">{{$prod->id}}- {{$prod->name}}  ({{$prod->prix}}€)</option>
+												@endforeach
 										</select>
 									</td>
 									<td><span  id="price"  >0</span> €</td>
-									<td><input  id="qty" type="number" step="1" min="1" value="1" class="number" style="width:60px" onchange="total_prod()" /></td><td><input id="tva" type="number" step="0.5" min="5.5" class="number" value="5.5" style="width:60px"/> %</td><td><input id="total_prod" type="number"   class="number" value="0" readonly /> €</td><td><button id="add_product" disabled class="btn btn-success" onclick="add_product()"><i class="fas fa-plus "></i></td>
-								</tr>								
+									<td><input  id="qty" type="number" step="1" min="1" value="1" class="number" style="width:60px" onchange="total_prod()" /></td><td><input readonly id="tva" type="number" step="0.5" min="5.5" class="number" value="5.5" style="width:60px"/> %</td><td><input id="total_prod" type="number"   class="number" value="0" readonly /> €</td><td><button id="add_product" disabled class="btn btn-success add-prod" onclick="add_product()"><i class="fas fa-plus "></i></td>
+								</tr>							
+								@php $c=0;  @endphp
+								@foreach($items as $item)
+									@php 
+										$product=\App\Models\Product::find($item->product); 
+										$total_prod=floatval($product->prix) * intval($item->qty);
+										$c++;
+									@endphp
+									<tr class="myproduct product bg-lightgrey tr-prod" id="row-{{$c}}">
+										<td class="myproducttd" data-prix="{{$product->prix}}" data-prixht="{{$product->prix_ht}}" data-id="{{$item->id}}"  >{{$product->name}}</td><td >{{$product->prix}} €</td><td><input id="qty-{{$item->id}}" type="number" step="1" min="1" class="number" value="{{$item->qty}}"/></td><td><input readonly step="0.5" min="5.5" type="number" step="1" min="1" class="number" value="{{$item->tva}}"/> %</td><td><input id="total-{{$item->id}}" type="number" readonly class="total-prod number" value="{{$total_prod}}"/> €</td><td><button id="delete_item"   class="btn btn-danger" onclick="delete_item({{$item->id}},{{$c}})"><i class="fas fa-trash " data-id="{{$c}}"></i></td>
+									</tr>
+								@endforeach								
+								
 							</tbody>
 						</table>
 						<table class="totals">
@@ -337,10 +341,35 @@
       dateFormat: 'dd/mm/yy' }).val();
 
   	});
-	
-	function calcul(){
 
-	update_totals();
+	  
+	function calcul(){
+		var total_ht=0;
+		var total_ttc=0;
+		var total_tva=0;
+		$('#list-prods .myproduct').each(function(){
+    		$(this).find('.myproducttd').each(function(){
+				id_item=$(this).data('id');
+				qty= $('#qty-'+id).val();
+				total_ht+=( $(this).data('prix')* qty );
+				total_ttc+=( $(this).data('prixht') *  qty);
+
+    	})
+		});
+		
+		$("#total_ht").val(total_ht);
+		total_tva = total_ttc-total_ht;
+	    $('#total_tva').val(total_tva);
+
+		var remise=	$('#remise').val();
+		if(parseFloat(remise)>0){
+			var total_remise = (total_ttc* remise)/100;
+			$('#total_remise').html(total_remise);
+			total_ttc= total_ttc- total_remise ;
+		}
+	    $('#total_ttc').val(total_ttc);
+
+		update_totals();
 	}
 
 
@@ -380,8 +409,11 @@
 
   	var _token = $('input[name="_token"]').val();
 	var product= $("#product").val();
+	var product_text= $("#product option:selected").data("text");
+	var price_ht= $("#product option:selected").data("priceht");
 	var price=	$('#price').html();
 	var qty=	$('#qty').val();
+	var total=price*qty;
 	var tva=	$('#tva').val();
 	var quote=	$('#quote').val();
 
@@ -391,11 +423,14 @@
         data: {product:product,price:price,qty:qty,tva:tva, quote:quote,_token:_token},
         success: function (data) {
 			init();
+			var row='<tr class="product bg-lightgrey tr-prod" ><td>'+product_text+'</td><td>'+price+' €</td><td><input type="number" step="1" min="1" class="number" value="'+qty+'"/></td><td><input  step="0.5" min="5.5" type="number" step="1" min="1" class="number" value="'+tva+'"/> %</td><td><input id="total-'+product+'" type="number" readonly class="total-prod number" value="'+total+'"/> €</td><td><button id="delete_item"   class="btn btn-danger" onclick="delete_item(product)"><i class="fas fa-trash "  ></i></td></tr>';
+			$('#list-prods').append(row);
+
 		}
 	});
 	}
 
-	function delete_item(item){
+	function delete_item(item,id){
 	var _token = $('input[name="_token"]').val();
 
 	$.ajax({
@@ -404,6 +439,7 @@
 		data: {item:item,_token:_token},
 		success: function (data) {
 			init();
+			$('#row-'+id).html('');
 		}
 	});
 	}
@@ -413,7 +449,7 @@
 	var quote=	$('#quote').val();
 	var _token = $('input[name="_token"]').val();
 	var total_ht= $("#total_ht").val();
-	var total_tva=	$('#total_tva').html();
+	var total_tva=	$('#total_tva').val();
 	var total_ttc=	$('#total_ttc').val();
 	var total_remise=	$('#total_remise').val();
 	var remise=	$('#remise').val();

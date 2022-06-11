@@ -22,7 +22,7 @@ class CreateQuotesTable extends Migration
             $table->date('date')->nullable();
 
             $table->integer('tva')->nullable();;
-            $table->integer('remise')->nullable();
+            $table->integer('remise')->default(0)->nullable();
 
             $table->double('total_tva', 8, 2)->nullable();;
             $table->double('total_remise', 8, 2)->nullable();

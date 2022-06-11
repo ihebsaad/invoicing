@@ -41,6 +41,7 @@
 			text-align: center;
 			font-size:11px;
 		}
+
 	</style>
  
 	<img src="{!! public_path('img/logo.png')!!}"  width="180"></img>
@@ -52,25 +53,31 @@
 				 <span>31700 BLAGNAC</span><br>
 				 <span><b>Tél :</b> 09.77.59.57.42</span><br>
 				 <span><b>Email :</b> contact@groupe-her.com</span><br><br>
-			</div>
-			<div style="width:50%;float:left;">
-				 <b>Client:</b> {{ $quote->customer()->first()->civility }} {{ $quote->customer()->first()->name }} {{ $quote->customer()->first()->lastname }}<br>			
 				 <b>Adresse de livraison:</b><br>
+				 <span>{{ $quote->customer()->first()->delivery_address }}</span><br>
+				 <span>{{ $quote->customer()->first()->delivery_postal }}, {{ $quote->customer()->first()->delivery_city }} - {{ $quote->customer()->first()->delivery_country }}</span><br>
+			</div>
+			<div style="width:50%;float:left;height:100px">
+				 <b>Client:</b> {{ $quote->customer()->first()->civility }} {{ $quote->customer()->first()->name }} {{ $quote->customer()->first()->lastname }}<br>			
 				 <span>{{ $quote->customer()->first()->address }}</span><br>
-				 <span>{{ $quote->customer()->first()->postal }}, {{ $quote->customer()->first()->city }}</span><br>
+				 <span>{{ $quote->customer()->first()->postal }}, {{ $quote->customer()->first()->city }} - {{ $quote->customer()->first()->country }}</span><br>
 				 <br>
 			</div>
 		 </div>
+		 <br>
 		<div style="width:100%;font-size:22px;color:#f07f32">
 			 <b>DEVIS N° : {{ $reference }} </b>
 		</div>
+		<br>
 		<div style="width:100%;">
 			<div style="width:50%;float:left;">
 				 <b>Date d'émission :</b>   {{ $date_facture }}
 			</div>
-			<div style="width:50%;float:left;">
-				 <b>Règlement par :</b> {{ $quote->modalite }}
-			</div>
+			@if($quote->modalite!='')
+				<div style="width:50%;float:left;">
+					<b>Règlement par :</b> {{ $quote->modalite }}
+				</div>
+			@endif
 		</div>
 		<br>
 		<div style="width:100%;">

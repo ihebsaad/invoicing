@@ -15,6 +15,8 @@ class Product extends Model
         'categorie',
         'reference',
         'prix',
+        'prix_ht',
+        'tva',
         'type'
     ];
 

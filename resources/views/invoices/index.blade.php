@@ -40,7 +40,7 @@
             <td>{{ $invoice->total_ttc }} €</td>
             <td>
 			    <a class="btn btn-primary mb-3 mr-2" href="{{ route('invoices.edit',$invoice->id) }}" style="float:left" title="Modifier"><i class="fas fa-edit"></i></a>
-			    <a class="btn btn-success mb-3 mr-2 " href="{{ route('invoices.show_pdf',$invoice->id) }}" style="float:left" title="Ouvrir en PDF"><i class="fas fa-file-pdf"></i></a>
+			    <a class="btn btn-success mb-3 mr-2 " target="_blank" href="{{ route('invoices.show_pdf',$invoice->id) }}" style="float:left" title="Ouvrir en PDF"><i class="fas fa-file-pdf"></i></a>
 			    <a class="btn btn-secondary mb-3 mr-2 " href="{{ route('invoices.download_pdf',$invoice->id) }}" style="float:left" title="Télécharger"><i class="fas fa-download"></i></a>
                 <form action="{{ route('invoices.destroy',$invoice->id) }}" method="POST" style="float:left" class="mr-2  ">
                     @csrf

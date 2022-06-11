@@ -44,18 +44,34 @@
 
         <div class="col-xs-12 col-sm-12 col-md-7">
             <div class="form-group">
-                <strong>Prix:</strong>
+                <strong>Prix HT:</strong>
+                <input type="number" name="prix_ht" rerquired class="form-control" step ="0.01" min="0"  value="{{old('prix_ht')}}">
+            </div>
+        </div>
+
+        <div class="col-xs-12 col-sm-12 col-md-7">
+            <div class="form-group">
+                <strong>TVA:</strong>
+                <input type="number" name="tva" rerquired class="form-control" step ="0.1" min="0" default="5.5" value="{{old('tva')}}">
+            </div>
+        </div>
+
+        <div class="col-xs-12 col-sm-12 col-md-7">
+            <div class="form-group">
+                <strong>Prix TTC:</strong>
                 <input type="number" name="prix" rerquired class="form-control" step ="0.01" min="0"  value="{{old('prix')}}">
             </div>
         </div>
 
+        <!--
         <div class="col-xs-12 col-sm-12 col-md-7">
             <div class="form-group">
                 <strong>Type:</strong>
                 <input type="text" name="type" class="form-control" placeholder="type" value="{{old('type')}}">
             </div>
         </div>
-
+        -->
+        
         <div class="col-xs-12 col-sm-12 col-md-7">
                 <button type="submit" class="btn btn-primary">Enregistrer</button>
         </div>
