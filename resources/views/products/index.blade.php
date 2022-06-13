@@ -39,7 +39,7 @@
             <td>{!! sprintf('%04d',$product->id) !!}</td>
             <td>{{ $product->name }}</td>
             <td>{{ $product->categorie()->first()->name }}</td>
-            <td>{{ $product->prix }} €</td>
+            <td>{{ $product->prix }} €</td>
             <td>{!!nl2br($product->description) !!}</td>
             <td>
 			    <a class="btn btn-primary mb-3" href="{{ route('products.edit',$product->id) }}" style="float:left" title="Modifier"><i class="fas fa-edit"></i></a>

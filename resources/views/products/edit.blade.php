@@ -56,7 +56,7 @@
 					<div class="col-xs-12 col-sm-12 col-md-7">
 						<div class="form-group">
 							<strong>Prix HT(€):</strong>
-							<input id="prix_ht" type="number" name="prix_ht" rerquired class="form-control" step ="0.01" min="0"  value="{{ $product->prix_ht }}">
+							<input id="prix_ht" type="number" name="prix_ht" rerquired class="form-control" step ="0.01" min="0"  value="{{ $product->prix_ht }}" onchange="calcul_tva()" >
 						</div>
 					</div>
 
@@ -74,8 +74,8 @@
 						</div>
 					</div>
 
-					<div class="col-xs-12 col-sm-12 col-md-7 text-center ">
-					  <button type="submit" class="btn btn-primary float-right mb-3">Enregistrer</button>
+					<div class="col-xs-12 col-sm-12 col-md-7 ">
+					  <button type="submit" class="btn btn-primary mb-3">Enregistrer</button>
 					</div>
 				</div>
 		   
@@ -97,9 +97,11 @@
 	function calcul_tva(){
         var prix_ht=parseFloat($('#prix_ht').val());
         var tva=parseFloat($('#tva').val());
-        var total_tva= (prix_ht* tva) / 100 ;
-        var prix= prix_ht+ total_tva ;
-        $('#prix').val(prix);
+		if(prix_ht>0 && tva!=''){
+			var total_tva= (prix_ht* tva) / 100 ;
+			var prix= prix_ht+ total_tva ;
+			$('#prix').val(prix);
+		}
     }
 
   $(function () {

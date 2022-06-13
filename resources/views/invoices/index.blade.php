@@ -37,7 +37,7 @@
        <tr>
             <td>{!! sprintf('%04d',$invoice->id) !!}</td>
             <td>{{ $invoice->customer()->first()->civility }} {{ $invoice->customer()->first()->name }} {{ $invoice->customer()->first()->lastname }}</td>
-            <td>{{ $invoice->total_ttc }} €</td>
+            <td>{{ $invoice->total_ttc }} €</td>
             <td>
 			    <a class="btn btn-primary mb-3 mr-2" href="{{ route('invoices.edit',$invoice->id) }}" style="float:left" title="Modifier"><i class="fas fa-edit"></i></a>
 			    <a class="btn btn-success mb-3 mr-2 " target="_blank" href="{{ route('invoices.show_pdf',$invoice->id) }}" style="float:left" title="Ouvrir en PDF"><i class="fas fa-file-pdf"></i></a>
