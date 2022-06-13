@@ -123,16 +123,7 @@
 		<div style="width:100%;">
 			<br>
 		</div>
-		<div style="width:100%;">
-		
-			@if(\App\Models\Signature::where('quote',$quote->id)->exists())
-				@php 
-					$url_img=\App\Models\Signature::where('quote',$quote->id)->first()->user_image;
-				@endphp
-				<b>Signature:</b><br>
-				<img src="{{$url_img}}" width= '160'     height= ''/>
-			@endif
-	 	</div>
+
 
 
 	</div>

@@ -41,6 +41,7 @@
 			text-align: center;
 			font-size:11px;
 		}
+
 	</style>
  
 	<img src="{!! public_path('img/logo.png')!!}"  width="180"></img>
@@ -52,25 +53,31 @@
 				 <span>31700 BLAGNAC</span><br>
 				 <span><b>Tél :</b> 09.77.59.57.42</span><br>
 				 <span><b>Email :</b> contact@groupe-her.com</span><br><br>
-			</div>
-			<div style="width:50%;float:left;">
-				 <b>Client:</b> {{ $quote->customer()->first()->civility }} {{ $quote->customer()->first()->name }} {{ $quote->customer()->first()->lastname }}<br>			
 				 <b>Adresse de livraison:</b><br>
+				 <span>{{ $quote->customer()->first()->delivery_address }}</span><br>
+				 <span>{{ $quote->customer()->first()->delivery_postal }}, {{ $quote->customer()->first()->delivery_city }} - {{ $quote->customer()->first()->delivery_country }}</span><br>
+			</div>
+			<div style="width:50%;float:left;height:100px">
+				 <b>Client:</b> {{ $quote->customer()->first()->civility }} {{ $quote->customer()->first()->name }} {{ $quote->customer()->first()->lastname }}<br>			
 				 <span>{{ $quote->customer()->first()->address }}</span><br>
-				 <span>{{ $quote->customer()->first()->postal }}, {{ $quote->customer()->first()->city }}</span><br>
+				 <span>{{ $quote->customer()->first()->postal }}, {{ $quote->customer()->first()->city }} - {{ $quote->customer()->first()->country }}</span><br>
 				 <br>
 			</div>
 		 </div>
+		 <br>
 		<div style="width:100%;font-size:22px;color:#f07f32">
-			 <b>Facture N° : {{ $reference }} </b>
+			 <b>DEVIS N° : {{ $reference }} </b>
 		</div>
+		<br>
 		<div style="width:100%;">
 			<div style="width:50%;float:left;">
 				 <b>Date d'émission :</b>   {{ $date_facture }}
 			</div>
-			<div style="width:50%;float:left;">
-				 <b>Règlement par :</b> {{ $quote->modalite }}
-			</div>
+			@if($quote->modalite!='')
+				<div style="width:50%;float:left;">
+					<b>Règlement par :</b> {{ $quote->modalite }}
+				</div>
+			@endif
 		</div>
 		<br>
 		<div style="width:100%;">
@@ -93,9 +100,13 @@
 						<tr class="product ">
 							<td>{{$product->name}}</td><td>{{$product->prix}} €</td><td>{{$item->qty}}</td><td>{{$item->tva}} %</td><td>{{$total_prod}} €</td>
 						</tr>
-					@endforeach								
-								
-				</tr>				
+					@endforeach											
+				</tr>
+				@if($quote->type_aide!='')
+				<tr class="product" style="color:#f07f32">
+					<td>{{$quote->type_aide}}</td><td>- {{$quote->aide}}  €</td><td>1</td><td></td><td>- {{$quote->aide}}  €</td>
+				</tr>			
+				@endif
 			</tbody>
 		</table>
 
@@ -104,9 +115,10 @@
 			<tr><td colspan="2">Sous Total</td><td>{{$quote->total_ht}} €</td></tr>
 			<tr><td colspan="2">Total TVA</td><td>{{$quote->total_tva}} €</td></tr>
 			@if($quote->remise>0)
-			<tr><td>Remise</td><td>{{$quote->remise}}%</td><td>{{$quote->total_remise}} €</td></tr>
+			<tr style="color:#f07f32"><td>Remise</td><td>{{$quote->remise}}%</td><td>- {{$quote->total_remise}} €</td></tr>
 			@endif
-			<tr><td colspan="2">Total</td><td>{{$quote->total_ttc}} €</td></tr>
+			<tr><td colspan="2">Total TTC</td><td>{{$quote->total_ttc}} €</td></tr>
+			<tr><td colspan="2">Net à payer</td><td>{{$quote->net}} €</td></tr>
 		</table>
 		<div style="width:100%;">
 			<br>
