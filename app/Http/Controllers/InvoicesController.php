@@ -156,4 +156,31 @@ class InvoicesController extends Controller
         return $pdf->download('Facture-'.$reference.'.pdf');
 
     }
+
+
+    public function update_totals(Request $request)
+    {
+        $total_ht=$request->get('total_ht');
+        $total_tva=$request->get('total_tva');
+        $total_ttc=$request->get('total_ttc');
+        $total_remise=$request->get('total_remise');
+        $remise=$request->get('remise');
+        $invoice=$request->get('invoice');
+        $aide=$request->get('aide');
+        $type_aide=$request->get('type_aide');
+        $net=$request->get('net');
+
+        Invoice::where('id',$invoice)->update(
+            [
+                'total_ht'=>$total_ht,
+                'total_tva'=>$total_tva,
+                'remise'=>$remise,
+                'total_ttc'=>$total_ttc,
+                'total_remise'=>$total_remise,
+                'aide'=>$aide,
+                'type_aide'=>$type_aide,
+                'net'=>$net,
+            ]
+        );
+    }
 }

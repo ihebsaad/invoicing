@@ -196,7 +196,8 @@
 								<div class="col-xs-12 col-sm-12 col-md-6">
 									<div class="form-group">
 										<strong>Type d'aide éligible:</strong>
-										<select class="form-control" style="width:180px" name="type_aide" id="type_aide" >
+										<select class="form-control" style="width:180px" name="type_aide" id="type_aide"  onchange="calcul();" >
+											<option></option>
 											<option @if($quote->type_aide=='Prime Renov') selected="selected" @endif value="Prime Renov">Prime Renov</option>
 											<option @if($quote->type_aide=='Prime B') selected="selected" @endif value="Prime B">Prime B</option>
 											<option @if($quote->type_aide=='Prime C') selected="selected" @endif value="Prime C">Prime C</option>
@@ -415,8 +416,8 @@
 	}
 
 	function set_price(){
-		var price= $('#product option:selected').data("price");
-		var tva= $('#product option:selected').data("tva");
+		var price= parseFloat($('#product option:selected').data("price"));
+		var tva= parseFloat($('#product option:selected').data("tva"));
 		$('#tva').val(tva);
 		$('#price').val(price);
 		$('#qty').focus();
@@ -438,8 +439,6 @@
 		//total_prod();
 	}
 	function total_prod(){
-		alert($('#price').val());
-		alert($('#qty').val());
 		var total_prod=parseFloat($('#price').val()) * parseInt($('#qty').val()) ;
 		//alert(total_prod);
 		$('#total_prod').val(total_prod);
