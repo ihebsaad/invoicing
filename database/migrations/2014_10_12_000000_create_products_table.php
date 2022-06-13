@@ -18,7 +18,7 @@ class CreateProductsTable extends Migration
             $table->string('reference')->nullable();
             $table->double('prix_ht', 8, 2);
             $table->double('prix', 8, 2);
-            $table->integer('tva', 8, 2);
+            $table->integer('tva');
             $table->string('description')->nullable();
             $table->string('type')->nullable();
 

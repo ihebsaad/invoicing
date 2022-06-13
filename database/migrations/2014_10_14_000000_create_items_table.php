@@ -17,7 +17,7 @@ class CreateItemsTable extends Migration
             $table->bigIncrements('id');
             $table->string('description')->nullable();
             $table->integer('qty')->default(1);
-            $table->integer('tva', 8, 2);
+            $table->integer('tva');
 
             $table->unsignedBigInteger('product')->nullable();
             $table->foreign('product')->references('id')->on('products')->onDelete('cascade');

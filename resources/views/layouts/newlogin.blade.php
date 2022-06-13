@@ -9,7 +9,7 @@
     <meta name="author" content="Iheb SAAD - Elinyom">
 
     <title>{{env('APP_NAME')}}</title>
-    <link rel="shortcut icon" type="image/png" href="{{  URL::asset('img/favicon.png') }}">
+    <link rel="shortcut icon" type="image/png" href="{{  URL::asset('img/logo.png') }}">
 
     <!-- Custom fonts for this template-->
     <link href="{{ URL::asset('sbadmin/vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
