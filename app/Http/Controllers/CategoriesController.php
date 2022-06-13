@@ -47,7 +47,7 @@ class CategoriesController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'description' => 'required',
+        //    'description' => 'required',
         ]);
     
         Categorie::create($request->all());
@@ -92,7 +92,7 @@ class CategoriesController extends Controller
         
         $request->validate([
             'name' => 'required',
-            'description' => 'required',
+        //    'description' => 'required',
         ]);
     
         $categorie->update($request->all());

@@ -17,7 +17,6 @@ class Product extends Model
         'prix',
         'prix_ht',
         'tva',
-        'type'
     ];
 
     public function categorie()

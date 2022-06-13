@@ -44,22 +44,22 @@
 
         <div class="col-xs-12 col-sm-12 col-md-7">
             <div class="form-group">
-                <strong>Prix HT:</strong>
-                <input type="number" name="prix_ht" rerquired class="form-control" step ="0.01" min="0"  value="{{old('prix_ht')}}">
+                <strong>Prix HT(€):</strong>
+                <input id="prix_ht" type="number" name="prix_ht" rerquired class="form-control" step ="0.01" min="0"  value="{{old('prix_ht')}}">
             </div>
         </div>
 
         <div class="col-xs-12 col-sm-12 col-md-7">
             <div class="form-group">
-                <strong>TVA:</strong>
-                <input type="number" name="tva" rerquired class="form-control" step ="0.1" min="0" default="5.5" value="{{old('tva')}}">
+                <strong>TVA(%):</strong>
+                <input id="tva" type="number" name="tva" rerquired class="form-control" step ="0.1" min="0" default="5.5" value="{{old('tva')}}" onchange="calcul_tva()">
             </div>
         </div>
 
         <div class="col-xs-12 col-sm-12 col-md-7">
             <div class="form-group">
-                <strong>Prix TTC:</strong>
-                <input type="number" name="prix" rerquired class="form-control" step ="0.01" min="0"  value="{{old('prix')}}">
+                <strong>Prix TTC(€):</strong>
+                <input id="prix" type="number" name="prix" rerquired class="form-control" step ="0.01" min="0"  value="{{old('prix')}}">
             </div>
         </div>
 
@@ -85,7 +85,13 @@
 <script src="{{ asset('plugins/summernote/summernote-bs4.min.js') }}" ></script>
 
 <script>
-  
+    function calcul_tva(){
+        var prix_ht=parseFloat($('#prix_ht').val());
+        var tva=parseFloat($('#tva').val());
+        var total_tva= (prix_ht* tva) / 100 ;
+        var prix= prix_ht+ total_tva ;
+        $('#prix').val(prix);
+    }
   $(function () {
     // Summernote
     $('.summernote').summernote()

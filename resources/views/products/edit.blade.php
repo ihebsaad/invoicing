@@ -55,26 +55,26 @@
 		
 					<div class="col-xs-12 col-sm-12 col-md-7">
 						<div class="form-group">
-							<strong>Prix HT:</strong>
-							<input type="number" name="prix_ht" rerquired class="form-control" step ="0.01" min="0"  value="{{ $product->prix_ht }}">
+							<strong>Prix HT(€):</strong>
+							<input id="prix_ht" type="number" name="prix_ht" rerquired class="form-control" step ="0.01" min="0"  value="{{ $product->prix_ht }}">
 						</div>
 					</div>
 
 					<div class="col-xs-12 col-sm-12 col-md-7">
 						<div class="form-group">
-							<strong>TVA:</strong>
-							<input type="number" name="tva" rerquired class="form-control" step ="0.1" min="0" default="5.5" value="{{ $product->tva }}">
+							<strong>TVA(%):</strong>
+							<input id="tva" type="number" name="tva" rerquired class="form-control" step ="0.1" min="0" default="5.5" value="{{ $product->tva }}" onchange="calcul_tva()" >
 						</div>
 					</div>
 
 					<div class="col-xs-12 col-sm-12 col-md-7">
 						<div class="form-group">
-							<strong>Prix TTC:</strong>
-							<input type="number" name="prix" rerquired class="form-control" step ="0.01" min="0"  value="{{ $product->prix }}">
+							<strong>Prix TTC(€):</strong>
+							<input id="prix" type="number" name="prix" rerquired class="form-control" step ="0.01" min="0"  value="{{ $product->prix }}">
 						</div>
 					</div>
 
-					<div class="col-xs-12 col-sm-12 col-md-12 text-center ">
+					<div class="col-xs-12 col-sm-12 col-md-7 text-center ">
 					  <button type="submit" class="btn btn-primary float-right mb-3">Enregistrer</button>
 					</div>
 				</div>
@@ -94,7 +94,14 @@
 
 <script>
 
- 
+	function calcul_tva(){
+        var prix_ht=parseFloat($('#prix_ht').val());
+        var tva=parseFloat($('#tva').val());
+        var total_tva= (prix_ht* tva) / 100 ;
+        var prix= prix_ht+ total_tva ;
+        $('#prix').val(prix);
+    }
+
   $(function () {
     // Summernote
     $('.summernote').summernote()
