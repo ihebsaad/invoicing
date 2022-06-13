@@ -57,7 +57,12 @@
 		.bg-transparent{
 			background-color:transparent;
 		}
-
+		.table-aide{
+			background-color:#f6f6f6;
+		}
+		.table-aide td{
+			padding:5px 10px 2px 12px;
+		}
  </style> 
 
 @endsection
@@ -184,25 +189,32 @@
 							</tbody>
 						</table>
 						<div class="row">
-							<div class="col-md-6 row pt-3 pl-3">
-								<div class="col-xs-12 col-sm-12 col-md-6">
-									<div class="form-group">
-										<strong>Type d'aide éligible:</strong>
-										<select class="form-control" style="width:180px" name="type_aide" id="type_aide" onchange="calcul();" >
-											<option></option>
-											<option @if($invoice->type_aide=='Prime Renov') selected="selected" @endif value="Prime Renov">Prime Renov</option>
-											<option @if($invoice->type_aide=='Prime B') selected="selected" @endif value="Prime B">Prime B</option>
-											<option @if($invoice->type_aide=='Prime C') selected="selected" @endif value="Prime C">Prime C</option>
-										</select>
-									</div>
-								</div>
-								<div class="col-xs-12 col-sm-12 col-md-6">
-									<div class="form-group">
-										<strong>Montant:</strong>
-										<input type="number" class="form-control" style="width:100px" min="0" value="{{$invoice->aide}}" id="aide" onchange="calcul();"/>
-									</div>
-								</div>								
+							<div class="col-md-6 row pt-3 pl-5 mt-5 ">
+							<table style="width:360px;height:100px" class="table-aide" >
+									<tr>
+										<td><strong>Financement éligible:</strong></td><td colspan="2"><strong>Montant</strong></td>
+									</tr>
+									<tr>
+										<td >
+											<div class="form-group">
+												<select class="form-control" style="width:200px" name="type_aide" id="type_aide" onchange="calcul();" >
+													<option></option>
+													<option @if($invoice->type_aide=='Prime Renov') selected="selected" @endif value="Prime Renov">Prime Renov</option>
+													<option @if($invoice->type_aide=='Prime B') selected="selected" @endif value="Prime B">Prime B</option>
+													<option @if($invoice->type_aide=='Prime C') selected="selected" @endif value="Prime C">Prime C</option>
+												</select>
+											</div>
+										</td>
+										<td style="padding-right:0">
+											<div class="form-group">
+												<input type="number" class="form-control" style="width:100px" min="0" value="{{$invoice->aide}}" id="aide" onchange="calcul();"/>
+											</div>
+										</td>
+										<td style="padding:0 10px 0 0">€</td>
+									</tr>
+								</table>
 							</div>
+
 							<div class="col-md-6">
 								<table class="totals">
 									<tr><td colspan="2">Sous Total</td><td><input id="total_ht" type="number"  class="number numbers bg-transparent" readonly  value="{{$invoice->total_ht}}"/> €</td></tr>
