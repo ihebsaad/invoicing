@@ -33,7 +33,7 @@ class Invoice extends Model
         'taeg',
         'pose',
         'customer',
-		    'quote',
+		'quote',
         'net'
     ];
 	

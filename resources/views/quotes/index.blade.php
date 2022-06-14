@@ -44,6 +44,9 @@
                 @if(\App\Models\Signature::where('quote',$quote->id)->exists())
                     <a class="btn btn-dark mb-3 mr-2 " href="{{ route('quotes.download_pdf_signature',$quote->id) }}" style="float:left" title="Télécharger avec signature"><i class="fas fa-signature"></i></a>
                 @endif
+                @if(\App\Models\Invoice::where('quote',$quote->id)->doesntExist())
+                    <a class="btn btn-warning mb-3 mr-2 " href="{{ route('quotes.save_invoice',$quote->id) }}" style="float:left" title="Enregistrer en Facture"><i class="fas fa-file"></i></a>
+                @endif
                 <form action="{{ route('quotes.destroy',$quote->id) }}" method="POST" style="float:left" class="mr-2" >
                     @csrf
                     @method('DELETE')

@@ -10,9 +10,16 @@
 <!-- signature -->
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.css">  
  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css"/>       
- <link rel="stylesheet" type="text/css" href="http://keith-wood.name/css/jquery.signature.css">
  <style>
-        .kbw-signature { width: 100%; height: 200px;}
+		.kbw-signature {
+			display: inline-block;
+			border: 1px solid #a0a0a0;
+			-ms-touch-action: none;
+			 width: 100%; height: 200px;
+		}
+		.kbw-signature-disabled {
+			opacity: 0.35;
+		}
      /*   #sigpad canvas{ width: 100% !important; height: auto;}*/
 		#signature{cursor:pointer;}
 		.tab-products{
@@ -84,6 +91,9 @@
             <div class="float-right">
                 <a class="btn btn-primary" href="{{ route('quotes.index') }}"> Retour</a>
             </div>
+            <div class="float-right mr-3 ml-3">
+				<a class="btn btn-success " target="_blank"  href="{{ route('quotes.show_pdf',$quote->id) }}" style="float:left" title="Ouvrir en PDF"><i class="fas fa-file-pdf"></i></a>
+			</div>
         </div>
     </div>
      
@@ -137,7 +147,7 @@
 							
 							<div class="col-xs-12 col-sm-12 col-md-7">
 								<div class="form-group">
-									<strong>Date:</strong>
+									<strong>Date de visite:</strong>
 									<input type="text" class="form-control datepicker"  autocomplete="off" name="date" placeholder="jj/mm/aaaa" value="{{ date('d/m/Y', strtotime($quote->date)) }}"/>
 								</div>
 							</div>
@@ -530,7 +540,8 @@
 </script>
 
  <!-- signature -->
-<script type="text/javascript" src="http://keith-wood.name/js/jquery.signature.js"></script>
+<script type="text/javascript" src="{{asset('js/jquery.signature.js')}}"></script>
+
 <script type="text/javascript">
 	var sigpad = $('#sigpad').signature({syncField: '#signature', syncFormat: 'PNG'});
 		$('#clear').click(function(e) {

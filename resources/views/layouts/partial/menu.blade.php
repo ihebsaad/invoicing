@@ -74,7 +74,7 @@
               <li class="nav-item">
                 <a href="{{route('categories.index')}}" class="nav-link {{ request()->is('categories') || request()->is('categories/*') ? 'active' : '' }}">
                   <i class="fas fa-tags nav-icon text-secondary"></i>
-                  <p>Categories</p>
+                  <p>Catégories</p>
                 </a>
               </li>
               <li class="nav-item">

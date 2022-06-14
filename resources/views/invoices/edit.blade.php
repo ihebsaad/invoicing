@@ -78,6 +78,10 @@
             <div class="float-right">
                 <a class="btn btn-primary" href="{{ route('invoices.index') }}"> Retour</a>
             </div>
+            <div class="float-right mr-3 ml-3">
+				<a class="btn btn-success " target="_blank"  href="{{ route('invoices.show_pdf',$invoice->id) }}" style="float:left" title="Ouvrir en PDF"><i class="fas fa-file-pdf"></i></a>
+			</div>
+
         </div>
     </div>
      
@@ -129,7 +133,7 @@
 							
 							<div class="col-xs-12 col-sm-12 col-md-7">
 								<div class="form-group">
-									<strong>Date:</strong>
+									<strong>Date de visite:</strong>
 									<input type="text" class="form-control datepicker"  autocomplete="off" name="date" placeholder="jj/mm/aaaa" value="{{ date('d/m/Y', strtotime($invoice->date)) }}"/>
 								</div>
 							</div>

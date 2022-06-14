@@ -15,7 +15,7 @@ class CreateQuotesTable extends Migration
     {
         Schema::create('quotes', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('description')->nullable();
+            $table->text('description')->nullable();
             $table->string('adresse')->nullable();
             $table->string('chaudiere')->nullable();
             $table->string('modalite')->nullable();

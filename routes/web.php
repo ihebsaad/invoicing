@@ -63,6 +63,7 @@ Route::post('/invoices/update_totals',[InvoicesController::class, 'update_totals
 Route::get('/quotes/download_pdf/{id}', [QuotesController::class, 'download_pdf'])->name('quotes.download_pdf');
 Route::get('/quotes/download_pdf_signature/{id}', [QuotesController::class, 'download_pdf_signature'])->name('quotes.download_pdf_signature');
 Route::get('/quotes/show_pdf/{id}', [QuotesController::class, 'show_pdf'])->name('quotes.show_pdf');
+Route::get('/quotes/save_invoice/{id}', [QuotesController::class, 'save_invoice'])->name('quotes.save_invoice');
 Route::post('/update_totals',[QuotesController::class, 'update_totals'])->name('update_totals');
 Route::get('/quotes/add/{customer_id}', [QuotesController::class, 'add'])->name('quotes.add');
 

@@ -66,6 +66,7 @@ class QuotesController extends Controller
         ]);
 
         $data=$request->all();
+        $data['date']=str_replace('/','-',$data['date']);
         $data['date']=Carbon::parse($data['date'])->format('Y-m-d');
     
         $quote=Quote::create($data);
@@ -110,13 +111,15 @@ class QuotesController extends Controller
     {
         $data=$request->all();
 
-        if(isset($data['date']))
+        if(isset($data['date'])){
+        $data['date']=str_replace('/','-',$data['date']);
         $data['date']=Carbon::parse($data['date'])->format('Y-m-d');
-
+        }
+        
         $quote->update($data);
     
         return redirect()->route('quotes.edit',['quote'=>$quote])
-                        ->with('success','Devis modifié avec succès.');
+                        ->with('success','Devis modifié');
     }
     
     /**
@@ -130,7 +133,7 @@ class QuotesController extends Controller
         $quote->delete();
     
         return redirect()->route('quotes.index')
-                        ->with('success','Devis supprimé avec succès');
+                        ->with('success','Devis supprimé ');
     }
 	
 
@@ -142,6 +145,7 @@ class QuotesController extends Controller
         $total_ttc=$request->get('total_ttc');
         $total_remise=$request->get('total_remise');
         $remise=$request->get('remise');
+        $quote=$request->get('quote');
         $quote=$request->get('quote');
         $aide=$request->get('aide');
         $type_aide=$request->get('type_aide');
@@ -200,5 +204,52 @@ class QuotesController extends Controller
         $pdf = PDF::loadView('quotes.quote-sign', compact('quote','reference','date_facture','products','items'));
         return $pdf->download('quote-'.$reference.'.pdf');
 
+    }
+
+    public function save_invoice($id)
+	{   
+        $quote = Quote::find($id);
+        $invoice=Invoice::create([
+
+            'description'=>$quote->description,
+            'adresse'=>$quote->adresse,
+            'chaudiere'=>$quote->chaudiere,
+            'modalite'=>$quote->modalite,
+            'date'=>$quote->date,
+            'tva'=>$quote->tva,
+            'remise'=>$quote->remise,
+            'total_tva'=>$quote->total_tva,
+            'total_remise'=>$quote->total_remise,
+            'total_ht'=>$quote->total_ht,
+            'total_ttc'=>$quote->total_ttc,
+            'type_aide'=>$quote->type_aide,
+            'aide'=>$quote->aide,
+            'montant_finance'=>$quote->montant_finance,
+            'report_echeance'=>$quote->report_echeance,
+            'mensualites'=>$quote->mensualites,
+            'montant_mensuel'=>$quote->montant_mensuel,
+            'montant_assurance'=>$quote->montant_assurance,
+            'taux_nominal'=>$quote->taux_nominal,
+            'taeg'=>$quote->taeg,
+            'pose'=>$quote->pose,
+            'customer'=>$quote->customer,
+            'net'=>$quote->net,
+            'quote'=>$quote->id,
+
+        ]);
+
+        $items = Item::where('quote',$id)->get();
+        foreach($items as $item){
+            Item::create([
+            'qty'=>$item->qty,
+            'description'=>$item->description,
+            'tva'=>$item->tva,
+            'product'=>$item->product,
+            'invoice'=>$invoice->id,
+            ]);
+        }
+
+        return redirect()->route('invoices.index')
+        ->with('success','Facture enregistrée en devis');
     }
 }

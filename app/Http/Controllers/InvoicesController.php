@@ -66,12 +66,13 @@ class InvoicesController extends Controller
         ]);
 
         $data=$request->all();
+        $data['date']=str_replace('/','-',$data['date']);
         $data['date']=Carbon::parse($data['date'])->format('Y-m-d');
     
         Invoice::create($data);
      
         return redirect()->route('invoices.index')
-                        ->with('success','Facture créée avec succès.');
+                        ->with('success','Facture créée');
     }
      
     /**
@@ -110,12 +111,14 @@ class InvoicesController extends Controller
     {
     
         $data=$request->all();
+
+        $data['date']=str_replace('/','-',$data['date']);
         $data['date']=Carbon::parse($data['date'])->format('Y-m-d');
 
         $invoice->update($data);
     
         return redirect()->route('invoices.index')
-                        ->with('success','Facture modifiée avec succès');
+                        ->with('success','Facture modifiée');
     }
     
     /**
@@ -129,7 +132,7 @@ class InvoicesController extends Controller
         $invoice->delete();
     
         return redirect()->route('invoices.index')
-                        ->with('success','Facture supprimée avec succès');
+                        ->with('success','Facture supprimée');
     }
 	
 
@@ -140,7 +143,8 @@ class InvoicesController extends Controller
         $date_facture=Carbon::parse($invoice->date)->format('d/m/Y');
         //$reference= $date.'-'.sprintf('%05d',$invoice->id);
         $reference= sprintf('%05d',$invoice->id);
-        $pdf = PDF::loadView('invoices.invoice', compact('invoice','reference','date_facture'));
+        $items = Item::where('invoice',$id)->get();
+        $pdf = PDF::loadView('invoices.invoice', compact('invoice','reference','date_facture','items'));
         return $pdf->stream('Facture-'.$reference.'.pdf');
 
     }
@@ -152,7 +156,9 @@ class InvoicesController extends Controller
         $date_facture=Carbon::parse($invoice->date)->format('d/m/Y');
         //$reference= $date.'-'.sprintf('%05d',$invoice->id);
         $reference= sprintf('%05d',$invoice->id) ;
-        $pdf = PDF::loadView('invoices.invoice', compact('invoice','reference','date_facture'));
+        $items = Item::where('invoice',$id)->get();
+
+        $pdf = PDF::loadView('invoices.invoice', compact('invoice','reference','date_facture','items'));
         return $pdf->download('Facture-'.$reference.'.pdf');
 
     }

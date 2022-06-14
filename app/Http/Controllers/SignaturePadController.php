@@ -29,7 +29,7 @@ class SignaturePadController extends Controller
     {
        $image_parts = explode(";base64,", $request->signed);
        $image_base64 = base64_decode($image_parts[1]);
-        file_put_contents('kl',$image_base64);
+      //  file_put_contents('kl',$image_base64);
 
         // Save in your data in database here.
         $image_file = $request->signed;
@@ -40,6 +40,6 @@ class SignaturePadController extends Controller
         );
 
         Signature::create($form_data);
-       return back()->with('success', 'Signature enregistrée avec succès');
+       return back()->with('success', 'Signature enregistrée');
     }
 }
