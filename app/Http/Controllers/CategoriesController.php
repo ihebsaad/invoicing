@@ -20,7 +20,9 @@ class CategoriesController extends Controller
      */
     public function index()
     {
-       // $categories = Categorie::latest()->paginate(5);
+        if (auth()->user()->user_type != 'admin') 
+			return  redirect('/home');
+        
         $categories = Categorie::all();
     
         return view('categories.index',compact('categories'));
@@ -34,6 +36,9 @@ class CategoriesController extends Controller
      */
     public function create()
     {
+        if (auth()->user()->user_type != 'admin') 
+            return  redirect('/home');
+
         return view('categories.create');
     }
     
@@ -64,6 +69,9 @@ class CategoriesController extends Controller
      */
     public function show(Categorie $categorie)
     {
+        if (auth()->user()->user_type != 'admin') 
+            return  redirect('/home');
+
         return view('categories.show',compact('categorie'));
     } 
      
@@ -75,6 +83,9 @@ class CategoriesController extends Controller
      */
     public function edit($id)
     {   
+        if (auth()->user()->user_type != 'admin') 
+            return  redirect('/home');
+
         $categorie= Categorie::find($id);
         return view('categories.edit',compact('categorie'));
     }

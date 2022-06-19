@@ -33,12 +33,26 @@ class Quote extends Model
         'taeg',
         'pose',
         'customer',
-        'net'
+        'net',
+        'par',
+        'surface',
+        'logement',
+        'delivery_address',
+        'delivery_city',
+        'delivery_postal',
+        'delivery_country',
+        'reference',
+        'tva_remise'
     ];
 	
 		public function customer()
 	{
 		return $this->belongsTo('App\Models\Customer', 'customer', 'id');
+	}
+
+    public function user()
+	{
+		return $this->belongsTo('App\Models\User', 'par', 'id');
 	}
 	
 }

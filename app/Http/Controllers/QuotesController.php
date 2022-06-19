@@ -7,6 +7,7 @@ use App\Models\Invoice;
 use App\Models\Customer;
 use App\Models\Product;
 use App\Models\Item;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Barryvdh\DomPDF\Facade\Pdf;
@@ -27,7 +28,11 @@ class QuotesController extends Controller
      */
     public function index()
     {
+        if (auth()->user()->user_type != 'admin') 
+            $quotes = Quote::where('par',auth()->user()->id)->orderBy('id','desc')->get();
+        else
         $quotes = Quote::orderBy('id','desc')->get();
+        
         return view('quotes.index',compact('quotes'));
     }
      
@@ -68,7 +73,11 @@ class QuotesController extends Controller
         $data=$request->all();
         $data['date']=str_replace('/','-',$data['date']);
         $data['date']=Carbon::parse($data['date'])->format('Y-m-d');
-    
+        $name=strtoupper(User::find($data['par'])->name);
+        $lastname=strtoupper(User::find($data['par'])->lastname);
+        $num=Quote::where('par',$data['par'])->where('created_at','like',  date('Y-m-d').'%')->count()+1;
+        $reference= date('Ymd').$name[0].$lastname[0].sprintf('%03d',$num);
+        $data['reference']=$reference;
         $quote=Quote::create($data);
      
         return redirect()->route('quotes.edit',['quote'=>$quote])
@@ -97,7 +106,8 @@ class QuotesController extends Controller
         $customers = Customer::all();
         $products = Product::all();
         $items = Item::where('quote',$quote->id)->get();
-        return view('quotes.edit',compact('quote','customers','products','items'));
+        $countries=CustomersController::countries();
+        return view('quotes.edit',compact('quote','customers','products','items','countries'));
     }
     
     /**
@@ -150,6 +160,7 @@ class QuotesController extends Controller
         $aide=$request->get('aide');
         $type_aide=$request->get('type_aide');
         $net=$request->get('net');
+        $tva_remise=$request->get('tva_remise');
 
         Quote::where('id',$quote)->update(
             [
@@ -161,6 +172,7 @@ class QuotesController extends Controller
                 'aide'=>$aide,
                 'type_aide'=>$type_aide,
                 'net'=>$net,
+                'tva_remise'=>$tva_remise,
             ]
         );
     }
@@ -169,9 +181,11 @@ class QuotesController extends Controller
     public function show_pdf($id)
 	{   
         $quote = Quote::find($id);
+
+        $reference= $quote->reference;
         $date=Carbon::parse($quote->created_at)->format('Y-m');
         $date_facture=Carbon::parse($quote->date)->format('d/m/Y');
-        $reference= sprintf('%05d',$quote->id);
+        
         $products = Product::all();
         $items = Item::where('quote',$id)->get();
 
@@ -185,7 +199,7 @@ class QuotesController extends Controller
         $quote = Quote::find($id);
         $date=Carbon::parse($quote->created_at)->format('Y-m');
         $date_facture=Carbon::parse($quote->date)->format('d/m/Y');
-        $reference= sprintf('%05d',$quote->id);
+        $reference= $quote->reference;
         $products = Product::all();
         $items = Item::where('quote',$id)->get();
         $pdf = PDF::loadView('quotes.quote', compact('quote','reference','date_facture','products','items'));
@@ -198,7 +212,7 @@ class QuotesController extends Controller
         $quote = Quote::find($id);
         $date=Carbon::parse($quote->created_at)->format('Y-m');
         $date_facture=Carbon::parse($quote->date)->format('d/m/Y');
-        $reference= sprintf('%05d',$quote->id);
+        $reference= $quote->reference;
         $products = Product::all();
         $items = Item::where('quote',$id)->get();
         $pdf = PDF::loadView('quotes.quote-sign', compact('quote','reference','date_facture','products','items'));
@@ -209,8 +223,15 @@ class QuotesController extends Controller
     public function save_invoice($id)
 	{   
         $quote = Quote::find($id);
-        $invoice=Invoice::create([
 
+        $user_id=auth()->user()->id;
+        $name=strtoupper(User::find($user_id)->name);
+        $lastname=strtoupper(User::find($user_id)->lastname);
+        $num=Invoice::where('par',$user_id)->where('created_at','like',  date('Y-m-d').'%')->count()+1;
+        $reference= date('Ymd').$name[0].$lastname[0].sprintf('%03d',$num);
+
+        $invoice=Invoice::create([
+            'reference'=>$reference,
             'description'=>$quote->description,
             'adresse'=>$quote->adresse,
             'chaudiere'=>$quote->chaudiere,
@@ -220,6 +241,7 @@ class QuotesController extends Controller
             'remise'=>$quote->remise,
             'total_tva'=>$quote->total_tva,
             'total_remise'=>$quote->total_remise,
+            'tva_remise'=>$quote->tva_remise,
             'total_ht'=>$quote->total_ht,
             'total_ttc'=>$quote->total_ttc,
             'type_aide'=>$quote->type_aide,

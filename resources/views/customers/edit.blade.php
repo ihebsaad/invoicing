@@ -50,6 +50,32 @@
         </div>   
 
         <div class="row pl-5">
+            <div class="col-xs-12 col-sm-12 col-md-1">
+                <div class="form-group">
+                    <strong>Civilité:</strong>
+                    <select   name="civility2" class="form-control" placeholder="civility" >
+                        <option @if($customer->civility2=='Mr') selected="selected" @endif value="Mr">Mr</option>
+                        <option @if($customer->civility2=='Mme') selected="selected" @endif value="Mme">Mme</option>
+                        <option @if($customer->civility2=='Mlle') selected="selected" @endif value="Mlle">Mlle</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-3">
+                <div class="form-group">
+                    <strong>Prénom:</strong>
+                    <input type="text" name="name2" class="form-control" placeholder="Prénom" value="{{$customer->name2}}">
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-4">
+                <div class="form-group">
+                    <strong>Nom:</strong>
+                    <input type="text" name="lastname2" class="form-control" placeholder="Nom" value="{{$customer->lastname2}}">
+                </div>
+            </div>   
+        
+        </div> 
+
+        <div class="row pl-5">
             <div class="col-xs-12 col-sm-12 col-md-4">
                 <div class="form-group">
                     <strong>Tél:</strong>

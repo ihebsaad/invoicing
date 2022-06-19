@@ -12,9 +12,9 @@
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
           @if(Auth::user()->thumb!='')
-          <img src="<?php echo URL::asset('img/users/'.Auth::user()->thumb);?>" width="160" class="img-circle elevation-2" alt="User Image">
+            <img src="<?php echo URL::asset('img/users/'.Auth::user()->thumb);?>" width="160" class="img-circle elevation-2" alt="User Image">
           @else
-          <img src="{{ asset('img/users/user.png')}}" width="160" class="img-circle elevation-2" alt="User Image">
+            <img src="{{ asset('img/users/user.png')}}" width="160" class="img-circle elevation-2" alt="User Image">
           @endif
         </div>
         <div class="info ml-3">
@@ -48,12 +48,14 @@
               </p>
             </a>
             <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="{{route('invoices.index')}}" class="nav-link {{ request()->is('invoices') ||  request()->is('invoices/*') ? 'active' : '' }}">
-                  <i class="fas fa-file-invoice-dollar nav-icon text-secondary"></i>
-                  <p>Factures</p>
-                </a>
-              </li>
+              @can('isAdmin')
+                <li class="nav-item">
+                  <a href="{{route('invoices.index')}}" class="nav-link {{ request()->is('invoices') ||  request()->is('invoices/*') ? 'active' : '' }}">
+                    <i class="fas fa-file-invoice-dollar nav-icon text-secondary"></i>
+                    <p>Factures</p>
+                  </a>
+                </li>
+              @endcan
               <li class="nav-item">
                 <a href="{{route('quotes.index')}}" class="nav-link {{ request()->is('quotes') ||  request()->is('quotes/*')  ? 'active' : '' }}">
                   <i class="fas fa-file-invoice nav-icon text-secondary"></i>
@@ -62,55 +64,56 @@
               </li>
             </ul>
           </li>   
-          <li class="nav-item menu-open">
-            <a href="#" class="nav-link {{  request()->is('categories') || request()->is('products') || request()->is('categories/*') || request()->is('products/*')   ? 'active' : '' }}">
-              <i class="nav-icon fas fa-store text-white"></i>
-              <p>
-                Gestions
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="{{route('categories.index')}}" class="nav-link {{ request()->is('categories') || request()->is('categories/*') ? 'active' : '' }}">
-                  <i class="fas fa-tags nav-icon text-secondary"></i>
-                  <p>Catégories</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="{{route('products.index')}}" class="nav-link {{ request()->is('products') || request()->is('products/*') ? 'active' : '' }}">
-                <i class="fas fa-cubes nav-icon text-secondary"></i>
-                  <p>Produits</p>
-                </a>
-              </li>  
-              <li class="nav-item">
-                <a href="{{route('customers.index')}}" class="nav-link {{ request()->is('customers') || request()->is('customers/*') ? 'active' : '' }}">
-                <i class="fas fa-address-card nav-icon text-secondary"></i>
-                  <p>Clients</p>
-                </a>
-              </li>                          
-            </ul>
-          </li>
-       
-          <li class="nav-item menu-open">
-            <a href="#" class="nav-link {{ request()->is('users')   ? 'active' : '' }}">
-              <i class="nav-icon fas fa-cog text-white"></i>
-              <p>
-                Paramètres
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="{{route('users.index')}}" class="nav-link {{ request()->is('users') ? 'active' : '' }}">
-                  <i class="fas fa-users nav-icon text-secondary"></i>
-                  <p>Utilisateurs</p>
-                </a>
-              </li>
+          @can('isAdmin')
+            <li class="nav-item menu-open">
+              <a href="#" class="nav-link {{  request()->is('categories') || request()->is('products') || request()->is('categories/*') || request()->is('products/*')   ? 'active' : '' }}">
+                <i class="nav-icon fas fa-store text-white"></i>
+                <p>
+                  Gestions
+                  <i class="right fas fa-angle-left"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="{{route('categories.index')}}" class="nav-link {{ request()->is('categories') || request()->is('categories/*') ? 'active' : '' }}">
+                    <i class="fas fa-tags nav-icon text-secondary"></i>
+                    <p>Catégories</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="{{route('products.index')}}" class="nav-link {{ request()->is('products') || request()->is('products/*') ? 'active' : '' }}">
+                  <i class="fas fa-cubes nav-icon text-secondary"></i>
+                    <p>Produits</p>
+                  </a>
+                </li>  
+                <li class="nav-item">
+                  <a href="{{route('customers.index')}}" class="nav-link {{ request()->is('customers') || request()->is('customers/*') ? 'active' : '' }}">
+                  <i class="fas fa-address-card nav-icon text-secondary"></i>
+                    <p>Clients</p>
+                  </a>
+                </li>                          
+              </ul>
+            </li>
 
-            </ul>
-          </li>
+            <li class="nav-item menu-open">
+              <a href="#" class="nav-link {{ request()->is('users')   ? 'active' : '' }}">
+                <i class="nav-icon fas fa-cog text-white"></i>
+                <p>
+                  Paramètres
+                  <i class="right fas fa-angle-left"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="{{route('users.index')}}" class="nav-link {{ request()->is('users') ? 'active' : '' }}">
+                    <i class="fas fa-users nav-icon text-secondary"></i>
+                    <p>Utilisateurs</p>
+                  </a>
+                </li>
 
+              </ul>
+            </li>
+          @endcan
 
                  
                              

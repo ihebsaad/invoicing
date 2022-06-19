@@ -28,7 +28,9 @@
             <tr>
             <th>No</th>
             <th class="no-sort">Image</th>
+            <th>Prénom</th>
             <th>Nom</th>
+            <th>Email</th>
             <th class="no-sort" style="width:20%"  >Action</th>
             </tr>
         </thead>
@@ -38,10 +40,13 @@
         $url_img= asset('img/users/'.$user->thumb);
         else
         $url_img= asset('img/users/user.png');
-        ?>        <tr>
+        ?>        
+        <tr>
             <td>{!! sprintf('%04d',$user->id) !!}</td>
-            <td><img class="small-img" src="{!! $url_img !!}"/></td>
+            <td><img  width="100" src="{!! $url_img !!}"/></td>
             <td>{{ $user->name }}</td>
+            <td>{{ $user->lastname }}</td>
+            <td>{{ $user->email }}</td>
             <td>
                 @if($user->user_type!='admin' )
 			    <a class="btn btn-primary mb-3" href="{{ route('users.edit',$user->id) }}" style="float:left" title="Modifier"><i class="fas fa-edit"></i></a>
@@ -60,9 +65,9 @@
                         @method('DELETE')
                         <button type="submit" class="btn btn-danger mb-3" title="Supprimer"><i class="fas fa-trash"></i></button>
                     </form>
-                    <a title="se connecter en tant que"   href="{{route('loginAs', $user->id )}}" class="btn btn-secondary mb-3" role="button" data-toggle="tooltip" data-tooltip="tooltip" data-placement="bottom" data-original-title="Connexion" >
+                    <!--<a title="se connecter en tant que"   href="{{route('loginAs', $user->id )}}" class="btn btn-secondary mb-3" role="button" data-toggle="tooltip" data-tooltip="tooltip" data-placement="bottom" data-original-title="Connexion" >
                                 <span class="fas fa-sign-out-alt  "></span> Se connecter   
-                    </a>
+                    </a>-->
 				@endif
             </td>
         </tr>

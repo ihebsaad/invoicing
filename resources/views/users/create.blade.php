@@ -16,12 +16,42 @@
     @csrf
   
      <div class="row pl-5">
-        <div class="col-xs-12 col-sm-12 col-md-7">
+ 
+        <div class="col-xs-12 col-sm-12 col-md-6">
             <div class="form-group">
-                <strong>Nom:</strong>
-                <input type="text" name="name" class="form-control" placeholder="Nom" value="{{old('name')}}">
+                <input type="text" name="name" class="form-control" placeholder="Prénom*" value="{{old('name')}}" required>
             </div>
         </div>
+        <div class="col-xs-12 col-sm-12 col-md-6">
+            <div class="form-group">
+                <input type="text" name="lastname" class="form-control" placeholder="Nom" value="{{old('lastname')}}">
+            </div>
+        </div>
+
+        <div class="col-xs-12 col-sm-12 col-md-6">
+            <div class="form-group">
+                <input type="email" class="form-control form-control-user" id="email" name="email"  required   Autocomplete="NoAutocomplete"       value="{{old('email')}}"  placeholder="Adresse Email*"   oninvalid="this.setCustomValidity('Insérez une adresse email valide')"   oninput="this.setCustomValidity('')">	            
+            </div>
+        </div>
+
+        <div class="col-xs-12 col-sm-12 col-md-6">
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-6">
+        <label><small>Le mot de passe doit contenir 8 caractères, une majuscule, un chiffre et un caractère spécial au minimum.</small></label>
+
+            <div class="form-group">
+                <input type="password" class="form-control form-control-user" name="password" id="password"  required  autocomplete="new-password"  pattern=".{8,30}"      id="exampleInputPassword" placeholder="Mot de passe*"  onchange="CheckPassword()" oninvalid="this.setCustomValidity('La taille minimale est 8 caractères')"   oninput="this.setCustomValidity('')"  >            
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-6">
+        </div>
+
+        <div class="col-xs-12 col-sm-12 col-md-6">
+            <div class="form-group">
+                <input type="password" class="form-control form-control-user" name="password_confirmation"  required id="password_confirmation"   autocomplete="new-password"   pattern=".{8,30}"    id="exampleRepeatPassword" placeholder="Confirmation du mot de passe*"  disabled>            
+            </div>
+        </div>   
+
 
 			
         <div class="col-xs-12 col-sm-12 col-md-7">
@@ -34,14 +64,39 @@
 
 
 @section('footer-scripts')
-<script src="{{ asset('plugins/summernote/summernote-bs4.min.js') }}" ></script>
+
 
 <script>
   
-  $(function () {
-    // Summernote
-    $('.summernote').summernote()
-  });
+    function CheckPassword() 
+    { 
+    var inputtxt=document.getElementById('password').value;
+    //var passw = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/;
+    var passw = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/;
+    //if(inputtxt.value.match(passw)) 
+    if( passw.test(inputtxt))  
+    { 
+        $('#password').removeClass('is-invalid'); 
+        $('#password').addClass('is-valid');
+
+
+        $('#password').css('border','1px solid #18aa76');																	
+        $("#password_confirmation").prop('disabled', false);
+        $("#password_confirmation").focus();
+        
+    }
+    else
+    { 
+        $('#password').addClass('is-invalid'); 
+        $('#password').removeClass('is-valid');
+
+                        $('#password').css('border','2px solid #f1592a');					
+                        $('#password').focus();
+                        $("#password_confirmation").prop('disabled', true);
+
+    }
+    }
+  
   
 </script>
 

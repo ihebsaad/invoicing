@@ -86,7 +86,7 @@
   <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="float-left">
-                <h2> Devis {{$quote->id}} </h2>
+                <h2> Devis {{$quote->id}} -  {{$quote->reference}}  </h2>
             </div>
             <div class="float-right">
                 <a class="btn btn-primary" href="{{ route('quotes.index') }}"> Retour</a>
@@ -116,9 +116,9 @@
         </div>
         <div class="card-body">
             <div class="tab-content" id="custom-tabs-three-tabContent">
-                <div class="tab-pane fade active show" id="custom-tabs-three-details" role="tabpanel" aria-labelledby="custom-tabs-three-details-tab">
+				<div class="tab-pane fade active show" id="custom-tabs-three-details" role="tabpanel" aria-labelledby="custom-tabs-three-details-tab">
 
- 
+			
 					<form action="{{ route('quotes.update',$quote->id) }}" method="POST">
 						@csrf
 						@method('PUT')
@@ -133,6 +133,44 @@
 									<i class="fas fa-map-marker mr-2"></i> {{$customer->address}} - {{$customer->city}} 
 								</div>
 							</div>
+
+								<div class="col-xs-12 col-sm-12 col-md-6">
+									<div class="form-group">
+										<strong>Adresse de livraison:</strong>
+										<input type="text"   name="delivery_address" id="delivery_address" class="form-control" placeholder="Adresse" value="{{$quote->delivery_address ?? $customer->delivery_address}}" style="width:460px">
+									</div>
+								</div> 
+
+								<div class="col-xs-12 col-sm-12 col-md-5">
+									<div class="form-group">
+										<strong>Ville:</strong>
+										<input type="text" name="delivery_city" id="delivery_city" class="form-control" placeholder="Ville" value="{{$quote->delivery_city ?? $customer->delivery_city}}" style="width:300px">
+									</div>
+								</div> 
+								<div class="col-xs-12 col-sm-12 col-md-3">
+									<div class="form-group">
+										<strong>Pays:</strong>
+										<select type="text" name="delivery_country" id="delivery_country" class="form-control"  >
+											<option></option>
+											@foreach($countries as $key =>$value)
+												@php $country= $quote->delivery_country!='' ? $quote->delivery_country : $customer->delivery_country ; @endphp
+												<option value="{{$value}}"   @if($value== $country) selected="selected"  selected="selected" @endif >{{$value}}</option>
+											@endforeach
+										</select>
+									</div>
+								</div>
+
+								<div class="col-xs-12 col-sm-12 col-md-2">
+									<div class="form-group">
+										<strong>Code postal:</strong>
+										<input type="text" name="delivery_postal" id="delivery_postal"  class="form-control" placeholder="Code postal" value="{{$quote->delivery_postal ?? $customer->delivery_postal}}">
+									</div>
+								</div> 
+
+						</div> 
+
+						<div class="row pl-5 mt-2">
+
 							<div class="col-xs-12 col-sm-12 col-md-5">
 								<div class="form-group">
 									<strong>Chaudière à :</strong>
@@ -147,6 +185,20 @@
 							
 							<div class="col-xs-12 col-sm-12 col-md-7">
 								<div class="form-group">
+									<strong>Type de logement:</strong>
+									<input type="text" class="form-control"   name="logement"  value="{{ $quote->logement}}" style="width:300px"/>
+								</div>
+							</div>
+							<div class="col-xs-12 col-sm-12 col-md-5">
+								<div class="form-group">
+									<strong>Surface chauffée (m²):</strong>
+									<input type="number" class="form-control"   name="surface" value="{{ $quote->surface }}" style="width:180px"/>
+								</div>
+							</div>
+							
+							
+							<div class="col-xs-12 col-sm-12 col-md-7">
+								<div class="form-group">
 									<strong>Date de visite:</strong>
 									<input type="text" class="form-control datepicker"  autocomplete="off" name="date" placeholder="jj/mm/aaaa" value="{{ date('d/m/Y', strtotime($quote->date)) }}"/>
 								</div>
@@ -154,7 +206,7 @@
 
 							<div class="col-xs-12 col-sm-12 col-md-7">
 								<div class="form-group">
-									<strong>Description:</strong>
+									<strong>Note:</strong>
 									<textarea class="form-control summernote" style="height:150px" name="description" placeholder="Description">{{$quote->description}}</textarea>
 								</div>
 							</div>
@@ -200,17 +252,19 @@
 										$c++;
 									@endphp
 									<tr class="myproduct product bg-lightgrey tr-prod" id="row-{{$c}}">
-										<td class="myproducttd" data-prix="{{$product->prix}}" data-prixht="{{$product->prix_ht}}" data-id="{{$item->id}}"  >{{$product->name}}</td><td >{{$product->prix}} €</td><td><input id="qty-{{$item->id}}" type="number" step="1" min="1" class="number" value="{{$item->qty}}"  onchange="calcul()"/></td><td><input readonly step="0.5" min="5.5" type="number" step="1" min="1" class="number bg-transparent" value="{{$item->tva}}"/> %</td><td><input id="total-{{$item->id}}" type="number" readonly class="total-prod number" value="{{$total_prod}}"/> €</td><td><button id="delete_item"   class="btn btn-danger" onclick="delete_item({{$item->id}},{{$c}})"><i class="fas fa-trash " data-id="{{$c}}"></i></td>
+										<td class="myproducttd" data-prix="{{$product->prix}}" data-prixht="{{$product->prix_ht}}" data-id="{{$item->id}}"  >{{$product->name}}</td><td >{{$product->prix}} €</td><td><input id="qty-{{$item->id}}" type="number" step="1" min="1" class="number" value="{{$item->qty}}"  onchange="calcul()"/></td><td><input readonly step="0.5" min="5.5" type="number" step="0.5" min="1" class="number bg-transparent" value="{{$item->tva}}"/> %</td><td><input id="total-{{$item->id}}" type="number" readonly class="total-prod number" value="{{$total_prod}}"/> €</td><td><button id="delete_item"   class="btn btn-danger" onclick="delete_item({{$item->id}},{{$c}})"><i class="fas fa-trash " data-id="{{$c}}"></i></td>
 									</tr>
 								@endforeach								
-								
+								<tr class="product bg-grey">
+									<td>Remise</td><td><input id="remise" type="number"  class="number" style="width:100px" value="{{$quote->remise}}" onchange="calcul()"/> €</td><td style="text-align:center">1</td><td><input type="number" class="number" id="tva_remise" name="tva_remise" style="width:100px" step="0.5" value="{{$quote->tva_remise ?? '5.5'}}"/> %</td><td><input id="total_remise" readonly type="number"  class="number numbers bg-transparent" value="{{$quote->total_remise}}" /> €</td><td></td>
+								</tr>
 							</tbody>
 						</table>
 						<div class="row">
 						<div class="col-md-6 row pt-3 pl-5 mt-5 ">
 								<table style="width:360px;height:100px" class="table-aide" >
 									<tr>
-										<td><strong>Financement éligible:</strong></td><td colspan="2"><strong>Montant</strong></td>
+										<td><strong>Aide éligible:</strong></td><td colspan="2"><strong>Montant</strong></td>
 									</tr>
 									<tr>
 										<td >
@@ -236,9 +290,9 @@
 								<table class="totals">
 									<tr><td colspan="2">Sous Total</td><td><input id="total_ht" type="number"  class="number numbers bg-transparent" readonly  value="{{$quote->total_ht}}"/> €</td></tr>
 									<tr><td colspan="2">Total TVA</td><td><input id="total_tva" type="number"  class="number numbers bg-transparent"  readonly  value="{{$quote->total_tva}}"/> €</td></tr>
-									<tr><td>Remise</td><td><input id="remise" type="number"  class="number numbers" style="width:42px" value="{{$quote->remise}}" onchange="calcul()"/>%</td><td><input id="total_remise" readonly type="number"  class="number numbers bg-transparent" value="{{$quote->total_remise}}" /> €</td></tr>
+									<tr><td>Remise</td><td></td><td><input id="total_remise2" readonly type="number"  class="number numbers bg-transparent" value="{{$quote->total_remise}}" /> €</td></tr>
 									<tr><td colspan="2">TOTAL TTC</td><td><input id="total_ttc" type="number" readonly  class="number numbers bg-transparent" value="{{$quote->total_ttc}}" /> €</td></tr>
-									<tr><td colspan="2">Net à payer</td><td><input id="net" type="number" readonly  class="number numbers bg-transparent" value="{{$quote->net}}" /> €</td></tr>
+									<tr><td colspan="2">Net à payer</td><td><input id="net" type="number" readonly  class="number numbers bg-transparent" value="{{intval($quote->net)}}" /> €</td></tr>
 								</table>
 							</div>
 						</div>
@@ -258,6 +312,7 @@
 										<option value=""></option>
 										<option @if($quote->modalite=='Chèque') selected="selected" @endif value="Chèque">Chèque</option>
 										<option  @if($quote->modalite=='Financement') selected="selected" @endif value="Financement">Financement</option>
+										<option  @if($quote->modalite=='Chèque & Financement') selected="selected" @endif value="Chèque & Financement">Chèque et Financement</option>
 									</select>
 								</div>
 							</div>
@@ -288,14 +343,14 @@
 
 								<div class="col-xs-12 col-sm-12 col-md-6">
 									<div class="form-group">
-										<strong>Montant Mensuel :</strong>
+										<strong>Montant mensuel sans assurance :</strong>
 										<input type="number"  class="form-control"  min="0"  name="montant_mensuel" style="width:180px" value="{{$quote->montant_mensuel}}" >
 									</div>
 								</div>
 
 								<div class="col-xs-12 col-sm-12 col-md-6">
 									<div class="form-group">
-										<strong>Montant assurance :</strong>
+										<strong>Montant mensuel de l'assurance:</strong>
 										<input type="number"  class="form-control" min="0"  name="montant_assurance" style="width:180px" value="{{$quote->montant_assurance}}">
 									</div>
 								</div>
@@ -303,14 +358,14 @@
 								<div class="col-xs-12 col-sm-12 col-md-6">
 									<div class="form-group">
 										<strong>Taux nominal :</strong>
-										<input type="number"  class="form-control" min="0"  name="taux_nominal" style="width:180px" value="{{$quote->taux_nominal}}" >
+										<input type="number"  class="form-control" min="0"  step="0.01" name="taux_nominal" style="width:180px" value="{{$quote->taux_nominal}}" >
 									</div>
 								</div>
 
 								<div class="col-xs-12 col-sm-12 col-md-6">
 									<div class="form-group">
 										<strong>TAEG :</strong>
-										<input type="number"  class="form-control" min="0"  name="taeg" style="width:180px" value="{{$quote->taeg}}" >
+										<input type="number"  class="form-control" min="0"  step="0.01" name="taeg" style="width:180px" value="{{$quote->taeg}}" >
 									</div>
 								</div>
 
@@ -411,25 +466,29 @@
 	    $('#total_tva').val(total_tva);
 
 		var remise=parseFloat($('#remise').val());
+		var tva_remise=parseFloat($('#tva_remise').val());
+
 		var total_remise=0;
 		if(parseFloat(remise)>0){
-			var total_remise = (total_ttc* remise)/100;
-			$('#total_remise').val(total_remise);
+			var total_remise = remise + ((tva_remise* remise)/100);
+			$('#total_remise').val(total_remise.toFixed(2));
+			$('#total_remise2').val(total_remise.toFixed(2));
 			total_ttc= total_ttc- total_remise ;
 		}else{
 			$('#total_remise').val(0);
+			$('#total_remise2').val(0);
 		}
 	    $('#total_ttc').val(total_ttc);
 
 		var aide=parseFloat($('#aide').val());
-		var net=total_ttc-aide;
+		var net=parseInt(total_ttc-aide);
 		$('#net').val(net);
 		update_totals();
 	}
 
 
 	function check_finances(){
-		if($('#modalite').val()=='Financement'){
+		if($('#modalite').val()=='Financement' || $('#modalite').val()=='Chèque & Financement'){
 			$('#finances').css('display','contents');
 		}else{
 			$('#finances').hide('slow');
@@ -437,14 +496,16 @@
 	}
 
 	function set_price(){
-		var price= parseFloat($('#product option:selected').data("price"));
-		var tva= parseFloat($('#product option:selected').data("tva"));
-		$('#tva').val(tva);
-		$('#price').val(price);
-		$('#qty').focus();
-		$('#add_product').prop('disabled',false);
- 		var total_prod=parseFloat($('#price').val()) * parseInt($('#qty').val()) ;
-		$('#total_prod').val(total_prod);
+		if(  parseInt($('#product').val())  > 0 ){
+			var price= parseFloat($('#product option:selected').data("price"));
+			var tva= parseFloat($('#product option:selected').data("tva"));
+			$('#tva').val(tva);
+			$('#price').val(price);
+			$('#qty').focus();
+			$('#add_product').prop('disabled',false);
+			var total_prod=parseFloat($('#price').val()) * parseInt($('#qty').val()) ;
+			$('#total_prod').val(total_prod);
+		}
 	}
 
 	function init(){
@@ -526,11 +587,12 @@
 	var aide=	$('#aide').val();
 	var type_aide=	$('#type_aide').val();
 	var net=	$('#net').val();
+	var tva_remise=	$('#tva_remise').val();
 
 	$.ajax({
 		url: "{{ route('update_totals') }}",
 		method: "POST",
-		data: {total_ht:total_ht,total_tva:total_tva,total_ttc:total_ttc,total_remise:total_remise,remise:remise,quote:quote,aide:aide,type_aide:type_aide,net:net, _token:_token},
+		data: {total_ht:total_ht,total_tva:total_tva,total_ttc:total_ttc,total_remise:total_remise,remise:remise,quote:quote,aide:aide,type_aide:type_aide,net:net,tva_remise:tva_remise, _token:_token},
 		success: function (data) {
 			init();
 		}

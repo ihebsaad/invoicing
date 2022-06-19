@@ -4,6 +4,8 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
+use Illuminate\Contracts\Auth\Access\Gate as GateContract;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -22,7 +24,7 @@ class AppServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot()
+    public function boot(GateContract $gate)
     {
         view()->composer('*', function($view){
             $view_name = str_replace('.', '-', $view->getName());
@@ -33,6 +35,11 @@ class AppServiceProvider extends ServiceProvider
             }
             
         });
+
+        $gate->define('isAdmin', function ($user){
+            return $user->user_type=='admin';
+        });
+
 
     }
 

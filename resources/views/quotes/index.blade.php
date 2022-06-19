@@ -27,7 +27,9 @@
         <thead>
             <tr>
             <th>No</th>
+            <th>Référence</th>
             <th>Client</th>
+            <th>Créé le</th>
             <th>Total</th>
             <th class="no-sort"  style="width:25%"  >Action</th>
             </tr>
@@ -35,23 +37,27 @@
         @foreach ($quotes as $quote)
 		<tr>
             <td>{!! sprintf('%04d',$quote->id) !!}</td>
+            <td>{!!  $quote->reference !!}</td>
             <td>{{ $quote->customer()->first()->civility }} {{ $quote->customer()->first()->name }} {{ $quote->customer()->first()->lastname }}</td>
+            <td>{{date('d/m/Y', strtotime($quote->created_at))}}</td>
             <td>{{ ($quote->total_ttc ?? 0) }} €</td>
             <td>
-            <a class="btn btn-primary mb-3 mr-2" href="{{ route('quotes.edit',$quote->id) }}" style="float:left" title="Modifier"><i class="fas fa-edit"></i></a>
-			    <a class="btn btn-success mb-3 mr-2 " target="_blank"  href="{{ route('quotes.show_pdf',$quote->id) }}" style="float:left" title="Ouvrir en PDF"><i class="fas fa-file-pdf"></i></a>
-			    <a class="btn btn-secondary mb-3 mr-2 " href="{{ route('quotes.download_pdf',$quote->id) }}" style="float:left" title="Télécharger"><i class="fas fa-download"></i></a>
-                @if(\App\Models\Signature::where('quote',$quote->id)->exists())
-                    <a class="btn btn-dark mb-3 mr-2 " href="{{ route('quotes.download_pdf_signature',$quote->id) }}" style="float:left" title="Télécharger avec signature"><i class="fas fa-signature"></i></a>
+                @if($User->user_type=='admin' || $User->id== $quote->par )
+                    <a class="btn btn-primary mb-3 mr-2" href="{{ route('quotes.edit',$quote->id) }}" style="float:left" title="Modifier"><i class="fas fa-edit"></i></a>
+                    <a class="btn btn-success mb-3 mr-2 " target="_blank"  href="{{ route('quotes.show_pdf',$quote->id) }}" style="float:left" title="Ouvrir en PDF"><i class="fas fa-file-pdf"></i></a>
+                    <a class="btn btn-secondary mb-3 mr-2 " href="{{ route('quotes.download_pdf',$quote->id) }}" style="float:left" title="Télécharger"><i class="fas fa-download"></i></a>
+                    @if(\App\Models\Signature::where('quote',$quote->id)->exists())
+                        <a class="btn btn-dark mb-3 mr-2 " href="{{ route('quotes.download_pdf_signature',$quote->id) }}" style="float:left" title="Télécharger avec signature"><i class="fas fa-signature"></i></a>
+                    @endif
+                    @if(\App\Models\Invoice::where('quote',$quote->id)->doesntExist() &&  $User->user_type=='admin')
+                        <a class="btn btn-warning mb-3 mr-2 " href="{{ route('quotes.save_invoice',$quote->id) }}" style="float:left" title="Enregistrer en Facture"><i class="fas fa-file"></i></a>
+                    @endif
+                    <form action="{{ route('quotes.destroy',$quote->id) }}" method="POST" style="float:left" class="mr-2" >
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger mb-3" title="Supprimer"><i class="fas fa-trash"></i></button>
+                    </form>
                 @endif
-                @if(\App\Models\Invoice::where('quote',$quote->id)->doesntExist())
-                    <a class="btn btn-warning mb-3 mr-2 " href="{{ route('quotes.save_invoice',$quote->id) }}" style="float:left" title="Enregistrer en Facture"><i class="fas fa-file"></i></a>
-                @endif
-                <form action="{{ route('quotes.destroy',$quote->id) }}" method="POST" style="float:left" class="mr-2" >
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" class="btn btn-danger mb-3" title="Supprimer"><i class="fas fa-trash"></i></button>
-                </form>
             </td>
         </tr>
         @endforeach

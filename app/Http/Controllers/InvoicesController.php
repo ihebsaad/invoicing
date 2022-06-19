@@ -7,6 +7,7 @@ use App\Models\Customer;
 use App\Models\Quote;
 use App\Models\Product;
 use App\Models\Item;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Barryvdh\DomPDF\Facade\Pdf;
@@ -27,6 +28,9 @@ class InvoicesController extends Controller
      */
     public function index()
     {
+        if (auth()->user()->user_type != 'admin') 
+			return  redirect('/home');		
+
         $invoices = Invoice::orderBy('id','desc')->get();
     
         return view('invoices.index',compact('invoices'));
@@ -39,6 +43,10 @@ class InvoicesController extends Controller
      */
     public function create()
     {
+
+        if (auth()->user()->user_type != 'admin') 
+            return  redirect('/home');
+
         $customers = Customer::all();
         $countries = CustomersController::countries();
         $customer_id=0;
@@ -47,6 +55,9 @@ class InvoicesController extends Controller
     
     public function add($customer_id)
     {
+        if (auth()->user()->user_type != 'admin') 
+            return  redirect('/home');
+
         $customers = Customer::all();
         $countries = CustomersController::countries();
 
@@ -68,7 +79,11 @@ class InvoicesController extends Controller
         $data=$request->all();
         $data['date']=str_replace('/','-',$data['date']);
         $data['date']=Carbon::parse($data['date'])->format('Y-m-d');
-    
+        $name=strtoupper(User::find($data['par'])->name);
+        $lastname=strtoupper(User::find($data['par'])->lastname);
+        $num=Invoice::where('par',$data['par'])->where('created_at','like',  date('Y-m-d').'%')->count()+1;
+        $reference= date('Ymd').$name[0].$lastname[0].sprintf('%03d',$num);
+        $data['reference']=$reference;
         Invoice::create($data);
      
         return redirect()->route('invoices.index')
@@ -83,6 +98,9 @@ class InvoicesController extends Controller
      */
     public function show(Invoice $invoice)
     {
+        if (auth()->user()->user_type != 'admin') 
+            return  redirect('/home');
+
         return view('invoices.show',compact('invoice'));
     } 
      
@@ -94,10 +112,14 @@ class InvoicesController extends Controller
      */
     public function edit(Invoice $invoice)
     {
+        if (auth()->user()->user_type != 'admin') 
+            return  redirect('/home');
+
         $customers = Customer::all();
         $products = Product::all();
         $items = Item::where('invoice',$invoice->id)->get();
-        return view('invoices.edit',compact('invoice','customers','products','items'));
+        $countries=CustomersController::countries();
+        return view('invoices.edit',compact('invoice','customers','products','items','countries'));
     }
     
     /**
@@ -117,8 +139,8 @@ class InvoicesController extends Controller
 
         $invoice->update($data);
     
-        return redirect()->route('invoices.index')
-                        ->with('success','Facture modifiée');
+        return redirect()->route('invoices.edit',['invoice'=>$invoice])
+                        ->with('success','Facture modifié');
     }
     
     /**
@@ -141,8 +163,7 @@ class InvoicesController extends Controller
         $invoice = Invoice::find($id);
         $date=Carbon::parse($invoice->created_at)->format('Y-m');
         $date_facture=Carbon::parse($invoice->date)->format('d/m/Y');
-        //$reference= $date.'-'.sprintf('%05d',$invoice->id);
-        $reference= sprintf('%05d',$invoice->id);
+        $reference= $invoice->reference ;
         $items = Item::where('invoice',$id)->get();
         $pdf = PDF::loadView('invoices.invoice', compact('invoice','reference','date_facture','items'));
         return $pdf->stream('Facture-'.$reference.'.pdf');
@@ -154,8 +175,7 @@ class InvoicesController extends Controller
         $invoice = Invoice::find($id);
         $date=Carbon::parse($invoice->created_at)->format('Y-m');
         $date_facture=Carbon::parse($invoice->date)->format('d/m/Y');
-        //$reference= $date.'-'.sprintf('%05d',$invoice->id);
-        $reference= sprintf('%05d',$invoice->id) ;
+        $reference= $invoice->reference ;
         $items = Item::where('invoice',$id)->get();
 
         $pdf = PDF::loadView('invoices.invoice', compact('invoice','reference','date_facture','items'));
@@ -175,6 +195,8 @@ class InvoicesController extends Controller
         $aide=$request->get('aide');
         $type_aide=$request->get('type_aide');
         $net=$request->get('net');
+        $tva_remise=$request->get('tva_remise');
+        
 
         Invoice::where('id',$invoice)->update(
             [
@@ -186,6 +208,7 @@ class InvoicesController extends Controller
                 'aide'=>$aide,
                 'type_aide'=>$type_aide,
                 'net'=>$net,
+                'tva_remise'=>$tva_remise,
             ]
         );
     }

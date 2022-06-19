@@ -25,7 +25,9 @@ class UsersController extends Controller
      */
     public function index()
     {
-   	
+        if (auth()->user()->user_type != 'admin') 
+            return  redirect('/home');
+
 		    $users = User::all();
             return view('users.index',compact('users'));
     }
@@ -38,6 +40,9 @@ class UsersController extends Controller
      */
     public function create()
     {
+        if (auth()->user()->user_type != 'admin') 
+            return  redirect('/home');
+
         return view('users.create');
     }
     
@@ -71,8 +76,10 @@ class UsersController extends Controller
      */
     public function show(User $user)
     {
+        if (auth()->user()->user_type != 'admin') 
+			return  redirect('/home');
 
-            return view('users.show',compact('user'));
+        return view('users.show',compact('user'));
 
     } 
      
@@ -84,6 +91,9 @@ class UsersController extends Controller
      */
     public function edit(User $user)
     {
+        if (auth()->user()->user_type != 'admin') 
+            return  redirect('/home');
+
         return view('users.edit',compact('user'));
     }
     
@@ -96,6 +106,7 @@ class UsersController extends Controller
      */
     public function update(Request $request, User $user)
     {
+ 
         $request->validate([
             'name' => 'required',
             'email' => 'required',

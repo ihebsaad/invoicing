@@ -10,7 +10,7 @@ class Invoice extends Model
     use HasFactory;
 	
 	protected $fillable = [
-        'name',
+        
         'description',
         'adresse',
         'chaudiere',
@@ -34,7 +34,16 @@ class Invoice extends Model
         'pose',
         'customer',
 		'quote',
-        'net'
+        'net',
+        'par',
+        'surface',
+        'logement',
+        'delivery_address',
+        'delivery_city',
+        'delivery_postal',
+        'delivery_country',
+        'reference',
+        'tva_remise'
     ];
 	
 		public function customer()
@@ -45,5 +54,10 @@ class Invoice extends Model
 		public function quote()
 	{
 		return $this->belongsTo('App\Models\Quote', 'quote', 'id');
+	}
+
+    public function user()
+	{
+		return $this->belongsTo('App\Models\User', 'par', 'id');
 	}
 }

@@ -20,6 +20,9 @@ class CustomersController extends Controller
      */
     public function index()
     {
+        if (auth()->user()->user_type != 'admin') 
+            return  redirect('/home');
+
         $customers = Customer::orderBy('id','desc')->get();
     
         return view('customers.index',compact('customers'));

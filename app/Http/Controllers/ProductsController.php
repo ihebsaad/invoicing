@@ -22,6 +22,9 @@ class ProductsController extends Controller
      */
     public function index()
     {
+        if (auth()->user()->user_type != 'admin') 
+            return  redirect('/home');
+
         $products = Product::orderBy('id','desc')->get();
     
         return view('products.index',compact('products'));
@@ -34,6 +37,9 @@ class ProductsController extends Controller
      */
     public function create()
     {
+        if (auth()->user()->user_type != 'admin') 
+            return  redirect('/home');
+
         $categories=Categorie::all();
         return view('products.create',compact('categories'));
     }
@@ -64,6 +70,9 @@ class ProductsController extends Controller
      */
     public function show(Product $product)
     {
+        if (auth()->user()->user_type != 'admin') 
+            return  redirect('/home');
+
         $categories=Categorie::all();
         return view('products.show',compact('product','categories'));
     } 

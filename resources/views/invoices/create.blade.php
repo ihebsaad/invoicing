@@ -24,7 +24,7 @@
    
 <form action="{{ route('invoices.store') }}" method="POST">
     @csrf
-  
+    <input type="hidden" name="par"  value="{{$User->id}}" />
      <div class="row pl-5">
         <div class="col-xs-12 col-sm-12 col-md-7">
             <div class="form-group">
@@ -44,14 +44,14 @@
         
         <div class="col-xs-12 col-sm-12 col-md-7">
             <div class="form-group">
-                <strong>Date:</strong>
+                <strong>Date de visite technique préalable:</strong>
                 <input type="text" class="form-control datepicker" autocomplete="off"  name="date" placeholder="jj/mm/aaaa"  value="{{date('d/m/Y')}}"/>
             </div>
         </div>
 
         <div class="col-xs-12 col-sm-12 col-md-7">
             <div class="form-group">
-                <strong>Description:</strong>
+                <strong>Note:</strong>
                 <textarea class="form-control summernote" style="height:150px" name="description" placeholder="Description">{{old('description')}}</textarea>
             </div>
         </div>
