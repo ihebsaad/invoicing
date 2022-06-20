@@ -87,8 +87,8 @@
 		<br>
 		<div style="width:100%;height:30px">
 			<div style="width:50%;float:left;">
-				 <b>Logement :</b>{{ $quote->logement }}    <b>Surface chauffée (m²) :</b>   {{ $quote->surface }}<br>
-				 <b>Date de visite technique préalable :</b>   {{ $date_facture }}<br>
+				@if( $quote->logement!='')<b>Logement :</b>{{ $quote->logement }}    @endif  @if($quote->surface!='')<b>Surface chauffée (m²) :</b>   {{ $quote->surface }}<br>@endif
+				<b>Date de visite technique préalable :</b>   {{ $date_facture }}<br>
 			</div>
 		</div>
 		<br>
@@ -137,7 +137,7 @@
 				<tr><td colspan="2">Sous Total</td><td>{{$quote->total_ht}} €</td></tr>
 				<tr><td colspan="2">Total TVA</td><td>{{$quote->total_tva}} €</td></tr>
 				@if($quote->aide>0)
-				<tr style="color:#f07f32"><td colspan="2" style=";font-size:9px;max-width:90px;">Montant Estimatif<br>{{$quote->type_aide}} prime renovation</td><td>- {{$quote->aide}} €</td></tr>
+				<tr style="color:#f07f32"><td colspan="2" style=";font-size:9px;max-width:90px;">Montant Estimatif<br>{{$quote->type_aide}}</td><td>{{$quote->aide}} €</td></tr>
 				@endif
 				<tr><td colspan="2">Total TTC</td><td>{{$quote->total_ttc}} €</td></tr>
 				<tr><td colspan="2">Net à payer</td><td>{{intval($quote->net)}} €</td></tr>

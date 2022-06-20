@@ -254,11 +254,13 @@
 									<tr class="myproduct product bg-lightgrey tr-prod" id="row-{{$c}}">
 										<td class="myproducttd" data-prix="{{$product->prix}}" data-prixht="{{$product->prix_ht}}" data-id="{{$item->id}}"  >{{$product->name}}</td><td >{{$product->prix}} €</td><td><input id="qty-{{$item->id}}" type="number" step="1" min="1" class="number" value="{{$item->qty}}"  onchange="calcul()"/></td><td><input readonly step="0.5" min="5.5" type="number" step="0.5" min="1" class="number bg-transparent" value="{{$item->tva}}"/> %</td><td><input id="total-{{$item->id}}" type="number" readonly class="total-prod number" value="{{$total_prod}}"/> €</td><td><button id="delete_item"   class="btn btn-danger" onclick="delete_item({{$item->id}},{{$c}})"><i class="fas fa-trash " data-id="{{$c}}"></i></td>
 									</tr>
-								@endforeach								
+								@endforeach	
+							</tbody>
+							<tfoot>							
 								<tr class="product bg-grey">
 									<td>Remise</td><td><input id="remise" type="number"  class="number" style="width:100px" value="{{$quote->remise}}" onchange="calcul()"/> €</td><td style="text-align:center">1</td><td><input type="number" class="number" id="tva_remise" name="tva_remise" style="width:100px" step="0.5" value="{{$quote->tva_remise ?? '5.5'}}"/> %</td><td><input id="total_remise" readonly type="number"  class="number numbers bg-transparent" value="{{$quote->total_remise}}" /> €</td><td></td>
 								</tr>
-							</tbody>
+							</tfoot>
 						</table>
 						<div class="row">
 						<div class="col-md-6 row pt-3 pl-5 mt-5 ">

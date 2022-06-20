@@ -87,7 +87,7 @@
 		<br>
 		<div style="width:100%;height:30px">
 			<div style="width:50%;float:left;">
-				 <b>Logement :</b>{{ $invoice->logement }}    <b>Surface chauffée (m²) :</b>   {{ $invoice->surface }}<br>
+				 @if( $invoice->logement!='')<b>Logement :</b>{{ $invoice->logement }}    @endif @if($invoice->surface!='')<b>Surface chauffée (m²) :</b>   {{ $invoice->surface }}<br>@endif
 				 <b>Date de visite technique préalable :</b>   {{ $date_facture }}<br>
 			</div>
 		</div>
@@ -137,7 +137,7 @@
 				<tr><td colspan="2">Sous Total</td><td>{{$invoice->total_ht}} €</td></tr>
 				<tr><td colspan="2">Total TVA</td><td>{{$invoice->total_tva}} €</td></tr>
 				@if($invoice->aide>0)
-				<tr style="color:#f07f32"><td colspan="2" style=";font-size:9px;max-width:90px;">Montant Estimatif<br>{{$invoice->type_aide}} prime renovation</td><td>- {{$invoice->aide}} €</td></tr>
+				<tr style="color:#f07f32"><td colspan="2" style=";font-size:9px;max-width:90px;">Montant Estimatif<br>{{$invoice->type_aide}}</td><td>{{$invoice->aide}} €</td></tr>
 				@endif
 				<tr><td colspan="2">Total TTC</td><td>{{$invoice->total_ttc}} €</td></tr>
 				<tr><td colspan="2">Net à payer</td><td>{{intval($invoice->net)}} €</td></tr>
