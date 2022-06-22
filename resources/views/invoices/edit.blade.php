@@ -172,8 +172,10 @@
 							<div class="col-xs-12 col-sm-12 col-md-7">
 								<div class="form-group">
 									<strong>Type de logement:</strong>
-									<input type="text" class="form-control"   name="logement"  value="{{ $invoice->logement}}" style="width:300px"/>
-								</div>
+									<select class="form-control"   name="logement"  value="{{ $quote->logement}}" style="width:300px">
+										<option value="Maison" @if($quote->logement=='Maison') selected="selected" @endif >Maison</option>
+										<option value="Appartement" @if($quote->logement=='Appartement') selected="selected" @endif >Appartement</option>
+									</select>								</div>
 							</div>
 							<div class="col-xs-12 col-sm-12 col-md-5">
 								<div class="form-group">
@@ -280,7 +282,6 @@
 								<table class="totals">
 									<tr><td colspan="2">Sous Total</td><td><input id="total_ht" type="number"  class="number numbers bg-transparent" readonly  value="{{$invoice->total_ht}}"/> €</td></tr>
 									<tr><td colspan="2">Total TVA</td><td><input id="total_tva" type="number"  class="number numbers bg-transparent"  readonly  value="{{$invoice->total_tva}}"/> €</td></tr>
-									<tr><td>Remise</td><td></td><td><input id="total_remise2" readonly type="number"  class="number numbers bg-transparent" value="{{$invoice->total_remise}}" /> €</td></tr>
 									<tr><td colspan="2">TOTAL TTC</td><td><input id="total_ttc" type="number" readonly  class="number numbers bg-transparent" value="{{$invoice->total_ttc}}" /> €</td></tr>
 									<tr><td colspan="2">Net à payer</td><td><input id="net" type="number" readonly  class="number numbers bg-transparent" value="{{intval($invoice->net)}}" /> €</td></tr>
 								</table>
@@ -312,7 +313,7 @@
 							<div id="finances"  @if($invoice->modalite=='Chèque' || $invoice->modalite== '') style="display:none" @else style="display:contents"  @endif >
 								<div class="col-xs-12 col-sm-12 col-md-6">
 									<div class="form-group">
-										<strong>Montant financé :</strong>
+										<strong>Montant financé en €:</strong>
 										<input type="number"  class="form-control"  min="0"  name="montant_finance" style="width:180px" value="{{$invoice->montant_finance}}" >
 									</div>
 								</div>
@@ -333,35 +334,35 @@
 
 								<div class="col-xs-12 col-sm-12 col-md-6">
 									<div class="form-group">
-										<strong>Montant mensuel sans assurance :</strong>
+										<strong>Montant mensuel sans assurance en €:</strong>
 										<input type="number"  class="form-control"  min="0"  name="montant_mensuel" style="width:180px" value="{{$invoice->montant_mensuel}}" >
 									</div>
 								</div>
 
 								<div class="col-xs-12 col-sm-12 col-md-6">
 									<div class="form-group">
-										<strong>Montant mensuel de l'assurance :</strong>
+										<strong>Montant mensuel de l'assurance en €:</strong>
 										<input type="number"  class="form-control" min="0"  name="montant_assurance" style="width:180px" value="{{$invoice->montant_assurance}}">
 									</div>
 								</div>
 
 								<div class="col-xs-12 col-sm-12 col-md-6">
 									<div class="form-group">
-										<strong>Taux nominal :</strong>
+										<strong>% Taux nominal :</strong>
 										<input type="number"  class="form-control" min="0"  step="0.01" name="taux_nominal" style="width:180px" value="{{$invoice->taux_nominal}}" >
 									</div>
 								</div>
 
 								<div class="col-xs-12 col-sm-12 col-md-6">
 									<div class="form-group">
-										<strong>TAEG :</strong>
+										<strong>% AEG :</strong>
 										<input type="number"  class="form-control" min="0" step="0.01"  name="taeg" style="width:180px" value="{{$invoice->taeg}}" >
 									</div>
 								</div>
 
 								<div class="col-xs-12 col-sm-12 col-md-6">
 									<div class="form-group">
-										<strong>Solde de la pose :</strong>
+										<strong>Solde de la pose en €:</strong>
 										<input type="number"  class="form-control"   min="0" name="pose" style="width:180px" value="{{$invoice->pose}}">
 									</div>
 								</div>
@@ -432,11 +433,9 @@
 		if(parseFloat(remise)>0){
 			var total_remise = remise + ((tva_remise* remise)/100);
 			$('#total_remise').val(total_remise.toFixed(2));
-			$('#total_remise2').val(total_remise.toFixed(2));
 			total_ttc= total_ttc- total_remise ;
 		}else{
 			$('#total_remise').val(0);
-			$('#total_remise2').val(0);
 		}
 	    $('#total_ttc').val(total_ttc);
 

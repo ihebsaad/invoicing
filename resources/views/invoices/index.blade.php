@@ -49,7 +49,7 @@
                 <form action="{{ route('invoices.destroy',$invoice->id) }}" method="POST" style="float:left" class="mr-2  ">
                     @csrf
                     @method('DELETE')
-                    <button type="submit" class="btn btn-danger mb-3" title="Supprimer"><i class="fas fa-trash"></i></button>
+                    <button type="submit" class="btn btn-danger mb-3" title="Supprimer" onclick="return ConfirmDelete();"><i class="fas fa-trash"></i></button>
                 </form>
             </td>
         </tr>

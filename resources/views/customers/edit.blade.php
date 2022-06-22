@@ -34,19 +34,20 @@
                     </select>
                 </div>
             </div>
-            <div class="col-xs-12 col-sm-12 col-md-3">
-                <div class="form-group">
-                    <strong>Prénom:</strong>
-                    <input type="text" name="name" class="form-control" placeholder="Prénom" value="{{$customer->name}}">
-                </div>
-            </div>
+
             <div class="col-xs-12 col-sm-12 col-md-4">
                 <div class="form-group">
                     <strong>Nom:</strong>
                     <input type="text" name="lastname" class="form-control" placeholder="Nom" value="{{$customer->lastname}}">
                 </div>
             </div>   
-        
+            
+            <div class="col-xs-12 col-sm-12 col-md-3">
+                <div class="form-group">
+                    <strong>Prénom:</strong>
+                    <input type="text" name="name" class="form-control" placeholder="Prénom" value="{{$customer->name}}">
+                </div>
+            </div>        
         </div>   
 
         <div class="row pl-5">
@@ -60,18 +61,19 @@
                     </select>
                 </div>
             </div>
+            <div class="col-xs-12 col-sm-12 col-md-4">
+                <div class="form-group">
+                    <strong>Nom:</strong>
+                    <input type="text" name="lastname2" class="form-control" placeholder="Nom" value="{{$customer->lastname2}}">
+                </div>
+            </div>             
             <div class="col-xs-12 col-sm-12 col-md-3">
                 <div class="form-group">
                     <strong>Prénom:</strong>
                     <input type="text" name="name2" class="form-control" placeholder="Prénom" value="{{$customer->name2}}">
                 </div>
             </div>
-            <div class="col-xs-12 col-sm-12 col-md-4">
-                <div class="form-group">
-                    <strong>Nom:</strong>
-                    <input type="text" name="lastname2" class="form-control" placeholder="Nom" value="{{$customer->lastname2}}">
-                </div>
-            </div>   
+  
         
         </div> 
 

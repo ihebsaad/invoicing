@@ -66,6 +66,7 @@ Route::get('/quotes/show_pdf/{id}', [QuotesController::class, 'show_pdf'])->name
 Route::get('/quotes/save_invoice/{id}', [QuotesController::class, 'save_invoice'])->name('quotes.save_invoice');
 Route::post('/update_totals',[QuotesController::class, 'update_totals'])->name('update_totals');
 Route::get('/quotes/add/{customer_id}', [QuotesController::class, 'add'])->name('quotes.add');
+Route::post('/quotes/ajout_signature', [QuotesController::class, 'ajout_signature'])->name('quotes.ajout_signature');
 
 //products
 Route::post('/add_item',[ProductsController::class, 'add_item'])->name('add_item');

@@ -89,21 +89,49 @@
                                 </select>
                             </div>
                         </div>
+
+                        <div class="col-xs-12 col-sm-12 col-md-5">
+                            <div class="form-group">
+                                <strong>Nom:</strong>
+                                <input type="text" name="lastname" class="form-control" placeholder="Nom" value="{{old('lastname')}}">
+                            </div>
+                        </div>
+                        
                         <div class="col-xs-12 col-sm-12 col-md-4">
                             <div class="form-group">
                                 <strong>Prénom:</strong>
                                 <input type="text" name="name" class="form-control" placeholder="Prénom" value="{{old('name')}}">
                             </div>
                         </div>
+
+                    </div>   
+                    <div class="row ">
+                        <div class="col-xs-12 col-sm-12 col-md-3">
+                            <div class="form-group">
+                                <strong>Civilité:</strong>
+                                <select   name="civility2" class="form-control" placeholder="civility2" >
+                                    <option value="Mr">Mr</option>
+                                    <option value="Mme">Mme</option>
+                                    <option value="Mlle">Mlle</option>
+                                </select>
+                            </div>
+                        </div>
+
                         <div class="col-xs-12 col-sm-12 col-md-5">
                             <div class="form-group">
                                 <strong>Nom:</strong>
-                                <input type="text" name="lastname" class="form-control" placeholder="Nom" value="{{old('lastname')}}">
+                                <input type="text" name="lastname2" class="form-control" placeholder="Nom" value="{{old('lastname2')}}">
                             </div>
-                        </div>   
-                    
-                    </div>   
+                        </div>
+                        
+                        <div class="col-xs-12 col-sm-12 col-md-4">
+                            <div class="form-group">
+                                <strong>Prénom:</strong>
+                                <input type="text" name="name2" class="form-control" placeholder="Prénom" value="{{old('name2')}}">
+                            </div>
+                        </div>
 
+                    </div>   
                     <div class="row ">
                         <div class="col-xs-12 col-sm-12 col-md-6">
                             <div class="form-group">

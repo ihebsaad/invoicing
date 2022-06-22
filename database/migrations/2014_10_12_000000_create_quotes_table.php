@@ -19,9 +19,10 @@ class CreateQuotesTable extends Migration
             $table->string('adresse')->nullable();
             $table->string('chaudiere')->nullable();
             $table->string('modalite')->nullable();
+            $table->string('devis_signe')->nullable();
             $table->date('date')->nullable();
 
-            $table->integer('tva')->nullable();;
+            $table->integer('tva')->nullable();
             $table->integer('remise')->default(0)->nullable();
 
             $table->double('total_tva', 8, 2)->nullable();;

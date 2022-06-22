@@ -38,8 +38,12 @@ class SignaturePadController extends Controller
            'user_image' => $image_file,
            'quote' => $request->quote_id
         );
-
-        Signature::create($form_data);
+        if(Signature::where('quote', $request->quote_id)->exists()){
+            Signature::where('quote', $request->quote_id)->update(['user_image'=>$image_file]);
+        }else{
+            Signature::create($form_data);
+        }
+        
        return back()->with('success', 'Signature enregistrée');
     }
 }

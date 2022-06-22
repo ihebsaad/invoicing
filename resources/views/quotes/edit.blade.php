@@ -186,7 +186,10 @@
 							<div class="col-xs-12 col-sm-12 col-md-7">
 								<div class="form-group">
 									<strong>Type de logement:</strong>
-									<input type="text" class="form-control"   name="logement"  value="{{ $quote->logement}}" style="width:300px"/>
+									<select class="form-control"   name="logement"  value="{{ $quote->logement}}" style="width:300px">
+										<option value="Maison" @if($quote->logement=='Maison') selected="selected" @endif >Maison</option>
+										<option value="Appartement" @if($quote->logement=='Appartement') selected="selected" @endif >Appartement</option>
+									</select>
 								</div>
 							</div>
 							<div class="col-xs-12 col-sm-12 col-md-5">
@@ -292,7 +295,6 @@
 								<table class="totals">
 									<tr><td colspan="2">Sous Total</td><td><input id="total_ht" type="number"  class="number numbers bg-transparent" readonly  value="{{$quote->total_ht}}"/> €</td></tr>
 									<tr><td colspan="2">Total TVA</td><td><input id="total_tva" type="number"  class="number numbers bg-transparent"  readonly  value="{{$quote->total_tva}}"/> €</td></tr>
-									<tr><td>Remise</td><td></td><td><input id="total_remise2" readonly type="number"  class="number numbers bg-transparent" value="{{$quote->total_remise}}" /> €</td></tr>
 									<tr><td colspan="2">TOTAL TTC</td><td><input id="total_ttc" type="number" readonly  class="number numbers bg-transparent" value="{{$quote->total_ttc}}" /> €</td></tr>
 									<tr><td colspan="2">Net à payer</td><td><input id="net" type="number" readonly  class="number numbers bg-transparent" value="{{intval($quote->net)}}" /> €</td></tr>
 								</table>
@@ -324,7 +326,7 @@
 							<div id="finances"  @if($quote->modalite=='Chèque' || $quote->modalite== '') style="display:none" @else style="display:contents"  @endif >
 								<div class="col-xs-12 col-sm-12 col-md-6">
 									<div class="form-group">
-										<strong>Montant financé :</strong>
+										<strong>Montant financé en € :</strong>
 										<input type="number"  class="form-control"  min="0"  name="montant_finance" style="width:180px" value="{{$quote->montant_finance}}" >
 									</div>
 								</div>
@@ -345,35 +347,35 @@
 
 								<div class="col-xs-12 col-sm-12 col-md-6">
 									<div class="form-group">
-										<strong>Montant mensuel sans assurance :</strong>
+										<strong>Montant mensuel sans assurance en €:</strong>
 										<input type="number"  class="form-control"  min="0"  name="montant_mensuel" style="width:180px" value="{{$quote->montant_mensuel}}" >
 									</div>
 								</div>
 
 								<div class="col-xs-12 col-sm-12 col-md-6">
 									<div class="form-group">
-										<strong>Montant mensuel de l'assurance:</strong>
+										<strong>Montant mensuel de l'assurance en €:</strong>
 										<input type="number"  class="form-control" min="0"  name="montant_assurance" style="width:180px" value="{{$quote->montant_assurance}}">
 									</div>
 								</div>
 
 								<div class="col-xs-12 col-sm-12 col-md-6">
 									<div class="form-group">
-										<strong>Taux nominal :</strong>
+										<strong>% Taux nominal :</strong>
 										<input type="number"  class="form-control" min="0"  step="0.01" name="taux_nominal" style="width:180px" value="{{$quote->taux_nominal}}" >
 									</div>
 								</div>
 
 								<div class="col-xs-12 col-sm-12 col-md-6">
 									<div class="form-group">
-										<strong>TAEG :</strong>
+										<strong>% TAEG :</strong>
 										<input type="number"  class="form-control" min="0"  step="0.01" name="taeg" style="width:180px" value="{{$quote->taeg}}" >
 									</div>
 								</div>
 
 								<div class="col-xs-12 col-sm-12 col-md-6">
 									<div class="form-group">
-										<strong>Solde de la pose :</strong>
+										<strong>Solde de la pose en €:</strong>
 										<input type="number"  class="form-control"   min="0" name="pose" style="width:180px" value="{{$quote->pose}}">
 									</div>
 								</div>
@@ -391,13 +393,9 @@
 				</div>
 				
             	<div class="tab-pane fade" id="custom-tabs-three-signature" role="tabpanel" aria-labelledby="custom-tabs-three-signature-tab"   >
-					@if(\App\Models\Signature::where('quote',$quote->id)->exists())
-						@php $url_img=\App\Models\Signature::where('quote',$quote->id)->first()->user_image;
-						@endphp
-						<img src="{{$url_img}}" width= '300'     height= ''/>
-					@else
+
 						<div class="row">
-							<div class="col-md-6 offset-md-3 mt-5">
+							<div class="col-md-6 ">
 								<div class=" ">
 									<div class="card-body">
 										<div class="col-md-12">
@@ -416,8 +414,39 @@
 									</div>
 								</div>
 							</div>
+							<div class="col-md-6 pt-5 pl-5">
+							@if(\App\Models\Signature::where('quote',$quote->id)->exists())
+								@php $url_img=\App\Models\Signature::where('quote',$quote->id)->first()->user_image;
+								@endphp
+								<img src="{{$url_img}}" width= '300'     height= ''/>
+							@endif
+							</div>
 						</div>
-					@endif
+
+						<div class="row bg-lightgrey pt-5 pb-5">
+							
+							<div class="col-md-6 pl-5">
+								<form method="POST" action="{{ route('quotes.ajout_signature') }}"   enctype='multipart/form-data' >
+									@csrf
+									<input type="hidden" name="quote" value="{{$quote->id}}" />
+
+									<div class="form-group">
+										<strong>Envoyez le devis signé :</strong>
+										<input type="file"  class="form-control"   name="devis_signe"    >
+									</div>
+
+									<div class="col-xs-12 col-sm-12 col-md-7 mt-5">
+										<button type="submit" class="btn btn-primary">Envoyer</button>
+									</div>
+								</form>
+							</div>
+							<div  class="col-md-6 pl-5">
+								@if($quote->devis_signe!='')
+									<a download href="<?php echo  URL::asset('/fichiers/'.$quote->devis_signe);?>" >Télécharger le devis signé</a><br>
+								@endif
+							</div>
+						</div>
+					
 			
 				</div>
 
@@ -474,11 +503,9 @@
 		if(parseFloat(remise)>0){
 			var total_remise = remise + ((tva_remise* remise)/100);
 			$('#total_remise').val(total_remise.toFixed(2));
-			$('#total_remise2').val(total_remise.toFixed(2));
 			total_ttc= total_ttc- total_remise ;
 		}else{
 			$('#total_remise').val(0);
-			$('#total_remise2').val(0);
 		}
 	    $('#total_ttc').val(total_ttc);
 

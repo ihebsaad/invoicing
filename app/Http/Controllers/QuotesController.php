@@ -274,4 +274,22 @@ class QuotesController extends Controller
         return redirect()->route('invoices.index')
         ->with('success','Facture enregistrée en devis');
     }
+
+
+    public function ajout_signature(Request $request)
+    {
+        $id= $request->get('quote');
+
+        $name='';
+        if($request->file('devis_signe')!=null)
+        {$file=$request->file('devis_signe');
+         $name =  $file->getClientOriginalName();
+         $path = public_path()."/fichiers/";
+ 
+          $file->move($path, $name);
+        }
+          Quote::where('id', $id)->update(array('devis_signe' => $name));
+
+          return back()->with('success', 'Fichier enregistré');
+    }
 }

@@ -10,6 +10,7 @@ class Quote extends Model
     use HasFactory;
 	
 	protected $fillable = [
+        'devis_signe',
         'name',
         'description',
         'adresse',

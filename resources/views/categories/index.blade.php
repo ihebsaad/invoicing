@@ -42,7 +42,7 @@
                 <form action="{{ route('categories.destroy',$categorie->id) }}" method="POST" style="float:left" class="mr-2 ml-2">
                     @csrf
                     @method('DELETE')
-                    <button type="submit" class="btn btn-danger mb-3"><i class="fas fa-trash" title="Supprimer"></i></button>
+                    <button type="submit" class="btn btn-danger mb-3"><i class="fas fa-trash" title="Supprimer" onclick="return ConfirmDelete();"></i></button>
                 </form>
             </td>
         </tr>

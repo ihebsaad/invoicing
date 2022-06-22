@@ -53,12 +53,22 @@
 		}
 
 		 .financement td{
-			text-align:center;
+			text-align:center;			
+		}
+		.financement{			
+			background-color:#f6f6f6;
+			border:1px solid grey;	
+			padding:5px 5px;
+			margin-top:10px;		
 		}
 
 	</style>
  
-	<img src="{!! public_path('img/logo.png')!!}"  width="140"></img>
+ 	<table>
+		<tr>
+			<td><img src="{!! public_path('img/logo.png')!!}"  width="120" style="margin-right:20px"></img></td><td><img src="{!! public_path('img/qualibat.jpg')!!}"  width="120"></img></td><td><img src="{!! public_path('img/qualisol.jpg')!!}"  width="120"></img></td><td><img src="{!! public_path('img/qualipv.jpg')!!}"  width="120"></img></td><td><img src="{!! public_path('img/qualipac.jpg')!!}"  width="120"></img></td>
+		</tr>
+	</table>
 	<div class="container">
 		<div style="width:100%;">
 			<div style="width:50%;float:left;">
@@ -72,10 +82,11 @@
 				 <span>{{ $quote->delivery_postal ?? $quote->customer()->first()->delivery_postal }}, {{ $quote->delivery_city ?? $quote->customer()->first()->delivery_city }} - {{ $quote->delivery_country ?? $quote->customer()->first()->delivery_country }}</span><br>
 			</div>
 			<div style="width:50%;float:left;height:100px">
-				<b>Client:</b> {{ $quote->customer()->first()->civility }} {{ $quote->customer()->first()->name }} {{ $quote->customer()->first()->lastname }}<br>			
-				{{ $quote->customer()->first()->civility2 }} {{ $quote->customer()->first()->name2 }} {{ $quote->customer()->first()->lastname2 }}<br>			
-				 <span>{{ $quote->customer()->first()->address }}</span><br>
+				<b>Client:</b> {{ $quote->customer()->first()->civility }} {{ $quote->customer()->first()->lastname }} {{ $quote->customer()->first()->name }} <br>			
+				 <span style="margin-left:35px">{{ $quote->customer()->first()->civility2 }} {{ $quote->customer()->first()->lastname2 }} {{ $quote->customer()->first()->name2 }}</span><br>			
+				 <b>Adresse:</b> <span>{{ $quote->customer()->first()->address }}</span><br>
 				 <span>{{ $quote->customer()->first()->postal }}, {{ $quote->customer()->first()->city }} - {{ $quote->customer()->first()->country }}</span><br>
+				 <span>@if( $quote->customer()->first()->phone!='')<b>Tél :</b> {{ $quote->customer()->first()->phone }}    @endif @if( $quote->customer()->first()->email!='') <b>Email:</b> {{ $quote->customer()->first()->email }} @endif</span>
 				 <br>
 			</div>
 		 </div>
@@ -129,36 +140,38 @@
 			<div style="width:65%;float:left;font-size:9px">
 				{!!nl2br($quote->description) !!}
 				<div class="clearfix"></div>
-				Dépose de la chaudière individuelle autre qu'à condensation: <b>Chaudière à {{$quote->chaudiere}}</b><br>
+				@if($quote->chaudiere!='')
+					Dépose de la chaudière individuelle autre qu'à condensation : <b>Chaudière à {{$quote->chaudiere}}</b><br>
+				@endif
 				Contrat d'entretien et vérification de l'installation de la pompe à chaleur AIR/EAU pendant 1 an avec déplacement inclus
 			</div>
 			<div style="width:35%;float:left;">
 				<table class="totals">
 				<tr><td colspan="2">Sous Total</td><td>{{$quote->total_ht}} €</td></tr>
 				<tr><td colspan="2">Total TVA</td><td>{{$quote->total_tva}} €</td></tr>
+				<tr><td colspan="2">Total TTC</td><td>{{$quote->total_ttc}} €</td></tr>
 				@if($quote->aide>0)
 				<tr style="color:#f07f32"><td colspan="2" style=";font-size:9px;max-width:90px;">Montant Estimatif<br>{{$quote->type_aide}}</td><td>{{$quote->aide}} €</td></tr>
 				@endif
-				<tr><td colspan="2">Total TTC</td><td>{{$quote->total_ttc}} €</td></tr>
 				<tr><td colspan="2">Net à payer</td><td>{{intval($quote->net)}} €</td></tr>
 				</table>
 			</div>
 		</div>
 		<div class="clearfix"></div>
 		<div style="width:100%;">
-			<div style="width:65%;float:left;font-size:9px">
-			@if($quote->modalite!='')
-				<b>Règlement par :</b> {{ $quote->modalite }}
-			
-				@if($quote->modalite!='Chèque')
-					<table class="financement">
-						<tr><td>Montant Financé :</td><td style="padding-right:20px">{{$quote->montant_finance}}</td><td>Montant mensuel<br>de l'assurance :</td><td>{{$quote->montant_assurance}}</td></tr>
-						<tr><td>Report 1ère échéance :</td><td style="padding-right:20px">{{$quote->report_echeance}}</td><td>Taux nominal :</td><td>{{$quote->taux_nominal}}</td></tr>
-						<tr><td>Nombre de mensualités :</td><td style="padding-right:20px">{{$quote->mensualites}}</td><td>TAEG :</td><td>{{$quote->taeg}}</td></tr>
-						<tr><td>Montant mensuel<br>sans assurance :</td><td style="padding-right:20px">{{$quote->montant_mensuel}}</td><td>Solde de la pose :</td><td>{{$quote->pose}}</td></tr>
-					</table>
+			<div style="width:65%;float:left;font-size:9px;padding-top:30px">
+				@if($quote->modalite!='')
+					<b>Règlement par :</b> {{ $quote->modalite }}
+				
+					@if($quote->modalite!='Chèque')
+						<table class="financement">
+							<tr><td>Montant Financé :</td><td style="padding-right:20px;font-weight:bold;">{{$quote->montant_finance}} €</td><td>Montant mensuel<br>de l'assurance :</td><td style="font-weight:bold;">{{$quote->montant_assurance}} €</td></tr>
+							<tr><td>Report 1ère échéance :</td><td style="padding-right:20px;font-weight:bold;">{{$quote->report_echeance}} jours</td><td>Taux nominal :</td><td style="font-weight:bold;">{{$quote->taux_nominal}} %</td></tr>
+							<tr><td>Nombre de mensualités :</td><td style="padding-right:20px;font-weight:bold;">{{$quote->mensualites}}</td><td>TAEG :</td><td style="font-weight:bold;">{{$quote->taeg}} %</td></tr>
+							<tr><td>Montant mensuel<br>sans assurance :</td><td style="padding-right:20px;font-weight:bold;">{{$quote->montant_mensuel}} €</td><td>Solde de la pose :</td><td style="font-weight:bold;">{{$quote->pose}} €</td></tr>
+						</table>
+					@endif
 				@endif
-			@endif
 			</div>
 			<div style="width:35%;float:left;font-weight:bold;padding-top:30px">
 				<table style="width:300px;font-size:10px">
