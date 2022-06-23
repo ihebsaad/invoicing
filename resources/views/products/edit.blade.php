@@ -100,7 +100,7 @@
 		if(prix_ht>0 && tva!=''){
 			var total_tva= (prix_ht* tva) / 100 ;
 			var prix= prix_ht+ total_tva ;
-			$('#prix').val(prix);
+			$('#prix').val(prix.toFixed(2));
 		}
     }
 

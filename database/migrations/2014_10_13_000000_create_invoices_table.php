@@ -21,7 +21,7 @@ class CreateInvoicesTable extends Migration
             $table->string('modalite')->nullable();
             $table->date('date')->nullable();
 
-            $table->integer('tva')->nullable();
+            $table->integer('tva')->default(0)->nullable();
             $table->integer('remise')->default(0)->nullable(); 
 
             $table->double('total_tva', 8, 2)->default(0)->nullable();

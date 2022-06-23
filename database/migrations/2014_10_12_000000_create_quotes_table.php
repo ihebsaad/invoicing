@@ -22,13 +22,13 @@ class CreateQuotesTable extends Migration
             $table->string('devis_signe')->nullable();
             $table->date('date')->nullable();
 
-            $table->integer('tva')->nullable();
+            $table->integer('tva')->default(0)->nullable();
             $table->integer('remise')->default(0)->nullable();
 
-            $table->double('total_tva', 8, 2)->nullable();;
-            $table->double('total_remise', 8, 2)->nullable();
-            $table->double('total_ht', 8, 2)->nullable();;
-            $table->double('total_ttc', 8, 2)->nullable();;
+            $table->double('total_tva', 8, 2)->default(0)->nullable();
+            $table->double('total_remise', 8, 2)->default(0)->nullable();
+            $table->double('total_ht', 8, 2)->default(0)->nullable();
+            $table->double('total_ttc', 8, 2)->default(0)->nullable();
 
             $table->string('type_aide')->nullable();
             $table->double('aide', 8, 2)->default(0)->nullable();
