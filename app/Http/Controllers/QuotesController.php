@@ -183,13 +183,15 @@ class QuotesController extends Controller
         $quote = Quote::find($id);
 
         $reference= $quote->reference;
+        $user= User::find($quote->par) ; $par = $user->name.' '.$user->lastname;
+
         $date=Carbon::parse($quote->created_at)->format('Y-m');
         $date_facture=Carbon::parse($quote->date)->format('d/m/Y');
         
         $products = Product::all();
         $items = Item::where('quote',$id)->get();
 
-        $pdf = PDF::loadView('quotes.quote', compact('quote','reference','date_facture','products','items'));
+        $pdf = PDF::loadView('quotes.quote', compact('quote','reference','date_facture','products','items','par'));
         return $pdf->stream('quote-'.$id.'.pdf');
 
     }
@@ -199,10 +201,12 @@ class QuotesController extends Controller
         $quote = Quote::find($id);
         $date=Carbon::parse($quote->created_at)->format('Y-m');
         $date_facture=Carbon::parse($quote->date)->format('d/m/Y');
+        $user= User::find($invoice->par) ; $par = $user->name.' '.$user->lastname;
+
         $reference= $quote->reference;
         $products = Product::all();
         $items = Item::where('quote',$id)->get();
-        $pdf = PDF::loadView('quotes.quote', compact('quote','reference','date_facture','products','items'));
+        $pdf = PDF::loadView('quotes.quote', compact('quote','reference','date_facture','products','items','par'));
         return $pdf->download('quote-'.$reference.'.pdf');
 
     }
@@ -213,9 +217,11 @@ class QuotesController extends Controller
         $date=Carbon::parse($quote->created_at)->format('Y-m');
         $date_facture=Carbon::parse($quote->date)->format('d/m/Y');
         $reference= $quote->reference;
+        $user= User::find($invoice->par) ; $par = $user->name.' '.$user->lastname;
+
         $products = Product::all();
         $items = Item::where('quote',$id)->get();
-        $pdf = PDF::loadView('quotes.quote-sign', compact('quote','reference','date_facture','products','items'));
+        $pdf = PDF::loadView('quotes.quote-sign', compact('quote','reference','date_facture','products','items','par'));
         return $pdf->download('quote-'.$reference.'.pdf');
 
     }
@@ -228,10 +234,8 @@ class QuotesController extends Controller
         $name=strtoupper(User::find($user_id)->name);
         $lastname=strtoupper(User::find($user_id)->lastname);
         $num=Invoice::where('par',$user_id)->where('created_at','like',  date('Y-m-d').'%')->count()+1;
-        $reference= date('Ymd').$name[0].$lastname[0].sprintf('%03d',$num);
-
+ 
         $invoice=Invoice::create([
-            'reference'=>$reference,
             'description'=>$quote->description,
             'adresse'=>$quote->adresse,
             'chaudiere'=>$quote->chaudiere,
@@ -259,6 +263,10 @@ class QuotesController extends Controller
             'quote'=>$quote->id,
 
         ]);
+
+        $reference= date('Y-m-').sprintf('%04d',$id);
+        $invoice->reference=$reference;
+        $invoice->save();
 
         $items = Item::where('quote',$id)->get();
         foreach($items as $item){

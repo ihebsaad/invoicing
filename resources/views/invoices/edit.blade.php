@@ -109,7 +109,7 @@
 						@csrf
 						@method('PUT')
 						<input type="hidden" value="{{$invoice->id}}" id="invoice" />
-						<div class="row pl-5">
+						<div class="row pl-3">
 							<div class="col-xs-12 col-sm-12 col-md-7">
 								<div class="form-group">
 									<i class="fas fa-address-card"></i> 
@@ -118,12 +118,13 @@
 									<i class="fas fa-phone mr-2"></i>{{$customer->phone}} <i class="fas fa-envelope mr-2 ml-4"></i> {{$customer->email}} <br>
 									<i class="fas fa-map-marker mr-2"></i> {{$customer->address}} - {{$customer->city}} 
 								</div>
+								
 							</div>
 
 								<div class="col-xs-12 col-sm-12 col-md-6">
 									<div class="form-group">
 										<strong>Adresse de livraison:</strong>
-										<input type="text"   name="delivery_address" id="delivery_address" class="form-control" placeholder="Adresse" value="{{$invoice->delivery_address ?? $customer->delivery_address}}" style="width:460px">
+										<input type="text"   name="delivery_address" id="delivery_address" class="form-control" placeholder="Adresse" value="{{$invoice->delivery_address ?? $customer->delivery_address}}" style="width:400px">
 									</div>
 								</div> 
 
@@ -155,7 +156,7 @@
 
 						</div> 
 
-						<div class="row pl-5 mt-2">
+						<div class="row pl-3 mt-2">
 
 							<div class="col-xs-12 col-sm-12 col-md-5">
 								<div class="form-group">
@@ -172,9 +173,9 @@
 							<div class="col-xs-12 col-sm-12 col-md-7">
 								<div class="form-group">
 									<strong>Type de logement:</strong>
-									<select class="form-control"   name="logement"  value="{{ $quote->logement}}" style="width:300px">
-										<option value="Maison" @if($quote->logement=='Maison') selected="selected" @endif >Maison</option>
-										<option value="Appartement" @if($quote->logement=='Appartement') selected="selected" @endif >Appartement</option>
+									<select class="form-control"   name="logement"  value="{{ $invoice->logement}}" style="width:300px">
+										<option value="Maison" @if($invoice->logement=='Maison') selected="selected" @endif >Maison</option>
+										<option value="Appartement" @if($invoice->logement=='Appartement') selected="selected" @endif >Appartement</option>
 									</select>								</div>
 							</div>
 							<div class="col-xs-12 col-sm-12 col-md-5">
@@ -252,8 +253,8 @@
 							</tfoot>
 						</table>
 						<div class="row">
-							<div class="col-md-6 row pt-3 pl-5 mt-5 ">
-							<table style="width:360px;height:100px" class="table-aide" >
+							<div class="col-md-6 row pt-3 pl-3 mt-5 ">
+							<!--<table style="width:360px;height:100px" class="table-aide" >
 									<tr>
 										<td><strong>Aide éligible:</strong></td><td colspan="2"><strong>Montant</strong></td>
 									</tr>
@@ -275,15 +276,15 @@
 										</td>
 										<td style="padding:0 10px 0 0">€</td>
 									</tr>
-								</table>
+								</table>-->
 							</div>
 
 							<div class="col-md-6">
 								<table class="totals">
-									<tr><td colspan="2">Sous Total</td><td><input id="total_ht" type="number"  class="number numbers bg-transparent" readonly  value="{{$invoice->total_ht}}"/> €</td></tr>
+									<tr><td colspan="2">Total HT</td><td><input id="total_ht" type="number"  class="number numbers bg-transparent" readonly  value="{{$invoice->total_ht}}"/> €</td></tr>
 									<tr><td colspan="2">Total TVA</td><td><input id="total_tva" type="number"  class="number numbers bg-transparent"  readonly  value="{{$invoice->total_tva}}"/> €</td></tr>
 									<tr><td colspan="2">TOTAL TTC</td><td><input id="total_ttc" type="number" readonly  class="number numbers bg-transparent" value="{{$invoice->total_ttc}}" /> €</td></tr>
-									<tr><td colspan="2">Net à payer</td><td><input id="net" type="number" readonly  class="number numbers bg-transparent" value="{{intval($invoice->net)}}" /> €</td></tr>
+								<!--<tr><td colspan="2">Net à payer</td><td><input id="net" type="number" readonly  class="number numbers bg-transparent" value="{{intval($invoice->net)}}" /> €</td></tr>-->
 								</table>
 							</div>
 						</div>
@@ -439,9 +440,8 @@
 		}
 	    $('#total_ttc').val(total_ttc);
 
-		var aide=parseFloat($('#aide').val());
-		var net=parseInt(total_ttc-aide);
-		$('#net').val(net);
+ 		/*var net=parseInt(total_ttc);
+		$('#net').val(net);*/
 		update_totals();
 	}
 
@@ -497,13 +497,13 @@ var price=	parseFloat($('#price').val());
 var qty=	parseInt($('#qty').val());
 var total= price*qty;
 var tva=	parseFloat($('#tva').val());
-var quote=	parseInt($('#quote').val());
+var invoice=	parseInt($('#invoice').val());
 //let long = document.getElementsByClassName('myproducttd').length +1 ;
 $.ajax({
   url: "{{ route('add_item') }}",
   method: "POST",
   async:false,
-  data: {product:product,price:price,qty:qty,tva:tva, quote:quote,_token:_token},
+  data: {product:product,price:price,qty:qty,tva:tva, invoice:invoice,_token:_token},
   success: function (data) {
 	  if(data!=''){
 		  init();
@@ -553,16 +553,14 @@ function delete_item(product,item){
 	var total_ttc=	$('#total_ttc').val();
 	var total_remise=	$('#total_remise').val();
 	var remise=	$('#remise').val();
-	var aide=	$('#aide').val();
-	var type_aide=	$('#type_aide').val();
-	var net=	$('#net').val();
+	var net=	total_ttc;
 	var tva_remise=	$('#tva_remise').val();
 
 	console.log('updating totals');
 	$.ajax({
 		url: "{{ route('invoices.update_totals') }}",
 		method: "POST",
-		data: {total_ht:total_ht,total_tva:total_tva,total_ttc:total_ttc,total_remise:total_remise,remise:remise,invoice:invoice,aide:aide,type_aide:type_aide,net:net,tva_remise:tva_remise, _token:_token},
+		data: {total_ht:total_ht,total_tva:total_tva,total_ttc:total_ttc,total_remise:total_remise,remise:remise,invoice:invoice,net:net,tva_remise:tva_remise, _token:_token},
 		success: function (data) {
 			console.log('totals updated');
 			init();

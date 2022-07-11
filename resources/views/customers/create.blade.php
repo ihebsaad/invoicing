@@ -1,7 +1,7 @@
 @extends('layouts.admin')
   
 @section('content')
-<div class="row pl-5">
+<div class="row pl-3">
     <div class="col-lg-12 margin-tb">
         <div class="float-left">
             <h2>Ajouter un client</h2>
@@ -14,7 +14,7 @@
       
 <form action="{{ route('customers.store') }}" method="POST">
     @csrf
-        <div class="row pl-5">
+        <div class="row pl-3">
             <div class="col-xs-12 col-sm-12 col-md-1">
                 <div class="form-group">
                     <strong>Civilité:</strong>
@@ -43,7 +43,7 @@
         
         </div>   
 
-        <div class="row pl-5">
+        <div class="row pl-3">
             <div class="col-xs-12 col-sm-12 col-md-1">
                 <div class="form-group">
                     <strong>Civilité:</strong>
@@ -72,7 +72,7 @@
         
         </div>  
          
-        <div class="row pl-5">
+        <div class="row pl-3">
             <div class="col-xs-12 col-sm-12 col-md-4">
                 <div class="form-group">
                     <strong>Tél:</strong>
@@ -88,7 +88,7 @@
             </div>    
         </div>   
 
-        <div class="row pl-5 mt-2">
+        <div class="row pl-3 mt-2">
 
             <div class="col-xs-12 col-sm-12 col-md-8">
                 <div class="form-group">
@@ -99,7 +99,7 @@
         </div> 
 
 
-        <div class="row pl-5">
+        <div class="row pl-3">
 
             <div class="col-xs-12 col-sm-12 col-md-3">
                 <div class="form-group">
@@ -126,7 +126,7 @@
         </div> 
 
 
-        <div class="row pl-5 mt-2">
+        <div class="row pl-3 mt-2">
 
             <div class="col-xs-12 col-sm-12 col-md-8">
                 <div class="form-group">
@@ -137,7 +137,7 @@
         </div> 
 
 
-        <div class="row pl-5 pb-">
+        <div class="row pl-3 pb-">
 
             <div class="col-xs-12 col-sm-12 col-md-3">
                 <div class="form-group">

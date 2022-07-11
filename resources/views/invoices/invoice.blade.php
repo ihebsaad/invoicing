@@ -78,13 +78,13 @@
 				 <span><b>Email :</b> contact@groupe-her.com</span><br><br>
 				 <b>Adresse de livraison:</b><br>
 				 <span>{{ $invoice->delivery_address ?? $invoice->customer()->first()->delivery_address }}</span><br>
-				 <span>{{ $invoice->delivery_postal ?? $invoice->customer()->first()->delivery_postal }}, {{ $invoice->delivery_city ?? $invoice->customer()->first()->delivery_city }} - {{ $invoice->delivery_country ?? $invoice->customer()->first()->delivery_country }}</span><br>
+				 <span>{{ $invoice->delivery_postal ?? $invoice->customer()->first()->delivery_postal.', ' }}{{ $invoice->delivery_city ?? $invoice->customer()->first()->delivery_city.' - ' }}{{ $invoice->delivery_country ?? $invoice->customer()->first()->delivery_country }}</span><br>
 			</div>
 			<div style="width:50%;float:left;height:100px">
 				<b>Client:</b> {{ $invoice->customer()->first()->civility }}  {{ $invoice->customer()->first()->lastname }} {{ $invoice->customer()->first()->name }}<br>			
 				 <span style="margin-left:35px">{{ $invoice->customer()->first()->civility2 }} {{ $invoice->customer()->first()->lastname2 }} {{ $invoice->customer()->first()->name2 }}</span><br>			
 				 <b>Adresse:</b> <span>{{ $invoice->customer()->first()->address }}</span><br>
-				 <span>{{ $invoice->customer()->first()->postal }}, {{ $invoice->customer()->first()->city }} - {{ $invoice->customer()->first()->country }}</span><br>
+				 <span>{{ $invoice->customer()->first()->postal.', ' }}{{ $invoice->customer()->first()->city.' - ' }}{{ $invoice->customer()->first()->country }}</span><br>
 				 <span>@if( $invoice->customer()->first()->phone!='')<b>Tél :</b> {{ $invoice->customer()->first()->phone }}    @endif @if( $invoice->customer()->first()->email!='') <b>Email:</b> {{ $invoice->customer()->first()->email }} @endif</span>
 				 <br>
 			</div>
@@ -92,7 +92,7 @@
 		 <br>
 		<div style="width:100%;">
 			 <b style="font-size:22px;color:#f07f32">Facture N° : {{ $reference }} </b><br>
-			 Créé le : {{date('d/m/Y', strtotime($invoice->created_at))}}
+			 Créé le : <b>{{date('d/m/Y', strtotime($invoice->created_at))}}</b>   Conseillé: <b>{{$par}}</b>
 		</div>
 		<br>
 		<div style="width:100%;height:30px">
@@ -107,7 +107,7 @@
 		<table class="tab-products" style="min-height:150px;width:100%;margin-top:20px;margin-bottom:20px">
 			<thead class="th-products">
 				<tr>
-					<th style="width:45%">PRODUIT</th><th style="width:8%">PRIX U</th><th style="width:8%">QTÉ</th><th style="width:8%">TVA</th><th style="width:14%">TOTAL</th>
+					<th style="width:45%">Désignation</th><th style="width:8%">Prix Unitaire</th><th style="width:8%">Quantité</th><th style="width:8%">TVA</th><th style="width:14%">Montant HT</th>
 				</tr>
 			</thead>
 			<tbody >
@@ -115,7 +115,7 @@
 					@foreach($items as $item)
 						@php 
 							$product=\App\Models\Product::find($item->product); 
-							$total_prod=floatval($product->prix) * intval($item->qty);
+							$total_prod=floatval($product->prix_ht) * intval($item->qty);
 						@endphp
 						<tr class="product "  >
 							<td>{{$product->name}}<br>{!!nl2br($product->description)!!}</td><td>{{$product->prix}} €</td><td>{{$item->qty}}</td><td>{{$item->tva}} %</td><td>{{$total_prod}} €</td>
@@ -135,12 +135,12 @@
 			</tbody>
 		</table>
 
-		<div style="width:100%;">
+		<div style="width:100%;page-break-inside: avoid;">
 			<div style="width:65%;float:left;font-size:9px">
 				{!!nl2br($invoice->description) !!}
 				<div class="clearfix"></div>
 				@if($invoice->chaudiere!='')
-					Dépose de la chaudière individuelle autre qu'à condensation : <b>Chaudière à {{$invoice->chaudiere}}</b><br>
+					Dépose de la chaudière individuelle autre qu'à condensation: <b> Chaudière à {{$invoice->chaudiere}}</b><br>
 				@endif
 				Contrat d'entretien et vérification de l'installation de la pompe à chaleur AIR/EAU pendant 1 an avec déplacement inclus
 			</div>
@@ -149,15 +149,12 @@
 				<tr><td colspan="2">Sous Total</td><td>{{$invoice->total_ht}} €</td></tr>
 				<tr><td colspan="2">Total TVA</td><td>{{$invoice->total_tva}} €</td></tr>
 				<tr><td colspan="2">Total TTC</td><td>{{$invoice->total_ttc}} €</td></tr>
-				@if($invoice->aide>0)
-				<tr style="color:#f07f32"><td colspan="2" style=";font-size:9px;max-width:90px;">Montant Estimatif<br>{{$invoice->type_aide}}</td><td>{{$invoice->aide}} €</td></tr>
-				@endif
-				<tr><td colspan="2">Net à payer</td><td>{{intval($invoice->net)}} €</td></tr>
+				<!--<tr><td colspan="2">Net à payer</td><td>{{intval($invoice->net)}} €</td></tr>-->
 				</table>
 			</div>
 		</div>
 		<div class="clearfix"></div>
-		<div style="width:100%;">
+		<div style="width:100%;page-break-inside: avoid;">
 			<div style="width:65%;float:left;font-size:9px;padding-top:30px">
 				@if($invoice->modalite!='')
 					<b>Règlement par :</b> {{ $invoice->modalite }}
@@ -173,8 +170,12 @@
 				@endif
 			</div>
 			<div style="width:35%;float:left;font-weight:bold;padding-top:30px">
-
-
+				<table style="width:300px;font-size:10px">
+					<tr rowspan="2"><td>Fait à<br><br></td><td></td><td>Le</td><td></td></tr>
+					<tr><td colspan="4">Signature précédée de la mention "Bon pour accord"</td></tr>
+				</table>
+				<div style="border:1px solid grey;width:100%;height:100px">
+				</div>
 			</div>
 		</div>
 		<div class="clearfix"></div>

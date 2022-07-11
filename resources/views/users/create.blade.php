@@ -1,7 +1,7 @@
 @extends('layouts.admin')
   
 @section('content')
-<div class="row pl-5">
+<div class="row pl-3">
     <div class="col-lg-12 margin-tb">
         <div class="float-left">
             <h2>Ajouter</h2>
@@ -15,7 +15,7 @@
 <form action="{{ route('users.store') }}" method="POST">
     @csrf
   
-     <div class="row pl-5">
+     <div class="row pl-3">
  
         <div class="col-xs-12 col-sm-12 col-md-6">
             <div class="form-group">

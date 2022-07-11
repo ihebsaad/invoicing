@@ -29,13 +29,18 @@
 				@method('PUT')
 		   
 				 <div class="row">
-					<div class="col-xs-12 col-sm-12 col-md-12">
+					<div class="col-xs-12 col-sm-6 col-md-6">
 						<div class="form-group">
 							<strong>Nom:</strong>
+							<input type="text" name="name" value="{{ $user->lastname }}" class="form-control" placeholder="lastname">
+						</div>
+					</div>
+					<div class="col-xs-12 col-sm-6 col-md-6">
+						<div class="form-group">
+							<strong>Prénom:</strong>
 							<input type="text" name="name" value="{{ $user->name }}" class="form-control" placeholder="name">
 						</div>
 					</div>
-
 							
 
 					<div class="col-xs-12 col-sm-12 col-md-12 text-center ">

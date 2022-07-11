@@ -10,7 +10,7 @@
 
 
 @section('content')
-<div class="row pl-5">
+<div class="row pl-3">
     <div class="col-lg-12 margin-tb">
         <div class="float-left">
             <h2>Ajouter un devis</h2>
@@ -25,7 +25,7 @@
 <form action="{{ route('quotes.store') }}" method="POST">
     @csrf
     <input type="hidden" name="par"  value="{{$User->id}}" />
-    <div class="row pl-5">
+    <div class="row pl-3">
         <div class="col-xs-12 col-sm-12 col-md-7">
             <div class="form-group">
                 <strong>Client*:</strong>

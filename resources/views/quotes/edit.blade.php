@@ -123,7 +123,7 @@
 						@csrf
 						@method('PUT')
 						<input type="hidden" value="{{$quote->id}}" id="quote" />
-						<div class="row pl-5">
+						<div class="row pl-3">
 							<div class="col-xs-12 col-sm-12 col-md-7">
 								<div class="form-group">
 									<i class="fas fa-address-card"></i> 
@@ -137,7 +137,7 @@
 								<div class="col-xs-12 col-sm-12 col-md-6">
 									<div class="form-group">
 										<strong>Adresse de livraison:</strong>
-										<input type="text"   name="delivery_address" id="delivery_address" class="form-control" placeholder="Adresse" value="{{$quote->delivery_address ?? $customer->delivery_address}}" style="width:460px">
+										<input type="text"   name="delivery_address" id="delivery_address" class="form-control" placeholder="Adresse" value="{{$quote->delivery_address ?? $customer->delivery_address}}" style="width:400px">
 									</div>
 								</div> 
 
@@ -169,7 +169,7 @@
 
 						</div> 
 
-						<div class="row pl-5 mt-2">
+						<div class="row pl-3 mt-2">
 
 							<div class="col-xs-12 col-sm-12 col-md-5">
 								<div class="form-group">
@@ -266,7 +266,7 @@
 							</tfoot>
 						</table>
 						<div class="row">
-						<div class="col-md-6 row pt-3 pl-5 mt-5 ">
+						<div class="col-md-6 row pt-3 pl-3 mt-3 ">
 								<table style="width:360px;height:100px" class="table-aide" >
 									<tr>
 										<td><strong>Aide éligible:</strong></td><td colspan="2"><strong>Montant</strong></td>
@@ -293,7 +293,7 @@
 							</div>
 							<div class="col-md-6">
 								<table class="totals">
-									<tr><td colspan="2">Sous Total</td><td><input id="total_ht" type="number"  class="number numbers bg-transparent" readonly  value="{{$quote->total_ht}}"/> €</td></tr>
+									<tr><td colspan="2">Total HT</td><td><input id="total_ht" type="number"  class="number numbers bg-transparent" readonly  value="{{$quote->total_ht}}"/> €</td></tr>
 									<tr><td colspan="2">Total TVA</td><td><input id="total_tva" type="number"  class="number numbers bg-transparent"  readonly  value="{{$quote->total_tva}}"/> €</td></tr>
 									<tr><td colspan="2">TOTAL TTC</td><td><input id="total_ttc" type="number" readonly  class="number numbers bg-transparent" value="{{$quote->total_ttc}}" /> €</td></tr>
 									<tr><td colspan="2">Net à payer</td><td><input id="net" type="number" readonly  class="number numbers bg-transparent" value="{{intval($quote->net)}}" /> €</td></tr>
@@ -393,7 +393,7 @@
 				</div>
 				
             	<div class="tab-pane fade" id="custom-tabs-three-signature" role="tabpanel" aria-labelledby="custom-tabs-three-signature-tab"   >
-
+						<!--
 						<div class="row">
 							<div class="col-md-6 ">
 								<div class=" ">
@@ -414,7 +414,7 @@
 									</div>
 								</div>
 							</div>
-							<div class="col-md-6 pt-5 pl-5">
+							<div class="col-md-6 pt-3 pl-3">
 							@if(\App\Models\Signature::where('quote',$quote->id)->exists())
 								@php $url_img=\App\Models\Signature::where('quote',$quote->id)->first()->user_image;
 								@endphp
@@ -422,10 +422,11 @@
 							@endif
 							</div>
 						</div>
+						-->
 
-						<div class="row bg-lightgrey pt-5 pb-5">
+						<div class="row bg-lightgrey pt-3 pb-3">
 							
-							<div class="col-md-6 pl-5">
+							<div class="col-md-6 pl-3">
 								<form method="POST" action="{{ route('quotes.ajout_signature') }}"   enctype='multipart/form-data' >
 									@csrf
 									<input type="hidden" name="quote" value="{{$quote->id}}" />
@@ -440,7 +441,7 @@
 									</div>
 								</form>
 							</div>
-							<div  class="col-md-6 pl-5">
+							<div  class="col-md-6 pl-3">
 								@if($quote->devis_signe!='')
 									<a download href="<?php echo  URL::asset('/fichiers/'.$quote->devis_signe);?>" >Télécharger le devis signé</a><br>
 								@endif
@@ -485,16 +486,11 @@
 		$('#list-prods .myproduct').each(function(){
     		$(this).find('.myproducttd').each(function(){
 				id_item=$(this).data().id;
-				alert('id_item : '+id_item);
 				qty= ($('#qty-'+id_item).val());
-				alert('qty : '+qty);
 				total_ht+=(( $(this).data().prixht * qty ));
-				alert('total_ht : '+total_ht);
 				total_ttc+=(( $(this).data().prix *  qty));
-				alert('total_ttc : '+total_ttc);
     	})
 		});
-		//alert(total_ht);
 		$("#total_ht").val(total_ht);
 		total_tva = total_ttc-total_ht;
 	    $('#total_tva').val(total_tva);
@@ -554,7 +550,6 @@
 	}
 	function total_prod(){
 		var total_prod=parseFloat($('#price').val()) * parseInt($('#qty').val()) ;
-		//alert(total_prod);
 		$('#total_prod').val(total_prod);
 	}
 

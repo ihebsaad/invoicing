@@ -30,6 +30,8 @@
 			font-weight:bold;
 			background-color:#f6f6f6;
 			border:1px solid #f07f32;
+			/*page-break-after: always; */
+			page-break-inside: avoid;
 		}
 		.totals td{
 			padding:5px 2px 2px 12px;
@@ -42,6 +44,12 @@
             height: 100px; 
 			text-align: center;
 			font-size:11px;
+		}
+		header {
+			position: fixed; 
+			top:0;
+			left: 0px; 
+            right: 0px;
 		}
 		.clearfix {
   			overflow: auto;
@@ -92,8 +100,8 @@
 		 </div>
 		 <br>
 		<div style="width:100%;">
-			 <b style="font-size:22px;color:#f07f32">DEVIS N° : {{ $reference }} </b><br>
-			 Créé le : {{date('d/m/Y', strtotime($quote->created_at))}}
+			<b style="font-size:22px;color:#f07f32">DEVIS N° : {{ $reference }} </b><br>
+			Créé le : <b>{{date('d/m/Y', strtotime($quote->created_at))}}</b>    Conseillé: <b>{{$par}}</b>
 		</div>
 		<br>
 		<div style="width:100%;height:30px">
@@ -108,7 +116,7 @@
 		<table class="tab-products" style="min-height:150px;width:100%;margin-top:20px;margin-bottom:20px">
 			<thead class="th-products">
 				<tr>
-					<th style="width:45%">PRODUIT</th><th style="width:8%">PRIX U</th><th style="width:8%">QTÉ</th><th style="width:8%">TVA</th><th style="width:14%">TOTAL</th>
+					<th style="width:45%">Désignation</th><th style="width:8%">Prix Unitaire</th><th style="width:8%">Quantité</th><th style="width:8%">TVA</th><th style="width:14%">Montant HT</th>
 				</tr>
 			</thead>
 			<tbody >
@@ -116,7 +124,7 @@
 					@foreach($items as $item)
 						@php 
 							$product=\App\Models\Product::find($item->product); 
-							$total_prod=floatval($product->prix) * intval($item->qty);
+							$total_prod=floatval($product->prix_ht) * intval($item->qty);
 						@endphp
 						<tr class="product "  >
 							<td>{{$product->name}}<br>{!!nl2br($product->description)!!}</td><td>{{$product->prix}} €</td><td>{{$item->qty}}</td><td>{{$item->tva}} %</td><td>{{$total_prod}} €</td>
@@ -136,18 +144,18 @@
 			</tbody>
 		</table>
 
-		<div style="width:100%;">
-			<div style="width:65%;float:left;font-size:9px">
+		<div style="width:100%;page-break-inside: avoid;">
+			<div style="width:67%;float:left;font-size:9px">
 				{!!nl2br($quote->description) !!}
 				<div class="clearfix"></div>
 				@if($quote->chaudiere!='')
-					Dépose de la chaudière individuelle autre qu'à condensation : <b>Chaudière à {{$quote->chaudiere}}</b><br>
+					Dépose de la chaudière individuelle autre qu'à condensation: <b> Chaudière à {{$quote->chaudiere}}</b><br>
 				@endif
-				Contrat d'entretien et vérification de l'installation de la pompe à chaleur AIR/EAU pendant 1 an avec déplacement inclus
+				<small>Contrat d'entretien et vérification de l'installation de la pompe à chaleur AIR/EAU pendant 1 an avec déplacement inclus</small>
 			</div>
-			<div style="width:35%;float:left;">
+			<div style="width:33%;float:left;">
 				<table class="totals">
-				<tr><td colspan="2">Sous Total</td><td>{{$quote->total_ht}} €</td></tr>
+				<tr><td colspan="2">Total HT</td><td>{{$quote->total_ht}} €</td></tr>
 				<tr><td colspan="2">Total TVA</td><td>{{$quote->total_tva}} €</td></tr>
 				<tr><td colspan="2">Total TTC</td><td>{{$quote->total_ttc}} €</td></tr>
 				@if($quote->aide>0)
@@ -158,7 +166,7 @@
 			</div>
 		</div>
 		<div class="clearfix"></div>
-		<div style="width:100%;">
+		<div style="width:100%;page-break-inside: avoid;">
 			<div style="width:65%;float:left;font-size:9px;padding-top:30px">
 				@if($quote->modalite!='')
 					<b>Règlement par :</b> {{ $quote->modalite }}
@@ -175,7 +183,7 @@
 			</div>
 			<div style="width:35%;float:left;font-weight:bold;padding-top:30px">
 				<table style="width:300px;font-size:10px">
-					<tr><td>Fait à</td><td></td><td>Le</td><td></td></tr>
+					<tr rowspan="2"><td>Fait à<br><br></td><td></td><td>Le</td><td></td></tr>
 					<tr><td colspan="4">Signature précédée de la mention "Bon pour accord"</td></tr>
 				</table>
 				<div style="border:1px solid grey;width:100%;height:100px">

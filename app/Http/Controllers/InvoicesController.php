@@ -79,14 +79,16 @@ class InvoicesController extends Controller
         $data=$request->all();
         $data['date']=str_replace('/','-',$data['date']);
         $data['date']=Carbon::parse($data['date'])->format('Y-m-d');
-        $name=strtoupper(User::find($data['par'])->name);
-        $lastname=strtoupper(User::find($data['par'])->lastname);
-        $num=Invoice::where('par',$data['par'])->where('created_at','like',  date('Y-m-d').'%')->count()+1;
-        $reference= date('Ymd').$name[0].$lastname[0].sprintf('%03d',$num);
-        $data['reference']=$reference;
-        Invoice::create($data);
-     
-        return redirect()->route('invoices.index')
+
+        
+        $invoice=Invoice::create($data);
+        $id=$invoice->id;
+
+        $reference= date('Y-m-').sprintf('%04d',$id);
+        $invoice->reference=$reference;
+        $invoice->save();
+        
+        return redirect()->route('invoices.edit',['invoice'=>$invoice])
                         ->with('success','Facture créée');
     }
      
@@ -164,8 +166,9 @@ class InvoicesController extends Controller
         $date=Carbon::parse($invoice->created_at)->format('Y-m');
         $date_facture=Carbon::parse($invoice->date)->format('d/m/Y');
         $reference= $invoice->reference ;
+        $user= User::find($invoice->par) ; $par = $user->name.' '.$user->lastname;
         $items = Item::where('invoice',$id)->get();
-        $pdf = PDF::loadView('invoices.invoice', compact('invoice','reference','date_facture','items'));
+        $pdf = PDF::loadView('invoices.invoice', compact('invoice','reference','date_facture','items','par'));
         return $pdf->stream('Facture-'.$reference.'.pdf');
 
     }
@@ -176,6 +179,8 @@ class InvoicesController extends Controller
         $date=Carbon::parse($invoice->created_at)->format('Y-m');
         $date_facture=Carbon::parse($invoice->date)->format('d/m/Y');
         $reference= $invoice->reference ;
+        $user= User::find($invoice->par) ; $par = $user->name.' '.$user->lastname;
+
         $items = Item::where('invoice',$id)->get();
 
         $pdf = PDF::loadView('invoices.invoice', compact('invoice','reference','date_facture','items'));

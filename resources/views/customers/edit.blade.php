@@ -23,7 +23,7 @@
 		@csrf
 		@method('PUT')
 		  
-        <div class="row pl-5">
+        <div class="row pl-3">
             <div class="col-xs-12 col-sm-12 col-md-1">
                 <div class="form-group">
                     <strong>Civilité:</strong>
@@ -50,7 +50,7 @@
             </div>        
         </div>   
 
-        <div class="row pl-5">
+        <div class="row pl-3">
             <div class="col-xs-12 col-sm-12 col-md-1">
                 <div class="form-group">
                     <strong>Civilité:</strong>
@@ -77,7 +77,7 @@
         
         </div> 
 
-        <div class="row pl-5">
+        <div class="row pl-3">
             <div class="col-xs-12 col-sm-12 col-md-4">
                 <div class="form-group">
                     <strong>Tél:</strong>
@@ -93,7 +93,7 @@
             </div>    
         </div>   
 
-        <div class="row pl-5 mt-2">
+        <div class="row pl-3 mt-2">
 
             <div class="col-xs-12 col-sm-12 col-md-8">
                 <div class="form-group">
@@ -104,7 +104,7 @@
         </div> 
 
 
-        <div class="row pl-5">
+        <div class="row pl-3">
 
             <div class="col-xs-12 col-sm-12 col-md-3">
                 <div class="form-group">
@@ -131,7 +131,7 @@
         </div> 
 
 
-        <div class="row pl-5 mt-2">
+        <div class="row pl-3 mt-2">
 
             <div class="col-xs-12 col-sm-12 col-md-8">
                 <div class="form-group">
@@ -142,7 +142,7 @@
         </div> 
 
 
-        <div class="row pl-5 pb-2">
+        <div class="row pl-3 pb-2">
 
             <div class="col-xs-12 col-sm-12 col-md-3">
                 <div class="form-group">
