@@ -8,10 +8,12 @@ use App\Models\Quote;
 use App\Models\Product;
 use App\Models\Item;
 use App\Models\User;
+use App\Services\SendMail;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Barryvdh\DomPDF\Facade\Pdf;
 use App\Http\Controllers\CustomersController;
+use Illuminate\Support\Facades\Storage;
 
 class InvoicesController extends Controller
 {
@@ -160,6 +162,33 @@ class InvoicesController extends Controller
     }
 	
 
+    public function send_pdf($id)
+	{   
+        $invoice = Invoice::find($id);
+        $date=Carbon::parse($invoice->created_at)->format('Y-m');
+        $date_facture=Carbon::parse($invoice->date)->format('d/m/Y');
+        $reference= $invoice->reference ;
+        $user= User::find($invoice->par) ; $par = $user->name.' '.$user->lastname;
+        $items = Item::where('invoice',$id)->get();
+        $count=count($items);
+        
+        $pdf = PDF::loadView('invoices.invoice', compact('invoice','reference','date_facture','items','par','count'));
+        $customer_id=$invoice->customer;
+        $customer=Customer::find($customer_id);
+        $content =  $pdf->output(); 
+
+        $path = storage_path('pdf/');
+        $fileName =  'facture-'.$id.'.pdf' ;
+        $pdf->save($path . '/' . $fileName);
+
+         
+        SendMail::send_pdf(trim($customer->email),'Facture Groupe Her','Bonjour '.$customer->civility.' '.$customer->lastname.' '.$customer->name.',<br>Trouvez ci joint votre facture.<br><br>L\'équipe Groupe Her.',$id);
+
+        return redirect()->route('invoices.index')
+        ->with('success','Facture envoyée !');
+        
+    }
+
     public function show_pdf($id)
 	{   
         $invoice = Invoice::find($id);
@@ -168,7 +197,9 @@ class InvoicesController extends Controller
         $reference= $invoice->reference ;
         $user= User::find($invoice->par) ; $par = $user->name.' '.$user->lastname;
         $items = Item::where('invoice',$id)->get();
-        $pdf = PDF::loadView('invoices.invoice', compact('invoice','reference','date_facture','items','par'));
+        $count=count($items);
+
+        $pdf = PDF::loadView('invoices.invoice', compact('invoice','reference','date_facture','items','par','count'));
         return $pdf->stream('Facture-'.$reference.'.pdf');
 
     }
@@ -182,8 +213,9 @@ class InvoicesController extends Controller
         $user= User::find($invoice->par) ; $par = $user->name.' '.$user->lastname;
 
         $items = Item::where('invoice',$id)->get();
+        $count=count($items);
 
-        $pdf = PDF::loadView('invoices.invoice', compact('invoice','reference','date_facture','items'));
+        $pdf = PDF::loadView('invoices.invoice', compact('invoice','reference','date_facture','items','count','par','count'));
         return $pdf->download('Facture-'.$reference.'.pdf');
 
     }

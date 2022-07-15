@@ -24,6 +24,7 @@
 		#signature{cursor:pointer;}
 		.tab-products{
 			width:100%;
+			font-size:12px;
 		}
 		.th-products{
 			background-color:#f07f32;color:white;padding:10px 20px;
@@ -31,12 +32,13 @@
 			text-align:center;
 			
 		}
+ 
 		.tab-content{
 			min-height:400px;
 		}
 		.number{
 			border:none;text-align:center;
-			max-width:60px;
+			max-width:64px;
 		}
 		.product td{
 			padding-top:8px;
@@ -89,9 +91,9 @@
                 <h2> Devis {{$quote->id}} -  {{$quote->reference}}  </h2>
             </div>
             <div class="float-right">
-                <a class="btn btn-primary" href="{{ route('quotes.index') }}"> Retour</a>
+                <a class="btn btn-primary mb-2" href="{{ route('quotes.index') }}"> Retour</a>
             </div>
-            <div class="float-right mr-3 ml-3">
+            <div class="float-right mr-3 ml-3 mb-2">
 				<a class="btn btn-success " target="_blank"  href="{{ route('quotes.show_pdf',$quote->id) }}" style="float:left" title="Ouvrir en PDF"><i class="fas fa-file-pdf"></i></a>
 			</div>
         </div>
@@ -137,14 +139,14 @@
 								<div class="col-xs-12 col-sm-12 col-md-6">
 									<div class="form-group">
 										<strong>Adresse de livraison:</strong>
-										<input type="text"   name="delivery_address" id="delivery_address" class="form-control" placeholder="Adresse" value="{{$quote->delivery_address ?? $customer->delivery_address}}" style="width:400px">
+										<input type="text"   name="delivery_address" id="delivery_address" class="form-control" placeholder="Adresse" value="{{$quote->delivery_address ?? $customer->delivery_address}}" style="max-width:400px">
 									</div>
 								</div> 
 
 								<div class="col-xs-12 col-sm-12 col-md-5">
 									<div class="form-group">
 										<strong>Ville:</strong>
-										<input type="text" name="delivery_city" id="delivery_city" class="form-control" placeholder="Ville" value="{{$quote->delivery_city ?? $customer->delivery_city}}" style="width:300px">
+										<input type="text" name="delivery_city" id="delivery_city" class="form-control" placeholder="Ville" value="{{$quote->delivery_city ?? $customer->delivery_city}}" style="max-width:300px">
 									</div>
 								</div> 
 								<div class="col-xs-12 col-sm-12 col-md-3">
@@ -174,7 +176,7 @@
 							<div class="col-xs-12 col-sm-12 col-md-5">
 								<div class="form-group">
 									<strong>Chaudière à :</strong>
-									<select  class="form-control"   name="chaudiere" style="width:180px" >
+									<select  class="form-control"   name="chaudiere" style="max-width:180px" >
 										<option value=""></option>
 										<option  @if($quote->chaudiere=='Gaz') selected="selected" @endif value="Gaz">Gaz</option>
 										<option  @if($quote->chaudiere=='Fioul') selected="selected" @endif value="Fioul">Fioul</option>
@@ -186,7 +188,7 @@
 							<div class="col-xs-12 col-sm-12 col-md-7">
 								<div class="form-group">
 									<strong>Type de logement:</strong>
-									<select class="form-control"   name="logement"  value="{{ $quote->logement}}" style="width:300px">
+									<select class="form-control"   name="logement"  value="{{ $quote->logement}}" style="max-width:300px">
 										<option value="Maison" @if($quote->logement=='Maison') selected="selected" @endif >Maison</option>
 										<option value="Appartement" @if($quote->logement=='Appartement') selected="selected" @endif >Appartement</option>
 									</select>
@@ -195,7 +197,7 @@
 							<div class="col-xs-12 col-sm-12 col-md-5">
 								<div class="form-group">
 									<strong>Surface chauffée (m²):</strong>
-									<input type="number" class="form-control"   name="surface" value="{{ $quote->surface }}" style="width:180px"/>
+									<input type="number" class="form-control"   name="surface" value="{{ $quote->surface }}" style="max-width:180px"/>
 								</div>
 							</div>
 							
@@ -228,10 +230,10 @@
             	<div class="tab-pane fade" id="custom-tabs-three-prods" role="tabpanel" aria-labelledby="custom-tabs-three-prods-tab"  style="width:100%">
 
 					<div class="">
-						<table class="tab-products" style="width:100%">
+						<table class="tab-products table-responsive table-striped  " style="width:100%">
 							<thead class="th-products">
 								<tr>
-									<th style="width:40%">Produit</th><th style="width:8%">Prix U</th><th style="width:8%">Qté</th><th style="width:8%">TVA</th><th style="width:14%">Total</th><th style="width:10%">+/-</th>
+									<th style="width:35%">Produit</th><th style="width:8%">Prix U</th><th style="width:8%">Qté</th><th style="width:8%">TVA</th><th style="width:14%">Total</th><th style="width:10%">+/-</th>
 								</tr>
 							</thead>
 							<tbody id="list-prods" style="min-height:300px list-prods">
@@ -240,51 +242,58 @@
 										<select class="form-control select2"  id='product' onchange="set_price()">
 											<option value="0">Sélectionnez le produit</option>
 												@foreach($products as $prod)
-													<option data-price="{{$prod->prix}}"  data-text="{{$prod->name}}" data-tva="{{$prod->tva}}" data-priceht="{{$prod->prix_ht}}"   value="{{$prod->id}}">{{$prod->id}}- {{$prod->name}}  ({{$prod->prix}}€)</option>
+													<option data-price="{{$prod->prix}}"  data-text="{{$prod->name}}" data-tva="{{$prod->tva}}" data-priceht="{{$prod->prix_ht}}"  data-pose="{{$prod->pose}}" data-tvapose="{{$prod->tva_pose}}"   data-posettc="{{$prod->pose_ttc}}"   value="{{$prod->id}}">{{$prod->id}}- {{$prod->name}}  ({{$prod->prix}}€)</option>
 												@endforeach
 										</select>
 									</td>
 									<td><input  class="number bg-transparent"  id="price"  value="0" /> €</td>
-									<td><input  id="qty" type="number" step="1" min="1" value="1" class="number" style="width:60px" onchange="total_prod()" /></td><td><input readonly id="tva" type="number"  class="number bg-transparent" value="0" style="width:60px"/> %</td><td><input id="total_prod" type="number"   class="number bg-transparent" value="0" readonly /> €</td><td><button id="add_product" disabled class="btn btn-success add-prod" onclick="add_product();  "><i class="fas fa-plus "></i></td>
+									<td><input  id="qty" type="number" step="1" min="1" value="1" class="number" style="width:60px" onchange="total_prod()" /></td><td><input readonly id="tva" type="number"  class="number bg-transparent" value="0" style="width:60px"/> %</td><td><input id="total_prod" type="number"   class="number bg-transparent" value="0" readonly /> €</td><td><button id="add_product" disabled class="btn-sm btn-success add-prod" onclick="add_product();  "><i class="fas fa-plus "></i></td>
 								</tr>							
 								@php $c=0;  @endphp
 								@foreach($items as $item)
 									@php 
 										$product=\App\Models\Product::find($item->product); 
 										$total_prod=floatval($product->prix) * intval($item->qty);
+										//$total_pose=floatval($product->pose) * floatval($product->tva_pose)*0.01 + floatval($product->pose) ;
+
 										$c++;
 									@endphp
 									<tr class="myproduct product bg-lightgrey tr-prod" id="row-{{$product->id}}">
-										<td class="myproducttd" data-prix="{{$product->prix}}" data-prixht="{{$product->prix_ht}}" data-id="{{$product->id}}"  >{{$product->name}}</td><td >{{$product->prix}} €</td><td><input id="qty-{{$product->id}}" type="number" step="1" min="1" class="number" value="{{$item->qty}}"  onchange="calcul()"/></td><td><input readonly step="0.5" min="5.5" type="number" step="0.5" min="1" class="number bg-transparent" value="{{$item->tva}}"/> %</td><td><input id="total-{{$item->id}}" type="number" readonly class="total-prod number" value="{{$total_prod}}"/> €</td><td><button id="delete_item"   class="btn btn-danger" onclick="delete_item({{$product->id}},{{$item->id}})"><i class="fas fa-minus " data-id="{{$item->id}}"></i></td>
+										<td class="myproducttd" data-prix="{{$product->prix}}" data-prixht="{{$product->prix_ht}}" data-id="{{$product->id}}"  ><b>{{$product->name}}</b></td><td >{{$product->prix}} €</td><td><input id="qty-{{$product->id}}" type="number" step="1" min="1" class="number" value="{{$item->qty}}"  onchange="calcul()"/></td><td><input readonly step="0.5" min="5.5" type="number" step="0.5" min="1" class="number bg-transparent" value="{{$item->tva}}"/> %</td><td><input id="total-{{$item->id}}" type="number" readonly class="total-prod number" value="{{$total_prod}}"/> €</td><td><button id="delete_item"   class="btn-sm btn-danger" onclick="delete_item({{$product->id}},{{$item->id}})"><i class="fas fa-minus " data-id="{{$item->id}}"></i></td>
 									</tr>
+									@if($product->pose > 0)
+									<tr class="myproduct product bg-lightgrey tr-prod" id="row-pose-{{$product->id}}">
+										<td class="myproductpose" data-prix="{{$product->prix}}" data-prixht="{{$product->prix_ht}}" data-id="{{$product->id}}" data-pose="{{$product->pose}}" data-tvapose="{{$product->tva_pose}}" data-posettc="{{$product->pose_ttc}}" ><i>Pose {{$product->name}}</i></td><td >{{$product->pose}} €</td><td><input type="number" value="1"  readonly class="number" /></td><td><input readonly step="0.5" min="5.5" type="number" step="0.5" min="1" class="number bg-transparent" readonly value="{{$product->tva_pose}}"/> %</td><td><input id="totalpose-{{$item->id}}" type="number" readonly class="total-prod number" value="{{$product->pose_ttc}}"/> €</td><td></td>
+									</tr>
+									@endif
 								@endforeach	
 							</tbody>
 							<tfoot>							
 								<tr class="product bg-grey">
-									<td>Remise</td><td><input id="remise" type="number"  class="number" style="width:100px" value="{{$quote->remise}}" onchange="calcul()"/> €</td><td style="text-align:center;padding-right:15px">1</td><td><input type="number" class="number" id="tva_remise" name="tva_remise" style="width:100px" step="0.5" value="{{$quote->tva_remise ?? '5.5'}}"/> %</td><td><input id="total_remise" readonly type="number"  class="number numbers bg-transparent" value="{{$quote->total_remise}}" /> €</td><td></td>
+									<td>Remise</td><td><input id="remise" type="number"  class="number" style="max-width:70px" value="{{$quote->remise}}" onchange="calcul()"/> €</td><td style="text-align:center;padding-right:15px">1</td><td><input type="number" class="number" id="tva_remise" name="tva_remise" style="width:100px" step="0.5" value="{{$quote->tva_remise ?? '5.5'}}"/> %</td><td><input id="total_remise" readonly type="number"  class="number numbers bg-transparent" value="{{$quote->total_remise}}" /> €</td><td></td>
 								</tr>
 							</tfoot>
 						</table>
 						<div class="row">
 						<div class="col-md-6 row pt-3 pl-3 mt-3 ">
-								<table style="width:360px;height:100px" class="table-aide" >
+								<table style="max-width:360px;height:100px" class="table-aide" >
 									<tr>
 										<td><strong>Aide éligible:</strong></td><td colspan="2"><strong>Montant</strong></td>
 									</tr>
 									<tr>
 										<td >
 											<div class="form-group">
-												<select class="form-control" style="width:200px" name="type_aide" id="type_aide" onchange="calcul();" >
+												<select class="form-control" style="max-width:200px" name="type_aide" id="type_aide" onchange="calcul();" >
 													<option></option>
 													<option @if($quote->type_aide=='Prime Renov') selected="selected" @endif value="Prime Renov">Prime Renov</option>
-													<option @if($quote->type_aide=='Prime B') selected="selected" @endif value="Prime B">Prime B</option>
-													<option @if($quote->type_aide=='Prime C') selected="selected" @endif value="Prime C">Prime C</option>
+													<option @if($quote->type_aide=='Coup de pouce') selected="selected" @endif value="Coup de pouce">Coup de pouce</option>
+													<option @if($quote->type_aide=='Prime CEE') selected="selected" @endif value="Prime CEE">Prime CEE</option>
 												</select>
 											</div>
 										</td>
 										<td style="padding-right:0">
 											<div class="form-group">
-												<input type="number" class="form-control" style="width:100px" min="0" value="{{$quote->aide}}" id="aide" onchange="calcul();"/>
+												<input type="number" class="form-control" style="max-width:100px" min="0" value="{{$quote->aide}}" id="aide" onchange="calcul();"/>
 											</div>
 										</td>
 										<td style="padding:0 10px 0 0">€</td>
@@ -312,7 +321,7 @@
 							<div class="col-xs-12 col-sm-12 col-md-6">
 								<div class="form-group">
 									<strong>Modalité :</strong>
-									<select  class="form-control"   id="modalite" name="modalite" style="width:180px" onchange="check_finances()">
+									<select  class="form-control"   id="modalite" name="modalite" style="max-width:180px" onchange="check_finances()">
 										<option value=""></option>
 										<option @if($quote->modalite=='Chèque') selected="selected" @endif value="Chèque">Chèque</option>
 										<option  @if($quote->modalite=='Financement') selected="selected" @endif value="Financement">Financement</option>
@@ -327,21 +336,21 @@
 								<div class="col-xs-12 col-sm-12 col-md-6">
 									<div class="form-group">
 										<strong>Montant financé en € :</strong>
-										<input type="number"  class="form-control"  min="0"  name="montant_finance" style="width:180px" value="{{$quote->montant_finance}}" >
+										<input type="number"  class="form-control"  min="0"  name="montant_finance" style="max-width:180px" value="{{$quote->montant_finance}}" >
 									</div>
 								</div>
 
 								<div class="col-xs-12 col-sm-12 col-md-6">
 									<div class="form-group">
 										<strong>Report 1ère échéance :</strong>
-										<input type="number"  class="form-control" min="0"   name="report_echeance" style="width:180px" value="{{$quote->report_echeance}}">
+										<input type="number"  class="form-control" min="0"   name="report_echeance" style="max-width:180px" value="{{$quote->report_echeance}}">
 									</div>
 								</div>
 
 								<div class="col-xs-12 col-sm-12 col-md-6">
 									<div class="form-group">
 										<strong>Nombre de mensualités :</strong>
-										<input type="number"  class="form-control" min="0"  name="mensualites" style="width:180px" value="{{$quote->mensualites}}" >
+										<input type="number"  class="form-control" min="0"  name="mensualites" style="max-width:180px" value="{{$quote->mensualites}}" >
 									</div>
 								</div>
 
@@ -355,28 +364,28 @@
 								<div class="col-xs-12 col-sm-12 col-md-6">
 									<div class="form-group">
 										<strong>Montant mensuel de l'assurance en €:</strong>
-										<input type="number"  class="form-control" min="0"  name="montant_assurance" style="width:180px" value="{{$quote->montant_assurance}}">
+										<input type="number"  class="form-control" min="0"  name="montant_assurance" style="max-width:180px" value="{{$quote->montant_assurance}}">
 									</div>
 								</div>
 
 								<div class="col-xs-12 col-sm-12 col-md-6">
 									<div class="form-group">
 										<strong>% Taux nominal :</strong>
-										<input type="number"  class="form-control" min="0"  step="0.01" name="taux_nominal" style="width:180px" value="{{$quote->taux_nominal}}" >
+										<input type="number"  class="form-control" min="0"  step="0.01" name="taux_nominal" style="max-width:180px" value="{{$quote->taux_nominal}}" >
 									</div>
 								</div>
 
 								<div class="col-xs-12 col-sm-12 col-md-6">
 									<div class="form-group">
 										<strong>% TAEG :</strong>
-										<input type="number"  class="form-control" min="0"  step="0.01" name="taeg" style="width:180px" value="{{$quote->taeg}}" >
+										<input type="number"  class="form-control" min="0"  step="0.01" name="taeg" style="max-width:180px" value="{{$quote->taeg}}" >
 									</div>
 								</div>
 
 								<div class="col-xs-12 col-sm-12 col-md-6">
 									<div class="form-group">
 										<strong>Solde de la pose en €:</strong>
-										<input type="number"  class="form-control"   min="0" name="pose" style="width:180px" value="{{$quote->pose}}">
+										<input type="number"  class="form-control"   min="0" name="pose" style="max-width:180px" value="{{$quote->pose}}">
 									</div>
 								</div>
 							</div>
@@ -432,7 +441,7 @@
 									<input type="hidden" name="quote" value="{{$quote->id}}" />
 
 									<div class="form-group">
-										<strong>Envoyez le devis signé :</strong>
+										<strong>Importer le devis signé :</strong>
 										<input type="file"  class="form-control"   name="devis_signe"    >
 									</div>
 
@@ -441,7 +450,7 @@
 									</div>
 								</form>
 							</div>
-							<div  class="col-md-6 pl-3">
+							<div  class="col-md-6 pl-3 pt-4">
 								@if($quote->devis_signe!='')
 									<a download href="<?php echo  URL::asset('/fichiers/'.$quote->devis_signe);?>" >Télécharger le devis signé</a><br>
 								@endif
@@ -489,8 +498,19 @@
 				qty= ($('#qty-'+id_item).val());
 				total_ht+=(( $(this).data().prixht * qty ));
 				total_ttc+=(( $(this).data().prix *  qty));
-    	})
+
+    		});
+			$(this).find('.myproductpose').each(function(){
+				//id_item=$(this).data().id;
+				//qty= ($('#qty-'+id_item).val());
+				alert($(this).data().pose );
+				alert($(this).data().posettc );
+				total_ht+=(( $(this).data().pose  ));
+				total_ttc+=(( $(this).data().posettc));
+
+    		});
 		});
+
 		$("#total_ht").val(total_ht);
 		total_tva = total_ttc-total_ht;
 	    $('#total_tva').val(total_tva);
@@ -561,6 +581,9 @@
 	var product= parseInt($("#product").val());
 	var product_text= $("#product option:selected").data("text");
 	var price_ht= parseFloat($("#product option:selected").data("priceht"));
+	var pose= parseFloat($("#product option:selected").data("pose"));
+	var tvapose= parseFloat($("#product option:selected").data("tvapose"));
+	var posettc= parseFloat($("#product option:selected").data("posettc"));
 	var price=	parseFloat($('#price').val());
 	var qty=	parseInt($('#qty').val());
 	var total= price*qty;
@@ -576,7 +599,12 @@
 			if(data!=''){
 				init();
 				item_id=data;
-				var row='<tr class="myproduct product bg-lightgrey tr-prod" id="row-'+product+'"><td class="myproducttd"  data-prix="'+price+'" data-prixht="'+price_ht+'" data-id="'+product+'"  >'+product_text+'</td><td>'+price+' €</td><td><input type="number" step="1" min="1" class="number" value="'+qty+'"  id="qty-'+product+'"/></td><td><input  step="0.5" min="5.5" type="number" step="1" min="1" class="number bg-transparent" readonly value="'+tva+'"/> %</td><td><input id="total-'+data+'" type="number" readonly class="total-prod number" value="'+total+'"/> €</td><td><button id="delete_item"   class="btn btn-danger" onclick="delete_item('+product+','+item_id+')"><i class="fas fa-minus "  ></i></td></tr>';
+				var row='<tr class="myproduct product bg-lightgrey tr-prod" id="row-'+product+'"><td class="myproducttd"  data-prix="'+price+'" data-prixht="'+price_ht+'" data-id="'+product+'"  ><b>'+product_text+'</b></td><td>'+price+' €</td><td><input type="number" step="1" min="1" class="number" value="'+qty+'"  id="qty-'+product+'"/></td><td><input  step="0.5" min="5.5" type="number" step="1" min="1" class="number bg-transparent" readonly value="'+tva+'"/> %</td><td><input id="total-'+data+'" type="number" readonly class="total-prod number" value="'+total+'"/> €</td><td><button id="delete_item"   class="btn-sm btn-danger" onclick="delete_item('+product+','+item_id+')"><i class="fas fa-minus "  ></i></td></tr>';
+				if(pose>0){
+					row+='<tr class="myproduct product bg-lightgrey tr-prod" id="row-pose-'+product+'"><td class="myproductpose"  data-prix="'+price+'" data-prixht="'+price_ht+'" data-id="'+product+'" data-pose="'+pose+'" data-tvapose="'+tvapose+'"   data-posettc="'+posettc+'" ><i>Pose '+product_text+'</i></td><td>'+pose+' €</td><td><input type="number" readonly step="1" min="1" class="number bg-transparent" value="1"   /></td><td><input  step="0.5" min="5.5" type="number" step="1" min="1" class="number bg-transparent" readonly value="'+tvapose+'"/> %</td><td><input id="totalpose-'+data+'" type="number" readonly class="total-prod number" value="'+posettc+'"/> €</td><td></td></tr>';
+				}
+
+				
 				$('#list-prods').append(row);
 			}else{
 				alert('Ce produit est déjà ajouté !')
@@ -606,6 +634,7 @@
 			success: function (data) {
 				init();
 				$('#row-'+product).html('');
+				$('#row-pose-'+product).html('');
 				calcul();
 			}
 		});

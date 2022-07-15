@@ -49,7 +49,7 @@
 					<div class="col-xs-12 col-sm-12 col-md-12">
 						<div class="form-group">
 							<strong>Description:</strong>
-							<textarea class="form-control summernote" style="height:150px" name="description" placeholder="Description">{{ $product->description }}</textarea>
+							<textarea class="form-control summernote"  rows="3" name="description" placeholder="Description">{{ $product->description }}</textarea>
 						</div>
 					</div>
 		
@@ -74,6 +74,28 @@
 						</div>
 					</div>
 
+					
+					<div class="col-xs-12 col-sm-12 col-md-7">
+						<div class="form-group">
+							<strong>Pose(€):</strong>
+							<input id="pose" type="number" name="pose" rerquired class="form-control" step ="0.01" min="0"   value="{{ $product->pose }}"  onchange="calcul_tva2()">
+						</div>
+					</div>
+
+					<div class="col-xs-12 col-sm-12 col-md-7">
+						<div class="form-group">
+							<strong>TVA Pose (%):</strong>
+							<input id="tva_pose" type="number" name="tva_pose" rerquired class="form-control" step ="0.01" min="0"   value="{{ $product->tva_pose }}"  onchange="calcul_tva2()">
+						</div>
+					</div>
+
+					<div class="col-xs-12 col-sm-12 col-md-7">
+						<div class="form-group">
+							<strong>Pose TTC(€):</strong>
+							<input id="pose_ttc" type="number" name="pose_ttc" rerquired class="form-control" step ="0.01" min="0"   value="{{ $product->pose_ttc }}"  >
+						</div>
+					</div>
+		
 					<div class="col-xs-12 col-sm-12 col-md-7 ">
 					  <button type="submit" class="btn btn-primary mb-3">Enregistrer</button>
 					</div>
@@ -104,9 +126,20 @@
 		}
     }
 
+	function calcul_tva2(){
+        var pose=parseFloat($('#pose').val());
+        var tva_pose=parseFloat($('#tva_pose').val());
+		if(pose>0 && tva_pose!=''){
+			var total_tva= (pose* tva_pose) / 100 ;
+			var prix= pose+ total_tva ;
+			$('#pose_ttc').val(prix.toFixed(2));
+		}
+    }
+
+
   $(function () {
     // Summernote
-    $('.summernote').summernote()
+   // $('.summernote').summernote()
   });
   
 </script>

@@ -18,8 +18,11 @@ class CreateProductsTable extends Migration
             $table->string('name');
             $table->double('prix_ht', 8, 2);
             $table->double('prix', 8, 2);
-            $table->integer('tva');
-            $table->text('description')->nullable();
+            $table->double('pose', 8, 2);
+            $table->double('tva_pose', 8, 2);
+            $table->double('pose_ttc', 8, 2);
+            $table->double('tva', 8, 2);
+            $table->longText('description')->nullable();
             $table->string('reference')->nullable();
 
             $table->unsignedBigInteger('categorie')->nullable();

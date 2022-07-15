@@ -3,25 +3,39 @@
  
  @section('content')
 	<style>
+		@font-face {
+    		font-family: 'Nunito';
+		}
 		 body{
 			 font-family:'Nunito';
-			 padding:0px 20px 0px 20px;
+			 padding:0px 10px 0px 10px;
 			 color:#0e334f;
 		 }		
 		 .container{
 			 font-size:11px;
+		 }
+		 .tab-products{
+			border-bottom:1px solid #f07f32;
 		 }
  		.th-products{
 			background-color:#f07f32;color:white;padding:5px 20px;
 			letter-spacing:2px;
 			text-align:center;
 			height:40px!important;
+			
 		}
 		.product td{
 			padding-top:4px;
 			padding-bottom:4px;
 			text-align:center;
+			max-width: 250px;
+    		overflow: hidden;
+    		text-overflow: ellipsis;
+    		white-space: nowrap;
 
+		}
+		.text{
+			text-align:left!important;
 		}
 
 		.totals{
@@ -69,12 +83,17 @@
 			padding:5px 5px;
 			margin-top:10px;		
 		}
-
+		.pagenum:before {
+        	content: counter(page);
+    	}
+		.page{
+		counter-reset: page;
+		}
 	</style>
  
  	<table>
 		<tr>
-			<td><img src="{!! public_path('img/logo.png')!!}"  width="120" style="margin-right:20px"></img></td><td><img src="{!! public_path('img/qualibat.jpg')!!}"  width="120"></img></td><td><img src="{!! public_path('img/qualisol.jpg')!!}"  width="120"></img></td><td><img src="{!! public_path('img/qualipv.jpg')!!}"  width="120"></img></td><td><img src="{!! public_path('img/qualipac.jpg')!!}"  width="120"></img></td>
+			<td><img src="{!! public_path('img/logo.png')!!}"  width="80" style="margin-right:60px"></img></td><td><img src="{!! public_path('img/qualibat.jpg')!!}"  width="80" style="margin-right:60px"></img></td><td><img src="{!! public_path('img/qualisol.jpg')!!}"  width="80" style="margin-right:60px"></img></td><td><img src="{!! public_path('img/qualipv.jpg')!!}"  width="80" style="margin-right:60px"></img></td><td><img src="{!! public_path('img/qualipac.jpg')!!}"  width="80"></img></td>
 		</tr>
 	</table>
 	<div class="container">
@@ -113,7 +132,7 @@
 		<br>
 
 
-		<table class="tab-products" style="min-height:150px;width:100%;margin-top:20px;margin-bottom:20px">
+		<table class="tab-products" style="min-height:150px;width:100%;margin-top:10px;margin-bottom:10px">
 			<thead class="th-products">
 				<tr>
 					<th style="width:45%">Désignation</th><th style="width:8%">Prix Unitaire</th><th style="width:8%">Quantité</th><th style="width:8%">TVA</th><th style="width:14%">Montant HT</th>
@@ -126,9 +145,14 @@
 							$product=\App\Models\Product::find($item->product); 
 							$total_prod=floatval($product->prix_ht) * intval($item->qty);
 						@endphp
-						<tr class="product "  >
-							<td>{{$product->name}}<br>{!!nl2br($product->description)!!}</td><td>{{$product->prix}} €</td><td>{{$item->qty}}</td><td>{{$item->tva}} %</td><td>{{$total_prod}} €</td>
+						<tr class="product"  >
+							<td class="text" ><b>{{$product->name}}</b><br><small style="font-size:8px">{!!($product->description)!!}</small></td><td>{{$product->prix}} €</td><td>{{$item->qty}}</td><td>{{$item->tva}} %</td><td>{{$total_prod}} €</td>
 						</tr>
+						@if($product->pose > 0)
+							<tr class="product"  >
+								<td class="text" ><i>Pose {{$product->name}}</i></td><td>{{$product->pose}} €</td><td>1</td><td>{{$product->tva_pose}} %</td><td>{{$product->pose_ttc}} €</td>
+							</tr>
+						@endif
 					@endforeach											
 				</tr>
 				@if($quote->type_aide!='')
@@ -167,7 +191,7 @@
 		</div>
 		<div class="clearfix"></div>
 		<div style="width:100%;page-break-inside: avoid;">
-			<div style="width:65%;float:left;font-size:9px;padding-top:30px">
+			<div style="width:65%;float:left;font-size:9px;padding-top:20px">
 				@if($quote->modalite!='')
 					<b>Règlement par :</b> {{ $quote->modalite }}
 				
@@ -181,7 +205,7 @@
 					@endif
 				@endif
 			</div>
-			<div style="width:35%;float:left;font-weight:bold;padding-top:30px">
+			<div style="width:35%;float:left;font-weight:bold;padding-top:20px">
 				<table style="width:300px;font-size:10px">
 					<tr rowspan="2"><td>Fait à<br><br></td><td></td><td>Le</td><td></td></tr>
 					<tr><td colspan="4">Signature précédée de la mention "Bon pour accord"</td></tr>
@@ -199,6 +223,7 @@
 		SARL au capital de 50 000 euros<br>
 		SIRET 85156645500024 - R.C.S TOULOUSE - NAF 4321A<br>
 		TVA intracommunautaire : FR95851566455<br>
+		<div style="float:right">Page <span class="pagenum"></span></div>
 	</footer>
  @endsection
  

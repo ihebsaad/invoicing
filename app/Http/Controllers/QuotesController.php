@@ -190,9 +190,11 @@ class QuotesController extends Controller
         
         $products = Product::all();
         $items = Item::where('quote',$id)->get();
+        $count=count($items);
 
-        $pdf = PDF::loadView('quotes.quote', compact('quote','reference','date_facture','products','items','par'));
+        $pdf = PDF::loadView('quotes.quote', compact('quote','reference','date_facture','products','items','par','count'));
         return $pdf->stream('quote-'.$id.'.pdf');
+        //return view('quotes.quote', compact('quote','reference','date_facture','products','items','par'));
 
     }
 
@@ -206,7 +208,8 @@ class QuotesController extends Controller
         $reference= $quote->reference;
         $products = Product::all();
         $items = Item::where('quote',$id)->get();
-        $pdf = PDF::loadView('quotes.quote', compact('quote','reference','date_facture','products','items','par'));
+        $count=count($items);
+        $pdf = PDF::loadView('quotes.quote', compact('quote','reference','date_facture','products','items','par','count'));
         return $pdf->download('quote-'.$reference.'.pdf');
 
     }
@@ -221,7 +224,8 @@ class QuotesController extends Controller
 
         $products = Product::all();
         $items = Item::where('quote',$id)->get();
-        $pdf = PDF::loadView('quotes.quote-sign', compact('quote','reference','date_facture','products','items','par'));
+        $count=count($items);
+        $pdf = PDF::loadView('quotes.quote-sign', compact('quote','reference','date_facture','products','items','par','count'));
         return $pdf->download('quote-'.$reference.'.pdf');
 
     }

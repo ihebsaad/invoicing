@@ -8,9 +8,9 @@
 <link rel="stylesheet" href="{{asset('plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css')}}">
 
  <style>
-
 		.tab-products{
 			width:100%;
+			font-size:12px;
 		}
 		.th-products{
 			background-color:#f07f32;color:white;padding:10px 20px;
@@ -18,12 +18,13 @@
 			text-align:center;
 			
 		}
+ 
 		.tab-content{
 			min-height:400px;
 		}
 		.number{
 			border:none;text-align:center;
-			max-width:60px;
+			max-width:64px;
 		}
 		.product td{
 			padding-top:8px;
@@ -76,9 +77,9 @@
                 <h2> Facture {{$invoice->id}} -  {{$invoice->reference}} </h2>
             </div>
             <div class="float-right">
-                <a class="btn btn-primary" href="{{ route('invoices.index') }}"> Retour</a>
+                <a class="btn btn-primary mb-2" href="{{ route('invoices.index') }}"> Retour</a>
             </div>
-            <div class="float-right mr-3 ml-3">
+            <div class="float-right mr-3 ml-3 mb-2">
 				<a class="btn btn-success " target="_blank"  href="{{ route('invoices.show_pdf',$invoice->id) }}" style="float:left" title="Ouvrir en PDF"><i class="fas fa-file-pdf"></i></a>
 			</div>
 
@@ -124,14 +125,14 @@
 								<div class="col-xs-12 col-sm-12 col-md-6">
 									<div class="form-group">
 										<strong>Adresse de livraison:</strong>
-										<input type="text"   name="delivery_address" id="delivery_address" class="form-control" placeholder="Adresse" value="{{$invoice->delivery_address ?? $customer->delivery_address}}" style="width:400px">
+										<input type="text"   name="delivery_address" id="delivery_address" class="form-control" placeholder="Adresse" value="{{$invoice->delivery_address ?? $customer->delivery_address}}" style="max-width:400px">
 									</div>
 								</div> 
 
 								<div class="col-xs-12 col-sm-12 col-md-5">
 									<div class="form-group">
 										<strong>Ville:</strong>
-										<input type="text" name="delivery_city" id="delivery_city" class="form-control" placeholder="Ville" value="{{$invoice->delivery_city ?? $customer->delivery_city}}" style="width:300px">
+										<input type="text" name="delivery_city" id="delivery_city" class="form-control" placeholder="Ville" value="{{$invoice->delivery_city ?? $customer->delivery_city}}" style="max-width:300px">
 									</div>
 								</div> 
 								<div class="col-xs-12 col-sm-12 col-md-3">
@@ -161,7 +162,7 @@
 							<div class="col-xs-12 col-sm-12 col-md-5">
 								<div class="form-group">
 									<strong>Chaudière à :</strong>
-									<select  class="form-control"   name="chaudiere" style="width:180px" >
+									<select  class="form-control"   name="chaudiere" style="max-width:180px" >
 										<option value=""></option>
 										<option  @if($invoice->chaudiere=='Gaz') selected="selected" @endif value="Gaz">Gaz</option>
 										<option  @if($invoice->chaudiere=='Fioul') selected="selected" @endif value="Fioul">Fioul</option>
@@ -173,7 +174,7 @@
 							<div class="col-xs-12 col-sm-12 col-md-7">
 								<div class="form-group">
 									<strong>Type de logement:</strong>
-									<select class="form-control"   name="logement"  value="{{ $invoice->logement}}" style="width:300px">
+									<select class="form-control"   name="logement"  value="{{ $invoice->logement}}" style="max-width:300px">
 										<option value="Maison" @if($invoice->logement=='Maison') selected="selected" @endif >Maison</option>
 										<option value="Appartement" @if($invoice->logement=='Appartement') selected="selected" @endif >Appartement</option>
 									</select>								</div>
@@ -214,10 +215,10 @@
             	<div class="tab-pane fade" id="custom-tabs-three-prods" role="tabpanel" aria-labelledby="custom-tabs-three-prods-tab"  style="width:100%">
 
 					<div class="">
-						<table class="tab-products" style="width:100%">
+						<table class="tab-products table-responsive  table-striped " style="width:100%">
 							<thead class="th-products">
 								<tr>
-									<th style="width:40%">Produit</th><th style="width:8%">Prix U</th><th style="width:8%">Qté</th><th style="width:8%">TVA</th><th style="width:14%">Total</th><th style="width:10%">+/-</th>
+									<th style="width:35%">Produit</th><th style="width:8%">Prix U</th><th style="width:8%">Qté</th><th style="width:8%">TVA</th><th style="width:14%">Total</th><th style="width:10%">+/-</th>
 								</tr>
 							</thead>
 							<tbody id="list-prods" style="min-height:300px list-prods">
@@ -238,11 +239,18 @@
 									@php 
 										$product=\App\Models\Product::find($item->product); 
 										$total_prod=floatval($product->prix) * intval($item->qty);
+										//$total_pose=floatval($product->pose) * floatval($product->tva_pose)*0.01 + floatval($product->pose) ;
+
 										$c++;
 									@endphp
 									<tr class="myproduct product bg-lightgrey tr-prod" id="row-{{$product->id}}">
-										<td class="myproducttd" data-prix="{{$product->prix}}" data-prixht="{{$product->prix_ht}}" data-id="{{$product->id}}"  >{{$product->name}}</td><td >{{$product->prix}} €</td><td><input id="qty-{{$product->id}}" type="number" step="1" min="1" class="number" value="{{$item->qty}}"  onchange="calcul()"/></td><td><input readonly step="0.5" min="5.5" type="number" step="0.5" min="1" class="number bg-transparent" value="{{$item->tva}}"/> %</td><td><input id="total-{{$item->id}}" type="number" readonly class="total-prod number" value="{{$total_prod}}"/> €</td><td><button id="delete_item"    class="btn btn-danger" onclick="delete_item({{$product->id}},{{$item->id}})"><i class="fas fa-minus " data-id="{{$item->id}}"></i></td>
+										<td class="myproducttd" data-prix="{{$product->prix}}" data-prixht="{{$product->prix_ht}}" data-id="{{$product->id}}"  ><b>{{$product->name}}</b></td><td >{{$product->prix}} €</td><td><input id="qty-{{$product->id}}" type="number" step="1" min="1" class="number" value="{{$item->qty}}"  onchange="calcul()"/></td><td><input readonly step="0.5" min="5.5" type="number" step="0.5" min="1" class="number bg-transparent" value="{{$item->tva}}"/> %</td><td><input id="total-{{$item->id}}" type="number" readonly class="total-prod number" value="{{$total_prod}}"/> €</td><td><button id="delete_item"   class="btn-sm btn-danger" onclick="delete_item({{$product->id}},{{$item->id}})"><i class="fas fa-minus " data-id="{{$item->id}}"></i></td>
 									</tr>
+									@if($product->pose > 0)
+									<tr class="myproduct product bg-lightgrey tr-prod" id="row-pose-{{$product->id}}">
+										<td class="myproductpose" data-prix="{{$product->prix}}" data-prixht="{{$product->prix_ht}}" data-id="{{$product->id}}" data-pose="{{$product->pose}}" data-tvapose="{{$product->tva_pose}}" data-posettc="{{$product->pose_ttc}}" ><i>Pose {{$product->name}}</i></td><td >{{$product->pose}} €</td><td><input type="number" value="1"  readonly class="number" /></td><td><input readonly step="0.5" min="5.5" type="number" step="0.5" min="1" class="number bg-transparent" readonly value="{{$product->tva_pose}}"/> %</td><td><input id="totalpose-{{$item->id}}" type="number" readonly class="total-prod number" value="{{$product->pose_ttc}}"/> €</td><td></td>
+									</tr>
+									@endif
 								@endforeach	
 													
 							</tbody>
@@ -419,8 +427,16 @@
 				qty= parseInt($('#qty-'+id_item).val());
 				total_ht+=parseFloat(( $(this).data('prixht')* qty ));
 				total_ttc+=parseFloat(( $(this).data('prix') *  qty));
+    	});
+		$(this).find('.myproductpose').each(function(){
+				//id_item=$(this).data().id;
+				//qty= ($('#qty-'+id_item).val());
+				alert($(this).data().pose );
+				alert($(this).data().posettc );
+				total_ht+=(( $(this).data().pose  ));
+				total_ttc+=(( $(this).data().posettc));
 
-    	})
+    		});
 		});
 		
 		$("#total_ht").val(total_ht);
@@ -489,40 +505,47 @@
   
 	function add_product(){
 
-var _token = $('input[name="_token"]').val();
-var product= parseInt($("#product").val());
-var product_text= $("#product option:selected").data("text");
-var price_ht= parseFloat($("#product option:selected").data("priceht"));
-var price=	parseFloat($('#price').val());
-var qty=	parseInt($('#qty').val());
-var total= price*qty;
-var tva=	parseFloat($('#tva').val());
-var invoice=	parseInt($('#invoice').val());
-//let long = document.getElementsByClassName('myproducttd').length +1 ;
-$.ajax({
-  url: "{{ route('add_item') }}",
-  method: "POST",
-  async:false,
-  data: {product:product,price:price,qty:qty,tva:tva, invoice:invoice,_token:_token},
-  success: function (data) {
-	  if(data!=''){
-		  init();
-		  item_id=data;
-		  var row='<tr class="myproduct product bg-lightgrey tr-prod" id="row-'+product+'"><td class="myproducttd"  data-prix="'+price+'" data-prixht="'+price_ht+'" data-id="'+product+'"  >'+product_text+'</td><td>'+price+' €</td><td><input type="number" step="1" min="1" class="number" value="'+qty+'"  id="qty-'+product+'"/></td><td><input  step="0.5" min="5.5" type="number" step="1" min="1" class="number bg-transparent" readonly value="'+tva+'"/> %</td><td><input id="total-'+data+'" type="number" readonly class="total-prod number" value="'+total+'"/> €</td><td><button id="delete_item"   class="btn btn-danger" onclick="delete_item('+product+','+item_id+')"><i class="fas fa-minus "  ></i></td></tr>';
-		  $('#list-prods').append(row);
-	  }else{
-		  alert('Ce produit est déjà ajouté !')
-	  }
-	  
-  }
-});
-// attendre une seconde puis calculer
-/*setTimeout(function(){
-  calcul();
-}, 1000);*/
-calcul();
+	var _token = $('input[name="_token"]').val();
+	var product= parseInt($("#product").val());
+	var product_text= $("#product option:selected").data("text");
+	var pose= parseFloat($("#product option:selected").data("pose"));
+	var tvapose= parseFloat($("#product option:selected").data("tvapose"));
+	var posettc= parseFloat($("#product option:selected").data("posettc"));
+	var price_ht= parseFloat($("#product option:selected").data("priceht"));
+	var price=	parseFloat($('#price').val());
+	var qty=	parseInt($('#qty').val());
+	var total= price*qty;
+	var tva=	parseFloat($('#tva').val());
+	var invoice=	parseInt($('#invoice').val());
+	//let long = document.getElementsByClassName('myproducttd').length +1 ;
+	$.ajax({
+	url: "{{ route('add_item') }}",
+	method: "POST",
+	async:false,
+	data: {product:product,price:price,qty:qty,tva:tva, invoice:invoice,_token:_token},
+	success: function (data) {
+		if(data!=''){
+			init();
+			item_id=data;
+			var row='<tr class="myproduct product bg-lightgrey tr-prod" id="row-'+product+'"><td class="myproducttd"  data-prix="'+price+'" data-prixht="'+price_ht+'" data-id="'+product+'"  ><b>'+product_text+'</b></td><td>'+price+' €</td><td><input type="number" step="1" min="1" class="number" value="'+qty+'"  id="qty-'+product+'"/></td><td><input  step="0.5" min="5.5" type="number" step="1" min="1" class="number bg-transparent" readonly value="'+tva+'"/> %</td><td><input id="total-'+data+'" type="number" readonly class="total-prod number" value="'+total+'"/> €</td><td><button id="delete_item"   class="btn-sm btn-danger" onclick="delete_item('+product+','+item_id+')"><i class="fas fa-minus "  ></i></td></tr>';
+					if(pose>0){
+						row+='<tr class="myproduct product bg-lightgrey tr-prod" id="row-pose-'+product+'"><td class="myproductpose"  data-prix="'+price+'" data-prixht="'+price_ht+'" data-id="'+product+'" data-pose="'+pose+'" data-tvapose="'+tvapose+'"   data-posettc="'+posettc+'" ><i>Pose '+product_text+'</i></td><td>'+pose+' €</td><td><input type="number" readonly step="1" min="1" class="number bg-transparent" value="1"   /></td><td><input  step="0.5" min="5.5" type="number" step="1" min="1" class="number bg-transparent" readonly value="'+tvapose+'"/> %</td><td><input id="totalpose-'+data+'" type="number" readonly class="total-prod number" value="'+posettc+'"/> €</td><td></td></tr>';
+					}			
+					$('#list-prods').append(row);
+					
+		}else{
+			alert('Ce produit est déjà ajouté !')
+		}
+		
+	}
+	});
+	// attendre une seconde puis calculer
+	/*setTimeout(function(){
+	calcul();
+	}, 1000);*/
+	calcul();
 
-}
+	}
 
 function delete_item(product,item){
 
@@ -539,6 +562,7 @@ function delete_item(product,item){
 	success: function (data) {
 		init();
 		$('#row-'+product).html('');
+		$('#row-pose-'+product).html('');
 		calcul();
 	}
 	});

@@ -79,7 +79,7 @@ return array (
     'normal' => $rootDir . '/lib/fonts/DejaVuSerif',
   ),
   'nunito' => array(
-    'normal' => $fontDir . '/nunito_normal_6bf2a4edb2f966ef6de923042828a429',
+    'normal' => $fontDir . '/nunito_normal_d65c0181133d277a815340cd7d93d4ac',
   ),
 );
 }; ?>

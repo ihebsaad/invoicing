@@ -23,8 +23,7 @@
     </head>
     <body class="antialiased">
         <div class="relative flex items-top justify-center min-h-screen sm:items-center sm:pt-0">
-            @if (Route::has('login'))
-                <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
+                 <div class="  fixed top-0 right-0 px-6 py-4 sm:block">
                     @auth
                         <a href="{{ url('/home') }}" class="text-sm text-gray-700 underline">Accueil</a>
                     @else
@@ -35,9 +34,8 @@
                         @endif
                     @endif
                 </div>
-            @endif
-
-            <img src="{{ asset('img/logo.png')}}" alt="her group" class=""  >
+ 
+            <img src="{{ asset('img/logo.png')}}" alt="her group" class="responsive" style="max-width:250px;height:auto"  >
 
         </div>
     </body>

@@ -38,7 +38,7 @@
         <div class="col-xs-12 col-sm-12 col-md-7">
             <div class="form-group">
                 <strong>Description:</strong>
-                <textarea class="form-control summernote" style="height:150px" name="description" placeholder="Description">{{old('description')}}</textarea>
+                <textarea class="form-control summernote" rows="3"  name="description" placeholder="Description">{{old('description')}}</textarea>
             </div>
         </div>
 
@@ -59,18 +59,30 @@
         <div class="col-xs-12 col-sm-12 col-md-7">
             <div class="form-group">
                 <strong>Prix TTC(€):</strong>
-                <input id="prix" type="number" name="prix" rerquired class="form-control" step ="0.01" min="0"  value="{{old('prix')}}">
+                <input id="prix" type="number" name="prix" rerquired class="form-control" step ="0.01" min="0"  value="{{old('prix')}}"  >
             </div>
         </div>
 
-        <!--
         <div class="col-xs-12 col-sm-12 col-md-7">
             <div class="form-group">
-                <strong>Type:</strong>
-                <input type="text" name="type" class="form-control" placeholder="type" value="{{old('type')}}">
+                <strong>Pose(€):</strong>
+                <input id="pose" type="number" name="pose" rerquired class="form-control" step ="0.01" min="0"  value="{{old('pose')}}" onchange="calcul_tva2()">
             </div>
         </div>
-        -->
+
+        <div class="col-xs-12 col-sm-12 col-md-7">
+            <div class="form-group">
+                <strong>TVA Pose (%):</strong>
+                <input id="tva_pose" type="number" name="tva_pose" rerquired class="form-control" step ="0.01" min="0"  value="{{old('tva_pose')}}" onchange="calcul_tva2()">
+            </div>
+        </div>
+
+        <div class="col-xs-12 col-sm-12 col-md-7">
+            <div class="form-group">
+                <strong>Pose TTC(€):</strong>
+                <input id="pose_ttc" type="number" name="pose_ttc" rerquired class="form-control" step ="0.01" min="0"  value="{{old('pose_ttc')}}">
+            </div>
+        </div>
         
         <div class="col-xs-12 col-sm-12 col-md-7">
                 <button type="submit" class="btn btn-primary">Enregistrer</button>
@@ -95,9 +107,19 @@
 		}
     }
 
+    function calcul_tva2(){
+        var pose=parseFloat($('#pose').val());
+        var tva_pose=parseFloat($('#tva_pose').val());
+		if(pose>0 && tva_pose!=''){
+			var total_tva= (pose* tva_pose) / 100 ;
+			var prix= pose+ total_tva ;
+			$('#pose_ttc').val(prix.toFixed(2));
+		}
+    }
+
   $(function () {
     // Summernote
-    $('.summernote').summernote()
+   // $('.summernote').summernote()
   });
   
 </script>
