@@ -97,40 +97,40 @@
 		</tr>
 	</table>
 	<div class="container">
-		<div style="width:100%;">
-			<div style="width:50%;float:left;">
-				 <span><b>SARL GROUPE H.E.R</b></span><br>
-				 <span>7 Avenue Didier Daurat</span><br>
-				 <span>31700 BLAGNAC</span><br>
-				 <span><b>Tél :</b> 09.77.59.57.42</span><br>
-				 <span><b>Email :</b> contact@groupe-her.com</span><br><br>
-				 <b>Adresse de livraison:</b><br>
-				 <span>{{ $quote->delivery_address ?? $quote->customer()->first()->delivery_address }}</span><br>
-				 <span>{{ $quote->delivery_postal ?? $quote->customer()->first()->delivery_postal }}, {{ $quote->delivery_city ?? $quote->customer()->first()->delivery_city }} - {{ $quote->delivery_country ?? $quote->customer()->first()->delivery_country }}</span><br>
-			</div>
-			<div style="width:50%;float:left;height:100px">
-				<b>Client:</b> {{ $quote->customer()->first()->civility }} {{ $quote->customer()->first()->lastname }} {{ $quote->customer()->first()->name }} <br>			
-				 <span style="margin-left:35px">{{ $quote->customer()->first()->civility2 }} {{ $quote->customer()->first()->lastname2 }} {{ $quote->customer()->first()->name2 }}</span><br>			
-				 <b>Adresse:</b> <span>{{ $quote->customer()->first()->address }}</span><br>
-				 <span>{{ $quote->customer()->first()->postal }}, {{ $quote->customer()->first()->city }} - {{ $quote->customer()->first()->country }}</span><br>
-				 <span>@if( $quote->customer()->first()->phone!='')<b>Tél :</b> {{ $quote->customer()->first()->phone }}    @endif @if( $quote->customer()->first()->email!='') <b>Email:</b> {{ $quote->customer()->first()->email }} @endif</span>
-				 <br>
-			</div>
-		 </div>
-		 <br>
-		<div style="width:100%;">
-			<b style="font-size:22px;color:#f07f32">DEVIS N° : {{ $reference }} </b><br>
-			Créé le : <b>{{date('d/m/Y', strtotime($quote->created_at))}}</b>    Conseillé: <b>{{$par}}</b>
-		</div>
-		<br>
-		<div style="width:100%;height:30px">
-			<div style="width:50%;float:left;">
-				@if( $quote->logement!='')<b>Logement :</b>{{ $quote->logement }}    @endif  @if($quote->surface!='')<b>Surface chauffée (m²) :</b>   {{ $quote->surface }}<br>@endif
-				<b>Date de visite technique préalable :</b>   {{ $date_facture }}<br>
-			</div>
-		</div>
-		<br>
-
+		<table style="width:100%;">
+			<tr>
+				<td style="width:50%;">
+					<span><b>SARL GROUPE H.E.R</b></span><br>
+					<span>7 Avenue Didier Daurat</span><br>
+					<span>31700 BLAGNAC</span><br>
+					<span><b>Tél :</b> 09.77.59.57.42</span><br>
+					<span><b>Email :</b> contact@groupe-her.com</span><br><br>
+					<b>Adresse de livraison:</b><br>
+					<span>{{ $quote->delivery_address ?? $quote->customer()->first()->delivery_address }}</span><br>
+					<span>{{ $quote->delivery_postal ?? $quote->customer()->first()->delivery_postal }}, {{ $quote->delivery_city ?? $quote->customer()->first()->delivery_city }} - {{ $quote->delivery_country ?? $quote->customer()->first()->delivery_country }}</span><br>
+				</td>
+				<td style="width:50%;">
+					<b>Client:</b> {{ $quote->customer()->first()->civility }} {{ $quote->customer()->first()->lastname }} {{ $quote->customer()->first()->name }} <br>			
+					<span style="margin-left:35px">{{ $quote->customer()->first()->civility2 }} {{ $quote->customer()->first()->lastname2 }} {{ $quote->customer()->first()->name2 }}</span><br>			
+					<b>Adresse:</b> <span>{{ $quote->customer()->first()->address }}</span><br>
+					<span>{{ $quote->customer()->first()->postal }}, {{ $quote->customer()->first()->city }} - {{ $quote->customer()->first()->country }}</span><br>
+					<span>@if( $quote->customer()->first()->phone!='')<b>Tél :</b> {{ $quote->customer()->first()->phone }}    @endif @if( $quote->customer()->first()->email!='') <b>Email:</b> {{ $quote->customer()->first()->email }} @endif</span>
+					<br>
+				</td>
+			</tr>
+		</table>
+		<table style="width:100%;margin-top:20px;margin-bottom:20px">
+			<tr>
+				<td style="width:50%;">
+					@if( $quote->logement!='')<b>Logement :</b>{{ $quote->logement }}    @endif  @if($quote->surface!='')<b>Surface chauffée (m²) :</b>   {{ $quote->surface }}<br>@endif
+					<b>Date de visite technique préalable :</b>   {{ $date_facture }}
+				</td>
+				<td style="width:50%;">
+					<b style="font-size:22px;color:#f07f32">Facture N° : {{ $reference }} </b><br>
+					Créé le : <b>{{date('d/m/Y', strtotime($quote->created_at))}}</b>    Conseillé: <b>{{$par}}</b>
+				</td>
+			</tr>
+		</table>
 
 		<table class="tab-products" style="min-height:150px;width:100%;margin-top:10px;margin-bottom:10px">
 			<thead class="th-products">
@@ -207,7 +207,7 @@
 			</div>
 			<div style="width:35%;float:left;font-weight:bold;padding-top:20px">
 				<table style="width:300px;font-size:10px">
-					<tr rowspan="2"><td>Fait à<br><br></td><td></td><td>Le</td><td></td></tr>
+					<tr rowspan="2"><td>Fait à</td><td></td><td>Le</td><td></td></tr>
 					<tr><td colspan="4">Signature précédée de la mention "Bon pour accord"</td></tr>
 				</table>
 				<div style="border:1px solid grey;width:100%;height:100px">

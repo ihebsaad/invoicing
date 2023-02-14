@@ -49,16 +49,11 @@ class SendMail
             Mail::send([], [], function ($message) use ($to,$sujet, $contenu,$from,$fromname,$id   ) {
                     $message
                     ->to($to)
-                    //->bcc($chunk ?: [])
                         ->subject($sujet)
                         ->setBody($contenu, 'text/html')
                         ->setFrom([$from => $fromname]);
-                    //   ->attach($pdf->output(), "facture.pdf");
                         
-                // suivre najda et mettre lien de fichier pdf
-
                 $fullpath=storage_path().'\pdf\facture-'.$id.'.pdf';
-                //dd($fullpath);
                 $name=basename($fullpath);
                 $mime_content_type=mime_content_type ($fullpath);
         
@@ -67,12 +62,10 @@ class SendMail
                         'mime' => $mime_content_type)
                 );
 
-
-
             });
 
-            return redirect()->route('invoices.index')
-            ->with('success','Facture envoyée !');
+            //return redirect()->route('invoices.index')
+            //->with('success','Facture envoyée !');
             
         }catch(\Exception $e){           
             return redirect()->route('invoices.index');
