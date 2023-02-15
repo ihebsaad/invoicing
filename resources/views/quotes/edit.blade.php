@@ -8,8 +8,8 @@
 <link rel="stylesheet" href="{{asset('plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css')}}">
 
 <!-- signature -->
-<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.css">  
- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css"/>       
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.css">
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css"/>
  <style>
 		.kbw-signature {
 			display: inline-block;
@@ -30,9 +30,9 @@
 			background-color:#f07f32;color:white;padding:10px 20px;
 			letter-spacing:2px;
 			text-align:center;
-			
+
 		}
- 
+
 		.tab-content{
 			min-height:400px;
 		}
@@ -78,11 +78,11 @@
 		.table-aide td{
 			padding:5px 10px 2px 12px;
 		}
- </style> 
+ </style>
 
 @endsection
 
- 
+
 
 @section('content')
   <div class="row">
@@ -98,7 +98,7 @@
 			</div>
         </div>
     </div>
-     
+
     <div class="card card-primary card-outline card-tabs" style="width:100%">
         <div class="card-header p-0 pt-1 border-bottom-0">
             <ul class="nav nav-tabs" id="custom-tabs-three-tab" role="tablist">
@@ -110,7 +110,7 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" id="custom-tabs-three-finance-tab" data-toggle="pill" href="#custom-tabs-three-finance" role="tab" aria-controls="custom-tabs-three-finance" aria-selected="false">Financement</a>
-                </li>				
+                </li>
                 <li class="nav-item">
                     <a class="nav-link" id="custom-tabs-three-signature-tab" data-toggle="pill" href="#custom-tabs-three-signature" role="tab" aria-controls="custom-tabs-three-signature" aria-selected="false">Signature</a>
                 </li>
@@ -120,7 +120,7 @@
             <div class="tab-content" id="custom-tabs-three-tabContent">
 				<div class="tab-pane fade active show" id="custom-tabs-three-details" role="tabpanel" aria-labelledby="custom-tabs-three-details-tab">
 
-			
+
 					<form action="{{ route('quotes.update',$quote->id) }}" method="POST">
 						@csrf
 						@method('PUT')
@@ -128,27 +128,27 @@
 						<div class="row pl-3">
 							<div class="col-xs-12 col-sm-12 col-md-7">
 								<div class="form-group">
-									<i class="fas fa-address-card"></i> 
+									<i class="fas fa-address-card"></i>
 									<?php $customer= \App\Models\Customer::find($quote->customer);?>
 									{{$customer->civility}} {{$customer->name}} {{$customer->lastname}} <br>
 									<i class="fas fa-phone mr-2"></i>{{$customer->phone}} <i class="fas fa-envelope mr-2 ml-4"></i> {{$customer->email}} <br>
-									<i class="fas fa-map-marker mr-2"></i> {{$customer->address}} - {{$customer->city}} 
+									<i class="fas fa-map-marker mr-2"></i> {{$customer->address}} - {{$customer->city}}
 								</div>
 							</div>
 
 								<div class="col-xs-12 col-sm-12 col-md-6">
 									<div class="form-group">
-										<strong>Adresse de livraison:</strong>
+										<strong>Adresse du chantier:</strong>
 										<input type="text"   name="delivery_address" id="delivery_address" class="form-control" placeholder="Adresse" value="{{$quote->delivery_address ?? $customer->delivery_address}}" style="max-width:400px">
 									</div>
-								</div> 
+								</div>
 
 								<div class="col-xs-12 col-sm-12 col-md-5">
 									<div class="form-group">
 										<strong>Ville:</strong>
 										<input type="text" name="delivery_city" id="delivery_city" class="form-control" placeholder="Ville" value="{{$quote->delivery_city ?? $customer->delivery_city}}" style="max-width:300px">
 									</div>
-								</div> 
+								</div>
 								<div class="col-xs-12 col-sm-12 col-md-3">
 									<div class="form-group">
 										<strong>Pays:</strong>
@@ -167,9 +167,9 @@
 										<strong>Code postal:</strong>
 										<input type="text" name="delivery_postal" id="delivery_postal"  class="form-control" placeholder="Code postal" value="{{$quote->delivery_postal ?? $customer->delivery_postal}}">
 									</div>
-								</div> 
+								</div>
 
-						</div> 
+						</div>
 
 						<div class="row pl-3 mt-2">
 
@@ -184,7 +184,7 @@
 									</select>
 								</div>
 							</div>
-							
+
 							<div class="col-xs-12 col-sm-12 col-md-7">
 								<div class="form-group">
 									<strong>Type de logement:</strong>
@@ -200,8 +200,8 @@
 									<input type="number" class="form-control"   name="surface" value="{{ $quote->surface }}" style="max-width:180px"/>
 								</div>
 							</div>
-							
-							
+
+
 							<div class="col-xs-12 col-sm-12 col-md-7">
 								<div class="form-group">
 									<strong>Date de visite:</strong>
@@ -225,7 +225,7 @@
 
 				</div>
 
- 
+
 				<!-- PRODUITS --->
             	<div class="tab-pane fade" id="custom-tabs-three-prods" role="tabpanel" aria-labelledby="custom-tabs-three-prods-tab"  style="width:100%">
 
@@ -248,11 +248,11 @@
 									</td>
 									<td><input  class="number bg-transparent"  id="price"  value="0" /> €</td>
 									<td><input  id="qty" type="number" step="1" min="1" value="1" class="number" style="width:60px" onchange="total_prod()" /></td><td><input readonly id="tva" type="number"  class="number bg-transparent" value="0" style="width:60px"/> %</td><td><input id="total_prod" type="number"   class="number bg-transparent" value="0" readonly /> €</td><td><button id="add_product" disabled class="btn-sm btn-success add-prod" onclick="add_product();  "><i class="fas fa-plus "></i></td>
-								</tr>							
+								</tr>
 								@php $c=0;  @endphp
 								@foreach($items as $item)
-									@php 
-										$product=\App\Models\Product::find($item->product); 
+									@php
+										$product=\App\Models\Product::find($item->product);
 										$total_prod=floatval($product->prix) * intval($item->qty);
 										//$total_pose=floatval($product->pose) * floatval($product->tva_pose)*0.01 + floatval($product->pose) ;
 
@@ -266,9 +266,9 @@
 										<td class="myproductpose" data-prix="{{$product->prix}}" data-prixht="{{$product->prix_ht}}" data-id="{{$product->id}}" data-pose="{{$product->pose}}" data-tvapose="{{$product->tva_pose}}" data-posettc="{{$product->pose_ttc}}" ><i>Pose {{$product->name}}</i></td><td >{{$product->pose}} €</td><td><input type="number" value="1"  readonly class="number" /></td><td><input readonly step="0.5" min="5.5" type="number" step="0.5" min="1" class="number bg-transparent" readonly value="{{$product->tva_pose}}"/> %</td><td><input id="totalpose-{{$item->id}}" type="number" readonly class="total-prod number" value="{{$product->pose_ttc}}"/> €</td><td></td>
 									</tr>
 									@endif
-								@endforeach	
+								@endforeach
 							</tbody>
-							<tfoot>							
+							<tfoot>
 								<tr class="product bg-grey">
 									<td>Remise</td><td><input id="remise" type="number"  class="number" style="max-width:70px" value="{{$quote->remise}}" onchange="calcul()"/> €</td><td style="text-align:center;padding-right:15px">1</td><td><input type="number" class="number" id="tva_remise" name="tva_remise" style="width:100px" step="0.5" value="{{$quote->tva_remise ?? '5.5'}}"/> %</td><td><input id="total_remise" readonly type="number"  class="number numbers bg-transparent" value="{{$quote->total_remise}}" /> €</td><td></td>
 								</tr>
@@ -331,7 +331,7 @@
 							</div>
 						</div>
 						<hr>
-						<div class="row">	
+						<div class="row">
 							<div id="finances"  @if($quote->modalite=='Chèque' || $quote->modalite== '') style="display:none" @else style="display:contents"  @endif >
 								<div class="col-xs-12 col-sm-12 col-md-6">
 									<div class="form-group">
@@ -400,7 +400,7 @@
 
 
 				</div>
-				
+
             	<div class="tab-pane fade" id="custom-tabs-three-signature" role="tabpanel" aria-labelledby="custom-tabs-three-signature-tab"   >
 						<!--
 						<div class="row">
@@ -434,7 +434,7 @@
 						-->
 
 						<div class="row bg-lightgrey pt-3 pb-3">
-							
+
 							<div class="col-md-6 pl-3">
 								<form method="POST" action="{{ route('quotes.ajout_signature') }}"   enctype='multipart/form-data' >
 									@csrf
@@ -456,8 +456,8 @@
 								@endif
 							</div>
 						</div>
-					
-			
+
+
 				</div>
 
 			</div>
@@ -487,7 +487,7 @@
 
   	});
 
-	  
+
 	function calcul(){
 		var total_ht=0;
 		var total_ttc=0;
@@ -574,7 +574,7 @@
 	}
 
 
-  
+
   	function add_product(){
 
   	var _token = $('input[name="_token"]').val();
@@ -604,12 +604,12 @@
 					row+='<tr class="myproduct product bg-lightgrey tr-prod" id="row-pose-'+product+'"><td class="myproductpose"  data-prix="'+price+'" data-prixht="'+price_ht+'" data-id="'+product+'" data-pose="'+pose+'" data-tvapose="'+tvapose+'"   data-posettc="'+posettc+'" ><i>Pose '+product_text+'</i></td><td>'+pose+' €</td><td><input type="number" readonly step="1" min="1" class="number bg-transparent" value="1"   /></td><td><input  step="0.5" min="5.5" type="number" step="1" min="1" class="number bg-transparent" readonly value="'+tvapose+'"/> %</td><td><input id="totalpose-'+data+'" type="number" readonly class="total-prod number" value="'+posettc+'"/> €</td><td></td></tr>';
 				}
 
-				
+
 				$('#list-prods').append(row);
 			}else{
 				alert('Ce produit est déjà ajouté !')
 			}
-			
+
 		}
 	});
 	// attendre une seconde puis calculer

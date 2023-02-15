@@ -1,6 +1,6 @@
 
 @extends('layouts.pdf')
- 
+
  @section('content')
 	<style>
 		@font-face {
@@ -10,7 +10,7 @@
 			 font-family:'Nunito';
 			 padding:0px 10px 0px 10px;
 			 color:#0e334f;
-		 }		
+		 }
 		 .container{
 			 font-size:11px;
 		 }
@@ -22,7 +22,7 @@
 			letter-spacing:2px;
 			text-align:center;
 			height:40px!important;
-			
+
 		}
 		.product td{
 			padding-top:4px;
@@ -51,18 +51,18 @@
 			padding:5px 2px 2px 12px;
 		}
 		footer {
-            position: fixed; 
-            bottom: -60px; 
-            left: 0px; 
+            position: fixed;
+            bottom: -60px;
+            left: 0px;
             right: 0px;
-            height: 100px; 
+            height: 100px;
 			text-align: center;
 			font-size:11px;
 		}
 		header {
-			position: fixed; 
+			position: fixed;
 			top:0;
-			left: 0px; 
+			left: 0px;
             right: 0px;
 		}
 		.clearfix {
@@ -75,13 +75,13 @@
 		}
 
 		 .financement td{
-			text-align:center;			
+			text-align:center;
 		}
-		.financement{			
+		.financement{
 			background-color:#f6f6f6;
-			border:1px solid grey;	
+			border:1px solid grey;
 			padding:5px 5px;
-			margin-top:10px;		
+			margin-top:10px;
 		}
 		.pagenum:before {
         	content: counter(page);
@@ -90,10 +90,10 @@
 		counter-reset: page;
 		}
 	</style>
- 
+
  	<table>
 		<tr>
-			<td><img src="{!! public_path('img/logo.png')!!}"  width="80" style="margin-right:60px"></img></td><td><img src="{!! public_path('img/qualibat.jpg')!!}"  width="80" style="margin-right:60px"></img></td><td><img src="{!! public_path('img/qualisol.jpg')!!}"  width="80" style="margin-right:60px"></img></td><td><img src="{!! public_path('img/qualipv.jpg')!!}"  width="80" style="margin-right:60px"></img></td><td><img src="{!! public_path('img/qualipac.jpg')!!}"  width="80"></img></td>
+			<td><img src="{!! public_path('img/logo.png')!!}"  width="170" style="margin-right:20px"></img></td><td><img src="{!! public_path('img/qualibat.jpg')!!}"  width="80" ></img></td><td><img src="{!! public_path('img/qualisol.jpg')!!}"  width="100" style="margin-right:10px"></img></td><td><img src="{!! public_path('img/qualipv.jpg')!!}"  width="100" style="margin-right:10px"></img></td><td><img src="{!! public_path('img/qualipac.jpg')!!}"  width="100" style="margin-right:10px"></img></td><td><img src="{!! public_path('img/qualib.jpg')!!}"  width="80"></img></td>
 		</tr>
 	</table>
 	<div class="container">
@@ -101,17 +101,17 @@
 			<tr>
 				<td style="width:50%;">
 					<span><b>SARL GROUPE H.E.R</b></span><br>
-					<span>7 Avenue Didier Daurat</span><br>
-					<span>31700 BLAGNAC</span><br>
+					<span>11 RUE KARL MARX</span><br>
+					<span>82000 MONTAUBAN</span><br>
 					<span><b>Tél :</b> 09.77.59.57.42</span><br>
 					<span><b>Email :</b> contact@groupe-her.com</span><br><br>
-					<b>Adresse de livraison:</b><br>
+					<b>Adresse du chantier:</b><br>
 					<span>{{ $invoice->delivery_address ?? $invoice->customer()->first()->delivery_address }}</span><br>
 					<span>{{ $invoice->delivery_postal ?? $invoice->customer()->first()->delivery_postal }}, {{ $invoice->delivery_city ?? $invoice->customer()->first()->delivery_city }} - {{ $invoice->delivery_country ?? $invoice->customer()->first()->delivery_country }}</span><br>
 				</td>
 				<td style="width:50%;">
-					<b>Client:</b> {{ $invoice->customer()->first()->civility }} {{ $invoice->customer()->first()->lastname }} {{ $invoice->customer()->first()->name }} <br>			
-					<span style="margin-left:35px">{{ $invoice->customer()->first()->civility2 }} {{ $invoice->customer()->first()->lastname2 }} {{ $invoice->customer()->first()->name2 }}</span><br>			
+					<b>Client:</b> {{ $invoice->customer()->first()->civility }} {{ $invoice->customer()->first()->lastname }} {{ $invoice->customer()->first()->name }} <br>
+					<span style="margin-left:35px">{{ $invoice->customer()->first()->civility2 }} {{ $invoice->customer()->first()->lastname2 }} {{ $invoice->customer()->first()->name2 }}</span><br>
 					<b>Adresse:</b> <span>{{ $invoice->customer()->first()->address }}</span><br>
 					<span>{{ $invoice->customer()->first()->postal }}, {{ $invoice->customer()->first()->city }} - {{ $invoice->customer()->first()->country }}</span><br>
 					<span>@if( $invoice->customer()->first()->phone!='')<b>Tél :</b> {{ $invoice->customer()->first()->phone }}    @endif @if( $invoice->customer()->first()->email!='') <b>Email:</b> {{ $invoice->customer()->first()->email }} @endif</span>
@@ -142,8 +142,8 @@
 			<tbody >
 				<tr class="product " >
 					@foreach($items as $item)
-						@php 
-							$product=\App\Models\Product::find($item->product); 
+						@php
+							$product=\App\Models\Product::find($item->product);
 							$total_prod=floatval($product->prix_ht) * intval($item->qty);
 						@endphp
 						<tr class="product"  >
@@ -154,7 +154,7 @@
 								<td class="text" ><i>Pose {{$product->name}}</i></td><td>{{$product->pose}} €</td><td>1</td><td>{{$product->tva_pose}} %</td><td>{{$product->pose_ttc}} €</td>
 							</tr>
 						@endif
-					@endforeach											
+					@endforeach
 				</tr>
 
 				@if($invoice->remise>0)
@@ -172,7 +172,6 @@
 				@if($invoice->chaudiere!='')
 					Dépose de la chaudière individuelle autre qu'à condensation: <b> Chaudière à {{$invoice->chaudiere}}</b><br>
 				@endif
-				<small>Contrat d'entretien et vérification de l'installation de la pompe à chaleur AIR/EAU pendant 1 an avec déplacement inclus</small>
 			</div>
 			<div style="width:33%;float:left;">
 				<table class="totals">
@@ -191,7 +190,7 @@
 			<div style="width:65%;float:left;font-size:9px;padding-top:20px">
 				@if($invoice->modalite!='')
 					<b>Règlement par :</b> {{ $invoice->modalite }}
-				
+
 					@if($invoice->modalite!='Chèque')
 						<table class="financement">
 							<tr><td>Montant Financé :</td><td style="padding-right:20px;font-weight:bold;">{{$invoice->montant_finance}} €</td><td>Montant mensuel<br>de l'assurance :</td><td style="font-weight:bold;">{{$invoice->montant_assurance}} €</td></tr>
@@ -218,9 +217,8 @@
 
 	<footer>
 		SARL au capital de 50 000 euros<br>
-		SIRET 85156645500024 - R.C.S TOULOUSE - NAF 4321A<br>
+		SIRET 851 566 455 00032  - R.C.S TOULOUSE - NAF 4321A<br>
 		TVA intracommunautaire : FR95851566455<br>
 		<div style="float:right">Page <span class="pagenum"></span></div>
 	</footer>
  @endsection
- 

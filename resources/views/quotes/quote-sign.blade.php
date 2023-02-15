@@ -1,13 +1,13 @@
 
 @extends('layouts.pdf')
- 
+
  @section('content')
 	<style>
 		 body{
 			 font-family:'Nunito';
 			 padding:0px 20px 0px 20px;
 			 color:#0e334f;
-		 }		
+		 }
 		 .container{
 			 font-size:11px;
 		 }
@@ -35,11 +35,11 @@
 			padding:5px 2px 2px 12px;
 		}
 		footer {
-            position: fixed; 
-            bottom: -60px; 
-            left: 0px; 
+            position: fixed;
+            bottom: -60px;
+            left: 0px;
             right: 0px;
-            height: 100px; 
+            height: 100px;
 			text-align: center;
 			font-size:11px;
 		}
@@ -55,14 +55,14 @@
 		 .financement td{
 			text-align:center;
 		}
-		.financement{			
+		.financement{
 			background-color:#f6f6f6;
-			border:1px solid grey;	
+			border:1px solid grey;
 			padding:5px 5px;
-			margin-top:10px;		
+			margin-top:10px;
 		}
 	</style>
- 
+
  	<table>
 		<tr>
 			<td><img src="{!! public_path('img/logo.png')!!}"  width="120" style="margin-right:20px"></img></td><td><img src="{!! public_path('img/qualibat.jpg')!!}"  width="120"></img></td><td><img src="{!! public_path('img/qualisol.jpg')!!}"  width="120"></img></td><td><img src="{!! public_path('img/qualipv.jpg')!!}"  width="120"></img></td><td><img src="{!! public_path('img/qualipac.jpg')!!}"  width="120"></img></td>
@@ -76,13 +76,13 @@
 				 <span>31700 BLAGNAC</span><br>
 				 <span><b>Tél :</b> 09.77.59.57.42</span><br>
 				 <span><b>Email :</b> contact@groupe-her.com</span><br><br>
-				 <b>Adresse de livraison:</b><br>
+				 <b>Adresse du chantier:</b><br>
 				 <span>{{ $quote->delivery_address ?? $quote->customer()->first()->delivery_address }}</span><br>
 				 <span>{{ $quote->delivery_postal ?? $quote->customer()->first()->delivery_postal }}, {{ $quote->delivery_city ?? $quote->customer()->first()->delivery_city }} - {{ $quote->delivery_country ?? $quote->customer()->first()->delivery_country }}</span><br>
 			</div>
 			<div style="width:50%;float:left;height:100px">
-				<b>Client:</b> {{ $quote->customer()->first()->civility }}  {{ $quote->customer()->first()->lastname }} {{ $quote->customer()->first()->name }}<br>			
-				 <span style="margin-left:35px">{{ $quote->customer()->first()->civility2 }}  {{ $quote->customer()->first()->lastname2 }} {{ $quote->customer()->first()->name2 }}</span><br>			
+				<b>Client:</b> {{ $quote->customer()->first()->civility }}  {{ $quote->customer()->first()->lastname }} {{ $quote->customer()->first()->name }}<br>
+				 <span style="margin-left:35px">{{ $quote->customer()->first()->civility2 }}  {{ $quote->customer()->first()->lastname2 }} {{ $quote->customer()->first()->name2 }}</span><br>
 				 <b>Adresse:</b> <span>{{ $quote->customer()->first()->address }}</span><br>
 				 <span>{{ $quote->customer()->first()->postal }}, {{ $quote->customer()->first()->city }} - {{ $quote->customer()->first()->country }}</span><br>
 				 <span>@if( $quote->customer()->first()->phone!='')<b>Tél :</b> {{ $quote->customer()->first()->phone }}    @endif @if( $quote->customer()->first()->email!='') <b>Email:</b> {{ $quote->customer()->first()->email }} @endif</span>
@@ -114,19 +114,19 @@
 			<tbody >
 				<tr class="product " >
 					@foreach($items as $item)
-						@php 
-							$product=\App\Models\Product::find($item->product); 
+						@php
+							$product=\App\Models\Product::find($item->product);
 							$total_prod=floatval($product->prix) * intval($item->qty);
 						@endphp
 						<tr class="product "  >
 							<td>{{$product->name}}<br>{!!nl2br($product->description)!!}</td><td>{{$product->prix}} €</td><td>{{$item->qty}}</td><td>{{$item->tva}} %</td><td>{{$total_prod}} €</td>
 						</tr>
-					@endforeach											
+					@endforeach
 				</tr>
 				@if($quote->type_aide!='')
 				<!--<tr class="product" style="color:#f07f32">
 					<td>{{$quote->type_aide}}</td><td>- {{$quote->aide}}  €</td><td>1</td><td></td><td>- {{$quote->aide}}  €</td>
-				</tr>	-->		
+				</tr>	-->
 				@endif
 				@if($quote->remise>0)
 					<tr class="product" style="color:#f07f32">
@@ -162,7 +162,7 @@
 			<div style="width:65%;float:left;font-size:9px;padding-top:30px">
 				@if($quote->modalite!='')
 					<b>Règlement par :</b> {{ $quote->modalite }}
-				
+
 					@if($quote->modalite!='Chèque')
 						<table class="financement">
 							<tr><td>Montant Financé :</td><td style="padding-right:20px;font-weight:bold;">{{$quote->montant_finance}} €</td><td>Montant mensuel<br>de l'assurance :</td><td style="font-weight:bold;">{{$quote->montant_assurance}} €</td></tr>
@@ -175,7 +175,7 @@
 			</div>
 			<div style="width:35%;float:left;font-weight:bold;padding-top:30px">
 				@if(\App\Models\Signature::where('quote',$quote->id)->exists())
-					@php 
+					@php
 						$url_img=\App\Models\Signature::where('quote',$quote->id)->first()->user_image;
 					@endphp
 					<b>Signature:</b><br>
@@ -194,7 +194,7 @@
 		TVA intracommunautaire : FR95851566455<br>
 	</footer>
  @endsection
- 
+
 
 
 
