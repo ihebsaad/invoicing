@@ -256,7 +256,7 @@
 							</tbody>
 							<tfoot>
 								<tr class="product bg-grey">
-									<td>Remise</td><td><input id="remise" type="number"  class="number" style="width:100px" value="{{$invoice->remise}}" onchange="calcul()"/> €</td><td style="text-align:center;padding-right:15px">1</td><td><input type="number" class="number" id="tva_remise" name="tva_remise" style="width:100px" step="0.5" value="{{$invoice->tva_remise ?? '5.5'}}"/> %</td><td><input id="total_remise" readonly type="number"  class="number numbers bg-transparent" value="{{$invoice->total_remise}}" /> €</td><td></td>
+									<td>Remise</td><td>TTC: <input id="total_remise" type="number"  class="number" style="max-width:70px" value="{{$invoice->total_ ?? 0}}" onchange="calcul()"/> €</td><td style="text-align:center;padding-right:15px">1</td><td><input type="number" class="number" id="tva_remise" name="tva_remise" style="width:100px" step="0.5" value="{{$invoice->tva_remise ?? '5.5'}}"/> %</td><td></td><td></td>
 								</tr>
 							</tfoot>
 						</table>
@@ -431,8 +431,6 @@
 		$(this).find('.myproductpose').each(function(){
 				//id_item=$(this).data().id;
 				//qty= ($('#qty-'+id_item).val());
-				alert($(this).data().pose );
-				alert($(this).data().posettc );
 				total_ht+=(( $(this).data().pose  ));
 				total_ttc+=(( $(this).data().posettc));
 
@@ -442,8 +440,9 @@
 		$("#total_ht").val(total_ht);
 		total_tva = total_ttc-total_ht;
 	    $('#total_tva').val(total_tva);
+		var total_remise=parseFloat($('#total_remise').val());
+	/*
 
-		var remise=parseFloat($('#remise').val());
 		var tva_remise=parseFloat($('#tva_remise').val());
 
 		var total_remise=0;
@@ -454,10 +453,12 @@
 		}else{
 			$('#total_remise').val(0);
 		}
-	    $('#total_ttc').val(total_ttc);
+	*/
+	    //$('#total_ttc').val(total_ttc);
+		var aide=parseFloat($('#aide').val());
 
- 		/*var net=parseInt(total_ttc);
-		$('#net').val(net);*/
+ 		var net=parseFloat(total_ttc - aide - total_remise);
+		$('#net').val(net);
 		update_totals();
 	}
 
@@ -497,7 +498,6 @@
 	}
 	function total_prod(){
 		var total_prod=parseFloat($('#price').val()) * parseInt($('#qty').val()) ;
-		//alert(total_prod);
 		$('#total_prod').val(total_prod);
 	}
 
@@ -576,9 +576,9 @@ function delete_item(product,item){
 	var total_tva=	$('#total_tva').val();
 	var total_ttc=	$('#total_ttc').val();
 	var total_remise=	$('#total_remise').val();
-	var remise=	$('#remise').val();
-	var net=	total_ttc;
 	var tva_remise=	$('#tva_remise').val();
+	var remise= total_remise- (total_remise*tva_remise*0.01); //$('#remise').val();
+	var net=	total_ttc;
 
 	console.log('updating totals');
 	$.ajax({

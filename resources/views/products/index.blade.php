@@ -19,7 +19,7 @@
             </div>
         </div>
     </div>
-   
+
    <style>
 		.small-img{width:150px;}
    </style>
@@ -38,7 +38,7 @@
 		<tr>
             <td>{!! sprintf('%04d',$product->id) !!}</td>
             <td>{{ $product->name }}</td>
-            <td>{{ $product->categorie()->first()->name }}</td>
+            <td>{{ $product->categorie()->first()->name ?? '' }}</td>
             <td>{{ $product->prix }} €</td>
             <td>{!!nl2br($product->description) !!}</td>
             <td>
@@ -52,8 +52,8 @@
         </tr>
         @endforeach
     </table>
-  
-      
+
+
 @endsection
 @section('footer-scripts')
 
@@ -76,7 +76,7 @@
     $("#mytable").DataTable({
       "responsive": true, "lengthChange": false, "autoWidth": false,
       order: [[ 0, 'desc' ]],
-      buttons: [						 
+      buttons: [
                     {
                     extend: 'print',
                     text: '<i class="fa fa-print"></i>  Imprimer',
@@ -97,7 +97,7 @@
                     exportOptions: {
                     columns: [ 1,2,3,4,5,6]
                	}
-                    },				
+                    },
 				{
                     extend: 'pdf',
                     text: '<i class="fa fa-file-pdf"></i>  Pdf',

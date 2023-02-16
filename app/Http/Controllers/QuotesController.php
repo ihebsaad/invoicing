@@ -1,7 +1,7 @@
 <?php
-  
+
 namespace App\Http\Controllers;
-   
+
 use App\Models\Quote;
 use App\Models\Invoice;
 use App\Models\Customer;
@@ -19,8 +19,8 @@ class QuotesController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-    } 
-    
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -28,14 +28,14 @@ class QuotesController extends Controller
      */
     public function index()
     {
-        if (auth()->user()->user_type != 'admin') 
+        if (auth()->user()->user_type != 'admin')
             $quotes = Quote::where('par',auth()->user()->id)->orderBy('id','desc')->get();
         else
         $quotes = Quote::orderBy('id','desc')->get();
-        
+
         return view('quotes.index',compact('quotes'));
     }
-     
+
     /**
      * Show the form for creating a new resource.
      *
@@ -48,7 +48,7 @@ class QuotesController extends Controller
         $customer_id=0;
         return view('quotes.create',compact('customers','countries','customer_id'));
     }
-    
+
 
     public function add($customer_id)
     {
@@ -79,11 +79,11 @@ class QuotesController extends Controller
         $reference= date('Ymd').$name[0].$lastname[0].sprintf('%03d',$num);
         $data['reference']=$reference;
         $quote=Quote::create($data);
-     
+
         return redirect()->route('quotes.edit',['quote'=>$quote])
                         ->with('success','Devis créé avec succès.');
     }
-     
+
     /**
      * Display the specified resource.
      *
@@ -93,8 +93,8 @@ class QuotesController extends Controller
     public function show(Quote $quote)
     {
         return view('quotes.show',compact('quote'));
-    } 
-     
+    }
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -109,7 +109,7 @@ class QuotesController extends Controller
         $countries=CustomersController::countries();
         return view('quotes.edit',compact('quote','customers','products','items','countries'));
     }
-    
+
     /**
      * Update the specified resource in storage.
      *
@@ -125,13 +125,13 @@ class QuotesController extends Controller
         $data['date']=str_replace('/','-',$data['date']);
         $data['date']=Carbon::parse($data['date'])->format('Y-m-d');
         }
-        
+
         $quote->update($data);
-    
+
         return redirect()->route('quotes.edit',['quote'=>$quote])
                         ->with('success','Devis modifié');
     }
-    
+
     /**
      * Remove the specified resource from storage.
      *
@@ -141,11 +141,11 @@ class QuotesController extends Controller
     public function destroy(Quote $quote)
     {
         $quote->delete();
-    
+
         return redirect()->route('quotes.index')
                         ->with('success','Devis supprimé ');
     }
-	
+
 
 
     public function update_totals(Request $request)
@@ -179,27 +179,27 @@ class QuotesController extends Controller
 
 
     public function show_pdf($id)
-	{   
-        $quote = Quote::find($id);
+	{
+        $invoice = Quote::find($id);
+        $type='Devis';
+        $reference= $invoice->reference;
+        $user= User::find($invoice->par) ; $par = $user->name.' '.$user->lastname;
 
-        $reference= $quote->reference;
-        $user= User::find($quote->par) ; $par = $user->name.' '.$user->lastname;
+        $date=Carbon::parse($invoice->created_at)->format('Y-m');
+        $date_facture=Carbon::parse($invoice->date)->format('d/m/Y');
 
-        $date=Carbon::parse($quote->created_at)->format('Y-m');
-        $date_facture=Carbon::parse($quote->date)->format('d/m/Y');
-        
         $products = Product::all();
         $items = Item::where('quote',$id)->get();
         $count=count($items);
 
-        $pdf = PDF::loadView('quotes.quote', compact('quote','reference','date_facture','products','items','par','count'));
+        $pdf = PDF::loadView('quotes.quote', compact('invoice','type','reference','date_facture','products','items','par','count'));
         return $pdf->stream('quote-'.$id.'.pdf');
         //return view('quotes.quote', compact('quote','reference','date_facture','products','items','par'));
 
     }
 
     public function download_pdf($id)
-	{   
+	{
         $quote = Quote::find($id);
         $date=Carbon::parse($quote->created_at)->format('Y-m');
         $date_facture=Carbon::parse($quote->date)->format('d/m/Y');
@@ -215,7 +215,7 @@ class QuotesController extends Controller
     }
 
     public function download_pdf_signature($id)
-	{   
+	{
         $quote = Quote::find($id);
         $date=Carbon::parse($quote->created_at)->format('Y-m');
         $date_facture=Carbon::parse($quote->date)->format('d/m/Y');
@@ -231,14 +231,14 @@ class QuotesController extends Controller
     }
 
     public function save_invoice($id)
-	{   
+	{
         $quote = Quote::find($id);
 
         $user_id=auth()->user()->id;
         $name=strtoupper(User::find($user_id)->name);
         $lastname=strtoupper(User::find($user_id)->lastname);
         $num=Invoice::where('par',$user_id)->where('created_at','like',  date('Y-m-d').'%')->count()+1;
- 
+
         $invoice=Invoice::create([
             'description'=>$quote->description,
             'adresse'=>$quote->adresse,
@@ -297,7 +297,7 @@ class QuotesController extends Controller
         {$file=$request->file('devis_signe');
          $name =  $file->getClientOriginalName();
          $path = public_path()."/fichiers/";
- 
+
           $file->move($path, $name);
         }
           Quote::where('id', $id)->update(array('devis_signe' => $name));

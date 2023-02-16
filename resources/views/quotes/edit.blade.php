@@ -270,7 +270,7 @@
 							</tbody>
 							<tfoot>
 								<tr class="product bg-grey">
-									<td>Remise</td><td><input id="remise" type="number"  class="number" style="max-width:70px" value="{{$quote->remise}}" onchange="calcul()"/> €</td><td style="text-align:center;padding-right:15px">1</td><td><input type="number" class="number" id="tva_remise" name="tva_remise" style="width:100px" step="0.5" value="{{$quote->tva_remise ?? '5.5'}}"/> %</td><td><input id="total_remise" readonly type="number"  class="number numbers bg-transparent" value="{{$quote->total_remise}}" /> €</td><td></td>
+									<td>Remise</td><td>TTC: <input id="total_remise" type="number"  class="number" style="max-width:70px" value="{{$quote->total_remise ?? 0}}" onchange="calcul()"/> €</td><td style="text-align:center;padding-right:15px">1</td><td><input type="number" class="number" id="tva_remise" name="tva_remise" style="width:100px" step="0.5" value="{{$quote->tva_remise ?? '5.5'}}"/> %</td><td></td><td></td>
 								</tr>
 							</tfoot>
 						</table>
@@ -293,7 +293,7 @@
 										</td>
 										<td style="padding-right:0">
 											<div class="form-group">
-												<input type="number" class="form-control" style="max-width:100px" min="0" value="{{$quote->aide}}" id="aide" onchange="calcul();"/>
+												<input type="number" class="form-control" style="max-width:100px" min="0" value="{{$quote->aide ?? 0}}" id="aide" onchange="calcul();"/>
 											</div>
 										</td>
 										<td style="padding:0 10px 0 0">€</td>
@@ -503,8 +503,6 @@
 			$(this).find('.myproductpose').each(function(){
 				//id_item=$(this).data().id;
 				//qty= ($('#qty-'+id_item).val());
-				alert($(this).data().pose );
-				alert($(this).data().posettc );
 				total_ht+=(( $(this).data().pose  ));
 				total_ttc+=(( $(this).data().posettc));
 
@@ -514,7 +512,7 @@
 		$("#total_ht").val(total_ht);
 		total_tva = total_ttc-total_ht;
 	    $('#total_tva').val(total_tva);
-
+	/*
 		var remise=parseFloat($('#remise').val());
 		var tva_remise=parseFloat($('#tva_remise').val());
 
@@ -526,10 +524,12 @@
 		}else{
 			$('#total_remise').val(0);
 		}
+	*/
+	var total_remise= parseFloat($('#total_remise').val());
 	    $('#total_ttc').val(total_ttc);
 
 		var aide=parseFloat($('#aide').val());
-		var net=parseInt(total_ttc-aide);
+		var net=(total_ttc- aide - total_remise);
 		$('#net').val(net);
 		update_totals();
 	}
@@ -648,11 +648,12 @@
 	var total_tva=	$('#total_tva').val();
 	var total_ttc=	$('#total_ttc').val();
 	var total_remise=	$('#total_remise').val();
-	var remise=	$('#remise').val();
+	var tva_remise=	$('#tva_remise').val();
+	var remise= total_remise- (total_remise*tva_remise*0.01); //$('#remise').val();
 	var aide=	$('#aide').val();
 	var type_aide=	$('#type_aide').val();
 	var net=	$('#net').val();
-	var tva_remise=	$('#tva_remise').val();
+
 
 	$.ajax({
 		url: "{{ route('update_totals') }}",
