@@ -20,8 +20,9 @@ use App\Http\Controllers\UsersController;
 use App\Http\Controllers\InvoicesController;
 use App\Http\Controllers\QuotesController;
 use App\Http\Controllers\CustomersController;
+use App\Http\Controllers\ModelesController;
 
-  
+
 Route::resource('shops', ShopsController::class);
 Route::resource('products', ProductsController::class);
 Route::resource('categories', CategoriesController::class);
@@ -29,6 +30,7 @@ Route::resource('users', UsersController::class);
 Route::resource('invoices', InvoicesController::class);
 Route::resource('quotes', QuotesController::class);
 Route::resource('customers', CustomersController::class);
+Route::resource('modeles', ModelesController::class);
 
 Route::get('/', function () {
     return view('welcome');
@@ -46,7 +48,7 @@ Route::get('/loginAs/{id}', [UsersController::class, 'loginAs'])->name('loginAs'
 Route::post('/users/ajoutimage',[UsersController::class, 'ajoutimage'])->name('users.ajoutimage');
 Route::post('/activer/{id}', [UsersController::class, 'activer'])->name('activer');
 Route::post('/desactiver/{id}', [UsersController::class, 'desactiver'])->name('desactiver');
- 
+
 //Signature
 Route::get('signatures', [App\Http\Controllers\SignaturePadController::class, 'index']);
 Route::get('signature/{quote_id}', [App\Http\Controllers\SignaturePadController::class, 'signature'])->name('signature');
@@ -72,3 +74,6 @@ Route::post('/quotes/ajout_signature', [QuotesController::class, 'ajout_signatur
 //products
 Route::post('/add_item',[ProductsController::class, 'add_item'])->name('add_item');
 Route::post('/delete_item',[ProductsController::class, 'delete_item'])->name('delete_item');
+
+//modeles
+Route::post('/additem',[ModelesController::class, 'add_item'])->name('modeles.add_item');

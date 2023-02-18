@@ -193,6 +193,7 @@ class InvoicesController extends Controller
     public function show_pdf($id)
 	{
         $invoice = Invoice::find($id);
+        $type='Facture';
         $date=Carbon::parse($invoice->created_at)->format('Y-m');
         $date_facture=Carbon::parse($invoice->date)->format('d/m/Y');
         $reference= $invoice->reference ;
@@ -200,7 +201,7 @@ class InvoicesController extends Controller
         $items = Item::where('invoice',$id)->get();
         $count=count($items);
 
-        $pdf = PDF::loadView('invoices.invoice', compact('invoice','reference','date_facture','items','par','count'));
+        $pdf = PDF::loadView('invoices.invoice', compact('invoice','type','reference','date_facture','items','par','count'));
         return $pdf->stream('Facture-'.$reference.'.pdf');
 
     }
@@ -208,6 +209,7 @@ class InvoicesController extends Controller
     public function download_pdf($id)
 	{
         $invoice = Invoice::find($id);
+        $type='Facture';
         $date=Carbon::parse($invoice->created_at)->format('Y-m');
         $date_facture=Carbon::parse($invoice->date)->format('d/m/Y');
         $reference= $invoice->reference ;
@@ -216,7 +218,7 @@ class InvoicesController extends Controller
         $items = Item::where('invoice',$id)->get();
         $count=count($items);
 
-        $pdf = PDF::loadView('invoices.invoice', compact('invoice','reference','date_facture','items','count','par','count'));
+        $pdf = PDF::loadView('invoices.invoice', compact('invoice','type','reference','date_facture','items','count','par','count'));
         return $pdf->download('Facture-'.$reference.'.pdf');
 
     }

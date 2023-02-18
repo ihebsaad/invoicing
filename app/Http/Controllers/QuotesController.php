@@ -200,16 +200,17 @@ class QuotesController extends Controller
 
     public function download_pdf($id)
 	{
-        $quote = Quote::find($id);
-        $date=Carbon::parse($quote->created_at)->format('Y-m');
-        $date_facture=Carbon::parse($quote->date)->format('d/m/Y');
+        $invoice = Quote::find($id);
+        $type='Devis';
+        $date=Carbon::parse($invoice->created_at)->format('Y-m');
+        $date_facture=Carbon::parse($invoice->date)->format('d/m/Y');
         $user= User::find($invoice->par) ; $par = $user->name.' '.$user->lastname;
 
-        $reference= $quote->reference;
+        $reference= $invoice->reference;
         $products = Product::all();
         $items = Item::where('quote',$id)->get();
         $count=count($items);
-        $pdf = PDF::loadView('quotes.quote', compact('quote','reference','date_facture','products','items','par','count'));
+        $pdf = PDF::loadView('quotes.quote', compact('invoice','type','reference','date_facture','products','items','par','count'));
         return $pdf->download('quote-'.$reference.'.pdf');
 
     }

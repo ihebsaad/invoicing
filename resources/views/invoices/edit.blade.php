@@ -175,7 +175,7 @@
 								<div class="form-group">
 									<strong>Type de logement:</strong>
 									<select class="form-control"   name="logement"  value="{{ $invoice->logement}}" style="max-width:300px">
-										<option value="Maison" @if($invoice->logement=='Maison') selected="selected" @endif >Maison</option>
+										<option value="Maison individuel" @if($invoice->logement=='Maison individuel') selected="selected" @endif >Maison individuel</option>
 										<option value="Appartement" @if($invoice->logement=='Appartement') selected="selected" @endif >Appartement</option>
 									</select>								</div>
 							</div>
@@ -256,7 +256,7 @@
 							</tbody>
 							<tfoot>
 								<tr class="product bg-grey">
-									<td>Remise</td><td>TTC: <input id="total_remise" type="number"  class="number" style="max-width:70px" value="{{$invoice->total_ ?? 0}}" onchange="calcul()"/> €</td><td style="text-align:center;padding-right:15px">1</td><td><input type="number" class="number" id="tva_remise" name="tva_remise" style="width:100px" step="0.5" value="{{$invoice->tva_remise ?? '5.5'}}"/> %</td><td></td><td></td>
+									<td>Remise Catalogue Groupe HER ENR</td><td>TTC: <input id="total_remise" type="number"  class="number" style="max-width:70px" value="{{$invoice->total_ ?? 0}}" onchange="calcul()"/> €</td><td style="text-align:center;padding-right:15px">1</td><td><input type="number" class="number" id="tva_remise" name="tva_remise" style="width:100px" step="0.5" value="{{$invoice->tva_remise ?? '5.5'}}"/> %</td><td></td><td></td>
 								</tr>
 							</tfoot>
 						</table>

@@ -2,9 +2,32 @@
 @extends('layouts.pdf')
 
 @section('content')
+
+    <script type="text/php">
+
+    if (isset($pdf)) {
+     //Shows number center-bottom of A4 page with $x,$y values
+        $x = 520;  //X-axis i.e. vertical position
+        $y = 820; //Y-axis horizontal position
+        $text = "Page {PAGE_NUM} / {PAGE_COUNT}";  //format of display message
+        $font =  $fontMetrics->get_font("helvetica", "bold");
+        $size = 8;
+        $color = array(0,0,0);
+        $color2 = array(136,136,136);
+        $word_space = 0.0;  //  default
+        $char_space = 0.0;  //  default
+        $angle = 0.0;   //  default
+        $pdf->page_text($x, $y, $text, $font, $size, $color, $word_space, $char_space, $angle);
+        $pdf->page_text(30, $y,'{{$type}} N° {{$reference}}' , $font, $size, $color, $word_space, $char_space, $angle);
+    }
+
+    </script>
    <style>
 	   @font-face {
 		   font-family: 'Nunito';
+	   }
+	   .text-right{
+			text-align:right;
 	   }
 		.body{
 			font-family:'Nunito';
@@ -38,7 +61,7 @@
 		   font-size:9px!important;
 		   font-weight:normal!important;
 		   text-align:left!important;
-
+		font-family:halvetica,sans-serif!important;
 	   }
 	   .totals{
 		   float:right;
@@ -120,6 +143,11 @@
 	   .text-center{
 		   text-align:center;
 	   }
+	   	body { counter-increment: pageplus1, page; counter-reset: pageplus1 1; }
+
+		.pageplus1:after {
+		content: counter(pageplus1);
+		}
    </style>
    <section class="body">
 
@@ -132,26 +160,26 @@
 	   <table style="width:100%;">
 		   <tr>
 			   <td style="width:50%;">
-				   <span><b>SARL GROUPE H.E.R</b></span><br>
+				   <span><b>SARL GROUPE H.E.R ENR</b></span><br>
 				   <span>11 RUE KARL MARX</span><br>
 				   <span>82000 MONTAUBAN</span><br>
 				   <span><b>Tél :</b> 09.77.59.57.42</span><br>
 				   <span><b>Email :</b> contact@groupe-her.com</span><br><br>
 				   <b>Adresse du chantier:</b><br>
 				   <span>{{ $invoice->delivery_address ?? $invoice->customer()->first()->delivery_address }}</span><br>
-				   <span>{{ $invoice->delivery_postal ?? $invoice->customer()->first()->delivery_postal }}, {{ $invoice->delivery_city ?? $invoice->customer()->first()->delivery_city }} - {{ $invoice->delivery_country ?? $invoice->customer()->first()->delivery_country }}</span><br>
+				   @if($invoice->delivery_postal!='')<span>{{ $invoice->delivery_postal ?? $invoice->customer()->first()->delivery_postal }}, {{ $invoice->delivery_city ?? $invoice->customer()->first()->delivery_city }} - {{ $invoice->delivery_country ?? $invoice->customer()->first()->delivery_country }}</span><br>@endif
 			   </td>
 			   <td style="width:50%;">
 				   <b>Client:</b> {{ $invoice->customer()->first()->civility }} {{ $invoice->customer()->first()->lastname }} {{ $invoice->customer()->first()->name }} <br>
-				   <span style="margin-left:35px">{{ $invoice->customer()->first()->civility2 }} {{ $invoice->customer()->first()->lastname2 }} {{ $invoice->customer()->first()->name2 }}</span><br>
+				   @if($invoice->customer()->first()->lastname2!='')<span style="margin-left:35px"{{ $invoice->customer()->first()->civility2 }} {{ $invoice->customer()->first()->lastname2 }} {{ $invoice->customer()->first()->name2 }}</span><br>@endif
 				   <b>Adresse:</b> <span>{{ $invoice->customer()->first()->address }}</span><br>
-				   <span>{{ $invoice->customer()->first()->postal }}, {{ $invoice->customer()->first()->city }} - {{ $invoice->customer()->first()->country }}</span><br>
+				   @if($invoice->customer()->first()->postal!='') <span>{{ $invoice->customer()->first()->postal }}, {{ $invoice->customer()->first()->city }} - {{ $invoice->customer()->first()->country }}</span><br>@endif
 				   <span>@if( $invoice->customer()->first()->phone!='')<b>Tél :</b> {{ $invoice->customer()->first()->phone }}    @endif @if( $invoice->customer()->first()->email!='') <b>Email:</b> {{ $invoice->customer()->first()->email }} @endif</span>
 				   <br>
 			   </td>
 		   </tr>
 	   </table>
-	   <table style="width:100%;margin-top:20px;margin-bottom:20px">
+	   <table style="width:100%;margin-top:5px;margin-bottom:5px">
 		   <tr>
 			   <td style="width:50%;">
 				   @if( $invoice->logement!='')<b>Logement :</b>{{ $invoice->logement }}    @endif  @if($invoice->surface!='')<b>Surface chauffée (m²) :</b>   {{ $invoice->surface }}<br>@endif
@@ -165,7 +193,7 @@
 	   </table>
 
 
-	   <table class="tab-products" style="min-height:150px;width:100%;margin-top:10px;margin-bottom:10px">
+	   <table class="tab-products" style="min-height:150px;width:100%;margin-top:5px;margin-bottom:5px">
 		   <thead class="th-products">
 			   <tr>
 				   <th style="width:40%">Désignation</th><th style="width:6%">Qté</th><th style="width:8%">P.U HT</th><th style="width:10%">Montant HT</th><th style="width:6%">TVA</th><th style="width:10%">Montant TTC</th>
@@ -192,7 +220,7 @@
 
 			   @if($invoice->remise>0)
 				   <tr class="product" style="color:#f07f32">
-					   <td>Remise</td><td style="text-align:center"></td><td> {{$invoice->remise}}  €</td><td> {{$invoice->remise}}  €</td><td> {{$invoice->tva_remise ?? '5.5'}} %</td><td>{{$invoice->total_remise}} €</td>
+					   <td>Remise Catalogue Groupe HER ENR</td><td style="text-align:center"></td><td> {{$invoice->remise}}  €</td><td> {{$invoice->remise}}  €</td><td> {{$invoice->tva_remise ?? '5.5'}} %</td><td>{{$invoice->total_remise}} €</td>
 				   </tr>
 			   @endif
 		   </tbody>
@@ -203,43 +231,43 @@
 			   {!!nl2br($invoice->description) !!}
 			   <div class="clearfix"></div>
 			   @if($invoice->chaudiere!='')
-				   Dépose de la chaudière individuelle autre qu'à condensation: <b> Chaudière à {{$invoice->chaudiere}}</b><br>
+				   Dépose de la chaudière individuelle: <b> Chaudière à {{$invoice->chaudiere}}</b><br>
 			   @endif
 		   </div>
 		   <div style="width:33%;float:left;">
 			   <table class="totals">
-			   <tr><td colspan="2">Total HT</td><td>{{$invoice->total_ht}} €</td></tr>
-			   <tr><td colspan="2">Total TVA</td><td>{{$invoice->total_tva}} €</td></tr>
-			   <tr><td colspan="2">Total TTC</td><td>{{$invoice->total_ttc}} €</td></tr>
+			   <tr><td colspan="2">Total HT</td><td class="text-right">{{number_format($invoice->total_ht,2,',',' ')}} €</td></tr>
+			   <tr><td colspan="2">Total TVA</td><td class="text-right">{{number_format($invoice->total_tva,2,',',' ')}} €</td></tr>
+			   <tr><td colspan="2">Total TTC</td><td class="text-right">{{number_format($invoice->total_ttc,2,',',' ')}} €</td></tr>
 			   @if($invoice->aide>0)
-			   <tr style="color:#f07f32"><td colspan="2" style=";font-size:9px;max-width:90px;">Montant Estimatif<br>{{$invoice->type_aide}}</td><td>{{$invoice->aide}} €</td></tr>
+			   <tr style="color:#f07f32"><td colspan="2" style=";font-size:9px;max-width:90px;">Montant Estimatif<br>{{$invoice->type_aide}}</td><td class="text-right">{{number_format($invoice->aide,2,',',' ')}} €</td></tr>
 			   @endif
-			   <tr><td colspan="2">Net à payer</td><td>{{$invoice->net}} €</td></tr>
+			   <tr><td colspan="2">Net à payer</td><td class="text-right">{{number_format($invoice->net,2,',',' ')}} €</td></tr>
 			   </table>
 		   </div>
 	   </div>
 	   <div class="clearfix"></div>
 	   <div style="width:100%;page-break-inside: avoid;">
-		   <div style="width:65%;float:left;font-size:9px;padding-top:10px">
+		   <div style="width:55%;float:left;font-size:9px;padding-top:10px">
 			   @if($invoice->modalite!='')
 				   <b>Règlement par :</b> {{ $invoice->modalite }}
 
 				   @if($invoice->modalite!='Chèque')
 					   <table class="financement">
-						   <tr><td>Montant Financé :</td><td style="padding-right:20px;font-weight:bold;">{{$invoice->montant_finance}} €</td><td>Montant mensuel<br>de l'assurance :</td><td style="font-weight:bold;">{{$invoice->montant_assurance}} €</td></tr>
-						   <tr><td>Report 1ère échéance :</td><td style="padding-right:20px;font-weight:bold;">{{$invoice->report_echeance}} jours</td><td>Taux nominal :</td><td style="font-weight:bold;">{{$invoice->taux_nominal}} %</td></tr>
-						   <tr><td>Nombre de mensualités :</td><td style="padding-right:20px;font-weight:bold;">{{$invoice->mensualites}}</td><td>TAEG :</td><td style="font-weight:bold;">{{$invoice->taeg}} %</td></tr>
-						   <tr><td>Montant mensuel<br>sans assurance :</td><td style="padding-right:20px;font-weight:bold;">{{$invoice->montant_mensuel}} €</td><td>Solde de la pose :</td><td style="font-weight:bold;">{{$invoice->pose}} €</td></tr>
+						   <tr><td>Montant Financé :</td><td class="text-right" style="padding-right:20px;font-weight:bold;">{{number_format($invoice->montant_finance,2,',',' ')}} €</td><td>Montant mensuel<br>de l'assurance :</td><td style="font-weight:bold;" class="text-right">{{number_format($invoice->montant_assurance,2,',',' ')}} €</td></tr>
+						   <tr><td>Report 1ère échéance :</td><td class="text-right" style="padding-right:20px;font-weight:bold;">{{$invoice->report_echeance}} jours</td><td>Taux nominal :</td><td style="font-weight:bold;" class="text-right">{{$invoice->taux_nominal}} %</td></tr>
+						   <tr><td>Nombre de mensualités :</td><td class="text-right" style="padding-right:20px;font-weight:bold;">{{$invoice->mensualites}}</td><td>TAEG :</td><td style="font-weight:bold;" class="text-right">{{$invoice->taeg}} %</td></tr>
+						   <tr><td>Montant mensuel<br>sans assurance :</td><td class="text-right" style="padding-right:20px;font-weight:bold;">{{number_format($invoice->montant_mensuel,2,',',' ')}} €</td><td>Solde de la pose :</td><td style="font-weight:bold;" class="text-right">{{number_format($invoice->pose,2,',',' ')}} €</td></tr>
 					   </table>
 				   @endif
 			   @endif
 		   </div>
-		   <div style="width:35%;float:left;font-weight:bold;padding-top:5px">
-			   <table style="width:300px;font-size:10px">
+		   <div style="width:45%;float:left;font-weight:bold;padding-top:15px">
+			   <table style="width:100%;font-size:10px">
 				   <tr rowspan="2"><td>Fait à</td><td></td><td>Le</td><td></td></tr>
 				   <tr><td colspan="4">Signature précédée de la mention "Bon pour accord"</td></tr>
 			   </table>
-			   <div style="border:1px solid grey;width:100%;height:80px">
+			   <div style="border:1px solid grey;width:100%;height:120px">
 			   </div>
 		   </div>
 	   </div>
@@ -252,7 +280,6 @@
 	   SARL au capital de 50 000 euros<br>
 	   SIRET 851 566 455 00032  - R.C.S TOULOUSE - NAF 4321A<br>
 	   TVA intracommunautaire : FR95851566455<br>
-	   <div style="float:right">Page <span class="pagenum"></span></div>
    </footer>
 
 <!--page conditions de ventes--->
