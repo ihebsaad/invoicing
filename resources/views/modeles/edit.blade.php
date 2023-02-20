@@ -27,6 +27,16 @@
 				@method('PUT')
 
 				<div class="row">
+					<div class="col-xs-12 col-sm-12 col-md-7">
+						<div class="form-group">
+							<strong>Matière:</strong>
+							<select  name="genre" required class="form-control"  >
+								<option></option>
+								<option  @if( $modele->genre==1)  selected="selected" @endif value="1">PVC</option>
+								<option  @if( $modele->genre==2)  selected="selected" @endif  value="2">Aluminium</option>
+							</select>
+						</div>
+					</div>
 				<div class="col-xs-12 col-sm-12 col-md-7">
 					<div class="form-group">
 						<strong>Type:</strong>

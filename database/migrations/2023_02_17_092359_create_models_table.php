@@ -16,6 +16,7 @@ class CreateModelsTable extends Migration
         Schema::create('modeles', function (Blueprint $table) {
             //
             $table->bigIncrements('id');
+            $table->integer('genre'); //1 PVC, 2 Alum
             $table->integer('type'); //Fenêtre à souflet 10 , Fenêtre / porte fenêtre 20  /
             $table->integer('couleur')->default(1);
             $table->integer('hauteur');

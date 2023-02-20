@@ -1,19 +1,19 @@
 <?php
-  
+
 namespace App\Http\Controllers;
-   
+
 use App\Models\Modele;
 use App\Models\Categorie;
 use App\Models\Item;
 use Illuminate\Http\Request;
-  
+
 class ModelesController extends Controller
 {
 
     public function __construct()
     {
         $this->middleware('auth');
-    } 
+    }
 
     /**
      * Display a listing of the resource.
@@ -23,10 +23,10 @@ class ModelesController extends Controller
     public function index()
     {
         $modeles = Modele::orderBy('id','desc')->get();
-    
+
         return view('modeles.index',compact('modeles'));
     }
-     
+
     /**
      * Show the form for creating a new resource.
      *
@@ -36,7 +36,7 @@ class ModelesController extends Controller
     {
         return view('modeles.create');
     }
-    
+
     /**
      * Store a newly created resource in storage.
      *
@@ -52,9 +52,9 @@ class ModelesController extends Controller
             'largeur' => 'required',
             'prix' => 'required',
         ]);
-    
+
         //Modele::create($request->all());
-		
+
 		$type=$request->get('type');
         $couleur=$request->get('couleur');
         $hauteur=$request->get('hauteur');
@@ -68,14 +68,14 @@ class ModelesController extends Controller
                 'hauteur'=>$hauteur,
                 'largeur'=>$largeur,
                 'prix'=>$prix,
-            ]);            
-        
-     
+            ]);
+
+
         return redirect()->route('modeles.create')
                         ->with('success','créé avec succès.');
 		}
     }
-     
+
     /**
      * Display the specified resource.
      *
@@ -85,8 +85,8 @@ class ModelesController extends Controller
     public function show(Modele $modele)
     {
         return view('modeles.show',compact('modele'));
-    } 
-     
+    }
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -94,10 +94,10 @@ class ModelesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit(Modele $modele)
-    {        
+    {
         return view('modeles.edit',compact('modele'));
     }
-    
+
     /**
      * Update the specified resource in storage.
      *
@@ -114,13 +114,13 @@ class ModelesController extends Controller
             'largeur' => 'required',
             'prix' => 'required',
 			]);
-    
+
         $modele->update($request->all());
-    
+
         return redirect()->route('modeles.index')
                         ->with('success','modifié avec succès');
     }
-    
+
     /**
      * Remove the specified resource from storage.
      *
@@ -130,11 +130,11 @@ class ModelesController extends Controller
     public function destroy(Modele $modele)
     {
         $modele->delete();
-    
+
         return redirect()->route('modeles.index')
                         ->with('success','supprimé avec succès');
     }
-	
+
 
     public function add_item(Request $request)
     {
@@ -151,7 +151,7 @@ class ModelesController extends Controller
                 'hauteur'=>$hauteur,
                 'largeur'=>$largeur,
                 'prix'=>$prix,
-            ]);            
+            ]);
             return $modele->id;
         }else{
 			$modele= Modele::where('type',$type)->where('couleur',$couleur)->where('hauteur',$hauteur)->where('largeur',$largeur)->first();
@@ -160,7 +160,22 @@ class ModelesController extends Controller
 
     }
 
+    public function pricing(Request $request)
+    {
+        $genre=$request->get('genre');
+        $type=$request->get('type');
+        $couleur=$request->get('couleur');
+        $hauteur=$request->get('hauteur');
+        $largeur=$request->get('largeur');
+        $prix=$request->get('prix');
+
+        $modele=Modele::where('genre',$genre)->where('type',$type)->where('couleur',$couleur)->where('hauteur',$hauteur)->where('largeur',$largeur)->first();
+        if (isset($modele))
+            return $modele->prix;
+        else
+            return 0;
+
+    }
 
 
-	
 }

@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Quote extends Model
 {
     use HasFactory;
-	
+
 	protected $fillable = [
         'devis_signe',
         'name',
@@ -34,6 +34,7 @@ class Quote extends Model
         'taeg',
         'pose',
         'customer',
+        'acompte',
         'net',
         'par',
         'surface',
@@ -45,7 +46,7 @@ class Quote extends Model
         'reference',
         'tva_remise'
     ];
-	
+
 		public function customer()
 	{
 		return $this->belongsTo('App\Models\Customer', 'customer', 'id');
@@ -55,5 +56,5 @@ class Quote extends Model
 	{
 		return $this->belongsTo('App\Models\User', 'par', 'id');
 	}
-	
+
 }

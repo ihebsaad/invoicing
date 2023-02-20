@@ -8,6 +8,7 @@ use App\Models\Customer;
 use App\Models\Product;
 use App\Models\Item;
 use App\Models\User;
+use App\Models\Modele;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Barryvdh\DomPDF\Facade\Pdf;
@@ -110,6 +111,17 @@ class QuotesController extends Controller
         return view('quotes.edit',compact('quote','customers','products','items','countries'));
     }
 
+    public function edit_men($id)
+    {
+        $quote=Quote::find($id);
+        $customers = Customer::all();
+        $products = Product::all();
+        $modeles = Modele::all();
+        $items = Item::where('quote',$quote->id)->get();
+        $countries=CustomersController::countries();
+        return view('quotes.edit_men',compact('quote','customers','products','items','countries'));
+    }
+
     /**
      * Update the specified resource in storage.
      *
@@ -160,6 +172,7 @@ class QuotesController extends Controller
         $aide=$request->get('aide');
         $type_aide=$request->get('type_aide');
         $net=$request->get('net');
+        $acompte=$request->get('acompte');
         $tva_remise=$request->get('tva_remise');
 
         Quote::where('id',$quote)->update(
@@ -172,6 +185,7 @@ class QuotesController extends Controller
                 'aide'=>$aide,
                 'type_aide'=>$type_aide,
                 'net'=>$net,
+                'acompte'=>$acompte,
                 'tva_remise'=>$tva_remise,
             ]
         );

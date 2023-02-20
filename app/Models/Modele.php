@@ -8,9 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Modele extends Model
 {
     use HasFactory;
-	
+
 	protected $fillable = [
-        'type',
+        'genre', // PVC ou Aluminuim
+        'type', // 1 à 6 Fenêtre à souflet ..
         'couleur',
         'hauteur',
         'largeur',

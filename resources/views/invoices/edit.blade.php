@@ -262,6 +262,14 @@
 						</table>
 						<div class="row">
 							<div class="col-md-6 row pt-3 pl-3 mt-5 ">
+								<table style="max-width:360px;height:100px;float:left;" class="table-aide" >
+									<tr>
+										<td colspan="2"><strong>Acompte:</strong></td>
+									</tr>
+									<tr>
+										<div class="form-group"><td><div class="form-group"><input type="number" class="form-control" style="max-width:100px" min="0" value="{{$invoice->acompte ?? 0}}" id="acompte" onchange="calcul();"/></div></td><td style="padding:0 10px 0 0">€</td>
+									</tr>
+								</table>
 							<!--<table style="width:360px;height:100px" class="table-aide" >
 									<tr>
 										<td><strong>Aide éligible:</strong></td><td colspan="2"><strong>Montant</strong></td>
@@ -456,8 +464,9 @@
 	*/
 	    //$('#total_ttc').val(total_ttc);
 		var aide=parseFloat($('#aide').val());
+		var acompte=parseFloat($('#acompte').val());
 
- 		var net=parseFloat(total_ttc - aide - total_remise);
+ 		var net=parseFloat(total_ttc - aide - total_remise -acompte);
 		$('#net').val(net);
 		update_totals();
 	}
@@ -577,14 +586,15 @@ function delete_item(product,item){
 	var total_ttc=	$('#total_ttc').val();
 	var total_remise=	$('#total_remise').val();
 	var tva_remise=	$('#tva_remise').val();
+	var acompte=	$('#acompte').val();
 	var remise= total_remise- (total_remise*tva_remise*0.01); //$('#remise').val();
-	var net=	total_ttc;
+	var net=	$('#net').val();;
 
 	console.log('updating totals');
 	$.ajax({
 		url: "{{ route('invoices.update_totals') }}",
 		method: "POST",
-		data: {total_ht:total_ht,total_tva:total_tva,total_ttc:total_ttc,total_remise:total_remise,remise:remise,invoice:invoice,net:net,tva_remise:tva_remise, _token:_token},
+		data: {total_ht:total_ht,total_tva:total_tva,total_ttc:total_ttc,total_remise:total_remise,remise:remise,invoice:invoice,net:net,acompte:acompte,tva_remise:tva_remise, _token:_token},
 		success: function (data) {
 			console.log('totals updated');
 			init();

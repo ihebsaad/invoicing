@@ -36,35 +36,42 @@
         '1' => 'Extérieur et intérieur blanc',
         '2' => 'Extérieur couleur et intérieur blanc',
         '3'=> 'Extérieur et intérieur couleur',
-    )
+    );
+    $matieres=array(
+        '1' => 'PVC',
+        '2' => 'Aluminium',
+    );
 
    @endphp
     <table class="table table-bordered table-striped" id='mytable'>
         <thead>
             <tr>
-                <th  style="width:10%">No</th>
-                <th  style="width:25%">Type</th>
-                <th  style="width:15%">Couleur</th>
-                <th  style="width:10%">Hauteur</th>
-                <th  style="width:10%">Largeur</th>
-                <th  style="width:10%">Prix</th>
-                <th class="no-sort"   style="width:20%"  >Action</th>
+                <th  style="width:4%">No</th>
+                <th  style="width:10%">Matière</th>
+                <th  style="width:20%">Type</th>
+                <th  style="width:25%">Couleur</th>
+                <th  style="width:7%">Hauteur</th>
+                <th  style="width:7%">Largeur</th>
+                <th  style="width:7%">Prix</th>
+                <th class="no-sort"   style="width:14%"  >Action</th>
             </tr>
             <tr style="text-align:center">
                 <th class="th no-sort" >No</th>
+                <th class="th no-sort" >Matière</th>
                 <th class="th no-sort" >Type</th>
                 <th class="th no-sort" >Couleur</th>
                 <th class="th no-sort" >Hauteur</th>
                 <th class="th no-sort" >Largeur</th>
                 <th class="th no-sort" >Prix</th>
-                <th class="no-sort"  style="width:15%"  ></th>
+                <th class="no-sort"   ></th>
             </tr>
         </thead>
         @foreach ($modeles as $modele)
 		<tr>
             <td>{!! sprintf('%04d',$modele->id) !!}</td>
+            <td>{{ $matieres[$modele->genre] }}</td>
             <td>{{ $types[$modele->type] }}</td>
-            <td>{{ $couleurs[$modele->couleur] }}</td>
+            <td style="font-size:14px">{{ $couleurs[$modele->couleur] }}</td>
             <td>{{ sprintf('%04d',$modele->hauteur) }}</td>
             <td>{{ sprintf('%04d',$modele->largeur) }}</td>
             <td>{{ number_format($modele->prix,0,'',' ') }} €</td>
@@ -103,7 +110,7 @@
 
     $('#mytable thead .th').each(function () {
         var title = $(this).text();
-        $(this).html('<input style="width:120px" type="text" placeholder=" ' + title + '" />');
+        $(this).html('<input style="max-width:100px" type="text" placeholder=" ' + title + '" />');
     });
 
 
@@ -129,28 +136,28 @@
                     extend: 'print',
                     text: '<i class="fa fa-print"></i>  Imprimer',
                     exportOptions: {
-                 //   columns: [  1,2,3,4,5,6  ],
+                 //   columns: [0,1,2,3,4,5,6  ],
                 	}
                     },
                     {
                     extend: 'csv',
                     text: '<i class="fa fa-file-csv"></i>  Csv',
                     exportOptions: {
-                //    columns: [ 1,2,3,4,5,6]
+                //    columns: [ 0,1,2,3,4,5,6]
                 	}
                     },
 				 {
                     extend: 'excel',
                     text: '<i class="fa fa-file-excel"></i>  Excel',
                     exportOptions: {
-                    columns: [ 1,2,3,4,5,6]
+                    columns: [0,1,2,3,4,5,6]
                	}
                     },
 				{
                     extend: 'pdf',
                     text: '<i class="fa fa-file-pdf"></i>  Pdf',
                     exportOptions: {
-                //    columns: [  1,2,3,4,5,6 ]
+                //    columns: [ 0,1,2,3,4,5,6 ]
                 	}
                     }
 

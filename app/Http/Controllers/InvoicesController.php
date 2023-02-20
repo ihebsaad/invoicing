@@ -8,6 +8,7 @@ use App\Models\Quote;
 use App\Models\Product;
 use App\Models\Item;
 use App\Models\User;
+use App\Models\Modele;
 use App\Services\SendMail;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
@@ -235,6 +236,7 @@ class InvoicesController extends Controller
         $aide=$request->get('aide');
         $type_aide=$request->get('type_aide');
         $net=$request->get('net');
+        $acompte=$request->get('acompte');
         $tva_remise=$request->get('tva_remise');
 
 
@@ -248,6 +250,7 @@ class InvoicesController extends Controller
                 'aide'=>$aide,
                 'type_aide'=>$type_aide,
                 'net'=>$net,
+                'acompte'=>$acompte,
                 'tva_remise'=>$tva_remise,
             ]
         );

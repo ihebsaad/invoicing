@@ -70,6 +70,7 @@ Route::get('/quotes/save_invoice/{id}', [QuotesController::class, 'save_invoice'
 Route::post('/update_totals',[QuotesController::class, 'update_totals'])->name('update_totals');
 Route::get('/quotes/add/{customer_id}', [QuotesController::class, 'add'])->name('quotes.add');
 Route::post('/quotes/ajout_signature', [QuotesController::class, 'ajout_signature'])->name('quotes.ajout_signature');
+Route::get('/quotes/edit_men/{id}', [QuotesController::class, 'edit_men'])->name('quotes.edit_men');
 
 //products
 Route::post('/add_item',[ProductsController::class, 'add_item'])->name('add_item');
@@ -77,3 +78,4 @@ Route::post('/delete_item',[ProductsController::class, 'delete_item'])->name('de
 
 //modeles
 Route::post('/additem',[ModelesController::class, 'add_item'])->name('modeles.add_item');
+Route::get('/pricing',[ModelesController::class, 'pricing'])->name('pricing');

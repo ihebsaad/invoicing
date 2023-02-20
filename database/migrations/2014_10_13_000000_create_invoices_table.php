@@ -22,7 +22,7 @@ class CreateInvoicesTable extends Migration
             $table->date('date')->nullable();
 
             $table->integer('tva')->default(0)->nullable();
-            $table->integer('remise')->default(0)->nullable(); 
+            $table->integer('remise')->default(0)->nullable();
 
             $table->double('total_tva', 8, 2)->default(0)->nullable();
             $table->double('total_remise', 8, 2)->default(0)->nullable();
@@ -31,6 +31,7 @@ class CreateInvoicesTable extends Migration
 
             $table->string('type_aide')->nullable();
             $table->double('aide', 8, 2)->default(0)->nullable();
+            $table->double('acompte', 8, 2)->default(0)->nullable();
             $table->double('net', 8, 2)->default(0)->nullable();
 
             $table->double('montant_finance', 8, 2)->default(0)->nullable();
@@ -40,7 +41,7 @@ class CreateInvoicesTable extends Migration
             $table->double('montant_assurance', 8, 2)->default(0)->nullable();
             $table->double('taux_nominal', 8, 2)->default(0)->nullable();
             $table->double('taeg', 8, 2)->default(0)->nullable();
-            $table->double('pose', 8, 2)->default(0)->nullable();            
+            $table->double('pose', 8, 2)->default(0)->nullable();
 
 
             $table->unsignedBigInteger('customer')->nullable();

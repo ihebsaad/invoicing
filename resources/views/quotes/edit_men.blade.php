@@ -230,6 +230,7 @@
             	<div class="tab-pane fade" id="custom-tabs-three-prods" role="tabpanel" aria-labelledby="custom-tabs-three-prods-tab"  style="width:100%">
 
 					<div class="">
+							<a href="#" class="btn btn-sm btn-success float-right mb-2" data-toggle="modal" data-target="#add-prod" title="Ajouter un produit"  ><i class="fa fa-plus"></i> Ajouter un produit</a>
 						<table class="tab-products table-responsive table-striped  " style="width:100%">
 							<thead class="th-products">
 								<tr>
@@ -237,18 +238,7 @@
 								</tr>
 							</thead>
 							<tbody id="list-prods" style="min-height:300px list-prods">
-								<tr class="product bg-grey new-prod">
-									<td>
-										<select class="form-control select2"  id='product' onchange="set_price()">
-											<option value="0">Sélectionnez le produit</option>
-												@foreach($products as $prod)
-													<option data-price="{{$prod->prix}}"  data-text="{{$prod->name}}" data-tva="{{$prod->tva}}" data-priceht="{{$prod->prix_ht}}"  data-pose="{{$prod->pose}}" data-tvapose="{{$prod->tva_pose}}"   data-posettc="{{$prod->pose_ttc}}"   value="{{$prod->id}}">{{$prod->id}}- {{$prod->name}}  ({{$prod->prix}}€)</option>
-												@endforeach
-										</select>
-									</td>
-									<td><input  class="number bg-transparent"  id="price"  value="0" /> €</td>
-									<td><input  id="qty" type="number" step="1" min="1" value="1" class="number" style="width:60px" onchange="total_prod()" /></td><td><input readonly id="tva" type="number"  class="number bg-transparent" value="0" style="width:60px"/> %</td><td><input id="total_prod" type="number"   class="number bg-transparent" value="0" readonly /> €</td><td><button id="add_product" disabled class="btn-sm btn-success add-prod" onclick="add_product();  "><i class="fas fa-plus "></i></td>
-								</tr>
+
 								@php $c=0;  @endphp
 								@foreach($items as $item)
 									@php
@@ -473,6 +463,107 @@
 		</div>
 	</div>
 
+
+
+
+<div class="modal fade" id="add-prod">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+			    <h4 class="modal-title text-center text-primary"> Ajouter un produit </h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fermer">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body" style="padding:10px 10px 1" >
+
+				<div class="row pl-3">
+					<div class="col-xs-12 col-sm-6 col-md-6">
+						<div class="form-group">
+							<strong>Matière:</strong>
+							<select  name="genre" required class="form-control" id="genre"   onchange="pricing()">
+								<option></option>
+								<option  @if( old("genre")==1)  selected="selected" @endif value="1">PVC</option>
+								<option  @if( old("genre")==2)  selected="selected" @endif  value="2">Aluminium</option>
+							</select>
+						</div>
+					</div>
+					<div class="col-xs-12 col-sm-6 col-md-6">
+						<div class="form-group">
+							<strong>Type:</strong>
+							<select  name="type" required class="form-control" id="type"  onchange="pricing()">
+								<option></option>
+								<option  @if( old("type")==1)  selected="selected" @endif value="1">Fenêtre à souflet</option>
+								<option  @if( old("type")==2)  selected="selected" @endif  value="2">Fenêtre / Porte Fenêtre - 1VOB</option>
+								<option  @if( old("type")==3)  selected="selected" @endif  value="3">Fenêtre / Porte Fenêtre - 2V</option>
+								<option  @if( old("type")==4)  selected="selected" @endif  value="4">Fenêtre fixe</option>
+								<option  @if( old("type")==5)  selected="selected" @endif  value="5">Porte fenêtre ouverture extérieur - PF1V </option>
+								<option  @if( old("type")==6)  selected="selected" @endif  value="6">Porte 2 ventaux Battement central ouverture extérieur PF2V </option>
+							</select>
+						</div>
+					</div>
+
+					<div class="col-xs-12 col-sm-12  col-md-12">
+						<div class="form-group">
+							<strong>Couleur:</strong>
+							<select   name="couleur" required class="form-control" id="couleur"   onchange="pricing()">
+								<option></option>
+								<option @if( old("couleur")==1)  selected="selected" @endif value="1">Extérieur et intérieur blanc</option>
+								<option @if( old("couleur")==2)  selected="selected" @endif  value="2">Extérieur couleur et intérieur blanc</option>
+								<option @if( old("couleur")==3)  selected="selected" @endif  value="3">Extérieur et intérieur couleur</option>
+							</select>
+						</div>
+					</div>
+
+					<div class="col-xs-12 col-sm-6 col-md-6">
+						<div class="form-group">
+							<strong>Hauteur:</strong>
+							<input id="hauteur" type="number" name="hauteur" rerquired class="form-control" step ="100" min="200" max="3200"  value="{{old('hauteur')}}" onchange="pricing()">
+						</div>
+					</div>
+
+					<div class="col-xs-12 col-sm-6 col-md-6">
+						<div class="form-group">
+							<strong>Largeur:</strong>
+							<input id="largeur" type="number" name="largeur" rerquired class="form-control" step ="100" min="200" max="2200"  value="{{old('largeur')}}" onchange="pricing()">
+						</div>
+					</div>
+					<div class="col-md-12">
+						<div class="text-danger pl-5">
+
+						</div>
+					</div>
+					<div class="col-xs-12 col-sm-4 col-md-4">
+						<div class="form-group">
+							<strong>Prix U(€) :</strong>
+							<input readonly id="prix" type="number" name="prix" rerquired class="form-control" step ="0.01" min="0"  value="{{old('prix')}}"  >
+						</div>
+					</div>
+
+					<div class="col-xs-12 col-sm-3 col-md-3">
+						<div class="form-group">
+							<strong>Qté :</strong>
+							<input  id="qte" type="number" name="qte" rerquired class="form-control" step ="1" min="1"  value="1"  >
+						</div>
+					</div>
+
+					<div class="col-xs-12 col-sm-3 col-md-3">
+						<div class="form-group">
+							<strong>Total :</strong>
+							<input readonly id="total" type="number" name="prix" rerquired class="form-control" step ="0.01" min="0"  value="{{old('prix')}}"  >
+						</div>
+					</div>
+
+					<div class="col-xs-12 col-sm-12 col-md-12">
+						<button type="button" id="insert" class="btn btn-primary">Insérer</button>
+					</div>
+				</div>
+			</div>
+
+        </div>
+    </div>
+</div>
 @endsection
 
 
@@ -520,19 +611,7 @@
 		$("#total_ht").val(total_ht);
 		total_tva = total_ttc-total_ht;
 	    $('#total_tva').val(total_tva);
-	/*
-		var remise=parseFloat($('#remise').val());
-		var tva_remise=parseFloat($('#tva_remise').val());
 
-		var total_remise=0;
-		if(parseFloat(remise)>0){
-			var total_remise = remise + ((tva_remise* remise)/100);
-			$('#total_remise').val(total_remise.toFixed(2));
-			total_ttc= total_ttc- total_remise ;
-		}else{
-			$('#total_remise').val(0);
-		}
-	*/
 	var total_remise= parseFloat($('#total_remise').val());
 	    $('#total_ttc').val(total_ttc);
 
@@ -674,6 +753,34 @@
 		}
 	});
 
+	}
+
+
+	function pricing(){
+		var _token = $('input[name="_token"]').val();
+		var genre= $("#genre").val();
+		var type= $("#type").val();
+		var couleur= $("#couleur").val();
+		var largeur= parseInt($("#largeur").val());
+		var hauteur= parseInt($('#hauteur').val());
+		if(largeur>0 && hauteur>0){
+			$.ajax({
+				url: "{{ route('pricing') }}",
+				method: "GET",
+				data: {genre:genre,type:type,couleur:couleur,largeur:largeur,hauteur:hauteur,_token:_token},
+				success: function (data) {
+					if(parseFloat(data)>0)
+					{
+						$('.text-danger').html('');
+						$("#prix").val(data);
+					}
+					else{
+						$('.text-danger').html('<b class="pb-2"> Modèle non trouvé, vérifier les données insérées</b>');
+					}
+					calcul();
+				}
+			});
+		}
 	}
 </script>
 

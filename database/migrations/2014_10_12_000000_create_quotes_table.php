@@ -32,6 +32,7 @@ class CreateQuotesTable extends Migration
 
             $table->string('type_aide')->nullable();
             $table->double('aide', 8, 2)->default(0)->nullable();
+            $table->double('acompte', 8, 2)->default(0)->nullable();
             $table->double('net', 8, 2)->default(0)->nullable();
 
             $table->double('montant_finance', 8, 2)->default(0)->nullable();
@@ -41,7 +42,7 @@ class CreateQuotesTable extends Migration
             $table->double('montant_assurance', 8, 2)->default(0)->nullable();
             $table->double('taux_nominal', 8, 2)->default(0)->nullable();
             $table->double('taeg', 8, 2)->default(0)->nullable();
-            $table->double('pose', 8, 2)->default(0)->nullable();            
+            $table->double('pose', 8, 2)->default(0)->nullable();
 
 
             $table->unsignedBigInteger('customer')->nullable();

@@ -8,9 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Invoice extends Model
 {
     use HasFactory;
-	
+
 	protected $fillable = [
-        
+
         'description',
         'adresse',
         'chaudiere',
@@ -34,6 +34,7 @@ class Invoice extends Model
         'pose',
         'customer',
 		'quote',
+        'acompte',
         'net',
         'par',
         'surface',
@@ -45,12 +46,12 @@ class Invoice extends Model
         'reference',
         'tva_remise'
     ];
-	
+
 		public function customer()
 	{
 		return $this->belongsTo('App\Models\Customer', 'customer', 'id');
 	}
-	
+
 		public function quote()
 	{
 		return $this->belongsTo('App\Models\Quote', 'quote', 'id');

@@ -61,7 +61,7 @@
 		   font-size:9px!important;
 		   font-weight:normal!important;
 		   text-align:left!important;
-		font-family:halvetica,sans-serif!important;
+			font-family:halvetica,sans-serif!important;
 	   }
 	   .totals{
 		   float:right;
@@ -77,7 +77,7 @@
 	   }
 	   footer {
 		   position: fixed;
-		   bottom: -80px;
+		   bottom: -100px;
 		   left: 0px;
 		   right: 0px;
 		   height: 100px;
@@ -151,7 +151,7 @@
    </style>
    <section class="body">
 
-	<table>
+	<table style="margin-top:-25px">
 	   <tr>
 		   <td><img src="{!! public_path('img/logo.png')!!}"  width="170" style="margin-right:50px"></img></td><td><img src="{!! public_path('img/bat.png')!!}"  width="50" style="margin-right:20px" ></img></td><td><img src="{!! public_path('img/sol.png')!!}"  width="80" style="margin-right:10px"></img></td><td><img src="{!! public_path('img/pv.png')!!}"  width="80" style="margin-right:10px"></img></td><td><img src="{!! public_path('img/pac.png')!!}"  width="80" style="margin-right:10px"></img></td><td><img src="{!! public_path('img/bois.png')!!}"  width="80"></img></td>
 	   </tr>
@@ -241,6 +241,9 @@
 			   <tr><td colspan="2">Total TTC</td><td class="text-right">{{number_format($invoice->total_ttc,2,',',' ')}} €</td></tr>
 			   @if($invoice->aide>0)
 			   <tr style="color:#f07f32"><td colspan="2" style=";font-size:9px;max-width:90px;">Montant Estimatif<br>{{$invoice->type_aide}}</td><td class="text-right">{{number_format($invoice->aide,2,',',' ')}} €</td></tr>
+			   @endif
+			   @if($invoice->acompte>0)
+			   <tr style="color:#f07f32"><td colspan="2" style=";font-size:9px;max-width:90px;">Acompte</td><td class="text-right">{{number_format($invoice->acompte,2,',',' ')}} €</td></tr>
 			   @endif
 			   <tr><td colspan="2">Net à payer</td><td class="text-right">{{number_format($invoice->net,2,',',' ')}} €</td></tr>
 			   </table>

@@ -19,7 +19,7 @@
             </div>
         </div>
     </div>
-   
+
    <style>
 		.small-img{width:150px;}
    </style>
@@ -40,7 +40,7 @@
             <td>{!!  $quote->reference !!}</td>
             <td>{{ $quote->customer()->first()->civility }} {{ $quote->customer()->first()->name }} {{ $quote->customer()->first()->lastname }}</td>
             <td>{{date('d/m/Y', strtotime($quote->created_at))}}</td>
-            <td>{{ ($quote->total_ttc ?? 0) }} €</td>
+            <td>{{number_format($quote->total_ttc,0,',',' ')}} €</td>
             <td>
                 @if($User->user_type=='admin' || $User->id== $quote->par )
                     <a class="btn btn-primary mb-3 mr-2" href="{{ route('quotes.edit',$quote->id) }}" style="float:left" title="Modifier"><i class="fas fa-edit"></i></a>
@@ -63,8 +63,8 @@
         </tr>
         @endforeach
     </table>
-  
-      
+
+
 @endsection
 @section('footer-scripts')
 
@@ -87,7 +87,7 @@
     $("#mytable").DataTable({
       "responsive": true, "lengthChange": false, "autoWidth": false,
       order: [[ 0, 'desc' ]],
-      buttons: [						 
+      buttons: [
                     {
                     extend: 'print',
                     text: '<i class="fa fa-print"></i>  Imprimer',
@@ -108,7 +108,7 @@
                     exportOptions: {
                     columns: [ 1,2,3,4,5,6]
                	}
-                    },				
+                    },
 				{
                     extend: 'pdf',
                     text: '<i class="fa fa-file-pdf"></i>  Pdf',
