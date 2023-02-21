@@ -218,7 +218,7 @@
 						<table class="tab-products table-responsive  table-striped " style="width:100%">
 							<thead class="th-products">
 								<tr>
-									<th style="width:35%">Produit</th><th style="width:8%">Prix U</th><th style="width:8%">Qté</th><th style="width:8%">TVA</th><th style="width:14%">Total</th><th style="width:10%">+/-</th>
+									<th style="width:35%">Produit</th><th style="width:8%">Prix U.HT</th><th style="width:8%">Qté</th><th style="width:8%">TVA</th><th style="width:14%">Total TTC</th><th style="width:10%">+/-</th>
 								</tr>
 							</thead>
 							<tbody id="list-prods" style="min-height:300px list-prods">
@@ -244,7 +244,7 @@
 										$c++;
 									@endphp
 									<tr class="myproduct product bg-lightgrey tr-prod" id="row-{{$product->id}}">
-										<td class="myproducttd" data-prix="{{$product->prix}}" data-prixht="{{$product->prix_ht}}" data-id="{{$product->id}}"  ><b>{{$product->name}}</b></td><td >{{$product->prix}} €</td><td><input id="qty-{{$product->id}}" type="number" step="1" min="1" class="number" value="{{$item->qty}}"  onchange="calcul()"/></td><td><input readonly step="0.5" min="5.5" type="number" step="0.5" min="1" class="number bg-transparent" value="{{$item->tva}}"/> %</td><td><input id="total-{{$item->id}}" type="number" readonly class="total-prod number" value="{{$total_prod}}"/> €</td><td><button id="delete_item"   class="btn-sm btn-danger" onclick="delete_item({{$product->id}},{{$item->id}})"><i class="fas fa-minus " data-id="{{$item->id}}"></i></td>
+										<td class="myproducttd" data-prix="{{$product->prix}}" data-prixht="{{$product->prix_ht}}" data-id="{{$product->id}}"  ><b>{{$product->name}}</b></td><td >{{$product->prix_ht}} €</td><td><input id="qty-{{$product->id}}" type="number" step="1" min="1" class="number" value="{{$item->qty}}"  onchange="calcul()"/></td><td><input readonly step="0.5" min="5.5" type="number" step="0.5" min="1" class="number bg-transparent" value="{{$item->tva}}"/> %</td><td><input id="total-{{$item->id}}" type="number" readonly class="total-prod number" value="{{$total_prod}}"/> €</td><td><button id="delete_item"   class="btn-sm btn-danger" onclick="delete_item({{$product->id}},{{$item->id}})"><i class="fas fa-minus " data-id="{{$item->id}}"></i></td>
 									</tr>
 									@if($product->pose > 0)
 									<tr class="myproduct product bg-lightgrey tr-prod" id="row-pose-{{$product->id}}">
@@ -256,13 +256,36 @@
 							</tbody>
 							<tfoot>
 								<tr class="product bg-grey">
-									<td>Remise Catalogue Groupe HER ENR</td><td>TTC: <input id="total_remise" type="number"  class="number" style="max-width:70px" value="{{$invoice->total_ ?? 0}}" onchange="calcul()"/> €</td><td style="text-align:center;padding-right:15px">1</td><td><input type="number" class="number" id="tva_remise" name="tva_remise" style="width:100px" step="0.5" value="{{$invoice->tva_remise ?? '5.5'}}"/> %</td><td></td><td></td>
+									<td>Remise Catalogue Groupe HER ENR</td><td><input id="remise" type="number"  class="number" style="max-width:70px" value="{{$invoice->remise ?? 0}}" onchange="calcul()"/> €</td><td style="text-align:center;padding-right:15px">1</td><td><input type="number" class="number" id="tva_remise" name="tva_remise" style="width:100px" step="0.5" value="{{$invoice->tva_remise ?? '5.5'}}"/> %</td><td><input id="total_remise" type="number"  class="number" style="max-width:70px" value="{{$invoice->total_remise ?? 0}}" onchange="calcul()"/> €</td><td></td>
 								</tr>
 							</tfoot>
 						</table>
 						<div class="row">
 							<div class="col-md-6 row pt-3 pl-3 mt-5 ">
-								<table style="max-width:360px;height:100px;float:left;" class="table-aide" >
+								<table style="max-width:360px;height:100px;float:left" class="table-aide" >
+									<tr>
+										<td><strong>Aide éligible:</strong></td><td colspan="2"><strong>Montant</strong></td>
+									</tr>
+									<tr>
+										<td >
+											<div class="form-group">
+												<select class="form-control" style="max-width:200px" name="type_aide" id="type_aide" onchange="calcul();" >
+													<option></option>
+													<option @if($invoice->type_aide=='Ma Prime Renov') selected="selected" @endif value="Ma Prime Renov">Prime Renov</option>
+													<option @if($invoice->type_aide=='Coup de pouce') selected="selected" @endif value="Coup de pouce">Coup de pouce</option>
+													<option @if($invoice->type_aide=='Prime CEE') selected="selected" @endif value="Prime CEE">Prime CEE</option>
+												</select>
+											</div>
+										</td>
+										<td style="padding-right:0">
+											<div class="form-group">
+												<input type="number" class="form-control" style="max-width:100px" min="0" value="{{$invoice->aide ?? 0}}" id="aide" onchange="calcul();"/>
+											</div>
+										</td>
+										<td style="">€</td>
+									</tr>
+								</table>
+								<table style="max-width:360px;height:100px;float:left;margin-left:60px" class="table-aide" >
 									<tr>
 										<td colspan="2"><strong>Acompte:</strong></td>
 									</tr>
@@ -270,37 +293,14 @@
 										<div class="form-group"><td><div class="form-group"><input type="number" class="form-control" style="max-width:100px" min="0" value="{{$invoice->acompte ?? 0}}" id="acompte" onchange="calcul();"/></div></td><td style="padding:0 10px 0 0">€</td>
 									</tr>
 								</table>
-							<!--<table style="width:360px;height:100px" class="table-aide" >
-									<tr>
-										<td><strong>Aide éligible:</strong></td><td colspan="2"><strong>Montant</strong></td>
-									</tr>
-									<tr>
-										<td >
-											<div class="form-group">
-												<select class="form-control" style="width:200px" name="type_aide" id="type_aide" onchange="calcul();" >
-													<option></option>
-													<option @if($invoice->type_aide=='Prime Renov') selected="selected" @endif value="Prime Renov">Prime Renov</option>
-													<option @if($invoice->type_aide=='Prime B') selected="selected" @endif value="Prime B">Prime B</option>
-													<option @if($invoice->type_aide=='Prime C') selected="selected" @endif value="Prime C">Prime C</option>
-												</select>
-											</div>
-										</td>
-										<td style="padding-right:0">
-											<div class="form-group">
-												<input type="number" class="form-control" style="width:100px" min="0" value="{{$invoice->aide}}" id="aide" onchange="calcul();"/>
-											</div>
-										</td>
-										<td style="padding:0 10px 0 0">€</td>
-									</tr>
-								</table>-->
 							</div>
 
 							<div class="col-md-6">
 								<table class="totals">
-									<tr><td colspan="2">Total HT</td><td><input id="total_ht" type="number"  class="number numbers bg-transparent" readonly  value="{{$invoice->total_ht}}"/> €</td></tr>
-									<tr><td colspan="2">Total TVA</td><td><input id="total_tva" type="number"  class="number numbers bg-transparent"  readonly  value="{{$invoice->total_tva}}"/> €</td></tr>
-									<tr><td colspan="2">TOTAL TTC</td><td><input id="total_ttc" type="number" readonly  class="number numbers bg-transparent" value="{{$invoice->total_ttc}}" /> €</td></tr>
-								<!--<tr><td colspan="2">Net à payer</td><td><input id="net" type="number" readonly  class="number numbers bg-transparent" value="{{intval($invoice->net)}}" /> €</td></tr>-->
+									<tr><td colspan="2">Total HT</td><td><input id="total_ht" type="number"  class="number numbers bg-transparent" readonly  value="{{$invoice->total_ht ?? 0}}"/> €</td></tr>
+									<tr><td colspan="2">Total TVA</td><td><input id="total_tva" type="number"  class="number numbers bg-transparent"  readonly  value="{{$invoice->total_tva ?? 0}}"/> €</td></tr>
+									<tr><td colspan="2">TOTAL TTC</td><td><input id="total_ttc" type="number" readonly  class="number numbers bg-transparent" value="{{$invoice->total_ttc ?? 0}}" /> €</td></tr>
+									<tr><td colspan="2">Net à payer</td><td><input id="net" type="number" readonly  class="number numbers bg-transparent" value="{{$invoice->net ?? 0}}" /> €</td></tr>
 								</table>
 							</div>
 						</div>
@@ -444,11 +444,17 @@
 
     		});
 		});
+		var remise=parseFloat($('#remise').val());
+		var tva_remise=parseFloat($('#tva_remise').val());
 
-		$("#total_ht").val(total_ht);
-		total_tva = total_ttc-total_ht;
+		var total_remise = remise+(remise*tva_remise*0.01);
+		$('#total_remise').val(total_remise);
+
+		$("#total_ht").val(total_ht-remise);
+		total_tva = total_ttc-total_ht - (remise*tva_remise*0.01);
 	    $('#total_tva').val(total_tva);
-		var total_remise=parseFloat($('#total_remise').val());
+		total_ttc=total_ttc-total_remise;
+		$('#total_ttc').val(total_ttc);
 	/*
 
 		var tva_remise=parseFloat($('#tva_remise').val());
@@ -466,7 +472,7 @@
 		var aide=parseFloat($('#aide').val());
 		var acompte=parseFloat($('#acompte').val());
 
- 		var net=parseFloat(total_ttc - aide - total_remise -acompte);
+ 		var net=parseFloat(total_ttc - aide  - acompte);
 		$('#net').val(net);
 		update_totals();
 	}
@@ -587,7 +593,7 @@ function delete_item(product,item){
 	var total_remise=	$('#total_remise').val();
 	var tva_remise=	$('#tva_remise').val();
 	var acompte=	$('#acompte').val();
-	var remise= total_remise- (total_remise*tva_remise*0.01); //$('#remise').val();
+	var remise= $('#remise').val();
 	var net=	$('#net').val();;
 
 	console.log('updating totals');

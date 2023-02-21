@@ -243,7 +243,7 @@
 			   <tr style="color:#f07f32"><td colspan="2" style=";font-size:9px;max-width:90px;">Montant Estimatif<br>{{$invoice->type_aide}}</td><td class="text-right">{{number_format($invoice->aide,2,',',' ')}} €</td></tr>
 			   @endif
 			   @if($invoice->acompte>0)
-			   <tr style="color:#f07f32"><td colspan="2" style=";font-size:9px;max-width:90px;">Acompte</td><td class="text-right">{{number_format($invoice->acompte,2,',',' ')}} €</td></tr>
+			   <tr style="color:#f07f32"><td colspan="2" >Acompte</td><td class="text-right">{{number_format($invoice->acompte,2,',',' ')}} €</td></tr>
 			   @endif
 			   <tr><td colspan="2">Net à payer</td><td class="text-right">{{number_format($invoice->net,2,',',' ')}} €</td></tr>
 			   </table>
