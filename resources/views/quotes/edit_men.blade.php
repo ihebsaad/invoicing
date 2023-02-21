@@ -479,7 +479,7 @@
             <div class="modal-body" style="padding:10px 10px 1" >
 
 				<div class="row pl-3">
-					<div class="col-xs-12 col-sm-6 col-md-6">
+					<div class="col-xs-12 col-sm-4 col-md-4">
 						<div class="form-group">
 							<strong>Matière:</strong>
 							<select  name="genre" required class="form-control" id="genre"   onchange="pricing()">
@@ -489,7 +489,7 @@
 							</select>
 						</div>
 					</div>
-					<div class="col-xs-12 col-sm-6 col-md-6">
+					<div class="col-xs-12 col-sm-8 col-md-8">
 						<div class="form-group">
 							<strong>Type:</strong>
 							<select  name="type" required class="form-control" id="type"  onchange="pricing()">
@@ -504,7 +504,7 @@
 						</div>
 					</div>
 
-					<div class="col-xs-12 col-sm-12  col-md-12">
+					<div class="col-xs-12 col-sm-9  col-md-9">
 						<div class="form-group">
 							<strong>Couleur:</strong>
 							<select   name="couleur" required class="form-control" id="couleur"   onchange="pricing()">
@@ -516,17 +516,23 @@
 						</div>
 					</div>
 
+					<div class="col-xs-12 col-sm-3 col-md-3">
+						<div class="form-group pt-2">
+							<strong> </strong>
+							<label class=pointer><input type="checkbox"   name="groupe" id="groupe" value="1"  onchange="pricing()"/> Groupe 2 </label>
+						</div>
+					</div>
 					<div class="col-xs-12 col-sm-6 col-md-6">
 						<div class="form-group">
 							<strong>Hauteur:</strong>
-							<input id="hauteur" type="number" name="hauteur" rerquired class="form-control" step ="100" min="200" max="3200"  value="{{old('hauteur')}}" onchange="pricing()">
+							<input id="hauteur" type="number" name="hauteur" rerquired class="form-control" step ="100" min="200" max="3200"  value="{{old('hauteur')}}" onchange="pricing()" style="max-width:150px">
 						</div>
 					</div>
 
 					<div class="col-xs-12 col-sm-6 col-md-6">
 						<div class="form-group">
 							<strong>Largeur:</strong>
-							<input id="largeur" type="number" name="largeur" rerquired class="form-control" step ="100" min="200" max="2200"  value="{{old('largeur')}}" onchange="pricing()">
+							<input id="largeur" type="number" name="largeur" rerquired class="form-control" step ="100" min="200" max="2200"  value="{{old('largeur')}}" onchange="pricing()" style="max-width:150px">
 						</div>
 					</div>
 					<div class="col-md-12">
@@ -536,22 +542,23 @@
 					</div>
 					<div class="col-xs-12 col-sm-4 col-md-4">
 						<div class="form-group">
-							<strong>Prix U(€) :</strong>
+							<strong>Prix U <small style="display:none">€</small>:</strong>
 							<input readonly id="prix" type="number" name="prix" rerquired class="form-control" step ="0.01" min="0"  value="{{old('prix')}}"  >
+							<input type="hidden" id="article" value="0"  />
 						</div>
 					</div>
 
 					<div class="col-xs-12 col-sm-3 col-md-3">
 						<div class="form-group">
 							<strong>Qté :</strong>
-							<input  id="qte" type="number" name="qte" rerquired class="form-control" step ="1" min="1"  value="1"  >
+							<input  id="qte" type="number" name="qte" rerquired class="form-control" step ="1" min="1"  value="1" onchange="pricing()" >
 						</div>
 					</div>
 
 					<div class="col-xs-12 col-sm-3 col-md-3">
 						<div class="form-group">
-							<strong>Total :</strong>
-							<input readonly id="total" type="number" name="prix" rerquired class="form-control" step ="0.01" min="0"  value="{{old('prix')}}"  >
+							<strong>Total <small style="display:none">€</small>:</strong>
+							<input readonly id="total" type="number" name="total" rerquired class="form-control" step ="0.01" min="0"  >
 						</div>
 					</div>
 
@@ -763,16 +770,30 @@
 		var couleur= $("#couleur").val();
 		var largeur= parseInt($("#largeur").val());
 		var hauteur= parseInt($('#hauteur').val());
+		var qte= parseInt($('#qte').val());
+		var groupe = $('#groupe').is(":checked") ? 1 : 0;
 		if(largeur>0 && hauteur>0){
 			$.ajax({
 				url: "{{ route('pricing') }}",
 				method: "GET",
 				data: {genre:genre,type:type,couleur:couleur,largeur:largeur,hauteur:hauteur,_token:_token},
 				success: function (data) {
-					if(parseFloat(data)>0)
+
+					if(parseFloat(data.prix)>0)
 					{
 						$('.text-danger').html('');
-						$("#prix").val(data);
+						$("#article").val(data.id);
+						if(groupe){
+							var prix=parseFloat(data.prix)+(parseFloat(data.prix)*0.1);
+							var total = prix * qte;
+							$("#prix").val(prix);
+							$("#total").val(total);
+						}else{
+							$("#prix").val(data.prix);
+							var total = parseFloat(data.prix) * qte;
+							$("#total").val(total);
+						}
+
 					}
 					else{
 						$('.text-danger').html('<b class="pb-2"> Modèle non trouvé, vérifier les données insérées</b>');

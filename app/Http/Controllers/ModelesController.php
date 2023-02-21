@@ -169,11 +169,16 @@ class ModelesController extends Controller
         $largeur=$request->get('largeur');
         $prix=$request->get('prix');
 
+        $model=array();
         $modele=Modele::where('genre',$genre)->where('type',$type)->where('couleur',$couleur)->where('hauteur',$hauteur)->where('largeur',$largeur)->first();
-        if (isset($modele))
-            return $modele->prix;
-        else
-            return 0;
+        if (isset($modele)){
+            $model['id']=$modele->id;
+            $model['prix']=$modele->prix;
+            return $model;
+        }
+        else{
+            return null;
+        }
 
     }
 

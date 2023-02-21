@@ -21,6 +21,7 @@ class CreateQuotesTable extends Migration
             $table->string('modalite')->nullable();
             $table->string('devis_signe')->nullable();
             $table->date('date')->nullable();
+            $table->tinyInteger('menuiserie')->nullable();
 
             $table->integer('tva')->default(0)->nullable();
             $table->integer('remise')->default(0)->nullable();

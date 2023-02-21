@@ -44,7 +44,9 @@ class Quote extends Model
         'delivery_postal',
         'delivery_country',
         'reference',
-        'tva_remise'
+        'tva_remise',
+        'menuiserie'
+
     ];
 
 		public function customer()

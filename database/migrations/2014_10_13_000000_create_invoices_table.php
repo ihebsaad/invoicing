@@ -20,6 +20,7 @@ class CreateInvoicesTable extends Migration
             $table->string('chaudiere')->nullable();
             $table->string('modalite')->nullable();
             $table->date('date')->nullable();
+            $table->tinyInteger('menuiserie')->nullable();
 
             $table->integer('tva')->default(0)->nullable();
             $table->integer('remise')->default(0)->nullable();
