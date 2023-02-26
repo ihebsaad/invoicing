@@ -22,8 +22,8 @@ class CreateInvoicesTable extends Migration
             $table->date('date')->nullable();
             $table->tinyInteger('menuiserie')->nullable();
 
-            $table->integer('tva')->default(0)->nullable();
-            $table->integer('remise')->default(0)->nullable();
+            $table->double('tva', 8, 2)->default(0)->nullable();
+            $table->double('remise', 8, 2)->default(0)->nullable();
 
             $table->double('total_tva', 8, 2)->default(0)->nullable();
             $table->double('total_remise', 8, 2)->default(0)->nullable();

@@ -30,7 +30,6 @@
 			background-color:#f07f32;color:white;padding:10px 20px;
 			letter-spacing:2px;
 			text-align:center;
-
 		}
 
 		.tab-content{
@@ -88,13 +87,13 @@
   <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="float-left">
-                <h2> Devis <small>Menuiserie</small> {{$quote->id}} -  {{$quote->reference}}  </h2>
+                <h2> Facture <small>Menuiserie</small> {{$invoice->id}} -  {{$invoice->reference}}  </h2>
             </div>
             <div class="float-right">
-                <a class="btn btn-primary mb-2" href="{{ route('quotes.index') }}"> Retour</a>
+                <a class="btn btn-primary mb-2" href="{{ route('invoices.index') }}"> Retour</a>
             </div>
             <div class="float-right mr-3 ml-3 mb-2">
-				<a class="btn btn-success " target="_blank"  href="{{ route('quotes.show_pdf',$quote->id) }}" style="float:left" title="Ouvrir en PDF"><i class="fas fa-file-pdf"></i></a>
+				<a class="btn btn-success " target="_blank"  href="{{ route('invoices.show_pdf',$invoice->id) }}" style="float:left" title="Ouvrir en PDF"><i class="fas fa-file-pdf"></i></a>
 			</div>
         </div>
     </div>
@@ -111,9 +110,7 @@
                 <li class="nav-item">
                     <a class="nav-link" id="custom-tabs-three-finance-tab" data-toggle="pill" href="#custom-tabs-three-finance" role="tab" aria-controls="custom-tabs-three-finance" aria-selected="false">Financement</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" id="custom-tabs-three-signature-tab" data-toggle="pill" href="#custom-tabs-three-signature" role="tab" aria-controls="custom-tabs-three-signature" aria-selected="false">Signature</a>
-                </li>
+
                 </ul>
         </div>
         <div class="card-body">
@@ -121,15 +118,15 @@
 				<div class="tab-pane fade active show" id="custom-tabs-three-details" role="tabpanel" aria-labelledby="custom-tabs-three-details-tab">
 
 
-					<form action="{{ route('quotes.update',$quote->id) }}" method="POST">
+					<form action="{{ route('invoices.update',$invoice->id) }}" method="POST">
 						@csrf
 						@method('PUT')
-						<input type="hidden" value="{{$quote->id}}" id="quote" />
+						<input type="hidden" value="{{$invoice->id}}" id="invoice" />
 						<div class="row pl-3">
 							<div class="col-xs-12 col-sm-12 col-md-7">
 								<div class="form-group">
 									<i class="fas fa-address-card"></i>
-									<?php $customer= \App\Models\Customer::find($quote->customer);?>
+									<?php $customer= \App\Models\Customer::find($invoice->customer);?>
 									{{$customer->civility}} {{$customer->name}} {{$customer->lastname}} <br>
 									<i class="fas fa-phone mr-2"></i>{{$customer->phone}} <i class="fas fa-envelope mr-2 ml-4"></i> {{$customer->email}} <br>
 									<i class="fas fa-map-marker mr-2"></i> {{$customer->address}} - {{$customer->city}}
@@ -139,14 +136,14 @@
 								<div class="col-xs-12 col-sm-12 col-md-6">
 									<div class="form-group">
 										<strong>Adresse du chantier:</strong>
-										<input type="text"   name="delivery_address" id="delivery_address" class="form-control" placeholder="Adresse" value="{{$quote->delivery_address ?? $customer->delivery_address}}" style="max-width:400px">
+										<input type="text"   name="delivery_address" id="delivery_address" class="form-control" placeholder="Adresse" value="{{$invoice->delivery_address ?? $customer->delivery_address}}" style="max-width:400px">
 									</div>
 								</div>
 
 								<div class="col-xs-12 col-sm-12 col-md-5">
 									<div class="form-group">
 										<strong>Ville:</strong>
-										<input type="text" name="delivery_city" id="delivery_city" class="form-control" placeholder="Ville" value="{{$quote->delivery_city ?? $customer->delivery_city}}" style="max-width:300px">
+										<input type="text" name="delivery_city" id="delivery_city" class="form-control" placeholder="Ville" value="{{$invoice->delivery_city ?? $customer->delivery_city}}" style="max-width:300px">
 									</div>
 								</div>
 								<div class="col-xs-12 col-sm-12 col-md-3">
@@ -155,7 +152,7 @@
 										<select type="text" name="delivery_country" id="delivery_country" class="form-control"  >
 											<option></option>
 											@foreach($countries as $key =>$value)
-												@php $country= $quote->delivery_country!='' ? $quote->delivery_country : $customer->delivery_country ; @endphp
+												@php $country= $invoice->delivery_country!='' ? $invoice->delivery_country : $customer->delivery_country ; @endphp
 												<option value="{{$value}}"   @if($value== $country) selected="selected"  selected="selected" @endif >{{$value}}</option>
 											@endforeach
 										</select>
@@ -165,7 +162,7 @@
 								<div class="col-xs-12 col-sm-12 col-md-2">
 									<div class="form-group">
 										<strong>Code postal:</strong>
-										<input type="text" name="delivery_postal" id="delivery_postal"  class="form-control" placeholder="Code postal" value="{{$quote->delivery_postal ?? $customer->delivery_postal}}">
+										<input type="text" name="delivery_postal" id="delivery_postal"  class="form-control" placeholder="Code postal" value="{{$invoice->delivery_postal ?? $customer->delivery_postal}}">
 									</div>
 								</div>
 
@@ -178,9 +175,9 @@
 									<strong>Chaudière à :</strong>
 									<select  class="form-control"   name="chaudiere" style="max-width:180px" >
 										<option value=""></option>
-										<option  @if($quote->chaudiere=='Gaz') selected="selected" @endif value="Gaz">Gaz</option>
-										<option  @if($quote->chaudiere=='Fioul') selected="selected" @endif value="Fioul">Fioul</option>
-										<option  @if($quote->chaudiere=='Charbon') selected="selected" @endif value="Charbon">Charbon</option>
+										<option  @if($invoice->chaudiere=='Gaz') selected="selected" @endif value="Gaz">Gaz</option>
+										<option  @if($invoice->chaudiere=='Fioul') selected="selected" @endif value="Fioul">Fioul</option>
+										<option  @if($invoice->chaudiere=='Charbon') selected="selected" @endif value="Charbon">Charbon</option>
 									</select>
 								</div>
 							</div>
@@ -188,16 +185,16 @@
 							<div class="col-xs-12 col-sm-12 col-md-7">
 								<div class="form-group">
 									<strong>Type de logement:</strong>
-									<select class="form-control"   name="logement"  value="{{ $quote->logement}}" style="max-width:300px">
-										<option value="Maison individuel" @if($quote->logement=='Maison individuel') selected="selected" @endif >Maison individuel</option>
-										<option value="Appartement" @if($quote->logement=='Appartement') selected="selected" @endif >Appartement</option>
+									<select class="form-control"   name="logement"  value="{{ $invoice->logement}}" style="max-width:300px">
+										<option value="Maison individuel" @if($invoice->logement=='Maison individuel') selected="selected" @endif >Maison individuel</option>
+										<option value="Appartement" @if($invoice->logement=='Appartement') selected="selected" @endif >Appartement</option>
 									</select>
 								</div>
 							</div>
 							<div class="col-xs-12 col-sm-12 col-md-5">
 								<div class="form-group">
 									<strong>Surface chauffée (m²):</strong>
-									<input type="number" class="form-control"   name="surface" value="{{ $quote->surface }}" style="max-width:180px"/>
+									<input type="number" class="form-control"   name="surface" value="{{ $invoice->surface }}" style="max-width:180px"/>
 								</div>
 							</div>
 
@@ -205,14 +202,14 @@
 							<div class="col-xs-12 col-sm-12 col-md-7">
 								<div class="form-group">
 									<strong>Date de visite:</strong>
-									<input type="text" class="form-control datepicker"  autocomplete="off" name="date" placeholder="jj/mm/aaaa" value="{{ date('d/m/Y', strtotime($quote->date)) }}"/>
+									<input type="text" class="form-control datepicker"  autocomplete="off" name="date" placeholder="jj/mm/aaaa" value="{{ date('d/m/Y', strtotime($invoice->date)) }}"/>
 								</div>
 							</div>
 
 							<div class="col-xs-12 col-sm-12 col-md-7">
 								<div class="form-group">
 									<strong>Note:</strong>
-									<textarea class="form-control summernote" style="height:150px" name="description" placeholder="Description">{{$quote->description}}</textarea>
+									<textarea class="form-control summernote" style="height:150px" name="description" placeholder="Description">{{$invoice->description}}</textarea>
 								</div>
 							</div>
 
@@ -253,7 +250,7 @@
 							</tbody>
 							<tfoot>
 								<tr class="product bg-grey">
-									<td>Remise Catalogue Groupe HER ENR</td><td  ><input style="text-align:right" id="remise" type="number" class="number bg-transparent" readonly value="{{$quote->remise ?? 0}}" />€</td><td style="text-align:center;padding-right:15px">1</td><td><input type="number" class="number  bg-transparent" id="tva_remise" name="tva_remise" style="width:100px" step="0.5" value="{{$quote->tva_remise ?? '5.5'}}" readonly onchange="calcul();" /> %</td><td><input id="total_remise" type="number"  class="number" style="max-width:70px" value="{{$quote->total_remise ?? 0}}" onchange="calcul();$('#remise2').val($(this).val())"/> €</td><td></td>
+									<td>Remise Catalogue Groupe HER ENR</td><td  ><input style="text-align:right" id="remise" type="number" class="number bg-transparent" readonly value="{{$invoice->remise ?? 0}}" />€</td><td style="text-align:center;padding-right:15px">1</td><td><input type="number" class="number  bg-transparent" id="tva_remise" name="tva_remise" style="width:100px" step="0.5" value="{{$invoice->tva_remise ?? '5.5'}}" readonly onchange="calcul();" /> %</td><td><input id="total_remise" type="number"  class="number" style="max-width:70px" value="{{$invoice->total_remise ?? 0}}" onchange="calcul();$('#remise2').val($(this).val())"/> €</td><td></td>
 								</tr>
 							</tfoot>
 						</table>
@@ -268,15 +265,15 @@
 											<div class="form-group">
 												<select class="form-control" style="max-width:200px" name="type_aide" id="type_aide" onchange="calcul();" >
 													<option></option>
-													<option @if($quote->type_aide=='Ma Prime Renov') selected="selected" @endif value="Ma Prime Renov">Prime Renov</option>
-													<option @if($quote->type_aide=='Coup de pouce') selected="selected" @endif value="Coup de pouce">Coup de pouce</option>
-													<option @if($quote->type_aide=='Prime CEE') selected="selected" @endif value="Prime CEE">Prime CEE</option>
+													<option @if($invoice->type_aide=='Ma Prime Renov') selected="selected" @endif value="Ma Prime Renov">Prime Renov</option>
+													<option @if($invoice->type_aide=='Coup de pouce') selected="selected" @endif value="Coup de pouce">Coup de pouce</option>
+													<option @if($invoice->type_aide=='Prime CEE') selected="selected" @endif value="Prime CEE">Prime CEE</option>
 												</select>
 											</div>
 										</td>
 										<td style="padding-right:0">
 											<div class="form-group">
-												<input type="number" class="form-control" style="max-width:100px" min="0" value="{{$quote->aide ?? 0}}" id="aide" onchange="calcul();"/>
+												<input type="number" class="form-control" style="max-width:100px" min="0" value="{{$invoice->aide ?? 0}}" id="aide" onchange="calcul();"/>
 											</div>
 										</td>
 										<td style="">€</td>
@@ -287,19 +284,19 @@
 										<td colspan="2"><strong>Acompte:</strong></td>
 									</tr>
 									<tr>
-										<div class="form-group"><td><div class="form-group"><input type="number" class="form-control" style="max-width:100px" min="0" value="{{$quote->acompte ?? 0}}" id="acompte" onchange="calcul();"/></div></td><td style="padding:0 10px 0 0">€</td>
+										<div class="form-group"><td><div class="form-group"><input type="number" class="form-control" style="max-width:100px" min="0" value="{{$invoice->acompte ?? 0}}" id="acompte" onchange="calcul();"/></div></td><td style="padding:0 10px 0 0">€</td>
 									</tr>
 								</table>
 							</div>
 							<div class="col-md-6">
 								<table class="totals">
-									<tr><td colspan="2">Total HT</td><td><input id="total_ht" type="number"  class="number numbers bg-transparent" readonly  value="{{$quote->total_ht ?? 0}}"/> €</td></tr>
-									<tr><td colspan="2">Total TVA</td><td><input id="total_tva" type="number"  class="number numbers bg-transparent"  readonly  value="{{$quote->total_tva ?? 0}}"/> €</td></tr>
-									<tr><td colspan="2">TOTAL TTC</td><td><input id="total_ttc" type="number" readonly  class="number numbers bg-transparent" value="{{$quote->total_ttc ?? 0}}" /> €</td></tr>
-									<tr><td colspan="2" style="color:#f07f32">Remise</td><td><input id="remise2" type="number" readonly  class="number numbers bg-transparent" value="{{$quote->total_remise ?? 0}}" /> €</td></tr>
-									<tr><td colspan="2" style="color:#f07f32">Acompte</td><td><input id="acompte2" type="number" readonly  class="number numbers bg-transparent" value="{{$quote->acompte ?? 0}}" /> €</td></tr>
-									<tr><td colspan="2" style="color:#f07f32">Aide éligible</td><td><input id="aide2" type="number" readonly  class="number numbers bg-transparent" value="{{$quote->aide ?? 0}}" /> €</td></tr>
-									<tr><td colspan="2">Net à payer</td><td><input id="net" type="number" readonly  class="number numbers bg-transparent" value="{{intval($quote->net ?? 0)}}" /> €</td></tr>
+									<tr><td colspan="2">Total HT</td><td><input id="total_ht" type="number"  class="number numbers bg-transparent" readonly  value="{{$invoice->total_ht ?? 0}}"/> €</td></tr>
+									<tr><td colspan="2">Total TVA</td><td><input id="total_tva" type="number"  class="number numbers bg-transparent"  readonly  value="{{$invoice->total_tva ?? 0}}"/> €</td></tr>
+									<tr><td colspan="2">TOTAL TTC</td><td><input id="total_ttc" type="number" readonly  class="number numbers bg-transparent" value="{{$invoice->total_ttc ?? 0}}" /> €</td></tr>
+									<tr><td colspan="2" style="color:#f07f32">Remise</td><td><input id="remise2" type="number" readonly  class="number numbers bg-transparent" value="{{$invoice->total_remise ?? 0}}" /> €</td></tr>
+									<tr><td colspan="2" style="color:#f07f32">Acompte</td><td><input id="acompte2" type="number" readonly  class="number numbers bg-transparent" value="{{$invoice->acompte ?? 0}}" /> €</td></tr>
+									<tr><td colspan="2" style="color:#f07f32">Aide éligible</td><td><input id="aide2" type="number" readonly  class="number numbers bg-transparent" value="{{$invoice->aide ?? 0}}" /> €</td></tr>
+									<tr><td colspan="2">Net à payer</td><td><input id="net" type="number" readonly  class="number numbers bg-transparent" value="{{intval($invoice->net ?? 0)}}" /> €</td></tr>
 								</table>
 							</div>
 						</div>
@@ -308,7 +305,7 @@
 				</div>
 
 				<div class="tab-pane fade" id="custom-tabs-three-finance" role="tabpanel" aria-labelledby="custom-tabs-three-finance-tab"  style="width:100%">
-					<form action="{{ route('quotes.update',$quote->id) }}" method="POST">
+					<form action="{{ route('invoices.update',$invoice->id) }}" method="POST">
 						@csrf
 						@method('PUT')
 						<div class="row">
@@ -317,69 +314,69 @@
 									<strong>Modalité :</strong>
 									<select  class="form-control"   id="modalite" name="modalite" style="max-width:180px" onchange="check_finances()">
 										<option value=""></option>
-										<option @if($quote->modalite=='Chèque') selected="selected" @endif value="Chèque">Chèque</option>
-										<option  @if($quote->modalite=='Financement') selected="selected" @endif value="Financement">Financement</option>
-										<option  @if($quote->modalite=='Chèque & Financement') selected="selected" @endif value="Chèque & Financement">Chèque et Financement</option>
+										<option @if($invoice->modalite=='Chèque') selected="selected" @endif value="Chèque">Chèque</option>
+										<option  @if($invoice->modalite=='Financement') selected="selected" @endif value="Financement">Financement</option>
+										<option  @if($invoice->modalite=='Chèque & Financement') selected="selected" @endif value="Chèque & Financement">Chèque et Financement</option>
 									</select>
 								</div>
 							</div>
 						</div>
 						<hr>
 						<div class="row">
-							<div id="finances"  @if($quote->modalite=='Chèque' || $quote->modalite== '') style="display:none" @else style="display:contents"  @endif >
+							<div id="finances"  @if($invoice->modalite=='Chèque' || $invoice->modalite== '') style="display:none" @else style="display:contents"  @endif >
 								<div class="col-xs-12 col-sm-12 col-md-6">
 									<div class="form-group">
 										<strong>Montant financé en € :</strong>
-										<input type="number"  class="form-control"  min="0"  name="montant_finance" style="max-width:180px" value="{{$quote->montant_finance}}" >
+										<input type="number"  class="form-control"  min="0"  name="montant_finance" style="max-width:180px" value="{{$invoice->montant_finance}}" >
 									</div>
 								</div>
 
 								<div class="col-xs-12 col-sm-12 col-md-6">
 									<div class="form-group">
 										<strong>Report 1ère échéance :</strong>
-										<input type="number"  class="form-control" min="0"   name="report_echeance" style="max-width:180px" value="{{$quote->report_echeance}}">
+										<input type="number"  class="form-control" min="0"   name="report_echeance" style="max-width:180px" value="{{$invoice->report_echeance}}">
 									</div>
 								</div>
 
 								<div class="col-xs-12 col-sm-12 col-md-6">
 									<div class="form-group">
 										<strong>Nombre de mensualités :</strong>
-										<input type="number"  class="form-control" min="0"  name="mensualites" style="max-width:180px" value="{{$quote->mensualites}}" >
+										<input type="number"  class="form-control" min="0"  name="mensualites" style="max-width:180px" value="{{$invoice->mensualites}}" >
 									</div>
 								</div>
 
 								<div class="col-xs-12 col-sm-12 col-md-6">
 									<div class="form-group">
 										<strong>Montant mensuel sans assurance en €:</strong>
-										<input type="number"  class="form-control"  min="0"  name="montant_mensuel" style="width:180px" value="{{$quote->montant_mensuel}}" >
+										<input type="number"  class="form-control"  min="0"  name="montant_mensuel" style="width:180px" value="{{$invoice->montant_mensuel}}" >
 									</div>
 								</div>
 
 								<div class="col-xs-12 col-sm-12 col-md-6">
 									<div class="form-group">
 										<strong>Montant mensuel de l'assurance en €:</strong>
-										<input type="number"  class="form-control" min="0"  name="montant_assurance" style="max-width:180px" value="{{$quote->montant_assurance}}">
+										<input type="number"  class="form-control" min="0"  name="montant_assurance" style="max-width:180px" value="{{$invoice->montant_assurance}}">
 									</div>
 								</div>
 
 								<div class="col-xs-12 col-sm-12 col-md-6">
 									<div class="form-group">
 										<strong>% Taux nominal :</strong>
-										<input type="number"  class="form-control" min="0"  step="0.01" name="taux_nominal" style="max-width:180px" value="{{$quote->taux_nominal}}" >
+										<input type="number"  class="form-control" min="0"  step="0.01" name="taux_nominal" style="max-width:180px" value="{{$invoice->taux_nominal}}" >
 									</div>
 								</div>
 
 								<div class="col-xs-12 col-sm-12 col-md-6">
 									<div class="form-group">
 										<strong>% TAEG :</strong>
-										<input type="number"  class="form-control" min="0"  step="0.01" name="taeg" style="max-width:180px" value="{{$quote->taeg}}" >
+										<input type="number"  class="form-control" min="0"  step="0.01" name="taeg" style="max-width:180px" value="{{$invoice->taeg}}" >
 									</div>
 								</div>
 
 								<div class="col-xs-12 col-sm-12 col-md-6">
 									<div class="form-group">
 										<strong>Solde de la pose en €:</strong>
-										<input type="number"  class="form-control"   min="0" name="pose" style="max-width:180px" value="{{$quote->pose}}">
+										<input type="number"  class="form-control"   min="0" name="pose" style="max-width:180px" value="{{$invoice->pose}}">
 									</div>
 								</div>
 							</div>
@@ -395,64 +392,6 @@
 
 				</div>
 
-            	<div class="tab-pane fade" id="custom-tabs-three-signature" role="tabpanel" aria-labelledby="custom-tabs-three-signature-tab"   >
-						<!--
-						<div class="row">
-							<div class="col-md-6 ">
-								<div class=" ">
-									<div class="card-body">
-										<div class="col-md-12">
-											<label class="" for="">Dessinez votre Signature:</label>
-											<br/>
-											<form method="POST" action="{{ route('signpad.save') }}">
-												@csrf
-												<input type="hidden" name="quote_id" value="{{$quote->id}}" />
-												<div id="sigpad" style="width:300px!important"></div>
-												<br><br>
-												<button id="clear" class="btn btn-danger">Vider</button>
-												<textarea id="signature" name="signed" style="display: none"></textarea>
-												<button class="btn btn-primary">Confirmer
-											</form>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="col-md-6 pt-3 pl-3">
-							@if(\App\Models\Signature::where('quote',$quote->id)->exists())
-								@php $url_img=\App\Models\Signature::where('quote',$quote->id)->first()->user_image;
-								@endphp
-								<img src="{{$url_img}}" width= '300'     height= ''/>
-							@endif
-							</div>
-						</div>
-						-->
-
-						<div class="row bg-lightgrey pt-3 pb-3">
-
-							<div class="col-md-6 pl-3">
-								<form method="POST" action="{{ route('quotes.ajout_signature') }}"   enctype='multipart/form-data' >
-									@csrf
-									<input type="hidden" name="quote" value="{{$quote->id}}" />
-
-									<div class="form-group">
-										<strong>Importer le devis signé :</strong>
-										<input type="file"  class="form-control"   name="devis_signe"    >
-									</div>
-
-									<div class="col-xs-12 col-sm-12 col-md-7 mt-5">
-										<button type="submit" class="btn btn-primary">Envoyer</button>
-									</div>
-								</form>
-							</div>
-							<div  class="col-md-6 pl-3 pt-4">
-								@if($quote->devis_signe!='')
-									<a download href="<?php echo  URL::asset('/fichiers/'.$quote->devis_signe);?>" >Télécharger le devis signé</a><br>
-								@endif
-							</div>
-						</div>
-
-
-				</div>
 
 			</div>
 
@@ -677,7 +616,7 @@
 	var prix_ht = (prix - tva).toFixed(2);
 	var qte=	parseInt($('#qte').val());
 	var total=parseFloat($('#total').val());
-	var quote=	parseInt($('#quote').val());
+	var invoice=	parseInt($('#invoice').val());
 	var groupe = $('#groupe').is(":checked") ? 1 : 0;
 	var groupe_text='';
 		if(groupe){
@@ -689,7 +628,7 @@
         url: "{{ route('add_article') }}",
         method: "POST",
 		async:false,
-        data: {modele:modele,prix:prix,prix_ht:prix_ht,qte:qte,texte:product_text,total:total, quote:quote,_token:_token},
+        data: {modele:modele,prix:prix,prix_ht:prix_ht,qte:qte,texte:product_text,total:total, invoice:invoice,_token:_token},
         success: function (data) {
 			if(data!=''){
 
@@ -732,7 +671,7 @@
 
 
 	function update_totals(){
-	var quote=	$('#quote').val();
+	var invoice=	$('#invoice').val();
 	var _token = $('input[name="_token"]').val();
 	var total_ht= $("#total_ht").val();
 	var total_tva=	$('#total_tva').val();
@@ -749,7 +688,7 @@
 	$.ajax({
 		url: "{{ route('update_totals') }}",
 		method: "POST",
-		data: {total_ht:total_ht,total_tva:total_tva,total_ttc:total_ttc,total_remise:total_remise,remise:remise,quote:quote,aide:aide,type_aide:type_aide,net:net,acompte:acompte,tva_remise:tva_remise, _token:_token},
+		data: {total_ht:total_ht,total_tva:total_tva,total_ttc:total_ttc,total_remise:total_remise,remise:remise,invoice:invoice,aide:aide,type_aide:type_aide,net:net,acompte:acompte,tva_remise:tva_remise, _token:_token},
 		success: function (data) {
 		}
 	});
@@ -800,6 +739,9 @@
 		}
 	}
 
+
+
+
 	function save_article_qty(elm,article,price){
 		var _token = $('input[name="_token"]').val();
 		var qty=$(elm).val();
@@ -817,17 +759,7 @@
 	}
 </script>
 
- <!-- signature -->
-<script type="text/javascript" src="{{asset('js/jquery.signature.js')}}"></script>
 
-<script type="text/javascript">
-	var sigpad = $('#sigpad').signature({syncField: '#signature', syncFormat: 'PNG'});
-		$('#clear').click(function(e) {
-		e.preventDefault();
-		sigpad.signature('clear');
-		$("#signature").val('');
-	});
-</script>
 
 @endsection
 

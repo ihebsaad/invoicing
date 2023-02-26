@@ -17,8 +17,10 @@ class CreateArticlesTable extends Migration
             //
             $table->bigIncrements('id');
             $table->integer('qty')->default(1);
-            $table->integer('tva')->nullable();
-            $table->integer('total_ttc')->nullable();
+            $table->double('price', 8, 2)->nullable();
+            $table->double('price_ht', 8, 2);
+            $table->string('text')->nullable();
+            $table->double('total_ttc', 8, 2)->nullable();
             $table->tinyInteger('groupe')->nullable();
 
             $table->unsignedBigInteger('modele')->nullable();

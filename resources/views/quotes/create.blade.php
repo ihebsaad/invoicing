@@ -40,10 +40,15 @@
         <div class="col-xs-12 col-sm-12 col-md-2">
             <a href="#" class="btn btn-sm btn-success" data-toggle="modal" data-target="#add-customer" title="Ajouter un client"  ><i class="fa fa-user-plus"></i> Nouveau Client</a>
         </div>
-        <div class="col-xs-12 col-sm-12 col-md-7">
+        <div class="col-xs-12 col-sm-4 col-md-4">
             <div class="form-group">
                 <strong>Date de visite technique préalable:</strong>
                 <input type="text" class="form-control datepicker" autocomplete="off"  name="date" placeholder="jj/mm/aaaa"  value="{{date('d/m/Y')}}"/>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-4 col-md-4">
+            <div class="form-group">
+                <label class=pointer><input type="checkbox"   name="menuiserie" id="menuiserie" value="1"  /> Menuiserie </label>
             </div>
         </div>
 

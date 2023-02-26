@@ -37,13 +37,17 @@
         @foreach ($quotes as $quote)
 		<tr>
             <td>{!! sprintf('%04d',$quote->id) !!}</td>
-            <td>{!!  $quote->reference !!}</td>
+            <td>{!!  $quote->reference !!}  @if($quote->menuiserie)<br><small>menuiserie</small> @endif</td>
             <td>{{ $quote->customer()->first()->civility }} {{ $quote->customer()->first()->name }} {{ $quote->customer()->first()->lastname }}</td>
             <td>{{date('d/m/Y', strtotime($quote->created_at))}}</td>
             <td>{{number_format($quote->total_ttc,0,',',' ')}} €</td>
             <td>
                 @if($User->user_type=='admin' || $User->id== $quote->par )
-                    <a class="btn btn-primary mb-3 mr-2" href="{{ route('quotes.edit',$quote->id) }}" style="float:left" title="Modifier"><i class="fas fa-edit"></i></a>
+                    @if($quote->menuiserie)
+                        <a class="btn btn-primary mb-3 mr-2" href="{{ route('quotes.edit_men',$quote->id) }}" style="float:left" title="Modifier"><i class="fas fa-edit"></i></a>
+                    @else
+                        <a class="btn btn-primary mb-3 mr-2" href="{{ route('quotes.edit',$quote->id) }}" style="float:left" title="Modifier"><i class="fas fa-edit"></i></a>
+                    @endif
                     <a class="btn btn-success mb-3 mr-2 " target="_blank"  href="{{ route('quotes.show_pdf',$quote->id) }}" style="float:left" title="Ouvrir en PDF"><i class="fas fa-file-pdf"></i></a>
                     <a class="btn btn-secondary mb-3 mr-2 " href="{{ route('quotes.download_pdf',$quote->id) }}" style="float:left" title="Télécharger"><i class="fas fa-download"></i></a>
                     <!--@if(\App\Models\Signature::where('quote',$quote->id)->exists())

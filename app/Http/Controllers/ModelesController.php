@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Modele;
 use App\Models\Categorie;
 use App\Models\Item;
+use App\Models\Article;
 use Illuminate\Http\Request;
 
 class ModelesController extends Controller
@@ -136,28 +137,45 @@ class ModelesController extends Controller
     }
 
 
-    public function add_item(Request $request)
+    public function add_article(Request $request)
     {
-        $type=$request->get('type');
-        $couleur=$request->get('couleur');
-        $hauteur=$request->get('hauteur');
-        $largeur=$request->get('largeur');
-        $prix=$request->get('prix');
+        $modele=$request->get('modele');
+        $qty=$request->get('qte');
+        $price=$request->get('prix');
+        $price_ht=$request->get('prix_ht');
+        $text=$request->get('texte');
+        $total_ttc=$request->get('total');
+        $groupe=$request->get('groupe');
+        $quote=$request->get('quote') ?? 0;
+        $invoice=$request->get('invoice') ?? 0;
 
-        if(   Modele::where('type',$type)->where('couleur',$couleur)->where('hauteur',$hauteur)->where('largeur',$largeur)->doesntExist()  ){
-            $modele=Modele::create([
-                'type'=>$type,
-                'couleur'=>$couleur,
-                'hauteur'=>$hauteur,
-                'largeur'=>$largeur,
-                'prix'=>$prix,
+        if( $quote>0 &&   Article::where('quote',$quote)->where('modele',$modele)->doesntExist()  ){
+            $article=Article::create([
+                'modele'=>$modele,
+                'qty'=>$qty,
+                'price'=>$price,
+                'price_ht'=>$price_ht,
+                'text'=>$text,
+                'total_ttc'=>$total_ttc,
+                'groupe'=>$groupe,
+                'quote'=>$quote,
             ]);
-            return $modele->id;
-        }else{
-			$modele= Modele::where('type',$type)->where('couleur',$couleur)->where('hauteur',$hauteur)->where('largeur',$largeur)->first();
-			return $modele->prix;
-		}
+            return $article->id;
+        }
+        if( $invoice>0 &&   Article::where('invoice',$invoice)->where('modele',$modele)->doesntExist()  ){
 
+            $article=Article::create([
+                'modele'=>$modele,
+                'qty'=>$qty,
+                'price'=>$price,
+                'price_ht'=>$price_ht,
+                'text'=>$text,
+                'total_ttc'=>$total_ttc,
+                'groupe'=>$groupe,
+                'invoice'=>$invoice,
+            ]);
+            return $article->id;
+        }
     }
 
     public function pricing(Request $request)
@@ -182,5 +200,23 @@ class ModelesController extends Controller
 
     }
 
+    public function delete_article(Request $request)
+    {
+        $item_id=$request->get('item');
+        $article=Article::find($item_id);
+        $article->delete();
+
+    }
+
+    public function save_article_qty(Request $request)
+    {
+        $article_id=$request->get('article');
+        $article=Article::find($article_id);
+
+        $article->qty=$request->get('qty');
+        $article->total_ttc=$request->get('total');
+        $article->save();
+
+    }
 
 }

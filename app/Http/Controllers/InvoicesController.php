@@ -9,6 +9,7 @@ use App\Models\Product;
 use App\Models\Item;
 use App\Models\User;
 use App\Models\Modele;
+use App\Models\Article;
 use App\Services\SendMail;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
@@ -127,6 +128,21 @@ class InvoicesController extends Controller
         return view('invoices.edit',compact('invoice','customers','products','items','countries'));
     }
 
+
+    public function edit_men($id)
+    {
+        if (auth()->user()->user_type != 'admin')
+            return  redirect('/home');
+
+        $invoice=Invoice::find($id);
+        $customers = Customer::all();
+        $modeles = Modele::all();
+        $articles = Article::where('invoice',$invoice->id)->get();
+        $countries=CustomersController::countries();
+
+        return view('invoices.edit_men',compact('invoice','customers','modeles','articles','countries'));
+    }
+
     /**
      * Update the specified resource in storage.
      *
@@ -172,9 +188,14 @@ class InvoicesController extends Controller
         $reference= $invoice->reference ;
         $user= User::find($invoice->par) ; $par = $user->name.' '.$user->lastname;
         $items = Item::where('invoice',$id)->get();
-        $count=count($items);
+        $articles = Article::where('invoice',$id)->get();
 
-        $pdf = PDF::loadView('invoices.invoice', compact('invoice','type','reference','date_facture','items','par','count'));
+        $count=count($items);
+        if($invoice->menuiserie)
+            $pdf = PDF::loadView('invoices.invoice_men', compact('invoice','type','reference','date_facture','articles','par','count'));
+        else
+            $pdf = PDF::loadView('invoices.invoice', compact('invoice','type','reference','date_facture','items','par','count'));
+
         $customer_id=$invoice->customer;
         $customer=Customer::find($customer_id);
         $content =  $pdf->output();
@@ -200,9 +221,14 @@ class InvoicesController extends Controller
         $reference= $invoice->reference ;
         $user= User::find($invoice->par) ; $par = $user->name.' '.$user->lastname;
         $items = Item::where('invoice',$id)->get();
-        $count=count($items);
+        $articles = Article::where('invoice',$id)->get();
 
-        $pdf = PDF::loadView('invoices.invoice', compact('invoice','type','reference','date_facture','items','par','count'));
+        $count=count($items);
+        if($invoice->menuiserie)
+            $pdf = PDF::loadView('invoices.invoice_men', compact('invoice','type','reference','date_facture','articles','par','count'));
+        else
+            $pdf = PDF::loadView('invoices.invoice', compact('invoice','type','reference','date_facture','items','par','count'));
+
         return $pdf->stream('Facture-'.$reference.'.pdf');
 
     }
@@ -217,9 +243,14 @@ class InvoicesController extends Controller
         $user= User::find($invoice->par) ; $par = $user->name.' '.$user->lastname;
 
         $items = Item::where('invoice',$id)->get();
-        $count=count($items);
+        $articles = Article::where('invoice',$id)->get();
 
-        $pdf = PDF::loadView('invoices.invoice', compact('invoice','type','reference','date_facture','items','count','par','count'));
+        $count=count($items);
+        if($invoice->menuiserie)
+            $pdf = PDF::loadView('invoices.invoice_men', compact('invoice','type','reference','date_facture','articles','count','par','count'));
+        else
+            $pdf = PDF::loadView('invoices.invoice', compact('invoice','type','reference','date_facture','items','count','par','count'));
+
         return $pdf->download('Facture-'.$reference.'.pdf');
 
     }

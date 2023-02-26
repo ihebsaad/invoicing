@@ -1,19 +1,19 @@
 <?php
-  
+
 namespace App\Http\Controllers;
-   
+
 use App\Models\Product;
 use App\Models\Categorie;
 use App\Models\Item;
 use Illuminate\Http\Request;
-  
+
 class ProductsController extends Controller
 {
 
     public function __construct()
     {
         $this->middleware('auth');
-    } 
+    }
 
     /**
      * Display a listing of the resource.
@@ -22,14 +22,14 @@ class ProductsController extends Controller
      */
     public function index()
     {
-        if (auth()->user()->user_type != 'admin') 
+        if (auth()->user()->user_type != 'admin')
             return  redirect('/home');
 
         $products = Product::orderBy('id','desc')->get();
-    
+
         return view('products.index',compact('products'));
     }
-     
+
     /**
      * Show the form for creating a new resource.
      *
@@ -37,13 +37,13 @@ class ProductsController extends Controller
      */
     public function create()
     {
-        if (auth()->user()->user_type != 'admin') 
+        if (auth()->user()->user_type != 'admin')
             return  redirect('/home');
 
         $categories=Categorie::all();
         return view('products.create',compact('categories'));
     }
-    
+
     /**
      * Store a newly created resource in storage.
      *
@@ -55,13 +55,13 @@ class ProductsController extends Controller
         $request->validate([
             'name' => 'required',
         ]);
-    
+
         Product::create($request->all());
-     
+
         return redirect()->route('products.index')
                         ->with('success','Produit créé avec succès.');
     }
-     
+
     /**
      * Display the specified resource.
      *
@@ -70,13 +70,13 @@ class ProductsController extends Controller
      */
     public function show(Product $product)
     {
-        if (auth()->user()->user_type != 'admin') 
+        if (auth()->user()->user_type != 'admin')
             return  redirect('/home');
 
         $categories=Categorie::all();
         return view('products.show',compact('product','categories'));
-    } 
-     
+    }
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -84,11 +84,11 @@ class ProductsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit(Product $product)
-    {        
+    {
         $categories=Categorie::all();
         return view('products.edit',compact('product','categories'));
     }
-    
+
     /**
      * Update the specified resource in storage.
      *
@@ -101,13 +101,13 @@ class ProductsController extends Controller
         $request->validate([
             'name' => 'required',
         ]);
-    
+
         $product->update($request->all());
-    
+
         return redirect()->route('products.index')
                         ->with('success','Produit modifié avec succès');
     }
-    
+
     /**
      * Remove the specified resource from storage.
      *
@@ -117,11 +117,11 @@ class ProductsController extends Controller
     public function destroy(Product $product)
     {
         $product->delete();
-    
+
         return redirect()->route('products.index')
                         ->with('success','Produit supprimé avec succès');
     }
-	
+
 
     public function add_item(Request $request)
     {
@@ -139,7 +139,7 @@ class ProductsController extends Controller
                 'tva'=>$tva,
                 'price'=>$price,
                 'quote'=>$quote,
-            ]);            
+            ]);
             return $item->id;
         }
 
@@ -150,7 +150,7 @@ class ProductsController extends Controller
                 'tva'=>$tva,
                 'price'=>$price,
                 'invoice'=>$invoice,
-            ]);            
+            ]);
             return $item->id;
         }
 
@@ -163,7 +163,15 @@ class ProductsController extends Controller
         $item_id=$request->get('item');
         $item=Item::find($item_id);
         $item->delete();
-        
+
     }
-	
+
+    public function save_item_qty(Request $request)
+    {
+        $item=Item::find($request->get('item'));
+        $item->qty=$request->get('qty');
+        $item->save();
+
+    }
+
 }

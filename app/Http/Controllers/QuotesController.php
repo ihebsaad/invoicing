@@ -9,6 +9,7 @@ use App\Models\Product;
 use App\Models\Item;
 use App\Models\User;
 use App\Models\Modele;
+use App\Models\Article;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Barryvdh\DomPDF\Facade\Pdf;
@@ -115,11 +116,10 @@ class QuotesController extends Controller
     {
         $quote=Quote::find($id);
         $customers = Customer::all();
-        $products = Product::all();
         $modeles = Modele::all();
-        $items = Item::where('quote',$quote->id)->get();
+        $articles = Article::where('quote',$quote->id)->get();
         $countries=CustomersController::countries();
-        return view('quotes.edit_men',compact('quote','customers','products','items','countries'));
+        return view('quotes.edit_men',compact('quote','customers','articles','modeles','countries'));
     }
 
     /**
@@ -202,13 +202,17 @@ class QuotesController extends Controller
         $date=Carbon::parse($invoice->created_at)->format('Y-m');
         $date_facture=Carbon::parse($invoice->date)->format('d/m/Y');
 
-        $products = Product::all();
         $items = Item::where('quote',$id)->get();
+        $articles = Article::where('quote',$id)->get();
         $count=count($items);
 
-        $pdf = PDF::loadView('quotes.quote', compact('invoice','type','reference','date_facture','products','items','par','count'));
+        if($invoice->menuiserie)
+            $pdf = PDF::loadView('invoices.invoice_men', compact('invoice','type','reference','date_facture','articles','par','count'));
+        else
+            $pdf = PDF::loadView('invoices.invoice', compact('invoice','type','reference','date_facture','items','par','count'));
+
+
         return $pdf->stream('quote-'.$id.'.pdf');
-        //return view('quotes.quote', compact('quote','reference','date_facture','products','items','par'));
 
     }
 
@@ -221,10 +225,16 @@ class QuotesController extends Controller
         $user= User::find($invoice->par) ; $par = $user->name.' '.$user->lastname;
 
         $reference= $invoice->reference;
-        $products = Product::all();
         $items = Item::where('quote',$id)->get();
+        $articles = Article::where('quote',$id)->get();
+
         $count=count($items);
-        $pdf = PDF::loadView('quotes.quote', compact('invoice','type','reference','date_facture','products','items','par','count'));
+        if($invoice->menuiserie)
+            $pdf = PDF::loadView('invoices.invoice_men', compact('invoice','type','reference','date_facture','articles','par','count'));
+        else
+            $pdf = PDF::loadView('invoices.invoice', compact('invoice','type','reference','date_facture','items','par','count'));
+
+        //$pdf = PDF::loadView('quotes.quote', compact('invoice','type','reference','date_facture','items','par','count'));
         return $pdf->download('quote-'.$reference.'.pdf');
 
     }
@@ -237,10 +247,10 @@ class QuotesController extends Controller
         $reference= $quote->reference;
         $user= User::find($invoice->par) ; $par = $user->name.' '.$user->lastname;
 
-        $products = Product::all();
         $items = Item::where('quote',$id)->get();
+
         $count=count($items);
-        $pdf = PDF::loadView('quotes.quote-sign', compact('quote','reference','date_facture','products','items','par','count'));
+        $pdf = PDF::loadView('quotes.quote-sign', compact('quote','reference','date_facture','items','par','count'));
         return $pdf->download('quote-'.$reference.'.pdf');
 
     }

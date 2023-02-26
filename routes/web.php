@@ -60,6 +60,7 @@ Route::get('/invoices/show_pdf/{id}', [InvoicesController::class, 'show_pdf'])->
 Route::get('/invoices/send_pdf/{id}', [InvoicesController::class, 'send_pdf'])->name('invoices.send_pdf');
 Route::get('/invoices/add/{customer_id}', [InvoicesController::class, 'add'])->name('invoices.add');
 Route::post('/invoices/update_totals',[InvoicesController::class, 'update_totals'])->name('invoices.update_totals');
+Route::get('/invoices/edit_men/{id}', [InvoicesController::class, 'edit_men'])->name('invoices.edit_men');
 
 
 //quotes
@@ -75,7 +76,11 @@ Route::get('/quotes/edit_men/{id}', [QuotesController::class, 'edit_men'])->name
 //products
 Route::post('/add_item',[ProductsController::class, 'add_item'])->name('add_item');
 Route::post('/delete_item',[ProductsController::class, 'delete_item'])->name('delete_item');
+Route::post('/save_item_qty',[ProductsController::class, 'save_item_qty'])->name('save_item_qty');
 
 //modeles
 Route::post('/additem',[ModelesController::class, 'add_item'])->name('modeles.add_item');
 Route::get('/pricing',[ModelesController::class, 'pricing'])->name('pricing');
+Route::post('/add_article',[ModelesController::class, 'add_article'])->name('add_article');
+Route::post('/delete_article',[ModelesController::class, 'delete_article'])->name('delete_article');
+Route::post('/save_article_qty',[ModelesController::class, 'save_article_qty'])->name('save_article_qty');
