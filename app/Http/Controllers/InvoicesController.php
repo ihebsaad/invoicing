@@ -91,9 +91,10 @@ class InvoicesController extends Controller
         $reference= date('Y-m-').sprintf('%04d',$id);
         $invoice->reference=$reference;
         $invoice->save();
-
-        return redirect()->route('invoices.edit',['invoice'=>$invoice])
-                        ->with('success','Facture créée');
+        if($invoice->menuiserie)
+            return redirect()->route('invoices.edit_men',['id'=>$invoice->id])->with('success','Facture créée');
+        else
+            return redirect()->route('invoices.edit',['invoice'=>$invoice])->with('success','Facture créée');
     }
 
     /**
@@ -222,7 +223,7 @@ class InvoicesController extends Controller
         $user= User::find($invoice->par) ; $par = $user->name.' '.$user->lastname;
         $items = Item::where('invoice',$id)->get();
         $articles = Article::where('invoice',$id)->get();
-
+        //dd($invoice->customer()->first()->lastname2);
         $count=count($items);
         if($invoice->menuiserie)
             $pdf = PDF::loadView('invoices.invoice_men', compact('invoice','type','reference','date_facture','articles','par','count'));

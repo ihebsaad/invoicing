@@ -70,7 +70,7 @@
 
         <div class="col-xs-12 col-sm-12 col-md-7">
             <div class="form-group">
-                <strong>Prix(€) :</strong>
+                <strong>Prix TTC(€) :</strong>
                 <input id="prix" type="number" name="prix" rerquired class="form-control" step ="0.01" min="0"  value="{{old('prix')}}"  >
             </div>
         </div>

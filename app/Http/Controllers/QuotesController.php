@@ -81,9 +81,10 @@ class QuotesController extends Controller
         $reference= date('Ymd').$name[0].$lastname[0].sprintf('%03d',$num);
         $data['reference']=$reference;
         $quote=Quote::create($data);
-
-        return redirect()->route('quotes.edit',['quote'=>$quote])
-                        ->with('success','Devis créé avec succès.');
+        if($quote->menuiserie)
+            return redirect()->route('quotes.edit_men',['id'=>$quote->id])->with('success','Devis créé avec succès.');
+        else
+            return redirect()->route('quotes.edit',['quote'=>$quote])->with('success','Devis créé avec succès.');
     }
 
     /**

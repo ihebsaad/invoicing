@@ -81,13 +81,13 @@
 
 				<div class="col-xs-12 col-sm-12 col-md-7">
 					<div class="form-group">
-						<strong>Prix(€):</strong>
+						<strong>Prix TTC(€):</strong>
 						<input id="prix" type="number" name="prix" rerquired class="form-control" step ="0.01" min="0"  value="{{$modele->prix}}"  >
 					</div>
 				</div>
 
 					<div class="col-xs-12 col-sm-12 col-md-7 ">
-					  <button type="submit" class="btn btn-primary mb-3">Enregistrer</button>
+					  <button type="submit" class="btn btn-primary float-right mb-3">Enregistrer</button>
 					</div>
 				</div>
 

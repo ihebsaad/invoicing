@@ -270,7 +270,7 @@
 							</tbody>
 							<tfoot>
 								<tr class="product bg-grey">
-									<td>Remise Catalogue Groupe HER ENR</td><td  ><input readonly style="text-align:right" id="remise" type="number" class="number bg-transparent" value="{{$quote->remise ?? 0}}" />€</td><td style="text-align:center;padding-right:15px">1</td><td><input type="number" class="number  bg-transparent" id="tva_remise" name="tva_remise" style="width:100px" step="0.5" value="{{$quote->tva_remise ?? '5.5'}}" readonly onchange="calcul();" /> %</td><td><input id="total_remise" type="number"  class="number" style="max-width:70px" value="{{$quote->total_remise ?? 0}}" onchange="calcul();$('#remise2').val($(this).val())"/> €</td><td></td>
+									<td>Remise Catalogue Groupe HER ENR</td><td  ><input readonly style="text-align:right" id="remise" type="number" class="number bg-transparent" value="{{$quote->remise ?? 0}}" />€</td><td style="text-align:center;padding-right:15px">1</td><td><input type="number" class="number  bg-transparent" id="tva_remise" name="tva_remise" style="width:100px" step="0.5" value="{{$quote->tva_remise ?? 0}}" readonly onchange="calcul();" /> %</td><td><input id="total_remise" type="number"  class="number" style="max-width:70px" value="{{$quote->total_remise ?? 0}}" onchange="calcul();$('#remise2').val($(this).val())"/> €</td><td></td>
 								</tr>
 							</tfoot>
 						</table>
@@ -332,10 +332,13 @@
 							<div class="col-xs-12 col-sm-12 col-md-6">
 								<div class="form-group">
 									<strong>Modalité :</strong>
-									<select  class="form-control"   id="modalite" name="modalite" style="max-width:180px" onchange="check_finances()">
+									<select  class="form-control"   id="modalite" name="modalite" style="max-width:260px" onchange="check_finances()">
 										<option value=""></option>
 										<option @if($quote->modalite=='Chèque') selected="selected" @endif value="Chèque">Chèque</option>
-										<option  @if($quote->modalite=='Financement') selected="selected" @endif value="Financement">Financement</option>
+										<option  @if($quote->modalite=='Financement DOMOFINANCE') selected="selected" @endif value="Financement DOMOFINANCE">Financement DOMOFINANCE</option>
+										<option  @if($quote->modalite=='Financement FRANFINANCE') selected="selected" @endif value="Financement FRANFINANCE">Financement FRANFINANCE</option>
+										<option  @if($quote->modalite=='Financement SOFINCO') selected="selected" @endif value="Financement SOFINCO">Financement SOFINCO</option>
+										<option  @if($quote->modalite=='Financement PROJEXIO') selected="selected" @endif value="Financement PROJEXIO">Financement PROJEXIO</option>
 										<option  @if($quote->modalite=='Chèque & Financement') selected="selected" @endif value="Chèque & Financement">Chèque et Financement</option>
 									</select>
 								</div>
@@ -368,14 +371,14 @@
 								<div class="col-xs-12 col-sm-12 col-md-6">
 									<div class="form-group">
 										<strong>Montant mensuel sans assurance en €:</strong>
-										<input type="number"  class="form-control"  min="0"  name="montant_mensuel" style="width:180px" value="{{$quote->montant_mensuel}}" >
+										<input type="number"  class="form-control" step="0.01" min="0"  name="montant_mensuel" style="width:180px" value="{{$quote->montant_mensuel}}" >
 									</div>
 								</div>
 
 								<div class="col-xs-12 col-sm-12 col-md-6">
 									<div class="form-group">
 										<strong>Montant mensuel de l'assurance en €:</strong>
-										<input type="number"  class="form-control" min="0"  name="montant_assurance" style="max-width:180px" value="{{$quote->montant_assurance}}">
+										<input type="number"  class="form-control" step="0.01" min="0"  name="montant_assurance" style="max-width:180px" value="{{$quote->montant_assurance}}">
 									</div>
 								</div>
 
@@ -396,7 +399,7 @@
 								<div class="col-xs-12 col-sm-12 col-md-6">
 									<div class="form-group">
 										<strong>Solde de la pose en €:</strong>
-										<input type="number"  class="form-control"   min="0" name="pose" style="max-width:180px" value="{{$quote->pose}}">
+										<input type="number"  class="form-control"  step="0.01" min="0" name="pose" style="max-width:180px" value="{{$quote->pose}}">
 									</div>
 								</div>
 							</div>
@@ -539,10 +542,10 @@
 	}
 
 	function check_finances(){
-		if($('#modalite').val()=='Financement' || $('#modalite').val()=='Chèque & Financement'){
-			$('#finances').css('display','contents');
-		}else{
+		if($('#modalite').val()=='Chèque' || $('#modalite').val()==''){
 			$('#finances').hide('slow');
+		}else{
+			$('#finances').css('display','contents');
 		}
 	}
 
@@ -592,7 +595,10 @@
 	var total= price*qty;
 	var tva=	parseFloat($('#tva').val());
 	var quote=	parseInt($('#quote').val());
-	//let long = document.getElementsByClassName('myproducttd').length +1 ;
+
+	var tva=	parseFloat($('#tva').val());
+	$('#tva_remise').val(tva);
+
   	$.ajax({
         url: "{{ route('add_item') }}",
         method: "POST",

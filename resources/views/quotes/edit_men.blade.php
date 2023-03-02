@@ -253,7 +253,7 @@
 							</tbody>
 							<tfoot>
 								<tr class="product bg-grey">
-									<td>Remise Catalogue Groupe HER ENR</td><td  ><input style="text-align:right" id="remise" type="number" class="number bg-transparent" readonly value="{{$quote->remise ?? 0}}" />€</td><td style="text-align:center;padding-right:15px">1</td><td><input type="number" class="number  bg-transparent" id="tva_remise" name="tva_remise" style="width:100px" step="0.5" value="{{$quote->tva_remise ?? '5.5'}}" readonly onchange="calcul();" /> %</td><td><input id="total_remise" type="number"  class="number" style="max-width:70px" value="{{$quote->total_remise ?? 0}}" onchange="calcul();$('#remise2').val($(this).val())"/> €</td><td></td>
+									<td>Remise Catalogue Groupe HER ENR</td><td  ><input style="text-align:right" id="remise" type="number" class="number bg-transparent" readonly value="{{$quote->remise ?? 0}}" />€</td><td style="text-align:center;padding-right:15px">1</td><td><input type="number" class="number  bg-transparent" id="tva_remise" name="tva_remise" style="width:100px" step="0.5" value="{{$quote->tva_remise ?? 0}}" readonly onchange="calcul();" /> %</td><td><input id="total_remise" type="number"  class="number" style="max-width:70px" value="{{$quote->total_remise ?? 0}}" onchange="calcul();$('#remise2').val($(this).val())"/> €</td><td></td>
 								</tr>
 							</tfoot>
 						</table>
@@ -276,7 +276,7 @@
 										</td>
 										<td style="padding-right:0">
 											<div class="form-group">
-												<input type="number" class="form-control" style="max-width:100px" min="0" value="{{$quote->aide ?? 0}}" id="aide" onchange="calcul();"/>
+												<input type="number" class="form-control" style="max-width:100px" min="0" value="{{$quote->aide ?? 0}}" id="aide" onchange="calcul();$('#aide2').val($(this).val())"/>
 											</div>
 										</td>
 										<td style="">€</td>
@@ -315,10 +315,13 @@
 							<div class="col-xs-12 col-sm-12 col-md-6">
 								<div class="form-group">
 									<strong>Modalité :</strong>
-									<select  class="form-control"   id="modalite" name="modalite" style="max-width:180px" onchange="check_finances()">
+									<select  class="form-control"   id="modalite" name="modalite" style="max-width:260px" onchange="check_finances()">
 										<option value=""></option>
 										<option @if($quote->modalite=='Chèque') selected="selected" @endif value="Chèque">Chèque</option>
-										<option  @if($quote->modalite=='Financement') selected="selected" @endif value="Financement">Financement</option>
+										<option  @if($quote->modalite=='Financement DOMOFINANCE') selected="selected" @endif value="Financement DOMOFINANCE">Financement DOMOFINANCE</option>
+										<option  @if($quote->modalite=='Financement FRANFINANCE') selected="selected" @endif value="Financement FRANFINANCE">Financement FRANFINANCE</option>
+										<option  @if($quote->modalite=='Financement SOFINCO') selected="selected" @endif value="Financement SOFINCO">Financement SOFINCO</option>
+										<option  @if($quote->modalite=='Financement PROJEXIO') selected="selected" @endif value="Financement PROJEXIO">Financement PROJEXIO</option>
 										<option  @if($quote->modalite=='Chèque & Financement') selected="selected" @endif value="Chèque & Financement">Chèque et Financement</option>
 									</select>
 								</div>
@@ -351,14 +354,14 @@
 								<div class="col-xs-12 col-sm-12 col-md-6">
 									<div class="form-group">
 										<strong>Montant mensuel sans assurance en €:</strong>
-										<input type="number"  class="form-control"  min="0"  name="montant_mensuel" style="width:180px" value="{{$quote->montant_mensuel}}" >
+										<input type="number"  class="form-control" step="0.01" min="0"  name="montant_mensuel" style="width:180px" value="{{$quote->montant_mensuel}}" >
 									</div>
 								</div>
 
 								<div class="col-xs-12 col-sm-12 col-md-6">
 									<div class="form-group">
 										<strong>Montant mensuel de l'assurance en €:</strong>
-										<input type="number"  class="form-control" min="0"  name="montant_assurance" style="max-width:180px" value="{{$quote->montant_assurance}}">
+										<input type="number"  class="form-control" step="0.01" min="0"  name="montant_assurance" style="max-width:180px" value="{{$quote->montant_assurance}}">
 									</div>
 								</div>
 
@@ -379,7 +382,7 @@
 								<div class="col-xs-12 col-sm-12 col-md-6">
 									<div class="form-group">
 										<strong>Solde de la pose en €:</strong>
-										<input type="number"  class="form-control"   min="0" name="pose" style="max-width:180px" value="{{$quote->pose}}">
+										<input type="number"  class="form-control" step="0.01"  min="0" name="pose" style="max-width:180px" value="{{$quote->pose}}">
 									</div>
 								</div>
 							</div>
@@ -631,10 +634,10 @@
 
 
 	function check_finances(){
-		if($('#modalite').val()=='Financement' || $('#modalite').val()=='Chèque & Financement'){
-			$('#finances').css('display','contents');
-		}else{
+		if($('#modalite').val()=='Chèque' || $('#modalite').val()==''){
 			$('#finances').hide('slow');
+		}else{
+			$('#finances').css('display','contents');
 		}
 	}
 
@@ -679,6 +682,10 @@
 	var total=parseFloat($('#total').val());
 	var quote=	parseInt($('#quote').val());
 	var groupe = $('#groupe').is(":checked") ? 1 : 0;
+
+	var tva=5.5;
+	$('#tva_remise').val(tva);
+
 	var groupe_text='';
 		if(groupe){
 			groupe_text='(Groupe2)';
@@ -739,7 +746,8 @@
 	var total_ttc=	$('#total_ttc').val();
 	var total_remise=	$('#total_remise').val();
 	var tva_remise=	$('#tva_remise').val();
-	var remise= total_remise- (total_remise*tva_remise*0.01); //$('#remise').val();
+	//var remise=  total_remise- (total_remise*tva_remise*0.01);
+	var remise=$('#remise').val();
 	var aide=	$('#aide').val();
 	var type_aide=	$('#type_aide').val();
 	var acompte=	$('#acompte').val();
@@ -792,7 +800,10 @@
 
 					}
 					else{
-						$('.text-danger').html('<b class="pb-2"> Modèle non trouvé, vérifier les données insérées</b>');
+						$('.text-danger').html('<b class="pb-2"> Modèle non trouvé, vérifiez les données insérées</b>');
+						$('#prix').val(0);
+						$('#total').val(0);
+						$("#insert").prop('disabled',true);
 					}
 					calcul();
 				}

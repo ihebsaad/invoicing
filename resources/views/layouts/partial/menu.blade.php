@@ -22,7 +22,7 @@
         </div>
       </div>
 
-      <!-- SidebarSearch Form  
+      <!-- SidebarSearch Form
       <div class="form-inline">
         <div class="input-group" data-widget="sidebar-search">
           <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
@@ -63,7 +63,7 @@
                 </a>
               </li>
             </ul>
-          </li>   
+          </li>
           @can('isAdmin')
             <li class="nav-item menu-open">
               <a href="#" class="nav-link {{  request()->is('categories') || request()->is('products') || request()->is('categories/*') || request()->is('products/*')   ? 'active' : '' }}">
@@ -85,13 +85,19 @@
                   <i class="fas fa-cubes nav-icon text-secondary"></i>
                     <p>Produits</p>
                   </a>
-                </li>  
+                </li>
+                <li class="nav-item">
+                  <a href="{{route('modeles.index')}}" class="nav-link {{ request()->is('modeles') || request()->is('modeles/*') ? 'active' : '' }}">
+                  <i class="fas fa-cubes nav-icon text-secondary"></i>
+                    <p>Menuiserie</p>
+                  </a>
+                </li>
                 <li class="nav-item">
                   <a href="{{route('customers.index')}}" class="nav-link {{ request()->is('customers') || request()->is('customers/*') ? 'active' : '' }}">
                   <i class="fas fa-address-card nav-icon text-secondary"></i>
                     <p>Clients</p>
                   </a>
-                </li>                          
+                </li>
               </ul>
             </li>
 
@@ -115,8 +121,8 @@
             </li>
           @endcan
 
-                 
-                             
+
+
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

@@ -171,7 +171,7 @@
 			   </td>
 			   <td style="width:50%;">
 				   <b>Client:</b> {{ $invoice->customer()->first()->civility }} {{ $invoice->customer()->first()->lastname }} {{ $invoice->customer()->first()->name }} <br>
-				   @if($invoice->customer()->first()->lastname2!='')<span style="margin-left:35px"{{ $invoice->customer()->first()->civility2 }} {{ $invoice->customer()->first()->lastname2 }} {{ $invoice->customer()->first()->name2 }}</span><br>@endif
+				   @if($invoice->customer()->first()->lastname2!='')<span style="margin-left:35px">{{ $invoice->customer()->first()->civility2 }} {{ $invoice->customer()->first()->lastname2 }} {{ $invoice->customer()->first()->name2 }}</span><br>@endif
 				   <b>Adresse:</b> <span>{{ $invoice->customer()->first()->address }}</span><br>
 				   @if($invoice->customer()->first()->postal!='') <span>{{ $invoice->customer()->first()->postal }}, {{ $invoice->customer()->first()->city }} - {{ $invoice->customer()->first()->country }}</span><br>@endif
 				   <span>@if( $invoice->customer()->first()->phone!='')<b>Tél :</b> {{ $invoice->customer()->first()->phone }}    @endif @if( $invoice->customer()->first()->email!='') <b>Email:</b> {{ $invoice->customer()->first()->email }} @endif</span>
@@ -220,7 +220,7 @@
 
 			   @if($invoice->remise>0)
 				   <tr class="product" style="color:#f07f32">
-					   <td>Remise Catalogue Groupe HER ENR</td><td style="text-align:center"></td><td> {{$invoice->remise}}  €</td><td> {{$invoice->remise}}  €</td><td> {{$invoice->tva_remise ?? '5.5'}} %</td><td>{{$invoice->total_remise}} €</td>
+				   	<td>Remise Catalogue Groupe HER ENR</td><td style="text-align:center"></td><td ></td><td> {{$invoice->remise}}  €</td><td> {{ $invoice->tva_remise ?? 0 }} %</td><td>{{$invoice->total_remise ?? 0}} €</td>
 				   </tr>
 			   @endif
 		   </tbody>
