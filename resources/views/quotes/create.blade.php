@@ -48,9 +48,31 @@
         </div>
         <div class="col-xs-12 col-sm-4 col-md-4">
             <div class="form-group">
-                <label class=pointer><input type="checkbox"   name="menuiserie" id="menuiserie" value="1"  /> Menuiserie </label>
+                <label class=pointer><input type="checkbox"   name="menuiserie" id="menuiserie" value="1" onchange="update_required()" /> Menuiserie </label>
             </div>
         </div>
+    </div>
+    <div class="row pl-3">
+        <div class="col-xs-12 col-sm-12 col-md-4">
+			<div class="form-group">
+				<strong>Chaudière à :</strong>
+				<select  class="form-control" required  id="chaudiere" value="old('chaudiere')" style="max-width:180px" >
+					<option  value=""></option>
+					<option  value="Gaz">Gaz</option>
+					<option  value="Fioul">Fioul</option>
+					<option  value="Charbon">Charbon</option>
+					<option  value="Autre">Autre</option>
+				</select>
+			</div>
+		</div>
+        <div class="col-xs-12 col-sm-12 col-md-4">
+			<div class="form-group">
+            <strong>Surface chauffée (m²):</strong>
+            <input type="number" class="form-control" required  id="surface"  name="surface" value="old('surface')" style="max-width:180px"/>
+
+            </div>
+		</div>
+
 
         <div class="col-xs-12 col-sm-12 col-md-7">
             <div class="form-group">
@@ -256,6 +278,16 @@
       if( $('#delivery_'+champ).val()==''||$('#delivery_'+champ).val()=='France' ){
         $('#delivery_'+champ).val(val);
       }
+  }
+  function update_required(){
+    var menuiserie =$('#menuiserie').is( ":checked" ) ? 1:0 ;
+    if(menuiserie){
+        $('#chaudiere').prop('required',false);
+        $('#surface').prop('required',false);
+    }else{
+        $('#chaudiere').prop('required',true);
+        $('#surface').prop('required',true);
+    }
   }
 
   $(function () {

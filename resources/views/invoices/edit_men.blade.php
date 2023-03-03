@@ -178,6 +178,7 @@
 										<option  @if($invoice->chaudiere=='Gaz') selected="selected" @endif value="Gaz">Gaz</option>
 										<option  @if($invoice->chaudiere=='Fioul') selected="selected" @endif value="Fioul">Fioul</option>
 										<option  @if($invoice->chaudiere=='Charbon') selected="selected" @endif value="Charbon">Charbon</option>
+										<option  @if($invoice->chaudiere=='Autre') selected="selected" @endif value="Autre">Autre</option>
 									</select>
 								</div>
 							</div>

@@ -230,9 +230,12 @@
 		   <div style="width:67%;float:left;font-size:9px">
 			   {!!nl2br($invoice->description) !!}
 			   <div class="clearfix"></div>
-			   @if($invoice->chaudiere!='')
+			   @if($invoice->chaudiere!='' && $invoice->chaudiere!='Autre')
 				   Dépose de la chaudière individuelle: <b> Chaudière à {{$invoice->chaudiere}}</b><br>
 			   @endif
+
+				<b>Délai de Livraison : 30 jours</b><br>
+				<b>Durée de validité du devis : 15 jours</b>
 		   </div>
 		   <div style="width:33%;float:left;">
 			   <table class="totals">
@@ -281,7 +284,7 @@
    </section>
    <footer>
 	   SARL au capital de 50 000 euros<br>
-	   SIRET 851 566 455 00032  - R.C.S TOULOUSE - NAF 4321A<br>
+	   SIRET 851 566 455 00032  - R.C.S MONTAUBAN - NAF 3511Z<br>
 	   TVA intracommunautaire : FR95851566455<br>
    </footer>
 

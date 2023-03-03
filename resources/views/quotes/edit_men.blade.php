@@ -181,6 +181,7 @@
 										<option  @if($quote->chaudiere=='Gaz') selected="selected" @endif value="Gaz">Gaz</option>
 										<option  @if($quote->chaudiere=='Fioul') selected="selected" @endif value="Fioul">Fioul</option>
 										<option  @if($quote->chaudiere=='Charbon') selected="selected" @endif value="Charbon">Charbon</option>
+										<option  @if($quote->chaudiere=='Autre') selected="selected" @endif value="Autre">Autre</option>
 									</select>
 								</div>
 							</div>

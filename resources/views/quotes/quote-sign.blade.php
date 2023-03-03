@@ -190,7 +190,7 @@
 
 	<footer>
 		SARL au capital de 50 000 euros<br>
-		SIRET 85156645500024 - R.C.S TOULOUSE - NAF 4321A<br>
+		SIRET 85156645500024 - R.C.S MONTAUBAN - NAF 3511Z<br>
 		TVA intracommunautaire : FR95851566455<br>
 	</footer>
  @endsection
