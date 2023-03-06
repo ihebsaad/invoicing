@@ -209,7 +209,7 @@
 						   $img='img/f'.$modele->type.'.jpg';
 					   @endphp
 					   <tr class="product"  >
-						   <td><img src="{!! public_path($img)!!}"   style="max-width:120px;max-height:90px;" /></td><td class="text" >{{$article->text}}</td><td>{{$article->qty}}</td><td>{{$article->price_ht}} €</td><td>{{$total_prod_ht}} €</td><td>5.5 %</td><td>{{$total_prod_ttc}} €</td>
+						   <td><img src="{!! public_path($img)!!}"   style="max-width:120px;max-height:90px;" /></td><td class="text" >{{$article->text}} @if($article->note!='')<br>{{$article->note}} @endif</td><td>{{$article->qty}}</td><td>{{$article->price_ht}} €</td><td>{{$total_prod_ht}} €</td><td>5.5 %</td><td>{{$total_prod_ttc}} €</td>
 					   </tr>
 				   @endforeach
 			   </tr>

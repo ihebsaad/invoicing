@@ -245,7 +245,7 @@
 										$c++;
 									@endphp
 									<tr class="myproduct product bg-lightgrey tr-prod" id="row-{{$modele->id}}">
-										<td class="myproducttd" data-prix="{{$article->price}}" data-prixht="{{$article->price_ht}}" data-id="{{$modele->id}}"  >{{$article->text}}</td><td >{{$article->price}} €</td><td><input id="qty-{{$modele->id}}" type="number" step="1" min="1" class="number" value="{{$article->qty}}"  onchange="calcul();save_article_qty(this,{{$article->id}},{{$article->price}})"/></td><td><input readonly step="0.5" min="5.5" type="number" step="0.5" min="1" class="number bg-transparent" value="5.5"/> %</td><td><input id="total-{{$article->id}}" type="number" readonly class="total-prod number" value="{{$total_prod}}"/> €</td><td><button id="delete_item"   class="btn-sm btn-danger" onclick="delete_item({{$modele->id}},{{$article->id}})"><i class="fas fa-minus " data-id="{{$article->id}}"></i></td>
+										<td class="myproducttd" data-prix="{{$article->price}}" data-prixht="{{$article->price_ht}}" data-id="{{$modele->id}}"  >{{$article->text}}<br>{{$article->note}}</td><td >{{$article->price}} €</td><td><input id="qty-{{$modele->id}}" type="number" step="1" min="1" class="number" value="{{$article->qty}}"  onchange="calcul();save_article_qty(this,{{$article->id}},{{$article->price}})"/></td><td><input readonly step="0.5" min="5.5" type="number" step="0.5" min="1" class="number bg-transparent" value="5.5"/> %</td><td><input id="total-{{$article->id}}" type="number" readonly class="total-prod number" value="{{$total_prod}}"/> €</td><td><button id="delete_item"   class="btn-sm btn-danger" onclick="delete_item({{$modele->id}},{{$article->id}})"><i class="fas fa-minus " data-id="{{$article->id}}"></i></td>
 									</tr>
 								@endforeach
 							</tbody>
@@ -320,7 +320,10 @@
 										<option  @if($invoice->modalite=='Financement FRANFINANCE') selected="selected" @endif value="Financement FRANFINANCE">Financement FRANFINANCE</option>
 										<option  @if($invoice->modalite=='Financement SOFINCO') selected="selected" @endif value="Financement SOFINCO">Financement SOFINCO</option>
 										<option  @if($invoice->modalite=='Financement PROJEXIO') selected="selected" @endif value="Financement PROJEXIO">Financement PROJEXIO</option>
-										<option  @if($invoice->modalite=='Chèque & Financement') selected="selected" @endif value="Chèque & Financement">Chèque et Financement</option>
+										<option  @if($invoice->modalite=='Chèque & Financement DOMOFINANCE') selected="selected" @endif value="Chèque & Financement DOMOFINANCE">Chèque et Financement DOMOFINANCE</option>
+										<option  @if($invoice->modalite=='Chèque & Financement FRANFINANCE') selected="selected" @endif value="Chèque & Financement FRANFINANCE">Chèque et Financement FRANFINANCE</option>
+										<option  @if($invoice->modalite=='Chèque & Financement SOFINCO') selected="selected" @endif value="Chèque & Financement SOFINCO">Chèque et Financement SOFINCO</option>
+										<option  @if($invoice->modalite=='Chèque & Financement PROJEXIO') selected="selected" @endif value="Chèque & Financement PROJEXIO">Chèque et Financement PROJEXIO</option>
 									</select>
 								</div>
 							</div>
@@ -421,6 +424,7 @@
 					<div class="col-xs-12 col-sm-4 col-md-4">
 						<div class="form-group">
 							<strong>Matière:</strong>
+							<input type="hidden" id="article" value="0"/>
 							<select  name="genre" required class="form-control" id="genre"   onchange="pricing()">
 								<option></option>
 								<option  @if( old("genre")==1)  selected="selected" @endif value="1">PVC</option>
@@ -482,7 +486,7 @@
 					<div class="col-xs-12 col-sm-4 col-md-4">
 						<div class="form-group">
 							<strong>Prix U <small style="display:none">€</small>:</strong>
-							<input readonly id="prix" type="number" name="prix" rerquired class="form-control" step ="0.01" min="0"  value="{{old('prix')}}"  >
+							<input readonly id="prix" type="number" name="prix" required class="form-control" step ="0.01" min="0"  value="{{old('prix')}}"  >
 							<input type="hidden" id="modele" value="0"  />
 						</div>
 					</div>
@@ -490,19 +494,26 @@
 					<div class="col-xs-12 col-sm-3 col-md-3">
 						<div class="form-group">
 							<strong>Qté :</strong>
-							<input  id="qte" type="number" name="qte" rerquired class="form-control" step ="1" min="1"  value="1" onchange="pricing()" >
+							<input  id="qte" type="number" name="qte" required class="form-control" step ="1" min="1"  value="1" onchange="pricing()" >
 						</div>
 					</div>
 
 					<div class="col-xs-12 col-sm-3 col-md-3">
 						<div class="form-group">
 							<strong>Total <small style="display:none">€</small>:</strong>
-							<input readonly id="total" type="number" name="total" rerquired class="form-control" step ="0.01" min="0"  >
+							<input readonly id="total" type="number" name="total" required class="form-control" step ="0.01" min="0"  >
 						</div>
 					</div>
 
-					<div class="col-xs-12 col-sm-12 col-md-12 text-right">
-						<button type="button" id="insert" onclick="add_article()" disabled class="btn btn-primary mt-3 mr-3">Insérer</button>
+					<div class="col-xs-12 col-sm-8 col-md-8">
+						<div class="form-group">
+							<strong>Note :</strong>
+							<textarea  id="note"   name="note"  class="form-control" ></textarea>
+						</div>
+					</div>
+
+					<div class="col-xs-12 col-sm-12 col-md-12 text-right" onmouseover="pricing()">
+						<button type="button" id="insert"  onclick=";add_article()" disabled class="btn btn-primary mt-3 mr-3">Insérer</button>
 					</div>
 				</div>
 			</div>
@@ -616,6 +627,7 @@
   	var _token = $('input[name="_token"]').val();
 	var modele= parseInt($("#modele").val());
 	var prix=	parseFloat($('#prix').val());
+	var note=	$('#note').val();
 	var tva =	(prix / 1.055) * 0.055
 	var prix_ht = (prix - tva).toFixed(2);
 	var qte=	parseInt($('#qte').val());
@@ -636,12 +648,12 @@
         url: "{{ route('add_article') }}",
         method: "POST",
 		async:false,
-        data: {modele:modele,prix:prix,prix_ht:prix_ht,qte:qte,texte:product_text,total:total, invoice:invoice,_token:_token},
+        data: {modele:modele,prix:prix,prix_ht:prix_ht,note:note,qte:qte,texte:product_text,total:total, invoice:invoice,_token:_token},
         success: function (data) {
 			if(data!=''){
 
 				item_id=data;
-				var row='<tr class="myproduct product bg-lightgrey tr-prod" id="row-'+modele+'"><td class="myproducttd"  data-prix="'+prix+'" data-prixht="'+prix_ht+'" data-id="'+modele+'"  ><b>'+product_text+'</b></td><td>'+prix+' €</td><td><input type="number" step="1" min="1" class="number" value="'+qte+'"  id="qty-'+modele+'"/></td><td><input  step="0.5" min="5.5" type="number" step="1" min="1" class="number bg-transparent" readonly value="5.5"/> %</td><td><input id="total-'+data+'" type="number" readonly class="total-prod number" value="'+total+'"/> €</td><td><button id="delete_item"   class="btn-sm btn-danger" onclick="delete_item('+modele+','+item_id+')"><i class="fas fa-minus "  ></i></td></tr>';
+				var row='<tr class="myproduct product bg-lightgrey tr-prod" id="row-'+modele+'"><td class="myproducttd"  data-prix="'+prix+'" data-prixht="'+prix_ht+'" data-id="'+modele+'"  >'+product_text+ '<br>'+note+'</td><td>'+prix+' €</td><td><input type="number" step="1" min="1" class="number" value="'+qte+'" onchange="calcul();save_article_qty(this,'+data+','+prix+')"  id="qty-'+modele+'"/></td><td><input  step="0.5" min="5.5" type="number" step="1" min="1" class="number bg-transparent" readonly value="5.5"/> %</td><td><input id="total-'+data+'" type="number" readonly class="total-prod number" value="'+total+'"/> €</td><td><button id="delete_item"   class="btn-sm btn-danger" onclick="delete_item('+modele+','+item_id+')"><i class="fas fa-minus "  ></i></td></tr>';
 
 				$('#list-prods').append(row);
 				$('#add-prod').modal('hide');

@@ -15,6 +15,7 @@ class Article extends Model
         'price',
         'price_ht',
         'text',
+        'note',
         'groupe',
         'price_ht',
         'total_ttc',

@@ -145,6 +145,7 @@ class ModelesController extends Controller
         $price_ht=$request->get('prix_ht');
         $text=$request->get('texte');
         $total_ttc=$request->get('total');
+        $note=$request->get('note');
         $groupe=$request->get('groupe');
         $quote=$request->get('quote') ?? 0;
         $invoice=$request->get('invoice') ?? 0;
@@ -156,6 +157,7 @@ class ModelesController extends Controller
                 'price'=>$price,
                 'price_ht'=>$price_ht,
                 'text'=>$text,
+                'note'=>$note,
                 'total_ttc'=>$total_ttc,
                 'groupe'=>$groupe,
                 'quote'=>$quote,
@@ -170,6 +172,7 @@ class ModelesController extends Controller
                 'price'=>$price,
                 'price_ht'=>$price_ht,
                 'text'=>$text,
+                'note'=>$note,
                 'total_ttc'=>$total_ttc,
                 'groupe'=>$groupe,
                 'invoice'=>$invoice,
