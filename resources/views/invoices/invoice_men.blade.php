@@ -38,7 +38,7 @@
 			font-size:11px;
 		}
 		.tab-products{
-		   border-bottom:1px solid #f07f32;
+		   border-bottom:2px solid #f07f32;
 		}
 		.th-products{
 		   background-color:#f07f32;color:white;padding:5px 20px;
@@ -148,6 +148,9 @@
 		.pageplus1:after {
 		content: counter(pageplus1);
 		}
+		.pose{
+			border-bottom:1px solid #f07f32;
+		}
    </style>
    <section class="body">
 
@@ -196,20 +199,111 @@
 	   <table class="tab-products" style="min-height:150px;width:100%;margin-top:5px;margin-bottom:5px">
 		   <thead class="th-products">
 			   <tr>
-			   	<th style="width:20%">Image</th><th style="width:30%">Désignation</th><th style="width:6%">Qté</th><th style="width:8%">P.U HT</th><th style="width:10%">Montant HT</th><th style="width:6%">TVA</th><th style="width:10%">Montant TTC</th>
+			   	<th style="width:15%">Image</th><th style="width:39%">Désignation</th><th style="width:5%">Qté</th><th style="width:7%">P.U HT</th><th style="width:9%">Montant HT</th><th style="width:5%">TVA</th><th style="width:10%">Montant TTC</th>
 			   </tr>
 		   </thead>
 		   <tbody >
 			   <tr class="product " >
+			   		@php $count_articles=count($articles); $i=0;  @endphp
 				   @foreach($articles as $article)
 					   @php
+					   		$i++;
 						   $modele=\App\Models\Modele::find($article->modele);
 						   $total_prod_ht=floatval($article->price_ht) * intval($article->qty);
 						   $total_prod_ttc=$article->total_ttc;
 						   $img='img/f'.$modele->type.'.jpg';
+						   switch ($modele->type) {
+							case 1:
+								$desc='
+								POSE EN RENOVATION DE MENUISERIES PVC DE LA MARQUE OKNOPLAST –	MODELE CHARME MINI<br>
+								INSTALLATION DE MATERIAUX D’ISOLATION THERMIQUE DES PAROIS VITREES VERTICALES<br>
+								INSTALLATION DE FENETRE A SOUFFLET EN DOUBLE VITRAGE VENANT EN REMPLACEMENT DE MENUISERIES SIMPLE VITRAGE<br>
+								Profilé de haute qualité et Classe A avec une profondeur de 70 mm<br>
+								Système breveté équipé de renforts en acier sur l’ensemble du dormant et des ouvrants<br>
+								Système d’ouverture Oscillo-Battant<br>
+								Micro-aération - Vitrage 4/16/4 - Gaz Argon<br>
+								Coefficient de transmission surfacique : Uw = 1,3 W/m².K<br>
+								Performance thermique du vitrage : Uw = 1,1 W/m².K<br>
+								Facteur solaire : Sw = 0.45 W/m².K<br>
+								Fermeture par crémone simple';
+								break;
+							case 2:
+								$desc='
+								POSE EN RENOVATION DE MENUISERIES PVC DE LA MARQUE OKNOPLAST – MODELE CHARME MINI
+								INSTALLATION DE MATERIAUX D’ISOLATION THERMIQUE DES PAROIS VITREES VERTICALES<br>
+								INSTALLATION DE FENETRE 1 VANTAIL EN DOUBLE VITRAGE VENANT EN REMPLACEMENT DE MENUISERIES SIMPLE VITRAGE<br>
+								Profilé de haute qualité et Classe A avec une profondeur de 70 mm<br>
+								Système breveté équipé de renforts en acier sur l’ensemble du dormant et des ouvrants<br>
+								Système d’ouverture Oscillo-Battant<br>
+								Micro-aération - Vitrage 4/16/4 - Gaz Argon<br>
+								Coefficient de transmission surfacique : Uw = 1,3 W/m².K<br>
+								Performance thermique du vitrage : Uw = 1,1 W/m².K<br>
+								Facteur solaire : Sw = 0.45 W/m².K<br>
+								Fermeture par crémone simple';
+								break;
+							case 3:
+								$desc='
+								POSE EN RENOVATION DE MENUISERIES PVC DE LA MARQUE OKNOPLAST – MODELE CHARME MINI<br>
+								INSTALLATION DE MATERIAUX D’ISOLATION THERMIQUE DES PAROIS VITREES VERTICALES<br>
+								INSTALLATION DE FENETRE 2 VANTAUX EN DOUBLE VITRAGE VENANT EN REMPLACEMENT DE MENUISERIES SIMPLE VITRAGE<br>
+								Profilé de haute qualité et Classe A avec une profondeur de 70 mm<br>
+								Système breveté équipé de renforts en acier sur l’ensemble du dormant et des ouvrants<br>
+								Système d’ouverture Oscillo-Battant<br>
+								Micro-aération - Vitrage 4/16/4 - Gaz Argon<br>
+								Coefficient de transmission surfacique : Uw = 1,3 W/m².K<br>
+								Performance thermique du vitrage : Uw = 1,1 W/m².K<br>
+								Facteur solaire : Sw = 0.45 W/m².K<br>
+								Fermeture par crémone simple';
+								break;
+							case 4:
+								$desc='
+								POSE EN RENOVATION DE MENUISERIES PVC DE LA MARQUE OKNOPLAST – MODELE CHARME MINI<br>
+								INSTALLATION DE MATERIAUX D’ISOLATION THERMIQUE DES PAROIS VITREES VERTICALES<br>
+								INSTALLATION DE FENETRE FIXE EN DOUBLE VITRAGE VENANT EN REMPLACEMENT DE MENUISERIES SIMPLE VITRAGE<br>
+								Profilé de haute qualité et Classe A avec une profondeur de 70 mm<br>
+								Système breveté équipé de renforts en acier sur l’ensemble du dormant et des ouvrants<br>
+								Système d’ouverture Oscillo-Battant<br>
+								Micro-aération - Vitrage 4/16/4 - Gaz Argon<br>
+								Coefficient de transmission surfacique : Uw = 1,3 W/m².K<br>
+								Performance thermique du vitrage : Uw = 1,1 W/m².K<br>
+								Facteur solaire : Sw = 0.45 W/m².K<br>
+								Fermeture par crémone simple';
+								break;
+							case 5:
+								$desc='
+								POSE EN RENOVATION DE MENUISERIES PVC DE LA MARQUE OKNOPLAST – MODELE CHARME MINI<br>
+								INSTALLATION DE MATERIAUX D’ISOLATION THERMIQUE DES PAROIS VITREES VERTICALES<br>
+								INSTALLATION DE PORTES-FENETRES EN DOUBLE VITRAGE VENANT EN REMPLACEMENT DE MENUISERIES SIMPLE VITRAGE<br>
+								Profilé de haute qualité et Classe A avec une profondeur de 70 mm<br>
+								Système breveté équipé de renforts en acier sur l’ensemble du dormant et des ouvrants<br>
+								Système d’ouverture Oscillo-Battant<br>
+								Micro-aération - Vitrage 4/16/4 - Gaz Argon<br>
+								Coefficient de transmission surfacique : Uw = 1,3 W/m².K<br>
+								Performance thermique du vitrage : Uw = 1,1 W/m².K<br>
+								Facteur solaire : Sw = 0.45 W/m².K<br>
+								Fermeture par crémone simple ou serrure à barillet';
+								break;
+							case 6:
+								$desc='
+								POSE EN RENOVATION DE MENUISERIES PVC DE LA MARQUE OKNOPLAST – MODELE CHARME MINI<br>
+								INSTALLATION DE MATERIAUX D’ISOLATION THERMIQUE DES PAROIS VITREES VERTICALES<br>
+								INSTALLATION DE PORTES-FENETRES EN DOUBLE VITRAGE VENANT EN REMPLACEMENT DE MENUISERIES SIMPLE VITRAGE<br>
+								Profilé de haute qualité et Classe A avec une profondeur de 70 mm<br>
+								Système breveté équipé de renforts en acier sur l’ensemble du dormant et des ouvrants<br>
+								Système d’ouverture Oscillo-Battant<br>
+								Micro-aération - Vitrage 4/16/4 - Gaz Argon<br>
+								Coefficient de transmission surfacique : Uw = 1,3 W/m².K<br>
+								Performance thermique du vitrage : Uw = 1,1 W/m².K<br>
+								Facteur solaire : Sw = 0.45 W/m².K<br>
+								Fermeture par crémone simple ou serrure à barillet';
+								break;
+							}
 					   @endphp
 					   <tr class="product"  >
-						   <td><img src="{!! public_path($img)!!}"   style="max-width:120px;max-height:90px;" /></td><td class="text" >{{$article->text}} @if($article->note!='')<br>{{$article->note}} @endif</td><td>{{$article->qty}}</td><td>{{$article->price_ht}} €</td><td>{{$total_prod_ht}} €</td><td>5.5 %</td><td>{{$total_prod_ttc}} €</td>
+						   <td ><img src="{!! public_path($img)!!}"   style="max-width:120px;max-height:90px;" /></td><td class="text" ><b>{{$article->text}} @if($article->note!='')<br>{{$article->note}} @endif </b><br>{!!nl2br($desc)!!}</td><td>{{$article->qty}}</td><td>{{$article->price_ht}} €</td><td>{{$total_prod_ht}} €</td><td>5.5 %</td><td>{{$total_prod_ttc}} €</td>
+					   </tr>
+					   <tr class="product"   >
+						   <td @if($i!=$count_articles) class="pose" @endif></td><td class="text @if($i!=$count_articles) pose @endif " ><b>Pose</b></td><td @if($i!=$count_articles) class="pose" @endif >{{$article->qty}}</td><td @if($i!=$count_articles) class="pose" @endif >200 €</td><td @if($i!=$count_articles) class="pose" @endif></td><td @if($i!=$count_articles) class="pose" @endif></td><td @if($i!=$count_articles) class="pose" @endif>{{ 200 * $article->qty}} €</td>
 					   </tr>
 				   @endforeach
 			   </tr>

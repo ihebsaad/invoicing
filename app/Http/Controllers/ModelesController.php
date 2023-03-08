@@ -150,7 +150,7 @@ class ModelesController extends Controller
         $quote=$request->get('quote') ?? 0;
         $invoice=$request->get('invoice') ?? 0;
 
-        if( $quote>0 &&   Article::where('quote',$quote)->where('modele',$modele)->doesntExist()  ){
+        if( $quote>0   ){
             $article=Article::create([
                 'modele'=>$modele,
                 'qty'=>$qty,
@@ -164,7 +164,7 @@ class ModelesController extends Controller
             ]);
             return $article->id;
         }
-        if( $invoice>0 &&   Article::where('invoice',$invoice)->where('modele',$modele)->doesntExist()  ){
+        if( $invoice>0   ){
 
             $article=Article::create([
                 'modele'=>$modele,

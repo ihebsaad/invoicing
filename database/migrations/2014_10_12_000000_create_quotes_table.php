@@ -18,6 +18,7 @@ class CreateQuotesTable extends Migration
             $table->text('description')->nullable();
             $table->string('adresse')->nullable();
             $table->string('chaudiere')->nullable();
+            $table->string('chauffage')->nullable();
             $table->string('modalite')->nullable();
             $table->string('devis_signe')->nullable();
             $table->date('date')->nullable();

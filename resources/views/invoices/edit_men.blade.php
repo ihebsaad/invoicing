@@ -123,7 +123,7 @@
 						@method('PUT')
 						<input type="hidden" value="{{$invoice->id}}" id="invoice" />
 						<div class="row pl-3">
-							<div class="col-xs-12 col-sm-12 col-md-7">
+							<div class="col-xs-12 col-sm-12 col-md-12">
 								<div class="form-group">
 									<i class="fas fa-address-card"></i>
 									<?php $customer= \App\Models\Customer::find($invoice->customer);?>
@@ -133,14 +133,14 @@
 								</div>
 							</div>
 
-								<div class="col-xs-12 col-sm-12 col-md-6">
+								<div class="col-xs-12 col-sm-12 col-md-4">
 									<div class="form-group">
 										<strong>Adresse du chantier:</strong>
 										<input type="text"   name="delivery_address" id="delivery_address" class="form-control" placeholder="Adresse" value="{{$invoice->delivery_address ?? $customer->delivery_address}}" style="max-width:400px">
 									</div>
 								</div>
 
-								<div class="col-xs-12 col-sm-12 col-md-5">
+								<div class="col-xs-12 col-sm-12 col-md-3">
 									<div class="form-group">
 										<strong>Ville:</strong>
 										<input type="text" name="delivery_city" id="delivery_city" class="form-control" placeholder="Ville" value="{{$invoice->delivery_city ?? $customer->delivery_city}}" style="max-width:300px">
@@ -170,7 +170,7 @@
 
 						<div class="row pl-3 mt-2">
 
-							<div class="col-xs-12 col-sm-12 col-md-5">
+							<div class="col-xs-12 col-sm-12 col-md-4">
 								<div class="form-group">
 									<strong>Chaudière à :</strong>
 									<select  class="form-control"   name="chaudiere" style="max-width:180px" >
@@ -183,7 +183,28 @@
 								</div>
 							</div>
 
-							<div class="col-xs-12 col-sm-12 col-md-7">
+							@if($invoice->menuiserie)
+							<div class="col-xs-12 col-sm-12 col-md-4" id="div-chauffage" >
+								<div class="form-group">
+									<strong>Type de chauffage :</strong>
+									<select  class="form-control" required  name="chauffage"  id="chauffage"  style="max-width:180px;" >
+										<option  value=""></option>
+										<option  @if($invoice->chauffage=='Electrique') selected="selected" @endif  value="Electrique">Electrique</option>
+										<option  @if($invoice->chauffage=='Combustible') selected="selected" @endif  value="Combustible">Combustible</option>
+									</select>
+								</div>
+							</div>
+							@endif
+
+							<div class="col-xs-12 col-sm-12 col-md-4">
+								<div class="form-group">
+									<strong>Surface chauffée (m²):</strong>
+									<input type="number" class="form-control"   name="surface" value="{{ $invoice->surface }}" style="max-width:180px"/>
+								</div>
+							</div>
+						</div>
+						<div class="row pl-3 mt-2">
+							<div class="col-xs-12 col-sm-12 col-md-4">
 								<div class="form-group">
 									<strong>Type de logement:</strong>
 									<select class="form-control"   name="logement"  value="{{ $invoice->logement}}" style="max-width:300px">
@@ -192,15 +213,10 @@
 									</select>
 								</div>
 							</div>
-							<div class="col-xs-12 col-sm-12 col-md-5">
-								<div class="form-group">
-									<strong>Surface chauffée (m²):</strong>
-									<input type="number" class="form-control"   name="surface" value="{{ $invoice->surface }}" style="max-width:180px"/>
-								</div>
-							</div>
 
 
-							<div class="col-xs-12 col-sm-12 col-md-7">
+
+							<div class="col-xs-12 col-sm-12 col-md-4">
 								<div class="form-group">
 									<strong>Date de visite:</strong>
 									<input type="text" class="form-control datepicker"  autocomplete="off" name="date" placeholder="jj/mm/aaaa" value="{{ date('d/m/Y', strtotime($invoice->date)) }}"/>
@@ -245,7 +261,10 @@
 										$c++;
 									@endphp
 									<tr class="myproduct product bg-lightgrey tr-prod" id="row-{{$modele->id}}">
-										<td class="myproducttd" data-prix="{{$article->price}}" data-prixht="{{$article->price_ht}}" data-id="{{$modele->id}}"  >{{$article->text}}<br>{{$article->note}}</td><td >{{$article->price}} €</td><td><input id="qty-{{$modele->id}}" type="number" step="1" min="1" class="number" value="{{$article->qty}}"  onchange="calcul();save_article_qty(this,{{$article->id}},{{$article->price}})"/></td><td><input readonly step="0.5" min="5.5" type="number" step="0.5" min="1" class="number bg-transparent" value="5.5"/> %</td><td><input id="total-{{$article->id}}" type="number" readonly class="total-prod number" value="{{$total_prod}}"/> €</td><td><button id="delete_item"   class="btn-sm btn-danger" onclick="delete_item({{$modele->id}},{{$article->id}})"><i class="fas fa-minus " data-id="{{$article->id}}"></i></td>
+										<td class="myproducttd" data-prix="{{$article->price}}" data-prixht="{{$article->price_ht}}" data-id="{{$modele->id}}"  ><b>{{$article->text}}<br>{{$article->note}}</b></td><td >{{$article->price}} €</td><td><input id="qty-{{$modele->id}}" type="number" step="1" min="1" class="number" value="{{$article->qty}}"  onchange="calcul();save_article_qty(this,{{$article->id}},{{$article->price}})"/></td><td><input readonly step="0.5" min="5.5" type="number" step="0.5" min="1" class="number bg-transparent" value="5.5"/> %</td><td><input id="total-{{$article->id}}" type="number" readonly class="total-prod number" value="{{$total_prod}}"/> €</td><td><button id="delete_item"   class="btn-sm btn-danger" onclick="delete_item({{$modele->id}},{{$article->id}})"><i class="fas fa-minus " data-id="{{$article->id}}"></i></td>
+									</tr>
+									<tr class="myproduct product bg-lightgrey tr-prod" id="row-{{$modele->id}}">
+										<td class="myproducttd" data-prix="{{$article->price}}" data-prixht="{{$article->price_ht}}" data-id="{{$modele->id}}"  >Pose</td><td >200 €</td><td></td><td><input readonly step="0.5" min="5.5" type="number" step="0.5" min="1" class="number bg-transparent" value=""/></td><td><input id="total-pose-{{$article->id}}" type="number" readonly class="total-prod number" value="{{($article->qty * 200)}}"/> €</td><td></td>
 									</tr>
 								@endforeach
 							</tbody>
@@ -554,14 +573,14 @@
 				qty= parseInt($('#qty-'+id_item).val());
 				total_ht+=parseFloat(( $(this).data('prixht')* qty ));
 				total_ttc+=parseFloat(( $(this).data('prix') *  qty));
-    	});
+    	});/*
 		$(this).find('.myproductpose').each(function(){
 				//id_item=$(this).data().id;
 				//qty= ($('#qty-'+id_item).val());
 				total_ht+=(( $(this).data().pose  ));
 				total_ttc+=(( $(this).data().posettc));
 
-    		});
+    		});*/
 		});
 		var tva_remise=parseFloat($('#tva_remise').val()) || 0;
 		var total_remise=parseFloat($('#total_remise').val()) || 0;
@@ -582,7 +601,6 @@
 		$('#net').val(net);
 		update_totals();
 	}
-
 
 	function check_finances(){
 		if($('#modalite').val()=='Chèque' || $('#modalite').val()==''){
@@ -622,53 +640,52 @@
 
 
 
-  	function add_article(){
+	function add_article(){
 
-  	var _token = $('input[name="_token"]').val();
+	var _token = $('input[name="_token"]').val();
 	var modele= parseInt($("#modele").val());
 	var prix=	parseFloat($('#prix').val());
+	var prix2= prix-200;
 	var note=	$('#note').val();
 	var tva =	(prix / 1.055) * 0.055
 	var prix_ht = (prix - tva).toFixed(2);
 	var qte=	parseInt($('#qte').val());
 	var total=parseFloat($('#total').val());
-	var invoice=	parseInt($('#invoice').val());
+	var total2=total- (200*qte);
+	var quote=	parseInt($('#quote').val());
 	var groupe = $('#groupe').is(":checked") ? 1 : 0;
-
+	var total_pose=qte*200;
 	var tva=5.5;
 	$('#tva_remise').val(tva);
 
 	var groupe_text='';
-		if(groupe){
-			groupe_text='(Groupe2)';
-		}
+	if(groupe){
+		groupe_text='(Groupe2)';
+	}
 	var product_text= $('#type option:selected').text()+' '+$('#genre option:selected').text()+' - Couleur: '+$('#couleur option:selected').text()+ groupe_text+' - Dimensions [H: '+$('#hauteur').val()+'cm * L: '+$('#largeur').val()+'cm]';
 
 	$.ajax({
-        url: "{{ route('add_article') }}",
-        method: "POST",
-		async:false,
-        data: {modele:modele,prix:prix,prix_ht:prix_ht,note:note,qte:qte,texte:product_text,total:total, invoice:invoice,_token:_token},
-        success: function (data) {
-			if(data!=''){
+	url: "{{ route('add_article') }}",
+	method: "POST",
+	async:false,
+	data: {modele:modele,prix:prix,prix_ht:prix_ht,note:note,qte:qte,texte:product_text,total:total, quote:quote,_token:_token},
+	success: function (data) {
 
-				item_id=data;
-				var row='<tr class="myproduct product bg-lightgrey tr-prod" id="row-'+modele+'"><td class="myproducttd"  data-prix="'+prix+'" data-prixht="'+prix_ht+'" data-id="'+modele+'"  >'+product_text+ '<br>'+note+'</td><td>'+prix+' €</td><td><input type="number" step="1" min="1" class="number" value="'+qte+'" onchange="calcul();save_article_qty(this,'+data+','+prix+')"  id="qty-'+modele+'"/></td><td><input  step="0.5" min="5.5" type="number" step="1" min="1" class="number bg-transparent" readonly value="5.5"/> %</td><td><input id="total-'+data+'" type="number" readonly class="total-prod number" value="'+total+'"/> €</td><td><button id="delete_item"   class="btn-sm btn-danger" onclick="delete_item('+modele+','+item_id+')"><i class="fas fa-minus "  ></i></td></tr>';
+			item_id=data;
+			var row='<tr class="myproduct product bg-lightgrey tr-prod" id="row-'+modele+'"><td class="myproducttd"  data-prix="'+prix+'" data-prixht="'+prix_ht+'" data-id="'+modele+'"  ><b>'+product_text+ '<br>'+note+'</b></td><td>'+prix2+' €</td><td><input type="number" step="1" min="1" class="number" value="'+qte+'" onchange="calcul();save_article_qty(this,'+data+','+prix+')"  id="qty-'+modele+'"/></td><td><input  step="0.5" min="5.5" type="number" step="1" min="1" class="number bg-transparent" readonly value="5.5"/> %</td><td><input id="total-'+data+'" type="number" readonly class="total-prod number" value="'+total2+'"/> €</td><td><button id="delete_item"   class="btn-sm btn-danger" onclick="delete_item('+modele+','+item_id+')"><i class="fas fa-minus "  ></i></td></tr>';
+			row+='<tr class="myproduct product bg-lightgrey tr-prod" id="row-pose-'+modele+'"><td class="myproductpose"   data-id="'+modele+'"  >Pose</td><td>200 €</td><td></td><td><input  step="0.5" min="5.5" type="number" step="1" min="1" class="number bg-transparent" readonly /></td><td><input id="total-pose-'+data+'" type="number" readonly class="total-prod number" value="'+total_pose+'"/> €</td><td></td></tr>';
 
-				$('#list-prods').append(row);
-				$('#add-prod').modal('hide');
+			$('#list-prods').append(row);
+			$('#add-prod').modal('hide');
 
-				init();
-			}else{
-				alert('Ce produit est déjà ajouté !')
-			}
+			init();
 
-		}
+	}
 	});
 
 	calcul();
 
-	}
+}
 
 	function delete_item(product,item){
 		if(!confirm("Êtes vous sûres?")) {
@@ -766,12 +783,14 @@
 
 
 
-
 	function save_article_qty(elm,article,price){
 		var _token = $('input[name="_token"]').val();
 		var qty=$(elm).val();
-		var total= (qty*price).toFixed(2)
-		$('#total-'+article).val(total);
+		//var qty=$('#qty-pose-'+article).val(qty);
+		var total_pose=qty*200;
+		var total= (qty*price).toFixed(2) ;
+		$('#total-'+article).val(total-total_pose);
+		$('#total-pose-'+article).val(total_pose);
 
 		$.ajax({
 		url: "{{ route('save_article_qty') }}",

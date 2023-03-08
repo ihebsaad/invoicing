@@ -111,7 +111,7 @@
 						@method('PUT')
 						<input type="hidden" value="{{$invoice->id}}" id="invoice" />
 						<div class="row pl-3">
-							<div class="col-xs-12 col-sm-12 col-md-7">
+							<div class="col-xs-12 col-sm-12 col-md-12">
 								<div class="form-group">
 									<i class="fas fa-address-card"></i>
 									<?php $customer= \App\Models\Customer::find($invoice->customer);?>
@@ -122,14 +122,14 @@
 
 							</div>
 
-								<div class="col-xs-12 col-sm-12 col-md-6">
+								<div class="col-xs-12 col-sm-12 col-md-4">
 									<div class="form-group">
 										<strong>Adresse du chantier:</strong>
 										<input type="text"   name="delivery_address" id="delivery_address" class="form-control" placeholder="Adresse" value="{{$invoice->delivery_address ?? $customer->delivery_address}}" style="max-width:400px">
 									</div>
 								</div>
 
-								<div class="col-xs-12 col-sm-12 col-md-5">
+								<div class="col-xs-12 col-sm-12 col-md-3">
 									<div class="form-group">
 										<strong>Ville:</strong>
 										<input type="text" name="delivery_city" id="delivery_city" class="form-control" placeholder="Ville" value="{{$invoice->delivery_city ?? $customer->delivery_city}}" style="max-width:300px">
@@ -159,7 +159,7 @@
 
 						<div class="row pl-3 mt-2">
 
-							<div class="col-xs-12 col-sm-12 col-md-5">
+							<div class="col-xs-12 col-sm-12 col-md-4">
 								<div class="form-group">
 									<strong>Chaudière à :</strong>
 									<select  class="form-control"   name="chaudiere" style="max-width:180px" >
@@ -172,23 +172,29 @@
 								</div>
 							</div>
 
-							<div class="col-xs-12 col-sm-12 col-md-7">
-								<div class="form-group">
-									<strong>Type de logement:</strong>
-									<select class="form-control"   name="logement"  value="{{ $invoice->logement}}" style="max-width:300px">
-										<option value="Maison individuel" @if($invoice->logement=='Maison individuel') selected="selected" @endif >Maison individuel</option>
-										<option value="Appartement" @if($invoice->logement=='Appartement') selected="selected" @endif >Appartement</option>
-									</select>								</div>
-							</div>
-							<div class="col-xs-12 col-sm-12 col-md-5">
+
+							<div class="col-xs-12 col-sm-12 col-md-4">
 								<div class="form-group">
 									<strong>Surface chauffée (m²):</strong>
 									<input type="number" class="form-control"   name="surface" value="{{ $invoice->surface }}" style="width:180px"/>
 								</div>
 							</div>
 
+						</div>
 
-							<div class="col-xs-12 col-sm-12 col-md-7">
+						<div class="row pl-3 mt-2">
+
+							<div class="col-xs-12 col-sm-12 col-md-4">
+								<div class="form-group">
+									<strong>Type de logement:</strong>
+									<select class="form-control"   name="logement"  value="{{ $invoice->logement}}" style="max-width:300px">
+										<option value="Maison individuel" @if($invoice->logement=='Maison individuel') selected="selected" @endif >Maison individuel</option>
+										<option value="Appartement" @if($invoice->logement=='Appartement') selected="selected" @endif >Appartement</option>
+									</select>
+								</div>
+							</div>
+
+							<div class="col-xs-12 col-sm-12 col-md-4">
 								<div class="form-group">
 									<strong>Date de visite:</strong>
 									<input type="text" class="form-control datepicker"  autocomplete="off" name="date" placeholder="jj/mm/aaaa" value="{{ date('d/m/Y', strtotime($invoice->date)) }}"/>

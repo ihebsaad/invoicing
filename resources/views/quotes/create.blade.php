@@ -56,7 +56,7 @@
         <div class="col-xs-12 col-sm-12 col-md-4">
 			<div class="form-group">
 				<strong>Chaudière à :</strong>
-				<select  class="form-control" required  id="chaudiere" value="old('chaudiere')" style="max-width:180px" >
+				<select  class="form-control" required  name="chaudiere"  id="chaudiere" value="old('chaudiere')" style="max-width:180px" >
 					<option  value=""></option>
 					<option  value="Gaz">Gaz</option>
 					<option  value="Fioul">Fioul</option>
@@ -65,6 +65,17 @@
 				</select>
 			</div>
 		</div>
+        <div class="col-xs-12 col-sm-12 col-md-4" id="div-chauffage" style="display:none">
+			<div class="form-group">
+				<strong>Type de chauffage :</strong>
+				<select  class="form-control" required  name="chauffage"  id="chauffage" value="old('chauffage')" style="max-width:180px;" >
+					<option  value=""></option>
+                    <option  value="Electrique">Electrique</option>
+					<option  value="Combustible">Combustible </option>
+				</select>
+			</div>
+		</div>
+
         <div class="col-xs-12 col-sm-12 col-md-4">
 			<div class="form-group">
             <strong>Surface chauffée (m²):</strong>
@@ -284,9 +295,12 @@
     if(menuiserie){
         $('#chaudiere').prop('required',false);
         $('#surface').prop('required',false);
+        $('#div-chauffage').show('slow');
     }else{
         $('#chaudiere').prop('required',true);
         $('#surface').prop('required',true);
+        $('#surface').prop('required',true);
+        $('#div-chauffage').hide('slow');
     }
   }
 

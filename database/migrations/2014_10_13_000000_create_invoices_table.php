@@ -18,6 +18,7 @@ class CreateInvoicesTable extends Migration
             $table->text('description')->nullable();
             $table->string('adresse')->nullable();
             $table->string('chaudiere')->nullable();
+            $table->string('chauffage')->nullable();
             $table->string('modalite')->nullable();
             $table->date('date')->nullable();
             $table->tinyInteger('menuiserie')->nullable();
