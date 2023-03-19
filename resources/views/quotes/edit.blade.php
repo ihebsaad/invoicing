@@ -109,7 +109,7 @@
                     <a class="nav-link" id="custom-tabs-three-prods-tab" data-toggle="pill" href="#custom-tabs-three-prods" role="tab" aria-controls="custom-tabs-three-prods" aria-selected="false">Produits</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" id="custom-tabs-three-finance-tab" data-toggle="pill" href="#custom-tabs-three-finance" role="tab" aria-controls="custom-tabs-three-finance" aria-selected="false">Financement</a>
+                    <a class="nav-link" id="custom-tabs-three-finance-tab" data-toggle="pill" href="#custom-tabs-three-finance" role="tab" aria-controls="custom-tabs-three-finance" aria-selected="false">Règlement</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" id="custom-tabs-three-signature-tab" data-toggle="pill" href="#custom-tabs-three-signature" role="tab" aria-controls="custom-tabs-three-signature" aria-selected="false">Signature</a>
@@ -340,6 +340,9 @@
 									<select  class="form-control"   id="modalite" name="modalite" style="max-width:260px" onchange="check_finances()">
 										<option value=""></option>
 										<option @if($quote->modalite=='Chèque') selected="selected" @endif value="Chèque">Chèque</option>
+										<option @if($quote->modalite=='2 Chèques') selected="selected" @endif value="2 Chèques">2 Chèques</option>
+										<option @if($quote->modalite=='3 Chèques') selected="selected" @endif value="3 Chèques">3 Chèques</option>
+										<option @if($quote->modalite=='4 Chèques') selected="selected" @endif value="4 Chèques">4 Chèques</option>
 										<option  @if($quote->modalite=='Financement DOMOFINANCE') selected="selected" @endif value="Financement DOMOFINANCE">Financement DOMOFINANCE</option>
 										<option  @if($quote->modalite=='Financement FRANFINANCE') selected="selected" @endif value="Financement FRANFINANCE">Financement FRANFINANCE</option>
 										<option  @if($quote->modalite=='Financement SOFINCO') selected="selected" @endif value="Financement SOFINCO">Financement SOFINCO</option>
@@ -354,7 +357,7 @@
 						</div>
 						<hr>
 						<div class="row">
-							<div id="finances"  @if($quote->modalite=='Chèque' || $quote->modalite== '') style="display:none" @else style="display:contents"  @endif >
+							<div id="finances"  @if( str_contains($quote->modalite, 'Chèque')  || $quote->modalite== '') style="display:none" @else style="display:contents"  @endif >
 								<div class="col-xs-12 col-sm-12 col-md-6">
 									<div class="form-group">
 										<strong>Montant financé en € :</strong>
@@ -550,7 +553,7 @@
 	}
 
 	function check_finances(){
-		if($('#modalite').val()=='Chèque' || $('#modalite').val()==''){
+		if($('#modalite').val().includes('Chèque') || $('#modalite').val()==''){
 			$('#finances').hide('slow');
 		}else{
 			$('#finances').css('display','contents');

@@ -108,7 +108,7 @@
                     <a class="nav-link" id="custom-tabs-three-prods-tab" data-toggle="pill" href="#custom-tabs-three-prods" role="tab" aria-controls="custom-tabs-three-prods" aria-selected="false">Produits</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" id="custom-tabs-three-finance-tab" data-toggle="pill" href="#custom-tabs-three-finance" role="tab" aria-controls="custom-tabs-three-finance" aria-selected="false">Financement</a>
+                    <a class="nav-link" id="custom-tabs-three-finance-tab" data-toggle="pill" href="#custom-tabs-three-finance" role="tab" aria-controls="custom-tabs-three-finance" aria-selected="false">Règlement</a>
                 </li>
 
                 </ul>
@@ -263,9 +263,6 @@
 									<tr class="myproduct product bg-lightgrey tr-prod" id="row-{{$modele->id}}">
 										<td class="myproducttd" data-prix="{{$article->price}}" data-prixht="{{$article->price_ht}}" data-id="{{$modele->id}}"  ><b>{{$article->text}}<br>{{$article->note}}</b></td><td >{{$article->price}} €</td><td><input id="qty-{{$modele->id}}" type="number" step="1" min="1" class="number" value="{{$article->qty}}"  onchange="calcul();save_article_qty(this,{{$article->id}},{{$article->price}})"/></td><td><input readonly step="0.5" min="5.5" type="number" step="0.5" min="1" class="number bg-transparent" value="5.5"/> %</td><td><input id="total-{{$article->id}}" type="number" readonly class="total-prod number" value="{{$total_prod}}"/> €</td><td><button id="delete_item"   class="btn-sm btn-danger" onclick="delete_item({{$modele->id}},{{$article->id}})"><i class="fas fa-minus " data-id="{{$article->id}}"></i></td>
 									</tr>
-									<tr class="myproduct product bg-lightgrey tr-prod" id="row-{{$modele->id}}">
-										<td class="myproducttd" data-prix="{{$article->price}}" data-prixht="{{$article->price_ht}}" data-id="{{$modele->id}}"  >Pose</td><td >200 €</td><td></td><td><input readonly step="0.5" min="5.5" type="number" step="0.5" min="1" class="number bg-transparent" value=""/></td><td><input id="total-pose-{{$article->id}}" type="number" readonly class="total-prod number" value="{{($article->qty * 200)}}"/> €</td><td></td>
-									</tr>
 								@endforeach
 							</tbody>
 							<tfoot>
@@ -335,6 +332,9 @@
 									<select  class="form-control"   id="modalite" name="modalite" style="max-width:260px" onchange="check_finances()">
 										<option value=""></option>
 										<option  @if($invoice->modalite=='Chèque') selected="selected" @endif value="Chèque">Chèque</option>
+										<option @if($invoice->modalite=='2 Chèques') selected="selected" @endif value="2 Chèques">2 Chèques</option>
+										<option @if($invoice->modalite=='3 Chèques') selected="selected" @endif value="3 Chèques">3 Chèques</option>
+										<option @if($invoice->modalite=='4 Chèques') selected="selected" @endif value="4 Chèques">4 Chèques</option>
 										<option  @if($invoice->modalite=='Financement DOMOFINANCE') selected="selected" @endif value="Financement DOMOFINANCE">Financement DOMOFINANCE</option>
 										<option  @if($invoice->modalite=='Financement FRANFINANCE') selected="selected" @endif value="Financement FRANFINANCE">Financement FRANFINANCE</option>
 										<option  @if($invoice->modalite=='Financement SOFINCO') selected="selected" @endif value="Financement SOFINCO">Financement SOFINCO</option>
@@ -349,7 +349,7 @@
 						</div>
 						<hr>
 						<div class="row">
-							<div id="finances"  @if($invoice->modalite=='Chèque' || $invoice->modalite== '') style="display:none" @else style="display:contents"  @endif >
+							<div id="finances"  @if( str_contains($invoice->modalite, 'Chèque')  || $invoice->modalite== '') style="display:none" @else style="display:contents"  @endif >
 								<div class="col-xs-12 col-sm-12 col-md-6">
 									<div class="form-group">
 										<strong>Montant financé en € :</strong>
@@ -603,7 +603,7 @@
 	}
 
 	function check_finances(){
-		if($('#modalite').val()=='Chèque' || $('#modalite').val()==''){
+		if($('#modalite').val().includes('Chèque')  || $('#modalite').val()==''){
 			$('#finances').hide('slow');
 		}else{
 			$('#finances').css('display','contents');
@@ -645,16 +645,14 @@
 	var _token = $('input[name="_token"]').val();
 	var modele= parseInt($("#modele").val());
 	var prix=	parseFloat($('#prix').val());
-	var prix2= prix-200;
 	var note=	$('#note').val();
 	var tva =	(prix / 1.055) * 0.055
 	var prix_ht = (prix - tva).toFixed(2);
 	var qte=	parseInt($('#qte').val());
 	var total=parseFloat($('#total').val());
-	var total2=total- (200*qte);
 	var quote=	parseInt($('#quote').val());
 	var groupe = $('#groupe').is(":checked") ? 1 : 0;
-	var total_pose=qte*200;
+
 	var tva=5.5;
 	$('#tva_remise').val(tva);
 
@@ -672,8 +670,7 @@
 	success: function (data) {
 
 			item_id=data;
-			var row='<tr class="myproduct product bg-lightgrey tr-prod" id="row-'+modele+'"><td class="myproducttd"  data-prix="'+prix+'" data-prixht="'+prix_ht+'" data-id="'+modele+'"  ><b>'+product_text+ '<br>'+note+'</b></td><td>'+prix2+' €</td><td><input type="number" step="1" min="1" class="number" value="'+qte+'" onchange="calcul();save_article_qty(this,'+data+','+prix+')"  id="qty-'+modele+'"/></td><td><input  step="0.5" min="5.5" type="number" step="1" min="1" class="number bg-transparent" readonly value="5.5"/> %</td><td><input id="total-'+data+'" type="number" readonly class="total-prod number" value="'+total2+'"/> €</td><td><button id="delete_item"   class="btn-sm btn-danger" onclick="delete_item('+modele+','+item_id+')"><i class="fas fa-minus "  ></i></td></tr>';
-			row+='<tr class="myproduct product bg-lightgrey tr-prod" id="row-pose-'+modele+'"><td class="myproductpose"   data-id="'+modele+'"  >Pose</td><td>200 €</td><td></td><td><input  step="0.5" min="5.5" type="number" step="1" min="1" class="number bg-transparent" readonly /></td><td><input id="total-pose-'+data+'" type="number" readonly class="total-prod number" value="'+total_pose+'"/> €</td><td></td></tr>';
+			var row='<tr class="myproduct product bg-lightgrey tr-prod" id="row-'+modele+'"><td class="myproducttd"  data-prix="'+prix+'" data-prixht="'+prix_ht+'" data-id="'+modele+'"  ><b>'+product_text+ '<br>'+note+'</b></td><td>'+prix+' €</td><td><input type="number" step="1" min="1" class="number" value="'+qte+'" onchange="calcul();save_article_qty(this,'+data+','+prix+')"  id="qty-'+modele+'"/></td><td><input  step="0.5" min="5.5" type="number" step="1" min="1" class="number bg-transparent" readonly value="5.5"/> %</td><td><input id="total-'+data+'" type="number" readonly class="total-prod number" value="'+total+'"/> €</td><td><button id="delete_item"   class="btn-sm btn-danger" onclick="delete_item('+modele+','+item_id+')"><i class="fas fa-minus "  ></i></td></tr>';
 
 			$('#list-prods').append(row);
 			$('#add-prod').modal('hide');
@@ -787,10 +784,8 @@
 		var _token = $('input[name="_token"]').val();
 		var qty=$(elm).val();
 		//var qty=$('#qty-pose-'+article).val(qty);
-		var total_pose=qty*200;
 		var total= (qty*price).toFixed(2) ;
-		$('#total-'+article).val(total-total_pose);
-		$('#total-pose-'+article).val(total_pose);
+		$('#total-'+article).val(total);
 
 		$.ajax({
 		url: "{{ route('save_article_qty') }}",

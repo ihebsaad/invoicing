@@ -1,18 +1,18 @@
 <?php
-  
+
 namespace App\Http\Controllers;
-   
+
 use App\Models\Customer;
 use Illuminate\Http\Request;
-  
+
 class CustomersController extends Controller
 {
 
     public function __construct()
     {
         $this->middleware('auth');
-    } 
-    
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -20,14 +20,14 @@ class CustomersController extends Controller
      */
     public function index()
     {
-        if (auth()->user()->user_type != 'admin') 
+        if (auth()->user()->user_type != 'admin')
             return  redirect('/home');
 
         $customers = Customer::orderBy('id','desc')->get();
-    
+
         return view('customers.index',compact('customers'));
     }
-     
+
     /**
      * Show the form for creating a new resource.
      *
@@ -38,7 +38,7 @@ class CustomersController extends Controller
         $countries=$this->countries();
         return view('customers.create',compact('countries'));
     }
-    
+
     /**
      * Store a newly created resource in storage.
      *
@@ -50,7 +50,7 @@ class CustomersController extends Controller
         $request->validate([
             'name' => 'required',
         ]);
-    
+
         $customer=Customer::create($request->all());
 
         if( $request->get('source')=='quote' )
@@ -58,12 +58,12 @@ class CustomersController extends Controller
 
         elseif( $request->get('source')=='invoice' )
             return redirect()->route('invoices.add',['customer_id'=>$customer->id])->with('success','Client créé avec succès.');
-        
+
         else
         return redirect()->route('customers.index')->with('success','Client créé avec succès.');
-        
+
     }
-     
+
     /**
      * Display the specified resource.
      *
@@ -73,8 +73,8 @@ class CustomersController extends Controller
     public function show(Customer $customer)
     {
         return view('customers.show',compact('customer'));
-    } 
-     
+    }
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -86,7 +86,7 @@ class CustomersController extends Controller
         $countries=$this->countries();
         return view('customers.edit',compact('customer','countries'));
     }
-    
+
     /**
      * Update the specified resource in storage.
      *
@@ -99,13 +99,13 @@ class CustomersController extends Controller
         $request->validate([
             'name' => 'required',
         ]);
-    
+
         $customer->update($request->all());
-    
+
         return redirect()->route('customers.index')
                         ->with('success','Client modifié avec succès');
     }
-    
+
     /**
      * Remove the specified resource from storage.
      *
@@ -115,13 +115,13 @@ class CustomersController extends Controller
     public function destroy(Customer $customer)
     {
         $customer->delete();
-    
+
         return redirect()->route('customers.index')
                         ->with('success','Client supprimé avec succès');
     }
-	
 
-	function countries() {
+
+	public static function countries() {
         $countries = array(
           'AF' => 'Afghanistan',
           'ZA' => 'Afrique Du Sud',
@@ -373,7 +373,7 @@ class CustomersController extends Controller
           'ZM' => 'Zambie',
           'ZW' => 'Zimbabwe',
         );
-      
+
         // Sort the list.
         natcasesort($countries);
         return $countries;

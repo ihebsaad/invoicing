@@ -302,9 +302,6 @@
 					   <tr class="product"  >
 						   <td ><img src="{!! public_path($img)!!}"   style="max-width:120px;max-height:90px;" /></td><td class="text" ><b>{{$article->text}} @if($article->note!='')<br>{{$article->note}} @endif </b><br>{!!nl2br($desc)!!}</td><td>{{$article->qty}}</td><td>{{$article->price_ht}} €</td><td>{{$total_prod_ht}} €</td><td>5.5 %</td><td>{{$total_prod_ttc}} €</td>
 					   </tr>
-					   <tr class="product"   >
-						   <td @if($i!=$count_articles) class="pose" @endif></td><td class="text @if($i!=$count_articles) pose @endif " ><b>Pose</b></td><td @if($i!=$count_articles) class="pose" @endif >{{$article->qty}}</td><td @if($i!=$count_articles) class="pose" @endif >200 €</td><td @if($i!=$count_articles) class="pose" @endif></td><td @if($i!=$count_articles) class="pose" @endif></td><td @if($i!=$count_articles) class="pose" @endif>{{ 200 * $article->qty}} €</td>
-					   </tr>
 				   @endforeach
 			   </tr>
 
