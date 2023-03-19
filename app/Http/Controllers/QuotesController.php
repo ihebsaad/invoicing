@@ -140,9 +140,10 @@ class QuotesController extends Controller
         }
 
         $quote->update($data);
-
-        return redirect()->route('quotes.edit',['quote'=>$quote])
-                        ->with('success','Devis modifié');
+        if($quote->menuiserie)
+            return redirect()->route('quotes.edit_men',['id'=>$quote->id])->with('success','Devis modifié');
+        else
+            return redirect()->route('quotes.edit',['quote'=>$quote])->with('success','Devis modifié');
     }
 
     /**

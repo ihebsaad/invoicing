@@ -72,7 +72,7 @@
         <div class="col-xs-12 col-sm-12 col-md-4" id="div-chauffage" style="display:none">
 			<div class="form-group">
 				<strong>Type de chauffage :</strong>
-				<select  class="form-control" required  name="chauffage"  id="chauffage" value="old('chauffage')" style="max-width:180px;" >
+				<select  class="form-control"  name="chauffage"  id="chauffage" value="old('chauffage')" style="max-width:180px;" >
 					<option  value=""></option>
                     <option  value="Electrique">Electrique</option>
 					<option  value="Combustible">Combustible </option>
@@ -300,11 +300,13 @@
     if(menuiserie){
         $('#chaudiere').prop('required',false);
         $('#surface').prop('required',false);
+        $('#chauffage').prop('required',true);
         $('#div-chauffage').show('slow');
     }else{
         $('#chaudiere').prop('required',true);
         $('#surface').prop('required',true);
         $('#surface').prop('required',true);
+        $('#chauffage').prop('required',false);
         $('#div-chauffage').hide('slow');
     }
   }

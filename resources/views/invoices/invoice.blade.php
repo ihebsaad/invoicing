@@ -233,7 +233,6 @@
 			   @if($invoice->chaudiere!='' && $invoice->chaudiere!='Autre')
 				   Dépose de la chaudière individuelle: <b> Chaudière à {{$invoice->chaudiere}}</b><br>
 			   @endif
-
 				<b>Délai de Livraison : 30 jours</b><br>
 				<b>Durée de validité du devis : 15 jours</b>
 		   </div>
@@ -271,6 +270,7 @@
 		   <div style="width:45%;float:left;font-weight:bold;padding-top:15px">
 			   <table style="width:100%;font-size:10px">
 				   <tr rowspan="2"><td>Fait à</td><td></td><td>Le</td><td></td></tr>
+				   <tr><td colspan="4"> J'ai lu et j'accepte les Conditions Générales de Ventes</td></tr>
 				   <tr><td colspan="4">Signature précédée de la mention "Bon pour accord"</td></tr>
 			   </table>
 			   <div style="border:1px solid grey;width:100%;height:120px">

@@ -161,8 +161,12 @@ class InvoicesController extends Controller
 
         $invoice->update($data);
 
-        return redirect()->route('invoices.edit',['invoice'=>$invoice])
-                        ->with('success','Facture modifié');
+        if($invoice->menuiserie)
+            return redirect()->route('invoices.edit_men',['id'=>$invoice->id])->with('success','Facture modifiée');
+        else
+            return redirect()->route('invoices.edit',['invoice'=>$invoice])->with('success','Facture modifiée');
+
+
     }
 
     /**

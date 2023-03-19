@@ -199,7 +199,7 @@
 	   <table class="tab-products" style="min-height:150px;width:100%;margin-top:5px;margin-bottom:5px">
 		   <thead class="th-products">
 			   <tr>
-			   	<th style="width:15%">Image</th><th style="width:39%">Désignation</th><th style="width:5%">Qté</th><th style="width:7%">P.U HT</th><th style="width:9%">Montant HT</th><th style="width:5%">TVA</th><th style="width:10%">Montant TTC</th>
+			   	<th style="width:14%">Image</th><th style="width:39%">Désignation</th><th style="width:5%">Qté</th><th style="width:8%">P.U HT</th><th style="width:9%">Montant HT</th><th style="width:5%">TVA</th><th style="width:10%">Montant TTC</th>
 			   </tr>
 		   </thead>
 		   <tbody >
@@ -323,6 +323,7 @@
 			   @if($invoice->chaudiere!='' && $invoice->chaudiere!='Autre')
 				   Dépose de la chaudière individuelle: <b> Chaudière à {{$invoice->chaudiere}}</b><br>
 			   @endif
+				<b> Chauffage {{$invoice->chauffage}}</b><br>
 				<b>Délai de Livraison : 30 jours</b><br>
 				<b>Durée de validité du devis : 15 jours</b>
 		   </div>
@@ -360,6 +361,7 @@
 		   <div style="width:45%;float:left;font-weight:bold;padding-top:15px">
 			   <table style="width:100%;font-size:10px">
 				   <tr rowspan="2"><td>Fait à</td><td></td><td>Le</td><td></td></tr>
+				   <tr><td colspan="4"> J'ai lu et j'accepte les Conditions Générales de Ventes</td></tr>
 				   <tr><td colspan="4">Signature précédée de la mention "Bon pour accord"</td></tr>
 			   </table>
 			   <div style="border:1px solid grey;width:100%;height:120px">
