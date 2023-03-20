@@ -46,7 +46,15 @@ class Invoice extends Model
         'reference',
         'tva_remise',
         'menuiserie',
-        'chauffage'
+        'chauffage',
+        'montant1',
+        'note1',
+        'montant2',
+        'note2',
+        'montant3',
+        'note3',
+        'montant4',
+        'note4',
     ];
 
 		public function customer()

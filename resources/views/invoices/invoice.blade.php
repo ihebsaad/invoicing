@@ -26,6 +26,9 @@
 	   @font-face {
 		   font-family: 'Nunito';
 	   }
+	   .vtop{
+			vertical-align:top;
+		}
 	   .text-right{
 			text-align:right;
 	   }
@@ -257,12 +260,28 @@
 			   @if($invoice->modalite!='')
 				   <b>Règlement par :</b> {{ $invoice->modalite }}
 
-				   @if($invoice->modalite!='Chèque')
+				   @if(str_contains($invoice->modalite, 'Financement') )
 					   <table class="financement">
 						   <tr><td>Montant Financé :</td><td class="text-right" style="padding-right:20px;font-weight:bold;">{{number_format($invoice->montant_finance,2,',',' ')}} €</td><td>Montant mensuel<br>de l'assurance :</td><td style="font-weight:bold;" class="text-right">{{number_format($invoice->montant_assurance,2,',',' ')}} €</td></tr>
 						   <tr><td>Report 1ère échéance :</td><td class="text-right" style="padding-right:20px;font-weight:bold;">{{$invoice->report_echeance}} jours</td><td>Taux nominal :</td><td style="font-weight:bold;" class="text-right">{{$invoice->taux_nominal}} %</td></tr>
 						   <tr><td>Nombre de mensualités :</td><td class="text-right" style="padding-right:20px;font-weight:bold;">{{$invoice->mensualites}}</td><td>TAEG :</td><td style="font-weight:bold;" class="text-right">{{$invoice->taeg}} %</td></tr>
 						   <tr><td>Montant mensuel<br>sans assurance :</td><td class="text-right" style="padding-right:20px;font-weight:bold;">{{number_format($invoice->montant_mensuel,2,',',' ')}} €</td><td>Solde de la pose :</td><td style="font-weight:bold;" class="text-right">{{number_format($invoice->pose,2,',',' ')}} €</td></tr>
+					   </table>
+				   @endif
+				   @if( str_contains($invoice->modalite, 'Chèques') || $invoice->modalite=='Chèque')
+					   <table class="financement">
+							@if($invoice->modalite=='4 Chèques' || $invoice->modalite=='3 Chèques' || $invoice->modalite=='2 Chèques' || $invoice->modalite=='Chèque' )
+					 		<tr><td class="vtop">Montant:</td><td class="text-right vtop" style="padding-right:20px;font-weight:bold;">{{number_format($invoice->montant1,2,',',' ')}} €</td><td class="vtop">Note:</td><td class="text vtop">{{ $invoice->note1 }}</td></tr>
+							@endif
+							@if($invoice->modalite=='4 Chèques' || $invoice->modalite=='3 Chèques'|| $invoice->modalite=='2 Chèques'   )
+							<tr><td class="vtop">Montant 2:</td><td class="text-right vtop" style="padding-right:20px;font-weight:bold;">{{number_format($invoice->montant2,2,',',' ')}} €</td><td class="vtop">Note 2:</td><td class="text vtop">{{ $invoice->note2 }}</td></tr>
+							@endif
+							@if($invoice->modalite=='4 Chèques' || $invoice->modalite=='3 Chèques' )
+							<tr><td class="vtop">Montant 3:</td><td class="text-right vtop" style="padding-right:20px;font-weight:bold;">{{number_format($invoice->montant3,2,',',' ')}} €</td><td class="vtop">Note 3</td><td class="text vtop">{{ $invoice->note3 }}</td></tr>
+							@endif
+							@if($invoice->modalite=='4 Chèques'   )
+							<tr><td class="vtop">Montant 4:</td><td class="text-right vtop" style="padding-right:20px;font-weight:bold;">{{number_format($invoice->montant4,2,',',' ')}} €</td><td class="vtop">Note 4:</td><td class="text vtop">{{ $invoice->note4 }}</td></tr>
+							@endif
 					   </table>
 				   @endif
 			   @endif

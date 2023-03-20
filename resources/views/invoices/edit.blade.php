@@ -8,6 +8,9 @@
 <link rel="stylesheet" href="{{asset('plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css')}}">
 
  <style>
+		.vtop{
+			vertical-align:top;
+		}
 		.tab-products{
 			width:100%;
 			font-size:12px;
@@ -403,6 +406,71 @@
 									</div>
 								</div>
 							</div>
+
+							<div class="col-xs-12 col-sm-12 col-md-8">
+								<div id="cheques"   >
+									<table style="width:80%;;" id='cheques-table'>
+										<tr id="chq-1"  @if($invoice->modalite!='4 Chèques' && $invoice->modalite!='3 Chèques' && $invoice->modalite!='2 Chèques' && $invoice->modalite!='Chèque' )  style="display:none" @endif >
+											<td class="vtop">
+											<div class="form-group">
+												<strong>Montant chèque 1</strong>
+												<input type="number"  class="form-control"   min="0" step="0.01" name="montant1" style="max-width:180px" value="{{$invoice->montant1}}">
+											</div>
+											</td>
+											<td class="vtop">
+												<div class="form-group">
+													<strong>Note 1</strong>
+													<textarea class="form-control"   min="0" step="0.01" name="note1"   >{{$invoice->note1}}</textarea>
+												</div>
+											</td>
+										</tr>
+										<tr id="chq-2"  @if($invoice->modalite!='4 Chèques' && $invoice->modalite!='3 Chèques' && $invoice->modalite!='2 Chèques' )  style="display:none" @endif >
+											<td class="vtop">
+											<div class="form-group">
+												<strong>Montant chèque 2</strong>
+												<input type="number"  class="form-control"   min="0" step="0.01" name="montant2" style="max-width:180px" value="{{$invoice->montant2}}">
+											</div>
+											</td>
+											<td class="vtop">
+												<div class="form-group">
+													<strong>Note 2</strong>
+													<textarea class="form-control"   min="0" step="0.01" name="note2"  >{{$invoice->note2}}</textarea>
+												</div>
+											</td>
+										</tr>
+										<tr id="chq-3"  @if($invoice->modalite!='4 Chèques' && $invoice->modalite!='3 Chèques' ) style="display:none" @endif>
+											<td class="vtop">
+											<div class="form-group">
+												<strong>Montant chèque 3</strong>
+												<input type="number"  class="form-control"   min="0" step="0.01" name="montant3" style="max-width:180px" value="{{$invoice->montant3}}">
+											</div>
+											</td>
+											<td class="vtop">
+												<div class="form-group">
+													<strong>Note 3</strong>
+													<textarea  class="form-control"   min="0" step="0.01" name="note3"  >{{$invoice->note3}}</textarea>
+												</div>
+											</td>
+										</tr>
+										<tr id="chq-4" @if($invoice->modalite!='4 Chèques') style="display:none" @endif >
+											<td class="vtop">
+											<div class="form-group">
+												<strong>Montant chèque 4</strong>
+												<input type="number"  class="form-control"   min="0" step="0.01" name="montant4" style="max-width:180px" value="{{$invoice->montant4}}">
+											</div>
+											</td>
+											<td class="vtop">
+												<div class="form-group">
+													<strong>Note 4</strong>
+													<textarea   class="form-control"   min="0" step="0.01" name="note4"  >{{$invoice->note4}}</textarea>
+												</div>
+											</td>
+										</tr>
+									</table>
+								</div>
+							</div>
+
+
 						</div>
 
 						<div class="col-xs-12 col-sm-12 col-md-7 mt-5">
@@ -498,10 +566,37 @@
 
 
 	function check_finances(){
-		if($('#modalite').val().includes('Chèque')  || $('#modalite').val()==''){
+		if($('#modalite').val().includes('Chèques') || $('#modalite').val()=='Chèque' || $('#modalite').val()==''){
 			$('#finances').hide('slow');
+			$('#cheques-table').show('slow');
+			if($('#modalite').val()=='Chèque'){
+				$('#chq-1').css('display','table-row');
+				$('#chq-2').css('display','none');
+				$('#chq-3').css('display','none');
+				$('#chq-4').css('display','none');
+			}
+			if($('#modalite').val()=='2 Chèques'){
+				$('#chq-1').css('display','table-row');
+				$('#chq-2').css('display','table-row');
+				$('#chq-3').css('display','none');
+				$('#chq-4').css('display','none');
+			}
+			if($('#modalite').val()=='3 Chèques'){
+				$('#chq-1').css('display','table-row');
+				$('#chq-2').css('display','table-row');
+				$('#chq-3').css('display','table-row');
+				$('#chq-4').css('display','none');
+			}
+			if($('#modalite').val()=='4 Chèques'){
+				$('#chq-1').css('display','table-row');
+				$('#chq-2').css('display','table-row');
+				$('#chq-3').css('display','table-row');
+				$('#chq-4').css('display','table-row');
+			}
+
 		}else{
 			$('#finances').css('display','contents');
+			$('#cheques-table').hide('slow');
 		}
 	}
 
