@@ -193,7 +193,7 @@
 			   </td>
 			   <td style="width:50%;">
 				   <b style="font-size:22px;color:#f07f32">{{$type}} N° : {{ $reference }} </b><br>
-				   Créé le : <b>{{date('d/m/Y', strtotime($invoice->created_at))}}</b>    Conseillé: <b>{{$par}}</b>
+				   Créé le : <b>{{date('d/m/Y', strtotime($invoice->created_at))}}</b>    Conseiller: <b>{{$par}}</b>
 			   </td>
 		   </tr>
 	   </table>
