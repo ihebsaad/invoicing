@@ -296,6 +296,9 @@ class QuotesController extends Controller
             'customer'=>$quote->customer,
             'net'=>$quote->net,
             'quote'=>$quote->id,
+            'acompte'=>$quote->acompte,
+            'loi'=>$quote->loi,
+            'total_loi'=>$quote->total_loi,
 
         ]);
 

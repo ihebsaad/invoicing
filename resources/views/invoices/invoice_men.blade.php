@@ -208,7 +208,10 @@
 		   </thead>
 		   <tbody >
 			   <tr class="product " >
-			   		@php $count_articles=count($articles); $i=0;  @endphp
+			   		@php
+						$count_articles=count($articles); $i=0;
+					   	$texte_loi='<b>Gestion, évacuation et traitement des déchets de chantier.</b></br>Comprend :<br>- La main d’œuvre liée à la dépose et au tri<br>- Le transport des déchets de chantier vers un ou plusieurs points de collecte.<br>- Les coûts de traitement.<br>- Ouvrages déconstruits (déchets susceptibles d’être en mélange)<br>- Le point de collecte envisagé : Déchetterie';
+					@endphp
 				   @foreach($articles as $article)
 					   @php
 					   		$i++;
@@ -302,7 +305,7 @@
 								Fermeture par crémone simple ou serrure à barillet';
 								break;
 							}
-								$texte_loi='<b>Gestion, évacuation et traitement des déchets de chantier.</b></br>Comprend :<br>- La main d’œuvre liée à la dépose et au tri<br>- Le transport des déchets de chantier vers un ou plusieurs points de collecte.<br>- Les coûts de traitement.<br>- Ouvrages déconstruits (déchets susceptibles d’être en mélange)<br>- Le point de collecte envisagé : Déchetterie';
+
 					   @endphp
 					   <tr class="product"  >
 						   <td ><img src="{!! public_path($img)!!}"   style="max-width:120px;max-height:90px;" /></td><td class="text" ><b>{{$article->text}} @if($article->note!='')<br>{{$article->note}} @endif </b><br>{!!nl2br($desc)!!}</td><td>{{$article->qty}}</td><td>{{$article->price_ht}} €</td><td>{{$total_prod_ht}} €</td><td>5.5 %</td><td>{{$total_prod_ttc}} €</td>
@@ -310,7 +313,7 @@
 				   @endforeach
 			   </tr>
 			   		<tr class="product" >
-					   <td ><img src="{!! public_path('img/loi.png')!!}"  width="100" /> </td><td class="text">{!!nl2br($texte_loi)!!}</td><td style="text-align:center"></td><td></td><td> {{$invoice->loi}}  €</td><td> {{$invoice->tva_loi ?? '5.5'}} %</td><td>{{$invoice->total_loi}} €</td>
+					   <td ><img src="{!! public_path('img/loi.png')!!}"  width="100" /> </td><td class="text">{!!nl2br($texte_loi)!!}</td><td style="text-align:center"></td><td></td><td> {{$invoice->loi ?? 94.79}}  €</td><td> {{$invoice->tva_loi ?? '5.5'}} %</td><td>{{$invoice->total_loi ?? 100}} €</td>
 				   </tr>
 			   @if($invoice->remise>0)
 				   <tr class="product" style="color:#f07f32">
