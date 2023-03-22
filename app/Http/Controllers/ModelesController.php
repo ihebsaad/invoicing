@@ -191,10 +191,19 @@ class ModelesController extends Controller
         $prix=$request->get('prix');
 
         $model=array();
-        $modele=Modele::where('genre',$genre)->where('type',$type)->where('couleur',$couleur)->where('hauteur',$hauteur)->where('largeur',$largeur)->first();
+        $modele=Modele::where('genre',$genre)->where('type',$type)->where('couleur',1)->where('hauteur',$hauteur)->where('largeur',$largeur)->first();
         if (isset($modele)){
             $model['id']=$modele->id;
-            $model['prix']=$modele->prix;
+            $prix=$modele->prix * 3;
+            if($couleur){
+                $model['prix']=$prix;
+            }elseif($couleur==2){
+                $model['prix']=$prix*1.1;
+            }
+            elseif($couleur==3){
+                $model['prix']=$prix*1.2;
+            }
+
             return $model;
         }
         else{

@@ -54,6 +54,10 @@ class CreateInvoicesTable extends Migration
             $table->double('montant4', 8, 2)->default(0)->nullable();
             $table->string('note4')->nullable();
 
+            $table->double('loi', 8, 2)->default(0)->nullable();
+            $table->double('remise_loi', 8, 2)->default(0)->nullable();
+            $table->double('total_loi', 8, 2)->default(0)->nullable();
+
             $table->unsignedBigInteger('customer')->nullable();
             $table->foreign('customer')->references('id')->on('customers')->onDelete('cascade');
 

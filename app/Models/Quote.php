@@ -55,6 +55,9 @@ class Quote extends Model
         'note3',
         'montant4',
         'note4',
+        'loi',
+        'remise_loi',
+        'total_loi',
     ];
 
 		public function customer()

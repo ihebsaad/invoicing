@@ -270,6 +270,9 @@
 							</tbody>
 							<tfoot>
 								<tr class="product bg-grey">
+									<td>Loi Anti Gaspillage</td><td  ><input style="text-align:right" id="loi" type="number" class="number bg-transparent" readonly value="{{$invoice->loi ?? 94.79}}" />€</td><td style="text-align:center;padding-right:15px">1</td><td><input type="number" class="number  bg-transparent" id="tva_loi" name="tva_loi" style="width:100px" step="0.5" value="{{$invoice->tva_loi ?? 5.5}}" readonly onchange="calcul();" /> %</td><td><input id="total_loi" type="number"  class="number" style="max-width:70px" value="{{$invoice->total_loi ?? 100}}" onchange="calcul();"/> €</td><td></td>
+								</tr>
+								<tr class="product bg-grey">
 									<td>Remise Catalogue Groupe HER ENR</td><td  ><input style="text-align:right" id="remise" type="number" class="number bg-transparent" readonly value="{{$invoice->remise ?? 0}}" />€</td><td style="text-align:center;padding-right:15px">1</td><td><input type="number" class="number  bg-transparent" id="tva_remise" name="tva_remise" style="width:100px" step="0.5" value="{{$invoice->tva_remise ?? 0}}" readonly onchange="calcul();" /> %</td><td><input id="total_remise" type="number"  class="number" style="max-width:70px" value="{{$invoice->total_remise ?? 0}}" onchange="calcul();$('#remise2').val($(this).val())"/> €</td><td></td>
 								</tr>
 							</tfoot>
@@ -512,8 +515,8 @@
 							<input type="hidden" id="article" value="0"/>
 							<select  name="genre" required class="form-control" id="genre"   onchange="pricing()">
 								<option></option>
-								<option  @if( old("genre")==1)  selected="selected" @endif value="1">PVC</option>
-								<option  @if( old("genre")==2)  selected="selected" @endif  value="2">Aluminium</option>
+								<option   selected="selected"   value="1">PVC</option>
+								<option    value="2">Aluminium</option>
 							</select>
 						</div>
 					</div>
@@ -524,10 +527,14 @@
 								<option></option>
 								<option  @if( old("type")==1)  selected="selected" @endif value="1">Fenêtre à souflet</option>
 								<option  @if( old("type")==2)  selected="selected" @endif  value="2">Fenêtre / Porte Fenêtre - 1VOB</option>
-								<option  @if( old("type")==3)  selected="selected" @endif  value="3">Fenêtre / Porte Fenêtre - 2V</option>
-								<option  @if( old("type")==4)  selected="selected" @endif  value="4">Fenêtre fixe</option>
-								<option  @if( old("type")==5)  selected="selected" @endif  value="5">Porte fenêtre ouverture extérieur - PF1V </option>
-								<option  @if( old("type")==6)  selected="selected" @endif  value="6">Porte 2 ventaux Battement central ouverture extérieur PF2V </option>
+								<option  @if( old("type")==3)  selected="selected" @endif  value="3">Fenêtre fixe</option>
+								<option  @if( old("type")==4)  selected="selected" @endif  value="4">Fenêtre / Porte Fenêtre - 2V</option>
+								<option  @if( old("type")==5)  selected="selected" @endif  value="5">Fenêtre / Porte Fenêtre - 3V</option>
+								<option  @if( old("type")==6)  selected="selected" @endif  value="6">Porte fenêtre ouverture extérieur - PF1V </option>
+								<option  @if( old("type")==7)  selected="selected" @endif  value="7">Porte 2 ventaux Battement central ouverture extérieur PF2V </option>
+								<option  @if( old("type")==8)  selected="selected" @endif  value="8">Coulissant 1 </option>
+								<option  @if( old("type")==9)  selected="selected" @endif  value="9">Coulissant 2 </option>
+								<option  @if( old("type")==10)  selected="selected" @endif  value="10">Coulissant 3 </option>
 							</select>
 						</div>
 					</div>
@@ -651,13 +658,21 @@
 		var tva_remise=parseFloat($('#tva_remise').val()) || 0;
 		var total_remise=parseFloat($('#total_remise').val()) || 0;
 
+		//var loi=parseFloat($('#loi').val()) || 0;
+		var total_loi=parseFloat($('#total_loi').val()) || 0;
+		var p_tva_loi=parseFloat($('#tva_loi').val()) || 0;
+
+		var loi = total_loi / (1+(p_tva_loi*0.01));
+		$('#loi').val(loi.toFixed(2));
+		var tva_loi= total_loi-loi ;
+
 		var remise = total_remise / (1+(tva_remise*0.01));
 		$('#remise').val(remise.toFixed(2));
 
-		$("#total_ht").val(total_ht-remise);
-		total_tva = total_ttc-total_ht - (remise*tva_remise*0.01);
+		$("#total_ht").val(total_ht-remise    + loi);
+		total_tva = total_ttc-total_ht - (remise*tva_remise*0.01)    + tva_loi ;
 	    $('#total_tva').val(total_tva);
-		total_ttc=total_ttc-total_remise;
+		total_ttc=total_ttc-total_remise   +total_loi;
 		$('#total_ttc').val(total_ttc);
 
 		var aide=parseFloat($('#aide').val()) || 0;
@@ -716,7 +731,7 @@
 	var prix_ht = (prix - tva).toFixed(2);
 	var qte=	parseInt($('#qte').val());
 	var total=parseFloat($('#total').val());
-	var quote=	parseInt($('#quote').val());
+	var invoice=	parseInt($('#invoice').val());
 	var groupe = $('#groupe').is(":checked") ? 1 : 0;
 
 	var tva=5.5;
@@ -732,7 +747,7 @@
 	url: "{{ route('add_article') }}",
 	method: "POST",
 	async:false,
-	data: {modele:modele,prix:prix,prix_ht:prix_ht,note:note,qte:qte,texte:product_text,total:total, quote:quote,_token:_token},
+	data: {modele:modele,prix:prix,prix_ht:prix_ht,note:note,qte:qte,texte:product_text,total:total, invoice:invoice,_token:_token},
 	success: function (data) {
 
 			item_id=data;
@@ -778,18 +793,20 @@
 	var total_ttc=	$('#total_ttc').val();
 	var total_remise=	$('#total_remise').val();
 	var tva_remise=	$('#tva_remise').val();
-	//var remise= total_remise- (total_remise*tva_remise*0.01); //$('#remise').val();
+	//var remise=  total_remise- (total_remise*tva_remise*0.01);
 	var remise=$('#remise').val();
 	var aide=	$('#aide').val();
 	var type_aide=	$('#type_aide').val();
 	var acompte=	$('#acompte').val();
 	var net=	$('#net').val();
+	var loi=	$('#loi').val();
+	var total_loi=	$('#total_loi').val();
 
 
 	$.ajax({
 		url: "{{ route('update_totals') }}",
 		method: "POST",
-		data: {total_ht:total_ht,total_tva:total_tva,total_ttc:total_ttc,total_remise:total_remise,remise:remise,invoice:invoice,aide:aide,type_aide:type_aide,net:net,acompte:acompte,tva_remise:tva_remise, _token:_token},
+		data: {total_ht:total_ht,total_tva:total_tva,total_ttc:total_ttc,total_remise:total_remise,remise:remise,invoice:invoice,aide:aide,type_aide:type_aide,net:net,acompte:acompte,tva_remise:tva_remise,loi:loi,total_loi:total_loi, _token:_token},
 		success: function (data) {
 		}
 	});

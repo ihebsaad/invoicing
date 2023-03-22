@@ -176,6 +176,8 @@ class QuotesController extends Controller
         $net=$request->get('net');
         $acompte=$request->get('acompte');
         $tva_remise=$request->get('tva_remise');
+        $loi=$request->get('loi');
+        $total_loi=$request->get('total_loi');
 
         Quote::where('id',$quote)->update(
             [
@@ -189,6 +191,8 @@ class QuotesController extends Controller
                 'net'=>$net,
                 'acompte'=>$acompte,
                 'tva_remise'=>$tva_remise,
+                'loi'=>$loi,
+                'total_loi'=>$total_loi,
             ]
         );
     }
