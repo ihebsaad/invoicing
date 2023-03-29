@@ -189,7 +189,6 @@ class ModelesController extends Controller
         $hauteur=$request->get('hauteur');
         $largeur=$request->get('largeur');
         $prix=$request->get('prix');
-        $groupe=intval($request->get('groupe'));
         $groupe_couleur=intval($request->get('groupe_couleur'));
         $cintrage=$request->get('cintrage');
 
@@ -223,10 +222,6 @@ class ModelesController extends Controller
                     $prix=$prix*1.42;
                 }
 
-            }
-
-            if($groupe==1){
-                $prix=$prix*1.1;
             }
 
             if($cintrage){

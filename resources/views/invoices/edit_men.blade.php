@@ -527,12 +527,12 @@
 							<select  name="type" required class="form-control" id="type"  onchange="pricing()">
 								<option></option>
 								<option  @if( old("type")==1)  selected="selected" @endif value="1">Fenêtre à souflet</option>
-								<option  @if( old("type")==2)  selected="selected" @endif  value="2">Fenêtre / Porte Fenêtre - 1VOB</option>
-								<option  @if( old("type")==3)  selected="selected" @endif  value="3">Fenêtre fixe</option>
-								<option  @if( old("type")==4)  selected="selected" @endif  value="4">Fenêtre / Porte Fenêtre - 2V</option>
-								<option  @if( old("type")==5)  selected="selected" @endif  value="5">Fenêtre / Porte Fenêtre - 3V</option>
-								<option  @if( old("type")==6)  selected="selected" @endif  value="6">Porte fenêtre ouverture extérieur - PF1V </option>
-								<option  @if( old("type")==7)  selected="selected" @endif  value="7">Porte 2 ventaux Battement central ouverture extérieur PF2V </option>
+								<option  @if( old("type")==2)  selected="selected" @endif  value="2">Fenêtre 1 vantail</option>
+								<option  @if( old("type")==3)  selected="selected" @endif  value="3">Fenêtre 2 vantaux </option>
+								<option  @if( old("type")==4)  selected="selected" @endif  value="4">Fenêtre 3 vantaux</option>
+								<option  @if( old("type")==5)  selected="selected" @endif  value="5">Fenêtre fixe</option>
+								<option  @if( old("type")==6)  selected="selected" @endif  value="6">Porte Fenêtre 1 vantail</option>
+								<option  @if( old("type")==7)  selected="selected" @endif  value="7">Porte Fenêtre 2 vantaux</option>
 								<option  @if( old("type")==8)  selected="selected" @endif  value="8">Coulissant 1 </option>
 								<option  @if( old("type")==9)  selected="selected" @endif  value="9">Coulissant 2 </option>
 								<option  @if( old("type")==10)  selected="selected" @endif  value="10">Coulissant 3 </option>
@@ -540,7 +540,7 @@
 						</div>
 					</div>
 
-					<div class="col-xs-12 col-sm-6  col-md-6">
+					<div class="col-xs-12 col-sm-8  col-md-8">
 						<div class="form-group">
 							<strong>Couleur:</strong>
 							<select   name="couleur" required class="form-control" id="couleur"   onchange="pricing()">
@@ -551,7 +551,7 @@
 							</select>
 						</div>
 					</div>
-					<div class="col-xs-12 col-sm-3  col-md-3">
+					<div class="col-xs-12 col-sm-4  col-md-4">
 						<div class="form-group">
 							<strong>Groupe:</strong>
 							<select   name="groupe_couleur" required class="form-control" id="groupe_couleur"   onchange="pricing()">
@@ -560,12 +560,6 @@
 								<option  value="2">2</option>
 								<option  value="3">3</option>
 							</select>
-						</div>
-					</div>
-					<div class="col-xs-12 col-sm-3 col-md-3">
-						<div class="form-group pt-2">
-							<strong> </strong>
-							<label class=pointer><input type="checkbox"   name="groupe" id="groupe" value="1"  onchange="pricing()"/> Groupe 2 </label>
 						</div>
 					</div>
 					<div class="col-xs-12 col-sm-6 col-md-4">
@@ -747,17 +741,15 @@
 	var qte=	parseInt($('#qte').val());
 	var total=parseFloat($('#total').val());
 	var quote=	parseInt($('#quote').val());
-	var groupe = $('#groupe').is(":checked") ? 1 : 0;
+	var groupe = $('#groupe_couleur').val();
 	var cintrage = $('#cintrage').is(":checked") ? 1 : 0;
 
 	var tva=5.5;
 	$('#tva_remise').val(tva);
 
-	var groupe_text='';
 	var cintrage_text='';
-	if(groupe){
-		groupe_text='(Groupe2)';
-	}
+	var	groupe_text='(Groupe +'groupe'+)';
+
 	if(cintrage){
 		cintrage_text='(avec cintrage)';
 	}
@@ -843,14 +835,13 @@
 		var largeur= parseInt($("#largeur").val());
 		var hauteur= parseInt($('#hauteur').val());
 		var qte= parseInt($('#qte').val());
-		var groupe = $('#groupe').is(":checked") ? 1 : 0;
 		var cintrage = $('#cintrage').is(":checked") ? 1 : 0;
 		var groupe_couleur =  $("#groupe_couleur").val();
 		if(largeur>0 && hauteur>0){
 			$.ajax({
 				url: "{{ route('pricing') }}",
 				method: "GET",
-				data: {genre:genre,type:type,couleur:couleur,largeur:largeur,hauteur:hauteur,cintrage:cintrage,groupe_couleur:groupe_couleur,groupe:groupe,_token:_token},
+				data: {genre:genre,type:type,couleur:couleur,largeur:largeur,hauteur:hauteur,cintrage:cintrage,groupe_couleur:groupe_couleur,_token:_token},
 				success: function (data) {
 
 					if(parseFloat(data.prix)>0)
@@ -858,18 +849,6 @@
 						$('.text-danger').html('');
 						$("#modele").val(data.id);
 						$("#insert").prop('disabled',false);
-
-					/*	if(groupe){
-							var prix=parseFloat(data.prix)+(parseFloat(data.prix)*0.1);
-							var total = prix * qte;
-							$("#prix").val(prix);
-							$("#total").val(total);
-						}else{
-							$("#prix").val(data.prix);
-							var total = parseFloat(data.prix) * qte;
-							$("#total").val(total);
-						}
-					*/
 
 						$("#prix").val(data.prix);
 						var total = parseFloat(data.prix) * qte;
