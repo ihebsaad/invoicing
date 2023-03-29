@@ -185,24 +185,55 @@ class ModelesController extends Controller
     {
         $genre=$request->get('genre');
         $type=$request->get('type');
-        $couleur=$request->get('couleur');
+        $couleur=intval($request->get('couleur'));
         $hauteur=$request->get('hauteur');
         $largeur=$request->get('largeur');
         $prix=$request->get('prix');
+        $groupe=intval($request->get('groupe'));
+        $groupe_couleur=intval($request->get('groupe_couleur'));
+        $cintrage=$request->get('cintrage');
 
         $model=array();
         $modele=Modele::where('genre',$genre)->where('type',$type)->where('couleur',1)->where('hauteur',$hauteur)->where('largeur',$largeur)->first();
         if (isset($modele)){
             $model['id']=$modele->id;
             $prix=$modele->prix * 3;
-            if($couleur){
-                $model['prix']=$prix;
+            if($couleur==1){
+                $prix=$prix;
             }elseif($couleur==2){
-                $model['prix']=$prix*1.1;
+                $prix=$prix*1.1;
+
+                if($groupe_couleur==1){
+                    $prix=$prix*1.15;
+                }elseif($groupe_couleur==2){
+                    $prix=$prix*1.16;
+                }elseif($groupe_couleur==3){
+                    $prix=$prix*1.4;
+                }
+
             }
             elseif($couleur==3){
-                $model['prix']=$prix*1.2;
+                $prix=$prix*1.2;
+
+                if($groupe_couleur==1){
+                    $prix=$prix*1.26;
+                }elseif($groupe_couleur==2){
+                    $prix=$prix*1.3;
+                }elseif($groupe_couleur==3){
+                    $prix=$prix*1.42;
+                }
+
             }
+
+            if($groupe==1){
+                $prix=$prix*1.1;
+            }
+
+            if($cintrage){
+                $prix=$prix*1.4;
+            }
+
+            $model['prix']=number_format($prix,2,'.','');
 
             return $model;
         }

@@ -496,7 +496,8 @@
 
 
 
-<div class="modal fade" id="add-prod">
+
+	<div class="modal fade" id="add-prod">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -509,7 +510,7 @@
             <div class="modal-body" style="padding:10px 10px 1" >
 
 				<div class="row pl-3">
-					<div class="col-xs-12 col-sm-4 col-md-4">
+				<div class="col-xs-12 col-sm-4 col-md-4">
 						<div class="form-group">
 							<strong>Matière:</strong>
 							<input type="hidden" id="article" value="0"/>
@@ -539,7 +540,7 @@
 						</div>
 					</div>
 
-					<div class="col-xs-12 col-sm-9  col-md-9">
+					<div class="col-xs-12 col-sm-6  col-md-6">
 						<div class="form-group">
 							<strong>Couleur:</strong>
 							<select   name="couleur" required class="form-control" id="couleur"   onchange="pricing()">
@@ -550,26 +551,42 @@
 							</select>
 						</div>
 					</div>
-
+					<div class="col-xs-12 col-sm-3  col-md-3">
+						<div class="form-group">
+							<strong>Groupe:</strong>
+							<select   name="groupe_couleur" required class="form-control" id="groupe_couleur"   onchange="pricing()">
+								<option></option>
+								<option  value="1">1</option>
+								<option  value="2">2</option>
+								<option  value="3">3</option>
+							</select>
+						</div>
+					</div>
 					<div class="col-xs-12 col-sm-3 col-md-3">
 						<div class="form-group pt-2">
 							<strong> </strong>
 							<label class=pointer><input type="checkbox"   name="groupe" id="groupe" value="1"  onchange="pricing()"/> Groupe 2 </label>
 						</div>
 					</div>
-					<div class="col-xs-12 col-sm-6 col-md-6">
+					<div class="col-xs-12 col-sm-6 col-md-4">
 						<div class="form-group">
 							<strong>Hauteur:</strong>
 							<input id="hauteur" type="number" name="hauteur" rerquired class="form-control" step ="100" min="200" max="3200"  value="{{old('hauteur')}}" onchange="pricing()" style="max-width:150px">
 						</div>
 					</div>
 
-					<div class="col-xs-12 col-sm-6 col-md-6">
+					<div class="col-xs-12 col-sm-6 col-md-4">
 						<div class="form-group">
 							<strong>Largeur:</strong>
 							<input id="largeur" type="number" name="largeur" rerquired class="form-control" step ="100" min="200" max="2200"  value="{{old('largeur')}}" onchange="pricing()" style="max-width:150px">
 						</div>
 					</div>
+					<div class="col-xs-12 col-sm-6 col-md-4">
+						<div class="form-group">
+							<strong> </strong>
+							<label class=pointer><input type="checkbox"   name="cintrage" id="cintrage" value="1"  onchange="pricing()"/> Cintrage </label>						</div>
+					</div>
+
 					<div class="col-md-12">
 						<div class="text-danger pl-5">
 
@@ -578,34 +595,32 @@
 					<div class="col-xs-12 col-sm-4 col-md-4">
 						<div class="form-group">
 							<strong>Prix U <small style="display:none">€</small>:</strong>
-							<input readonly id="prix" type="number" name="prix" required class="form-control" step ="0.01" min="0"  value="{{old('prix')}}"  >
+							<input readonly id="prix" type="number" name="prix" rerquired class="form-control" step ="0.01" min="0"  value="{{old('prix')}}"  >
 							<input type="hidden" id="modele" value="0"  />
 						</div>
 					</div>
 
-					<div class="col-xs-12 col-sm-3 col-md-3">
+					<div class="col-xs-12 col-sm-4 col-md-4">
 						<div class="form-group">
 							<strong>Qté :</strong>
-							<input  id="qte" type="number" name="qte" required class="form-control" step ="1" min="1"  value="1" onchange="pricing()" >
+							<input  id="qte" type="number" name="qte" rerquired class="form-control" step ="1" min="1"  value="1" onchange="pricing()" >
 						</div>
 					</div>
 
-					<div class="col-xs-12 col-sm-3 col-md-3">
+					<div class="col-xs-12 col-sm-4 col-md-4">
 						<div class="form-group">
 							<strong>Total <small style="display:none">€</small>:</strong>
-							<input readonly id="total" type="number" name="total" required class="form-control" step ="0.01" min="0"  >
+							<input readonly id="total" type="number" name="total" rerquired class="form-control" step ="0.01" min="0"  >
 						</div>
 					</div>
-
 					<div class="col-xs-12 col-sm-8 col-md-8">
 						<div class="form-group">
 							<strong>Note :</strong>
 							<textarea  id="note"   name="note"  class="form-control" ></textarea>
 						</div>
 					</div>
-
 					<div class="col-xs-12 col-sm-12 col-md-12 text-right" onmouseover="pricing()">
-						<button type="button" id="insert"  onclick=";add_article()" disabled class="btn btn-primary mt-3 mr-3">Insérer</button>
+						<button type="button" id="insert" onclick="add_article()" disabled class="btn btn-primary mt-3 mr-3">Insérer</button>
 					</div>
 				</div>
 			</div>
@@ -731,23 +746,29 @@
 	var prix_ht = (prix - tva).toFixed(2);
 	var qte=	parseInt($('#qte').val());
 	var total=parseFloat($('#total').val());
-	var invoice=	parseInt($('#invoice').val());
+	var quote=	parseInt($('#quote').val());
 	var groupe = $('#groupe').is(":checked") ? 1 : 0;
+	var cintrage = $('#cintrage').is(":checked") ? 1 : 0;
 
 	var tva=5.5;
 	$('#tva_remise').val(tva);
 
 	var groupe_text='';
+	var cintrage_text='';
 	if(groupe){
 		groupe_text='(Groupe2)';
 	}
-	var product_text= $('#type option:selected').text()+' '+$('#genre option:selected').text()+' - Couleur: '+$('#couleur option:selected').text()+ groupe_text+' - Dimensions [H: '+$('#hauteur').val()+'cm * L: '+$('#largeur').val()+'cm]';
+	if(cintrage){
+		cintrage_text='(avec cintrage)';
+	}
+
+	var product_text= $('#type option:selected').text()+' '+$('#genre option:selected').text()+' - Couleur: '+$('#couleur option:selected').text()+ groupe_text+' - Dimensions [H: '+$('#hauteur').val()+'cm * L: '+$('#largeur').val()+'cm]'+ cintrage_text;
 
 	$.ajax({
 	url: "{{ route('add_article') }}",
 	method: "POST",
 	async:false,
-	data: {modele:modele,prix:prix,prix_ht:prix_ht,note:note,qte:qte,texte:product_text,total:total, invoice:invoice,_token:_token},
+	data: {modele:modele,prix:prix,prix_ht:prix_ht,note:note,qte:qte,texte:product_text,total:total, quote:quote,_token:_token},
 	success: function (data) {
 
 			item_id=data;
@@ -823,11 +844,13 @@
 		var hauteur= parseInt($('#hauteur').val());
 		var qte= parseInt($('#qte').val());
 		var groupe = $('#groupe').is(":checked") ? 1 : 0;
+		var cintrage = $('#cintrage').is(":checked") ? 1 : 0;
+		var groupe_couleur =  $("#groupe_couleur").val();
 		if(largeur>0 && hauteur>0){
 			$.ajax({
 				url: "{{ route('pricing') }}",
 				method: "GET",
-				data: {genre:genre,type:type,couleur:couleur,largeur:largeur,hauteur:hauteur,_token:_token},
+				data: {genre:genre,type:type,couleur:couleur,largeur:largeur,hauteur:hauteur,cintrage:cintrage,groupe_couleur:groupe_couleur,groupe:groupe,_token:_token},
 				success: function (data) {
 
 					if(parseFloat(data.prix)>0)
@@ -836,7 +859,7 @@
 						$("#modele").val(data.id);
 						$("#insert").prop('disabled',false);
 
-						if(groupe){
+					/*	if(groupe){
 							var prix=parseFloat(data.prix)+(parseFloat(data.prix)*0.1);
 							var total = prix * qte;
 							$("#prix").val(prix);
@@ -846,6 +869,11 @@
 							var total = parseFloat(data.prix) * qte;
 							$("#total").val(total);
 						}
+					*/
+
+						$("#prix").val(data.prix);
+						var total = parseFloat(data.prix) * qte;
+						$("#total").val(total);
 
 					}
 					else{
@@ -853,7 +881,6 @@
 						$('#prix').val(0);
 						$('#total').val(0);
 						$("#insert").prop('disabled',true);
-
 					}
 					calcul();
 				}
