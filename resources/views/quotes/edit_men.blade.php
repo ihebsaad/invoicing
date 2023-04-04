@@ -829,13 +829,13 @@
 	var qte=	parseInt($('#qte').val());
 	var total=parseFloat($('#total').val());
 	var quote=	parseInt($('#quote').val());
-	var groupe = $('#groupe').val();
+	var groupe = $('#groupe_couleur').val();
 	var cintrage = $('#cintrage').is(":checked") ? 1 : 0;
 
 	var tva=5.5;
 	$('#tva_remise').val(tva);
 
-	var	groupe_text='(Groupe +'groupe'+)';
+	var	groupe_text='(Groupe '+groupe+')';
 	var cintrage_text='';
 
 		if(cintrage){

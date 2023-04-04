@@ -748,7 +748,7 @@
 	$('#tva_remise').val(tva);
 
 	var cintrage_text='';
-	var	groupe_text='(Groupe +'groupe'+)';
+	var	groupe_text='(Groupe '+groupe+')';
 
 	if(cintrage){
 		cintrage_text='(avec cintrage)';

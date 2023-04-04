@@ -25,10 +25,10 @@
    <style>
 	   @font-face {
 		   font-family: 'Nunito';
-	   }
+	   }/*
 	   .vtop{
 			vertical-align:top;
-		}
+		}*/
 	   .text-right{
 			text-align:right;
 	   }
@@ -198,8 +198,50 @@
 			   </td>
 		   </tr>
 	   </table>
+		@php
+	   		$texte_loi='<b>Gestion, évacuation et traitement des déchets de chantier.</b></br> Comprend :<br>- La main d’œuvre liée à la dépose et au tri<br>- Le transport des déchets de chantier vers un ou plusieurs points de collecte.<br>- Les coûts de traitement.<br>- Ouvrages déconstruits (déchets susceptibles d’être en mélange)<br>- Le point de collecte envisagé : Déchetterie';
+		@endphp
+		@if($type=='Devis')
+		<table class="tab-products" style="min-height:150px;width:100%;margin-top:5px;margin-bottom:5px">
+		   <thead class="th-products">
+			   <tr>
+			   	<th style="width:15%">Image</th><th style="width:75%">Désignation</th><th style="width:10%">Montant TTC</th>
+			   </tr>
+		   </thead>
+		   <tbody >
+			   	<tr class="product " >
+					<td  style="border-bottom: 1px solid #f07f32">
+						<img src="{!! public_path('img/okno.png')!!}"  width="100" />
+					</td>
+					<td class="text"  style="border-bottom: 1px solid #f07f32">
+						Le GROUPE HER ENR est sensible à la qualité des produits installés chez ses clients.<br>
+						Pour cela nous avons choisi le Groupe OKNOPLAST.<br>
+						Représenté dans 17 pays, il fait parti du top 3 mondial dans la fabrication de menuiserie.<br>
+						Une gamme spécialement conçue pour le GROUPE HER ENR
+						<h3>CHARME MINI</h3>
 
-
+						<h5>L'ÉLÉGANCE DES COURBES ET UN MAXIMUM DE LUMIÈRE</h5>
+						La fenêtre en PVC Charme Mini offre luminosité et sécurité. En effet cette menuiserie PVC révolutionne votre intérieur grâce à un battement central réduit ainsi que des nouvelles générations de renforts. La finesse de son battement central permet une luminosité maximale de la pièce. La fenêtre standard en PVC Charme Mini est également disponible en porte fenêtre pour s'adapter à tous vos intérieurs.<br>
+						<h5>FENÊTRES PVC CHARME MINI : UNE SÉCURITÉ RENFORCÉE</h5>
+						La gamme Charme Mini comporte plusieurs équipements étudiés spécialement pour renforcer la sécurité du logement, comme un vitrage retardateur d'effraction ou des points multiples de fermeture à galets.<br>
+					</td>
+					<td style="border-bottom: 1px solid #f07f32" ></td>
+				</tr>
+				<tr class="product" >
+					<td  style="border-bottom: 1px solid #f07f32" ><img src="{!! public_path('img/loi.png')!!}"  width="100" /> </td><td class="text"  style="border-bottom: 1px solid #f07f32">{!!nl2br($texte_loi)!!}</td><td  style="border-bottom: 1px solid #f07f32">{{$invoice->total_loi ?? 100}} €</td>
+				</tr>
+				<tr class="product" >
+					<td ></td>
+					<td class="text">
+						DEVIS CHIFFRES AVEC POSE ET CONSOMABLE COMPRIS<br>
+						REALISATION DES TRAVAUX FAITE PAR LES SALARIEES DU GROUPE HER ENR
+					</td>
+					<td ></td>
+				<tr>
+		   </tbody>
+	   </table>
+	   <div class="pagebreak"></div>
+		@endif
 	   <table class="tab-products" style="min-height:150px;width:100%;margin-top:5px;margin-bottom:5px">
 		   <thead class="th-products">
 			   <tr>
@@ -210,7 +252,6 @@
 			   <tr class="product " >
 			   		@php
 						$count_articles=count($articles); $i=0;
-					   	$texte_loi='<b>Gestion, évacuation et traitement des déchets de chantier.</b></br>Comprend :<br>- La main d’œuvre liée à la dépose et au tri<br>- Le transport des déchets de chantier vers un ou plusieurs points de collecte.<br>- Les coûts de traitement.<br>- Ouvrages déconstruits (déchets susceptibles d’être en mélange)<br>- Le point de collecte envisagé : Déchetterie';
 					@endphp
 				   @foreach($articles as $article)
 					   @php
@@ -312,9 +353,11 @@
 					   </tr>
 				   @endforeach
 			   </tr>
+					@if($type=='Facture')
 			   		<tr class="product" >
 					   <td ><img src="{!! public_path('img/loi.png')!!}"  width="100" /> </td><td class="text">{!!nl2br($texte_loi)!!}</td><td style="text-align:center"></td><td></td><td> {{$invoice->loi ?? 94.79}}  €</td><td> {{$invoice->tva_loi ?? '5.5'}} %</td><td>{{$invoice->total_loi ?? 100}} €</td>
 				   </tr>
+				   @endif
 			   @if($invoice->remise>0)
 				   <tr class="product" style="color:#f07f32">
 					   <td colspan="2">Remise Catalogue Groupe HER ENR</td><td style="text-align:center"></td><td></td><td> {{$invoice->remise}}  €</td><td> {{$invoice->tva_remise ?? '5.5'}} %</td><td>{{$invoice->total_remise}} €</td>
@@ -364,18 +407,18 @@
 					   </table>
 				   @endif
 				   @if( str_contains($invoice->modalite, 'Chèques') || $invoice->modalite=='Chèque')
-					   <table class="financement">
-							@if($invoice->modalite=='4 Chèques' || $invoice->modalite=='3 Chèques' || $invoice->modalite=='2 Chèques' || $invoice->modalite=='Chèque' )
-					 		<tr><td class="vtop">Montant:</td><td class="text-right vtop" style="padding-right:20px;font-weight:bold;">{{number_format($invoice->montant1,2,',',' ')}} €</td><td class="vtop">Note:</td><td class="text vtop">{{ $invoice->note1 }}</td></tr>
+					   <table class="financement" style="color:black">
+							@if($invoice->modalite=='4 Chèques' || $invoice->modalite=='3 Chèques' || $invoice->modalite=='2 Chèques' || $invoice->modalite=='Chèque' && $invoice->montant1>0 )
+					 		<tr><td class="vtop">Montant:</td><td class="vtop" style="padding-right:20px;font-weight:bold;">  {{number_format($invoice->montant1,2,',',' ')}} €</td><td class="vtop">Note:</td><td class=" vtop">{{ $invoice->note1 }}</td></tr>
 							@endif
-							@if($invoice->modalite=='4 Chèques' || $invoice->modalite=='3 Chèques'|| $invoice->modalite=='2 Chèques'   )
-							<tr><td class="vtop">Montant 2:</td><td class="text-right vtop" style="padding-right:20px;font-weight:bold;">{{number_format($invoice->montant2,2,',',' ')}} €</td><td class="vtop">Note 2:</td><td class="text vtop">{{ $invoice->note2 }}</td></tr>
+							@if($invoice->modalite=='4 Chèques' || $invoice->modalite=='3 Chèques'|| $invoice->modalite=='2 Chèques' && $invoice->montant2>0   )
+							<tr><td class="vtop">Montant 2:</td><td class="vtop" style="padding-right:20px;font-weight:bold;">  {{number_format($invoice->montant2,2,',',' ')}} €</td><td class="vtop">Note 2:</td><td class=" vtop">{{ $invoice->note2 }}</td></tr>
 							@endif
-							@if($invoice->modalite=='4 Chèques' || $invoice->modalite=='3 Chèques' )
-							<tr><td class="vtop">Montant 3:</td><td class="text-right vtop" style="padding-right:20px;font-weight:bold;">{{number_format($invoice->montant3,2,',',' ')}} €</td><td class="vtop">Note 3</td><td class="text vtop">{{ $invoice->note3 }}</td></tr>
+							@if($invoice->modalite=='4 Chèques' || $invoice->modalite=='3 Chèques' && $invoice->montant3>0  )
+							<tr><td class="vtop">Montant 3:</td><td class="vtop" style="padding-right:20px;font-weight:bold;">  {{number_format($invoice->montant3,2,',',' ')}} €</td><td class="vtop">Note 3</td><td class=" vtop">{{ $invoice->note3 }}</td></tr>
 							@endif
-							@if($invoice->modalite=='4 Chèques'   )
-							<tr><td class="vtop">Montant 4:</td><td class="text-right vtop" style="padding-right:20px;font-weight:bold;">{{number_format($invoice->montant4,2,',',' ')}} €</td><td class="vtop">Note 4:</td><td class="text vtop">{{ $invoice->note4 }}</td></tr>
+							@if($invoice->modalite=='4 Chèques'  && $invoice->montant4>0  )
+							<tr><td class="vtop">Montant 4:</td><td class="vtop" style="padding-right:20px;font-weight:bold;">  {{number_format($invoice->montant4,2,',',' ')}} €</td><td class="vtop">Note 4:</td><td class=" vtop">{{ $invoice->note4 }}</td></tr>
 							@endif
 					   </table>
 				   @endif
