@@ -155,6 +155,13 @@
 		.pose{
 			border-bottom:1px solid #f07f32;
 		}
+		.product td{
+			padding-bottom:10px;
+		}
+		.tab1 td{
+			padding-top:20px!important;
+			padding-bottom:20px!important;
+		}
    </style>
    <section class="body">
 
@@ -202,7 +209,7 @@
 	   		$texte_loi='<b>Gestion, évacuation et traitement des déchets de chantier.</b></br> Comprend :<br>- La main d’œuvre liée à la dépose et au tri<br>- Le transport des déchets de chantier vers un ou plusieurs points de collecte.<br>- Les coûts de traitement.<br>- Ouvrages déconstruits (déchets susceptibles d’être en mélange)<br>- Le point de collecte envisagé : Déchetterie';
 		@endphp
 		@if($type=='Devis')
-		<table class="tab-products" style="min-height:150px;width:100%;margin-top:5px;margin-bottom:5px">
+		<table class="tab-products tab1" style="min-height:150px;width:100%;margin-top:50px;margin-bottom:5px">
 		   <thead class="th-products">
 			   <tr>
 			   	<th style="width:15%">Image</th><th style="width:75%">Désignation</th><th style="width:10%">Montant TTC</th>
@@ -231,13 +238,22 @@
 					<td  style="border-bottom: 1px solid #f07f32" ><img src="{!! public_path('img/loi.png')!!}"  width="100" /> </td><td class="text"  style="border-bottom: 1px solid #f07f32">{!!nl2br($texte_loi)!!}</td><td  style="border-bottom: 1px solid #f07f32">{{$invoice->total_loi ?? 100}} €</td>
 				</tr>
 				<tr class="product" >
-					<td ></td>
-					<td class="text">
+					<td style="border-bottom: 1px solid #f07f32" ></td>
+					<td class="text" style="border-bottom: 1px solid #f07f32">
 						DEVIS CHIFFRES AVEC POSE ET CONSOMABLE COMPRIS<br>
 						REALISATION DES TRAVAUX FAITE PAR LES SALARIEES DU GROUPE HER ENR
 					</td>
+					<td style="border-bottom: 1px solid #f07f32" ></td>
+				</tr>
+				<tr class="product" >
 					<td ></td>
-				<tr>
+					<td class="text">
+						Garantie menuiserie : 10 ans <br>
+						Garantie quincaillerie : 10 ans <br>
+						Hors frais de déplacement et main d'œuvre.
+					</td>
+					<td ></td>
+				</tr>
 		   </tbody>
 	   </table>
 	   <div class="pagebreak"></div>
@@ -259,7 +275,12 @@
 						   $modele=\App\Models\Modele::find($article->modele);
 						   $total_prod_ht=floatval($article->price_ht) * intval($article->qty);
 						   $total_prod_ttc=$article->total_ttc;
-						   $img='img/f'.$modele->type.'.jpg';
+
+						   $cintrage='_1';
+						   if($article->cintrage)
+						   		$cintrage='_2';
+
+						   $img='img/m'.$modele->type.$cintrage.'.jpg';
 						   switch ($modele->type) {
 							case 1:
 								$desc='
@@ -349,7 +370,7 @@
 
 					   @endphp
 					   <tr class="product"  >
-						   <td ><img src="{!! public_path($img)!!}"   style="max-width:120px;max-height:90px;" /></td><td class="text" ><b>{{$article->text}} @if($article->note!='')<br>{{$article->note}} @endif </b><br>{!!nl2br($desc)!!}</td><td>{{$article->qty}}</td><td>{{$article->price_ht}} €</td><td>{{$total_prod_ht}} €</td><td>5.5 %</td><td>{{$total_prod_ttc}} €</td>
+						   <td @if($i!=$count_articles) style="border-bottom: 1px solid #f07f32" @endif ><img src="{!! public_path($img)!!}"   style="max-width:120px;max-height:90px;" /></td><td  @if($i!=$count_articles) style="border-bottom: 1px solid #f07f32" @endif class="text" ><b>{{$article->text}} @if($article->note!='')<br>{{$article->note}} @endif </b><br>{!!nl2br($desc)!!}</td><td @if($i!=$count_articles) style="border-bottom: 1px solid #f07f32" @endif >{{$article->qty}}</td><td @if($i!=$count_articles) style="border-bottom: 1px solid #f07f32" @endif >{{$article->price_ht}} €</td><td @if($i!=$count_articles) style="border-bottom: 1px solid #f07f32" @endif>{{$total_prod_ht}} €</td><td @if($i!=$count_articles) style="border-bottom: 1px solid #f07f32" @endif >5.5 %</td><td @if($i!=$count_articles) style="border-bottom: 1px solid #f07f32" @endif >{{$total_prod_ttc}} €</td>
 					   </tr>
 				   @endforeach
 			   </tr>
@@ -374,7 +395,7 @@
 				   Dépose de la chaudière individuelle: <b> Chaudière à {{$invoice->chaudiere}}</b><br>
 			   @endif
 				<b> Chauffage {{$invoice->chauffage}}</b><br>
-				<b>Délai de Livraison : 30 jours</b><br>
+				<b>Délai de Livraison : 4 semaines</b><br>
 				<b>Durée de validité du devis : 15 jours</b>
 		   </div>
 		   <div style="width:33%;float:left;">

@@ -760,7 +760,7 @@
 	url: "{{ route('add_article') }}",
 	method: "POST",
 	async:false,
-	data: {modele:modele,prix:prix,prix_ht:prix_ht,note:note,qte:qte,texte:product_text,total:total, quote:quote,_token:_token},
+	data: {modele:modele,prix:prix,prix_ht:prix_ht,note:note,qte:qte,texte:product_text,total:total,cintrage:cintrage, quote:quote,_token:_token},
 	success: function (data) {
 
 			item_id=data;

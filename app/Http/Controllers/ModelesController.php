@@ -147,9 +147,9 @@ class ModelesController extends Controller
         $total_ttc=$request->get('total');
         $note=$request->get('note');
         $groupe=$request->get('groupe');
+        $cintrage=$request->get('cintrage');
         $quote=$request->get('quote') ?? 0;
         $invoice=$request->get('invoice') ?? 0;
-
         if( $quote>0   ){
             $article=Article::create([
                 'modele'=>$modele,
@@ -160,6 +160,7 @@ class ModelesController extends Controller
                 'note'=>$note,
                 'total_ttc'=>$total_ttc,
                 'groupe'=>$groupe,
+                'cintrage'=>$cintrage,
                 'quote'=>$quote,
             ]);
             return $article->id;
@@ -175,6 +176,7 @@ class ModelesController extends Controller
                 'note'=>$note,
                 'total_ttc'=>$total_ttc,
                 'groupe'=>$groupe,
+                'cintrage'=>$cintrage,
                 'invoice'=>$invoice,
             ]);
             return $article->id;

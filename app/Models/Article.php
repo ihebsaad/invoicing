@@ -20,7 +20,8 @@ class Article extends Model
         'price_ht',
         'total_ttc',
         'quote',
-        'invoice'
+        'invoice',
+        'cintrage'
     ];
 
     public function modele()
