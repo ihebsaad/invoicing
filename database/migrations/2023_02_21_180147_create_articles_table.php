@@ -24,6 +24,7 @@ class CreateArticlesTable extends Migration
             $table->double('total_ttc', 8, 2)->nullable();
             $table->tinyInteger('groupe')->nullable();
             $table->tinyInteger('cintrage')->nullable();
+            $table->integer('couleur')->nullable();
 
             $table->unsignedBigInteger('modele')->nullable();
             $table->foreign('modele')->references('id')->on('modeles')->onDelete('cascade');

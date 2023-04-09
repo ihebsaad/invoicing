@@ -235,24 +235,18 @@
 					<td style="border-bottom: 1px solid #f07f32" ></td>
 				</tr>
 				<tr class="product" >
-					<td  style="border-bottom: 1px solid #f07f32" ><img src="{!! public_path('img/loi.png')!!}"  width="100" /> </td><td class="text"  style="border-bottom: 1px solid #f07f32">{!!nl2br($texte_loi)!!}</td><td  style="border-bottom: 1px solid #f07f32">{{$invoice->total_loi ?? 100}} €</td>
-				</tr>
-				<tr class="product" >
 					<td style="border-bottom: 1px solid #f07f32" ></td>
 					<td class="text" style="border-bottom: 1px solid #f07f32">
-						DEVIS CHIFFRES AVEC POSE ET CONSOMABLE COMPRIS<br>
-						REALISATION DES TRAVAUX FAITE PAR LES SALARIEES DU GROUPE HER ENR
-					</td>
-					<td style="border-bottom: 1px solid #f07f32" ></td>
-				</tr>
-				<tr class="product" >
-					<td ></td>
-					<td class="text">
 						Garantie menuiserie : 10 ans <br>
 						Garantie quincaillerie : 10 ans <br>
-						Hors frais de déplacement et main d'œuvre.
+						Hors frais de déplacement et main d'œuvre.<br>
+						DEVIS CHIFFRES AVEC POSE ET CONSOMABLE COMPRIS<br>
+						REALISATION DES TRAVAUX FAITE PAR LES SALARIÉES DU GROUPE HER ENR
 					</td>
-					<td ></td>
+					<td style="border-bottom: 1px solid #f07f32"></td>
+				</tr>
+				<tr class="product" >
+					<td   ><img src="{!! public_path('img/loi.png')!!}"  width="100" /> </td><td class="text" >{!!nl2br($texte_loi)!!}</td><td   >{{$invoice->total_loi ?? 100}} €</td>
 				</tr>
 		   </tbody>
 	   </table>
@@ -275,6 +269,14 @@
 						   $modele=\App\Models\Modele::find($article->modele);
 						   $total_prod_ht=floatval($article->price_ht) * intval($article->qty);
 						   $total_prod_ttc=$article->total_ttc;
+						   $couleur=$article->couleur;
+							if($couleur==1){
+								$couleur_text='Extérieur et intérieur blanc';
+							}elseif($couleur==2){
+								$couleur_text='Extérieur couleur et intérieur blanc';
+							}else{
+								$couleur_text='Extérieur et intérieur couleur';
+							}
 
 						   $cintrage='_1';
 						   if($article->cintrage)
@@ -284,45 +286,66 @@
 						   switch ($modele->type) {
 							case 1:
 								$desc='
-								POSE EN RENOVATION DE MENUISERIES PVC DE LA MARQUE OKNOPLAST –	MODELE CHARME MINI<br>
-								INSTALLATION DE MATERIAUX D’ISOLATION THERMIQUE DES PAROIS VITREES VERTICALES<br>
-								INSTALLATION DE FENETRE A SOUFFLET EN DOUBLE VITRAGE VENANT EN REMPLACEMENT DE MENUISERIES SIMPLE VITRAGE<br>
-								Profilé de haute qualité et Classe A avec une profondeur de 70 mm<br>
-								Système breveté équipé de renforts en acier sur l’ensemble du dormant et des ouvrants<br>
-								Système d’ouverture Oscillo-Battant<br>
-								Micro-aération - Vitrage 4/16/4 - Gaz Argon<br>
-								Coefficient de transmission surfacique : Uw = 1,3 W/m².K<br>
-								Performance thermique du vitrage : Uw = 1,1 W/m².K<br>
-								Facteur solaire : Sw = 0.45 W/m².K<br>
-								Fermeture par crémone simple';
+								-	Gamme CHARME mini Finition PURE<br>
+								-	Parclose Charme<br>
+								-	Ouvrant 70mm<br>
+								-	Dormant rénovation, aile de 65<br>
+								-	Dim. Fabrication (Dos de dormant sans les ailes)<br>
+								-	Joint de propreté total<br>
+								-	Couleur 2 faces : '.$couleur_text.'<br>
+								-	Vitrage 4/16/4 FE (argon) Ug = 1,1<br>
+								-	Intercalaire Warm-Edge Noir 9005<br>
+								-	Appui bas pour dormant rénovation 110.102.2 (haut. 2mm)<br>
+								-	Pièce d’appui non comprise dans la hauteur<br>
+								-	Ferrage standard<br>
+								-	Poignée KISKA : Blanc<br>
+								-	Hauteur de poignée standard<br>
+								-	2 aérateurs à fente Aéromat (suivant emplacement)<br>
+								-	Habillage intérieur : A déterminer au métrage<br>
+								-	Habillage extérieur : A déterminer au métrage<br>
+								-	LES ELEMENTS SUIVANTS SONT A CONFIRMER AU METTRAGE.';
 								break;
 							case 2:
 								$desc='
-								POSE EN RENOVATION DE MENUISERIES PVC DE LA MARQUE OKNOPLAST – MODELE CHARME MINI
-								INSTALLATION DE MATERIAUX D’ISOLATION THERMIQUE DES PAROIS VITREES VERTICALES<br>
-								INSTALLATION DE FENETRE 1 VANTAIL EN DOUBLE VITRAGE VENANT EN REMPLACEMENT DE MENUISERIES SIMPLE VITRAGE<br>
-								Profilé de haute qualité et Classe A avec une profondeur de 70 mm<br>
-								Système breveté équipé de renforts en acier sur l’ensemble du dormant et des ouvrants<br>
-								Système d’ouverture Oscillo-Battant<br>
-								Micro-aération - Vitrage 4/16/4 - Gaz Argon<br>
-								Coefficient de transmission surfacique : Uw = 1,3 W/m².K<br>
-								Performance thermique du vitrage : Uw = 1,1 W/m².K<br>
-								Facteur solaire : Sw = 0.45 W/m².K<br>
-								Fermeture par crémone simple';
+								-	Gamme CHARME mini Finition PURE<br>
+								-	Parclose Charme<br>
+								-	Ouvrant 70mm<br>
+								-	Dormant rénovation, aile de 65<br>
+								-	Dim. Fabrication (Dos de dormant sans les ailes)<br>
+								-	Joint de propreté total<br>
+								-	Couleur 2 faces :'.$couleur_text.'<br>
+								-	Vitrage 4/16/4 FE (argon) Ug = 1,1<br>
+								-	Intercalaire Warm-Edge Noir 9005<br>
+								-	Appui bas pour dormant rénovation 110.102.2 (haut. 2mm)<br>
+								-	Pièce d’appui non comprise dans la hauteur <br>
+								-	Ferrage standard<br>
+								-	Poignée KISKA : Blanc <br>
+								-	Hauteur de poignée standard <br>
+								-	2 aérateurs à fente Aéromat (suivant emplacement)<br>
+								-	Habillage intérieur : A déterminer au métrage <br>
+								-	Habillage extérieur : A déterminer au métrage<br>
+								-	LES ELEMENTS SUIVANT SONT A CONFIRMER AU METTRAGE.';
 								break;
 							case 3:
 								$desc='
-								POSE EN RENOVATION DE MENUISERIES PVC DE LA MARQUE OKNOPLAST – MODELE CHARME MINI<br>
-								INSTALLATION DE MATERIAUX D’ISOLATION THERMIQUE DES PAROIS VITREES VERTICALES<br>
-								INSTALLATION DE FENETRE 2 VANTAUX EN DOUBLE VITRAGE VENANT EN REMPLACEMENT DE MENUISERIES SIMPLE VITRAGE<br>
-								Profilé de haute qualité et Classe A avec une profondeur de 70 mm<br>
-								Système breveté équipé de renforts en acier sur l’ensemble du dormant et des ouvrants<br>
-								Système d’ouverture Oscillo-Battant<br>
-								Micro-aération - Vitrage 4/16/4 - Gaz Argon<br>
-								Coefficient de transmission surfacique : Uw = 1,3 W/m².K<br>
-								Performance thermique du vitrage : Uw = 1,1 W/m².K<br>
-								Facteur solaire : Sw = 0.45 W/m².K<br>
-								Fermeture par crémone simple';
+								-	Gamme CHARME mini Finition PURE<br>
+								-	Parclose Charme<br>
+								-	Ouvrant 70mm<br>
+								-	Dormant rénovation, aile de 65<br>
+								-	Dim. Fabrication (Dos de dormant sans les ailes)<br>
+								-	Joint de propreté total
+								-	Couleur 2 faces : '.$couleur_text.' <br>
+								-	Vitrage 4/16/4 FE (argon) Ug = 1,1<br>
+								-	Intercalaire Warm-Edge Noir 9005<br>
+								-	Appui bas pour dormant rénovation 110.102.2 (haut. 2mm)<br>
+								-	Pièce d’appui non comprise dans la hauteur <br>
+								-	Ferrage standard<br>
+								-	Poignée KISKA : Blanc <br>
+								-	Hauteur de poignée standard<br>
+								-	2 aérateurs à fente Aéromat (suivant emplacement)<br>
+								-	Habillage intérieur : A déterminer au métrage	<br>
+								-	Habillage extérieur : A déterminer au métrage<br>
+								-	LES ELEMENTS SUIVANTS SONT A CONFIRMER AU METTRAGE.';
 								break;
 							case 4:
 								$desc='
@@ -354,17 +377,23 @@
 								break;
 							case 6:
 								$desc='
-								POSE EN RENOVATION DE MENUISERIES PVC DE LA MARQUE OKNOPLAST – MODELE CHARME MINI<br>
-								INSTALLATION DE MATERIAUX D’ISOLATION THERMIQUE DES PAROIS VITREES VERTICALES<br>
-								INSTALLATION DE PORTES-FENETRES EN DOUBLE VITRAGE VENANT EN REMPLACEMENT DE MENUISERIES SIMPLE VITRAGE<br>
-								Profilé de haute qualité et Classe A avec une profondeur de 70 mm<br>
-								Système breveté équipé de renforts en acier sur l’ensemble du dormant et des ouvrants<br>
-								Système d’ouverture Oscillo-Battant<br>
-								Micro-aération - Vitrage 4/16/4 - Gaz Argon<br>
-								Coefficient de transmission surfacique : Uw = 1,3 W/m².K<br>
-								Performance thermique du vitrage : Uw = 1,1 W/m².K<br>
-								Facteur solaire : Sw = 0.45 W/m².K<br>
-								Fermeture par crémone simple ou serrure à barillet';
+								-	Gamme CHARME mini Finition PURE<br>
+								-	Parclose Charme<br>
+								-	Ouvrant 70mm<br>
+								-	Dormant rénovation, aile de 65<br>
+								-	Dim. Fabrication (Dos de dormant sans les ailes)<br>
+								-	Joint de propreté total<br>
+								-	Couleur 2 faces : '.$couleur_text.' <br>
+								-	Vitrage 4/16/4 FE (argon) Ug = 1,1<br>
+								-	Intercalaire Warm-Edge Noir 9005<br>
+								-	Seuil bas Aluminium<br>
+								-	Ferrage standard<br>
+								-	Poignée KISKA : Blanc <br>
+								-	Hauteur de poignée standard
+								-	2 aérateurs à fente Aéromat (suivant emplacement)<br>
+								-	Habillage intérieur : A déterminer au métrage<br>
+								-	Habillage extérieur : A déterminer au métrage<br>
+								LES ELEMENTS SUIVANTS SONT A CONFIRMER AU METTRAGE';
 								break;
 							}
 

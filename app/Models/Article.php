@@ -21,7 +21,8 @@ class Article extends Model
         'total_ttc',
         'quote',
         'invoice',
-        'cintrage'
+        'cintrage',
+        'couleur'
     ];
 
     public function modele()

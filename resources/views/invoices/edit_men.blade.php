@@ -740,9 +740,10 @@
 	var prix_ht = (prix - tva).toFixed(2);
 	var qte=	parseInt($('#qte').val());
 	var total=parseFloat($('#total').val());
-	var quote=	parseInt($('#quote').val());
+	var invoice=	parseInt($('#invoice').val());
 	var groupe = $('#groupe_couleur').val();
 	var cintrage = $('#cintrage').is(":checked") ? 1 : 0;
+	var couleur= $("#couleur").val();
 
 	var tva=5.5;
 	$('#tva_remise').val(tva);
@@ -760,7 +761,7 @@
 	url: "{{ route('add_article') }}",
 	method: "POST",
 	async:false,
-	data: {modele:modele,prix:prix,prix_ht:prix_ht,note:note,qte:qte,texte:product_text,total:total,cintrage:cintrage, quote:quote,_token:_token},
+	data: {modele:modele,prix:prix,prix_ht:prix_ht,note:note,qte:qte,texte:product_text,total:total,cintrage:cintrage,couleur:couleur, invoice:invoice,_token:_token},
 	success: function (data) {
 
 			item_id=data;
