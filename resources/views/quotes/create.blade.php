@@ -53,7 +53,7 @@
         </div>
     </div>
     <div class="row pl-3">
-        <div class="col-xs-12 col-sm-12 col-md-4">
+        <div class="col-xs-12 col-sm-12 col-md-4"  id="div-chaudiere" >
 			<div class="form-group">
 				<strong>Chaudière à :</strong>
 				<select  class="form-control" required  name="chaudiere"  id="chaudiere" value="old('chaudiere')" style="max-width:180px" >
@@ -297,12 +297,14 @@
         $('#surface').prop('required',false);
         $('#chauffage').prop('required',true);
         $('#div-chauffage').show('slow');
+        $('#div-chaudiere').hide('slow');
     }else{
         $('#chaudiere').prop('required',true);
         $('#surface').prop('required',true);
         $('#surface').prop('required',true);
         $('#chauffage').prop('required',false);
         $('#div-chauffage').hide('slow');
+        $('#div-chaudiere').show('slow');
     }
   }
 

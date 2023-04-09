@@ -250,7 +250,7 @@
 										<select class="form-control select2"  id='product' onchange="set_price()">
 											<option value="0">Sélectionnez le produit</option>
 												@foreach($products as $prod)
-													<option data-price="{{$prod->prix}}"  data-text="{{$prod->name}}" data-tva="{{$prod->tva}}" data-priceht="{{$prod->prix_ht}}"  data-pose="{{$prod->pose}}" data-tvapose="{{$prod->tva_pose}}"   data-posettc="{{$prod->pose_ttc}}"   value="{{$prod->id}}">{{$prod->id}}- {{$prod->name}}  ({{$prod->prix}}€)</option>
+													<option data-price="{{$prod->prix}}"  data-text="{{$prod->name}}" data-tva="{{$prod->tva}}" data-priceht="{{$prod->prix_ht}}"   data-pose="{{$prod->pose}}" data-tvapose="{{$prod->tva_pose}}"   data-posettc="{{$prod->pose_ttc}}"   value="{{$prod->id}}">{{$prod->id}}- {{$prod->name}}  ({{$prod->prix}}€)</option>
 												@endforeach
 										</select>
 									</td>
@@ -267,11 +267,11 @@
 										$c++;
 									@endphp
 									<tr class="myproduct product bg-lightgrey tr-prod" id="row-{{$product->id}}">
-										<td class="myproducttd" data-prix="{{$product->prix}}" data-prixht="{{$product->prix_ht}}" data-id="{{$product->id}}"  ><b>{{$product->name}}</b></td><td >{{$product->prix_ht}} €</td><td><input id="qty-{{$product->id}}" type="number" step="1" min="1" class="number" value="{{$item->qty}}"  onchange="calcul();save_item_qty(this,{{$item->id}},{{$product->prix}})"/></td><td><input readonly step="0.5" min="5.5" type="number" step="0.5" min="1" class="number bg-transparent" value="{{$item->tva}}"/> %</td><td><input id="total-{{$item->id}}" type="number" readonly class="total-prod number" value="{{$total_prod}}"/> €</td><td><button id="delete_item"   class="btn-sm btn-danger" onclick="delete_item({{$product->id}},{{$item->id}})"><i class="fas fa-minus " data-id="{{$item->id}}"></i></td>
+										<td class="myproducttd" data-prix="{{$product->prix}}" data-prixht="{{$product->prix_ht}}" data-id="{{$product->id}}"  ><b>{{$product->name}}</b></td><td >{{$product->prix_ht}} €</td><td><input id="qty-{{$product->id}}" type="number" step="1" min="1" class="number" value="{{$item->qty}}"  onchange="calcul();save_item_qty(this,{{$item->id}},{{$product->prix}},{{$product->pose_ttc}})"/></td><td><input readonly step="0.5" min="5.5" type="number" step="0.5" min="1" class="number bg-transparent" value="{{$item->tva}}"/> %</td><td><input id="total-{{$item->id}}" type="number" readonly class="total-prod number" value="{{$total_prod}}"/> €</td><td><button id="delete_item"   class="btn-sm btn-danger" onclick="delete_item({{$product->id}},{{$item->id}})"><i class="fas fa-minus " data-id="{{$item->id}}"></i></td>
 									</tr>
 									@if($product->pose > 0)
 									<tr class="myproduct product bg-lightgrey tr-prod" id="row-pose-{{$product->id}}">
-										<td class="myproductpose" data-prix="{{$product->prix}}" data-prixht="{{$product->prix_ht}}" data-id="{{$product->id}}" data-pose="{{$product->pose}}" data-tvapose="{{$product->tva_pose}}" data-posettc="{{$product->pose_ttc}}" ><i>Pose {{$product->name}}</i></td><td >{{$product->pose}} €</td><td><input type="number" value="1"  readonly class="number" /></td><td><input readonly step="0.5" min="5.5" type="number" step="0.5" min="1" class="number bg-transparent" readonly value="{{$product->tva_pose}}"/> %</td><td><input id="totalpose-{{$item->id}}" type="number" readonly class="total-prod number" value="{{$product->pose_ttc}}"/> €</td><td></td>
+										<td class="myproductpose" data-prix="{{$product->prix}}" data-prixht="{{$product->prix_ht}}" data-id="{{$product->id}}" data-pose="{{$product->pose}}" data-tvapose="{{$product->tva_pose}}" data-posettc="{{$product->pose_ttc}}" ><i>Pose {{$product->name}}</i></td><td ><input type="number" id="pose-{{$item->id}}" value="{{$product->pose * $item->qty}}"  class="number bg-transparent"/> €</td><td><input type="number"  value="{{$item->qty}}"  id="pose-qty-{{$item->id}}" readonly class="number" /></td><td><input readonly step="0.5" min="5.5" type="number" step="0.5" min="1" class="number bg-transparent" readonly value="{{$product->tva_pose}}"/> %</td><td><input id="totalpose-{{$item->id}}" type="number" readonly class="total-prod number" value="{{$product->pose_ttc * $item->qty}}"/> €</td><td></td>
 									</tr>
 									@endif
 								@endforeach
@@ -590,11 +590,11 @@
 				total_ht+=parseFloat(( $(this).data('prixht')* qty ));
 				total_ttc+=parseFloat(( $(this).data('prix') *  qty));
     	});
-		$(this).find('.myproductpose').each(function(){
-				//id_item=$(this).data().id;
-				//qty= ($('#qty-'+id_item).val());
-				total_ht+=(( $(this).data().pose  ));
-				total_ttc+=(( $(this).data().posettc));
+			$(this).find('.myproductpose').each(function(){
+				id_item=$(this).data().id;
+				qty= ($('#qty-'+id_item).val());
+				total_ht+=(( $(this).data().pose * qty  ));
+				total_ttc+=(( $(this).data().posettc * qty));
 
     		});
 		});
@@ -654,14 +654,16 @@
 	}
 
 	function set_price(){
-		if(  parseInt($('#product').val())  > 0 ){
+		if($('#product').val() >0){
 			var price= parseFloat($('#product option:selected').data("price"));
+			var price_ht= parseFloat($('#product option:selected').data("priceht"));
 			var tva= parseFloat($('#product option:selected').data("tva"));
 			$('#tva').val(tva);
-			$('#price').val(price);
+			$('#price').val(price_ht);
 			$('#qty').focus();
 			$('#add_product').prop('disabled',false);
-			var total_prod=parseFloat($('#price').val()) * parseInt($('#qty').val()) ;
+			var total_prod=parseFloat( price) * parseInt($('#qty').val()) ;
+
 			$('#total_prod').val(total_prod);
 		}
 	}
@@ -694,7 +696,7 @@
 	var pose= parseFloat($("#product option:selected").data("pose"));
 	var tvapose= parseFloat($("#product option:selected").data("tvapose"));
 	var posettc= parseFloat($("#product option:selected").data("posettc"));
-	var price=	parseFloat($('#price').val());
+	var price=	parseFloat($('#total_prod').val());
 	var qty=	parseInt($('#qty').val());
 	var total= price*qty;
 	var tva=	parseFloat($('#tva').val());
@@ -710,17 +712,15 @@
         data: {product:product,price:price,qty:qty,tva:tva, quote:quote,_token:_token},
         success: function (data) {
 			if(data!=''){
-				init();
-				item_id=data;
-				var row='<tr class="myproduct product bg-lightgrey tr-prod" id="row-'+product+'"><td class="myproducttd"  data-prix="'+price+'" data-prixht="'+price_ht+'" data-id="'+product+'"  ><b>'+product_text+'</b></td><td>'+price_ht+' €</td><td><input type="number" step="1" min="1" class="number" value="'+qty+'"  id="qty-'+product+'"/></td><td><input  step="0.5" min="5.5" type="number" step="1" min="1" class="number bg-transparent" readonly value="'+tva+'"/> %</td><td><input id="total-'+data+'" type="number" readonly class="total-prod number" value="'+total+'"/> €</td><td><button id="delete_item"   class="btn-sm btn-danger" onclick="delete_item('+product+','+item_id+')"><i class="fas fa-minus "  ></i></td></tr>';
-				if(pose>0){
-					row+='<tr class="myproduct product bg-lightgrey tr-prod" id="row-pose-'+product+'"><td class="myproductpose"  data-prix="'+price+'" data-prixht="'+price_ht+'" data-id="'+product+'" data-pose="'+pose+'" data-tvapose="'+tvapose+'"   data-posettc="'+posettc+'" ><i>Pose '+product_text+'</i></td><td>'+pose+' €</td><td><input type="number" readonly step="1" min="1" class="number bg-transparent" value="1"   /></td><td><input  step="0.5" min="5.5" type="number" step="1" min="1" class="number bg-transparent" readonly value="'+tvapose+'"/> %</td><td><input id="totalpose-'+data+'" type="number" readonly class="total-prod number" value="'+posettc+'"/> €</td><td></td></tr>';
-				}
-
-
-				$('#list-prods').append(row);
+			init();
+			item_id=data;
+			var row='<tr class="myproduct product bg-lightgrey tr-prod" id="row-'+product+'"><td class="myproducttd"  data-prix="'+price+'" data-prixht="'+price_ht+'" data-id="'+product+'"  ><b>'+product_text+'</b></td><td>'+price_ht+' €</td><td><input type="number" step="1" min="1" class="number" value="'+qty+'"  id="qty-'+product+'"  onchange="calcul();save_item_qty(this,item_id,'+price+','+posettc+')"/></td><td><input  step="0.5" min="5.5" type="number" step="1" min="1" class="number bg-transparent" readonly value="'+tva+'"/> %</td><td><input id="total-'+data+'" type="number" readonly class="total-prod number" value="'+total+'"/> €</td><td><button id="delete_item"   class="btn-sm btn-danger" onclick="delete_item('+product+','+item_id+')"><i class="fas fa-minus "  ></i></td></tr>';
+					if(pose>0){
+						row+='<tr class="myproduct product bg-lightgrey tr-prod" id="row-pose-'+product+'"><td class="myproductpose"  data-prix="'+price+'" data-prixht="'+price_ht+'" data-id="'+product+'" data-pose="'+pose+'" data-tvapose="'+tvapose+'"   data-posettc="'+posettc+'" ><i>Pose '+product_text+'</i></td><td><input type="number" id="pose-'+data+'" value="'+pose+'"  class="number bg-transparent"/> €</td><td><input type="number"  value="'+qty+'"  id="pose-qty-'+data+'" readonly class="number" /></td><td><input readonly step="0.5" min="5.5" type="number" step="0.5" min="1" class="number bg-transparent" readonly value="'+tvapose+'"/> %</td><td><input id="totalpose-'+data+'" type="number" readonly class="total-prod number" value="'+posettc+'"/> €</td><td></td></tr>';
+					}
+					$('#list-prods').append(row);
 			}else{
-				alert('Ce produit est déjà ajouté !')
+				alert('Ce existe déja, modifiez la quantité !')
 			}
 
 		}
@@ -780,11 +780,15 @@
 
 	}
 
-	function save_item_qty(elm,item,price){
+	function save_item_qty(elm,item,price,pose){
 		var _token = $('input[name="_token"]').val();
-		var qty=$(elm).val();
-		var total= (qty*price).toFixed(2)
-		$('#total-'+item).val(total);
+		var qty=parseInt($(elm).val());
+		var total= (qty*price).toFixed(2);
+		var totalpose= qty*pose;
+		$('#pose-qty-'+item).val(qty);
+		$('#totalpose-'+item).val(totalpose);
+
+		$('#total-'+item).val(total+totalpose);
 
 		$.ajax({
 		url: "{{ route('save_item_qty') }}",

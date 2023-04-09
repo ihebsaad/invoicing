@@ -202,7 +202,7 @@ class ModelesController extends Controller
             if($couleur==1){
                 $prix=$prix;
             }elseif($couleur==2){
-                $prix=$prix*1.1;
+            //    $prix=$prix*1.1;
 
                 if($groupe_couleur==1){
                     $prix=$prix*1.15;
@@ -214,7 +214,7 @@ class ModelesController extends Controller
 
             }
             elseif($couleur==3){
-                $prix=$prix*1.2;
+            //    $prix=$prix*1.2;
 
                 if($groupe_couleur==1){
                     $prix=$prix*1.26;
