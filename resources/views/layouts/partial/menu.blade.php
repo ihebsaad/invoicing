@@ -43,7 +43,7 @@
             <a href="#" class="nav-link {{ request()->is('invoices') || request()->is('quotes') || request()->is('invoices/*') || request()->is('quotes/*')   ? 'active' : '' }}">
               <i class="nav-icon fas fa-file text-white"></i>
               <p>
-                Facturation
+                Commandes
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
@@ -64,7 +64,7 @@
               </li>
             </ul>
           </li>
-          @can('isAdmin')
+
             <li class="nav-item menu-open">
               <a href="#" class="nav-link {{  request()->is('categories') || request()->is('products') || request()->is('categories/*') || request()->is('products/*')   ? 'active' : '' }}">
                 <i class="nav-icon fas fa-store text-white"></i>
@@ -74,6 +74,7 @@
                 </p>
               </a>
               <ul class="nav nav-treeview">
+                @can('isAdmin')
                 <li class="nav-item">
                   <a href="{{route('categories.index')}}" class="nav-link {{ request()->is('categories') || request()->is('categories/*') ? 'active' : '' }}">
                     <i class="fas fa-tags nav-icon text-secondary"></i>
@@ -92,6 +93,7 @@
                     <p>Menuiserie</p>
                   </a>
                 </li>
+                @endcan
                 <li class="nav-item">
                   <a href="{{route('customers.index')}}" class="nav-link {{ request()->is('customers') || request()->is('customers/*') ? 'active' : '' }}">
                   <i class="fas fa-address-card nav-icon text-secondary"></i>
@@ -100,7 +102,7 @@
                 </li>
               </ul>
             </li>
-
+          @can('isAdmin')
             <li class="nav-item menu-open">
               <a href="#" class="nav-link {{ request()->is('users')   ? 'active' : '' }}">
                 <i class="nav-icon fas fa-cog text-white"></i>

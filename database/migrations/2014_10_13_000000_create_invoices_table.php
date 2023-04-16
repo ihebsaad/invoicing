@@ -58,11 +58,13 @@ class CreateInvoicesTable extends Migration
             $table->double('remise_loi', 8, 2)->default(0)->nullable();
             $table->double('total_loi', 8, 2)->default(0)->nullable();
 
+            $table->unsignedBigInteger('par')->nullable();
+
             $table->unsignedBigInteger('customer')->nullable();
-            $table->foreign('customer')->references('id')->on('customers')->onDelete('cascade');
+            //$table->foreign('customer')->references('id')->on('customers')->onDelete('cascade');
 
             $table->unsignedBigInteger('quote')->nullable();
-            $table->foreign('quote')->references('id')->on('quotes')->onDelete('cascade');
+            //$table->foreign('quote')->references('id')->on('quotes')->onDelete('cascade');
 
             $table->timestamps();
         });

@@ -93,7 +93,7 @@
 					<div class="dashboard-stat-icon"><i class="fas fa-address-card"></i></div>
 				</div>
 			</div>
-
+			@can('isAdmin')
 			<!-- Item -->
 			<div class="col-lg-3 col-md-6">
 				<div class="dashboard-stat color-2">
@@ -101,7 +101,7 @@
 					<div class="dashboard-stat-icon"><i class="fas fa-cubes"></i></div>
 				</div>
 			</div>
-
+			@endcan
 
 			<!-- Item -->
 			<div class="col-lg-3 col-md-6">
@@ -110,7 +110,7 @@
 					<div class="dashboard-stat-icon"><i class="fas fa-file-invoice"></i></div>
 				</div>
 			</div>
-
+			@can('isAdmin')
 			<!-- Item -->
 			<div class="col-lg-3 col-md-6">
 				<div class="dashboard-stat color-4">
@@ -118,6 +118,7 @@
 					<div class="dashboard-stat-icon"><i class="fas fa-file-invoice-dollar"></i></div>
 				</div>
 			</div>
+			@endcan
 		</div>
 </div>
 @endsection

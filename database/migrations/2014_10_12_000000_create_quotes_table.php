@@ -59,7 +59,8 @@ class CreateQuotesTable extends Migration
             $table->double('total_loi', 8, 2)->default(0)->nullable();
 
             $table->unsignedBigInteger('customer')->nullable();
-            $table->foreign('customer')->references('id')->on('customers')->onDelete('cascade');
+            //$table->foreign('customer')->references('id')->on('customers')->onDelete('cascade');
+            $table->unsignedBigInteger('par')->nullable();
 
             $table->timestamps();
         });

@@ -347,35 +347,65 @@
 								-	Habillage extérieur : A déterminer au métrage<br>
 								-	LES ELEMENTS SUIVANTS SONT A CONFIRMER AU METTRAGE.';
 								break;
+								// pour le moment 3V = 2V
 							case 4:
 								$desc='
-								POSE EN RENOVATION DE MENUISERIES PVC DE LA MARQUE OKNOPLAST – MODELE CHARME MINI<br>
-								INSTALLATION DE MATERIAUX D’ISOLATION THERMIQUE DES PAROIS VITREES VERTICALES<br>
-								INSTALLATION DE FENETRE FIXE EN DOUBLE VITRAGE VENANT EN REMPLACEMENT DE MENUISERIES SIMPLE VITRAGE<br>
-								Profilé de haute qualité et Classe A avec une profondeur de 70 mm<br>
-								Système breveté équipé de renforts en acier sur l’ensemble du dormant et des ouvrants<br>
-								Système d’ouverture Oscillo-Battant<br>
-								Micro-aération - Vitrage 4/16/4 - Gaz Argon<br>
-								Coefficient de transmission surfacique : Uw = 1,3 W/m².K<br>
-								Performance thermique du vitrage : Uw = 1,1 W/m².K<br>
-								Facteur solaire : Sw = 0.45 W/m².K<br>
-								Fermeture par crémone simple';
+								-	Gamme CHARME mini Finition PURE<br>
+								-	Parclose Charme<br>
+								-	Ouvrant 70mm<br>
+								-	Dormant rénovation, aile de 65<br>
+								-	Dim. Fabrication (Dos de dormant sans les ailes)<br>
+								-	Joint de propreté total
+								-	Couleur 2 faces : '.$couleur_text.' <br>
+								-	Vitrage 4/16/4 FE (argon) Ug = 1,1<br>
+								-	Intercalaire Warm-Edge Noir 9005<br>
+								-	Appui bas pour dormant rénovation 110.102.2 (haut. 2mm)<br>
+								-	Pièce d’appui non comprise dans la hauteur <br>
+								-	Ferrage standard<br>
+								-	Poignée KISKA : Blanc <br>
+								-	Hauteur de poignée standard<br>
+								-	2 aérateurs à fente Aéromat (suivant emplacement)<br>
+								-	Habillage intérieur : A déterminer au métrage	<br>
+								-	Habillage extérieur : A déterminer au métrage<br>
+								-	LES ELEMENTS SUIVANTS SONT A CONFIRMER AU METTRAGE.';
 								break;
+								// fenetre fixe
 							case 5:
 								$desc='
-								POSE EN RENOVATION DE MENUISERIES PVC DE LA MARQUE OKNOPLAST – MODELE CHARME MINI<br>
-								INSTALLATION DE MATERIAUX D’ISOLATION THERMIQUE DES PAROIS VITREES VERTICALES<br>
-								INSTALLATION DE PORTES-FENETRES EN DOUBLE VITRAGE VENANT EN REMPLACEMENT DE MENUISERIES SIMPLE VITRAGE<br>
-								Profilé de haute qualité et Classe A avec une profondeur de 70 mm<br>
-								Système breveté équipé de renforts en acier sur l’ensemble du dormant et des ouvrants<br>
-								Système d’ouverture Oscillo-Battant<br>
-								Micro-aération - Vitrage 4/16/4 - Gaz Argon<br>
-								Coefficient de transmission surfacique : Uw = 1,3 W/m².K<br>
-								Performance thermique du vitrage : Uw = 1,1 W/m².K<br>
-								Facteur solaire : Sw = 0.45 W/m².K<br>
-								Fermeture par crémone simple ou serrure à barillet';
+								-	Gamme CHARME mini Finition PURE<br>
+								-	Parclose Charme<br>
+								-	Dormant rénovation, aile de 65<br>
+								-	Dim. Fabrication (Dos de dormant sans les ailes)<br>
+								-	Couleur 2 faces : '.$couleur_text.' <br>
+								-	Vitrage 4/16/4 FE (argon) Ug = 1,1<br>
+								-	Intercalaire Warm-Edge Noir 9005<br>
+								-	Appui bas pour dormant rénovation 110.102.2 (haut. 2mm)<br>
+								-	Pièce d’appui non comprise dans la hauteur <br>
+								-	Habillage intérieur : A déterminer au métrage<br>
+								-	Habillage extérieur : A déterminer au métrage<br>
+								-	LES ELEMENTS SUIVANT SONT A CONFIRMER AU METTRAGE.';
 								break;
 							case 6:
+								$desc='
+								-	Gamme CHARME mini Finition PURE<br>
+								-	Parclose Charme<br>
+								-	Ouvrant 70mm<br>
+								-	Dormant rénovation, aile de 65<br>
+								-	Dim. Fabrication (Dos de dormant sans les ailes) <br>
+								-	Joint de propreté total
+								-	Couleur 2 faces : '.$couleur_text.' <br>
+								-	Vitrage 4/16/4 FE (argon) Ug = 1,1<br>
+								-	Intercalaire Warm-Edge Noir 9005<br>
+								-	Seuil bas Aluminium<br>
+								-	Ferrage standard<br>
+								-	Poignée KISKA : Blanc <br>
+								-	Hauteur de poignée standard<br>
+								-	2 aérateurs à fente Aéromat (suivant emplacement)<br>
+								-	Habillage intérieur : A déterminer au métrage<br>
+								-	Habillage extérieur : A déterminer au métrage<br>
+								LES ELEMENTS SUIVANT SONT A CONFIRMER AU METTRAGE.';
+								break;
+							case 7:
 								$desc='
 								-	Gamme CHARME mini Finition PURE<br>
 								-	Parclose Charme<br>
@@ -389,11 +419,97 @@
 								-	Seuil bas Aluminium<br>
 								-	Ferrage standard<br>
 								-	Poignée KISKA : Blanc <br>
-								-	Hauteur de poignée standard
+								-	Hauteur de poignée standard<br>
 								-	2 aérateurs à fente Aéromat (suivant emplacement)<br>
 								-	Habillage intérieur : A déterminer au métrage<br>
 								-	Habillage extérieur : A déterminer au métrage<br>
-								LES ELEMENTS SUIVANTS SONT A CONFIRMER AU METTRAGE';
+								-	LES ELEMENTS SUIVANTS SONT A CONFIRMER AU METTRAGE.';
+								break;
+								case 8:
+								$desc='
+								-	Gamme ALUHAUS<br>
+								-	Ouvrant 44mm<br>
+								-	Dormant rénovation, aile de 60<br>
+								-	Dim. Fabrication (Dos de dormant sans les ailes)<br>
+								-	Bouclier thermique<br>
+								-	Rail aluminium anodisé<br>
+								-	Couleur 2 faces : '.$couleur_text.' <br>
+								-	Vitrage 4/20/4 FE (argon) Ug = 1,1<br>
+								-	Intercalaire Warm-Edge Noir 9005<br>
+								-	Appui bas pour dormant rénovation 110.102.2 (haut. 2mm)<br>
+								-	Pièce d’appui non comprise dans la hauteur <br>
+								-	Ferrage standard<br>
+								-	Poignée CUADRO : Blanc <br>
+								-	Hauteur de poignée standard<br>
+								-	2 aérateurs à fente Aéromat (suivant emplacent)<br>
+								-	Habillage intérieur : A déterminer au métrage<br>
+								-	Habillage extérieur : A déterminer au métrage<br>
+								-	LES ELEMENTS SUIVANT SONT A CONFIRMER AU METTRAGE.
+								';
+								break;
+								case 9:
+								$desc='
+								-	Gamme ALUHAUS<br>
+								-	Ouvrant 44mm<br>
+								-	Dormant rénovation, aile de 60<br>
+								-	Dim. Fabrication (Dos de dormant sans les ailes)<br>
+								-	Bouclier thermique<br>
+								-	Rail aluminium anodisé<br>
+								-	Couleur 2 faces : '.$couleur_text.' <br>
+								-	Vitrage 4/20/4 FE (argon) Ug = 1,1<br>
+								-	Intercalaire Warm-Edge Noir 9005<br>
+								-	Appui bas pour dormant rénovation 110.102.2 (haut. 2mm)<br>
+								-	Pièce d’appui non comprise dans la hauteur <br>
+								-	Ferrage standard<br>
+								-	Poignée CUADRO : Blanc <br>
+								-	Hauteur de poignée standard<br>
+								-	2 aérateurs à fente Aéromat (suivant emplacent)<br>
+								-	Habillage intérieur : A déterminer au métrage<br>
+								-	Habillage extérieur : A déterminer au métrage<br>
+								-	LES ELEMENTS SUIVANT SONT A CONFIRMER AU METTRAGE.';
+								break;
+								case 10:
+								$desc='
+								-	Gamme ALUHAUS<br>
+								-	Ouvrant 44mm<br>
+								-	Dormant rénovation, aile de 60<br>
+								-	Dim. Fabrication (Dos de dormant sans les ailes)<br>
+								-	Bouclier thermique <br>
+								-	Rail aluminium anodisé<br>
+								-	Couleur 2 faces : '.$couleur_text.' <br>
+								-	Vitrage 4/20/4 FE (argon) Ug = 1,1<br>
+								-	Intercalaire Warm-Edge Noir 9005<br>
+								-	Appui bas pour dormant rénovation 110.102.2 (haut. 2mm)<br>
+								-	Pièce d’appui non comprise dans la hauteur <br>
+								-	Ferrage standard<br>
+								-	Poignée CUADRO : Blanc <br>
+								-	Hauteur de poignée standard<br>
+								-	2 aérateurs à fente Aéromat (suivant emplacement)<br>
+								-	Habillage intérieur : A déterminer au métrage <br>
+								-	Habillage extérieur : A déterminer au métrage<br>
+								-	LES ELEMENTS SUIVANT SONT A CONFIRMER AU METTRAGE.';
+								break;
+
+								// Porte
+								case 11:
+								$desc='
+								-	Gamme Koncept<br>
+								-	Ouvrant 70mm<br>
+								-	Dormant rénovation, aile de 35<br>
+								-	Dim. Fabrication (Dos de dormant sans les ailes)<br>
+								-	Joint de propreté total<br>
+								-	Couleur 2 faces :  '.$couleur_text.' <br>
+								-	Panneaux de portes à définir (catalogue)<br>
+								-	Seuil bas aluminium <br>
+								-	Ferrage standard<br>
+								-	Poignée double béquille<br>
+								-	Crémone 3 points auto (GU Sécury Automatic)<br>
+								-	Type de cylindre : Sécurité (Standard)<br>
+								-	Paumelle : D3D ou GU HAHN<br>
+								-	Hauteur de poignée standard <br>
+								-	Habillage intérieur : A déterminé au métrage<br>
+								-	Habillage extérieur : A déterminer au métrage<br>
+								-	LES ELEMENTS SUIVANT SONT A CONFIRMER AU METTRAGE.';
 								break;
 							}
 

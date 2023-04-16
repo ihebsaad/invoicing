@@ -28,6 +28,7 @@
 		.tab-products{
 			width:100%;
 			font-size:12px;
+			display:inline-table;
 		}
 		.th-products{
 			background-color:#f07f32;color:white;padding:10px 20px;
@@ -249,7 +250,8 @@
             	<div class="tab-pane fade" id="custom-tabs-three-prods" role="tabpanel" aria-labelledby="custom-tabs-three-prods-tab"  style="width:100%">
 
 					<div class="">
-							<a href="#" class="btn btn-sm btn-success float-right mb-2" data-toggle="modal" data-target="#add-prod" title="Ajouter un produit"  ><i class="fa fa-plus"></i> Ajouter un produit</a>
+							<a href="#" class="btn btn-sm btn-success float-right mb-2 ml-2" data-toggle="modal" data-target="#add-door" title="Ajouter une porte"  ><i class="fa fa-plus"></i> Ajouter une porte</a>
+							<a href="#" class="btn btn-sm btn-success float-right mb-2 ml-2" data-toggle="modal" data-target="#add-prod" title="Ajouter une fenêtre"  ><i class="fa fa-plus"></i> Ajouter une fenêtre</a>
 						<table class="tab-products table-responsive table-striped  " style="width:100%">
 							<thead class="th-products">
 								<tr>
@@ -265,8 +267,8 @@
 										$total_prod= $article->total_ttc;
 										$c++;
 									@endphp
-									<tr class="myproduct product bg-lightgrey tr-prod" id="row-{{$modele->id}}">
-										<td class="myproducttd" data-prix="{{$article->price}}" data-prixht="{{$article->price_ht}}" data-id="{{$modele->id}}"  ><b>{{$article->text}}<br>{{$article->note}}</b></td><td >{{$article->price}} €</td><td><input id="qty-{{$modele->id}}" type="number" step="1" min="1" class="number" value="{{$article->qty}}"  onchange="calcul();save_article_qty(this,{{$article->id}},{{$article->price}})"/></td><td><input readonly step="0.5" min="5.5" type="number" step="0.5" min="1" class="number bg-transparent" value="5.5"/> %</td><td><input id="total-{{$article->id}}" type="number" readonly class="total-prod number" value="{{$total_prod}}"/> €</td><td><button id="delete_item"   class="btn-sm btn-danger" onclick="delete_item({{$modele->id}},{{$article->id}})"><i class="fas fa-minus " data-id="{{$article->id}}"></i></td>
+									<tr class="myproduct product bg-lightgrey tr-prod" id="row-{{$article->id}}">
+										<td class="myproducttd" data-prix="{{$article->price}}" data-prixht="{{$article->price_ht}}" data-id="{{$article->id}}"  ><b>{{$article->text}}<br>{{$article->note}}</b></td><td >{{$article->price}} €</td><td><input id="qty-{{$article->id}}" type="number" step="1" min="1" class="number" value="{{$article->qty}}"  onchange="save_article_qty(this,{{$article->id}},{{$article->price}});calcul();"/></td><td><input readonly step="0.5" min="5.5" type="number" step="0.5" min="1" class="number bg-transparent" value="5.5"/> %</td><td><input id="total-{{$article->id}}" type="number" readonly class="total-prod number" value="{{$total_prod}}"/> €</td><td><button id="delete_item"   class="btn-sm btn-danger" onclick="delete_item({{$article->id}})"><i class="fas fa-minus " data-id="{{$article->id}}"></i></td>
 									</tr>
 								@endforeach
 							</tbody>
@@ -321,7 +323,7 @@
 									<tr><td colspan="2" style="color:#f07f32">Remise</td><td><input id="remise2" type="number" readonly  class="number numbers bg-transparent" value="{{$quote->total_remise ?? 0}}" /> €</td></tr>
 									<tr><td colspan="2" style="color:#f07f32">Acompte</td><td><input id="acompte2" type="number" readonly  class="number numbers bg-transparent" value="{{$quote->acompte ?? 0}}" /> €</td></tr>
 									<tr><td colspan="2" style="color:#f07f32">Aide éligible</td><td><input id="aide2" type="number" readonly  class="number numbers bg-transparent" value="{{$quote->aide ?? 0}}" /> €</td></tr>
-									<tr><td colspan="2">Net à payer</td><td><input id="net" type="number" readonly  class="number numbers bg-transparent" value="{{intval($quote->net ?? 0)}}" /> €</td></tr>
+									<tr><td colspan="2">Net à payer</td><td><input id="net" type="number" readonly  class="number numbers bg-transparent" value="{{($quote->net ?? 0)}}" /> €</td></tr>
 								</table>
 							</div>
 						</div>
@@ -573,7 +575,7 @@
 						<div class="form-group">
 							<strong>Matière:</strong>
 							<input type="hidden" id="article" value="0"/>
-							<select  name="genre" required class="form-control" id="genre"   onchange="pricing()">
+							<select  name="genre" required class="form-control" id="genre"   onchange="pricing(0)">
 								<option></option>
 								<option   selected="selected"   value="1">PVC</option>
 								<option    value="2">Aluminium</option>
@@ -583,7 +585,7 @@
 					<div class="col-xs-12 col-sm-8 col-md-8">
 						<div class="form-group">
 							<strong>Type:</strong>
-							<select  name="type" required class="form-control" id="type"  onchange="pricing()">
+							<select  name="type" required class="form-control" id="type"  onchange="pricing(0)">
 								<option></option>
 								<option  @if( old("type")==1)  selected="selected" @endif value="1">Fenêtre à souflet</option>
 								<option  @if( old("type")==2)  selected="selected" @endif  value="2">Fenêtre 1 vantail</option>
@@ -602,7 +604,7 @@
 					<div class="col-xs-12 col-sm-8  col-md-8">
 						<div class="form-group">
 							<strong>Couleur:</strong>
-							<select   name="couleur" required class="form-control" id="couleur"   onchange="pricing()">
+							<select   name="couleur" required class="form-control" id="couleur"   onchange="pricing(0)">
 								<option></option>
 								<option @if( old("couleur")==1)  selected="selected" @endif value="1">Extérieur et intérieur blanc</option>
 								<option @if( old("couleur")==2)  selected="selected" @endif  value="2">Extérieur couleur et intérieur blanc</option>
@@ -613,7 +615,7 @@
 					<div class="col-xs-12 col-sm-4  col-md-4">
 						<div class="form-group">
 							<strong>Groupe:</strong>
-							<select   name="groupe_couleur" required class="form-control" id="groupe_couleur"   onchange="pricing()">
+							<select   name="groupe_couleur" required class="form-control" id="groupe_couleur"   onchange="pricing(0)">
 								<option></option>
 								<option  value="1">1</option>
 								<option  value="2">2</option>
@@ -625,20 +627,20 @@
 					<div class="col-xs-12 col-sm-6 col-md-4">
 						<div class="form-group">
 							<strong>Hauteur:</strong>
-							<input id="hauteur" type="number" name="hauteur" rerquired class="form-control" step ="100" min="200" max="3200"  value="{{old('hauteur')}}" onchange="pricing()" style="max-width:150px">
+							<input id="hauteur" type="number" name="hauteur" rerquired class="form-control" step ="100" min="200" max="3200"  value="{{old('hauteur')}}" onchange="pricing(0)" style="max-width:150px">
 						</div>
 					</div>
 
 					<div class="col-xs-12 col-sm-6 col-md-4">
 						<div class="form-group">
 							<strong>Largeur:</strong>
-							<input id="largeur" type="number" name="largeur" rerquired class="form-control" step ="100" min="200" max="2200"  value="{{old('largeur')}}" onchange="pricing()" style="max-width:150px">
+							<input id="largeur" type="number" name="largeur" rerquired class="form-control" step ="100" min="200" max="2200"  value="{{old('largeur')}}" onchange="pricing(0)" style="max-width:150px">
 						</div>
 					</div>
 					<div class="col-xs-12 col-sm-6 col-md-4">
 						<div class="form-group">
 							<strong> </strong>
-							<label class=pointer><input type="checkbox"   name="cintrage" id="cintrage" value="1"  onchange="pricing()"/> Cintrage </label>						</div>
+							<label class=pointer><input type="checkbox"   name="cintrage" id="cintrage" value="1"  onchange="pricing(0)"/> Cintrage </label>						</div>
 					</div>
 
 					<div class="col-md-12">
@@ -657,7 +659,7 @@
 					<div class="col-xs-12 col-sm-4 col-md-4">
 						<div class="form-group">
 							<strong>Qté :</strong>
-							<input  id="qte" type="number" name="qte" rerquired class="form-control" step ="1" min="1"  value="1" onchange="pricing()" >
+							<input  id="qte" type="number" name="qte" rerquired class="form-control" step ="1" min="1"  value="1" onchange="pricing(0)" >
 						</div>
 					</div>
 
@@ -673,8 +675,96 @@
 							<textarea  id="note"   name="note"  class="form-control" ></textarea>
 						</div>
 					</div>
-					<div class="col-xs-12 col-sm-12 col-md-12 text-right" onmouseover="pricing()">
+					<div class="col-xs-12 col-sm-12 col-md-12 text-right" onmouseover="pricing(0)">
 						<button type="button" id="insert" onclick="add_article()" disabled class="btn btn-primary mt-3 mr-3">Insérer</button>
+					</div>
+				</div>
+			</div>
+
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="add-door">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+			    <h4 class="modal-title text-center text-primary"> Ajouter une porte </h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fermer">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body" style="padding:10px 10px 1" >
+
+				<div class="row pl-3">
+				<div class="col-xs-12 col-sm-4 col-md-4">
+						<div class="form-group">
+							<strong>Modele:</strong>
+							<input type="hidden" id="article" value="0"/>
+							<select  name="porte" required class="form-control" id="porte"   onchange="pricing_porte()">
+								<option></option>
+							</select>
+						</div>
+					</div>
+					<div class="col-xs-12 col-sm-8 col-md-8">
+						<div class="form-group">
+							<strong>Groupe:</strong>
+							<select  name="groupe_porte" required class="form-control" id="groupe_porte"  onchange="pricing_porte()">
+								<option></option>
+							</select>
+						</div>
+					</div>
+
+					<div class="col-xs-12 col-sm-8  col-md-8">
+						<div class="form-group">
+							<strong>Couleur:</strong>
+							<select   name="couleur_porte" required class="form-control" id="couleur_porte"   onchange="pricing_porte()">
+								<option></option>
+								<option  value="1">Extérieur couleur et intérieur blanc</option>
+								<option  value="2">Extérieur et intérieur couleur</option>
+							</select>
+						</div>
+					</div>
+					<div class="col-xs-12 col-sm-4  col-md-4">
+
+					</div>
+
+					<div class="col-md-12">
+						<div class="text-danger pl-5">
+
+						</div>
+					</div>
+					<div class="col-xs-12 col-sm-4 col-md-4">
+						<div class="form-group">
+							<strong>Prix U <small style="display:none">€</small>:</strong>
+							<input readonly id="prix" type="number" name="prix" rerquired class="form-control" step ="0.01" min="0"  value="{{old('prix')}}"  >
+							<input type="hidden" id="modele" value="0"  />
+						</div>
+					</div>
+
+					<div class="col-xs-12 col-sm-4 col-md-4">
+						<div class="form-group">
+							<strong>Qté :</strong>
+							<input  id="qte" type="number" name="qte" rerquired class="form-control" step ="1" min="1"  value="1" onchange="pricing_porte()" >
+						</div>
+					</div>
+
+					<div class="col-xs-12 col-sm-4 col-md-4">
+						<div class="form-group">
+							<strong>Total <small style="display:none">€</small>:</strong>
+							<input readonly id="total" type="number" name="total" rerquired class="form-control" step ="0.01" min="0"  >
+						</div>
+					</div>
+					<div class="col-xs-12 col-sm-8 col-md-8">
+						<div class="form-group">
+							<strong>Note :</strong>
+							<textarea  id="note"   name="note"  class="form-control" ></textarea>
+						</div>
+					</div>
+					<div class="col-xs-12 col-sm-12 col-md-12 text-right" onmouseover="pricing_porte()">
+						<button type="button" id="insert2" onclick="add_door()" disabled class="btn btn-primary mt-3 mr-3">Insérer</button>
 					</div>
 				</div>
 			</div>
@@ -712,10 +802,16 @@
 		$('#list-prods .myproduct').each(function(){
     		$(this).find('.myproducttd').each(function(){
 				id_item=$(this).data('id');
+
 				qty= parseInt($('#qty-'+id_item).val());
 				total_ht+=parseFloat(( $(this).data('prixht')* qty ));
 				total_ttc+=parseFloat(( $(this).data('prix') *  qty));
-    	});/*
+				alert(qty);
+				alert(total);
+				alert(total_ttc);
+    	});
+
+		/*
 		$(this).find('.myproductpose').each(function(){
 				//id_item=$(this).data().id;
 				//qty= ($('#qty-'+id_item).val());
@@ -724,6 +820,8 @@
 
     		});*/
 		});
+		//alert(total_ht);
+		//alert(total_ttc);
 		var tva_remise=parseFloat($('#tva_remise').val()) || 0;
 		var total_remise=parseFloat($('#total_remise').val()) || 0;
 
@@ -811,11 +909,6 @@
 		$('#insert').prop('disabled',true);
 	}
 
-	function total_prod(){
-		var total_prod=parseFloat($('#price').val()) * parseInt($('#qty').val()) ;
-		$('#total_prod').val(total_prod);
-	}
-
 
 
   	function add_article(){
@@ -851,23 +944,27 @@
 		async:false,
         data: {modele:modele,prix:prix,prix_ht:prix_ht,note:note,qte:qte,texte:product_text,total:total,cintrage:cintrage,couleur:couleur,quote:quote,_token:_token},
         success: function (data) {
+			if(data!=''){
 
 				item_id=data;
-				var row='<tr class="myproduct product bg-lightgrey tr-prod" id="row-'+modele+'"><td class="myproducttd"  data-prix="'+prix+'" data-prixht="'+prix_ht+'" data-id="'+modele+'"  ><b>'+product_text+ '<br>'+note+'</b></td><td>'+prix+' €</td><td><input type="number" step="1" min="1" class="number" value="'+qte+'" onchange="calcul();save_article_qty(this,'+data+','+prix+')"  id="qty-'+modele+'"/></td><td><input  step="0.5" min="5.5" type="number" step="1" min="1" class="number bg-transparent" readonly value="5.5"/> %</td><td><input id="total-'+data+'" type="number" readonly class="total-prod number" value="'+total+'"/> €</td><td><button id="delete_item"   class="btn-sm btn-danger" onclick="delete_item('+modele+','+item_id+')"><i class="fas fa-minus "  ></i></td></tr>';
+				var row='<tr class="myproduct product bg-lightgrey tr-prod" id="row-'+item_id+'"><td class="myproducttd"  data-prix="'+prix+'" data-prixht="'+prix_ht+'" data-id="'+item_id+'"  ><b>'+product_text+ '<br>'+note+'</b></td><td>'+prix+' €</td><td><input type="number" step="1" min="1" class="number" value="'+qte+'" onchange="save_article_qty(this,'+data+','+prix+');calcul();"  id="qty-'+item_id+'"/></td><td><input  step="0.5" min="5.5" type="number" step="1" min="1" class="number bg-transparent" readonly value="5.5"/> %</td><td><input id="total-'+data+'" type="number" readonly class="total-prod number" value="'+total+'"/> €</td><td><button id="delete_item"   class="btn-sm btn-danger" onclick="delete_item('+item_id+')"><i class="fas fa-minus "  ></i></td></tr>';
 
 				$('#list-prods').append(row);
 				$('#add-prod').modal('hide');
 
 				init();
+			}else{
+			alert('erreur !')
+			}
 
 		}
 	});
 
 	calcul();
-
+	$('#insert').prop('disabled',true);
 	}
 
-	function delete_item(product,item){
+	function delete_item(item){
 		if(!confirm("Êtes vous sûres?")) {
     	return false;
   		}
@@ -879,8 +976,8 @@
 			method: "POST",
 			data: {item:item,_token:_token},
 			success: function (data) {
-				$('#row-'+product).html('');
-				$('#row-pose-'+product).html('');
+				$('#row-'+item).html('');
+				$('#row-pose-'+item).html('');
 				calcul();
 			}
 		});
@@ -916,7 +1013,9 @@
 	}
 
 
-	function pricing(){
+	function pricing(btn){
+		if(btn==0)
+		{$("#insert").prop('disabled',true);}
 		var _token = $('input[name="_token"]').val();
 		var genre= $("#genre").val();
 		var type= $("#type").val();
@@ -937,7 +1036,7 @@
 					{
 						$('.text-danger').html('');
 						$("#modele").val(data.id);
-						$("#insert").prop('disabled',false);
+						//$("#insert").prop('disabled',false);
 
 						$("#prix").val(data.prix);
 						var total = parseFloat(data.prix) * qte;
@@ -948,12 +1047,14 @@
 						$('.text-danger').html('<b class="pb-2"> Modèle non trouvé, vérifiez les données insérées</b>');
 						$('#prix').val(0);
 						$('#total').val(0);
-						$("#insert").prop('disabled',true);
+						//$("#insert").prop('disabled',true);
 					}
 					calcul();
+					$('#insert').prop('disabled',false);
 				}
 			});
 		}
+
 	}
 
 	function save_article_qty(elm,article,price){
@@ -962,7 +1063,6 @@
 		//var qty=$('#qty-pose-'+article).val(qty);
 		var total= (qty*price).toFixed(2) ;
 		$('#total-'+article).val(total);
-
 		$.ajax({
 		url: "{{ route('save_article_qty') }}",
 		method: "POST",

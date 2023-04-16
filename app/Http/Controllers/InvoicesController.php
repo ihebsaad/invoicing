@@ -277,7 +277,6 @@ class InvoicesController extends Controller
         $loi=$request->get('loi');
         $total_loi=$request->get('total_loi');
 
-
         Invoice::where('id',$invoice)->update(
             [
                 'total_ht'=>$total_ht,

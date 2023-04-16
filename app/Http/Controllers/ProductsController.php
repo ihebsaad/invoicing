@@ -132,7 +132,7 @@ class ProductsController extends Controller
         $quote=$request->get('quote');
         $invoice=$request->get('invoice');
 
-        if( $quote>0 &&   Item::where('quote',$quote)->where('product',$product)->doesntExist()  ){
+        if( $quote>0 /*&&   Item::where('quote',$quote)->where('product',$product)->doesntExist()*/  ){
             $item=Item::create([
                 'product'=>$product,
                 'qty'=>$qty,
@@ -143,7 +143,7 @@ class ProductsController extends Controller
             return $item->id;
         }
 
-        if( $invoice>0 &&   Item::where('invoice',$invoice)->where('product',$product)->doesntExist()  ){
+        if( $invoice>0 /* &&   Item::where('invoice',$invoice)->where('product',$product)->doesntExist()*/  ){
             $item=Item::create([
                 'product'=>$product,
                 'qty'=>$qty,

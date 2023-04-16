@@ -215,7 +215,7 @@
 					   </tr>
 					   @if($product->pose > 0)
 						   <tr class="product"  >
-							   <td class="text" ><i>Pose {{$product->name}}</i></td><td>1</td><td>{{$product->pose}} €</td><td>{{$product->pose}} €</td><td>{{$product->tva_pose}} %</td><td>{{$product->pose_ttc}} €</td>
+							   <td class="text" ><i>Pose {{$product->name}}</i></td><td>{{$item->qty}}</td><td>{{$product->pose}} €</td><td>{{$product->pose}} €</td><td>{{$product->tva_pose}} %</td><td>{{$product->pose_ttc}} €</td>
 						   </tr>
 					   @endif
 				   @endforeach
