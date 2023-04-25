@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Article extends Model
+class Porte extends Model
 {
     use HasFactory;
 
@@ -21,7 +21,8 @@ class Article extends Model
         'total_ttc',
         'quote',
         'invoice',
-        'couleur'
+        'couleur',
+        'cintrage'
     ];
 
     public function door()

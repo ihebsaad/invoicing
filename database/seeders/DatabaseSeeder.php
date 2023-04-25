@@ -25,6 +25,7 @@ class DatabaseSeeder extends Seeder
             Modeles8Seeder::class,
             Modeles9Seeder::class,
             Modeles10Seeder::class,
+            ModelesDoorsSeeder::class,
 
         ]);
     }

@@ -6,6 +6,8 @@ use App\Models\Modele;
 use App\Models\Categorie;
 use App\Models\Item;
 use App\Models\Article;
+use App\Models\Porte;
+use App\Models\Door;
 use Illuminate\Http\Request;
 
 class ModelesController extends Controller
@@ -244,11 +246,113 @@ class ModelesController extends Controller
 
     }
 
+
+
+
+    public function add_door(Request $request)
+    {
+        $door=$request->get('door');
+        $qty=$request->get('qte');
+        $price=$request->get('prix');
+        $price_ht=$request->get('prix_ht');
+        $texte=$request->get('texte');
+        $total_ttc=$request->get('total');
+        $note=$request->get('note');
+        $groupe=$request->get('groupe');
+        $quote=$request->get('quote') ?? 0;
+        $invoice=$request->get('invoice') ?? 0;
+        $couleur=$request->get('couleur');
+        $cintrage=$request->get('cintrage');
+
+        if( $quote>0   ){
+            $porte=Porte::create([
+                'door'=>$door,
+                'qty'=>$qty,
+                'price'=>$price,
+                'price_ht'=>$price_ht,
+                'text'=>$texte,
+                'note'=>$note,
+                'total_ttc'=>$total_ttc,
+                'groupe'=>$groupe,
+                'couleur'=>$couleur,
+                'cintrage'=>$cintrage,
+                'quote'=>$quote,
+            ]);
+            return $porte->id;
+        }
+        if( $invoice>0   ){
+
+            $porte=Porte::create([
+                'door'=>$door,
+                'qty'=>$qty,
+                'price'=>$price,
+                'price_ht'=>$price_ht,
+                'text'=>$texte,
+                'note'=>$note,
+                'total_ttc'=>$total_ttc,
+                'groupe'=>$groupe,
+                'couleur'=>$couleur,
+                'cintrage'=>$cintrage,
+                'invoice'=>$invoice,
+            ]);
+            return $porte->id;
+        }
+    }
+
+    public function pricing_door(Request $request)
+    {
+        $id=$request->get('door');
+        $groupe=$request->get('groupe');
+        $cintrage=$request->get('cintrage');
+
+        $door=array();
+        $door=Door::where('id',$id)->first();
+        if (isset($door)){
+            $door['id']=$door->id;
+            $prix=$door->prix ;
+            if($groupe==2){
+                $prix=$prix*1.1;
+            }
+
+            if($cintrage){
+                $prix=$prix*1.4;
+            }
+
+            $door['prix']=number_format($prix,2,'.','');
+            $door['prix_ht']=number_format($prix,2,'.','');
+
+            return $door;
+        }
+        else{
+            return null;
+        }
+
+    }
+
     public function delete_article(Request $request)
     {
         $item_id=$request->get('item');
         $article=Article::find($item_id);
         $article->delete();
+
+    }
+
+    public function delete_door(Request $request)
+    {
+        $item_id=$request->get('item');
+        $porte=Porte::find($item_id);
+        $porte->delete();
+
+    }
+
+    public function save_door_qty(Request $request)
+    {
+        $porte_id=$request->get('porte');
+        $porte=Porte::find($porte_id);
+
+        $porte->qty=$request->get('qty');
+        $porte->total_ttc=$request->get('total');
+        $porte->save();
 
     }
 

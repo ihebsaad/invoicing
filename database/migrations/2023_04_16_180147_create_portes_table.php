@@ -23,7 +23,8 @@ class CreatePortesTable extends Migration
             $table->string('note')->nullable();
             $table->double('total_ttc', 8, 2)->nullable();
             $table->tinyInteger('groupe')->nullable();
-            $table->integer('couleur')->nullable();
+            $table->string('couleur')->nullable();
+            $table->tinyInteger('cintrage')->nullable();
 
             $table->unsignedBigInteger('door')->nullable();
             $table->foreign('door')->references('id')->on('doors')->onDelete('cascade');

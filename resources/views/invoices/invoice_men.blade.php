@@ -286,231 +286,280 @@
 						   switch ($modele->type) {
 							case 1:
 								$desc='
-								-	Gamme CHARME mini Finition PURE<br>
-								-	Parclose Charme<br>
-								-	Ouvrant 70mm<br>
-								-	Dormant rénovation, aile de 65<br>
-								-	Dim. Fabrication (Dos de dormant sans les ailes)<br>
-								-	Joint de propreté total<br>
-								-	Couleur 2 faces : '.$couleur_text.'<br>
-								-	Vitrage 4/16/4 FE (argon) Ug = 1,1<br>
-								-	Intercalaire Warm-Edge Noir 9005<br>
-								-	Appui bas pour dormant rénovation 110.102.2 (haut. 2mm)<br>
-								-	Pièce d’appui non comprise dans la hauteur<br>
-								-	Ferrage standard<br>
-								-	Poignée KISKA : Blanc<br>
-								-	Hauteur de poignée standard<br>
-								-	2 aérateurs à fente Aéromat (suivant emplacement)<br>
-								-	Habillage intérieur : A déterminer au métrage<br>
-								-	Habillage extérieur : A déterminer au métrage<br>
-								-	LES ELEMENTS SUIVANTS SONT A CONFIRMER AU METTRAGE.';
+								-	POSE EN RENOVATION DE MENUISERIES PVC DE LA MARQUE OKNOPLAST – MODELE CHARME MINI – FINITION PURE
+								-	INSTALLATION DE MATERIAUX D’ISOLATION THERMIQUE DES PAROIS VITREES VERTICALES
+								-	INSTALLATION DE FENETRE A SOUFFLET EN DOUBLE VITRAGE VENANT EN REMPLACEMENT DE MENUISERIES SIMPLE VITRAGE
+								-	Système breveté équipé de renforts en acier sur l’ensemble du dormant et des ouvrants
+								-	Système d’ouverture Oscillo-Battant
+								-	Parclose Charme
+								-	Ouvrant 70mm
+								-	Dormant rénovation, aile de 65
+								-   Joint de propreté total
+								-	Couleur 2 faces : '.$couleur_text.'
+								-	Vitrage 4/16/4 FE (argon) Ug = 1,1
+								-	Intercalaire Warm-Edge Noir 9005
+								-	Appui bas pour dormant rénovation 110.102.2 (haut. 2mm)
+								-	Pièce d’appui non comprise dans la hauteur
+								-	Ferrage standard
+								-	Poignée KISKA : Blanc
+								-	Hauteur de poignée standard
+								-	2 aérateurs à fente Aéromat (suivant emplacement)
+								-	Coefficient de transmission surfacique : Uw = 1,3 W/m².K
+								-	Performance thermique du vitrage : Uw = 1,1 W/m².K
+								-	Facteur solaire : Sw = 0.45 W/m².K
+								-	Fermeture par crémone simple
+								-	Habillage intérieur : A déterminer au métrage
+								-	Habillage extérieur : A déterminer au métrage
+								-	LES ELEMENTS SUIVANT SONT A CONFIRMER AU METTRAGE.';
 								break;
 							case 2:
 								$desc='
-								-	Gamme CHARME mini Finition PURE<br>
-								-	Parclose Charme<br>
-								-	Ouvrant 70mm<br>
-								-	Dormant rénovation, aile de 65<br>
-								-	Dim. Fabrication (Dos de dormant sans les ailes)<br>
-								-	Joint de propreté total<br>
-								-	Couleur 2 faces :'.$couleur_text.'<br>
-								-	Vitrage 4/16/4 FE (argon) Ug = 1,1<br>
-								-	Intercalaire Warm-Edge Noir 9005<br>
-								-	Appui bas pour dormant rénovation 110.102.2 (haut. 2mm)<br>
-								-	Pièce d’appui non comprise dans la hauteur <br>
-								-	Ferrage standard<br>
-								-	Poignée KISKA : Blanc <br>
-								-	Hauteur de poignée standard <br>
-								-	2 aérateurs à fente Aéromat (suivant emplacement)<br>
-								-	Habillage intérieur : A déterminer au métrage <br>
-								-	Habillage extérieur : A déterminer au métrage<br>
+								-	POSE EN RENOVATION DE MENUISERIES PVC DE LA MARQUE OKNOPLAST – MODELE CHARME MINI – FINITION PURE
+								-	INSTALLATION DE MATERIAUX D’ISOLATION THERMIQUE DES PAROIS VITREES VERTICALES
+								-	INSTALLATION DE FENETRE 1 VANTAIL EN DOUBLE VITRAGE VENANT EN REMPLACEMENT DE MENUISERIES SIMPLE VITRAGE
+								-	Système breveté équipé de renforts en acier sur l’ensemble du dormant et des ouvrants
+								-	Système d’ouverture Oscillo-Battant
+								-	Parclose Charme
+								-	Ouvrant 70mm
+								-	Dormant rénovation, aile de 65
+								-	Dim. Fabrication (Dos de dormant sans les ailes)
+								-	Joint de propreté total
+								-	Couleur 2 faces : '.$couleur_text.'
+								-	Vitrage 4/16/4 FE (argon) Ug = 1,1
+								-	Intercalaire Warm-Edge Noir 9005
+								-	Appui bas pour dormant rénovation 110.102.2 (haut. 2mm)
+								-	Pièce d’appui non comprise dans la hauteur
+								-	Ferrage standard
+								-	Poignée KISKA : Blanc
+								-	Hauteur de poignée standard
+								-	2 aérateurs à fente Aéromat (suivant emplacement)
+								-	Coefficient de transmission surfacique : Uw = 1,3 W/m².K
+								-	Performance thermique du vitrage : Uw = 1,1 W/m².K
+								-	Facteur solaire : Sw = 0.45 W/m².K
+								-	Fermeture par crémone simple
+								-	Habillage intérieur : A déterminer au métrage
+								-	Habillage extérieur : A déterminer au métrage
 								-	LES ELEMENTS SUIVANT SONT A CONFIRMER AU METTRAGE.';
 								break;
 							case 3:
 								$desc='
-								-	Gamme CHARME mini Finition PURE<br>
-								-	Parclose Charme<br>
-								-	Ouvrant 70mm<br>
-								-	Dormant rénovation, aile de 65<br>
-								-	Dim. Fabrication (Dos de dormant sans les ailes)<br>
+								-	POSE EN RENOVATION DE MENUISERIES PVC DE LA MARQUE OKNOPLAST – MODELE CHARME MINI – FINITION PURE
+								-	INSTALLATION DE MATERIAUX D’ISOLATION THERMIQUE DES PAROIS VITREES VERTICALES
+								-	INSTALLATION DE FENETRE 2 VANTAUX EN DOUBLE VITRAGE VENANT EN REMPLACEMENT DE MENUISERIES SIMPLE VITRAGE
+								-	Système breveté équipé de renforts en acier sur l’ensemble du dormant et des ouvrants
+								-	Système d’ouverture Oscillo-Battant
+								-	Parclose Charme
+								-	Ouvrant 70mm
+								-	Dormant rénovation, aile de 65
+								-	Dim. Fabrication (Dos de dormant sans les ailes)
 								-	Joint de propreté total
-								-	Couleur 2 faces : '.$couleur_text.' <br>
-								-	Vitrage 4/16/4 FE (argon) Ug = 1,1<br>
-								-	Intercalaire Warm-Edge Noir 9005<br>
-								-	Appui bas pour dormant rénovation 110.102.2 (haut. 2mm)<br>
-								-	Pièce d’appui non comprise dans la hauteur <br>
-								-	Ferrage standard<br>
-								-	Poignée KISKA : Blanc <br>
-								-	Hauteur de poignée standard<br>
-								-	2 aérateurs à fente Aéromat (suivant emplacement)<br>
-								-	Habillage intérieur : A déterminer au métrage	<br>
-								-	Habillage extérieur : A déterminer au métrage<br>
-								-	LES ELEMENTS SUIVANTS SONT A CONFIRMER AU METTRAGE.';
+								-	Couleur 2 faces : '.$couleur_text.'
+								-	Vitrage 4/16/4 FE (argon) Ug = 1,1
+								-	Intercalaire Warm-Edge Noir 9005
+								-	Appui bas pour dormant rénovation 110.102.2 (haut. 2mm)
+								-	Pièce d’appui non comprise dans la hauteur
+								-	Ferrage standard
+								-	Poignée KISKA : Blanc
+								-	Hauteur de poignée standard
+								-	2 aérateurs à fente Aéromat (suivant emplacement)
+								-	Coefficient de transmission surfacique : Uw = 1,3 W/m².K
+								-	Performance thermique du vitrage : Uw = 1,1 W/m².K
+								-	Facteur solaire : Sw = 0.45 W/m².K
+								-	Fermeture par crémone simple
+								-	Habillage intérieur : A déterminer au métrage
+								-	Habillage extérieur : A déterminer au métrage
+								-	LES ELEMENTS SUIVANT SONT A CONFIRMER AU METTRAGE.';
 								break;
-								// pour le moment 3V = 2V
 							case 4:
 								$desc='
-								-	Gamme CHARME mini Finition PURE<br>
-								-	Parclose Charme<br>
-								-	Ouvrant 70mm<br>
-								-	Dormant rénovation, aile de 65<br>
-								-	Dim. Fabrication (Dos de dormant sans les ailes)<br>
+								-	POSE EN RENOVATION DE MENUISERIES PVC DE LA MARQUE OKNOPLAST – MODELE CHARME MINI – FINITION PURE
+								-	INSTALLATION DE MATERIAUX D’ISOLATION THERMIQUE DES PAROIS VITREES VERTICALES
+								-	INSTALLATION DE FENETRE 2 VANTAUX EN DOUBLE VITRAGE VENANT EN REMPLACEMENT DE MENUISERIES SIMPLE VITRAGE
+								-	Système breveté équipé de renforts en acier sur l’ensemble du dormant et des ouvrants
+								-	Système d’ouverture Oscillo-Battant
+								-	Parclose Charme
+								-	Ouvrant 70mm
+								-	Dormant rénovation, aile de 65
+								-	Dim. Fabrication (Dos de dormant sans les ailes)
 								-	Joint de propreté total
-								-	Couleur 2 faces : '.$couleur_text.' <br>
-								-	Vitrage 4/16/4 FE (argon) Ug = 1,1<br>
-								-	Intercalaire Warm-Edge Noir 9005<br>
-								-	Appui bas pour dormant rénovation 110.102.2 (haut. 2mm)<br>
-								-	Pièce d’appui non comprise dans la hauteur <br>
-								-	Ferrage standard<br>
-								-	Poignée KISKA : Blanc <br>
-								-	Hauteur de poignée standard<br>
-								-	2 aérateurs à fente Aéromat (suivant emplacement)<br>
-								-	Habillage intérieur : A déterminer au métrage	<br>
-								-	Habillage extérieur : A déterminer au métrage<br>
-								-	LES ELEMENTS SUIVANTS SONT A CONFIRMER AU METTRAGE.';
+								-	Couleur 2 faces : '.$couleur_text.'
+								-	Vitrage 4/16/4 FE (argon) Ug = 1,1
+								-	Intercalaire Warm-Edge Noir 9005
+								-	Appui bas pour dormant rénovation 110.102.2 (haut. 2mm)
+								-	Pièce d’appui non comprise dans la hauteur
+								-	Ferrage standard
+								-	Poignée KISKA : Blanc
+								-	Hauteur de poignée standard
+								-	2 aérateurs à fente Aéromat (suivant emplacement)
+								-	Coefficient de transmission surfacique : Uw = 1,3 W/m².K
+								-	Performance thermique du vitrage : Uw = 1,1 W/m².K
+								-	Facteur solaire : Sw = 0.45 W/m².K
+								-	Fermeture par crémone simple
+								-	Habillage intérieur : A déterminer au métrage
+								-	Habillage extérieur : A déterminer au métrage
+								-	LES ELEMENTS SUIVANT SONT A CONFIRMER AU METTRAGE.';
 								break;
 								// fenetre fixe
 							case 5:
 								$desc='
-								-	Gamme CHARME mini Finition PURE<br>
-								-	Parclose Charme<br>
-								-	Dormant rénovation, aile de 65<br>
-								-	Dim. Fabrication (Dos de dormant sans les ailes)<br>
-								-	Couleur 2 faces : '.$couleur_text.' <br>
-								-	Vitrage 4/16/4 FE (argon) Ug = 1,1<br>
-								-	Intercalaire Warm-Edge Noir 9005<br>
-								-	Appui bas pour dormant rénovation 110.102.2 (haut. 2mm)<br>
-								-	Pièce d’appui non comprise dans la hauteur <br>
-								-	Habillage intérieur : A déterminer au métrage<br>
-								-	Habillage extérieur : A déterminer au métrage<br>
+								-	POSE EN RENOVATION DE MENUISERIES PVC DE LA MARQUE OKNOPLAST – MODELE CHARME MINI – FINITION PURE
+								-	INSTALLATION DE MATERIAUX D’ISOLATION THERMIQUE DES PAROIS VITREES VERTICALES
+								-	INSTALLATION DE FENETRE FIXE EN DOUBLE VITRAGE VENANT EN REMPLACEMENT DE MENUISERIES SIMPLE VITRAGE
+								-	Système breveté équipé de renforts en acier sur l’ensemble du dormant et des ouvrants
+								-	Système d’ouverture Oscillo-Battant
+								-	Parclose Charme
+								-	Dormant rénovation, aile de 65
+								-	Dim. Fabrication (Dos de dormant sans les ailes)
+								-	Couleur 2 faces : '.$couleur_text.'
+								-	Vitrage 4/16/4 FE (argon) Ug = 1,1
+								-	Intercalaire Warm-Edge Noir 9005
+								-	Appui bas pour dormant rénovation 110.102.2 (haut. 2mm)
+								-	Pièce d’appui non comprise dans la hauteur
+								-	Coefficient de transmission surfacique : Uw = 1,3 W/m².K
+								-	Performance thermique du vitrage : Uw = 1,1 W/m².K
+								-	Facteur solaire : Sw = 0.45 W/m².K
+								-	Fermeture par crémone simple
+								-	Habillage intérieur : A déterminer au métrage
+								-	Habillage extérieur : A déterminer au métrage
 								-	LES ELEMENTS SUIVANT SONT A CONFIRMER AU METTRAGE.';
 								break;
 							case 6:
 								$desc='
-								-	Gamme CHARME mini Finition PURE<br>
-								-	Parclose Charme<br>
-								-	Ouvrant 70mm<br>
-								-	Dormant rénovation, aile de 65<br>
-								-	Dim. Fabrication (Dos de dormant sans les ailes) <br>
+								-	POSE EN RENOVATION DE MENUISERIES PVC DE LA MARQUE OKNOPLAST – MODELE CHARME MINI – FINITION PURE
+								-	INSTALLATION DE MATERIAUX D’ISOLATION THERMIQUE DES PAROIS VITREES VERTICALES
+								-	INSTALLATION DE PORTES-FENETRES EN DOUBLE VITRAGE VENANT EN REMPLACEMENT DE MENUISERIES SIMPLE VITRAGE
+								-	Système breveté équipé de renforts en acier sur l’ensemble du dormant et des ouvrants
+								-	Système d’ouverture Oscillo-Battant
+								-	Parclose Charme
+								-	Ouvrant 70mm
+								-	Dormant rénovation, aile de 65
+								-	Dim. Fabrication (Dos de dormant sans les ailes)
 								-	Joint de propreté total
-								-	Couleur 2 faces : '.$couleur_text.' <br>
-								-	Vitrage 4/16/4 FE (argon) Ug = 1,1<br>
-								-	Intercalaire Warm-Edge Noir 9005<br>
-								-	Seuil bas Aluminium<br>
-								-	Ferrage standard<br>
-								-	Poignée KISKA : Blanc <br>
-								-	Hauteur de poignée standard<br>
-								-	2 aérateurs à fente Aéromat (suivant emplacement)<br>
-								-	Habillage intérieur : A déterminer au métrage<br>
-								-	Habillage extérieur : A déterminer au métrage<br>
-								LES ELEMENTS SUIVANT SONT A CONFIRMER AU METTRAGE.';
+								-	Couleur 2 faces : '.$couleur_text.'
+								-	Vitrage 4/16/4 FE (argon) Ug = 1,1
+								-	Intercalaire Warm-Edge Noir 9005
+								-	Seuil bas Aluminium
+								-	Ferrage standard
+								-	Poignée KISKA : Blanc
+								-	Hauteur de poignée standard
+								-	2 aérateurs à fente Aéromat (suivant emplacement)
+								-	Coefficient de transmission surfacique : Uw = 1,3 W/m².K
+								-	Performance thermique du vitrage : Uw = 1,1 W/m².K
+								-	Facteur solaire : Sw = 0.45 W/m².K
+								-	Fermeture par crémone simple ou serrure à barillet
+								-	Habillage intérieur : A déterminer au métrage
+								-	Habillage extérieur : A déterminer au métrage
+								-	LES ELEMENTS SUIVANT SONT A CONFIRMER AU METTRAGE';
 								break;
 							case 7:
 								$desc='
-								-	Gamme CHARME mini Finition PURE<br>
-								-	Parclose Charme<br>
-								-	Ouvrant 70mm<br>
-								-	Dormant rénovation, aile de 65<br>
-								-	Dim. Fabrication (Dos de dormant sans les ailes)<br>
-								-	Joint de propreté total<br>
-								-	Couleur 2 faces : '.$couleur_text.' <br>
-								-	Vitrage 4/16/4 FE (argon) Ug = 1,1<br>
-								-	Intercalaire Warm-Edge Noir 9005<br>
-								-	Seuil bas Aluminium<br>
-								-	Ferrage standard<br>
-								-	Poignée KISKA : Blanc <br>
-								-	Hauteur de poignée standard<br>
-								-	2 aérateurs à fente Aéromat (suivant emplacement)<br>
-								-	Habillage intérieur : A déterminer au métrage<br>
-								-	Habillage extérieur : A déterminer au métrage<br>
-								-	LES ELEMENTS SUIVANTS SONT A CONFIRMER AU METTRAGE.';
+								-	POSE EN RENOVATION DE MENUISERIES PVC DE LA MARQUE OKNOPLAST – MODELE CHARME MINI – FINITION PURE
+								-	INSTALLATION DE MATERIAUX D’ISOLATION THERMIQUE DES PAROIS VITREES VERTICALES
+								-	INSTALLATION DE PORTES-FENETRES EN DOUBLE VITRAGE VENANT EN REMPLACEMENT DE MENUISERIES SIMPLE VITRAGE
+								-	Système breveté équipé de renforts en acier sur l’ensemble du dormant et des ouvrants
+								-	Système d’ouverture Oscillo-Battant
+								-	Parclose Charme
+								-	Ouvrant 70mm
+								-	Dormant rénovation, aile de 65
+								-	Dim. Fabrication (Dos de dormant sans les ailes)
+								-	Joint de propreté total
+								-	Couleur 2 faces : '.$couleur_text.'
+								-	Vitrage 4/16/4 FE (argon) Ug = 1,1
+								-	Intercalaire Warm-Edge Noir 9005
+								-	Seuil bas Aluminium
+								-	Ferrage standard
+								-	Poignée KISKA : Blanc
+								-	Hauteur de poignée standard
+								-	2 aérateurs à fente Aéromat (suivant emplacement)
+								-	Coefficient de transmission surfacique : Uw = 1,3 W/m².K
+								-	Performance thermique du vitrage : Uw = 1,1 W/m².K
+								-	Facteur solaire : Sw = 0.45 W/m².K
+								-	Fermeture par crémone simple ou serrure à barillet
+								-	Habillage intérieur : A déterminer au métrage
+								-	Habillage extérieur : A déterminer au métrage
+								-	LES ELEMENTS SUIVANT SONT A CONFIRMER AU METTRAGE';
 								break;
 								case 8:
 								$desc='
-								-	Gamme ALUHAUS<br>
-								-	Ouvrant 44mm<br>
-								-	Dormant rénovation, aile de 60<br>
-								-	Dim. Fabrication (Dos de dormant sans les ailes)<br>
-								-	Bouclier thermique<br>
-								-	Rail aluminium anodisé<br>
-								-	Couleur 2 faces : '.$couleur_text.' <br>
-								-	Vitrage 4/20/4 FE (argon) Ug = 1,1<br>
-								-	Intercalaire Warm-Edge Noir 9005<br>
-								-	Appui bas pour dormant rénovation 110.102.2 (haut. 2mm)<br>
-								-	Pièce d’appui non comprise dans la hauteur <br>
-								-	Ferrage standard<br>
-								-	Poignée CUADRO : Blanc <br>
-								-	Hauteur de poignée standard<br>
-								-	2 aérateurs à fente Aéromat (suivant emplacent)<br>
-								-	Habillage intérieur : A déterminer au métrage<br>
-								-	Habillage extérieur : A déterminer au métrage<br>
-								-	LES ELEMENTS SUIVANT SONT A CONFIRMER AU METTRAGE.
-								';
+								-	POSE EN RENOVATION DE MENUISERIES ALUMINIUM DE LA MARQUE OKNOPLAST - GAMME ALUHAUS
+								-	INSTALLATION DE MATERIAUX D’ISOLATION THERMIQUE DES PAROIS VITREES VERTICALES
+								-	INSTALLATION DE COULISSANT EN DOUBLE VITRAGE VENANT EN REMPLACEMENT DE MENUISERIES SIMPLE VITRAGE
+								-	Ouvrant 44mm
+								-	Dormant rénovation, aile de 60
+								-	Dim. Fabrication (Dos de dormant sans les ailes)
+								-	Bouclier thermique
+								-	Rail aluminium anodisé
+								-	Couleur 2 faces : '.$couleur_text.'
+								-	Vitrage 4/20/4 FE (argon) Ug = 1,1
+								-	Intercalaire Warm-Edge Noir 9005
+								-	Appui bas pour dormant rénovation 110.102.2 (haut. 2mm)
+								-	Pièce d’appui non comprise dans la hauteur
+								-	Ferrage standard
+								-	Poignée CUADRO : Blanc
+								-	Hauteur de poignée standard
+								-	2 aérateurs à fente Aéromat (suivant emplacent)
+								-	Coefficient de transmission surfacique : Uw = 1,77 W/m².K
+								-	Performance thermique du vitrage : Uw = 1,77 W/m².K
+								-	Facteur solaire : Sw = 0,43 W/m².K
+								-	Habillage intérieur : A déterminer au métrage
+								-	Habillage extérieur : A déterminer au métrage
+								-	LES ELEMENTS SUIVANT SONT A CONFIRMER AU METTRAGE.';
 								break;
 								case 9:
 								$desc='
-								-	Gamme ALUHAUS<br>
-								-	Ouvrant 44mm<br>
-								-	Dormant rénovation, aile de 60<br>
-								-	Dim. Fabrication (Dos de dormant sans les ailes)<br>
-								-	Bouclier thermique<br>
-								-	Rail aluminium anodisé<br>
-								-	Couleur 2 faces : '.$couleur_text.' <br>
-								-	Vitrage 4/20/4 FE (argon) Ug = 1,1<br>
-								-	Intercalaire Warm-Edge Noir 9005<br>
-								-	Appui bas pour dormant rénovation 110.102.2 (haut. 2mm)<br>
-								-	Pièce d’appui non comprise dans la hauteur <br>
-								-	Ferrage standard<br>
-								-	Poignée CUADRO : Blanc <br>
-								-	Hauteur de poignée standard<br>
-								-	2 aérateurs à fente Aéromat (suivant emplacent)<br>
-								-	Habillage intérieur : A déterminer au métrage<br>
-								-	Habillage extérieur : A déterminer au métrage<br>
+								-	POSE EN RENOVATION DE MENUISERIES ALUMINIUM DE LA MARQUE OKNOPLAST - GAMME ALUHAUS
+								-	INSTALLATION DE MATERIAUX D’ISOLATION THERMIQUE DES PAROIS VITREES VERTICALES
+								-	INSTALLATION DE COULISSANT EN DOUBLE VITRAGE VENANT EN REMPLACEMENT DE MENUISERIES SIMPLE VITRAGE
+								-	Ouvrant 44mm
+								-	Dormant rénovation, aile de 60
+								-	Dim. Fabrication (Dos de dormant sans les ailes)
+								-	Bouclier thermique
+								-	Rail aluminium anodisé
+								-	Couleur 2 faces : '.$couleur_text.'
+								-	Vitrage 4/20/4 FE (argon) Ug = 1,1
+								-	Intercalaire Warm-Edge Noir 9005
+								-	Appui bas pour dormant rénovation 110.102.2 (haut. 2mm)
+								-	Pièce d’appui non comprise dans la hauteur
+								-	Ferrage standard
+								-	Poignée CUADRO : Blanc
+								-	Hauteur de poignée standard
+								-	2 aérateurs à fente Aéromat (suivant emplacement)
+								-	Coefficient de transmission surfacique : Uw = 1,77 W/m².K
+								-	Performance thermique du vitrage : Uw = 1,77 W/m².K
+								-	Facteur solaire : Sw = 0,43 W/m².K
+								-	Habillage intérieur : A déterminer au métrage
+								-	Habillage extérieur : A déterminer au métrage
 								-	LES ELEMENTS SUIVANT SONT A CONFIRMER AU METTRAGE.';
 								break;
 								case 10:
 								$desc='
-								-	Gamme ALUHAUS<br>
-								-	Ouvrant 44mm<br>
-								-	Dormant rénovation, aile de 60<br>
-								-	Dim. Fabrication (Dos de dormant sans les ailes)<br>
-								-	Bouclier thermique <br>
-								-	Rail aluminium anodisé<br>
-								-	Couleur 2 faces : '.$couleur_text.' <br>
-								-	Vitrage 4/20/4 FE (argon) Ug = 1,1<br>
-								-	Intercalaire Warm-Edge Noir 9005<br>
-								-	Appui bas pour dormant rénovation 110.102.2 (haut. 2mm)<br>
-								-	Pièce d’appui non comprise dans la hauteur <br>
-								-	Ferrage standard<br>
-								-	Poignée CUADRO : Blanc <br>
-								-	Hauteur de poignée standard<br>
-								-	2 aérateurs à fente Aéromat (suivant emplacement)<br>
-								-	Habillage intérieur : A déterminer au métrage <br>
-								-	Habillage extérieur : A déterminer au métrage<br>
+								-	POSE EN RENOVATION DE MENUISERIES ALUMINIUM DE LA MARQUE OKNOPLAST - GAMME ALUHAUS
+								-	INSTALLATION DE MATERIAUX D’ISOLATION THERMIQUE DES PAROIS VITREES VERTICALES
+								-	INSTALLATION DE COULISSANT EN DOUBLE VITRAGE VENANT EN REMPLACEMENT DE MENUISERIES SIMPLE VITRAGE
+								-	Ouvrant 44mm
+								-	Dormant rénovation, aile de 60
+								-	Dim. Fabrication (Dos de dormant sans les ailes)
+								-	Bouclier thermique
+								-	Rail aluminium anodisé
+								-	Couleur 2 faces : Blanc (Ral 9016) Modification en fonction de la couleur choisie
+								-	Vitrage 4/20/4 FE (argon) Ug = 1,1
+								-	Intercalaire Warm-Edge Noir 9005
+								-	Appui bas pour dormant rénovation 110.102.2 (haut. 2mm)
+								-	Pièce d’appui non comprise dans la hauteur
+								-	Ferrage standard
+								-	Poignée CUADRO : Blanc
+								-	Hauteur de poignée standard
+								-	2 aérateurs à fente Aéromat (suivant emplacement)
+								-	Coefficient de transmission surfacique : Uw = 1,77 W/m².K
+								-	Performance thermique du vitrage : Uw = 1,77 W/m².K
+								-	Facteur solaire : Sw = 0,43 W/m².K
+								-	Habillage intérieur : A déterminer au métrage
+								-	Habillage extérieur : A déterminer au métrage
 								-	LES ELEMENTS SUIVANT SONT A CONFIRMER AU METTRAGE.';
 								break;
 
 								// Porte
-								case 11:
-								$desc='
-								-	Gamme Koncept<br>
-								-	Ouvrant 70mm<br>
-								-	Dormant rénovation, aile de 35<br>
-								-	Dim. Fabrication (Dos de dormant sans les ailes)<br>
-								-	Joint de propreté total<br>
-								-	Couleur 2 faces :  '.$couleur_text.' <br>
-								-	Panneaux de portes à définir (catalogue)<br>
-								-	Seuil bas aluminium <br>
-								-	Ferrage standard<br>
-								-	Poignée double béquille<br>
-								-	Crémone 3 points auto (GU Sécury Automatic)<br>
-								-	Type de cylindre : Sécurité (Standard)<br>
-								-	Paumelle : D3D ou GU HAHN<br>
-								-	Hauteur de poignée standard <br>
-								-	Habillage intérieur : A déterminé au métrage<br>
-								-	Habillage extérieur : A déterminer au métrage<br>
-								-	LES ELEMENTS SUIVANT SONT A CONFIRMER AU METTRAGE.';
-								break;
+
 							}
 
 					   @endphp
@@ -519,6 +568,52 @@
 					   </tr>
 				   @endforeach
 			   </tr>
+			   <tr class="product " >
+			   		@php
+						$count_portes=count($portes); $i=0;
+					@endphp
+				   @foreach($portes as $porte)
+					   @php
+					   		$i++;
+						   	$door=\App\Models\Door::find($porte->door);
+						   	$total_prod_ht=floatval($porte->price_ht) * intval($porte->qty);
+						   	$total_prod_ttc=$porte->total_ttc;
+							$groupe=$porte->groupe;
+						   	$couleur=$porte->couleur;
+							if($groupe==1){
+								$couleur_text= $couleur.' (Extérieur couleur et intérieur blanc) ';
+							}else{
+								$couleur_text= $couleur.' (Extérieur et intérieur couleur) ';
+							}
+
+							$desc='
+							- Gamme Koncept
+							- Ouvrant 70mm
+							- Dormant rénovation, aile de 35
+							- Dim. Fabrication (Dos de dormant sans les ailes)
+							- Joint de propreté total
+							- Couleur 2 faces : '.$couleur_text .'
+							- Panneaux de portes à définir (catalogue)
+							- Seuil bas aluminium
+							- Ferrage standard
+							- Poignée double béquille
+							- Crémone 3 points auto (GU Sécury Automatic)
+							- Type de cylindre : Sécurité (Standard)
+							- Paumelle : D3D ou GU HAHN
+							- Hauteur de poignée standard
+							- Habillage intérieur : A déterminé au métrage
+							- Habillage extérieur : A déterminer au métrage
+							- LES ELEMENTS SUIVANT SONT A CONFIRMER AU METTRAGE.
+							';
+						   	$img='img/m11.jpg';
+
+					   @endphp
+					   <tr class="product"  >
+						   <td @if($i!=$count_portes) style="border-bottom: 1px solid #f07f32" @endif ><img src="{!! public_path($img)!!}"   style="max-width:120px;max-height:90px;" /></td><td  @if($i!=$count_portes) style="border-bottom: 1px solid #f07f32" @endif class="text" ><b>{{$porte->text}} @if($porte->note!='')<br>{{$porte->note}} @endif </b><br>{!!nl2br($desc)!!}</td><td @if($i!=$count_portes) style="border-bottom: 1px solid #f07f32" @endif >{{$porte->qty}}</td><td @if($i!=$count_portes) style="border-bottom: 1px solid #f07f32" @endif >{{$porte->price_ht}} €</td><td @if($i!=$count_portes) style="border-bottom: 1px solid #f07f32" @endif>{{$total_prod_ht}} €</td><td @if($i!=$count_portes) style="border-bottom: 1px solid #f07f32" @endif >5.5 %</td><td @if($i!=$count_portes) style="border-bottom: 1px solid #f07f32" @endif >{{$total_prod_ttc}} €</td>
+					   </tr>
+				   @endforeach
+			   </tr>
+
 					@if($type=='Facture')
 			   		<tr class="product" >
 					   <td ><img src="{!! public_path('img/loi.png')!!}"  width="100" /> </td><td class="text">{!!nl2br($texte_loi)!!}</td><td style="text-align:center"></td><td></td><td> {{$invoice->loi ?? 94.79}}  €</td><td> {{$invoice->tva_loi ?? '5.5'}} %</td><td>{{$invoice->total_loi ?? 100}} €</td>
@@ -540,21 +635,21 @@
 				   Dépose de la chaudière individuelle: <b> Chaudière à {{$invoice->chaudiere}}</b><br>
 			   @endif
 				<b> Chauffage {{$invoice->chauffage}}</b><br>
-				<b>Délai de Livraison : 4 semaines</b><br>
+				<b>Délai de Livraison : 180 jours</b><br>
 				<b>Durée de validité du devis : 15 jours</b>
 		   </div>
 		   <div style="width:33%;float:left;">
 			   <table class="totals">
 			   <tr><td colspan="2">Total HT</td><td class="text-right">{{number_format($invoice->total_ht,2,',',' ')}} €</td></tr>
 			   <tr><td colspan="2">Total TVA</td><td class="text-right">{{number_format($invoice->total_tva,2,',',' ')}} €</td></tr>
-			   <tr><td colspan="2">Total TTC</td><td class="text-right">{{number_format($invoice->total_ttc,2,',',' ')}} €</td></tr>
+			   <tr><td colspan="2">Total TTC</td><td class="text-right">{{number_format($invoice->total_ttc,0,',',' ')}} €</td></tr>
 			   @if($invoice->aide>0)
 			   <tr style="color:#f07f32"><td colspan="2" style=";font-size:9px;max-width:90px;">Montant Estimatif<br>{{$invoice->type_aide}}</td><td class="text-right">{{number_format($invoice->aide,2,',',' ')}} €</td></tr>
 			   @endif
 			   @if($invoice->acompte>0)
 			   <tr style="color:#f07f32"><td colspan="2" >Acompte</td><td class="text-right">{{number_format($invoice->acompte,2,',',' ')}} €</td></tr>
 			   @endif
-			   <tr><td colspan="2">Net à payer</td><td class="text-right">{{number_format($invoice->net,2,',',' ')}} €</td></tr>
+			   <tr><td colspan="2">Net à payer</td><td class="text-right">{{number_format($invoice->net,0,',',' ')}} €</td></tr>
 			   </table>
 		   </div>
 	   </div>
@@ -623,33 +718,30 @@ lettre recommandée avec avis de réception<br>
 Article 3 : PRIX PAIEMENT. Les prix des produits, fournitures et services sont ceux du tarif GROUPE HER ENR applicable au jour de la facturation. Ils ne comprennent pas les frais éventuels déconditionnement,
 transport, déplacement, installation, vacation, taxes et droits divers qui les grèvent et sont à la charge du client qui s'oblige à les acquitter en même temps. Les factures sont payables en totalité et au comptant au
 siège de GROUPE HER ENR. Les effets ou acceptations de paiement différés ne font ni novation ni dérogation aux autres clauses des présentes ; les frais y afférents sont supportés par le client qui s'y oblige. De
-convention expresse, le défaut de paiement à réception de facture ou à son exacte échéance, entraînera de plein droit sans qu'il soit besoin d'une mise en demeure :<br>
-La suspension des services de GROUPE HER ENR, et l'annulation de sa garantie et / ou responsabilité pour les produits, fournitures et services impayés,<br>
+convention expresse, le défaut de paiement à réception de facture ou à son exacte échéance, entraînera de plein droit sans qu'il soit besoin d'une mise en demeure :La suspension des services de GROUPE HER ENR, et l'annulation de sa garantie et / ou responsabilité pour les produits, fournitures et services impayés,
 L'exigibilité immédiate de toutes les sommes restant dues quel que soit le mode de paiement convenu (par traite acceptée ou autre);<br>
-Et après envoi d'une mise en demeure :<br>
-L'exigibilité à titre de clause pénale, d'une indemnité forfaitaire et irréductible égale à 15% des sommes dues avec un minimum de 100 euros, outre les interdits moratoires calculés à un taux égal à 1,5 fois le taux
-légal.<br>
+Et après envoi d'une mise en demeure :L'exigibilité à titre de clause pénale, d'une indemnité forfaitaire et irréductible égale à 15% des sommes dues avec un minimum de 100 euros, outre les interdits moratoires calculés à un taux égal à 1,5 fois le taux légal.<br>
 Les présentes dispositions sont expressément voulues et acceptées par les parties, et s'appliqueront avec rigueur sans qu'aucun acompte ou offre de consignation puisse arrêter les effets.<br>
 Le paiement anticipé par rapport à la date d'échéance contractuelle (conditions particulières), n'ouvrira droit pour le client à aucun escompte.<br>
 Article 4 : FINANCEMENT, En cas de vente à crédit, Iadite vente est régie par les dispositions de la loi du 10 janvier 1971, lesquelles sont reprises dans le formulaire d'offre préalable de crédit, signé en même temps
 que le contrat de vente à domicile.<br>
 Article 5 : DROIT DE RETENTION. La société GROUPE HER a sur tout le matériel qui lui est confié par le client pour entretien, rechargement, ré épreuve, réparation, ou toute autre opération, un droit de rétention et
-de préférence en garantie de Ioule ses créances même nées à propos d'opérations antérieures ou étrangères au matériel retenu.
+de préférence en garantie de Ioule ses créances même nées à propos d'opérations antérieures ou étrangères au matériel retenu.<br>
 Article 6 : RESERVE DE PROPRIETE. Le transfert de propriété des produits et fournitures vendus par GROUPE HER ENR est suspendu jusqu'au paiement intégral du prix en principal et accessoires, et ce compris
 tous frais de transport et autres, tous droits et taxes, Le transfert de la garde a lieu à la livraison, et il incombe en conséquence dès ce moment au client de prendre toutes dispositions pour assurer les dommages
 causés à/ou par les produits vendus.<br>
 Article 7 : OBLIGATIONS DU CLIENT, Le client reconnaît avoir été parfaitement informé du mode de fonctionnement du produit vendu ou vérifié qui est désormais sous sa garde exclusive et à ses risques et périls. Il
 s'engage, outre le respect des clauses présentes, à :<br>
-- Respecter les indications et prescriptions de la société GROUPE HER ENR et des fabricants quant à l'utilisation, la conservation, l'entretien, la vérification, le rechargement, et la protection desdits produits.
+- Respecter les indications et prescriptions de la société GROUPE HER ENR et des fabricants quant à l'utilisation, la conservation, l'entretien, la vérification, le rechargement, et la protection desdits produits.<br>
 - Vérifier la qualité des techniciens et agents vérificateurs de la société GROUPE HER ENR seuls accrédités à visiter la clientèle, et interdire toute intervention étrangère à la société GROUPE HER ENR pour
 quelque motif que ce soit, sur les produits venus ou vérifiés.<br>
 - Assister lui-même, ou le cas échéant, déléguer son personnel pour assister aux opérations de maintenance effectuées sur place, signer les bons correspondant, certifiant ainsi de leur bonne exécution.<br>
 - N'effectuer aucune modification ou détérioration volontaire sur les produits vendus ou vérifiés.<br>
 - Se conformer aux obligations de sa police d'assurance.<br>
-Dans l'hypothèse où le client ne se conformerait pas aux obligations résultant des présentes, la responsabilité ou la garantie de la société GROUPE HER ENR ne pourront être ni engagées ni recherchées.<br>
+Dans l'hypothèse où le client ne se conformerait pas aux obligations résultant des présentes, la responsabilité ou la garantie de GROUPE HER ENR ne pourront être ni engagées ni recherchées.<br>
 Article 7.1 : Le client bénéficie d’une garantie légale de conformité régie par les dispositions des articles 217-1 du code de la consommation et d’une garantie contre les vices cachés de la chose vendue qui la
 rendent impropre à l’usage auquel elle est destinée sur le fondement des articles 1641 et s du Code civil.<br>
-C’est garanti légales s’appliquent indépendamment des garanties commerciales de la société vendeuse.<br>
+Ces garantis légaux s’appliquent indépendamment des garanties commerciales de la société vendeuse.<br>
 Article 8 : OBLIGATIONS DE LA SOCIÉTÉ GROUPE HER ENR. Les garanties et responsabilités exposées ci-après ne s'appliquent que pour autant que le client se soit scrupuleusement conformé aux obligations
 du présent contrat, notamment celles visées à l'article 7, et à la réglementation en vigueur.<br>
 a) Garantie : Les produits vendus bénéficient pour le non professionnel ou consommateur de la garantie légale résultant des articles 1641 et suivants du code Civil contre toutes les conséquences des défauts ou
@@ -659,8 +751,10 @@ défectueux après examen contradictoire, à l'exclusion de la réparation de to
 ENR gratuitement, pièces et main d'œuvre. Sont exclus de la présente garantie de façon générale, tout non-fonctionnement ou défectuosité provenant de l'usure normale. La société GROUPE HER ENR n'autorise
 personne à assumer pour elle les charges résultant de la présente garantie.<br>
 b) Responsabilité : La responsabilité de la société GROUPE HER ENR ne pourra être recherchée ou engagée à quelque titre que ce soit, s'il n'est nullement établi par le client que le produit en cause a été utilisé en
-temps utile conformément aux prescriptions d'utilisation. Qu'en tout état de cause, l'installation est conforme aux exigences des lois et règlements en vigueur en cette matière.
-c) LES DÉMARCHES ADMINISTRATIVES:  Sauf stipulation expresse contraire du CLIENT, les formalités administratives de déclaration en mairie, ou autre et les frais qui en découlent incombent spécifiquement au CLIENT et non à la société GROUPE HER ENR.<br>
+temps utile conformément aux prescriptions d'utilisation. Qu'en tout état de cause, l'installation est conforme aux exigences des lois et règlements en vigueur en cette matière.<br>
+c) LES DÉMARCHES ADMINISTRATIVES<br>
+Sauf stipulation expresse contraire du CLIENT, les formalités administratives de déclaration en mairie, ou autre et les frais qui en découlent incombent spécifiquement au CLIENT et non à la société GROUPE HER
+ENR.<br>
 Un certain nombre de démarches administratives sont à prévoir. Le client peut les accomplir ou mandater notre société pour leur prise en charge. Nous pouvons assister le client pour la demande préalable auprès de
 la Mairie concernant le projet photovoltaïque. Dans ce cas, le client devra rédiger un mandat qui donnera le pouvoir à la société venderesse de composer et déposer un dossier administratif de demande préalable
 auprès de la mairie (cerfa, plan de situation de terrain, plan de toiture, représentation de la futur installation…). La société venderesse s’occupe de la certification par Consuel (organisme officiel qui certifie la conformité
@@ -672,12 +766,16 @@ anormalement élevé, vous pouvez vous rapprocher de l’autorité concédant (A
 maximal d’obtention du devis de raccordement est fixé entre 3 et 6 mois. Le producteur à 3 mois pour accepter l’ordre de raccordement.<br>
 Article 9 : AUTRES. Conformément à la loi du 6 janvier 1971 relative à l'informatique, aux fichiers et aux libertés, le client dispose d'un droit d'accès et de rectification des données le concevant qu'il peut exercer
 auprès du siège de la société GROUPE HER ENR.<br>
-Article 10 : LITIGES / MEDIATION  L’ordonnance n°2015-1033 du 20 août 2015 relative au règlement extrajudiciaire des litiges de consommation dispose que « tout consommateur a le droit de recouvrir gratuitement à un médiateur de la consommation
+Article 10 : LITIGES / MEDIATION<br>
+L’ordonnance n°2015-1033 du 20 août 2015 relative au règlement extrajudiciaire des litiges de consommation dispose que « tout consommateur a le droit de recouvrir gratuitement à un médiateur de la consommation
 en vue de la résolution amiable du litige qui l’oppose à un professionnel. A cet effet, le professionnel garantit au consommateur le recours effectif à un dispositif de médiation de la consommation ».<br>
 En cas de litige, vous devez vous adresser en priorité au service clients de l’entreprise par téléphone (du lundi au vendredi sauf jour férié ou chômé, de 9h00 à 12h00 et de 14h00 à 17h00) ou par courrier postal, le
 numéro de téléphone et l’adresse figurant au recto du présent contrat. Le consommateur trouvera sur le site de la médiation de la consommation toutes les informations qui leur permettront d’exercer leur droit à la
 médiation dans les conditions prévues au titre Ier du livre VI du code de la consommation. En absence de solution dans les 21 jours qui suivent votre demande, vous pouvez saisir la Commission Paritaire de Médiation
 de la Vente Directe (www.mediationvente-directe.fr) 100, av. de Président Kennedy 75016 PARIS, qui recherchera gratuitement un règlement amiable.<br>
+ARTICLE 11 : CLAUSE SUSPENSIVE<br>
+Tout devis réalisé par un conseiller lors d’un rendez-vous est soumis à validation technique. Seule la validation du technicien permet de valider définitivement le devis. Dans le cas où le métrage, l’étude de
+dimensionnement ou la faisabilité technique ferait apparaitre une différence notable entre les deux cotations, le GROUPE H.E.R ENR se réserve le droit de rendre le devis réalisé nul et non avenu.<br>
 <div class="text-center"><b >EXTRAIT DU CODE DE LA CONSOMMATION</b></div><br>
 Article L121-17- Préalablement à la conclusion d'un contrat de vente ou de fourniture de services, le professionnel communique au consommateur, de manière lisible et compréhensible, les informations suivantes :<br>
 1° Les informations prévues aux articles L. 111-l et L. 111-2;<br>
@@ -715,9 +813,7 @@ Je soussigné, déclare annuler la commande ci-après :<br>
 Nature de la marchandise et/ou du service commandé : ______________________________________________Date de la commande ________________________________<br>
 Nom du conseillé : ______________________________________________<br>
 Nom et Prénom du client : ________________________________________<br>
-Adresse du client : ____________________________________________________________________________________________________________________________<br>
-<div class="text-center"><b>Signature</b></div><br>
-
+Adresse du client : _____________________________________________              <b>Signature</b>
 
 </div>
 @endsection

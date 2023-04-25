@@ -20,13 +20,13 @@ class CreateItemsTable extends Migration
             $table->double('tva', 8, 2);
 
             $table->unsignedBigInteger('product')->nullable();
-            $table->foreign('product')->references('id')->on('products')->onDelete('cascade');
+           // $table->foreign('product')->references('id')->on('products')->onDelete('cascade');
 
 			$table->unsignedBigInteger('quote')->nullable();
-            $table->foreign('quote')->references('id')->on('quotes')->onDelete('cascade');
+           // $table->foreign('quote')->references('id')->on('quotes')->onDelete('cascade');
 
 			$table->unsignedBigInteger('invoice')->nullable();
-            $table->foreign('invoice')->references('id')->on('invoices')->onDelete('cascade');
+            //$table->foreign('invoice')->references('id')->on('invoices')->onDelete('cascade');
 
             $table->timestamps();
         });
