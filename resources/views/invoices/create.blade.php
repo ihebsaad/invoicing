@@ -51,7 +51,12 @@
 
         <div class="col-xs-12 col-sm-4 col-md-4">
             <div class="form-group">
-                <label class=pointer><input type="checkbox"   name="menuiserie" id="menuiserie" value="1"  onchange="update_required()"  /> Menuiserie </label>
+                <strong>Type de devis*:</strong>
+                <select   name="menuiserie" class="form-control"  onchange="update_required()" style="width:200px" >
+                    <option value="0">Normal</option>
+                    <option value="1">Menuiserie</option>
+                    <option value="2">Volets roulants</option>
+                </select>
             </div>
         </div>
 
@@ -296,8 +301,8 @@
   }
 
   function update_required(){
-    var menuiserie =$('#menuiserie').is( ":checked" ) ? 1:0 ;
-    if(menuiserie){
+    var menuiserie =$('#menuiserie').val()   ;
+    if(menuiserie>0){
         $('#chaudiere').prop('required',false);
         $('#surface').prop('required',false);
         $('#chauffage').prop('required',true);

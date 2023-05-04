@@ -27,13 +27,13 @@ class CreatePortesTable extends Migration
             $table->tinyInteger('cintrage')->nullable();
 
             $table->unsignedBigInteger('door')->nullable();
-            $table->foreign('door')->references('id')->on('doors')->onDelete('cascade');
+            //$table->foreign('door')->references('id')->on('doors')->onDelete('cascade');
 
 			$table->unsignedBigInteger('quote')->nullable();
-            $table->foreign('quote')->references('id')->on('quotes')->onDelete('cascade');
+            //$table->foreign('quote')->references('id')->on('quotes')->onDelete('cascade');
 
 			$table->unsignedBigInteger('invoice')->nullable();
-            $table->foreign('invoice')->references('id')->on('invoices')->onDelete('cascade');
+            //$table->foreign('invoice')->references('id')->on('invoices')->onDelete('cascade');
 
             $table->timestamps();
         });

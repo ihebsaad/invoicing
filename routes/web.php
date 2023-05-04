@@ -84,8 +84,15 @@ Route::get('/pricing',[ModelesController::class, 'pricing'])->name('pricing');
 Route::post('/add_article',[ModelesController::class, 'add_article'])->name('add_article');
 Route::post('/delete_article',[ModelesController::class, 'delete_article'])->name('delete_article');
 Route::post('/save_article_qty',[ModelesController::class, 'save_article_qty'])->name('save_article_qty');
+
 //doors
 Route::get('/pricing_door',[ModelesController::class, 'pricing_door'])->name('pricing_door');
 Route::post('/add_door',[ModelesController::class, 'add_door'])->name('add_door');
 Route::post('/delete_door',[ModelesController::class, 'delete_door'])->name('delete_door');
 Route::post('/save_door_qty',[ModelesController::class, 'save_door_qty'])->name('save_door_qty');
+
+//volets
+Route::get('/pricing_volet',[ModelesController::class, 'pricing_volet'])->name('pricing_volet');
+Route::post('/add_volet',[ModelesController::class, 'add_volet'])->name('add_volet');
+Route::post('/delete_volet',[ModelesController::class, 'delete_volet'])->name('delete_volet');
+Route::post('/save_volet_qty',[ModelesController::class, 'save_volet_qty'])->name('save_volet_qty');

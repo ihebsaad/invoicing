@@ -18,7 +18,7 @@ class CreateSignaturesTable extends Migration
             $table->binary('user_image');
 
             $table->unsignedBigInteger('quote')->nullable();
-            $table->foreign('quote')->references('id')->on('quotes')->onDelete('cascade');
+            //$table->foreign('quote')->references('id')->on('quotes')->onDelete('cascade');
 
             $table->timestamps();
         });

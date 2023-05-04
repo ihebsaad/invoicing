@@ -295,7 +295,6 @@
 												<select class="form-control" style="max-width:200px" name="type_aide" id="type_aide" onchange="calcul();" >
 													<option></option>
 													<option @if($quote->type_aide=='Ma Prime Renov') selected="selected" @endif value="Ma Prime Renov">Ma Prime Renov</option>
-													<option @if($quote->type_aide=='Coup de pouce') selected="selected" @endif value="Coup de pouce">Coup de pouce</option>
 													<option @if($quote->type_aide=='Prime CEE') selected="selected" @endif value="Prime CEE">Prime CEE</option>
 												</select>
 											</div>

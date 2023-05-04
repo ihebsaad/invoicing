@@ -12,6 +12,8 @@ use App\Models\Modele;
 use App\Models\Article;
 use App\Models\Door;
 use App\Models\Porte;
+use App\Models\Shutter;
+use App\Models\Volet;
 use App\Services\SendMail;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
@@ -93,7 +95,7 @@ class InvoicesController extends Controller
         $reference= date('Y-m-').sprintf('%04d',$id);
         $invoice->reference=$reference;
         $invoice->save();
-        if($invoice->menuiserie)
+        if($invoice->menuiserie>0)
             return redirect()->route('invoices.edit_men',['id'=>$invoice->id])->with('success','Facture créée');
         else
             return redirect()->route('invoices.edit',['invoice'=>$invoice])->with('success','Facture créée');
@@ -141,11 +143,13 @@ class InvoicesController extends Controller
         $customers = Customer::all();
         $modeles = Modele::all();
         $portes = Porte::where('invoice',$invoice->id)->get();
+        $volets = Volet::where('invoice',$invoice->id)->get();
         $doors = Door::all();
+        $shutters = Shutter::all();
         $articles = Article::where('invoice',$invoice->id)->get();
         $countries=CustomersController::countries();
 
-        return view('invoices.edit_men',compact('invoice','customers','modeles','articles','countries','doors','portes'));
+        return view('invoices.edit_men',compact('invoice','customers','modeles','articles','countries','doors','portes','shutters','volets'));
     }
 
     /**
@@ -165,7 +169,7 @@ class InvoicesController extends Controller
 
         $invoice->update($data);
 
-        if($invoice->menuiserie)
+        if($invoice->menuiserie>0)
             return redirect()->route('invoices.edit_men',['id'=>$invoice->id])->with('success','Facture modifiée');
         else
             return redirect()->route('invoices.edit',['invoice'=>$invoice])->with('success','Facture modifiée');
@@ -199,12 +203,13 @@ class InvoicesController extends Controller
         $items = Item::where('invoice',$id)->get();
         $articles = Article::where('invoice',$id)->get();
         $portes = Porte::where('invoice',$id)->get();
+        $volets = Porte::where('invoice',$id)->get();
 
         $count=count($items);
-        if($invoice->menuiserie)
-            $pdf = PDF::loadView('invoices.invoice_men', compact('invoice','type','reference','date_facture','articles','par','count','portes'));
+        if($invoice->menuiserie>0)
+            $pdf = PDF::loadView('invoices.invoice_men', compact('invoice','type','reference','date_facture','articles','par','count','portes','volets'));
         else
-            $pdf = PDF::loadView('invoices.invoice', compact('invoice','type','reference','date_facture','items','par','count','portes'));
+            $pdf = PDF::loadView('invoices.invoice', compact('invoice','type','reference','date_facture','items','par','count','portes','volets'));
 
         $customer_id=$invoice->customer;
         $customer=Customer::find($customer_id);
@@ -233,11 +238,12 @@ class InvoicesController extends Controller
         $items = Item::where('invoice',$id)->get();
         $articles = Article::where('invoice',$id)->get();
         $portes = Porte::where('invoice',$id)->get();
+        $volets = Volet::where('invoice',$id)->get();
         $count=count($items);
-        if($invoice->menuiserie)
-            $pdf = PDF::loadView('invoices.invoice_men', compact('invoice','type','reference','date_facture','articles','par','count','portes'));
+        if($invoice->menuiserie>0)
+            $pdf = PDF::loadView('invoices.invoice_men', compact('invoice','type','reference','date_facture','articles','par','count','portes','volets'));
         else
-            $pdf = PDF::loadView('invoices.invoice', compact('invoice','type','reference','date_facture','items','par','count','portes'));
+            $pdf = PDF::loadView('invoices.invoice', compact('invoice','type','reference','date_facture','items','par','count','portes','volets'));
 
         return $pdf->stream('Facture-'.$reference.'.pdf');
 
@@ -255,12 +261,13 @@ class InvoicesController extends Controller
         $items = Item::where('invoice',$id)->get();
         $articles = Article::where('invoice',$id)->get();
         $portes = Porte::where('invoice',$id)->get();
+        $volets = Volet::where('invoice',$id)->get();
 
         $count=count($items);
-        if($invoice->menuiserie)
-            $pdf = PDF::loadView('invoices.invoice_men', compact('invoice','type','reference','date_facture','articles','count','par','count','portes'));
+        if($invoice->menuiserie>0)
+            $pdf = PDF::loadView('invoices.invoice_men', compact('invoice','type','reference','date_facture','articles','count','par','count','portes','volets'));
         else
-            $pdf = PDF::loadView('invoices.invoice', compact('invoice','type','reference','date_facture','items','count','par','count','portes'));
+            $pdf = PDF::loadView('invoices.invoice', compact('invoice','type','reference','date_facture','items','count','par','count','portes','volets'));
 
         return $pdf->download('Facture-'.$reference.'.pdf');
 

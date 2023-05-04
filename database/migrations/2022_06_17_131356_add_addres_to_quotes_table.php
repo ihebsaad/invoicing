@@ -23,7 +23,8 @@ class AddAddresToQuotesTable extends Migration
             $table->string('logement',80)->nullable();
             $table->double('tva_remise', 8, 2)->nullable();;
             $table->unsignedBigInteger('par')->nullable();
-            $table->foreign('par')->references('id')->on('users')->onDelete('cascade');
+        //    $table->foreign('par')->references('id')->on('users')->onDelete('cascade');
+
             //
         });
     }

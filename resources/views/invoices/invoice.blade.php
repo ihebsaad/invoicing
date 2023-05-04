@@ -166,9 +166,12 @@
 				   <span><b>SARL GROUPE H.E.R ENR</b></span><br>
 				   <span>11 RUE KARL MARX</span><br>
 				   <span>82000 MONTAUBAN</span><br>
-				   <span><b>Tél :</b> 09.77.59.57.42</span><br>
-				   <span><b>Email :</b> contact@groupe-her.com</span><br><br>
-				   <b>Adresse du chantier:</b><br>
+				   <span><b>Tél :</b> 09.77.59.57.42</span>  <span><b>Email :</b> contact@groupe-her.com</span><br><br>
+				   <div style="font-size:9px">
+				   		SARL au capital de 50 000 euros<br>
+	   					SIRET 851 566 455 00032  - R.C.S MONTAUBAN - NAF 3511Z<br>
+	   					TVA intracommunautaire : FR95851566455<br>
+					</div><br>
 				   <span>{{ $invoice->delivery_address ?? $invoice->customer()->first()->delivery_address }}</span><br>
 				   @if($invoice->delivery_postal!='')<span>{{ $invoice->delivery_postal ?? $invoice->customer()->first()->delivery_postal }}, {{ $invoice->delivery_city ?? $invoice->customer()->first()->delivery_city }} - {{ $invoice->delivery_country ?? $invoice->customer()->first()->delivery_country }}</span><br>@endif
 			   </td>
@@ -231,6 +234,9 @@
 
 	   <div style="width:100%;page-break-inside: avoid;">
 		   <div style="width:67%;float:left;font-size:9px">
+		   		@if(trim($invoice->type_aide)=='Prime CEE')
+			   		<div style="font-size:11px">Tout ou partie des travaux relatifs à ce devis ou bon de commande sont éligibles à une prime d'un montant de {{number_format($invoice->aide,0,',',' ')}} euros dont EDF (SIREN 552 081 317) est à l'origine dans le cadre du dispositif des Certificats d'Economies d'Energie. Le montant de cette prime ne pourra être révisé à la baisse qu'en cas de modification du volume de Certificats d'Economies d'Energie attaché à l'opération ou aux opérations d'économies d'énergie ou de la situation de précarité énergétique et ce, de manière proportionnelle. Dans le cadre de la réglementation un contrôle qualité des travaux sur site ou par contact pourra être demandé. Un refus de ce contrôle sur site ou par contact via EDF ou un prestataire d'EDF conduira au refus de cette prime par EDF.</div><br>
+			   	@endif
 			   {!!nl2br($invoice->description) !!}
 			   <div class="clearfix"></div>
 			   @if($invoice->chaudiere!='' && $invoice->chaudiere!='Autre')
@@ -302,11 +308,8 @@
    </div>
    </section>
    <footer>
-	   SARL au capital de 50 000 euros<br>
-	   SIRET 851 566 455 00032  - R.C.S MONTAUBAN - NAF 3511Z<br>
-	   TVA intracommunautaire : FR95851566455<br>
+   	<img src="{!! public_path('img/cm2c.jpg')!!}" width=80 />
    </footer>
-
 <!--page conditions de ventes--->
 <div class="pagebreak"></div>
 <div class="text-center"><B style="font-size:16px"> Conditions Générales de vente</b></div>

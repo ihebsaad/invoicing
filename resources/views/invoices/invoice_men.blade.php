@@ -81,7 +81,7 @@
 	   }
 	   footer {
 		   position: fixed;
-		   bottom: -100px;
+		   bottom: -50px;
 		   left: 0px;
 		   right: 0px;
 		   height: 100px;
@@ -177,8 +177,12 @@
 				   <span><b>SARL GROUPE H.E.R ENR</b></span><br>
 				   <span>11 RUE KARL MARX</span><br>
 				   <span>82000 MONTAUBAN</span><br>
-				   <span><b>Tél :</b> 09.77.59.57.42</span><br>
-				   <span><b>Email :</b> contact@groupe-her.com</span><br><br>
+				   <span><b>Tél :</b> 09.77.59.57.42</span>  <span><b>Email :</b> contact@groupe-her.com</span><br><br>
+				 	<div style="font-size:9px">
+				   		SARL au capital de 50 000 euros<br>
+	   					SIRET 851 566 455 00032  - R.C.S MONTAUBAN - NAF 3511Z<br>
+	   					TVA intracommunautaire : FR95851566455<br>
+					</div><br>
 				   <b>Adresse du chantier:</b><br>
 				   <span>{{ $invoice->delivery_address ?? $invoice->customer()->first()->delivery_address }}</span><br>
 				   @if($invoice->delivery_postal!='')<span>{{ $invoice->delivery_postal ?? $invoice->customer()->first()->delivery_postal }}, {{ $invoice->delivery_city ?? $invoice->customer()->first()->delivery_city }} - {{ $invoice->delivery_country ?? $invoice->customer()->first()->delivery_country }}</span><br>@endif
@@ -259,6 +263,11 @@
 			   </tr>
 		   </thead>
 		   <tbody >
+		  		@if($type=='Facture')
+			   		<tr class="product" >
+					   <td ><img src="{!! public_path('img/loi.png')!!}"  width="100" /> </td><td class="text">{!!nl2br($texte_loi)!!}</td><td style="text-align:center"></td><td></td><td> {{$invoice->loi ?? 94.79}}  €</td><td> {{$invoice->tva_loi ?? '5.5'}} %</td><td>{{$invoice->total_loi ?? 100}} €</td>
+				   </tr>
+				@endif
 			   <tr class="product " >
 			   		@php
 						$count_articles=count($articles); $i=0;
@@ -572,7 +581,7 @@
 			   		@php
 						$count_portes=count($portes); $i=0;
 					@endphp
-				   @foreach($portes as $porte)
+				   	@foreach($portes as $porte)
 					   @php
 					   		$i++;
 						   	$door=\App\Models\Door::find($porte->door);
@@ -611,14 +620,68 @@
 					   <tr class="product"  >
 						   <td @if($i!=$count_portes) style="border-bottom: 1px solid #f07f32" @endif ><img src="{!! public_path($img)!!}"   style="max-width:120px;max-height:90px;" /></td><td  @if($i!=$count_portes) style="border-bottom: 1px solid #f07f32" @endif class="text" ><b>{{$porte->text}} @if($porte->note!='')<br>{{$porte->note}} @endif </b><br>{!!nl2br($desc)!!}</td><td @if($i!=$count_portes) style="border-bottom: 1px solid #f07f32" @endif >{{$porte->qty}}</td><td @if($i!=$count_portes) style="border-bottom: 1px solid #f07f32" @endif >{{$porte->price_ht}} €</td><td @if($i!=$count_portes) style="border-bottom: 1px solid #f07f32" @endif>{{$total_prod_ht}} €</td><td @if($i!=$count_portes) style="border-bottom: 1px solid #f07f32" @endif >5.5 %</td><td @if($i!=$count_portes) style="border-bottom: 1px solid #f07f32" @endif >{{$total_prod_ttc}} €</td>
 					   </tr>
-				   @endforeach
+				  	@endforeach
 			   </tr>
 
-					@if($type=='Facture')
-			   		<tr class="product" >
-					   <td ><img src="{!! public_path('img/loi.png')!!}"  width="100" /> </td><td class="text">{!!nl2br($texte_loi)!!}</td><td style="text-align:center"></td><td></td><td> {{$invoice->loi ?? 94.79}}  €</td><td> {{$invoice->tva_loi ?? '5.5'}} %</td><td>{{$invoice->total_loi ?? 100}} €</td>
-				   </tr>
-				   @endif
+			   <tr class="product " >
+			   		@php
+						$count_volets=count($volets); $i=0;
+					@endphp
+				   	@foreach($volets as $volet)
+					   @php
+					   		$i++;
+						   	$shutter=\App\Models\Shutter::find($volet->shutter);
+						   	$total_prod_ht=floatval($volet->price_ht) * intval($volet->qty);
+						   	$total_prod_ttc=$volet->total_ttc;
+						   	$couleur=$volet->couleur;
+							if($shutter->type==1){
+								$desc='
+								VOLET ROULANT SOMFI
+								<b>FOURNITURE ET POSE EN RENOVATION DE VOLET ROULANT SOLAIRE</b>
+								DE LA MARQUE FUTUROL
+								CAISSON A PAN COUPE
+								RENOVATION LAMES ALUMINIUM ISOLEE 43 MM
+								COULISSE 53x22
+								MOTEUR SOLAIRE SOMFI
+								EMETTEURS MURAL 1 CANAL
+								GARANTIE 7 ANS PIECE, MAIN D’ŒUVRE ET DEPLACEMENT)
+								COULEUR : '.$couleur.'<br>'.$volet->text;
+								;
+							}
+							if($shutter->type==2){
+								$desc='
+								VOLET ROULANT FUTURCOM
+								<b>FOURNITURE ET POSE EN RENOVATION DE VOLET ROULANT SOLAIRE DE LA MARQUE FUTUROL</b>
+								CAISSON A PAN COUPE
+								RENOVATION LAMES ALUMINIUM ISOLEE 43 MM
+								COULISSE 53x22
+								MOTEUR SOLAIRE FUTURCOM
+								EMETTEURS MURAL 1 CANAL
+								GARANTIE 7 ANS PIECE (HORS FRAIS DE DEPLACEMENT ET MAIN D’ŒUVRE)
+								COULEUR : '.$couleur.'<br>'.$volet->text;
+							}
+							if($shutter->type==3){
+								$desc='
+								VOLET ROULANT FUTURCOM AVEC MOUSTIQUAIRE MOTORISEE INTEGREE
+								<b>FOURNITURE ET POSE EN RENOVATION DE VOLET ROULANT SOLAIRE DE LA MARQUE FUTUROL</b>
+								CAISSON A PAN COUPE
+								RENOVATION LAMES ALUMINIUM ISOLEE 43 MM
+								COULISSE 53x22
+								MOTEUR SOLAIRE FUTURCOM
+								EMETTEURS MURAL 1 CANAL
+								GARANTIE 7 ANS PIECE (HORS FRAIS DE DEPLACEMENT ET MAIN D’ŒUVRE)
+								COULEUR : '.$couleur.'<br>'.$volet->text;
+							}
+						   	$img='img/volet.png';
+
+					   @endphp
+					   <tr class="product"  >
+						   <td @if($i!=$count_volets) style="border-bottom: 1px solid #f07f32" @endif ><img src="{!! public_path($img)!!}"   style="max-width:120px;max-height:90px;" /></td><td  @if($i!=$count_volets) style="border-bottom: 1px solid #f07f32" @endif class="text" >{!!nl2br($desc)!!} @if($volet->note!='')<br>{{$volet->note}} @endif </b></td><td @if($i!=$count_volets) style="border-bottom: 1px solid #f07f32" @endif >{{$volet->qty}}</td><td @if($i!=$count_volets) style="border-bottom: 1px solid #f07f32" @endif >{{$volet->price_ht}} €</td><td @if($i!=$count_volets) style="border-bottom: 1px solid #f07f32" @endif>{{$total_prod_ht}} €</td><td @if($i!=$count_volets) style="border-bottom: 1px solid #f07f32" @endif >5.5 %</td><td @if($i!=$count_volets) style="border-bottom: 1px solid #f07f32" @endif >{{$total_prod_ttc}} €</td>
+					   </tr>
+				  	@endforeach
+			   </tr>
+
+
 			   @if($invoice->remise>0)
 				   <tr class="product" style="color:#f07f32">
 					   <td colspan="2">Remise Catalogue Groupe HER ENR</td><td style="text-align:center"></td><td></td><td> {{$invoice->remise}}  €</td><td> {{$invoice->tva_remise ?? '5.5'}} %</td><td>{{$invoice->total_remise}} €</td>
@@ -629,12 +692,15 @@
 
 	   <div style="width:100%;page-break-inside: avoid;">
 		   <div style="width:67%;float:left;font-size:9px">
+		   		@if(trim($invoice->type_aide)=='Prime CEE')
+			   		<p class="text" style="font-size:9px;font-weight:normal!important;">Tout ou partie des travaux relatifs à ce devis ou bon de commande sont éligibles à une prime d'un montant de {{number_format($invoice->aide,0,',',' ')}} euros dont EDF (SIREN 552 081 317) est à l'origine dans le cadre du dispositif des Certificats d'Economies d'Energie. Le montant de cette prime ne pourra être révisé à la baisse qu'en cas de modification du volume de Certificats d'Economies d'Energie attaché à l'opération ou aux opérations d'économies d'énergie ou de la situation de précarité énergétique et ce, de manière proportionnelle. Dans le cadre de la réglementation un contrôle qualité des travaux sur site ou par contact pourra être demandé. Un refus de ce contrôle sur site ou par contact via EDF ou un prestataire d'EDF conduira au refus de cette prime par EDF.</p><br>
+			   	@endif
 			   {!!nl2br($invoice->description) !!}
 			   <div class="clearfix"></div>
 			   @if($invoice->chaudiere!='' && $invoice->chaudiere!='Autre')
 				   Dépose de la chaudière individuelle: <b> Chaudière à {{$invoice->chaudiere}}</b><br>
 			   @endif
-				<b> Chauffage {{$invoice->chauffage}}</b><br>
+			   @if($invoice->chauffage!='')<b> Chauffage {{$invoice->chauffage}}</b><br>@endif
 				<b>Délai de Livraison : 180 jours</b><br>
 				<b>Durée de validité du devis : 15 jours</b>
 		   </div>
@@ -701,9 +767,7 @@
    </div>
    </section>
    <footer>
-	   SARL au capital de 50 000 euros<br>
-	   SIRET 851 566 455 00032  - R.C.S MONTAUBAN - NAF 3511Z<br>
-	   TVA intracommunautaire : FR95851566455<br>
+		<img src="{!! public_path('img/cm2c.jpg')!!}" width=80 />
    </footer>
 
 <!--page conditions de ventes--->

@@ -37,13 +37,13 @@
         @foreach ($quotes as $quote)
 		<tr>
             <td>{!! sprintf('%04d',$quote->id) !!}</td>
-            <td>{!!  $quote->reference !!}  @if($quote->menuiserie)<br><small>menuiserie</small> @endif</td>
+            <td>{!!  $quote->reference !!}  @if($quote->menuiserie==1)<br><small>Menuiserie</small> @endif @if($quote->menuiserie==2)<br><small>Volets roulants</small> @endif</td>
             <td>{{ $quote->customer()->first()->civility }} {{ $quote->customer()->first()->name }} {{ $quote->customer()->first()->lastname }}</td>
             <td>{{date('d/m/Y', strtotime($quote->created_at))}}</td>
             <td>{{number_format($quote->total_ttc,0,',',' ')}} €</td>
             <td>
                 @if($User->user_type=='admin' || $User->id== $quote->par )
-                    @if($quote->menuiserie)
+                    @if($quote->menuiserie==1)
                         <a class="btn btn-primary mb-3 mr-2" href="{{ route('quotes.edit_men',$quote->id) }}" style="float:left" title="Modifier"><i class="fas fa-edit"></i></a>
                     @else
                         <a class="btn btn-primary mb-3 mr-2" href="{{ route('quotes.edit',$quote->id) }}" style="float:left" title="Modifier"><i class="fas fa-edit"></i></a>

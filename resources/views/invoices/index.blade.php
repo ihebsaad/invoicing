@@ -38,12 +38,12 @@
         @foreach ($invoices as $invoice)
        <tr>
             <td>{!! sprintf('%04d',$invoice->id) !!}</td>
-            <td>{!! $invoice->reference !!} @if($invoice->menuiserie)<br><small>menuiserie</small> @endif</td>
+            <td>{!! $invoice->reference !!} @if($invoice->menuiserie==1)<br><small> Menuiserie</small> @endif @if($invoice->menuiserie==2)<br><small>volets roulants</small> @endif</td>
             <td>{{ $invoice->customer()->first()->civility }} {{ $invoice->customer()->first()->name }} {{ $invoice->customer()->first()->lastname }}</td>
             <td>{{date('d/m/Y', strtotime($invoice->created_at))}}</td>
             <td>{{number_format($invoice->total_ttc,0,',',' ')}} €</td>
             <td>
-                @if($invoice->menuiserie)
+                @if($invoice->menuiserie>0)
 			        <a class="btn btn-primary mb-3 mr-2" href="{{ route('invoices.edit_men',$invoice->id) }}" style="float:left" title="Modifier"><i class="fas fa-edit"></i></a>
                 @else
 			        <a class="btn btn-primary mb-3 mr-2" href="{{ route('invoices.edit',$invoice->id) }}" style="float:left" title="Modifier"><i class="fas fa-edit"></i></a>

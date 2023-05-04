@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateArticlesTable extends Migration
+class CreateVoletsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateArticlesTable extends Migration
      */
     public function up()
     {
-        Schema::create('articles', function (Blueprint $table) {
+        Schema::create('volets', function (Blueprint $table) {
             //
             $table->bigIncrements('id');
             $table->integer('qty')->default(1);
@@ -22,20 +22,19 @@ class CreateArticlesTable extends Migration
             $table->string('text')->nullable();
             $table->string('note')->nullable();
             $table->double('total_ttc', 8, 2)->nullable();
-            $table->tinyInteger('groupe')->nullable();
-            $table->tinyInteger('cintrage')->nullable();
-            $table->integer('couleur')->nullable();
+            $table->string('couleur')->nullable();
 
-            $table->unsignedBigInteger('modele')->nullable();
-    //        $table->foreign('modele')->references('id')->on('modeles')->onDelete('cascade');
+            $table->unsignedBigInteger('shutter')->nullable();
+            //$table->foreign('shutter')->references('id')->on('shutters')->onDelete('cascade');
 
 			$table->unsignedBigInteger('quote')->nullable();
-    //        $table->foreign('quote')->references('id')->on('quotes')->onDelete('cascade');
+            //$table->foreign('quote')->references('id')->on('quotes')->onDelete('cascade');
 
 			$table->unsignedBigInteger('invoice')->nullable();
-    //        $table->foreign('invoice')->references('id')->on('invoices')->onDelete('cascade');
+            //$table->foreign('invoice')->references('id')->on('invoices')->onDelete('cascade');
 
             $table->timestamps();
+
         });
     }
 
@@ -46,7 +45,7 @@ class CreateArticlesTable extends Migration
      */
     public function down()
     {
-        Schema::table('articles', function (Blueprint $table) {
+        Schema::table('volets', function (Blueprint $table) {
             //
         });
     }

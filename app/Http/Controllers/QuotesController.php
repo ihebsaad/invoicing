@@ -12,6 +12,8 @@ use App\Models\Modele;
 use App\Models\Article;
 use App\Models\Door;
 use App\Models\Porte;
+use App\Models\Shutter;
+use App\Models\Volet;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Barryvdh\DomPDF\Facade\Pdf;
@@ -83,7 +85,7 @@ class QuotesController extends Controller
         $reference= date('Ymd').$name[0].$lastname[0].sprintf('%03d',$num);
         $data['reference']=$reference;
         $quote=Quote::create($data);
-        if($quote->menuiserie)
+        if($quote->menuiserie>0)
             return redirect()->route('quotes.edit_men',['id'=>$quote->id])->with('success','Devis créé avec succès.');
         else
             return redirect()->route('quotes.edit',['quote'=>$quote])->with('success','Devis créé avec succès.');
@@ -121,10 +123,12 @@ class QuotesController extends Controller
         $customers = Customer::all();
         $modeles = Modele::all();
         $doors = Door::all();
+        $shutters = Shutter::all();
         $articles = Article::where('quote',$quote->id)->get();
         $portes = Porte::where('quote',$quote->id)->get();
+        $volets = Volet::where('quote',$quote->id)->get();
         $countries=CustomersController::countries();
-        return view('quotes.edit_men',compact('quote','customers','articles','modeles','countries','doors','portes'));
+        return view('quotes.edit_men',compact('quote','customers','articles','modeles','countries','doors','portes','volets','shutters'));
     }
 
     /**
@@ -144,7 +148,7 @@ class QuotesController extends Controller
         }
 
         $quote->update($data);
-        if($quote->menuiserie)
+        if($quote->menuiserie>0)
             return redirect()->route('quotes.edit_men',['id'=>$quote->id])->with('success','Devis modifié');
         else
             return redirect()->route('quotes.edit',['quote'=>$quote])->with('success','Devis modifié');
@@ -214,12 +218,13 @@ class QuotesController extends Controller
         $items = Item::where('quote',$id)->get();
         $articles = Article::where('quote',$id)->get();
         $portes = Porte::where('quote',$id)->get();
+        $volets = Volet::where('quote',$id)->get();
         $count=count($items);
 
-        if($invoice->menuiserie)
-            $pdf = PDF::loadView('invoices.invoice_men', compact('invoice','type','reference','date_facture','articles','par','count','portes'));
+        if($invoice->menuiserie>0)
+            $pdf = PDF::loadView('invoices.invoice_men', compact('invoice','type','reference','date_facture','articles','par','count','portes','volets'));
         else
-            $pdf = PDF::loadView('invoices.invoice', compact('invoice','type','reference','date_facture','items','par','count','portes'));
+            $pdf = PDF::loadView('invoices.invoice', compact('invoice','type','reference','date_facture','items','par','count','portes','volets'));
 
 
         return $pdf->stream('quote-'.$id.'.pdf');
@@ -238,11 +243,12 @@ class QuotesController extends Controller
         $items = Item::where('quote',$id)->get();
         $articles = Article::where('quote',$id)->get();
         $portes = Porte::where('quote',$id)->get();
+        $volets = Porte::where('quote',$id)->get();
         $count=count($items);
-        if($invoice->menuiserie)
-            $pdf = PDF::loadView('invoices.invoice_men', compact('invoice','type','reference','date_facture','articles','par','count','portes'));
+        if($invoice->menuiserie>0)
+            $pdf = PDF::loadView('invoices.invoice_men', compact('invoice','type','reference','date_facture','articles','par','count','portes','volets'));
         else
-            $pdf = PDF::loadView('invoices.invoice', compact('invoice','type','reference','date_facture','items','par','count','portes'));
+            $pdf = PDF::loadView('invoices.invoice', compact('invoice','type','reference','date_facture','items','par','count','portes','volets'));
 
         //$pdf = PDF::loadView('quotes.quote', compact('invoice','type','reference','date_facture','items','par','count'));
         return $pdf->download('quote-'.$reference.'.pdf');
@@ -259,8 +265,9 @@ class QuotesController extends Controller
 
         $items = Item::where('quote',$id)->get();
         $portes = Porte::where('quote',$id)->get();
+        $volets = Volet::where('quote',$id)->get();
         $count=count($items);
-        $pdf = PDF::loadView('quotes.quote-sign', compact('quote','reference','date_facture','items','par','count','portes'));
+        $pdf = PDF::loadView('quotes.quote-sign', compact('quote','reference','date_facture','items','par','count','portes','volets'));
         return $pdf->download('quote-'.$reference.'.pdf');
 
     }

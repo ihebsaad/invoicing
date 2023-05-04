@@ -8,6 +8,8 @@ use App\Models\Item;
 use App\Models\Article;
 use App\Models\Porte;
 use App\Models\Door;
+use App\Models\Shutter;
+use App\Models\Volet;
 use Illuminate\Http\Request;
 
 class ModelesController extends Controller
@@ -299,6 +301,52 @@ class ModelesController extends Controller
         }
     }
 
+
+    public function add_volet(Request $request)
+    {
+        $shutter=$request->get('shutter');
+        $qty=$request->get('qte');
+        $price=$request->get('prix');
+        $price_ht=$request->get('prix_ht');
+        $texte=$request->get('texte');
+        $total_ttc=$request->get('total');
+        $note=$request->get('note');
+        $quote=$request->get('quote') ?? 0;
+        $invoice=$request->get('invoice') ?? 0;
+        $couleur=$request->get('couleur');
+
+        if( $quote>0   ){
+            $volet=Volet::create([
+                'shutter'=>$shutter,
+                'qty'=>$qty,
+                'price'=>$price,
+                'price_ht'=>$price_ht,
+                'text'=>$texte,
+                'note'=>$note,
+                'total_ttc'=>$total_ttc,
+                'couleur'=>$couleur,
+                'quote'=>$quote,
+            ]);
+            return $volet->id;
+        }
+        if( $invoice>0   ){
+
+            $volet=Volet::create([
+                'shutter'=>$shutter,
+                'qty'=>$qty,
+                'price'=>$price,
+                'price_ht'=>$price_ht,
+                'text'=>$texte,
+                'note'=>$note,
+                'total_ttc'=>$total_ttc,
+                'couleur'=>$couleur,
+                'invoice'=>$invoice,
+            ]);
+            return $volet->id;
+        }
+    }
+
+
     public function pricing_door(Request $request)
     {
         $id=$request->get('door');
@@ -329,6 +377,31 @@ class ModelesController extends Controller
 
     }
 
+    public function pricing_volet(Request $request)
+    {
+        $type=$request->get('type');
+        $hauteur=$request->get('hauteur');
+        $largeur=$request->get('largeur');
+
+        $shutter=array();
+        $shutter=Shutter::where('type',$type)->where('hauteur',$hauteur)->where('largeur',$largeur)->first();
+
+        if (isset($shutter)){
+            $shutter['id']=$shutter->id;
+            $prix=$shutter->prix ;
+
+            $shutter['prix']=number_format($prix,2,'.','');
+            $shutter['prix_ht']=number_format($prix,2,'.','');
+
+            return $shutter;
+        }
+        else{
+            return null;
+        }
+
+    }
+
+
     public function delete_article(Request $request)
     {
         $item_id=$request->get('item');
@@ -342,6 +415,14 @@ class ModelesController extends Controller
         $item_id=$request->get('item');
         $porte=Porte::find($item_id);
         $porte->delete();
+
+    }
+
+    public function delete_volet(Request $request)
+    {
+        $item_id=$request->get('item');
+        $volet=Volet::find($item_id);
+        $volet->delete();
 
     }
 
@@ -364,6 +445,18 @@ class ModelesController extends Controller
         $article->qty=$request->get('qty');
         $article->total_ttc=$request->get('total');
         $article->save();
+
+    }
+
+
+    public function save_volet_qty(Request $request)
+    {
+        $id=$request->get('volet');
+        $volet=Volet::find($id);
+
+        $volet->qty=$request->get('qty');
+        $volet->total_ttc=$request->get('total');
+        $volet->save();
 
     }
 
