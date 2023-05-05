@@ -43,7 +43,7 @@
             <td>{{number_format($quote->total_ttc,0,',',' ')}} €</td>
             <td>
                 @if($User->user_type=='admin' || $User->id== $quote->par )
-                    @if($quote->menuiserie==1)
+                    @if($quote->menuiserie>0)
                         <a class="btn btn-primary mb-3 mr-2" href="{{ route('quotes.edit_men',$quote->id) }}" style="float:left" title="Modifier"><i class="fas fa-edit"></i></a>
                     @else
                         <a class="btn btn-primary mb-3 mr-2" href="{{ route('quotes.edit',$quote->id) }}" style="float:left" title="Modifier"><i class="fas fa-edit"></i></a>
