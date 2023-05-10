@@ -413,9 +413,9 @@ de la commande, ou si ce délai expire normalement un samedi, un dimanche, ou un
 <div class="formulaire">
 Je soussigné, déclare annuler la commande ci-après :<br>
 Nature de la marchandise et/ou du service commandé : ______________________________________________Date de la commande ________________________________<br>
-Nom du conseillé : ______________________________________________<br>
+Nom du conseillé : ______________________________________________                   <b>Signature</b> <br>
 Nom et Prénom du client : ________________________________________<br>
-Adresse du client : _____________________________________________              <b>Signature</b>
+Adresse du client : _____________________________________________
 
 </div>
 <footer>
