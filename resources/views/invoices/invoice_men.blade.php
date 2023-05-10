@@ -81,7 +81,7 @@
 	   }
 	   footer {
 		   position: fixed;
-		   bottom: -30px;
+		   bottom: -120px;
 		   left: 0px;
 		   right: 0px;
 		   height: 100px;
@@ -165,9 +165,9 @@
    </style>
    <section class="body">
 
-	<table style="margin-top:-25px">
+   <table style="margin-top:-25px">
 	   <tr>
-		   <td><img src="{!! public_path('img/logo.png')!!}"  width="170" style="margin-right:50px"></img></td><td><img src="{!! public_path('img/bat.png')!!}"  width="50" style="margin-right:20px" ></img></td><td><img src="{!! public_path('img/sol.png')!!}"  width="80" style="margin-right:10px"></img></td><td><img src="{!! public_path('img/pv.png')!!}"  width="80" style="margin-right:10px"></img></td><td><img src="{!! public_path('img/pac.png')!!}"  width="80" style="margin-right:10px"></img></td><td><img src="{!! public_path('img/bois.png')!!}"  width="80"></img></td>
+		   <td><img src="{!! public_path('img/logo.png')!!}"  width="170" style="margin-right:50px"></img></td><td style=" "><img src="{!! public_path('img/edf.jpg')!!}"  width="120" style="margin-right:40px;margin-top:30px" ></img><img src="{!! public_path('img/bat.png')!!}"  width="60" style="margin-right:50px" ></img></td><td><img src="{!! public_path('img/sol.png')!!}"  width="80" style=""></img><br><img src="{!! public_path('img/pv.png')!!}"  width="80" style=""></img></td><td><img src="{!! public_path('img/pac.png')!!}"  width="80"  ></img><br><img src="{!! public_path('img/bois.png')!!}"  width="80"></img></td>
 	   </tr>
    </table>
    <div class="container">
@@ -200,7 +200,7 @@
 	   <table style="width:100%;margin-top:5px;margin-bottom:5px">
 		   <tr>
 			   <td style="width:50%;">
-				   @if( $invoice->logement!='')<b>Logement :</b>{{ $invoice->logement }}    @endif  @if($invoice->surface!='')<b>Surface chauffée (m²) :</b>   {{ $invoice->surface }}<br>@endif
+				   @if( $invoice->logement!='')<b>Logement :</b>{{ $invoice->logement }}    @endif  @if($invoice->surface!='')<b>Surface @if($invoice->menuiserie==-7) isolée @else chauffée @endif  (m²) :</b>   {{ $invoice->surface }}<br>@endif
 				   <b>Date de visite technique préalable :</b>   {{ $date_facture }}
 			   </td>
 			   <td style="width:50%;">
@@ -766,9 +766,7 @@
 
    </div>
    </section>
-   <footer>
-		<table><tr><td><img src="{!! public_path('img/cm2c.jpg')!!}" width=60 /></td><td>Médiateur à la consommation<br>49 Rue de la Ponthieu, 75008 Paris<br>01 89 47 00 14</td></tr></table>
-   </footer>
+
 
 <!--page conditions de ventes--->
 <div class="pagebreak"></div>
@@ -877,7 +875,10 @@ Je soussigné, déclare annuler la commande ci-après :<br>
 Nature de la marchandise et/ou du service commandé : ______________________________________________Date de la commande ________________________________<br>
 Nom du conseillé : ______________________________________________<br>
 Nom et Prénom du client : ________________________________________<br>
-Adresse du client : _____________________________________________              <b>Signature</b>
+Adresse du client : _____________________________________________              <b>Signature:</b>
 
 </div>
+<footer>
+	Médiateur à la consommation, 49 Rue de la Ponthieu, 75008 Paris, Tél: 01 89 47 00 14
+</footer>
 @endsection

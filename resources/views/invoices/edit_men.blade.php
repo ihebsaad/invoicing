@@ -174,19 +174,6 @@
 
 						<div class="row pl-3 mt-2">
 
-							<div class="col-xs-12 col-sm-12 col-md-4">
-								<div class="form-group">
-									<strong>Chaudière à :</strong>
-									<select  class="form-control"   name="chaudiere" style="max-width:180px" >
-										<option value=""></option>
-										<option  @if($invoice->chaudiere=='Gaz') selected="selected" @endif value="Gaz">Gaz</option>
-										<option  @if($invoice->chaudiere=='Fioul') selected="selected" @endif value="Fioul">Fioul</option>
-										<option  @if($invoice->chaudiere=='Charbon') selected="selected" @endif value="Charbon">Charbon</option>
-										<option  @if($invoice->chaudiere=='Autre') selected="selected" @endif value="Autre">Autre</option>
-									</select>
-								</div>
-							</div>
-
 							@if($invoice->menuiserie >0)
 							<div class="col-xs-12 col-sm-12 col-md-4" id="div-chauffage" >
 								<div class="form-group">
@@ -200,12 +187,15 @@
 							</div>
 							@endif
 
+							@if( $invoice->surface!='' )
 							<div class="col-xs-12 col-sm-12 col-md-4">
 								<div class="form-group">
-									<strong>Surface chauffée (m²):</strong>
+									<strong>Surface  @if($invoice->menuiserie==-7) isolée @else chauffée @endif (m²):</strong>
 									<input type="number" class="form-control"   name="surface" value="{{ $invoice->surface }}" style="max-width:180px"/>
 								</div>
 							</div>
+							@endif
+
 						</div>
 						<div class="row pl-3 mt-2">
 							<div class="col-xs-12 col-sm-12 col-md-4">

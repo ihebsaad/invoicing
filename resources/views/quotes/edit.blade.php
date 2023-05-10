@@ -176,7 +176,7 @@
 						</div>
 
 						<div class="row pl-3 mt-2">
-
+							@if( $quote->chaudiere!='' )
 							<div class="col-xs-12 col-sm-12 col-md-4">
 								<div class="form-group">
 									<strong>Chaudière à :</strong>
@@ -189,14 +189,16 @@
 									</select>
 								</div>
 							</div>
+							@endif
 
-
+							@if( $quote->surface!='' )
 							<div class="col-xs-12 col-sm-12 col-md-4">
 								<div class="form-group">
-									<strong>Surface chauffée (m²):</strong>
+									<strong>Surface  @if($invoice->menuiserie==-7) isolée @else chauffée @endif (m²):</strong>
 									<input type="number" class="form-control"   name="surface" value="{{ $quote->surface }}" style="max-width:180px"/>
 								</div>
 							</div>
+							@endif
 
 						</div>
 

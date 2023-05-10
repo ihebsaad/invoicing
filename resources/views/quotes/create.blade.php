@@ -50,9 +50,14 @@
             <div class="form-group">
                 <strong>Type de devis*:</strong>
                 <select   name="menuiserie" id="menuiserie"  class="form-control"   onchange="update_required()" style="width:200px" >
-                    <option value="0">Normal</option>
-                    <option value="1">Menuiserie</option>
-                    <option value="2">Volets roulants</option>
+                    <option value="-1">PAC AIR EAU</option>
+                    <option value="-2">PAC AIR AIR</option>
+                    <option value="-3">PANNEAU PHOTOVOLTAÏQUE</option>
+                    <option value="-4">CESI</option>
+                    <option value="-5">POELE GRANULÉS OU BOIS</option>
+                    <option value="-6">ISOLATION</option>
+                    <option value="1">MENUISERIE</option>
+                    <option value="2">VOLET ROULANT</option>
                 </select>
             </div>
         </div>
@@ -70,7 +75,7 @@
 				</select>
 			</div>
 		</div>
-        <div class="col-xs-12 col-sm-12 col-md-4" id="div-chauffage" style="display:none">
+        <div class="col-xs-12 col-sm-12 col-md-4" id="div-chauffage"  >
 			<div class="form-group">
 				<strong>Type de chauffage :</strong>
 				<select  class="form-control"   name="chauffage"  id="chauffage" value="old('chauffage')" style="max-width:180px;" >
@@ -81,15 +86,14 @@
 			</div>
 		</div>
 
-        <div class="col-xs-12 col-sm-12 col-md-4">
+        <div class="col-xs-12 col-sm-12 col-md-4"  id="div-surface">
 			<div class="form-group">
-            <strong>Surface chauffée (m²):</strong>
+            <strong>Surface (m²):</strong>
             <input type="number" class="form-control" required  id="surface"  name="surface" value="old('surface')" style="max-width:180px"/>
-
             </div>
 		</div>
-
-
+    </div>
+    <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-7">
             <div class="form-group">
                 <strong>Note:</strong>
@@ -296,22 +300,32 @@
       }
   }
   function update_required(){
-    var menuiserie =$('#menuiserie').val()   ;
-    if(menuiserie>0){
-        $('#chaudiere').prop('required',false);
-        $('#surface').prop('required',false);
-        $('#chauffage').prop('required',true);
-        $('#div-chauffage').show('slow');
-        $('#div-chaudiere').hide('slow');
-    }else{
-        $('#chaudiere').prop('required',true);
-        $('#surface').prop('required',true);
-        $('#surface').prop('required',true);
-        $('#chauffage').prop('required',false);
-        $('#div-chauffage').hide('slow');
-        $('#div-chaudiere').show('slow');
+        var menuiserie =$('#menuiserie').val()   ;
+        // chauffage
+        if(menuiserie==1){
+            $('#chauffage').prop('required',true);
+            $('#div-chauffage').show('slow');
+        }else{
+            $('#chauffage').prop('required',false);
+            $('#div-chauffage').hide('slow');
+        }
+        // surface
+        if(menuiserie==-1 || menuiserie==-2 || menuiserie==-5 || menuiserie==-7 ){
+            $('#surface').prop('required',true);
+            $('#div-surface').show('slow');
+        }else{
+            $('#surface').prop('required',false);
+            $('#div-surface').hide('slow');
+        }
+        //chaudiere
+        if(menuiserie==-1){
+            $('#div-chaudiere').show('slow');
+            $('#chaudiere').prop('required',true);
+        }else{
+            $('#div-chaudiere').hide('slow');
+            $('#chaudiere').prop('required',false);
+        }
     }
-  }
 
   $(function () {
     // Summernote
