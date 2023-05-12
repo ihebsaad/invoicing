@@ -108,6 +108,7 @@
 
 		.financement td{
 		   text-align:center;
+		   vertical-align:middle;
 	   }
 	   .financement{
 		   background-color:#f6f6f6;
@@ -200,7 +201,7 @@
 	   <table style="width:100%;margin-top:5px;margin-bottom:5px">
 		   <tr>
 			   <td style="width:50%;">
-				   @if( $invoice->logement!='')<b>Logement :</b>{{ $invoice->logement }}    @endif  @if($invoice->surface!='')<b>Surface @if($invoice->menuiserie==-7) isolée @else chauffée @endif  (m²) :</b>   {{ $invoice->surface }}<br>@endif
+				   @if( $invoice->logement!='')<b>Logement :</b>{{ $invoice->logement }}    @endif  @if($invoice->surface!='')<b>Surface @if($invoice->menuiserie==-7)à isoler @else chauffée @endif  (m²) :</b>   {{ $invoice->surface }}<br>@endif
 				   <b>Date de visite technique préalable :</b>   {{ $date_facture }}
 			   </td>
 			   <td style="width:50%;">
@@ -710,8 +711,13 @@
 			   <tr><td colspan="2">Total TVA</td><td class="text-right">{{number_format($invoice->total_tva,2,',',' ')}} €</td></tr>
 			   <tr><td colspan="2">Total TTC</td><td class="text-right">{{number_format(ceil($invoice->total_ttc),2,',',' ')}} €</td></tr>
 			   @if($invoice->aide>0)
-			   <tr style="color:#f07f32"><td colspan="2" style=";font-size:9px;max-width:90px;">Montant Estimatif<br>{{$invoice->type_aide}}</td><td class="text-right">{{number_format(ceil($invoice->aide),2,',',' ')}} €</td></tr>
+			   		@if(trim($invoice->type_aide)=='Prime CEE')
+			   			<tr style="color:#f07f32"><td colspan="2" style=";font-size:9px;max-width:90px;">- Prime CEE EDF<br><small>  Siren EDF 552 081 317</small></td><td class="text-right">- {{number_format(ceil($invoice->aide),2,',',' ')}} €</td></tr>
+			   		@else
+						<tr style="color:#f07f32"><td colspan="2" style=";font-size:9px;max-width:90px;">- Montant Estimatif<br>{{$invoice->type_aide}}</td><td class="text-right">- {{number_format(ceil($invoice->aide),2,',',' ')}} €</td></tr>
+			   		@endif
 			   @endif
+
 			   @if($invoice->acompte>0)
 			   <tr style="color:#f07f32"><td colspan="2" >Acompte</td><td class="text-right">{{number_format($invoice->acompte,2,',',' ')}} €</td></tr>
 			   @endif
@@ -872,8 +878,8 @@ de la commande, ou si ce délai expire normalement un samedi, un dimanche, ou un
 </div>
 <div class="formulaire">
 Je soussigné, déclare annuler la commande ci-après :<br>
-Nature de la marchandise et/ou du service commandé : ______________________________________________Date de la commande ________________________________<br>
-Nom du conseillé : ______________________________________________                  <b>Signature:</b><br>
+Nature de la marchandise et/ou du service commandé : ____________________________________Date de la commande ________________________________<br>
+Nom du conseillé : ______________________________________________                  <b style="margin-left:80px;">Signature:</b><br>
 Nom et Prénom du client : ________________________________________<br>
 Adresse du client : _____________________________________________
 

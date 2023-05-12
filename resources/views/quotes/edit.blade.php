@@ -194,7 +194,7 @@
 							@if( $quote->surface!='' )
 							<div class="col-xs-12 col-sm-12 col-md-4">
 								<div class="form-group">
-									<strong>Surface  @if($invoice->menuiserie==-7) isolée @else chauffée @endif (m²):</strong>
+									<strong>Surface  @if($quote->menuiserie==-7) isolée @else chauffée @endif (m²):</strong>
 									<input type="number" class="form-control"   name="surface" value="{{ $quote->surface }}" style="max-width:180px"/>
 								</div>
 							</div>

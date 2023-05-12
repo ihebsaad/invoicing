@@ -52,13 +52,15 @@
         <div class="col-xs-12 col-sm-4 col-md-4">
             <div class="form-group">
                 <strong>Type de devis*:</strong>
-                <select   name="menuiserie" class="form-control"  onchange="update_required()" style="width:200px" >
+                <select   name="menuiserie" id="menuiserie" class="form-control"  onchange="update_required()" style="width:300px" required >
+                    <option value=""></option>
                     <option value="-1">PAC AIR EAU</option>
                     <option value="-2">PAC AIR AIR</option>
                     <option value="-3">PANNEAU PHOTOVOLTAÏQUE</option>
                     <option value="-4">CESI</option>
                     <option value="-5">POELE GRANULÉS OU BOIS</option>
                     <option value="-6">ISOLATION</option>
+                    <option value="-7">BTD</option>
                     <option value="1">MENUISERIE</option>
                     <option value="2">VOLET ROULANT</option>
                 </select>
@@ -70,7 +72,7 @@
         <div class="col-xs-12 col-sm-12 col-md-4" id="div-chaudiere" >
 			<div class="form-group">
 				<strong>Chaudière à :</strong>
-				<select  class="form-control" required  id="chaudiere"  name="chaudiere" value="old('chaudiere')" style="max-width:180px" >
+				<select  class="form-control" required  id="chaudiere"  name="chaudiere"   style="max-width:180px" >
 					<option  value=""></option>
 					<option  value="Gaz">Gaz</option>
 					<option  value="Fioul">Fioul</option>
@@ -82,7 +84,7 @@
         <div class="col-xs-12 col-sm-12 col-md-4" id="div-chauffage"  >
 			<div class="form-group">
 				<strong>Type de chauffage :</strong>
-				<select  class="form-control"  name="chauffage"  id="chauffage" value="old('chauffage')" style="max-width:180px;" >
+				<select  class="form-control"  name="chauffage"  id="chauffage"   style="max-width:180px;" >
 					<option  value=""></option>
                     <option  value="Electrique">Electrique</option>
 					<option  value="Combustible">Combustible </option>
@@ -92,8 +94,8 @@
 
         <div class="col-xs-12 col-sm-12 col-md-4"  id="div-surface">
 			<div class="form-group">
-            <strong>Surface (m²):</strong>
-            <input type="number" class="form-control" required  id="surface"  name="surface" value="old('surface')" style="max-width:180px"/>
+            <strong>Surface <span id="chauff">chauffée</span><span style="display:none" id="isol">à isoler</span> (m²):</strong>
+            <input type="number" class="form-control" required  id="surface"  name="surface"   style="max-width:180px"/>
 
             </div>
 		</div>
@@ -308,29 +310,40 @@
 
     function update_required(){
         var menuiserie =$('#menuiserie').val()   ;
-        // chauffage
-        if(menuiserie==1){
-            $('#chauffage').prop('required',true);
-            $('#div-chauffage').show('slow');
-        }else{
-            $('#chauffage').prop('required',false);
-            $('#div-chauffage').hide('slow');
-        }
-        // surface
-        if(menuiserie==-1 || menuiserie==-2 || menuiserie==-5 || menuiserie==-7 ){
-            $('#surface').prop('required',true);
-            $('#div-surface').show('slow');
-        }else{
-            $('#surface').prop('required',false);
-            $('#div-surface').hide('slow');
-        }
-        //chaudiere
-        if(menuiserie==-1){
-            $('#div-chaudiere').show('slow');
-            $('#chaudiere').prop('required',true);
-        }else{
-            $('#div-chaudiere').hide('slow');
-            $('#chaudiere').prop('required',false);
+        if(menuiserie!=''){
+            // chauffage
+            if(menuiserie==1){
+                $('#chauffage').prop('required',true);
+                $('#div-chauffage').show('slow');
+            }else{
+                $('#chauffage').prop('required',false);
+                $('#div-chauffage').hide('slow');
+            }
+            // surface
+            if(menuiserie==-1 || menuiserie==-2 || menuiserie==-5 ||  menuiserie==-6   ){
+                $('#surface').prop('required',true);
+                $('#div-surface').show('slow');
+
+                if(menuiserie==-6){
+                    $('#isol').show('slow');
+                    $('#chauff').hide('slow');
+                }else{
+                    $('#isol').hide('slow');
+                    $('#chauff').show('slow');
+                }
+
+            }else{
+                $('#surface').prop('required',false);
+                $('#div-surface').hide('slow');
+            }
+            //chaudiere
+            if(menuiserie==-1){
+                $('#div-chaudiere').show('slow');
+                $('#chaudiere').prop('required',true);
+            }else{
+                $('#div-chaudiere').hide('slow');
+                $('#chaudiere').prop('required',false);
+            }
         }
     }
 
