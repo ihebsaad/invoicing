@@ -174,15 +174,15 @@
 	   					SIRET 851 566 455 00032  - R.C.S MONTAUBAN - NAF 3511Z<br>
 	   					TVA intracommunautaire : FR95851566455<br>
 					</div><br>
-				   <span>{{ $invoice->delivery_address ?? $invoice->customer()->first()->delivery_address }}</span><br>
+				   <span>{{ $invoice->delivery_address ?? $invoice->customer()->first()->delivery_address  ?? '' }}</span><br>
 				   @if($invoice->delivery_postal!='')<span>{{ $invoice->delivery_postal ?? $invoice->customer()->first()->delivery_postal }}, {{ $invoice->delivery_city ?? $invoice->customer()->first()->delivery_city }} - {{ $invoice->delivery_country ?? $invoice->customer()->first()->delivery_country }}</span><br>@endif
 			   </td>
 			   <td style="width:50%;">
-				   <b>Client:</b> {{ $invoice->customer()->first()->civility }} {{ $invoice->customer()->first()->lastname }} {{ $invoice->customer()->first()->name }} <br>
-				   @if($invoice->customer()->first()->lastname2!='')<span style="margin-left:35px">{{ $invoice->customer()->first()->civility2 }} {{ $invoice->customer()->first()->lastname2 }} {{ $invoice->customer()->first()->name2 }}</span><br>@endif
-				   <b>Adresse:</b> <span>{{ $invoice->customer()->first()->address }}</span><br>
-				   @if($invoice->customer()->first()->postal!='') <span>{{ $invoice->customer()->first()->postal }}, {{ $invoice->customer()->first()->city }} - {{ $invoice->customer()->first()->country }}</span><br>@endif
-				   <span>@if( $invoice->customer()->first()->phone!='')<b>Tél :</b> {{ $invoice->customer()->first()->phone }}    @endif @if( $invoice->customer()->first()->email!='') <b>Email:</b> {{ $invoice->customer()->first()->email }} @endif</span>
+				   <b>Client:</b> {{ $invoice->customer()->first()->civility  ?? '' }} {{ $invoice->customer()->first()->lastname  ?? '' }} {{ $invoice->customer()->first()->name  ?? '' }} <br>
+				   @if(isset($invoice->customer()->first()->lastname2))<span style="margin-left:35px">{{ $invoice->customer()->first()->civility2  ?? '' }} {{ $invoice->customer()->first()->lastname2  ?? '' }} {{ $invoice->customer()->first()->name2  ?? '' }}</span><br>@endif
+				   <b>Adresse:</b> <span>{{ $invoice->customer()->first()->address  ?? '' }}</span><br>
+				   @if(isset($invoice->customer()->first()->postal)) <span>{{ $invoice->customer()->first()->postal  ?? ''}}, {{ $invoice->customer()->first()->city  ?? '' }} - {{ $invoice->customer()->first()->country  ?? ''}}</span><br>@endif
+				   <span>@if( isset($invoice->customer()->first()->phone))<b>Tél :</b> {{ $invoice->customer()->first()->phone }}    @endif @if( isset($invoice->customer()->first()->email)) <b>Email:</b> {{ $invoice->customer()->first()->email }} @endif</span>
 				   <br>
 			   </td>
 		   </tr>

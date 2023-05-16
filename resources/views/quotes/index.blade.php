@@ -38,7 +38,7 @@
 		<tr>
             <td>{!! sprintf('%04d',$quote->id) !!}</td>
             <td>{!!  $quote->reference !!}  @if($quote->menuiserie==1)<br><small>Menuiserie</small> @endif @if($quote->menuiserie==2)<br><small>Volets roulants</small> @endif</td>
-            <td>{{ $quote->customer()->first()->civility }} {{ $quote->customer()->first()->name }} {{ $quote->customer()->first()->lastname }}</td>
+            <td>{{ $quote->customer()->first()->civility ?? '' }} {{ $quote->customer()->first()->name  ?? ''}} {{ $quote->customer()->first()->lastname  ?? '' }}</td>
             <td>{{date('d/m/Y', strtotime($quote->created_at))}}</td>
             <td>{{number_format($quote->total_ttc,0,',',' ')}} €</td>
             <td>

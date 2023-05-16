@@ -19,7 +19,7 @@
             </div>
         </div>
     </div>
-   
+
    <style>
 		.small-img{width:150px;}
    </style>
@@ -29,18 +29,26 @@
             <th>No</th>
             <th>Nom</th>
             <th>Tél</th>
-            <th>Email</th>
             <th>Adresse</th>
+            <th>Commercial</th>
             <th class="no-sort"  style="width:20%"  >Action</th>
             </tr>
         </thead>
         @foreach ($customers as $customer)
+        @php
+            $agent='';
+            if($customer->commercial!=''){
+                $Commercial=\App\Models\User::find($customer->commercial);
+                $agent=$Commercial->name.' '.$Commercial->lastname;
+            }
+
+        @endphp
 		<tr>
             <td>{!! sprintf('%04d',$customer->id) !!}</td>
             <td>{{$customer->civility}} {{ $customer->name }} {{ $customer->lastname }}</td>
             <td>{{ $customer->phone }}</td>
-            <td>{{ $customer->email }}</td>
             <td>{{ $customer->address }} - {{ $customer->city }} </td>
+            <td>{{$agent}}</td>
             <td>
 			    <a class="btn btn-primary mb-3" href="{{ route('customers.edit',$customer->id) }}" style="float:left" title="Modifier"><i class="fas fa-edit"></i></a>
                 <form action="{{ route('customers.destroy',$customer->id) }}" method="POST"   style="float:left" class="mr-2 ml-2">
@@ -52,8 +60,8 @@
         </tr>
         @endforeach
     </table>
-  
-      
+
+
 @endsection
 @section('footer-scripts')
 
@@ -76,7 +84,7 @@
     $("#mytable").DataTable({
       "responsive": true, "lengthChange": false, "autoWidth": false,
       order: [[ 0, 'desc' ]],
-      buttons: [						 
+      buttons: [
                     {
                     extend: 'print',
                     text: '<i class="fa fa-print"></i>  Imprimer',
@@ -97,7 +105,7 @@
                     exportOptions: {
                     columns: [ 1,2,3,4,5,6]
                	}
-                    },				
+                    },
 				{
                     extend: 'pdf',
                     text: '<i class="fa fa-file-pdf"></i>  Pdf',

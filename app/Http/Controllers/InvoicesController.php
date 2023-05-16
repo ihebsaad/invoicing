@@ -57,8 +57,9 @@ class InvoicesController extends Controller
 
         $customers = Customer::all();
         $countries = CustomersController::countries();
+        $commercials=User::where('user_type','<>','admin')->get();
         $customer_id=0;
-        return view('invoices.create',compact('customers','countries','customer_id'));
+        return view('invoices.create',compact('customers','countries','customer_id','commercials'));
     }
 
     public function add($customer_id)
@@ -68,8 +69,8 @@ class InvoicesController extends Controller
 
         $customers = Customer::all();
         $countries = CustomersController::countries();
-
-        return view('invoices.create',compact('customers','countries','customer_id'));
+        $commercials=User::where('user_type','<>','admin')->get();
+        return view('invoices.create',compact('customers','countries','customer_id','commercials'));
     }
 
     /**

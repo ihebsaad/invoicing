@@ -1,6 +1,10 @@
 @extends('layouts.admin')
 
+
 @section('content')
+<link rel="stylesheet" href="{{asset('plugins/select2/css/select2.min.css')}}">
+<link rel="stylesheet" href="{{asset('plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css')}}">
+
 <div class="row pl-3">
     <div class="col-lg-12 margin-tb">
         <div class="float-left">
@@ -14,11 +18,28 @@
 
 <form action="{{ route('customers.store') }}" method="POST">
     @csrf
+        <!--here + pages devis et factures-->
+        <div class="row pl-3">
+
+            <div class="col-xs-12 col-sm-6 col-md-6">
+                <div class="form-group">
+                    <strong>Commercial*:</strong>
+                    <select class="form-control select2" name="commercial"  >
+                        <option></option>
+                        @foreach($commercials as $commercial)
+                            <option  value="{{$commercial->id}}">{{$commercial->id}} : {{$commercial->name}} {{$commercial->lastname}}</option>
+                        @endforeach
+                    </select>
+                </div>
+            </div>
+
+        </div>
+
         <div class="row pl-3">
             <div class="col-xs-12 col-sm-12 col-md-1">
                 <div class="form-group">
                     <strong>Civilité:</strong>
-                    <select   name="civility" class="form-control" placeholder="civility" >
+                    <select   name="civility" class="form-control" placeholder="civility" required >
                         <option value="Mr">Mr</option>
                         <option value="Mme">Mme</option>
                         <option value="Mlle">Mlle</option>
@@ -29,14 +50,14 @@
             <div class="col-xs-12 col-sm-12 col-md-4">
                 <div class="form-group">
                     <strong>Nom:</strong>
-                    <input type="text" name="lastname" class="form-control" placeholder="Nom" value="{{old('lastname')}}">
+                    <input type="text" name="lastname" class="form-control" placeholder="Nom" value="{{old('lastname')}}" required>
                 </div>
             </div>
 
             <div class="col-xs-12 col-sm-12 col-md-3">
                 <div class="form-group">
                     <strong>Prénom:</strong>
-                    <input type="text" name="name" class="form-control" placeholder="Prénom" value="{{old('name')}}">
+                    <input type="text" name="name" class="form-control" placeholder="Prénom" value="{{old('name')}}" required>
                 </div>
             </div>
 
@@ -173,14 +194,19 @@
 
 
 @section('footer-scripts')
+<script src="{{asset('plugins/select2/js/select2.full.min.js')}}"></script>
 <script src="{{ asset('plugins/summernote/summernote-bs4.min.js') }}" ></script>
 
 <script>
 
-  $(function () {
+    $(function () {
     // Summernote
-    $('.summernote').summernote()
-  });
+    $('.summernote').summernote();
+
+    $('.select2').select2();
+
+  	});
+
 
   function copy(champ){
       val= $('#'+champ).val();

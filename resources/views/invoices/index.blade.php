@@ -39,7 +39,7 @@
        <tr>
             <td>{!! sprintf('%04d',$invoice->id) !!}</td>
             <td>{!! $invoice->reference !!} @if($invoice->menuiserie==1)<br><small> Menuiserie</small> @endif @if($invoice->menuiserie==2)<br><small>volets roulants</small> @endif</td>
-            <td>{{ $invoice->customer()->first()->civility }} {{ $invoice->customer()->first()->name }} {{ $invoice->customer()->first()->lastname }}</td>
+            <td>{{ $invoice->customer()->first()->civility  ?? ''}} {{ $invoice->customer()->first()->name  ?? '' }} {{ $invoice->customer()->first()->lastname  ?? ''}}</td>
             <td>{{date('d/m/Y', strtotime($invoice->created_at))}}</td>
             <td>{{number_format($invoice->total_ttc,0,',',' ')}} €</td>
             <td>

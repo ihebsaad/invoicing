@@ -51,8 +51,9 @@ class QuotesController extends Controller
     {
         $customers = Customer::all();
         $countries = CustomersController::countries();
+        $commercials=User::where('user_type','<>','admin')->get();
         $customer_id=0;
-        return view('quotes.create',compact('customers','countries','customer_id'));
+        return view('quotes.create',compact('customers','countries','customer_id','commercials'));
     }
 
 
@@ -60,8 +61,9 @@ class QuotesController extends Controller
     {
         $customers = Customer::all();
         $countries = CustomersController::countries();
+        $commercials=User::where('user_type','<>','admin')->get();
 
-        return view('quotes.create',compact('customers','countries','customer_id'));
+        return view('quotes.create',compact('customers','countries','customer_id','commercials'));
     }
 
     /**

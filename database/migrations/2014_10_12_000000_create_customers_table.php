@@ -32,7 +32,7 @@ class CreateCustomersTable extends Migration
             $table->string('delivery_city',50)->nullable();
             $table->string('delivery_postal',50)->nullable();
             $table->string('delivery_country',50)->nullable();
-
+            $table->integer('commercial')->nullable();
             $table->timestamps();
         });
     }

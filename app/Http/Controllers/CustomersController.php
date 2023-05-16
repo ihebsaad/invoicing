@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Customer;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class CustomersController extends Controller
@@ -20,10 +21,10 @@ class CustomersController extends Controller
      */
     public function index()
     {
-        if (auth()->user()->user_type != 'admin')
-            return  redirect('/home');
-
-        $customers = Customer::orderBy('id','desc')->get();
+        if (auth()->user()->user_type == 'admin')
+            $customers = Customer::orderBy('id','desc')->get();
+        else
+            $customers = Customer::where('commercial',auth()->user()->id)->orderBy('id','desc')->get();
 
         return view('customers.index',compact('customers'));
     }
@@ -36,7 +37,8 @@ class CustomersController extends Controller
     public function create()
     {
         $countries=$this->countries();
-        return view('customers.create',compact('countries'));
+        $commercials=User::where('user_type','<>','admin')->get();
+        return view('customers.create',compact('countries','commercials'));
     }
 
     /**
@@ -99,8 +101,8 @@ class CustomersController extends Controller
         $request->validate([
             'name' => 'required',
         ]);
-
-        $customer->update($request->all());
+        if (auth()->user()->user_type == 'admin' || $customer->commercial== auth()->user()->id )
+            $customer->update($request->all());
 
         return redirect()->route('customers.index')
                         ->with('success','Client modifié avec succès');
@@ -114,7 +116,8 @@ class CustomersController extends Controller
      */
     public function destroy(Customer $customer)
     {
-        $customer->delete();
+        if (auth()->user()->user_type == 'admin' || $customer->commercial== auth()->user()->id )
+            $customer->delete();
 
         return redirect()->route('customers.index')
                         ->with('success','Client supprimé avec succès');

@@ -126,6 +126,21 @@
                 <form action="{{ route('customers.store') }}" method="POST">
                     <input type="hidden" name="source" value="quote" />
                     @csrf
+                    <div class="row">
+
+                        <div class="col-xs-12 col-sm-6 col-md-6">
+                            <div class="form-group">
+                                <strong>Commercial:</strong>
+                                <select class="form-control select2" name="commercial"  >
+                                    <option></option>
+                                    @foreach($commercials as $commercial)
+                                        <option  value="{{$commercial->id}}">{{$commercial->id}} : {{$commercial->name}} {{$commercial->lastname}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+
+                    </div>
                     <div class="row ">
                         <div class="col-xs-12 col-sm-12 col-md-3">
                             <div class="form-group">
