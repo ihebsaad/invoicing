@@ -255,14 +255,19 @@
 
 								@php $c=0;  @endphp
 								@foreach($articles as $article)
+									$total_prod=0;
 									@php
 										$modele=\App\Models\Modele::find($article->modele);
+										if(isset($modele)){
 										$total_prod= $article->total_ttc;
 										$c++;
+										}
 									@endphp
+									@if(isset($modele))
 									<tr class="myproduct product bg-lightgrey tr-prod" id="row-{{$article->id}}">
 										<td class="myproducttd" data-prix="{{$article->price}}" data-prixht="{{$article->price_ht}}" data-id="{{$article->id}}"  ><b>{{$article->text}}<br>{{$article->note}}</b></td><td >{{$article->price_ht}} €</td><td><input id="qty-{{$article->id}}" type="number" step="1" min="1" class="number" value="{{$article->qty}}" readonly onchange="save_article_qty(this,{{$article->id}},{{$article->price}});calcul();"/></td><td><input readonly step="0.5" min="5.5" type="number" step="0.5" min="1" class="number bg-transparent" value="5.5"/> %</td><td><input id="total-{{$article->id}}" type="number" readonly class="total-prod number" value="{{$total_prod}}"/> €</td><td><button id="delete_item"   class="btn-sm btn-danger" onclick="delete_item({{$article->id}})"><i class="fas fa-minus " data-id="{{$article->id}}"></i></td>
 									</tr>
+									@endif
 								@endforeach
 
 								@foreach($portes as $porte)
@@ -287,9 +292,13 @@
 
 							</tbody>
 							<tfoot>
+								@if($quote->menuiserie==1)
 								<tr class="product bg-grey">
 									<td>Loi Anti Gaspillage</td><td  ><input style="text-align:right" id="loi" type="number" class="number bg-transparent" readonly value="{{$quote->loi ?? 94.79}}" />€</td><td style="text-align:center;padding-right:15px">1</td><td><input type="number" class="number  bg-transparent" id="tva_loi" name="tva_loi" style="width:100px" step="0.5" value="{{$quote->tva_loi ?? 5.5}}" readonly onchange="calcul();" /> %</td><td><input id="total_loi" type="number"  class="number" style="max-width:70px" value="{{$quote->total_loi ?? 100}}" onchange="calcul();"/> €</td><td></td>
 								</tr>
+								@else
+								<input type="hidden" id="total_loi" value="0" /><input type="hidden" id="tva_loi" value="0" />
+								@endif
 								<tr class="product bg-grey">
 									<td>Remise Catalogue Groupe HER ENR</td><td  ><input style="text-align:right" id="remise" type="number" class="number bg-transparent" readonly value="{{$quote->remise ?? 0}}" />€</td><td style="text-align:center;padding-right:15px">1</td><td><input type="number" class="number  bg-transparent" id="tva_remise" name="tva_remise" style="width:100px" step="0.5" value="{{$quote->tva_remise ?? 0}}" readonly onchange="calcul();" /> %</td><td><input id="total_remise" type="number"  class="number" style="max-width:70px" value="{{$quote->total_remise ?? 0}}" onchange="calcul();$('#remise2').val($(this).val())"/> €</td><td></td>
 								</tr>

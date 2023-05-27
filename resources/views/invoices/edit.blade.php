@@ -250,19 +250,24 @@
 								@php $c=0;  @endphp
 								@foreach($items as $item)
 									@php
+										$total_prod=0;
+										if(isset($product ) )
 										$product=\App\Models\Product::find($item->product);
 										$total_prod=floatval($product->prix) * intval($item->qty);
 										//$total_pose=floatval($product->pose) * floatval($product->tva_pose)*0.01 + floatval($product->pose) ;
 
 										$c++;
+										}
 									@endphp
+									@if(isset($product ) )
 									<tr class="myproduct product bg-lightgrey tr-prod" id="row-{{$item->id}}">
 										<td class="myproducttd" data-prix="{{$product->prix}}" data-prixht="{{$product->prix_ht}}" data-id="{{$item->id}}"  ><b>{{$product->name}}</b></td><td >{{$product->prix_ht}} €</td><td><input id="qty-{{$item->id}}" type="number" step="1" min="1" class="number" value="{{$item->qty}}"  onchange="calcul();save_item_qty(this,{{$item->id}},{{$product->prix}},{{$product->pose_ttc}})"/></td><td><input readonly step="0.5" min="5.5" type="number" step="0.5" min="1" class="number bg-transparent" value="{{$item->tva}}"/> %</td><td><input id="total-{{$item->id}}" type="number" readonly class="total-prod number" value="{{$total_prod}}"/> €</td><td><button id="delete_item"   class="btn-sm btn-danger" onclick="delete_item({{$item->id}})"><i class="fas fa-minus " data-id="{{$item->id}}"></i></td>
 									</tr>
-									@if($product->pose > 0)
-									<tr class="myproduct product bg-lightgrey tr-prod" id="row-pose-{{$item->id}}">
-										<td class="myproductpose"   data-id="{{$item->id}}" data-pose="{{$product->pose}}" data-tvapose="{{$product->tva_pose}}" data-posettc="{{$product->pose_ttc}}" ><i>Pose {{$product->name}}</i></td><td ><input type="number" id="pose-{{$item->id}}" value="{{$product->pose * $item->qty}}"  class="number bg-transparent"/> €</td><td><input type="number"  value="{{$item->qty}}"  id="pose-qty-{{$item->id}}" readonly class="number" /></td><td><input readonly step="0.5" min="5.5" type="number" step="0.5" min="1" class="number bg-transparent" readonly value="{{$product->tva_pose}}"/> %</td><td><input id="totalpose-{{$item->id}}" type="number" readonly class="total-prod number" value="{{$product->pose_ttc * $item->qty}}"/> €</td><td></td>
-									</tr>
+										@if($product->pose > 0)
+										<tr class="myproduct product bg-lightgrey tr-prod" id="row-pose-{{$item->id}}">
+											<td class="myproductpose"   data-id="{{$item->id}}" data-pose="{{$product->pose}}" data-tvapose="{{$product->tva_pose}}" data-posettc="{{$product->pose_ttc}}" ><i>Pose {{$product->name}}</i></td><td ><input type="number" id="pose-{{$item->id}}" value="{{$product->pose * $item->qty}}"  class="number bg-transparent"/> €</td><td><input type="number"  value="{{$item->qty}}"  id="pose-qty-{{$item->id}}" readonly class="number" /></td><td><input readonly step="0.5" min="5.5" type="number" step="0.5" min="1" class="number bg-transparent" readonly value="{{$product->tva_pose}}"/> %</td><td><input id="totalpose-{{$item->id}}" type="number" readonly class="total-prod number" value="{{$product->pose_ttc * $item->qty}}"/> €</td><td></td>
+										</tr>
+										@endif
 									@endif
 								@endforeach
 

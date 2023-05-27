@@ -388,7 +388,7 @@ class ModelesController extends Controller
 
         if (isset($shutter)){
             $shutter['id']=$shutter->id;
-            $prix=$shutter->prix ;
+            $prix=$shutter->prix *3 ;
 
             $shutter['prix']=number_format($prix,2,'.','');
             $shutter['prix_ht']=number_format($prix,2,'.','');

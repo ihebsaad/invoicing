@@ -213,7 +213,7 @@
 		@php
 	   		$texte_loi='<b>Gestion, évacuation et traitement des déchets de chantier.</b></br> Comprend :<br>- La main d’œuvre liée à la dépose et au tri<br>- Le transport des déchets de chantier vers un ou plusieurs points de collecte.<br>- Les coûts de traitement.<br>- Ouvrages déconstruits (déchets susceptibles d’être en mélange)<br>- Le point de collecte envisagé : Déchetterie';
 		@endphp
-		@if($type=='Devis')
+		@if($type=='Devis' && $invoice->menuiserie==1)
 		<table class="tab-products tab1" style="min-height:150px;width:100%;margin-top:50px;margin-bottom:5px">
 		   <thead class="th-products">
 			   <tr>
