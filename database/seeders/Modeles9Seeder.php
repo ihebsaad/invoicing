@@ -6,7 +6,7 @@ use Illuminate\Database\Seeder;
 use App\Models\Modele;
 use App\Models\Seeders;
 
-class Modeles9Seeder extends Seeder
+class Modeles9Seeder extends Seeder  //coulissant 2
 {
     /**
      * Run the database seeds.
@@ -15,7 +15,7 @@ class Modeles9Seeder extends Seeder
      */
     public function run()
     {
-        $seeder = Modele::where('type',9)->count();
+        $seeder = Modele::where('type',9)->where('genre',2)->count();
 
         //Check if the seeder exist in the DB
         if ($seeder==0) {

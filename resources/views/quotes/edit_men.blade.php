@@ -255,8 +255,8 @@
 
 								@php $c=0;  @endphp
 								@foreach($articles as $article)
-									$total_prod=0;
 									@php
+										$total_prod=0;
 										$modele=\App\Models\Modele::find($article->modele);
 										if(isset($modele)){
 										$total_prod= $article->total_ttc;

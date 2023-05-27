@@ -6,7 +6,7 @@ use Illuminate\Database\Seeder;
 use App\Models\Modele;
 use App\Models\Seeders;
 
-class Modeles5Seeder extends Seeder
+class Modeles5Seeder extends Seeder  //fenetre fixe
 {
     /**
      * Run the database seeds.
