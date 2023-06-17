@@ -134,23 +134,23 @@
 								<div class="form-group">
 									<i class="fas fa-address-card"></i>
 									<?php $customer= \App\Models\Customer::find($quote->customer);?>
-									{{$customer->civility}} {{$customer->name}} {{$customer->lastname}} <br>
-									<i class="fas fa-phone mr-2"></i>{{$customer->phone}} <i class="fas fa-envelope mr-2 ml-4"></i> {{$customer->email}} <br>
-									<i class="fas fa-map-marker mr-2"></i> {{$customer->address}} - {{$customer->city}}
+									{{$customer->civility ?? ''}} {{$customer->name ?? ''}} {{$customer->lastname ?? ''}} <br>
+									<i class="fas fa-phone mr-2"></i>{{$customer->phone ?? ''}} <i class="fas fa-envelope mr-2 ml-4"></i> {{$customer->email}} <br>
+									<i class="fas fa-map-marker mr-2"></i> {{$customer->address ?? ''}} - {{$customer->city ?? ''}}
 								</div>
 							</div>
 
 								<div class="col-xs-12 col-sm-12 col-md-4">
 									<div class="form-group">
 										<strong>Adresse du chantier:</strong>
-										<input type="text"   name="delivery_address" id="delivery_address" class="form-control" placeholder="Adresse" value="{{$quote->delivery_address ?? $customer->delivery_address}}" style="max-width:400px">
+										<input type="text"   name="delivery_address" id="delivery_address" class="form-control" placeholder="Adresse" value="{{$quote->delivery_address ?? $customer->delivery_address ?? ''}}" style="max-width:400px">
 									</div>
 								</div>
 
 								<div class="col-xs-12 col-sm-12 col-md-3">
 									<div class="form-group">
 										<strong>Ville:</strong>
-										<input type="text" name="delivery_city" id="delivery_city" class="form-control" placeholder="Ville" value="{{$quote->delivery_city ?? $customer->delivery_city}}" style="max-width:300px">
+										<input type="text" name="delivery_city" id="delivery_city" class="form-control" placeholder="Ville" value="{{$quote->delivery_city ?? $customer->delivery_city ?? ''}}" style="max-width:300px">
 									</div>
 								</div>
 								<div class="col-xs-12 col-sm-12 col-md-3">
@@ -159,7 +159,7 @@
 										<select type="text" name="delivery_country" id="delivery_country" class="form-control"  >
 											<option></option>
 											@foreach($countries as $key =>$value)
-												@php $country= $quote->delivery_country!='' ? $quote->delivery_country : $customer->delivery_country ; @endphp
+												@php $country= $quote->delivery_country!='' ? $quote->delivery_country : $customer->delivery_country  ?? ''; @endphp
 												<option value="{{$value}}"   @if($value== $country) selected="selected"  selected="selected" @endif >{{$value}}</option>
 											@endforeach
 										</select>
@@ -169,7 +169,7 @@
 								<div class="col-xs-12 col-sm-12 col-md-2">
 									<div class="form-group">
 										<strong>Code postal:</strong>
-										<input type="text" name="delivery_postal" id="delivery_postal"  class="form-control" placeholder="Code postal" value="{{$quote->delivery_postal ?? $customer->delivery_postal}}">
+										<input type="text" name="delivery_postal" id="delivery_postal"  class="form-control" placeholder="Code postal" value="{{$quote->delivery_postal ?? $customer->delivery_postal ?? ''}}">
 									</div>
 								</div>
 

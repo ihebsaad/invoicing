@@ -213,11 +213,11 @@ class ModelesController extends Controller
             //    $prix=$prix*1.1;
 
                 if($groupe_couleur==1){
-                    $prix=$prix*1.15;
+                    $prix=$prix+200;
                 }elseif($groupe_couleur==2){
-                    $prix=$prix*1.16;
+                    $prix=$prix+200;
                 }elseif($groupe_couleur==3){
-                    $prix=$prix*1.4;
+                    $prix=$prix+300;
                 }
 
             }
@@ -225,11 +225,11 @@ class ModelesController extends Controller
             //    $prix=$prix*1.2;
 
                 if($groupe_couleur==1){
-                    $prix=$prix*1.26;
+                    $prix=$prix+360;
                 }elseif($groupe_couleur==2){
-                    $prix=$prix*1.3;
+                    $prix=$prix+360;
                 }elseif($groupe_couleur==3){
-                    $prix=$prix*1.42;
+                    $prix=$prix+550;
                 }
 
             }
