@@ -71,7 +71,7 @@
 			background-color:transparent;
 		}
 		.numbers{
-			max-width:80px!important;
+			max-width:100px!important;
 		}
 		.bg-transparent{
 			background-color:transparent;
@@ -339,13 +339,13 @@
 							</div>
 							<div class="col-md-6">
 								<table class="totals">
-									<tr><td colspan="2">Total HT</td><td><input id="total_ht" type="number"  class="number numbers bg-transparent" readonly  value="{{$quote->total_ht ?? 0}}"/> €</td></tr>
-									<tr><td colspan="2">Total TVA</td><td><input id="total_tva" type="number"  class="number numbers bg-transparent"  readonly  value="{{$quote->total_tva ?? 0}}"/> €</td></tr>
-									<tr><td colspan="2">TOTAL TTC</td><td><input id="total_ttc" type="number" readonly  class="number numbers bg-transparent" value="{{number_format(ceil($quote->ttc),2,'.','') ?? 0}}" /> €</td></tr>
+									<tr><td colspan="2">Total HT</td><td><input id="total_ht" type="number"  class="number numbers bg-transparent" readonly  value="{{number_format($quote->total_ht,2,'.','') ?? 0}}"/> €</td></tr>
+									<tr><td colspan="2">Total TVA</td><td><input id="total_tva" type="number"  class="number numbers bg-transparent"  readonly  value="{{number_format($quote->total_tva,2,'.','') ?? 0}}"/> €</td></tr>
+									<tr><td colspan="2">TOTAL TTC</td><td><input id="total_ttc" type="number" readonly  class="number numbers bg-transparent" value="{{number_format($quote->ttc,2,'.','') ?? 0}}" /> €</td></tr>
 									<tr><td colspan="2" style="color:#f07f32">Remise</td><td><input id="remise2" type="number" readonly  class="number numbers bg-transparent" value="{{$quote->total_remise ?? 0}}" /> €</td></tr>
 									<tr><td colspan="2" style="color:#f07f32">Acompte</td><td><input id="acompte2" type="number" readonly  class="number numbers bg-transparent" value="{{$quote->acompte ?? 0}}" /> €</td></tr>
-									<tr><td colspan="2" style="color:#f07f32">Aide éligible</td><td><input id="aide2" type="number" readonly  class="number numbers bg-transparent" value="{{number_format(ceil($quote->aide),2,'.','') ?? 0}}" /> €</td></tr>
-									<tr><td colspan="2">Net à payer</td><td><input id="net" type="number" readonly  class="number numbers bg-transparent" value="{{number_format(ceil($quote->net),2,'.','') ?? 0}}" /> €</td></tr>
+									<tr><td colspan="2" style="color:#f07f32">Aide éligible</td><td><input id="aide2" type="number" readonly  class="number numbers bg-transparent" value="{{number_format($quote->aide,2,'.','') ?? 0}}" /> €</td></tr>
+									<tr><td colspan="2">Net à payer</td><td><input id="net" type="number" readonly  class="number numbers bg-transparent" value="{{number_format($quote->net,2,'.','') ?? 0}}" /> €</td></tr>
 								</table>
 							</div>
 						</div>
@@ -1052,18 +1052,18 @@
 
 		var remise = total_remise / (1+(tva_remise*0.01));
 		$('#remise').val(remise.toFixed(2));
-
-		$("#total_ht").val(total_ht-remise    + loi);
+		var val_total_ht=total_ht-remise    + loi;
+		$("#total_ht").val(val_total_ht.toFixed(2));
 		total_tva = total_ttc-total_ht - (remise*tva_remise*0.01)    + tva_loi ;
-	    $('#total_tva').val(total_tva);
+	    $('#total_tva').val(total_tva.toFixed(2));
 		total_ttc=total_ttc-total_remise   +total_loi;
-		$('#total_ttc').val(total_ttc);
+		$('#total_ttc').val(total_ttc.toFixed(2));
 
 		var aide=parseFloat($('#aide').val()) || 0;
 		var acompte=parseFloat($('#acompte').val()) || 0;
 
  		var net=parseFloat(total_ttc - aide  - acompte);
-		$('#net').val(net);
+		$('#net').val(net.toFixed(2));
 		update_totals();
 	}
 

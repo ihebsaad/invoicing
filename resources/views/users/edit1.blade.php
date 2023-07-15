@@ -19,15 +19,15 @@
             </div>
         </div>
     </div>
-   
-  
+
+
     <div class="row">
 		<div class="col-lg-7">
 
 			<form action="{{ route('users.update',$user->id) }}" method="POST">
 				@csrf
 				@method('PUT')
-		   
+
 				 <div class="row">
 					<div class="col-xs-12 col-sm-6 col-md-6">
 						<div class="form-group">
@@ -41,13 +41,18 @@
 							<input type="text" name="name" value="{{ $user->name }}" class="form-control" placeholder="name">
 						</div>
 					</div>
-							
+					<div class="col-xs-12 col-sm-6 col-md-6">
+						<div class="form-group">
+							<strong>Email:</strong>
+							<input type="email" name="email" value="{{ $user->email }}" class="form-control" placeholder="Email">
+						</div>
+					</div>
 
 					<div class="col-xs-12 col-sm-12 col-md-12 text-center ">
 					  <button type="submit" class="btn btn-primary float-right mb-3">Enregistrer</button>
 					</div>
 				</div>
-		   
+
 			</form>
 		</div>
 
@@ -70,7 +75,7 @@
 
 
 
-<!--  https://www.webslesson.info/2018/07/dropzonejs-with-php-for-upload-file.html--> 
+<!--  https://www.webslesson.info/2018/07/dropzonejs-with-php-for-upload-file.html-->
 
 @section('footer-scripts')
 <script src="{{ asset('js/dropzone.js') }}" ></script>
@@ -83,25 +88,25 @@
   dictDefaultMessage: 'Glissez votre image ici',
 
   init: function(){
- 
+
    this.on("complete", function(){
   /*  if(this.getQueuedFiles().length == 0 && this.getUploadingFiles().length == 0)
     {
      var _this = this;
      _this.removeAllFiles();
     }*/
-  //  list_image(); 
+  //  list_image();
 	$('#img').hide();
  });
   },
  };
- 
+
   $(function () {
     // Summernote
     $('.summernote').summernote()
   });
-  
+
 </script>
- 
+
 @endsection
 
