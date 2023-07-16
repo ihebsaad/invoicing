@@ -45,9 +45,9 @@
         @endphp
 		<tr>
             <td>{!! sprintf('%04d',$customer->id) !!}</td>
-            <td>{{$customer->civility}} {{ $customer->name }} {{ $customer->lastname }}</td>
-            <td>{{ $customer->phone }}</td>
-            <td>{{ $customer->address }} - {{ $customer->city }} </td>
+            <td>{{$customer->company ?? ''}} {{$customer->civility ?? ''}} {{ $customer->name ?? '' }} {{ $customer->lastname ?? '' }}</td>
+            <td>{{ $customer->phone ?? ''}}</td>
+            <td>{{ $customer->address ?? ''}} - {{ $customer->city ?? '' }} </td>
             <td>{{$agent}}</td>
             <td>
 			    <a class="btn btn-primary mb-3" href="{{ route('customers.edit',$customer->id) }}" style="float:left" title="Modifier"><i class="fas fa-edit"></i></a>

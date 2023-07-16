@@ -29,7 +29,7 @@ class Customer extends Model
         'delivery_postal',
         'delivery_country',
         'commercial',
-
+        'company'
     ];
 
 }

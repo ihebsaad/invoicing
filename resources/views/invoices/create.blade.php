@@ -202,6 +202,16 @@
                             </div>
                         </div>
                     </div>
+
+                    <div class="row ">
+                        <div class="col-xs-12 col-sm-12 col-md-6">
+                            <div class="form-group">
+                                <strong>Société:</strong>
+                                <input type="text" name="company" class="form-control" placeholder="Company" value="{{old('company')}}">
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="row ">
                         <div class="col-xs-12 col-sm-12 col-md-6">
                             <div class="form-group">

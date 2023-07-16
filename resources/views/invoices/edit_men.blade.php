@@ -131,7 +131,7 @@
 								<div class="form-group">
 									<i class="fas fa-address-card"></i>
 									<?php $customer= \App\Models\Customer::find($invoice->customer);?>
-									{{$customer->civility ?? ''}} {{$customer->name ?? ''}} {{$customer->lastname ?? ''}} <br>
+									{{$customer->company ?? ''}} {{$customer->civility ?? ''}} {{$customer->name ?? ''}} {{$customer->lastname ?? ''}} <br>
 									<i class="fas fa-phone mr-2"></i>{{$customer->phone ?? ''}} <i class="fas fa-envelope mr-2 ml-4"></i> {{$customer->email ?? ''}} <br>
 									<i class="fas fa-map-marker mr-2"></i> {{$customer->address ?? ''}} - {{$customer->city ?? ''}}
 								</div>
@@ -539,7 +539,7 @@
 							<input type="hidden" id="article" value="0"/>
 							<select  name="genre" required class="form-control" id="genre"   onchange="pricing(0)">
 								<option></option>
-								<option   selected="selected"   value="1">PVC</option>
+								<option    value="1">PVC</option>
 								<option    value="2">Aluminium</option>
 							</select>
 						</div>
@@ -932,6 +932,24 @@
 <script src="{{ asset('plugins/summernote/summernote-bs4.min.js') }}" ></script>
 
 <script>
+	$(document).ready(function() {
+		// Écouteur d'événement pour le changement de valeur dans le menu déroulant `genre`
+		$('#genre').on('change', function() {
+			var selectedGenre = $(this).val();
+
+			// Vérifiez si la valeur sélectionnée est égale à 1 (PVC)
+			if (selectedGenre == 1) {
+			// Cacher les options 8, 9 et 10 dans le menu déroulant `type`
+			$('#type option[value="8"]').hide();
+			$('#type option[value="9"]').hide();
+			$('#type option[value="10"]').hide();
+			} else {
+			// Afficher toutes les options dans le menu déroulant `type`
+			$('#type option').show();
+			}
+		});
+	});
+
   	$(function () {
     // Summernote
     $('.summernote').summernote();

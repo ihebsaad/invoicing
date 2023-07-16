@@ -76,7 +76,14 @@
 
 
         </div>
-
+        <div class="row pl-3">
+            <div class="col-xs-12 col-sm-12 col-md-4">
+                <div class="form-group">
+                    <strong>Société:</strong>
+                    <input type="text" name="company" class="form-control" placeholder="Nom de la société" value="{{$customer->company}}">
+                </div>
+            </div>
+        </div>
         <div class="row pl-3">
             <div class="col-xs-12 col-sm-12 col-md-4">
                 <div class="form-group">

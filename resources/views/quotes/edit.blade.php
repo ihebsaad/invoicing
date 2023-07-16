@@ -134,7 +134,7 @@
 								<div class="form-group">
 									<i class="fas fa-address-card"></i>
 									<?php $customer= \App\Models\Customer::find($quote->customer);?>
-									{{$customer->civility ?? ''}} {{$customer->name ?? ''}} {{$customer->lastname ?? ''}} <br>
+									{{$customer->company ?? ''}} {{$customer->civility ?? ''}} {{$customer->name ?? ''}} {{$customer->lastname ?? ''}} <br>
 									<i class="fas fa-phone mr-2"></i>{{$customer->phone ?? ''}} <i class="fas fa-envelope mr-2 ml-4"></i> {{$customer->email ?? ''}} <br>
 									<i class="fas fa-map-marker mr-2"></i> {{$customer->address ?? ''}} - {{$customer->city ?? ''}}
 								</div>
