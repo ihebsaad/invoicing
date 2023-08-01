@@ -123,11 +123,7 @@
 						</tr>
 					@endforeach
 				</tr>
-				@if($quote->type_aide!='')
-				<!--<tr class="product" style="color:#f07f32">
-					<td>{{$quote->type_aide}}</td><td>- {{$quote->aide}}  €</td><td>1</td><td></td><td>- {{$quote->aide}}  €</td>
-				</tr>	-->
-				@endif
+
 				@if($quote->remise>0)
 					<tr class="product" style="color:#f07f32">
 						<td>Remise</td><td> {{$quote->remise}}  €</td><td style="text-align:center">1</td><td> {{$quote->total_remise ?? '5.5'}} %</td><td>{{$quote->total_remise}} €</td>
@@ -150,9 +146,6 @@
 				<tr><td colspan="2">Sous Total</td><td>{{$quote->total_ht}} €</td></tr>
 				<tr><td colspan="2">Total TVA</td><td>{{$quote->total_tva}} €</td></tr>
 				<tr><td colspan="2">Total TTC</td><td>{{$quote->total_ttc}} €</td></tr>
-				@if($quote->aide>0)
-				<tr style="color:#f07f32"><td colspan="2" style=";font-size:9px;max-width:90px;">Montant Estimatif<br>{{$quote->type_aide}}</td><td>  {{$quote->aide}} €</td></tr>
-				@endif
 				<tr><td colspan="2">Net à payer</td><td>{{intval($quote->net)}} €</td></tr>
 				</table>
 			</div>

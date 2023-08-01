@@ -181,7 +181,8 @@ class QuotesController extends Controller
         $remise=$request->get('remise');
         $quote=$request->get('quote');
         $aide=$request->get('aide');
-        $type_aide=$request->get('type_aide');
+        $aide_renov=$request->get('aide_renov');
+        $aide_cee=$request->get('aide_cee');
         $net=$request->get('net');
         $acompte=$request->get('acompte');
         $tva_remise=$request->get('tva_remise');
@@ -196,7 +197,8 @@ class QuotesController extends Controller
                 'total_ttc'=>$total_ttc,
                 'total_remise'=>$total_remise,
                 'aide'=>$aide,
-                'type_aide'=>$type_aide,
+                'aide_renov'=>$aide_renov,
+                'aide_cee'=>$aide_cee,
                 'net'=>$net,
                 'acompte'=>$acompte,
                 'tva_remise'=>$tva_remise,
@@ -296,7 +298,8 @@ class QuotesController extends Controller
             'tva_remise'=>$quote->tva_remise,
             'total_ht'=>$quote->total_ht,
             'total_ttc'=>$quote->total_ttc,
-            'type_aide'=>$quote->type_aide,
+            'aide_cee'=>$quote->aide_cee,
+            'aide_renov'=>$quote->aide_renov,
             'aide'=>$quote->aide,
             'montant_finance'=>$quote->montant_finance,
             'report_echeance'=>$quote->report_echeance,

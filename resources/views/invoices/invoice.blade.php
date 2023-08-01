@@ -238,7 +238,7 @@
 
 	   <div style="width:100%;page-break-inside: avoid;">
 		   <div style="width:67%;float:left;font-size:9px">
-		   		@if(trim($invoice->type_aide)=='Prime CEE')
+		   		@if($invoice->aide_cee>0)
 			   		<div style="font-size:11px">Tout ou partie des travaux relatifs à ce devis ou bon de commande sont éligibles à une prime d'un montant de {{number_format($invoice->aide,0,',',' ')}} euros dont EDF (SIREN 552 081 317) est à l'origine dans le cadre du dispositif des Certificats d'Economies d'Energie. Le montant de cette prime ne pourra être révisé à la baisse qu'en cas de modification du volume de Certificats d'Economies d'Energie attaché à l'opération ou aux opérations d'économies d'énergie ou de la situation de précarité énergétique et ce, de manière proportionnelle. Dans le cadre de la réglementation un contrôle qualité des travaux sur site ou par contact pourra être demandé. Un refus de ce contrôle sur site ou par contact via EDF ou un prestataire d'EDF conduira au refus de cette prime par EDF.</div><br>
 			   	@endif
 			   {!!nl2br($invoice->description) !!}
@@ -255,10 +255,11 @@
 			   <tr><td colspan="2">Total TVA</td><td class="text-right">{{number_format($invoice->total_tva,2,',',' ')}} €</td></tr>
 			   <tr><td colspan="2">Total TTC</td><td class="text-right">{{number_format($invoice->total_ttc,2,',',' ')}} €</td></tr>
 			   @if($invoice->aide>0)
-			   		@if(trim($invoice->type_aide)=='Prime CEE')
-			   			<tr style="color:#f07f32"><td colspan="2" style=";font-size:9px;max-width:90px;">- Prime CEE EDF<br><small>  Siren EDF 552 081 317</small></td><td class="text-right">- {{number_format($invoice->aide,2,',',' ')}} €</td></tr>
-			   		@else
-						<tr style="color:#f07f32"><td colspan="2" style=";font-size:9px;max-width:90px;">- Montant Estimatif<br>{{$invoice->type_aide}}</td><td class="text-right">- {{number_format($invoice->aide,2,',',' ')}} €</td></tr>
+			   		@if($invoice->aide_cee>0)
+			   			<tr style="color:#f07f32"><td colspan="2" style=";font-size:9px;max-width:90px;">- Prime CEE EDF<br><small>  Siren EDF 552 081 317</small></td><td class="text-right">- {{number_format($invoice->aide_cee,2,',',' ')}} €</td></tr>
+			   		@endif
+			   		@if($invoice->aide_renov>0)
+						<tr style="color:#f07f32"><td colspan="2" style=";font-size:9px;max-width:90px;">- Montant Estimatif<br>Prime Renov</td><td class="text-right">- {{number_format($invoice->aide_renov,2,',',' ')}} €</td></tr>
 			   		@endif
 			   @endif
 			   @if($invoice->acompte>0)

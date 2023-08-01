@@ -287,16 +287,25 @@
 									<tr>
 										<td >
 											<div class="form-group">
-												<select class="form-control" style="max-width:200px" name="type_aide" id="type_aide" onchange="calcul();" >
-													<option></option>
-													<option @if($invoice->type_aide=='Ma Prime Renov') selected="selected" @endif value="Ma Prime Renov">Ma Prime Renov</option>
-													<option @if($invoice->type_aide=='Prime CEE') selected="selected" @endif value="Prime CEE">Prime CEE</option>
-												</select>
+												Ma Prime Renov
 											</div>
 										</td>
 										<td style="padding-right:0">
 											<div class="form-group">
-												<input type="number" class="form-control" style="max-width:100px" min="0" value="{{$invoice->aide ?? 0}}" id="aide" onchange="calcul();$('#aide2').val($(this).val())"/>
+												<input type="number" class="form-control" style="max-width:100px" min="0" value="{{$invoice->aide_renov ?? 0}}" id="aide_renov" onchange="$('#aide2').val(parseFloat($(this).val())+parseFloat($('#aide_cee').val()));calcul();"/>
+											</div>
+										</td>
+										<td style="">€</td>
+									</tr>
+									<tr>
+										<td >
+											<div class="form-group">
+												Prime CEE
+											</div>
+										</td>
+										<td style="padding-right:0">
+											<div class="form-group">
+												<input type="number" class="form-control" style="max-width:100px" min="0" value="{{$invoice->aide_cee ?? 0}}" id="aide_cee" onchange="$('#aide2').val(parseFloat($(this).val())+parseFloat($('#aide_renov').val()));calcul();"/>
 											</div>
 										</td>
 										<td style="">€</td>
@@ -563,7 +572,7 @@
 		}
 	*/
 	    //$('#total_ttc').val(total_ttc);
-		var aide=parseFloat($('#aide').val()) || 0;
+		var aide=parseFloat($('#aide2').val()) || 0;
 		var acompte=parseFloat($('#acompte').val()) || 0;
 
  		var net=parseFloat(total_ttc - aide  - acompte);
@@ -715,8 +724,9 @@ function delete_item(item){
 	var total_remise=	$('#total_remise').val();
 	var tva_remise=	$('#tva_remise').val();
 	var remise= $('#remise').val();
-	var aide=	$('#aide').val();
-	var type_aide=	$('#type_aide').val();
+	var aide=	$('#aide2').val();
+	var aide_renov=	$('#aide_renov').val();
+	var aide_cee=	$('#aide_cee').val();
 	var acompte=	$('#acompte').val();
 	var net=	$('#net').val();
 
@@ -724,7 +734,7 @@ function delete_item(item){
 	$.ajax({
 		url: "{{ route('invoices.update_totals') }}",
 		method: "POST",
-		data: {total_ht:total_ht,total_tva:total_tva,total_ttc:total_ttc,total_remise:total_remise,remise:remise,invoice:invoice,aide:aide,type_aide:type_aide,net:net,acompte:acompte,tva_remise:tva_remise, _token:_token},
+		data: {total_ht:total_ht,total_tva:total_tva,total_ttc:total_ttc,total_remise:total_remise,remise:remise,invoice:invoice,aide:aide,aide_renov:aide_renov,aide_cee:aide_cee,net:net,acompte:acompte,tva_remise:tva_remise, _token:_token},
 		success: function (data) {
 			console.log('totals updated');
 			init();

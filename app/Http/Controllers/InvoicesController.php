@@ -284,7 +284,8 @@ class InvoicesController extends Controller
         $remise=$request->get('remise');
         $invoice=$request->get('invoice');
         $aide=$request->get('aide');
-        $type_aide=$request->get('type_aide');
+        $aide_renov=$request->get('aide_renov');
+        $aide_cee=$request->get('aide_cee');
         $net=$request->get('net');
         $acompte=$request->get('acompte');
         $tva_remise=$request->get('tva_remise');
@@ -299,7 +300,8 @@ class InvoicesController extends Controller
                 'total_ttc'=>$total_ttc,
                 'total_remise'=>$total_remise,
                 'aide'=>$aide,
-                'type_aide'=>$type_aide,
+                'aide_renov'=>$aide_renov,
+                'aide_cee'=>$aide_cee,
                 'net'=>$net,
                 'acompte'=>$acompte,
                 'tva_remise'=>$tva_remise,
