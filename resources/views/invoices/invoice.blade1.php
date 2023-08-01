@@ -22,21 +22,17 @@
     }
 
     </script>
-   <style>
+   <style>/*
 	   @font-face {
 		   font-family: 'Nunito';
-	   }/*
-	   .vtop{
-			vertical-align:top;
-		}*/
+	   }*/
 	   .text-right{
 			text-align:right;
 	   }
 		.body{
-			/*font-family:'Nunito';*/
+		/*	font-family:'Nunito';*/
 			padding:0px 10px 0px 10px;
 			color:#0e334f;
-			font-weight:normal;
 		}
 		.container{
 			font-size:11px;
@@ -62,15 +58,15 @@
 
 	   }
 	   .text{
-		   font-size:9px!important;
-		   font-weight:normal!important;
-		   text-align:left!important;
-			font-family:halvetica,sans-serif!important;
+			font-size:9px!important;
+			/*font-weight:normal!important;*/
+			text-align:left!important;
+			/*font-family:halvetica,sans-serif!important;*/
 	   }
 	   .totals{
 		   float:right;
 		   width:180px;
-		   font-weight:bold;
+		/*   font-weight:bold;*/
 		   background-color:#f6f6f6;
 		   border:1px solid #f07f32;
 		   /*page-break-after: always; */
@@ -166,25 +162,25 @@
 	   <table style="width:100%;">
 		   <tr>
 			   <td style="width:50%;">
-				   <span><b>SARL GROUPE H.E.R ENR</b></span><br>
+				   <span>SARL GROUPE H.E.R ENR</span><br>
 				   <span>11 RUE KARL MARX</span><br>
 				   <span>82000 MONTAUBAN</span><br>
-				   <span><b>Tél :</b> 09.77.59.57.42</span>  <span><b>Email :</b> contact@groupe-her.com</span><br><br>
+				   <span>Tél :  09.77.59.57.42</span>  <span>Email : contact@groupe-her.com</span><br><br>
 				   <div style="font-size:9px">
 				   		SARL au capital de 50 000 euros<br>
 	   					SIRET 851 566 455 00032  - R.C.S MONTAUBAN - NAF 3511Z<br>
 	   					TVA intracommunautaire : FR95851566455<br>
 					</div><br>
-					<b>Adresse du chantier:</b><br>
+					Adresse du chantier:<br>
 				   <span>{{ $invoice->delivery_address ?? $invoice->customer()->first()->delivery_address  ?? '' }}</span><br>
 				   @if($invoice->delivery_postal!='')<span>{{ $invoice->delivery_postal ?? $invoice->customer()->first()->delivery_postal }}, {{ $invoice->delivery_city ?? $invoice->customer()->first()->delivery_city }} - {{ $invoice->delivery_country ?? $invoice->customer()->first()->delivery_country }}</span><br>@endif
 			   </td>
 			   <td style="width:50%;">
-				   <b>Client:</b> {{ $invoice->customer()->first()->company  ?? '' }} {{ $invoice->customer()->first()->civility  ?? '' }} {{ $invoice->customer()->first()->lastname  ?? '' }} {{ $invoice->customer()->first()->name  ?? '' }} <br>
+				   Client: {{ $invoice->customer()->first()->company  ?? '' }} {{ $invoice->customer()->first()->civility  ?? '' }} {{ $invoice->customer()->first()->lastname  ?? '' }} {{ $invoice->customer()->first()->name  ?? '' }} <br>
 				   @if(isset($invoice->customer()->first()->lastname2))<span style="margin-left:35px">{{ $invoice->customer()->first()->civility2  ?? '' }} {{ $invoice->customer()->first()->lastname2  ?? '' }} {{ $invoice->customer()->first()->name2  ?? '' }}</span><br>@endif
-				   <b>Adresse:</b> <span>{{ $invoice->customer()->first()->address  ?? '' }}</span><br>
+				   Adresse: <span>{{ $invoice->customer()->first()->address  ?? '' }}</span><br>
 				   @if(isset($invoice->customer()->first()->postal)) <span>{{ $invoice->customer()->first()->postal  ?? ''}}, {{ $invoice->customer()->first()->city  ?? '' }} - {{ $invoice->customer()->first()->country  ?? ''}}</span><br>@endif
-				   <span>@if( isset($invoice->customer()->first()->phone))<b>Tél :</b> {{ $invoice->customer()->first()->phone }}    @endif @if( isset($invoice->customer()->first()->email)) <b>Email:</b> {{ $invoice->customer()->first()->email }} @endif</span>
+				   <span>@if( isset($invoice->customer()->first()->phone)) Tél :  {{ $invoice->customer()->first()->phone }}    @endif @if( isset($invoice->customer()->first()->email))  Email:  {{ $invoice->customer()->first()->email }} @endif</span>
 				   <br>
 			   </td>
 		   </tr>
@@ -192,12 +188,12 @@
 	   <table style="width:100%;margin-top:5px;margin-bottom:5px">
 		   <tr>
 			   <td style="width:50%;">
-				   @if( $invoice->logement!='')<b>Logement :</b>{{ $invoice->logement }}    @endif  @if($invoice->surface!='')<b>Surface @if($invoice->menuiserie==-7)à isoler @else chauffée @endif (m²) :</b>   {{ $invoice->surface }}<br>@endif
-				   <b>Date de visite technique préalable :</b>   {{ $date_facture }}
+				   @if( $invoice->logement!='') Logement : {{ $invoice->logement }}    @endif  @if($invoice->surface!='') Surface @if($invoice->menuiserie==-7)à isoler @else chauffée @endif (m²) :    {{ $invoice->surface }}<br>@endif
+				    Date de visite technique préalable :    {{ $date_facture }}
 			   </td>
 			   <td style="width:50%;">
-				   <b style="font-size:22px;color:#f07f32">{{$type}} N° : {{ $reference }} </b><br>
-				   Créé le : <b>{{date('d/m/Y', strtotime($invoice->created_at))}}</b>    Conseiller: <b>{{$par}}</b>
+				   <span style="font-size:22px;color:#f07f32">{{$type}} N° : {{ $reference }} </span> <br>
+				   Créé le :  {{date('d/m/Y', strtotime($invoice->created_at))}}     Conseiller:  {{$par}}
 			   </td>
 		   </tr>
 	   </table>
@@ -218,11 +214,11 @@
 						   $total_prod_ttc=floatval($product->prix) * intval($item->qty);
 					   @endphp
 					   <tr class="product"  >
-						   <td class="text" ><b>{{$product->name}}<br>{!! nl2br($product->description) !!}</b></td><td>{{$item->qty}}</td><td>{{$product->prix_ht}} €</td><td>{{$total_prod_ht}} €</td><td>{{$item->tva}} %</td><td>{{$total_prod_ttc}} €</td>
+						   <td class="text" > {{$product->name}}<br>{!! nl2br($product->description) !!} </td><td>{{$item->qty}}</td><td>{{$product->prix_ht}} €</td><td>{{$total_prod_ht}} €</td><td>{{$item->tva}} %</td><td>{{$total_prod_ttc}} €</td>
 					   </tr>
 					   @if($product->pose > 0)
 						   <tr class="product"  >
-							   <td class="text" ><i>Pose {{$product->name}}</i></td><td>{{$item->qty}}</td><td>{{$product->pose}} €</td><td>{{$product->pose}} €</td><td>{{$product->tva_pose}} %</td><td>{{$product->pose_ttc}} €</td>
+							   <td class="text" >Pose {{$product->name}}</td><td>{{$item->qty}}</td><td>{{$product->pose}} €</td><td>{{$product->pose}} €</td><td>{{$product->tva_pose}} %</td><td>{{$product->pose_ttc}} €</td>
 						   </tr>
 					   @endif
 				   @endforeach
@@ -244,10 +240,10 @@
 			   {!!nl2br($invoice->description) !!}
 			   <div class="clearfix"></div>
 			   @if($invoice->chaudiere!='' && $invoice->chaudiere!='Autre')
-				   Dépose de la chaudière individuelle: <b> Chaudière à {{$invoice->chaudiere}}</b><br>
+				   Dépose de la chaudière individuelle:   Chaudière à {{$invoice->chaudiere}} <br>
 			   @endif
-				<b>Délai de Livraison : 30 jours</b><br>
-				<b>Durée de validité du devis : 15 jours</b>
+				 Délai de Livraison : 30 jours <br>
+				 Durée de validité du devis : 15 jours
 		   </div>
 		   <div style="width:33%;float:left;">
 			   <table class="totals">
@@ -272,7 +268,7 @@
 	   <div style="width:100%;page-break-inside: avoid;">
 		   <div style="width:55%;float:left;font-size:9px;padding-top:10px">
 			   @if($invoice->modalite!='')
-				   <b>Règlement par :</b> {{ $invoice->modalite }}
+				    Règlement par :  {{ $invoice->modalite }}
 
 				   @if(str_contains($invoice->modalite, 'Financement') )
 					   <table class="financement">
@@ -300,7 +296,7 @@
 				   @endif
 			   @endif
 		   </div>
-		   <div style="width:45%;float:left;font-weight:bold;padding-top:15px">
+		   <div style="width:45%;float:left;;padding-top:15px">
 			   <table style="width:100%;font-size:10px">
 				   <tr rowspan="2"><td>Fait à</td><td></td><td>Le</td><td></td></tr>
 				   <tr><td colspan="4"> J'ai lu et j'accepte les Conditions Générales de Ventes</td></tr>
@@ -318,7 +314,7 @@
 
 <!--page conditions de ventes--->
 <div class="pagebreak"></div>
-<div class="text-center"><B style="font-size:16px"> Conditions Générales de vente</b></div>
+<div class="text-center"><span style="font-size:16px"> Conditions Générales de vente </span></div>
 <div class="conditions">
 Article 1 : EXPEDITION LIVRAISON. Les dates d'expédition et délais de livraison sont donnés à titre indicatif et ne sauraient engager GROUPE HER ENR qui, toutefois, s’efforcera de les
 respecter selon les possibilités de stock et de distribution, En conséquence, un retard d'expédition ou de livraison ne peut être prétexte à résiliation de commande ni à dommages et intérêts, en cas de refus de
@@ -386,7 +382,7 @@ de la Vente Directe (www.mediationvente-directe.fr) 100, av. de Président Kenne
 ARTICLE 11 : CLAUSE SUSPENSIVE<br>
 Tout devis réalisé par un conseiller lors d’un rendez-vous est soumis à validation technique. Seule la validation du technicien permet de valider définitivement le devis. Dans le cas où le métrage, l’étude de
 dimensionnement ou la faisabilité technique ferait apparaitre une différence notable entre les deux cotations, le GROUPE H.E.R ENR se réserve le droit de rendre le devis réalisé nul et non avenu.<br>
-<div class="text-center"><b >EXTRAIT DU CODE DE LA CONSOMMATION</b></div><br>
+<div class="text-center"><span >EXTRAIT DU CODE DE LA CONSOMMATION </span></div><br>
 Article L121-17- Préalablement à la conclusion d'un contrat de vente ou de fourniture de services, le professionnel communique au consommateur, de manière lisible et compréhensible, les informations suivantes :<br>
 1° Les informations prévues aux articles L. 111-l et L. 111-2;<br>
 -Les caractéristiques essentielles du bien ou du service, compte tenu du support de communication utilisé et du bien ou service concerné ;<br>
@@ -421,7 +417,7 @@ de la commande, ou si ce délai expire normalement un samedi, un dimanche, ou un
 <div class="formulaire">
 Je soussigné, déclare annuler la commande ci-après :<br>
 Nature de la marchandise et/ou du service commandé : ______________________________________________Date de la commande ________________________________<br>
-Nom du conseillé : ______________________________________________                   <b style="margin-left:80px;">Signature</b> <br>
+Nom du conseillé : ______________________________________________                   <span style="margin-left:80px;">Signature</span>  <br>
 Nom et Prénom du client : ________________________________________<br>
 Adresse du client : _____________________________________________
 
