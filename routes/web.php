@@ -24,7 +24,6 @@ use App\Http\Controllers\ModelesController;
 
 
 Route::resource('shops', ShopsController::class);
-Route::resource('products', ProductsController::class);
 Route::resource('categories', CategoriesController::class);
 Route::resource('users', UsersController::class);
 Route::resource('invoices', InvoicesController::class);
@@ -77,6 +76,11 @@ Route::get('/quotes/edit_men/{id}', [QuotesController::class, 'edit_men'])->name
 Route::post('/add_item',[ProductsController::class, 'add_item'])->name('add_item');
 Route::post('/delete_item',[ProductsController::class, 'delete_item'])->name('delete_item');
 Route::post('/save_item_qty',[ProductsController::class, 'save_item_qty'])->name('save_item_qty');
+Route::get('products/trashed', [ProductsController::class, 'trashed'])->name('products.trashed');
+Route::get('products/{id}/restore', [ProductsController::class, 'restore'])->name('products.restore');
+Route::get('products/{id}/force', [ProductsController::class, 'forceDelete'])->name('products.force');
+
+Route::resource('products', ProductsController::class);
 
 //modeles
 Route::post('/additem',[ModelesController::class, 'add_item'])->name('modeles.add_item');

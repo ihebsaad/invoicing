@@ -82,9 +82,15 @@
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="{{route('products.index')}}" class="nav-link {{ request()->is('products') || request()->is('products/*') ? 'active' : '' }}">
+                  <a href="{{route('products.index')}}" class="nav-link {{ request()->is('products.index')  ? 'active' : '' }}">
                   <i class="fas fa-cubes nav-icon text-secondary"></i>
                     <p>Produits</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="{{route('products.trashed')}}" class="nav-link {{ request()->is('products.trashed') || request()->is('products/trshed') ? 'active' : '' }}">
+                  <i class="fas fa-cubes nav-icon text-secondary"></i>
+                    <p>Produits en attente</p>
                   </a>
                 </li>
                 <li class="nav-item">

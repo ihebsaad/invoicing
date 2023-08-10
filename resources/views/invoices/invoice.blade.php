@@ -213,7 +213,7 @@
 			   <tr class="product " >
 				   @foreach($items as $item)
 					   @php
-						   $product=\App\Models\Product::find($item->product);
+						   $product=\App\Models\Product::withTrashed()->find($item->product);
 						   $total_prod_ht=floatval($product->prix_ht) * intval($item->qty);
 						   $total_prod_ttc=floatval($product->prix) * intval($item->qty);
 					   @endphp
@@ -246,7 +246,7 @@
 			   @if($invoice->chaudiere!='' && $invoice->chaudiere!='Autre')
 				   Dépose de la chaudière individuelle: <b> Chaudière à {{$invoice->chaudiere}}</b><br>
 			   @endif
-				<b>Délai de Livraison : 30 jours</b><br>
+				<b>Délai de Livraison : 90 jours</b><br>
 				<b>Durée de validité du devis : 15 jours</b>
 		   </div>
 		   <div style="width:33%;float:left;">

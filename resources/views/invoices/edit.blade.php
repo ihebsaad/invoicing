@@ -252,7 +252,7 @@
 									@php
 										$total_prod=0;
 										if(isset($product ) )
-										$product=\App\Models\Product::find($item->product);
+										$product=\App\Models\Product::withTrashed()->find($item->product);
 										$total_prod=floatval($product->prix) * intval($item->qty);
 										//$total_pose=floatval($product->pose) * floatval($product->tva_pose)*0.01 + floatval($product->pose) ;
 

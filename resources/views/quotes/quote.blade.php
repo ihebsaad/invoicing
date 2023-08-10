@@ -207,7 +207,7 @@
 			   <tr class="product " >
 				   @foreach($items as $item)
 					   @php
-						   $product=\App\Models\Product::find($item->product);
+						   $product=\App\Models\Product::withTrashed()->find($item->product);
 						   $total_prod_ht=floatval($product->prix_ht) * intval($item->qty);
 						   $total_prod_ttc=floatval($product->prix) * intval($item->qty);
 					   @endphp

@@ -263,7 +263,7 @@
 								@php $c=0;  @endphp
 								@foreach($items as $item)
 									@php
-										$product=\App\Models\Product::find($item->product);
+										$product=\App\Models\Product::withTrashed()->find($item->product);
 										$total_prod=0;
 										if(isset($product ) ){
 										$total_prod=floatval($product->prix) * intval($item->qty);

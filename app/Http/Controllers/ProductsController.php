@@ -30,6 +30,16 @@ class ProductsController extends Controller
         return view('products.index',compact('products'));
     }
 
+    public function trashed()
+    {
+        if (auth()->user()->user_type != 'admin')
+            return  redirect('/home');
+
+        $products = Product::onlyTrashed()->orderBy('id','desc')->get();
+
+        return view('products.trashed',compact('products'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -117,11 +127,26 @@ class ProductsController extends Controller
     public function destroy(Product $product)
     {
         $product->delete();
-
         return redirect()->route('products.index')
                         ->with('success','Produit supprimé avec succès');
     }
 
+    public function restore($id)
+    {
+        $product=Product::withTrashed()->find($id);
+        $product->restore();
+        return redirect()->route('products.trashed')
+                        ->with('success','Produit restauré avec succès');
+    }
+
+
+    public function forceDelete($id)
+    {
+        $product=Product::withTrashed()->find($id);
+        $product->forceDelete();
+        return redirect()->route('products.trashed')
+                        ->with('success','Produit restauré avec succès');
+    }
 
     public function add_item(Request $request)
     {
