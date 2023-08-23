@@ -70,7 +70,7 @@
 		<tr>
             <td>{!! sprintf('%04d',$modele->id) !!}</td>
             <td>{{ $matieres[$modele->genre] }}</td>
-            <td>{{ $types[$modele->type] }}</td>
+            <td>{{-- $types[$modele->type] --}}</td>
             <td style="font-size:14px">{{ $couleurs[$modele->couleur] }}</td>
             <td>{{ sprintf('%04d',$modele->hauteur) }}</td>
             <td>{{ sprintf('%04d',$modele->largeur) }}</td>
