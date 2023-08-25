@@ -130,7 +130,9 @@ class QuotesController extends Controller
         $portes = Porte::where('quote',$quote->id)->get();
         $volets = Volet::where('quote',$quote->id)->get();
         $countries=CustomersController::countries();
-        return view('quotes.edit_men',compact('quote','customers','articles','modeles','countries','doors','portes','volets','shutters'));
+        $items = Item::where('invoice',$quote->id)->get();
+
+        return view('quotes.edit_men',compact('quote','customers','articles','modeles','countries','doors','portes','volets','shutters','items'));
     }
 
     /**
@@ -223,10 +225,11 @@ class QuotesController extends Controller
         $articles = Article::where('quote',$id)->get();
         $portes = Porte::where('quote',$id)->get();
         $volets = Volet::where('quote',$id)->get();
+
         $count=count($items);
 
         if($invoice->menuiserie>0)
-            $pdf = PDF::loadView('invoices.invoice_men', compact('invoice','type','reference','date_facture','articles','par','count','portes','volets'));
+            $pdf = PDF::loadView('invoices.invoice_men', compact('invoice','type','reference','date_facture','articles','par','count','portes','volets','items'));
         else
             $pdf = PDF::loadView('invoices.invoice', compact('invoice','type','reference','date_facture','items','par','count','portes','volets'));
 
@@ -249,8 +252,9 @@ class QuotesController extends Controller
         $portes = Porte::where('quote',$id)->get();
         $volets = Porte::where('quote',$id)->get();
         $count=count($items);
+
         if($invoice->menuiserie>0)
-            $pdf = PDF::loadView('invoices.invoice_men', compact('invoice','type','reference','date_facture','articles','par','count','portes','volets'));
+            $pdf = PDF::loadView('invoices.invoice_men', compact('invoice','type','reference','date_facture','articles','par','count','portes','volets','items'));
         else
             $pdf = PDF::loadView('invoices.invoice', compact('invoice','type','reference','date_facture','items','par','count','portes','volets'));
 

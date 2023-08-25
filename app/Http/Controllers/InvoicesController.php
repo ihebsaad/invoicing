@@ -148,9 +148,10 @@ class InvoicesController extends Controller
         $doors = Door::all();
         $shutters = Shutter::all();
         $articles = Article::where('invoice',$invoice->id)->get();
+        $items = Item::where('invoice',$invoice->id)->get();
         $countries=CustomersController::countries();
 
-        return view('invoices.edit_men',compact('invoice','customers','modeles','articles','countries','doors','portes','shutters','volets'));
+        return view('invoices.edit_men',compact('invoice','customers','modeles','articles','countries','doors','portes','shutters','volets','items'));
     }
 
     /**
@@ -208,7 +209,7 @@ class InvoicesController extends Controller
 
         $count=count($items);
         if($invoice->menuiserie>0)
-            $pdf = PDF::loadView('invoices.invoice_men', compact('invoice','type','reference','date_facture','articles','par','count','portes','volets'));
+            $pdf = PDF::loadView('invoices.invoice_men', compact('invoice','type','reference','date_facture','articles','par','count','portes','volets','items'));
         else
             $pdf = PDF::loadView('invoices.invoice', compact('invoice','type','reference','date_facture','items','par','count','portes','volets'));
 
@@ -240,9 +241,10 @@ class InvoicesController extends Controller
         $articles = Article::where('invoice',$id)->get();
         $portes = Porte::where('invoice',$id)->get();
         $volets = Volet::where('invoice',$id)->get();
+
         $count=count($items);
         if($invoice->menuiserie>0)
-            $pdf = PDF::loadView('invoices.invoice_men', compact('invoice','type','reference','date_facture','articles','par','count','portes','volets'));
+            $pdf = PDF::loadView('invoices.invoice_men', compact('invoice','type','reference','date_facture','articles','par','count','portes','volets','items'));
         else
             $pdf = PDF::loadView('invoices.invoice', compact('invoice','type','reference','date_facture','items','par','count','portes','volets'));
 
@@ -266,7 +268,7 @@ class InvoicesController extends Controller
 
         $count=count($items);
         if($invoice->menuiserie>0)
-            $pdf = PDF::loadView('invoices.invoice_men', compact('invoice','type','reference','date_facture','articles','count','par','count','portes','volets'));
+            $pdf = PDF::loadView('invoices.invoice_men', compact('invoice','type','reference','date_facture','articles','count','par','count','portes','volets','items'));
         else
             $pdf = PDF::loadView('invoices.invoice', compact('invoice','type','reference','date_facture','items','count','par','count','portes','volets'));
 

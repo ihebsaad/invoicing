@@ -173,28 +173,28 @@
 	   </tr>
    </table>
    <div class="container">
-	   <table style="width:100%;">
+   		<table style="width:100%;">
 		   <tr>
 			   <td style="width:50%;">
 				   <span><b>SARL GROUPE H.E.R ENR</b></span><br>
 				   <span>11 RUE KARL MARX</span><br>
 				   <span>82000 MONTAUBAN</span><br>
 				   <span><b>Tél :</b> 09.77.59.57.42</span>  <span><b>Email :</b> contact@groupe-her.com</span><br><br>
-				 	<div style="font-size:9px">
+				   <div style="font-size:9px">
 				   		SARL au capital de 50 000 euros<br>
 	   					SIRET 851 566 455 00032  - R.C.S MONTAUBAN - NAF 3511Z<br>
 	   					TVA intracommunautaire : FR95851566455<br>
 					</div><br>
-				   <b>Adresse du chantier:</b><br>
-				   <span>{{ $invoice->delivery_address ?? $invoice->customer()->first()->delivery_address ?? '' }}</span><br>
-				   @if(isset($invoice->delivery_postal))<span>{{ $invoice->delivery_postal ?? $invoice->customer()->first()->delivery_postal }}, {{ $invoice->delivery_city ?? $invoice->customer()->first()->delivery_city }} - {{ $invoice->delivery_country ?? $invoice->customer()->first()->delivery_country }}</span><br>@endif
+					<b>Adresse du chantier:</b><br>
+				   <span>{{ $invoice->delivery_address ?? $invoice->customer()->first()->delivery_address  ?? '' }}</span><br>
+				   @if($invoice->delivery_postal!='')<span>{{ $invoice->delivery_postal ?? $invoice->customer()->first()->delivery_postal }}, {{ $invoice->delivery_city ?? $invoice->customer()->first()->delivery_city }} - {{ $invoice->delivery_country ?? $invoice->customer()->first()->delivery_country }}</span><br>@endif
 			   </td>
 			   <td style="width:50%;">
-				   <b>Client:</b> {{ $invoice->customer()->first()->company  ?? '' }} {{ $invoice->customer()->first()->civility ?? '' }} {{ $invoice->customer()->first()->lastname ?? '' }} {{ $invoice->customer()->first()->name ?? '' }} <br>
+				   <b>Client:</b> {{ $invoice->customer()->first()->company  ?? '' }} {{ $invoice->customer()->first()->civility  ?? '' }} {{ $invoice->customer()->first()->lastname  ?? '' }} {{ $invoice->customer()->first()->name  ?? '' }} <br>
 				   @if(isset($invoice->customer()->first()->lastname2))<span style="margin-left:35px">{{ $invoice->customer()->first()->civility2  ?? '' }} {{ $invoice->customer()->first()->lastname2  ?? '' }} {{ $invoice->customer()->first()->name2  ?? '' }}</span><br>@endif
 				   <b>Adresse:</b> <span>{{ $invoice->customer()->first()->address  ?? '' }}</span><br>
-				   @if($invoice->customer()->first()->postal!='') <span>{{ $invoice->customer()->first()->postal  ?? '' }}, {{ $invoice->customer()->first()->city  ?? '' }} - {{ $invoice->customer()->first()->country  ?? '' }}</span><br>@endif
-				   <span>@if( isset($invoice->customer()->first()->phone))<b>Tél :</b> {{ $invoice->customer()->first()->phone }}    @endif @if( isset($invoice->customer()->first()->email)) <b>Email:</b> {{ $invoice->customer()->first()->email  ?? '' }} @endif</span>
+				   @if(isset($invoice->customer()->first()->postal)) <span>{{ $invoice->customer()->first()->postal  ?? ''}}, {{ $invoice->customer()->first()->city  ?? '' }} - {{ $invoice->customer()->first()->country  ?? ''}}</span><br>@endif
+				   <span>@if( isset($invoice->customer()->first()->phone))<b>Tél :</b> {{ $invoice->customer()->first()->phone }}    @endif @if( isset($invoice->customer()->first()->email)) <b>Email:</b> {{ $invoice->customer()->first()->email }} @endif</span>
 				   <br>
 			   </td>
 		   </tr>
@@ -683,6 +683,11 @@
 				  	@endforeach
 			   </tr>
 
+			   	@foreach($items as $item)
+					<tr class="product"  >
+						<td  ></td><td class="text" >{!! nl2br($item->description) !!}</td><td>{{$item->qty}}</td><td  >{{$item->price_ht}} €</td><td>{{ $item->price_ht * $item->qty }} €</td><td>{{$item->tva}} %</td><td>{{  $item->price_ttc * $item->qty  }} €</td>
+					</tr>
+				@endforeach
 
 			   @if($invoice->remise>0)
 				   <tr class="product" style="color:#f07f32">
@@ -774,6 +779,6 @@
 
    </div>
    </section>
-
+   @include('invoices.cgv2')
 
 @endsection

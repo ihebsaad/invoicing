@@ -316,5 +316,5 @@
 
    </div>
    </section>
-   @include('invoices.cgv')
+@include('invoices.cgv2')
 @endsection

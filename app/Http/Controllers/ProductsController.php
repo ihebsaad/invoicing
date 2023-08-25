@@ -179,9 +179,45 @@ class ProductsController extends Controller
             return $item->id;
         }
 
-
     }
 
+
+    public function add_item_men(Request $request)
+    {
+        $qty=$request->get('qte');
+        $tva=$request->get('tva');
+        $price_ttc=$request->get('prix');
+        $price_ht=$request->get('prix_ht');
+        $quote=$request->get('quote');
+        $invoice=$request->get('invoice');
+        $description=$request->get('description');
+        $note=$request->get('note');
+
+        if( $quote>0   ){
+            $item=Item::create([
+                'qty'=>$qty,
+                'tva'=>$tva,
+                'price_ttc'=>$price_ttc,
+                'price_ht'=>$price_ht,
+                'description'=>$description,
+                'quote'=>$quote,
+            ]);
+            return $item->id;
+        }
+
+        if( $invoice>0   ){
+            $item=Item::create([
+                'qty'=>$qty,
+                'tva'=>$tva,
+                'price_ttc'=>$price_ttc,
+                'price_ht'=>$price_ht,
+                'description'=>$description,
+                'invoice'=>$invoice,
+            ]);
+            return $item->id;
+        }
+
+    }
 
     public function delete_item(Request $request)
     {

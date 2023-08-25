@@ -74,6 +74,7 @@ Route::get('/quotes/edit_men/{id}', [QuotesController::class, 'edit_men'])->name
 
 //products
 Route::post('/add_item',[ProductsController::class, 'add_item'])->name('add_item');
+Route::post('/add_item_men',[ProductsController::class, 'add_item_men'])->name('add_item_men');
 Route::post('/delete_item',[ProductsController::class, 'delete_item'])->name('delete_item');
 Route::post('/save_item_qty',[ProductsController::class, 'save_item_qty'])->name('save_item_qty');
 Route::get('products/trashed', [ProductsController::class, 'trashed'])->name('products.trashed');
