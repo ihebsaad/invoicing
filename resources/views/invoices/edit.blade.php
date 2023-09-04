@@ -582,10 +582,14 @@
 
 
 	function check_finances(){
-		if($('#modalite').val().includes('Chèques') || $('#modalite').val()=='Chèque' || $('#modalite').val()==''){
-			$('#finances').hide('slow');
+		if($('#modalite').val().includes('Chèque') || $('#modalite').val()=='Chèque' || $('#modalite').val()==''){
+			if(! $('#modalite').val().includes('Financement'))
+				$('#finances').hide('slow');
+			else
+				$('#finances').css('display','contents');
+
 			$('#cheques-table').show('slow');
-			if($('#modalite').val()=='Chèque'){
+			if($('#modalite').val().includes('Chèque')){
 				$('#chq-1').css('display','table-row');
 				$('#chq-2').css('display','none');
 				$('#chq-3').css('display','none');
