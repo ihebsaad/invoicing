@@ -278,7 +278,7 @@
 							</tbody>
 							<tfoot>
 								<tr class="product bg-grey">
-									<td>Bonus partenaire Groupe HER ENR</td><td  ><input readonly style="text-align:right" id="remise" type="number" class="number bg-transparent" value="{{$invoice->remise ?? 0}}" />€</td><td style="text-align:center;padding-right:15px">1</td><td><input type="number" class="number bg-transparent" id="tva_remise" readonly name="tva_remise" style="width:100px" step="0.5" value="{{$invoice->tva_remise ?? 0}}" onchange="calcul();"/> %</td><td><input id="total_remise" type="number"  class="number" style="max-width:70px" value="{{$invoice->total_remise ?? 0}}" onchange="calcul();$('#remise2').val($(this).val())"/> €</td><td></td>
+									<td>Remise GROUPE HER ENR</td><td  ><input readonly style="text-align:right" id="remise" type="number" class="number bg-transparent" value="{{$invoice->remise ?? 0}}" />€</td><td style="text-align:center;padding-right:15px">1</td><td><input type="number" class="number bg-transparent" id="tva_remise" readonly name="tva_remise" style="width:100px" step="0.5" value="{{$invoice->tva_remise ?? 0}}" onchange="calcul();"/> %</td><td><input id="total_remise" type="number"  class="number" style="max-width:70px" value="{{$invoice->total_remise ?? 0}}" onchange="calcul();$('#remise2').val($(this).val())"/> €</td><td></td>
 								</tr>
 							</tfoot>
 						</table>
