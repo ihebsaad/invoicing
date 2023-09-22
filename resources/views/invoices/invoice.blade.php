@@ -212,25 +212,33 @@
 		   <tbody >
 			   <tr class="product " >
 				   @foreach($items as $item)
-					   @php
-						   $product=\App\Models\Product::withTrashed()->find($item->product);
-						   $total_prod_ht=floatval($product->prix_ht) * intval($item->qty);
-						   $total_prod_ttc=floatval($product->prix) * intval($item->qty);
-					   @endphp
-					   <tr class="product"  >
-						   <td class="text" ><b>{{$product->name}}<br>{!! nl2br($product->description) !!}</b></td><td>{{$item->qty}}</td><td>{{$product->prix_ht}} €</td><td>{{$total_prod_ht}} €</td><td>{{$item->tva}} %</td><td>{{$total_prod_ttc}} €</td>
-					   </tr>
-					   @if($product->pose > 0)
-						   <tr class="product"  >
-							   <td class="text" ><i>Pose {{$product->name}}</i></td><td>{{$item->qty}}</td><td>{{$product->pose}} €</td><td>{{$product->pose}} €</td><td>{{$product->tva_pose}} %</td><td>{{$product->pose_ttc}} €</td>
-						   </tr>
-					   @endif
+				  		@php $product=\App\Models\Product::withTrashed()->find($item->product); @endphp
+
+				   		@if(isset($product))
+					   		@php
+								$total_prod_ht=floatval($product->prix_ht) * intval($item->qty);
+								$total_prod_ttc=floatval($product->prix) * intval($item->qty);
+					   		@endphp
+
+							<tr class="product"  >
+								<td class="text" ><b>{{$product->name}}<br>{!! nl2br($product->description) !!}</b></td><td>{{$item->qty}}</td><td>{{$product->prix_ht}} €</td><td>{{$total_prod_ht}} €</td><td>{{$item->tva}} %</td><td>{{$total_prod_ttc}} €</td>
+							</tr>
+							@if($product->pose > 0)
+								<tr class="product"  >
+									<td class="text" ><i>Pose {{$product->name}}</i></td><td>{{$item->qty}}</td><td>{{$product->pose}} €</td><td>{{$product->pose * intval($item->qty) }} €</td><td>{{$product->tva_pose}} %</td><td>{{$product->pose_ttc * intval($item->qty)}} €</td>
+								</tr>
+							@endif
+						@else
+							<tr class="product"  >
+								<td class="text" >{!! nl2br($item->description) !!}</td><td>{{$item->qty}}</td><td  >{{$item->price_ht}} €</td><td>{{ floatval($item->price_ht) * intval($item->qty) }} €</td><td>{{$item->tva}} %</td><td>{{  floatval($item->price_ttc) * intval($item->qty)  }} €</td>
+							</tr>
+						@endif
 				   @endforeach
 			   </tr>
 
 			   @if($invoice->remise>0)
 				   <tr class="product" style="color:#f07f32">
-					   <td>Remise Catalogue Groupe HER ENR</td><td style="text-align:center"></td><td ></td><td> {{$invoice->remise}}  €</td><td> {{ $invoice->tva_remise ?? 0 }} %</td><td>{{$invoice->total_remise ?? 0}} €</td>
+					   <td>Bonus partenaire Groupe HER ENR</td><td style="text-align:center"></td><td ></td><td> {{$invoice->remise}}  €</td><td> {{ $invoice->tva_remise ?? 0 }} %</td><td>{{$invoice->total_remise ?? 0}} €</td>
 				   </tr>
 			   @endif
 		   </tbody>

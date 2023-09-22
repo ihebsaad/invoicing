@@ -211,7 +211,7 @@ class InvoicesController extends Controller
         if($invoice->menuiserie>0)
             $pdf = PDF::loadView('invoices.invoice_men', compact('invoice','type','reference','date_facture','articles','par','count','portes','volets','items'));
         else
-            $pdf = PDF::loadView('invoices.invoice', compact('invoice','type','reference','date_facture','items','par','count','portes','volets'));
+            $pdf = PDF::loadView('invoices.invoice', compact('invoice','type','reference','date_facture','items','par','count','portes','volets','items'));
 
         $customer_id=$invoice->customer;
         $customer=Customer::find($customer_id);
@@ -246,7 +246,7 @@ class InvoicesController extends Controller
         if($invoice->menuiserie>0)
             $pdf = PDF::loadView('invoices.invoice_men', compact('invoice','type','reference','date_facture','articles','par','count','portes','volets','items'));
         else
-            $pdf = PDF::loadView('invoices.invoice', compact('invoice','type','reference','date_facture','items','par','count','portes','volets'));
+            $pdf = PDF::loadView('invoices.invoice', compact('invoice','type','reference','date_facture','items','par','count','portes','volets','items'));
 
         return $pdf->stream('Facture-'.$reference.'.pdf');
 
@@ -270,7 +270,7 @@ class InvoicesController extends Controller
         if($invoice->menuiserie>0)
             $pdf = PDF::loadView('invoices.invoice_men', compact('invoice','type','reference','date_facture','articles','count','par','count','portes','volets','items'));
         else
-            $pdf = PDF::loadView('invoices.invoice', compact('invoice','type','reference','date_facture','items','count','par','count','portes','volets'));
+            $pdf = PDF::loadView('invoices.invoice', compact('invoice','type','reference','date_facture','items','count','par','count','portes','volets','items'));
 
         return $pdf->download('Facture-'.$reference.'.pdf');
 

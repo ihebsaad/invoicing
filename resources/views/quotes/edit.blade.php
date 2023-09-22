@@ -239,6 +239,7 @@
 
 				<!-- PRODUITS --->
             	<div class="tab-pane fade" id="custom-tabs-three-prods" role="tabpanel" aria-labelledby="custom-tabs-three-prods-tab"  style="width:100%">
+					<a href="#" class="btn btn-sm btn-primary float-right mb-2 ml-2" data-toggle="modal" data-target="#add-item" title="Ajouter un produit libre"  ><i class="fa fa-plus"></i> Ajouter un produit libre</a>
 
 					<div class="">
 						<table class="tab-products table-responsive table-striped  " style="width:100%">
@@ -260,33 +261,37 @@
 									<td><input  class="number bg-transparent"  id="price"  value="0" /> €</td>
 									<td><input  id="qty" type="number" step="1" min="1" value="1" class="number" style="width:60px" onchange="set_price()"    /></td><td><input readonly id="tva" type="number"  class="number bg-transparent" value="0" style="width:60px"/> %</td><td><input id="total_prod" type="number"   class="number bg-transparent" value="0" readonly /> €</td><td><button id="add_product" disabled class="btn-sm btn-success add-prod" onclick="add_product();  "><i class="fas fa-plus "></i></td>
 								</tr>
-								@php $c=0;  @endphp
 								@foreach($items as $item)
 									@php
 										$product=\App\Models\Product::withTrashed()->find($item->product);
-										$total_prod=0;
 										if(isset($product ) ){
-										$total_prod=floatval($product->prix) * intval($item->qty);
-										//$total_pose=floatval($product->pose) * floatval($product->tva_pose)*0.01 + floatval($product->pose) ;
-										$c++;
+											$texte=$product->name;
+											$pose=$product->pose_ttc;
+											$price=$product->prix;
+											$price_ht=$product->prix_ht;
+											$total=floatval($product->prix) * intval($item->qty);
+										}else{
+											$texte=nl2br($item->description);
+											$pose=0;
+											$price=$item->price_ttc;
+											$price_ht=$item->price_ht;
+											$total=$item->price_ttc * $item->qty;
 										}
 									@endphp
-									@if(isset($product ) )
 									<tr class="myproduct product bg-lightgrey tr-prod" id="row-{{$item->id}}">
-										<td class="myproducttd" data-prix="{{$product->prix}}" data-prixht="{{$product->prix_ht}}" data-id="{{$item->id}}"  ><b>{{$product->name}}</b></td><td >{{$product->prix_ht}} €</td><td><input id="qty-{{$item->id}}" type="number" step="1" min="1" class="number" value="{{$item->qty}}"  onchange="calcul();save_item_qty(this,{{$item->id}},{{$product->prix}},{{$product->pose_ttc}})"/></td><td><input readonly step="0.5" min="5.5" type="number" step="0.5" min="1" class="number bg-transparent" value="{{$item->tva}}"/> %</td><td><input id="total-{{$item->id}}" type="number" readonly class="total-prod number" value="{{$total_prod}}"/> €</td><td><button id="delete_item"   class="btn-sm btn-danger" onclick="delete_item({{$item->id}})"><i class="fas fa-minus " data-id="{{$item->id}}"></i></td>
+										<td class="myproducttd" data-prix="{{$price}}" data-prixht="{{$price_ht}}" data-id="{{$item->id}}"  ><b>{!!nl2br($texte)!!}</b></td><td >{{$price_ht}} €</td><td><input id="qty-{{$item->id}}" type="number" step="1" min="1" class="number" value="{{$item->qty}}"  onchange="save_item_qty(this,{{$item->id}},{{$price_ht}},{{$pose}});calcul();"/></td><td><input readonly step="0.5" min="5.5" type="number" step="0.5" min="1" class="number bg-transparent" value="{{$item->tva}}"/> %</td><td><input id="total-{{$item->id}}" type="number" readonly class="total-prod number" value="{{($total)}}"/> €</td><td><button id="delete_item"   class="btn-sm btn-danger" onclick="delete_item({{$item->id}})"><i class="fas fa-minus " data-id="{{$item->id}}"></i></td>
 									</tr>
 
-										@if($product->pose > 0)
+										@if(isset($product) && $product->pose > 0)
 										<tr class="myproduct product bg-lightgrey tr-prod" id="row-pose-{{$item->id}}">
 											<td class="myproductpose"  data-id="{{$item->id}}" data-pose="{{$product->pose}}" data-tvapose="{{$product->tva_pose}}" data-posettc="{{$product->pose_ttc}}" ><i>Pose {{$product->name}}</i></td><td ><input type="number" id="pose-{{$item->id}}" value="{{$product->pose * $item->qty}}"  class="number bg-transparent"/> €</td><td><input type="number"  value="{{$item->qty}}"  id="pose-qty-{{$item->id}}" readonly class="number" /></td><td><input readonly step="0.5" min="5.5" type="number" step="0.5" min="1" class="number bg-transparent" readonly value="{{$product->tva_pose}}"/> %</td><td><input id="totalpose-{{$item->id}}" type="number" readonly class="total-prod number" value="{{$product->pose_ttc * $item->qty}}"/> €</td><td></td>
 										</tr>
 										@endif
-									@endif
 								@endforeach
 							</tbody>
 							<tfoot>
 								<tr class="product bg-grey">
-									<td>Remise Catalogue Groupe HER ENR</td><td  ><input readonly style="text-align:right" id="remise" type="number" class="number bg-transparent" value="{{$quote->remise ?? 0}}" />€</td><td style="text-align:center;padding-right:15px">1</td><td><input type="number" class="number  bg-transparent" id="tva_remise" name="tva_remise" style="width:100px" step="0.5" value="{{$quote->tva_remise ?? 0}}" readonly onchange="calcul();" /> %</td><td><input id="total_remise" type="number"  class="number" style="max-width:70px" value="{{$quote->total_remise ?? 0}}" onchange="calcul();$('#remise2').val($(this).val())"/> €</td><td></td>
+									<td>Bonus partenaire Groupe HER ENR</td><td  ><input readonly style="text-align:right" id="remise" type="number" class="number bg-transparent" value="{{$quote->remise ?? 0}}" />€</td><td style="text-align:center;padding-right:15px">1</td><td><input type="number" class="number  bg-transparent" id="tva_remise" name="tva_remise" style="width:100px" step="0.5" value="{{$quote->tva_remise ?? 0}}" readonly onchange="calcul();" /> %</td><td><input id="total_remise" type="number"  class="number" style="max-width:70px" value="{{$quote->total_remise ?? 0}}" onchange="calcul();$('#remise2').val($(this).val())"/> €</td><td></td>
 								</tr>
 							</tfoot>
 						</table>
@@ -572,6 +577,70 @@
 		</div>
 	</div>
 
+
+<div class="modal fade" id="add-item">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+			    <h4 class="modal-title text-center text-primary"> Ajouter un produit libre </h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fermer">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body" style="padding:10px 10px 1" >
+
+				<div class="row pl-3">
+					<div class="col-xs-12 col-sm-12 col-md-12">
+						<div class="form-group">
+							<strong>Desctiption:</strong>
+							<textarea  id="description"   name="description"  class="form-control" ></textarea>
+						</div>
+					</div>
+
+
+					<div class="col-xs-12 col-sm-4 col-md-6">
+						<div class="form-group">
+							<strong>Prix U HT<small style="display:none">€</small>:</strong>
+							<input   id="prixht-i" type="number" name="prix" rerquired class="form-control" step ="0.01" min="0" onchange="pricing_item()"  >
+							<input type="hidden" id="prix-i" value="0"  />
+						</div>
+					</div>
+					<div class="col-xs-12 col-sm-4 col-md-6">
+						<div class="form-group">
+							<strong>TVA <small style="">%</small>:</strong>
+							<input   id="tva-i" type="number" name="prix" rerquired class="form-control" step ="0.01" min="0"  value="5.5" onchange="pricing_item()" >
+						</div>
+					</div>
+
+					<div class="col-xs-12 col-sm-4 col-md-6">
+						<div class="form-group">
+							<strong>Qté :</strong>
+							<input  id="qte-i" type="number" name="qte" rerquired class="form-control" step ="1" min="1"  value="1" onchange="pricing_item()" >
+						</div>
+					</div>
+
+					<div class="col-xs-12 col-sm-4 col-md-6">
+						<div class="form-group">
+							<strong>Total <small style="display:none">€</small>:</strong>
+							<input readonly id="total-i" type="number" name="total" rerquired class="form-control" step ="0.01" min="0"  >
+						</div>
+					</div>
+					<div class="col-xs-12 col-sm-12 col-md-12">
+						<div class="form-group">
+							<strong>Note :</strong>
+							<textarea  id="note-i"   name="note"  class="form-control" ></textarea>
+						</div>
+					</div>
+					<div class="col-xs-12 col-sm-12 col-md-12 text-right"  >
+						<button type="button" id="add_item" onclick="add_item()"   class="btn btn-primary mt-3 mr-3">Insérer</button>
+					</div>
+				</div>
+			</div>
+
+        </div>
+    </div>
+</div>
 @endsection
 
 
@@ -750,6 +819,59 @@
 
 	}
 
+	function init_item(){
+		$('#description').val('');
+		$('#prix-i').val(0);
+		$('#tva-i').val(5.5);
+		$('#prixht-i').val(0);
+		$('#qte-i').val(1);
+		$('#total-i').val(0);
+		$('#note-i').val('');
+	}
+
+	function add_item(){
+		var _token = $('input[name="_token"]').val();
+		var prix_ht=	parseFloat($('#prixht-i').val()).toFixed(2);
+		var prix=	parseFloat($('#prix-i').val()).toFixed(2);
+		var total=	$('#total-i').val();
+		var note=	$('#note-i').val();
+		var tva=	$('#tva-i').val();
+		var qte=	parseInt($('#qte-i').val());
+		var quote=	parseInt($('#quote').val());
+		var description= $('#description').val();
+		var texte=  description+'<br>'+note;
+		$.ajax({
+			url: "{{ route('add_item_men') }}",
+			method: "POST",
+			async:false,
+			data: { prix:prix,prix_ht:prix_ht,qte:qte,tva,description:texte, quote:quote,_token:_token},
+			success: function (data) {
+				if(data!=''){
+					item_id=data;
+					var row='<tr class="myproduct product bg-lightgrey tr-prod" id="row-'+item_id+'"><td class="myproducttd"  data-prix="'+prix+'" data-prixht="'+prix_ht+'" data-id="'+item_id+'"  ><b>'+texte+'</b></td><td>'+prix_ht+' €</td><td><input type="number" step="1" min="1" class="number" value="'+qte+'"  id="qty-'+item_id+'"  onchange="calcul();save_item_qty(this,'+item_id+','+prix+','+0+')"/></td><td><input  step="0.5" min="5.5" type="number" step="1" min="1" class="number bg-transparent" readonly value="'+tva+'"/> %</td><td><input id="total-'+data+'" type="number" readonly class="total-prod number" value="'+total+'"/> €</td><td><button id="delete_item"   class="btn-sm btn-danger" onclick="delete_item('+item_id+')"><i class="fas fa-minus "  ></i></td></tr>';
+					$('#list-prods').append(row);
+					$('#add-item').modal('hide');
+					init_item();
+				}else{
+					alert('Ce produit existe déja, modifiez la quantité !')
+				}
+			}
+		});
+		calcul();
+	}
+	function pricing_item(){
+
+		var prix_ht= parseFloat($("#prixht-i").val());
+		var p_tva= parseFloat($("#tva-i").val());
+
+		var prix= prix_ht+ (prix_ht*p_tva*0.01);
+		$("#prix-i").val(prix);
+
+		var qte= parseInt($("#qte-i").val());
+
+		var total = prix * qte;
+		$("#total-i").val(total.toFixed(2));
+	}
 	function delete_item(item){
 		if(!confirm("Êtes vous sûres?")) {
     	return false;

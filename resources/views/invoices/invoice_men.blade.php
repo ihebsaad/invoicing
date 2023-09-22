@@ -691,7 +691,7 @@
 
 			   @if($invoice->remise>0)
 				   <tr class="product" style="color:#f07f32">
-					   <td colspan="2">Remise Catalogue Groupe HER ENR</td><td style="text-align:center"></td><td></td><td> {{$invoice->remise}}  €</td><td> {{$invoice->tva_remise ?? '5.5'}} %</td><td>{{$invoice->total_remise}} €</td>
+					   <td colspan="2">Bonus partenaire Groupe HER ENR</td><td style="text-align:center"></td><td></td><td> {{$invoice->remise}}  €</td><td> {{$invoice->tva_remise ?? '5.5'}} %</td><td>{{$invoice->total_remise}} €</td>
 				   </tr>
 			   @endif
 		   </tbody>

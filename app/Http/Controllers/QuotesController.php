@@ -231,7 +231,7 @@ class QuotesController extends Controller
         if($invoice->menuiserie>0)
             $pdf = PDF::loadView('invoices.invoice_men', compact('invoice','type','reference','date_facture','articles','par','count','portes','volets','items'));
         else
-            $pdf = PDF::loadView('invoices.invoice', compact('invoice','type','reference','date_facture','items','par','count','portes','volets'));
+            $pdf = PDF::loadView('invoices.invoice', compact('invoice','type','reference','date_facture','items','par','count','portes','volets','items'));
 
 
         return $pdf->stream('quote-'.$id.'.pdf');
@@ -256,7 +256,7 @@ class QuotesController extends Controller
         if($invoice->menuiserie>0)
             $pdf = PDF::loadView('invoices.invoice_men', compact('invoice','type','reference','date_facture','articles','par','count','portes','volets','items'));
         else
-            $pdf = PDF::loadView('invoices.invoice', compact('invoice','type','reference','date_facture','items','par','count','portes','volets'));
+            $pdf = PDF::loadView('invoices.invoice', compact('invoice','type','reference','date_facture','items','par','count','portes','volets','items'));
 
         //$pdf = PDF::loadView('quotes.quote', compact('invoice','type','reference','date_facture','items','par','count'));
         return $pdf->download('quote-'.$reference.'.pdf');
