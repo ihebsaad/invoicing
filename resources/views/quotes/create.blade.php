@@ -32,7 +32,7 @@
                 <select class="form-control select2" name="customer" required >
                     <option></option>
                     @foreach($customers as $customer)
-                        <option @if($customer_id==$customer->id) selected="selected" @endif value="{{$customer->id}}">{{$customer->civility}} {{$customer->name}} {{$customer->lastname}}</option>
+                        <option @if($customer_id==$customer->id) selected="selected" @endif value="{{$customer->id}}">{{ $customer->name!='' ? $customer->civility: ''}} {{$customer->company ?? ''}} {{$customer->name ?? ''}} {{$customer->lastname ?? ''}}</option>
                     @endforeach
                 </select>
             </div>
@@ -60,6 +60,7 @@
                     <option value="-7">BTD</option>
                     <option value="1">MENUISERIE</option>
                     <option value="2">VOLET ROULANT</option>
+                    <option value="-8">AUTRES</option>
                 </select>
             </div>
         </div>
@@ -146,6 +147,7 @@
                             <div class="form-group">
                                 <strong>Civilité:</strong>
                                 <select   name="civility" class="form-control" placeholder="civility" >
+                                    <option value=""></option>
                                     <option value="Mr">Mr</option>
                                     <option value="Mme">Mme</option>
                                     <option value="Mlle">Mlle</option>
@@ -173,6 +175,7 @@
                             <div class="form-group">
                                 <strong>Civilité:</strong>
                                 <select   name="civility2" class="form-control" placeholder="civility2" >
+                                    <option value=""></option>
                                     <option value="Mr">Mr</option>
                                     <option value="Mme">Mme</option>
                                     <option value="Mlle">Mlle</option>

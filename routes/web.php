@@ -22,6 +22,8 @@ use App\Http\Controllers\QuotesController;
 use App\Http\Controllers\CustomersController;
 use App\Http\Controllers\ModelesController;
 
+Route::get('/quotes/all', [QuotesController::class, 'all'])->name('quotes.all');
+
 
 Route::resource('shops', ShopsController::class);
 Route::resource('categories', CategoriesController::class);

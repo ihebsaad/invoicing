@@ -840,6 +840,7 @@
 		var quote=	parseInt($('#quote').val());
 		var description= $('#description').val();
 		var texte=  description+'<br>'+note;
+		$('#tva_remise').val(tva);
 		$.ajax({
 			url: "{{ route('add_item_men') }}",
 			method: "POST",

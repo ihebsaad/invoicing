@@ -16,7 +16,11 @@
             </div>
             <div class="float-right mb-3"  >
                 <a class="btn btn-success" href="{{ route('quotes.create') }}"><i class="fas fa-plus"></i> Créer un devis</a>
+                @if(request()->is('quotes'))
+                    <a class="btn btn-primary ml-2" href="{{ route('quotes.all') }}"><i class="fas fa-list"></i> Liste complète</a>
+                @endif
             </div>
+
         </div>
     </div>
 

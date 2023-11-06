@@ -35,6 +35,17 @@ class QuotesController extends Controller
     public function index()
     {
         if (auth()->user()->user_type != 'admin')
+            $quotes = Quote::where('par',auth()->user()->id)->orderBy('id','desc')->limit(100)->get();
+        else
+        $quotes = Quote::orderBy('id','desc')->limit(100)->get();
+
+        return view('quotes.index',compact('quotes'));
+    }
+
+
+    public function all()
+    {
+        if (auth()->user()->user_type != 'admin')
             $quotes = Quote::where('par',auth()->user()->id)->orderBy('id','desc')->get();
         else
         $quotes = Quote::orderBy('id','desc')->get();

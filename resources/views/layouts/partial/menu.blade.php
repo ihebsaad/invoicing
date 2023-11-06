@@ -57,9 +57,15 @@
                 </li>
               @endcan
               <li class="nav-item">
-                <a href="{{route('quotes.index')}}" class="nav-link {{ request()->is('quotes') ||  request()->is('quotes/*')  ? 'active' : '' }}">
+                <a href="{{route('quotes.index')}}" class="nav-link {{ request()->is('quotes.index') ||  request()->is('quotes')  ? 'active' : '' }}">
                   <i class="fas fa-file-invoice nav-icon text-secondary"></i>
                   <p>Devis</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{route('quotes.all')}}" class="nav-link {{ request()->is('quotes.all') ||  request()->is('quotes/all')  ? 'active' : '' }}">
+                  <i class="fas fa-file-invoice nav-icon text-secondary"></i>
+                  <p>Tous les Devis</p>
                 </a>
               </li>
             </ul>

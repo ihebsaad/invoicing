@@ -50,7 +50,7 @@ class CustomersController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required',
+            'name' => 'required_if:company,null'
         ]);
 
         $customer=Customer::create($request->all());
