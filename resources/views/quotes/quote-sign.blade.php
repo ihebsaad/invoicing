@@ -159,7 +159,7 @@
 					@if($quote->modalite!='Chèque')
 						<table class="financement">
 							<tr><td>Montant Financé :</td><td style="padding-right:20px;font-weight:bold;">{{$quote->montant_finance}} €</td><td>Montant mensuel<br>de l'assurance :</td><td style="font-weight:bold;">{{$quote->montant_assurance}} €</td></tr>
-							<tr><td>Report 1ère échéance :</td><td style="padding-right:20px;font-weight:bold;">{{$quote->report_echeance}} jours</td><td>Taux nominal :</td><td style="font-weight:bold;">{{$quote->taux_nominal}} %</td></tr>
+							<tr><td>Report 1ère échéance :</td><td style="padding-right:20px;font-weight:bold;">{{$quote->report_echeance}} jours</td><td>Taux débiteur :</td><td style="font-weight:bold;">{{$quote->taux_nominal}} %</td></tr>
 							<tr><td>Nombre de mensualités :</td><td style="padding-right:20px;font-weight:bold;">{{$quote->mensualites}}</td><td>TAEG :</td><td style="font-weight:bold;">{{$quote->taeg}} %</td></tr>
 							<tr><td>Montant mensuel<br>sans assurance :</td><td style="padding-right:20px;font-weight:bold;">{{$quote->montant_mensuel}} €</td><td>Solde de la pose :</td><td style="font-weight:bold;">{{$quote->pose}} €</td></tr>
 						</table>

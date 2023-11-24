@@ -432,7 +432,7 @@
 
 								<div class="col-xs-12 col-sm-12 col-md-6">
 									<div class="form-group">
-										<strong>% Taux nominal :</strong>
+										<strong>% Taux débiteur :</strong>
 										<input type="number"  class="form-control" min="0"  step="0.01" name="taux_nominal" style="max-width:180px" value="{{$invoice->taux_nominal}}" >
 									</div>
 								</div>
