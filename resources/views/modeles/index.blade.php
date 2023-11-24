@@ -26,11 +26,15 @@
    @php
    $types = array(
         '1' => 'Fenêtre à souflet',
-        '2' => 'Fenêtre / Porte Fenêtre - 1VOB',
-        '3'=> 'Fenêtre / Porte Fenêtre - 2V',
-        '4'=> 'Fenêtre fixe',
-        '5'=> 'Porte fenêtre ouverture extérieur - PF1V',
-        '6'=> 'Porte 2 ventaux Battement central ouverture extérieur PF2V'
+        '2' => 'Fenêtre 1V',
+        '3'=> 'Fenêtre 2V',
+        '4'=> 'Fenêtre 3V',
+        '5'=> 'Fenêtre fixe',
+        '6'=> 'Porte fenêtre 1V',
+        '7'=> 'Porte fenêtre 2V',
+        '8'=> 'Coulissant 1',
+        '9'=> 'Coulissant 2',
+        '10'=> 'Coulissant 3',
     );
     $couleurs=array(
         '1' => 'Extérieur et intérieur blanc',
@@ -70,7 +74,7 @@
 		<tr>
             <td>{!! sprintf('%04d',$modele->id) !!}</td>
             <td>{{ $matieres[$modele->genre] }}</td>
-            <td>{{-- $types[$modele->type] --}}</td>
+            <td>{{ $modele->type !=''  ? $types[$modele->type] : '' }}</td>
             <td style="font-size:14px">{{ $couleurs[$modele->couleur] }}</td>
             <td>{{ sprintf('%04d',$modele->hauteur) }}</td>
             <td>{{ sprintf('%04d',$modele->largeur) }}</td>

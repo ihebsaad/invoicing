@@ -243,9 +243,7 @@
 				<tr class="product" >
 					<td style="border-bottom: 1px solid #f07f32" ></td>
 					<td class="text" style="border-bottom: 1px solid #f07f32">
-						Garantie menuiserie : 10 ans <br>
-						Garantie quincaillerie : 10 ans <br>
-						Hors frais de déplacement et main d'œuvre.<br>
+						CHEZ GROUPE HER ENR, NOUS GARANTISSONS VOS MENUISERIES <label style="color:#f07f32;font-weight:800;text-decoration:underline;font-size:13px; "> A VIE</label>.<br>
 						DEVIS CHIFFRES AVEC POSE ET CONSOMABLE COMPRIS<br>
 						REALISATION DES TRAVAUX FAITE PAR LES SALARIÉES DU GROUPE HER ENR
 					</td>
@@ -293,286 +291,288 @@
 						   if($article->cintrage)
 						   		$cintrage='_2';
 
-						   $img='img/m'.$modele->type.$cintrage.'.jpg';
-						   switch ($modele->type) {
-							case 1:
-								$desc='
-								-	POSE EN RENOVATION DE MENUISERIES PVC DE LA MARQUE OKNOPLAST – MODELE CHARME MINI – FINITION PURE
-								-	INSTALLATION DE MATERIAUX D’ISOLATION THERMIQUE DES PAROIS VITREES VERTICALES
-								-	INSTALLATION DE FENETRE A SOUFFLET EN DOUBLE VITRAGE VENANT EN REMPLACEMENT DE MENUISERIES SIMPLE VITRAGE
-								-	Système breveté équipé de renforts en acier sur l’ensemble du dormant et des ouvrants
-								-	Système d’ouverture Oscillo-Battant
-								-	Parclose Charme
-								-	Ouvrant 70mm
-								-	Dormant rénovation, aile de 65
-								-   Joint de propreté total
-								-	Couleur 2 faces : '.$couleur_text.'
-								-	Vitrage 4/16/4 FE (argon) Ug = 1,1
-								-	Intercalaire Warm-Edge Noir 9005
-								-	Appui bas pour dormant rénovation 110.102.2 (haut. 2mm)
-								-	Pièce d’appui non comprise dans la hauteur
-								-	Ferrage standard
-								-	Poignée KISKA : Blanc
-								-	Hauteur de poignée standard
-								-	2 aérateurs à fente Aéromat (suivant emplacement)
-								-	Coefficient de transmission surfacique : Uw = 1,3 W/m².K
-								-	Performance thermique du vitrage : Uw = 1,1 W/m².K
-								-	Facteur solaire : Sw = 0.45 W/m².K
-								-	Fermeture par crémone simple
-								-	Habillage intérieur : A déterminer au métrage
-								-	Habillage extérieur : A déterminer au métrage
-								-	LES ELEMENTS SUIVANT SONT A CONFIRMER AU METTRAGE.';
-								break;
-							case 2:
-								$desc='
-								-	POSE EN RENOVATION DE MENUISERIES PVC DE LA MARQUE OKNOPLAST – MODELE CHARME MINI – FINITION PURE
-								-	INSTALLATION DE MATERIAUX D’ISOLATION THERMIQUE DES PAROIS VITREES VERTICALES
-								-	INSTALLATION DE FENETRE 1 VANTAIL EN DOUBLE VITRAGE VENANT EN REMPLACEMENT DE MENUISERIES SIMPLE VITRAGE
-								-	Système breveté équipé de renforts en acier sur l’ensemble du dormant et des ouvrants
-								-	Système d’ouverture Oscillo-Battant
-								-	Parclose Charme
-								-	Ouvrant 70mm
-								-	Dormant rénovation, aile de 65
-								-	Dim. Fabrication (Dos de dormant sans les ailes)
-								-	Joint de propreté total
-								-	Couleur 2 faces : '.$couleur_text.'
-								-	Vitrage 4/16/4 FE (argon) Ug = 1,1
-								-	Intercalaire Warm-Edge Noir 9005
-								-	Appui bas pour dormant rénovation 110.102.2 (haut. 2mm)
-								-	Pièce d’appui non comprise dans la hauteur
-								-	Ferrage standard
-								-	Poignée KISKA : Blanc
-								-	Hauteur de poignée standard
-								-	2 aérateurs à fente Aéromat (suivant emplacement)
-								-	Coefficient de transmission surfacique : Uw = 1,3 W/m².K
-								-	Performance thermique du vitrage : Uw = 1,1 W/m².K
-								-	Facteur solaire : Sw = 0.45 W/m².K
-								-	Fermeture par crémone simple
-								-	Habillage intérieur : A déterminer au métrage
-								-	Habillage extérieur : A déterminer au métrage
-								-	LES ELEMENTS SUIVANT SONT A CONFIRMER AU METTRAGE.';
-								break;
-							case 3:
-								$desc='
-								-	POSE EN RENOVATION DE MENUISERIES PVC DE LA MARQUE OKNOPLAST – MODELE CHARME MINI – FINITION PURE
-								-	INSTALLATION DE MATERIAUX D’ISOLATION THERMIQUE DES PAROIS VITREES VERTICALES
-								-	INSTALLATION DE FENETRE 2 VANTAUX EN DOUBLE VITRAGE VENANT EN REMPLACEMENT DE MENUISERIES SIMPLE VITRAGE
-								-	Système breveté équipé de renforts en acier sur l’ensemble du dormant et des ouvrants
-								-	Système d’ouverture Oscillo-Battant
-								-	Parclose Charme
-								-	Ouvrant 70mm
-								-	Dormant rénovation, aile de 65
-								-	Dim. Fabrication (Dos de dormant sans les ailes)
-								-	Joint de propreté total
-								-	Couleur 2 faces : '.$couleur_text.'
-								-	Vitrage 4/16/4 FE (argon) Ug = 1,1
-								-	Intercalaire Warm-Edge Noir 9005
-								-	Appui bas pour dormant rénovation 110.102.2 (haut. 2mm)
-								-	Pièce d’appui non comprise dans la hauteur
-								-	Ferrage standard
-								-	Poignée KISKA : Blanc
-								-	Hauteur de poignée standard
-								-	2 aérateurs à fente Aéromat (suivant emplacement)
-								-	Coefficient de transmission surfacique : Uw = 1,3 W/m².K
-								-	Performance thermique du vitrage : Uw = 1,1 W/m².K
-								-	Facteur solaire : Sw = 0.45 W/m².K
-								-	Fermeture par crémone simple
-								-	Habillage intérieur : A déterminer au métrage
-								-	Habillage extérieur : A déterminer au métrage
-								-	LES ELEMENTS SUIVANT SONT A CONFIRMER AU METTRAGE.';
-								break;
-							case 4:
-								$desc='
-								-	POSE EN RENOVATION DE MENUISERIES PVC DE LA MARQUE OKNOPLAST – MODELE CHARME MINI – FINITION PURE
-								-	INSTALLATION DE MATERIAUX D’ISOLATION THERMIQUE DES PAROIS VITREES VERTICALES
-								-	INSTALLATION DE FENETRE 2 VANTAUX EN DOUBLE VITRAGE VENANT EN REMPLACEMENT DE MENUISERIES SIMPLE VITRAGE
-								-	Système breveté équipé de renforts en acier sur l’ensemble du dormant et des ouvrants
-								-	Système d’ouverture Oscillo-Battant
-								-	Parclose Charme
-								-	Ouvrant 70mm
-								-	Dormant rénovation, aile de 65
-								-	Dim. Fabrication (Dos de dormant sans les ailes)
-								-	Joint de propreté total
-								-	Couleur 2 faces : '.$couleur_text.'
-								-	Vitrage 4/16/4 FE (argon) Ug = 1,1
-								-	Intercalaire Warm-Edge Noir 9005
-								-	Appui bas pour dormant rénovation 110.102.2 (haut. 2mm)
-								-	Pièce d’appui non comprise dans la hauteur
-								-	Ferrage standard
-								-	Poignée KISKA : Blanc
-								-	Hauteur de poignée standard
-								-	2 aérateurs à fente Aéromat (suivant emplacement)
-								-	Coefficient de transmission surfacique : Uw = 1,3 W/m².K
-								-	Performance thermique du vitrage : Uw = 1,1 W/m².K
-								-	Facteur solaire : Sw = 0.45 W/m².K
-								-	Fermeture par crémone simple
-								-	Habillage intérieur : A déterminer au métrage
-								-	Habillage extérieur : A déterminer au métrage
-								-	LES ELEMENTS SUIVANT SONT A CONFIRMER AU METTRAGE.';
-								break;
-								// fenetre fixe
-							case 5:
-								$desc='
-								-	POSE EN RENOVATION DE MENUISERIES PVC DE LA MARQUE OKNOPLAST – MODELE CHARME MINI – FINITION PURE
-								-	INSTALLATION DE MATERIAUX D’ISOLATION THERMIQUE DES PAROIS VITREES VERTICALES
-								-	INSTALLATION DE FENETRE FIXE EN DOUBLE VITRAGE VENANT EN REMPLACEMENT DE MENUISERIES SIMPLE VITRAGE
-								-	Système breveté équipé de renforts en acier sur l’ensemble du dormant et des ouvrants
-								-	Système d’ouverture Oscillo-Battant
-								-	Parclose Charme
-								-	Dormant rénovation, aile de 65
-								-	Dim. Fabrication (Dos de dormant sans les ailes)
-								-	Couleur 2 faces : '.$couleur_text.'
-								-	Vitrage 4/16/4 FE (argon) Ug = 1,1
-								-	Intercalaire Warm-Edge Noir 9005
-								-	Appui bas pour dormant rénovation 110.102.2 (haut. 2mm)
-								-	Pièce d’appui non comprise dans la hauteur
-								-	Coefficient de transmission surfacique : Uw = 1,3 W/m².K
-								-	Performance thermique du vitrage : Uw = 1,1 W/m².K
-								-	Facteur solaire : Sw = 0.45 W/m².K
-								-	Fermeture par crémone simple
-								-	Habillage intérieur : A déterminer au métrage
-								-	Habillage extérieur : A déterminer au métrage
-								-	LES ELEMENTS SUIVANT SONT A CONFIRMER AU METTRAGE.';
-								break;
-							case 6:
-								$desc='
-								-	POSE EN RENOVATION DE MENUISERIES PVC DE LA MARQUE OKNOPLAST – MODELE CHARME MINI – FINITION PURE
-								-	INSTALLATION DE MATERIAUX D’ISOLATION THERMIQUE DES PAROIS VITREES VERTICALES
-								-	INSTALLATION DE PORTES-FENETRES EN DOUBLE VITRAGE VENANT EN REMPLACEMENT DE MENUISERIES SIMPLE VITRAGE
-								-	Système breveté équipé de renforts en acier sur l’ensemble du dormant et des ouvrants
-								-	Système d’ouverture Oscillo-Battant
-								-	Parclose Charme
-								-	Ouvrant 70mm
-								-	Dormant rénovation, aile de 65
-								-	Dim. Fabrication (Dos de dormant sans les ailes)
-								-	Joint de propreté total
-								-	Couleur 2 faces : '.$couleur_text.'
-								-	Vitrage 4/16/4 FE (argon) Ug = 1,1
-								-	Intercalaire Warm-Edge Noir 9005
-								-	Seuil bas Aluminium
-								-	Ferrage standard
-								-	Poignée KISKA : Blanc
-								-	Hauteur de poignée standard
-								-	2 aérateurs à fente Aéromat (suivant emplacement)
-								-	Coefficient de transmission surfacique : Uw = 1,3 W/m².K
-								-	Performance thermique du vitrage : Uw = 1,1 W/m².K
-								-	Facteur solaire : Sw = 0.45 W/m².K
-								-	Fermeture par crémone simple ou serrure à barillet
-								-	Habillage intérieur : A déterminer au métrage
-								-	Habillage extérieur : A déterminer au métrage
-								-	LES ELEMENTS SUIVANT SONT A CONFIRMER AU METTRAGE';
-								break;
-							case 7:
-								$desc='
-								-	POSE EN RENOVATION DE MENUISERIES PVC DE LA MARQUE OKNOPLAST – MODELE CHARME MINI – FINITION PURE
-								-	INSTALLATION DE MATERIAUX D’ISOLATION THERMIQUE DES PAROIS VITREES VERTICALES
-								-	INSTALLATION DE PORTES-FENETRES EN DOUBLE VITRAGE VENANT EN REMPLACEMENT DE MENUISERIES SIMPLE VITRAGE
-								-	Système breveté équipé de renforts en acier sur l’ensemble du dormant et des ouvrants
-								-	Système d’ouverture Oscillo-Battant
-								-	Parclose Charme
-								-	Ouvrant 70mm
-								-	Dormant rénovation, aile de 65
-								-	Dim. Fabrication (Dos de dormant sans les ailes)
-								-	Joint de propreté total
-								-	Couleur 2 faces : '.$couleur_text.'
-								-	Vitrage 4/16/4 FE (argon) Ug = 1,1
-								-	Intercalaire Warm-Edge Noir 9005
-								-	Seuil bas Aluminium
-								-	Ferrage standard
-								-	Poignée KISKA : Blanc
-								-	Hauteur de poignée standard
-								-	2 aérateurs à fente Aéromat (suivant emplacement)
-								-	Coefficient de transmission surfacique : Uw = 1,3 W/m².K
-								-	Performance thermique du vitrage : Uw = 1,1 W/m².K
-								-	Facteur solaire : Sw = 0.45 W/m².K
-								-	Fermeture par crémone simple ou serrure à barillet
-								-	Habillage intérieur : A déterminer au métrage
-								-	Habillage extérieur : A déterminer au métrage
-								-	LES ELEMENTS SUIVANT SONT A CONFIRMER AU METTRAGE';
-								break;
-								case 8:
-								$desc='
-								-	POSE EN RENOVATION DE MENUISERIES ALUMINIUM DE LA MARQUE OKNOPLAST - GAMME ALUHAUS
-								-	INSTALLATION DE MATERIAUX D’ISOLATION THERMIQUE DES PAROIS VITREES VERTICALES
-								-	INSTALLATION DE COULISSANT EN DOUBLE VITRAGE VENANT EN REMPLACEMENT DE MENUISERIES SIMPLE VITRAGE
-								-	Ouvrant 44mm
-								-	Dormant rénovation, aile de 60
-								-	Dim. Fabrication (Dos de dormant sans les ailes)
-								-	Bouclier thermique
-								-	Rail aluminium anodisé
-								-	Couleur 2 faces : '.$couleur_text.'
-								-	Vitrage 4/20/4 FE (argon) Ug = 1,1
-								-	Intercalaire Warm-Edge Noir 9005
-								-	Appui bas pour dormant rénovation 110.102.2 (haut. 2mm)
-								-	Pièce d’appui non comprise dans la hauteur
-								-	Ferrage standard
-								-	Poignée CUADRO : Blanc
-								-	Hauteur de poignée standard
-								-	2 aérateurs à fente Aéromat (suivant emplacent)
-								-	Coefficient de transmission surfacique : Uw = 1,77 W/m².K
-								-	Performance thermique du vitrage : Uw = 1,77 W/m².K
-								-	Facteur solaire : Sw = 0,43 W/m².K
-								-	Habillage intérieur : A déterminer au métrage
-								-	Habillage extérieur : A déterminer au métrage
-								-	LES ELEMENTS SUIVANT SONT A CONFIRMER AU METTRAGE.';
-								break;
-								case 9:
-								$desc='
-								-	POSE EN RENOVATION DE MENUISERIES ALUMINIUM DE LA MARQUE OKNOPLAST - GAMME ALUHAUS
-								-	INSTALLATION DE MATERIAUX D’ISOLATION THERMIQUE DES PAROIS VITREES VERTICALES
-								-	INSTALLATION DE COULISSANT EN DOUBLE VITRAGE VENANT EN REMPLACEMENT DE MENUISERIES SIMPLE VITRAGE
-								-	Ouvrant 44mm
-								-	Dormant rénovation, aile de 60
-								-	Dim. Fabrication (Dos de dormant sans les ailes)
-								-	Bouclier thermique
-								-	Rail aluminium anodisé
-								-	Couleur 2 faces : '.$couleur_text.'
-								-	Vitrage 4/20/4 FE (argon) Ug = 1,1
-								-	Intercalaire Warm-Edge Noir 9005
-								-	Appui bas pour dormant rénovation 110.102.2 (haut. 2mm)
-								-	Pièce d’appui non comprise dans la hauteur
-								-	Ferrage standard
-								-	Poignée CUADRO : Blanc
-								-	Hauteur de poignée standard
-								-	2 aérateurs à fente Aéromat (suivant emplacement)
-								-	Coefficient de transmission surfacique : Uw = 1,77 W/m².K
-								-	Performance thermique du vitrage : Uw = 1,77 W/m².K
-								-	Facteur solaire : Sw = 0,43 W/m².K
-								-	Habillage intérieur : A déterminer au métrage
-								-	Habillage extérieur : A déterminer au métrage
-								-	LES ELEMENTS SUIVANT SONT A CONFIRMER AU METTRAGE.';
-								break;
-								case 10:
-								$desc='
-								-	POSE EN RENOVATION DE MENUISERIES ALUMINIUM DE LA MARQUE OKNOPLAST - GAMME ALUHAUS
-								-	INSTALLATION DE MATERIAUX D’ISOLATION THERMIQUE DES PAROIS VITREES VERTICALES
-								-	INSTALLATION DE COULISSANT EN DOUBLE VITRAGE VENANT EN REMPLACEMENT DE MENUISERIES SIMPLE VITRAGE
-								-	Ouvrant 44mm
-								-	Dormant rénovation, aile de 60
-								-	Dim. Fabrication (Dos de dormant sans les ailes)
-								-	Bouclier thermique
-								-	Rail aluminium anodisé
-								-	Couleur 2 faces : Blanc (Ral 9016) Modification en fonction de la couleur choisie
-								-	Vitrage 4/20/4 FE (argon) Ug = 1,1
-								-	Intercalaire Warm-Edge Noir 9005
-								-	Appui bas pour dormant rénovation 110.102.2 (haut. 2mm)
-								-	Pièce d’appui non comprise dans la hauteur
-								-	Ferrage standard
-								-	Poignée CUADRO : Blanc
-								-	Hauteur de poignée standard
-								-	2 aérateurs à fente Aéromat (suivant emplacement)
-								-	Coefficient de transmission surfacique : Uw = 1,77 W/m².K
-								-	Performance thermique du vitrage : Uw = 1,77 W/m².K
-								-	Facteur solaire : Sw = 0,43 W/m².K
-								-	Habillage intérieur : A déterminer au métrage
-								-	Habillage extérieur : A déterminer au métrage
-								-	LES ELEMENTS SUIVANT SONT A CONFIRMER AU METTRAGE.';
-								break;
+						   $img='img/trans.png';
+						   if (isset($modele)) {
+							$img='img/m'.$modele->type.$cintrage.'.jpg';
+							switch ($modele->type) {
+								case 1:
+									$desc='
+									-	POSE EN RENOVATION DE MENUISERIES PVC DE LA MARQUE OKNOPLAST – MODELE CHARME MINI – FINITION PURE
+									-	INSTALLATION DE MATERIAUX D’ISOLATION THERMIQUE DES PAROIS VITREES VERTICALES
+									-	INSTALLATION DE FENETRE A SOUFFLET EN DOUBLE VITRAGE VENANT EN REMPLACEMENT DE MENUISERIES SIMPLE VITRAGE
+									-	Système breveté équipé de renforts en acier sur l’ensemble du dormant et des ouvrants
+									-	Système d’ouverture Oscillo-Battant
+									-	Parclose Charme
+									-	Ouvrant 70mm
+									-	Dormant rénovation, aile de 65
+									-   Joint de propreté total
+									-	Couleur 2 faces : '.$couleur_text.'
+									-	Vitrage 4/16/4 FE (argon) Ug = 1,1
+									-	Intercalaire Warm-Edge Noir 9005
+									-	Appui bas pour dormant rénovation 110.102.2 (haut. 2mm)
+									-	Pièce d’appui non comprise dans la hauteur
+									-	Ferrage standard
+									-	Poignée KISKA : Blanc
+									-	Hauteur de poignée standard
+									-	2 aérateurs à fente Aéromat (suivant emplacement)
+									-	Coefficient de transmission surfacique : Uw = 1,3 W/m².K
+									-	Performance thermique du vitrage : Uw = 1,1 W/m².K
+									-	Facteur solaire : Sw = 0.45 W/m².K
+									-	Fermeture par crémone simple
+									-	Habillage intérieur : A déterminer au métrage
+									-	Habillage extérieur : A déterminer au métrage
+									-	LES ELEMENTS SUIVANT SONT A CONFIRMER AU METTRAGE.';
+									break;
+								case 2:
+									$desc='
+									-	POSE EN RENOVATION DE MENUISERIES PVC DE LA MARQUE OKNOPLAST – MODELE CHARME MINI – FINITION PURE
+									-	INSTALLATION DE MATERIAUX D’ISOLATION THERMIQUE DES PAROIS VITREES VERTICALES
+									-	INSTALLATION DE FENETRE 1 VANTAIL EN DOUBLE VITRAGE VENANT EN REMPLACEMENT DE MENUISERIES SIMPLE VITRAGE
+									-	Système breveté équipé de renforts en acier sur l’ensemble du dormant et des ouvrants
+									-	Système d’ouverture Oscillo-Battant
+									-	Parclose Charme
+									-	Ouvrant 70mm
+									-	Dormant rénovation, aile de 65
+									-	Dim. Fabrication (Dos de dormant sans les ailes)
+									-	Joint de propreté total
+									-	Couleur 2 faces : '.$couleur_text.'
+									-	Vitrage 4/16/4 FE (argon) Ug = 1,1
+									-	Intercalaire Warm-Edge Noir 9005
+									-	Appui bas pour dormant rénovation 110.102.2 (haut. 2mm)
+									-	Pièce d’appui non comprise dans la hauteur
+									-	Ferrage standard
+									-	Poignée KISKA : Blanc
+									-	Hauteur de poignée standard
+									-	2 aérateurs à fente Aéromat (suivant emplacement)
+									-	Coefficient de transmission surfacique : Uw = 1,3 W/m².K
+									-	Performance thermique du vitrage : Uw = 1,1 W/m².K
+									-	Facteur solaire : Sw = 0.45 W/m².K
+									-	Fermeture par crémone simple
+									-	Habillage intérieur : A déterminer au métrage
+									-	Habillage extérieur : A déterminer au métrage
+									-	LES ELEMENTS SUIVANT SONT A CONFIRMER AU METTRAGE.';
+									break;
+								case 3:
+									$desc='
+									-	POSE EN RENOVATION DE MENUISERIES PVC DE LA MARQUE OKNOPLAST – MODELE CHARME MINI – FINITION PURE
+									-	INSTALLATION DE MATERIAUX D’ISOLATION THERMIQUE DES PAROIS VITREES VERTICALES
+									-	INSTALLATION DE FENETRE 2 VANTAUX EN DOUBLE VITRAGE VENANT EN REMPLACEMENT DE MENUISERIES SIMPLE VITRAGE
+									-	Système breveté équipé de renforts en acier sur l’ensemble du dormant et des ouvrants
+									-	Système d’ouverture Oscillo-Battant
+									-	Parclose Charme
+									-	Ouvrant 70mm
+									-	Dormant rénovation, aile de 65
+									-	Dim. Fabrication (Dos de dormant sans les ailes)
+									-	Joint de propreté total
+									-	Couleur 2 faces : '.$couleur_text.'
+									-	Vitrage 4/16/4 FE (argon) Ug = 1,1
+									-	Intercalaire Warm-Edge Noir 9005
+									-	Appui bas pour dormant rénovation 110.102.2 (haut. 2mm)
+									-	Pièce d’appui non comprise dans la hauteur
+									-	Ferrage standard
+									-	Poignée KISKA : Blanc
+									-	Hauteur de poignée standard
+									-	2 aérateurs à fente Aéromat (suivant emplacement)
+									-	Coefficient de transmission surfacique : Uw = 1,3 W/m².K
+									-	Performance thermique du vitrage : Uw = 1,1 W/m².K
+									-	Facteur solaire : Sw = 0.45 W/m².K
+									-	Fermeture par crémone simple
+									-	Habillage intérieur : A déterminer au métrage
+									-	Habillage extérieur : A déterminer au métrage
+									-	LES ELEMENTS SUIVANT SONT A CONFIRMER AU METTRAGE.';
+									break;
+								case 4:
+									$desc='
+									-	POSE EN RENOVATION DE MENUISERIES PVC DE LA MARQUE OKNOPLAST – MODELE CHARME MINI – FINITION PURE
+									-	INSTALLATION DE MATERIAUX D’ISOLATION THERMIQUE DES PAROIS VITREES VERTICALES
+									-	INSTALLATION DE FENETRE 2 VANTAUX EN DOUBLE VITRAGE VENANT EN REMPLACEMENT DE MENUISERIES SIMPLE VITRAGE
+									-	Système breveté équipé de renforts en acier sur l’ensemble du dormant et des ouvrants
+									-	Système d’ouverture Oscillo-Battant
+									-	Parclose Charme
+									-	Ouvrant 70mm
+									-	Dormant rénovation, aile de 65
+									-	Dim. Fabrication (Dos de dormant sans les ailes)
+									-	Joint de propreté total
+									-	Couleur 2 faces : '.$couleur_text.'
+									-	Vitrage 4/16/4 FE (argon) Ug = 1,1
+									-	Intercalaire Warm-Edge Noir 9005
+									-	Appui bas pour dormant rénovation 110.102.2 (haut. 2mm)
+									-	Pièce d’appui non comprise dans la hauteur
+									-	Ferrage standard
+									-	Poignée KISKA : Blanc
+									-	Hauteur de poignée standard
+									-	2 aérateurs à fente Aéromat (suivant emplacement)
+									-	Coefficient de transmission surfacique : Uw = 1,3 W/m².K
+									-	Performance thermique du vitrage : Uw = 1,1 W/m².K
+									-	Facteur solaire : Sw = 0.45 W/m².K
+									-	Fermeture par crémone simple
+									-	Habillage intérieur : A déterminer au métrage
+									-	Habillage extérieur : A déterminer au métrage
+									-	LES ELEMENTS SUIVANT SONT A CONFIRMER AU METTRAGE.';
+									break;
+									// fenetre fixe
+								case 5:
+									$desc='
+									-	POSE EN RENOVATION DE MENUISERIES PVC DE LA MARQUE OKNOPLAST – MODELE CHARME MINI – FINITION PURE
+									-	INSTALLATION DE MATERIAUX D’ISOLATION THERMIQUE DES PAROIS VITREES VERTICALES
+									-	INSTALLATION DE FENETRE FIXE EN DOUBLE VITRAGE VENANT EN REMPLACEMENT DE MENUISERIES SIMPLE VITRAGE
+									-	Système breveté équipé de renforts en acier sur l’ensemble du dormant et des ouvrants
+									-	Système d’ouverture Oscillo-Battant
+									-	Parclose Charme
+									-	Dormant rénovation, aile de 65
+									-	Dim. Fabrication (Dos de dormant sans les ailes)
+									-	Couleur 2 faces : '.$couleur_text.'
+									-	Vitrage 4/16/4 FE (argon) Ug = 1,1
+									-	Intercalaire Warm-Edge Noir 9005
+									-	Appui bas pour dormant rénovation 110.102.2 (haut. 2mm)
+									-	Pièce d’appui non comprise dans la hauteur
+									-	Coefficient de transmission surfacique : Uw = 1,3 W/m².K
+									-	Performance thermique du vitrage : Uw = 1,1 W/m².K
+									-	Facteur solaire : Sw = 0.45 W/m².K
+									-	Fermeture par crémone simple
+									-	Habillage intérieur : A déterminer au métrage
+									-	Habillage extérieur : A déterminer au métrage
+									-	LES ELEMENTS SUIVANT SONT A CONFIRMER AU METTRAGE.';
+									break;
+								case 6:
+									$desc='
+									-	POSE EN RENOVATION DE MENUISERIES PVC DE LA MARQUE OKNOPLAST – MODELE CHARME MINI – FINITION PURE
+									-	INSTALLATION DE MATERIAUX D’ISOLATION THERMIQUE DES PAROIS VITREES VERTICALES
+									-	INSTALLATION DE PORTES-FENETRES EN DOUBLE VITRAGE VENANT EN REMPLACEMENT DE MENUISERIES SIMPLE VITRAGE
+									-	Système breveté équipé de renforts en acier sur l’ensemble du dormant et des ouvrants
+									-	Système d’ouverture Oscillo-Battant
+									-	Parclose Charme
+									-	Ouvrant 70mm
+									-	Dormant rénovation, aile de 65
+									-	Dim. Fabrication (Dos de dormant sans les ailes)
+									-	Joint de propreté total
+									-	Couleur 2 faces : '.$couleur_text.'
+									-	Vitrage 4/16/4 FE (argon) Ug = 1,1
+									-	Intercalaire Warm-Edge Noir 9005
+									-	Seuil bas Aluminium
+									-	Ferrage standard
+									-	Poignée KISKA : Blanc
+									-	Hauteur de poignée standard
+									-	2 aérateurs à fente Aéromat (suivant emplacement)
+									-	Coefficient de transmission surfacique : Uw = 1,3 W/m².K
+									-	Performance thermique du vitrage : Uw = 1,1 W/m².K
+									-	Facteur solaire : Sw = 0.45 W/m².K
+									-	Fermeture par crémone simple ou serrure à barillet
+									-	Habillage intérieur : A déterminer au métrage
+									-	Habillage extérieur : A déterminer au métrage
+									-	LES ELEMENTS SUIVANT SONT A CONFIRMER AU METTRAGE';
+									break;
+								case 7:
+									$desc='
+									-	POSE EN RENOVATION DE MENUISERIES PVC DE LA MARQUE OKNOPLAST – MODELE CHARME MINI – FINITION PURE
+									-	INSTALLATION DE MATERIAUX D’ISOLATION THERMIQUE DES PAROIS VITREES VERTICALES
+									-	INSTALLATION DE PORTES-FENETRES EN DOUBLE VITRAGE VENANT EN REMPLACEMENT DE MENUISERIES SIMPLE VITRAGE
+									-	Système breveté équipé de renforts en acier sur l’ensemble du dormant et des ouvrants
+									-	Système d’ouverture Oscillo-Battant
+									-	Parclose Charme
+									-	Ouvrant 70mm
+									-	Dormant rénovation, aile de 65
+									-	Dim. Fabrication (Dos de dormant sans les ailes)
+									-	Joint de propreté total
+									-	Couleur 2 faces : '.$couleur_text.'
+									-	Vitrage 4/16/4 FE (argon) Ug = 1,1
+									-	Intercalaire Warm-Edge Noir 9005
+									-	Seuil bas Aluminium
+									-	Ferrage standard
+									-	Poignée KISKA : Blanc
+									-	Hauteur de poignée standard
+									-	2 aérateurs à fente Aéromat (suivant emplacement)
+									-	Coefficient de transmission surfacique : Uw = 1,3 W/m².K
+									-	Performance thermique du vitrage : Uw = 1,1 W/m².K
+									-	Facteur solaire : Sw = 0.45 W/m².K
+									-	Fermeture par crémone simple ou serrure à barillet
+									-	Habillage intérieur : A déterminer au métrage
+									-	Habillage extérieur : A déterminer au métrage
+									-	LES ELEMENTS SUIVANT SONT A CONFIRMER AU METTRAGE';
+									break;
+									case 8:
+									$desc='
+									-	POSE EN RENOVATION DE MENUISERIES ALUMINIUM DE LA MARQUE OKNOPLAST - GAMME ALUHAUS
+									-	INSTALLATION DE MATERIAUX D’ISOLATION THERMIQUE DES PAROIS VITREES VERTICALES
+									-	INSTALLATION DE COULISSANT EN DOUBLE VITRAGE VENANT EN REMPLACEMENT DE MENUISERIES SIMPLE VITRAGE
+									-	Ouvrant 44mm
+									-	Dormant rénovation, aile de 60
+									-	Dim. Fabrication (Dos de dormant sans les ailes)
+									-	Bouclier thermique
+									-	Rail aluminium anodisé
+									-	Couleur 2 faces : '.$couleur_text.'
+									-	Vitrage 4/20/4 FE (argon) Ug = 1,1
+									-	Intercalaire Warm-Edge Noir 9005
+									-	Appui bas pour dormant rénovation 110.102.2 (haut. 2mm)
+									-	Pièce d’appui non comprise dans la hauteur
+									-	Ferrage standard
+									-	Poignée CUADRO : Blanc
+									-	Hauteur de poignée standard
+									-	2 aérateurs à fente Aéromat (suivant emplacent)
+									-	Coefficient de transmission surfacique : Uw = 1,77 W/m².K
+									-	Performance thermique du vitrage : Uw = 1,77 W/m².K
+									-	Facteur solaire : Sw = 0,43 W/m².K
+									-	Habillage intérieur : A déterminer au métrage
+									-	Habillage extérieur : A déterminer au métrage
+									-	LES ELEMENTS SUIVANT SONT A CONFIRMER AU METTRAGE.';
+									break;
+									case 9:
+									$desc='
+									-	POSE EN RENOVATION DE MENUISERIES ALUMINIUM DE LA MARQUE OKNOPLAST - GAMME ALUHAUS
+									-	INSTALLATION DE MATERIAUX D’ISOLATION THERMIQUE DES PAROIS VITREES VERTICALES
+									-	INSTALLATION DE COULISSANT EN DOUBLE VITRAGE VENANT EN REMPLACEMENT DE MENUISERIES SIMPLE VITRAGE
+									-	Ouvrant 44mm
+									-	Dormant rénovation, aile de 60
+									-	Dim. Fabrication (Dos de dormant sans les ailes)
+									-	Bouclier thermique
+									-	Rail aluminium anodisé
+									-	Couleur 2 faces : '.$couleur_text.'
+									-	Vitrage 4/20/4 FE (argon) Ug = 1,1
+									-	Intercalaire Warm-Edge Noir 9005
+									-	Appui bas pour dormant rénovation 110.102.2 (haut. 2mm)
+									-	Pièce d’appui non comprise dans la hauteur
+									-	Ferrage standard
+									-	Poignée CUADRO : Blanc
+									-	Hauteur de poignée standard
+									-	2 aérateurs à fente Aéromat (suivant emplacement)
+									-	Coefficient de transmission surfacique : Uw = 1,77 W/m².K
+									-	Performance thermique du vitrage : Uw = 1,77 W/m².K
+									-	Facteur solaire : Sw = 0,43 W/m².K
+									-	Habillage intérieur : A déterminer au métrage
+									-	Habillage extérieur : A déterminer au métrage
+									-	LES ELEMENTS SUIVANT SONT A CONFIRMER AU METTRAGE.';
+									break;
+									case 10:
+									$desc='
+									-	POSE EN RENOVATION DE MENUISERIES ALUMINIUM DE LA MARQUE OKNOPLAST - GAMME ALUHAUS
+									-	INSTALLATION DE MATERIAUX D’ISOLATION THERMIQUE DES PAROIS VITREES VERTICALES
+									-	INSTALLATION DE COULISSANT EN DOUBLE VITRAGE VENANT EN REMPLACEMENT DE MENUISERIES SIMPLE VITRAGE
+									-	Ouvrant 44mm
+									-	Dormant rénovation, aile de 60
+									-	Dim. Fabrication (Dos de dormant sans les ailes)
+									-	Bouclier thermique
+									-	Rail aluminium anodisé
+									-	Couleur 2 faces : Blanc (Ral 9016) Modification en fonction de la couleur choisie
+									-	Vitrage 4/20/4 FE (argon) Ug = 1,1
+									-	Intercalaire Warm-Edge Noir 9005
+									-	Appui bas pour dormant rénovation 110.102.2 (haut. 2mm)
+									-	Pièce d’appui non comprise dans la hauteur
+									-	Ferrage standard
+									-	Poignée CUADRO : Blanc
+									-	Hauteur de poignée standard
+									-	2 aérateurs à fente Aéromat (suivant emplacement)
+									-	Coefficient de transmission surfacique : Uw = 1,77 W/m².K
+									-	Performance thermique du vitrage : Uw = 1,77 W/m².K
+									-	Facteur solaire : Sw = 0,43 W/m².K
+									-	Habillage intérieur : A déterminer au métrage
+									-	Habillage extérieur : A déterminer au métrage
+									-	LES ELEMENTS SUIVANT SONT A CONFIRMER AU METTRAGE.';
+									break;
 
-								// Porte
+									// Porte
 
+								}
 							}
-
 					   @endphp
 					   <tr class="product"  >
 						   <td @if($i!=$count_articles) style="border-bottom: 1px solid #f07f32" @endif ><img src="{!! public_path($img)!!}"   style="max-width:120px;max-height:90px;" /></td><td  @if($i!=$count_articles) style="border-bottom: 1px solid #f07f32" @endif class="text" ><b>{{$article->text}} @if($article->note!='')<br>{{$article->note}} @endif </b><br>{!!nl2br($desc)!!}</td><td @if($i!=$count_articles) style="border-bottom: 1px solid #f07f32" @endif >{{$article->qty}}</td><td @if($i!=$count_articles) style="border-bottom: 1px solid #f07f32" @endif >{{$article->price_ht}} €</td><td @if($i!=$count_articles) style="border-bottom: 1px solid #f07f32" @endif>{{$total_prod_ht}} €</td><td @if($i!=$count_articles) style="border-bottom: 1px solid #f07f32" @endif >5.5 %</td><td @if($i!=$count_articles) style="border-bottom: 1px solid #f07f32" @endif >{{$total_prod_ttc}} €</td>

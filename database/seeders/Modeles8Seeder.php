@@ -18,6 +18,7 @@ class Modeles8Seeder extends Seeder  // coulissant 1
         $seeder = Modele::where('type',8)->where('genre',2)->count();
 
         //Check if the seeder exist in the DB
+        //Coulissant 1
         if ($seeder==0) {
             $modeles =
             [

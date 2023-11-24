@@ -18,6 +18,7 @@ class Modeles3Seeder extends Seeder
         $seeder = Modele::where('type',3)->count();
 
         //Check if the seeder exist in the DB
+        // fenetre 2V
         if ($seeder==0) {
             $modeles =
             [
@@ -533,7 +534,7 @@ class Modeles3Seeder extends Seeder
         /*larg=1200*/
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>3 ,
+ 	 	 	'type'    =>3 ,
             'couleur'    =>1 ,
             'hauteur'    => 500,
             'largeur'  =>1200 ,

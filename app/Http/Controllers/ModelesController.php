@@ -206,7 +206,7 @@ class ModelesController extends Controller
         $modele=Modele::where('genre',$genre)->where('type',$type)->where('couleur',1)->where('hauteur',$hauteur)->where('largeur',$largeur)->first();
         if (isset($modele)){
             $model['id']=$modele->id;
-            $prix=$modele->prix * 3;
+            $prix=$modele->prix * 2.8;   // coefficient
             if($couleur==1){
                 $prix=$prix;
             }elseif($couleur==2){
@@ -388,7 +388,7 @@ class ModelesController extends Controller
 
         if (isset($shutter)){
             $shutter['id']=$shutter->id;
-            $prix=$shutter->prix *3 ;
+            $prix=$shutter->prix *2.5 ;   // coefficient
 
             $shutter['prix']=number_format($prix,2,'.','');
             $shutter['prix_ht']=number_format($prix,2,'.','');

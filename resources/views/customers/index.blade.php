@@ -29,7 +29,7 @@
             <th>No</th>
             <th>Nom</th>
             <th>Tél</th>
-            <th>Adresse</th>
+            <th>Adresse fisc</th>
             <th>Commercial</th>
             <th class="no-sort"  style="width:20%"  >Action</th>
             </tr>

@@ -18,6 +18,7 @@ class Modeles7Seeder extends Seeder
         $seeder = Modele::where('type',7)->count();
 
         //Check if the seeder exist in the DB
+        //Porte fenetre 2V
         if ($seeder==0) {
             $modeles =
             [

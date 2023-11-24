@@ -228,7 +228,7 @@
 
                         <div class="col-xs-12 col-sm-12 col-md-12">
                             <div class="form-group">
-                                <strong>Adresse:</strong>
+                                <strong>Adresse fiscale:</strong>
                                 <input type="text"   name="address" id="address" class="form-control" placeholder="Adresse" value="{{old('address')}}" onchange="copy('address')"  />
                             </div>
                         </div>
