@@ -1226,7 +1226,7 @@
 		cintrage_text='(avec cintrage)';
 	}
 
-	var product_text= $('#type option:selected').text()+' '+$('#genre option:selected').text()+' - Couleur: '+$('#couleur option:selected').text()+ groupe_text+' - Dimensions [H: '+$('#hauteur').val()+'cm * L: '+$('#largeur').val()+'cm]'+ cintrage_text;
+	var product_text= $('#type option:selected').text()+' '+$('#genre option:selected').text()+' - Couleur: '+$('#couleur option:selected').text()+ groupe_text+' - Dimensions [H: '+$('#hauteur').val()+'mm * L: '+$('#largeur').val()+'mm]'+ cintrage_text;
 
 	$.ajax({
 	url: "{{ route('add_article') }}",
