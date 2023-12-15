@@ -7,9 +7,12 @@
 <link rel="stylesheet" href="{{asset('plugins/select2/css/select2.min.css')}}">
 <link rel="stylesheet" href="{{asset('plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css')}}">
 
-<!-- signature -->
+<!-- signature
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.css">
  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css"/>
+-->
+<link rel="stylesheet" href="{{asset('css/signature-pad.css')}}">
+
  <style>
 		.vtop{
 			vertical-align:top;
@@ -86,32 +89,7 @@
 			padding:5px 10px 2px 12px;
 		}
 
-	#sigpad3{
-	   width:550px;
-	 }
-
-@media (min-width: 481px) and (max-width: 767px) {
-
-   #sigpad3{
-	    width:460px!important;
-	 }
-
-}
-
-/*
-  ##Device = Most of the Smartphones Mobiles (Portrait)
-  ##Screen = B/w 320px to 479px
-*/
-
-@media (min-width: 320px) and (max-width: 480px) {
-
-     #sigpad3{
-	    width:300px!important;
-	 }
-
-}
-
- </style>
+  </style>
 
 @endsection
 
@@ -546,43 +524,49 @@
 						@csrf
 						<input type="hidden" name="quote_id" value="{{$quote->id}}" />
 						<div class="row">
-							<div class="col-lg-4 col-md-6 col-sm-12">
+							<div class="col-lg-9 col-md-12 col-sm-12">
 								<label class="">Fait à:</label><br>
-								<div id="sigpad" style="width:300px!important"></div><br>
-								<span id="clear" class="btn btn-danger"><i class="fas fa-redo"></i> Vider</span><br>
-								<textarea id="signature" name="signed" style="display: none"></textarea>
+								<div style="width:100%;" >
+									<canvas  style="border:1px dotted grey" id="canvas1" width="600"  height="180"  ></canvas><br>
+								</div>
+								<span id="clear" class="btn btn-sm btn-danger mr-2" onclick="empty(signaturePad);"><i class="fas fa-redo"></i> Vider</span><span id="" class="btn btn-sm btn-warning" onclick="undo(signaturePad);"><i class="fas fa-arrow-left"></i> Retour</span><br>
+								<input id="signature1" name="signed" style="display: none"></input>
 								@if(\App\Models\Signature::where('quote',$quote->id)->exists())
 									@php $lieu=\App\Models\Signature::where('quote',$quote->id)->first()->lieu;
 									@endphp
-									@if($lieu != '') <img src="{{$lieu}}" width= '300'     height= ''/>  @endif
+									@if($lieu != '') <img class="mt-2" src="{{$lieu}}" width= '300'     height= ''/>  @endif
 								@endif
 							</div>
-							<div class="col-lg-4 col-md-6 col-sm-12">
+							<div class="col-lg-9 col-md-12 col-sm-12 pt-2">
 								<label class="">Le:</label><br>
-								<div class="sigpad" id="sigpad2" style="width:300px!important"></div><br>
-								<span id="clear2" class="btn btn-danger"><i class="fas fa-redo"></i> Vider</span><br>
-								<textarea id="signature2" name="signed2" style="display: none"></textarea>
+								<div style="width:100%;">
+									<canvas  style="border:1px dotted grey;" id="canvas2" width="600"  height="180"   ></canvas><br>
+								</div>
+								<span  class="btn btn-sm btn-danger mr-2" onclick="empty(signaturePad2);"><i class="fas fa-redo"></i> Vider</span><span id="" class="btn btn-sm btn-warning" onclick="undo(signaturePad2);"><i class="fas fa-arrow-left"></i> Retour</span><br>
+								<input id="signature2" name="signed2" style="display: none"></input>
 								@if(\App\Models\Signature::where('quote',$quote->id)->exists())
 									@php $date=\App\Models\Signature::where('quote',$quote->id)->first()->date;
 									@endphp
-									@if($date != '') <img src="{{$date}}" width= '300'     height= ''/>  @endif
+									@if($date != '') <img class="mt-2" src="{{$date}}" width= '300'     height= ''/>  @endif
 								@endif
 							</div>
-							<div class="col-lg-6 col-md-6 col-sm-12">
+							<div class="col-lg-9 col-md-6 col-sm-12 pt-2">
 								<label class="pt-2">Mention "Bon pour accord" + Signature:</label><br>
-								<div class="sigpad"  id="sigpad3" style=""></div><br>
-								<span id="clear3" class="btn btn-danger"><i class="fas fa-redo"></i> Vider</span>
-								<textarea id="signature3" name="signed3" style="display: none"></textarea>
+								<div style="width:100%;">
+									<canvas  style="border:1px dotted grey" id="canvas3" width="650"  height="300"  ></canvas><br>
+								</div>
+								<span   class="btn btn-sm btn-danger mr-2" onclick="empty(signaturePad3);"><i class="fas fa-redo"></i> Vider</span><span id="" class="btn btn-sm btn-warning" onclick="undo(signaturePad3);"><i class="fas fa-arrow-left"></i> Retour</span><br>
+								<input id="signature3" name="signed3" style="display: none"></input>
 								@if(\App\Models\Signature::where('quote',$quote->id)->exists())
 									@php $signature=\App\Models\Signature::where('quote',$quote->id)->first()->signature;
 									@endphp
-									@if($signature != '') <img src="{{$signature}}" width= '300'     height= ''/>  @endif
+									@if($signature != '') <img class="mt-2"  src="{{$signature}}" width= '300'     height= ''/>  @endif
 								@endif
 							</div>
 						</div>
 						<div class="row">
 							<div class="col-12">
-								<button class="btn btn-primary float-right mt-2 mb-2">Confirmer</button>
+								<button class="btn btn-primary float-right mt-2 mb-2">Enregistrer</button>
 							</div>
 						</div>
 					</form>
@@ -985,28 +969,95 @@
 </script>
 
  <!-- signature -->
-<script type="text/javascript" src="{{asset('js/jquery.signature.js')}}"></script>
+<script type="text/javascript" src="{{asset('js/signature_pad.js')}}"></script>
 
 <script type="text/javascript">
-	var sigpad = $('#sigpad').signature({syncField: '#signature', syncFormat: 'PNG'});
-		$('#clear').click(function(e) {
-		e.preventDefault();
-		sigpad.signature('clear');
-		$("#signature").val('');
+
+	var canvas = document.getElementById("canvas1");
+	var signaturePad = new SignaturePad(canvas, {
+	backgroundColor: 'rgb(255, 255, 255)',
+	//maxWidth : 2
+
 	});
 
-	var sigpad2 = $('#sigpad2').signature({syncField: '#signature2', syncFormat: 'PNG'});
-		$('#clear2').click(function(e) {
-		e.preventDefault();
-		sigpad2.signature('clear');
-		$("#signature2").val('');
+	var canvas2 = document.getElementById("canvas2");
+	var signaturePad2 = new SignaturePad(canvas2, {
+	backgroundColor: 'rgb(255, 255, 255)',
+	//maxWidth : 2
 	});
 
-	var sigpad3 = $('#sigpad3').signature({syncField: '#signature3', syncFormat: 'PNG'});
-		$('#clear3').click(function(e) {
-		e.preventDefault();
-		sigpad3.signature('clear');
-		$("#signature3").val('');
+	var canvas3 = document.getElementById("canvas3");
+	var signaturePad3 = new SignaturePad(canvas3, {
+	backgroundColor: 'rgb(255, 255, 255)',
+
+	});
+
+	function resizeCanvas() {
+	var ratio =  Math.max(window.devicePixelRatio || 1, 1);
+	canvas.width = canvas.offsetWidth * ratio;
+	canvas.height = canvas.offsetHeight * ratio;
+	canvas.getContext("2d").scale(ratio, ratio);
+	signaturePad.clear();
+
+	canvas2.width = canvas2.offsetWidth * ratio;
+	canvas2.height = canvas2.offsetHeight * ratio;
+	canvas2.getContext("2d").scale(ratio, ratio);
+	signaturePad2.clear();
+
+	canvas3.width = canvas3.offsetWidth * ratio;
+	canvas3.height = canvas3.offsetHeight * ratio;
+	canvas3.getContext("2d").scale(ratio, ratio);
+	signaturePad3.clear();
+	}
+
+
+
+
+	function empty(signaturePad){
+		signaturePad.clear();
+	}
+
+	function undo(signaturePad){
+		var data = signaturePad.toData();
+		if (data) {
+		data.pop(); // remove the last dot or line
+		signaturePad.fromData(data);
+		}
+	}
+
+	function save(signaturePad,textarea){
+		var dataURL = signaturePad.toDataURL("image/jpeg");
+		$('#signature'+textarea).val(dataURL);
+	}
+
+	var canvas1 = document.getElementById("canvas1");
+	var canvas2 = document.getElementById("canvas2");
+	var canvas3 = document.getElementById("canvas3");
+
+	canvas1.addEventListener('click', function () {
+		var dataURL = signaturePad.toDataURL("image/jpeg");
+		$('#signature1').val(dataURL);
+	});
+	canvas2.addEventListener('click', function () {
+		var dataURL = signaturePad2.toDataURL("image/jpeg");
+		$('#signature2').val(dataURL);
+	});
+	canvas3.addEventListener('click', function () {
+		var dataURL = signaturePad3.toDataURL("image/jpeg");
+		$('#signature3').val(dataURL);
+	});
+
+	canvas1.addEventListener('touchend', function () {
+		var dataURL = signaturePad.toDataURL("image/jpeg");
+		$('#signature1').val(dataURL);
+	});
+	canvas2.addEventListener('touchend', function () {
+		var dataURL = signaturePad2.toDataURL("image/jpeg");
+		$('#signature2').val(dataURL);
+	});
+	canvas3.addEventListener('touchend', function () {
+		var dataURL = signaturePad3.toDataURL("image/jpeg");
+		$('#signature3').val(dataURL);
 	});
 </script>
 

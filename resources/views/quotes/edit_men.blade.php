@@ -116,7 +116,7 @@
                     <a class="nav-link" id="custom-tabs-three-finance-tab" data-toggle="pill" href="#custom-tabs-three-finance" role="tab" aria-controls="custom-tabs-three-finance" aria-selected="false">Règlement</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" id="custom-tabs-three-signature-tab" data-toggle="pill" href="#custom-tabs-three-signature" role="tab" aria-controls="custom-tabs-three-signature" aria-selected="false">Signature</a>
+                    <a class="nav-link" id="custom-tabs-three-signature-tab" data-toggle="pill" href="#custom-tabs-three-signature" role="tab" aria-controls="custom-tabs-three-signature" aria-selected="false">Signature électronique</a>
                 </li>
                 </ul>
         </div>
@@ -530,60 +530,81 @@
 				</div>
 
             	<div class="tab-pane fade" id="custom-tabs-three-signature" role="tabpanel" aria-labelledby="custom-tabs-three-signature-tab"   >
-						<!--
+
+				<form method="POST" action="{{ route('signpad.save') }}">
+						@csrf
+						<input type="hidden" name="quote_id" value="{{$quote->id}}" />
 						<div class="row">
-							<div class="col-md-6 ">
-								<div class=" ">
-									<div class="card-body">
-										<div class="col-md-12">
-											<label class="" for="">Dessinez votre Signature:</label>
-											<br/>
-											<form method="POST" action="{{ route('signpad.save') }}">
-												@csrf
-												<input type="hidden" name="quote_id" value="{{$quote->id}}" />
-												<div id="sigpad" style="width:300px!important"></div>
-												<br><br>
-												<button id="clear" class="btn btn-danger">Vider</button>
-												<textarea id="signature" name="signed" style="display: none"></textarea>
-												<button class="btn btn-primary">Confirmer
-											</form>
-										</div>
-									</div>
+							<div class="col-lg-9 col-md-12 col-sm-12">
+								<label class="">Fait à:</label><br>
+								<div style="width:100%;" >
+									<canvas  style="border:1px dotted grey" id="canvas1" width="600"  height="180"  ></canvas><br>
 								</div>
+								<span id="clear" class="btn btn-sm btn-danger mr-2" onclick="empty(signaturePad);"><i class="fas fa-redo"></i> Vider</span><span id="" class="btn btn-sm btn-warning" onclick="undo(signaturePad);"><i class="fas fa-arrow-left"></i> Retour</span><br>
+								<input id="signature1" name="signed" style="display: none"></input>
+								@if(\App\Models\Signature::where('quote',$quote->id)->exists())
+									@php $lieu=\App\Models\Signature::where('quote',$quote->id)->first()->lieu;
+									@endphp
+									@if($lieu != '') <img class="mt-2" src="{{$lieu}}" width= '300'     height= ''/>  @endif
+								@endif
 							</div>
-							<div class="col-md-6 pt-3 pl-3">
-							@if(\App\Models\Signature::where('quote',$quote->id)->exists())
-								@php $url_img=\App\Models\Signature::where('quote',$quote->id)->first()->user_image;
-								@endphp
-								<img src="{{$url_img}}" width= '300'     height= ''/>
-							@endif
+							<div class="col-lg-9 col-md-12 col-sm-12 pt-2">
+								<label class="">Le:</label><br>
+								<div style="width:100%;">
+									<canvas  style="border:1px dotted grey;" id="canvas2" width="600"  height="180"   ></canvas><br>
+								</div>
+								<span  class="btn btn-sm btn-danger mr-2" onclick="empty(signaturePad2);"><i class="fas fa-redo"></i> Vider</span><span id="" class="btn btn-sm btn-warning" onclick="undo(signaturePad2);"><i class="fas fa-arrow-left"></i> Retour</span><br>
+								<input id="signature2" name="signed2" style="display: none"></input>
+								@if(\App\Models\Signature::where('quote',$quote->id)->exists())
+									@php $date=\App\Models\Signature::where('quote',$quote->id)->first()->date;
+									@endphp
+									@if($date != '') <img class="mt-2" src="{{$date}}" width= '300'     height= ''/>  @endif
+								@endif
 							</div>
-						</div>
-						-->
-
-						<div class="row bg-lightgrey pt-3 pb-3">
-
-							<div class="col-md-6 pl-3">
-								<form method="POST" action="{{ route('quotes.ajout_signature') }}"   enctype='multipart/form-data' >
-									@csrf
-									<input type="hidden" name="quote" value="{{$quote->id}}" />
-
-									<div class="form-group">
-										<strong>Importer le devis signé :</strong>
-										<input type="file"  class="form-control"   name="devis_signe"    >
-									</div>
-
-									<div class="col-xs-12 col-sm-12 col-md-7 mt-5">
-										<button type="submit" class="btn btn-primary">Envoyer</button>
-									</div>
-								</form>
-							</div>
-							<div  class="col-md-6 pl-3 pt-4">
-								@if($quote->devis_signe!='')
-									<a download href="<?php echo  URL::asset('/fichiers/'.$quote->devis_signe);?>" >Télécharger le devis signé</a><br>
+							<div class="col-lg-9 col-md-6 col-sm-12 pt-2">
+								<label class="pt-2">Mention "Bon pour accord" + Signature:</label><br>
+								<div style="width:100%;">
+									<canvas  style="border:1px dotted grey" id="canvas3" width="650"  height="350"  ></canvas><br>
+								</div>
+								<span   class="btn btn-sm btn-danger mr-2" onclick="empty(signaturePad3);"><i class="fas fa-redo"></i> Vider</span><span id="" class="btn btn-sm btn-warning" onclick="undo(signaturePad3);"><i class="fas fa-arrow-left"></i> Retour</span><br>
+								<input id="signature3" name="signed3" style="display: none"></input>
+								@if(\App\Models\Signature::where('quote',$quote->id)->exists())
+									@php $signature=\App\Models\Signature::where('quote',$quote->id)->first()->signature;
+									@endphp
+									@if($signature != '') <img class="mt-2"  src="{{$signature}}" width= '300'     height= ''/>  @endif
 								@endif
 							</div>
 						</div>
+						<div class="row">
+							<div class="col-12">
+								<button class="btn btn-primary float-right mt-2 mb-2">Enregistrer</button>
+							</div>
+						</div>
+					</form>
+
+					<div class="row bg-lightgrey pt-3 pb-3">
+
+						<div class="col-md-6 pl-3">
+							<form method="POST" action="{{ route('quotes.ajout_signature') }}"   enctype='multipart/form-data' >
+								@csrf
+								<input type="hidden" name="quote" value="{{$quote->id}}" />
+
+								<div class="form-group">
+									<strong>Importer le devis signé :</strong>
+									<input type="file"  class="form-control"   name="devis_signe"    >
+								</div>
+
+								<div class="col-xs-12 col-sm-12 col-md-7 mt-5">
+									<button type="submit" class="btn btn-primary">Envoyer</button>
+								</div>
+							</form>
+						</div>
+						<div  class="col-md-6 pl-3 pt-4">
+							@if($quote->devis_signe!='')
+								<a download href="<?php echo  URL::asset('/fichiers/'.$quote->devis_signe);?>" >Télécharger le devis signé</a><br>
+							@endif
+						</div>
+					</div>
 
 
 				</div>
@@ -1815,15 +1836,106 @@
 </script>
 
  <!-- signature -->
-<script type="text/javascript" src="{{asset('js/jquery.signature.js')}}"></script>
+ <script type="text/javascript" src="{{asset('js/signature_pad.js')}}"></script>
 
-<script type="text/javascript">
-	var sigpad = $('#sigpad').signature({syncField: '#signature', syncFormat: 'PNG'});
-		$('#clear').click(function(e) {
-		e.preventDefault();
-		sigpad.signature('clear');
-		$("#signature").val('');
+<script type="text/javascript" src="{{asset('js/jquery.signature.js')}}"></script>
+<script>
+var canvas = document.getElementById("canvas1");
+	var signaturePad = new SignaturePad(canvas, {
+	backgroundColor: 'rgb(255, 255, 255)'
 	});
+
+	var canvas2 = document.getElementById("canvas2");
+	var signaturePad2 = new SignaturePad(canvas2, {
+	backgroundColor: 'rgb(255, 255, 255)'
+	});
+
+	var canvas3 = document.getElementById("canvas3");
+	var signaturePad3 = new SignaturePad(canvas3, {
+	backgroundColor: 'rgb(255, 255, 255)'
+	});
+
+	function resizeCanvas() {
+	var ratio =  Math.max(window.devicePixelRatio || 1, 1);
+	canvas.width = canvas.offsetWidth * ratio;
+	canvas.height = canvas.offsetHeight * ratio;
+	canvas.getContext("2d").scale(ratio, ratio);
+	signaturePad.clear();
+
+	canvas2.width = canvas2.offsetWidth * ratio;
+	canvas2.height = canvas2.offsetHeight * ratio;
+	canvas2.getContext("2d").scale(ratio, ratio);
+	signaturePad2.clear();
+
+	canvas3.width = canvas3.offsetWidth * ratio;
+	canvas3.height = canvas3.offsetHeight * ratio;
+	canvas3.getContext("2d").scale(ratio, ratio);
+	signaturePad3.clear();
+	}
+
+
+
+
+	function empty(signaturePad){
+		signaturePad.clear();
+	}
+
+	function undo(signaturePad){
+		var data = signaturePad.toData();
+		if (data) {
+		data.pop(); // remove the last dot or line
+		signaturePad.fromData(data);
+		}
+	}
+
+	function dataURLToBlob(dataURL,target) {
+		var parts = dataURL.split(';base64,');
+		var contentType = parts[0].split(":")[1];
+		var raw = window.atob(parts[1]);
+		var rawLength = raw.length;
+		var uInt8Array = new Uint8Array(rawLength);
+
+		for (var i = 0; i < rawLength; ++i) {
+			uInt8Array[i] = raw.charCodeAt(i);
+		}
+
+		var blob= new Blob([uInt8Array], { type: contentType });
+
+		$(target).val(blob);
+	}
+
+	var canvas1 = document.getElementById("canvas1");
+	var canvas2 = document.getElementById("canvas2");
+	var canvas3 = document.getElementById("canvas3");
+
+	canvas1.addEventListener('click', function () {
+		var dataURL = signaturePad.toDataURL("image/jpeg");
+		$('#signature1').val(dataURL);
+	});
+	canvas2.addEventListener('click', function () {
+		var dataURL = signaturePad2.toDataURL("image/jpeg");
+		$('#signature2').val(dataURL);
+	});
+	canvas3.addEventListener('click', function () {
+		var dataURL = signaturePad3.toDataURL("image/jpeg");
+		$('#signature3').val(dataURL);
+	});
+
+	canvas1.addEventListener('touchend', function () {
+		var dataURL = signaturePad.toDataURL("image/jpeg");
+		$('#signature1').val(dataURL);
+	});
+	canvas2.addEventListener('touchend', function () {
+		var dataURL = signaturePad2.toDataURL("image/jpeg");
+		$('#signature2').val(dataURL);
+	});
+	canvas3.addEventListener('touchend', function () {
+		var dataURL = signaturePad3.toDataURL("image/jpeg");
+		$('#signature3').val(dataURL);
+	});
+
+
+
 </script>
 
 @endsection

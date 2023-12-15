@@ -765,13 +765,21 @@
 			   @endif
 		   </div>
 		   <div style="width:45%;float:left;font-weight:bold;padding-top:15px">
-			   <table style="width:100%;font-size:10px">
-				   <tr rowspan="2"><td>Fait à</td><td></td><td>Le</td><td></td></tr>
-				   <tr><td colspan="4"> J'ai lu et j'accepte les Conditions Générales de Ventes</td></tr>
-				   <tr><td colspan="4">Signature précédée de la mention "Bon pour accord"</td></tr>
-			   </table>
-			   <div style="border:1px solid grey;width:100%;height:120px">
-			   </div>
+		   		@if($type =='Devis')
+					@php
+						$lieu=\App\Models\Signature::where('quote',$invoice->id)->first()->lieu ?? '';
+						$date=\App\Models\Signature::where('quote',$invoice->id)->first()->date ?? '';
+						$signature=\App\Models\Signature::where('quote',$invoice->id)->first()->signature ?? '';
+					@endphp
+					<table style="width:100%;font-size:10px">
+						<tr rowspan="2"><td>Fait à</td>@if($lieu !='')<img src="{{$lieu}}" width= '60'     height='auto'/>@endif<td></td><td>Le</td>@if($date !='')<td><img src="{{$date}}" width= '60'     height= 'auto'/>@endif</td></tr>
+						<tr><td colspan="4"> J'ai lu et j'accepte les Conditions Générales de Ventes</td></tr>
+						<tr><td colspan="4">Signature précédée de la mention "Bon pour accord"</td></tr>
+					</table>
+					<div style="border:1px solid grey;width:100%;height:120px">
+						@if($signature !='')<img style="margin-left:15px;margin-top:15px;" src="{{$signature}}"  width='200'     height= ''/>@endif
+					</div>
+				@endif
 		   </div>
 	   </div>
 	   <div class="clearfix"></div>
