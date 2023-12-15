@@ -10,7 +10,9 @@ class Signature extends Model
     use HasFactory;
 
     protected $fillable = [
-        'user_image',
+        'lieu',
+        'date',
+        'signature',
         'quote',
     ];
 

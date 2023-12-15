@@ -191,6 +191,7 @@ class ModelesController extends Controller
         }
     }
 
+    // menuiserie
     public function pricing(Request $request)
     {
         $genre=$request->get('genre');
@@ -206,7 +207,7 @@ class ModelesController extends Controller
         $modele=Modele::where('genre',$genre)->where('type',$type)->where('couleur',1)->where('hauteur',$hauteur)->where('largeur',$largeur)->first();
         if (isset($modele)){
             $model['id']=$modele->id;
-            $prix=$modele->prix * 3;   // coefficient
+            $prix=$modele->prix * 2.8;   // coefficient
             if($couleur==1){
                 $prix=$prix;
             }elseif($couleur==2){

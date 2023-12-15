@@ -10,7 +10,7 @@ class SignaturePadController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-    } 
+    }
 
     public function index()
     {
@@ -26,24 +26,40 @@ class SignaturePadController extends Controller
 
 
     public function save(Request $request)
-    {
-       $image_parts = explode(";base64,", $request->signed);
-       $image_base64 = base64_decode($image_parts[1]);
-      //  file_put_contents('kl',$image_base64);
+    {/*
+       $Lieu = explode(";base64,", $request->signed);
+       $lieu_base64 = base64_decode($Lieu[1]);
 
+       $Date = explode(";base64,", $request->signed2);
+       $date_base64 = base64_decode($Date[1]);
+
+       $Signature = explode(";base64,", $request->signed3);
+       $sign_base64 = base64_decode($Signature[1]);
+      //  file_put_contents('kl',$image_base64);
+*/
         // Save in your data in database here.
-        $image_file = $request->signed;
-        
+        $lieu = $request->signed;
+        $date = $request->signed2;
+        $signature = $request->signed3;
+
         $form_data = array(
-           'user_image' => $image_file,
+           'lieu' => $lieu,
+           'date' => $date,
+           'signature' => $signature,
            'quote' => $request->quote_id
         );
         if(Signature::where('quote', $request->quote_id)->exists()){
-            Signature::where('quote', $request->quote_id)->update(['user_image'=>$image_file]);
+            if($lieu!= null)
+            Signature::where('quote', $request->quote_id)->update(['lieu'=>$lieu]);
+            if($date!= null)
+            Signature::where('quote', $request->quote_id)->update(['date'=>$date]);
+            if($signature!= null)
+            Signature::where('quote', $request->quote_id)->update(['signature'=>$signature]);
+
         }else{
             Signature::create($form_data);
         }
-        
+
        return back()->with('success', 'Signature enregistrée');
     }
 }

@@ -24,7 +24,10 @@
 			opacity: 0.35;
 		}
      /*   #sigpad canvas{ width: 100% !important; height: auto;}*/
-		#signature{cursor:pointer;}
+		.sigpad{
+			cursor:pointer;
+
+		}
 		.tab-products{
 			width:100%;
 			font-size:12px;
@@ -82,6 +85,32 @@
 		.table-aide td{
 			padding:5px 10px 2px 12px;
 		}
+
+	#sigpad3{
+	   width:550px;
+	 }
+
+@media (min-width: 481px) and (max-width: 767px) {
+
+   #sigpad3{
+	    width:460px!important;
+	 }
+
+}
+
+/*
+  ##Device = Most of the Smartphones Mobiles (Portrait)
+  ##Screen = B/w 320px to 479px
+*/
+
+@media (min-width: 320px) and (max-width: 480px) {
+
+     #sigpad3{
+	    width:300px!important;
+	 }
+
+}
+
  </style>
 
 @endsection
@@ -116,15 +145,13 @@
                     <a class="nav-link" id="custom-tabs-three-finance-tab" data-toggle="pill" href="#custom-tabs-three-finance" role="tab" aria-controls="custom-tabs-three-finance" aria-selected="false">Règlement</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" id="custom-tabs-three-signature-tab" data-toggle="pill" href="#custom-tabs-three-signature" role="tab" aria-controls="custom-tabs-three-signature" aria-selected="false">Signature</a>
+                    <a class="nav-link" id="custom-tabs-three-signature-tab" data-toggle="pill" href="#custom-tabs-three-signature" role="tab" aria-controls="custom-tabs-three-signature" aria-selected="false">Signature électronique</a>
                 </li>
                 </ul>
         </div>
         <div class="card-body">
             <div class="tab-content" id="custom-tabs-three-tabContent">
 				<div class="tab-pane fade active show" id="custom-tabs-three-details" role="tabpanel" aria-labelledby="custom-tabs-three-details-tab">
-
-
 					<form action="{{ route('quotes.update',$quote->id) }}" method="POST">
 						@csrf
 						@method('PUT')
@@ -514,60 +541,75 @@
 				</div>
 
             	<div class="tab-pane fade" id="custom-tabs-three-signature" role="tabpanel" aria-labelledby="custom-tabs-three-signature-tab"   >
-						<!--
+
+					<form method="POST" action="{{ route('signpad.save') }}">
+						@csrf
+						<input type="hidden" name="quote_id" value="{{$quote->id}}" />
 						<div class="row">
-							<div class="col-md-6 ">
-								<div class=" ">
-									<div class="card-body">
-										<div class="col-md-12">
-											<label class="" for="">Dessinez votre Signature:</label>
-											<br/>
-											<form method="POST" action="{{ route('signpad.save') }}">
-												@csrf
-												<input type="hidden" name="quote_id" value="{{$quote->id}}" />
-												<div id="sigpad" style="width:300px!important"></div>
-												<br><br>
-												<button id="clear" class="btn btn-danger">Vider</button>
-												<textarea id="signature" name="signed" style="display: none"></textarea>
-												<button class="btn btn-primary">Confirmer
-											</form>
-										</div>
-									</div>
-								</div>
+							<div class="col-lg-4 col-md-6 col-sm-12">
+								<label class="">Fait à:</label><br>
+								<div id="sigpad" style="width:300px!important"></div><br>
+								<span id="clear" class="btn btn-danger"><i class="fas fa-redo"></i> Vider</span><br>
+								<textarea id="signature" name="signed" style="display: none"></textarea>
+								@if(\App\Models\Signature::where('quote',$quote->id)->exists())
+									@php $lieu=\App\Models\Signature::where('quote',$quote->id)->first()->lieu;
+									@endphp
+									@if($lieu != '') <img src="{{$lieu}}" width= '300'     height= ''/>  @endif
+								@endif
 							</div>
-							<div class="col-md-6 pt-3 pl-3">
-							@if(\App\Models\Signature::where('quote',$quote->id)->exists())
-								@php $url_img=\App\Models\Signature::where('quote',$quote->id)->first()->user_image;
-								@endphp
-								<img src="{{$url_img}}" width= '300'     height= ''/>
-							@endif
+							<div class="col-lg-4 col-md-6 col-sm-12">
+								<label class="">Le:</label><br>
+								<div class="sigpad" id="sigpad2" style="width:300px!important"></div><br>
+								<span id="clear2" class="btn btn-danger"><i class="fas fa-redo"></i> Vider</span><br>
+								<textarea id="signature2" name="signed2" style="display: none"></textarea>
+								@if(\App\Models\Signature::where('quote',$quote->id)->exists())
+									@php $date=\App\Models\Signature::where('quote',$quote->id)->first()->date;
+									@endphp
+									@if($date != '') <img src="{{$date}}" width= '300'     height= ''/>  @endif
+								@endif
 							</div>
-						</div>
-						-->
-
-						<div class="row bg-lightgrey pt-3 pb-3">
-
-							<div class="col-md-6 pl-3">
-								<form method="POST" action="{{ route('quotes.ajout_signature') }}"   enctype='multipart/form-data' >
-									@csrf
-									<input type="hidden" name="quote" value="{{$quote->id}}" />
-
-									<div class="form-group">
-										<strong>Importer le devis signé :</strong>
-										<input type="file"  class="form-control"   name="devis_signe"    >
-									</div>
-
-									<div class="col-xs-12 col-sm-12 col-md-7 mt-5">
-										<button type="submit" class="btn btn-primary">Envoyer</button>
-									</div>
-								</form>
-							</div>
-							<div  class="col-md-6 pl-3 pt-4">
-								@if($quote->devis_signe!='')
-									<a download href="<?php echo  URL::asset('/fichiers/'.$quote->devis_signe);?>" >Télécharger le devis signé</a><br>
+							<div class="col-lg-6 col-md-6 col-sm-12">
+								<label class="pt-2">Mention "Bon pour accord" + Signature:</label><br>
+								<div class="sigpad"  id="sigpad3" style=""></div><br>
+								<span id="clear3" class="btn btn-danger"><i class="fas fa-redo"></i> Vider</span>
+								<textarea id="signature3" name="signed3" style="display: none"></textarea>
+								@if(\App\Models\Signature::where('quote',$quote->id)->exists())
+									@php $signature=\App\Models\Signature::where('quote',$quote->id)->first()->signature;
+									@endphp
+									@if($signature != '') <img src="{{$signature}}" width= '300'     height= ''/>  @endif
 								@endif
 							</div>
 						</div>
+						<div class="row">
+							<div class="col-12">
+								<button class="btn btn-primary float-right mt-2 mb-2">Confirmer</button>
+							</div>
+						</div>
+					</form>
+
+					<div class="row bg-lightgrey pt-3 pb-3">
+
+						<div class="col-md-6 pl-3">
+							<form method="POST" action="{{ route('quotes.ajout_signature') }}"   enctype='multipart/form-data' >
+								@csrf
+								<input type="hidden" name="quote" value="{{$quote->id}}" />
+
+								<div class="form-group">
+									<strong>Importer le devis signé :</strong>
+									<input type="file"  class="form-control"   name="devis_signe"    >
+								</div>
+
+								<div class="col-xs-12 col-sm-12 col-md-7 mt-5">
+									<button type="submit" class="btn btn-primary">Envoyer</button>
+								</div>
+							</form>
+						</div>
+						<div  class="col-md-6 pl-3 pt-4">
+							@if($quote->devis_signe!='')
+								<a download href="<?php echo  URL::asset('/fichiers/'.$quote->devis_signe);?>" >Télécharger le devis signé</a><br>
+							@endif
+						</div>
+					</div>
 
 
 				</div>
@@ -951,6 +993,20 @@
 		e.preventDefault();
 		sigpad.signature('clear');
 		$("#signature").val('');
+	});
+
+	var sigpad2 = $('#sigpad2').signature({syncField: '#signature2', syncFormat: 'PNG'});
+		$('#clear2').click(function(e) {
+		e.preventDefault();
+		sigpad2.signature('clear');
+		$("#signature2").val('');
+	});
+
+	var sigpad3 = $('#sigpad3').signature({syncField: '#signature3', syncFormat: 'PNG'});
+		$('#clear3').click(function(e) {
+		e.preventDefault();
+		sigpad3.signature('clear');
+		$("#signature3").val('');
 	});
 </script>
 

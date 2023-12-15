@@ -18,13 +18,13 @@ class Modeles6Seeder extends Seeder
         $seeder = Modele::where('type',6)->count();
 
         //Check if the seeder exist in the DB
-        //Porte fenetre 1V
+        //Porte fenetre 1V   //PVC
         if ($seeder==0) {
             $modeles =
             [
             /*Larg= 600*/
                 [
-                    'genre'    =>1 ,
+                    'genre'    =>1 ,  //pvc
                     'type'    =>6 ,
                     'couleur'    =>1 ,
                     'hauteur'    => 2000,

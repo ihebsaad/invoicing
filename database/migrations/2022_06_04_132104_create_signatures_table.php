@@ -15,7 +15,9 @@ class CreateSignaturesTable extends Migration
     {
         Schema::create('signatures', function (Blueprint $table) {
             $table->id();
-            $table->binary('user_image');
+            $table->binary('lieu');
+            $table->binary('date');
+            $table->binary('signature');
 
             $table->unsignedBigInteger('quote')->nullable();
             //$table->foreign('quote')->references('id')->on('quotes')->onDelete('cascade');

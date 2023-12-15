@@ -24,7 +24,7 @@ class Modeles7Seeder extends Seeder
             [
             /*Larg= 1200*/
                 [
-                    'genre'    =>1 ,
+                    'genre'    =>1 ,  //pvc
                     'type'    =>7 ,
                     'couleur'    =>1 ,
                     'hauteur'    => 2000,
