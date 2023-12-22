@@ -16,7 +16,7 @@ class Modeles4Seeder extends Seeder  //3V
     public function run()
     {
         $seeder = Modele::where('type',4)->count();
-        // fenetre 3V
+        // fenetre 3V  pvc
         //Check if the seeder exist in the DB
         if ($seeder==0) {
             $modeles =

@@ -16,7 +16,7 @@ class Modeles10Seeder extends Seeder  //coulissant 3
     public function run()
     {
         $seeder = Modele::where('type',10)->where('genre',2)->count();
-
+        //ALU
         //Check if the seeder exist in the DB
         if ($seeder==0) {
             $modeles =

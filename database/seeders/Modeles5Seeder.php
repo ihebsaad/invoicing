@@ -16,7 +16,7 @@ class Modeles5Seeder extends Seeder  //fenetre fixe
     public function run()
     {
         $seeder = Modele::where('type',5)->count();
-        // fenetre fixe
+        // fenetre fixe  pvc
         //Check if the seeder exist in the DB
         if ($seeder==0) {
             $modeles =
