@@ -1842,12 +1842,16 @@
 <script>
 var canvas = document.getElementById("canvas1");
 	var signaturePad = new SignaturePad(canvas, {
-	backgroundColor: 'rgb(255, 255, 255)'
+	backgroundColor: 'rgb(255, 255, 255)',
+	minWidth: 2,
+
 	});
 
 	var canvas2 = document.getElementById("canvas2");
 	var signaturePad2 = new SignaturePad(canvas2, {
-	backgroundColor: 'rgb(255, 255, 255)'
+	backgroundColor: 'rgb(255, 255, 255)',
+	minWidth: 2,
+
 	});
 
 	var canvas3 = document.getElementById("canvas3");

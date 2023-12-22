@@ -977,6 +977,7 @@
 	var signaturePad = new SignaturePad(canvas, {
 	backgroundColor: 'rgb(255, 255, 255)',
 	//maxWidth : 2
+	minWidth: 2,
 
 	});
 
@@ -984,6 +985,7 @@
 	var signaturePad2 = new SignaturePad(canvas2, {
 	backgroundColor: 'rgb(255, 255, 255)',
 	//maxWidth : 2
+	minWidth: 2,
 	});
 
 	var canvas3 = document.getElementById("canvas3");
