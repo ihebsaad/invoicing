@@ -19,7 +19,7 @@
         <div class="col-xs-12 col-sm-12 col-md-7">
             <div class="form-group">
                 <strong>Matière:</strong>
-                <select  name="genre" required class="form-control"  >
+                <select  name="genre" required class="form-control" required >
                     <option></option>
                     <option  @if( old("genre")==1)  selected="selected" @endif value="1">PVC</option>
                     <option  @if( old("genre")==2)  selected="selected" @endif  value="2">Aluminium</option>
@@ -29,14 +29,20 @@
      <div class="col-xs-12 col-sm-12 col-md-7">
             <div class="form-group">
                 <strong>Type:</strong>
-                <select  name="type" required class="form-control"  >
+                <select  name="type" required class="form-control" required >
                     <option></option>
-                    <option  @if( old("type")==1)  selected="selected" @endif value="1">Fenêtre à souflet</option>
-                    <option  @if( old("type")==2)  selected="selected" @endif  value="2">Fenêtre / Porte Fenêtre - 1VOB</option>
-                    <option  @if( old("type")==3)  selected="selected" @endif  value="3">Fenêtre / Porte Fenêtre - 2V</option>
-                    <option  @if( old("type")==4)  selected="selected" @endif  value="4">Fenêtre fixe</option>
-                    <option  @if( old("type")==5)  selected="selected" @endif  value="5">Porte fenêtre ouverture extérieur - PF1V </option>
-                    <option  @if( old("type")==6)  selected="selected" @endif  value="6">Porte 2 ventaux Battement central ouverture extérieur PF2V </option>
+                    <option value="1" @if(old("type")==1) selected="selected" @endif>Fenêtre à souflet</option>
+					<option value="2" @if(old("type")==2) selected="selected" @endif>Fenêtre 1V</option>
+					<option value="3" @if(old("type")==3) selected="selected" @endif>Fenêtre 2V</option>
+					<option value="4" @if(old("type")==4) selected="selected" @endif>Fenêtre 3V</option>
+					<option value="11" @if(old("type")==11) selected="selected" @endif>Fenêtre 4V </option>
+					<option value="5" @if(old("type")==5) selected="selected" @endif>Fenêtre fixe</option>
+					<option value="6" @if(old("type")==6) selected="selected" @endif>Porte fenêtre 1V </option>
+					<option value="7" @if(old("type")==7) selected="selected" @endif>Porte fenêtre 2V </option>
+					<option value="8" @if(old("type")==8) selected="selected" @endif>Coulissant 1</option>
+					<option value="9" @if(old("type")==9) selected="selected" @endif>Coulissant 2</option>
+					<option value="10" @if(old("type")==10) selected="selected" @endif>Coulissant 3 </option>
+					<option value="12" @if(old("type")==12) selected="selected" @endif>Coulissant 2V </option>
                 </select>
             </div>
         </div>

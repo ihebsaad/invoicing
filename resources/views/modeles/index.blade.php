@@ -35,6 +35,8 @@
         '8'=> 'Coulissant 1',
         '9'=> 'Coulissant 2',
         '10'=> 'Coulissant 3',
+        '11'=> 'Fenêtre 4V',
+        '12'=> 'Coulissant 2V',
     );
     $couleurs=array(
         '1' => 'Extérieur et intérieur blanc',

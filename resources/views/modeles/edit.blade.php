@@ -43,12 +43,18 @@
 						<select  name="type" required class="form-control"  >
 							<option></option>
 							<option value="1" @if($modele->type==1) selected="selected" @endif>Fenêtre à souflet</option>
-							<option value="2" @if($modele->type==2) selected="selected" @endif>Fenêtre / Porte Fenêtre - 1VOB</option>
-							<option value="3" @if($modele->type==3) selected="selected" @endif>Fenêtre / Porte Fenêtre - 2V</option>
-							<option value="4" @if($modele->type==4) selected="selected" @endif>Fenêtre fixe</option>
-							<option value="5" @if($modele->type==5) selected="selected" @endif>Porte fenêtre ouverture extérieur - PF1V </option>
-							<option value="6" @if($modele->type==6) selected="selected" @endif>Porte 2 ventaux Battement central ouverture extérieur PF2V </option>
-				        </select>
+							<option value="2" @if($modele->type==2) selected="selected" @endif>Fenêtre 1V</option>
+							<option value="3" @if($modele->type==3) selected="selected" @endif>Fenêtre 2V</option>
+							<option value="4" @if($modele->type==4) selected="selected" @endif>Fenêtre 3V</option>
+							<option value="11" @if($modele->type==11) selected="selected" @endif>Fenêtre 4V </option>
+							<option value="5" @if($modele->type==5) selected="selected" @endif>Fenêtre fixe</option>
+							<option value="6" @if($modele->type==6) selected="selected" @endif>Porte fenêtre 1V </option>
+							<option value="7" @if($modele->type==7) selected="selected" @endif>Porte fenêtre 2V </option>
+							<option value="8" @if($modele->type==8) selected="selected" @endif>Coulissant 1</option>
+							<option value="9" @if($modele->type==9) selected="selected" @endif>Coulissant 2</option>
+							<option value="10" @if($modele->type==10) selected="selected" @endif>Coulissant 3 </option>
+							<option value="12" @if($modele->type==12) selected="selected" @endif>Coulissant 2V </option>
+						</select>
 					</div>
         		</div>
 
@@ -67,14 +73,14 @@
 				<div class="col-xs-12 col-sm-12 col-md-7">
 					<div class="form-group">
 						<strong>Hauteur:</strong>
-						<input id="hauteur" type="number" name="hauteur" rerquired class="form-control" step="100" min="200" max="3200"  value="{{$modele->hauteur}}" >
+						<input id="hauteur" type="number" name="hauteur" rerquired class="form-control" step="100" min="0"  value="{{$modele->hauteur}}" >
 					</div>
 				</div>
 
 				<div class="col-xs-12 col-sm-12 col-md-7">
 					<div class="form-group">
 						<strong>Largeur:</strong>
-						<input id="largeur" type="number" name="largeur" rerquired class="form-control" step="100" min="200" max="2200"  value="{{$modele->largeur}}" >
+						<input id="largeur" type="number" name="largeur" rerquired class="form-control" step="100" min="0"  value="{{$modele->largeur}}" >
 					</div>
 				</div>
 

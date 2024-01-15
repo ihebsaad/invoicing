@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
             Modeles2Seeder::class,
             Modeles3Seeder::class,
             Modeles4Seeder::class,
+            Modeles4VSeeder::class,
             Modeles5Seeder::class,
             Modeles6Seeder::class,
             Modeles7Seeder::class,
@@ -28,6 +29,7 @@ class DatabaseSeeder extends Seeder
             Modeles9Seeder::class,
             Modeles10PVCSeeder::class,
             Modeles10Seeder::class,
+            Modeles12PVCSeeder::class,
             ModelesDoorsSeeder::class,
             ModelesShutterSeeder::class,
             ModelesShutter2Seeder::class,
@@ -35,3 +37,5 @@ class DatabaseSeeder extends Seeder
         ]);
     }
 }
+//php artisan db:seed
+//php artisan db:seed --force

@@ -231,7 +231,7 @@ class QuotesController extends Controller
 
         $date=Carbon::parse($invoice->created_at)->format('Y-m');
         $date_facture=Carbon::parse($invoice->date)->format('d/m/Y');
-
+        $format='sanssignature';
         $items = Item::where('quote',$id)->get();
         $articles = Article::where('quote',$id)->get();
         $portes = Porte::where('quote',$id)->get();
@@ -240,10 +240,9 @@ class QuotesController extends Controller
         $count=count($items);
 
         if($invoice->menuiserie>0)
-            $pdf = PDF::loadView('invoices.invoice_men', compact('invoice','type','reference','date_facture','articles','par','count','portes','volets','items'));
+            $pdf = PDF::loadView('invoices.invoice_men', compact('invoice','type','reference','date_facture','articles','par','count','portes','volets','items','format'));
         else
-            $pdf = PDF::loadView('invoices.invoice', compact('invoice','type','reference','date_facture','items','par','count','portes','volets','items'));
-
+            $pdf = PDF::loadView('invoices.invoice', compact('invoice','type','reference','date_facture','items','par','count','portes','volets','items','format'));
 
         return $pdf->stream('quote-'.$id.'.pdf');
 
@@ -253,10 +252,36 @@ class QuotesController extends Controller
 	{
         $invoice = Quote::find($id);
         $type='Devis';
+        $reference= $invoice->reference;
+        $user= User::find($invoice->par) ; $par = $user->name.' '.$user->lastname;
+
+        $date=Carbon::parse($invoice->created_at)->format('Y-m');
+        $date_facture=Carbon::parse($invoice->date)->format('d/m/Y');
+        $format='sanssignature';
+        $items = Item::where('quote',$id)->get();
+        $articles = Article::where('quote',$id)->get();
+        $portes = Porte::where('quote',$id)->get();
+        $volets = Volet::where('quote',$id)->get();
+
+        $count=count($items);
+
+        if($invoice->menuiserie>0)
+            $pdf = PDF::loadView('invoices.invoice_men', compact('invoice','type','reference','date_facture','articles','par','count','portes','volets','items','format'));
+        else
+            $pdf = PDF::loadView('invoices.invoice', compact('invoice','type','reference','date_facture','items','par','count','portes','volets','items','format'));
+
+        return $pdf->download('quote-'.$id.'.pdf');
+
+    }
+
+    public function download_pdf_signature($id)
+	{
+        $invoice = Quote::find($id);
+        $type='Devis';
         $date=Carbon::parse($invoice->created_at)->format('Y-m');
         $date_facture=Carbon::parse($invoice->date)->format('d/m/Y');
         $user= User::find($invoice->par) ; $par = $user->name.' '.$user->lastname;
-
+        $format='avecsignature';
         $reference= $invoice->reference;
         $items = Item::where('quote',$id)->get();
         $articles = Article::where('quote',$id)->get();
@@ -265,28 +290,11 @@ class QuotesController extends Controller
         $count=count($items);
 
         if($invoice->menuiserie>0)
-            $pdf = PDF::loadView('invoices.invoice_men', compact('invoice','type','reference','date_facture','articles','par','count','portes','volets','items'));
+            $pdf = PDF::loadView('invoices.invoice_men', compact('invoice','type','reference','date_facture','articles','par','count','portes','volets','items','format'));
         else
-            $pdf = PDF::loadView('invoices.invoice', compact('invoice','type','reference','date_facture','items','par','count','portes','volets','items'));
+            $pdf = PDF::loadView('invoices.invoice', compact('invoice','type','reference','date_facture','items','par','count','portes','volets','items','format'));
 
         //$pdf = PDF::loadView('quotes.quote', compact('invoice','type','reference','date_facture','items','par','count'));
-        return $pdf->download('quote-'.$reference.'.pdf');
-
-    }
-
-    public function download_pdf_signature($id)
-	{
-        $quote = Quote::find($id);
-        $date=Carbon::parse($quote->created_at)->format('Y-m');
-        $date_facture=Carbon::parse($quote->date)->format('d/m/Y');
-        $reference= $quote->reference;
-        $user= User::find($invoice->par) ; $par = $user->name.' '.$user->lastname;
-
-        $items = Item::where('quote',$id)->get();
-        $portes = Porte::where('quote',$id)->get();
-        $volets = Volet::where('quote',$id)->get();
-        $count=count($items);
-        $pdf = PDF::loadView('quotes.quote-sign', compact('quote','reference','date_facture','items','par','count','portes','volets'));
         return $pdf->download('quote-'.$reference.'.pdf');
 
     }

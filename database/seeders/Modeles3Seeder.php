@@ -29,7 +29,7 @@ class Modeles3Seeder extends Seeder
                     'couleur'    =>1 ,
                     'hauteur'    => 500,
                     'largeur'  =>900 ,
-                    'prix'  => 372,
+                    'prix'  => 287,
 				],
 				[
                     'genre'    =>1 ,
@@ -37,7 +37,7 @@ class Modeles3Seeder extends Seeder
                     'couleur'    => 1,
                     'hauteur'    =>600 ,
                     'largeur'  =>900 ,
-                    'prix'  => 384,
+                    'prix'  => 298,
                 ],
 				[
                     'genre'    =>1 ,
@@ -45,7 +45,7 @@ class Modeles3Seeder extends Seeder
                     'couleur'    => 1,
                     'hauteur'    => 700,
                     'largeur'  =>900 ,
-                    'prix'  => 396,
+                    'prix'  => 310,
                 ],
 				[
                     'genre'    =>1 ,
@@ -53,7 +53,7 @@ class Modeles3Seeder extends Seeder
                     'couleur'    => 1,
                     'hauteur'    => 800,
                     'largeur'  =>900 ,
-                    'prix'  => 408,
+                    'prix'  => 322,
                 ],
 				[
                     'genre'    =>1 ,
@@ -61,7 +61,7 @@ class Modeles3Seeder extends Seeder
                     'couleur'    => 1,
                     'hauteur'    => 900,
                     'largeur'  =>900 ,
-                    'prix'  => 417,
+                    'prix'  => 331,
                 ],
 				[
                     'genre'    =>1 ,
@@ -69,7 +69,7 @@ class Modeles3Seeder extends Seeder
                     'couleur'    =>1 ,
                     'hauteur'    => 1000,
                     'largeur'  =>900 ,
-                    'prix'  => 437,
+                    'prix'  => 352,
                 ],
 				[
                     'genre'    =>1 ,
@@ -77,7 +77,7 @@ class Modeles3Seeder extends Seeder
                     'couleur'    =>1 ,
                     'hauteur'    =>1100 ,
                     'largeur'  =>900 ,
-                    'prix'  => 445,
+                    'prix'  => 359,
                 ],
 				[
                     'genre'    =>1 ,
@@ -85,7 +85,7 @@ class Modeles3Seeder extends Seeder
                     'couleur'    =>1 ,
                     'hauteur'    => 1200,
                     'largeur'  =>900 ,
-                    'prix'  => 456,
+                    'prix'  => 371,
                 ],
 				[
                     'genre'    =>1 ,
@@ -93,7 +93,7 @@ class Modeles3Seeder extends Seeder
                     'couleur'    =>1 ,
                     'hauteur'    => 1300,
                     'largeur'  =>900 ,
-                    'prix'  => 472,
+                    'prix'  => 387,
                 ],
 				[
                     'genre'    =>1 ,
@@ -101,7 +101,7 @@ class Modeles3Seeder extends Seeder
                     'couleur'    =>1 ,
                     'hauteur'    => 1400,
                     'largeur'  =>900 ,
-                    'prix'  => 480,
+                    'prix'  => 395,
                 ],
 				[
                     'genre'    =>1 ,
@@ -109,7 +109,7 @@ class Modeles3Seeder extends Seeder
                     'couleur'    =>1 ,
                     'hauteur'    => 1500,
                     'largeur'  =>900 ,
-                    'prix'  => 496 ,
+                    'prix'  => 411 ,
                 ],
 				[
                     'genre'    =>1 ,
@@ -117,7 +117,7 @@ class Modeles3Seeder extends Seeder
                     'couleur'    =>1 ,
                     'hauteur'    => 1600,
                     'largeur'  =>900 ,
-                    'prix'  => 508 ,
+                    'prix'  => 423 ,
                 ],
 				[
                     'genre'    =>1 ,
@@ -125,7 +125,7 @@ class Modeles3Seeder extends Seeder
                     'couleur'    =>1 ,
                     'hauteur'    => 1700,
                     'largeur'  =>900 ,
-                    'prix'  => 528 ,
+                    'prix'  => 444 ,
                 ],
 				[
                     'genre'    =>1 ,
@@ -133,7 +133,7 @@ class Modeles3Seeder extends Seeder
                     'couleur'    =>1 ,
                     'hauteur'    => 1800,
                     'largeur'  =>900 ,
-                    'prix'  => 538,
+                    'prix'  => 454,
                 ],
                 [
                     'genre'    =>1 ,
@@ -141,7 +141,7 @@ class Modeles3Seeder extends Seeder
                     'couleur'    =>1 ,
                     'hauteur'    => 1900,
                     'largeur'  =>900 ,
-                    'prix'  => 565 ,
+                    'prix'  => 481 ,
                 ],
                 [
                     'genre'    =>1 ,
@@ -149,7 +149,7 @@ class Modeles3Seeder extends Seeder
                     'couleur'    =>1 ,
                     'hauteur'    => 2000,
                     'largeur'  =>900 ,
-                    'prix'  => 575,
+                    'prix'  => 492,
                 ],
 				[
                     'genre'    =>1 ,
@@ -157,7 +157,7 @@ class Modeles3Seeder extends Seeder
                     'couleur'    =>1 ,
                     'hauteur'    => 2100,
                     'largeur'  =>900 ,
-                    'prix'  => 590,
+                    'prix'  => 508,
                 ],
 				[
                     'genre'    =>1 ,
@@ -165,7 +165,7 @@ class Modeles3Seeder extends Seeder
                     'couleur'    =>1 ,
                     'hauteur'    => 2200,
                     'largeur'  =>900 ,
-                    'prix'  => 600,
+                    'prix'  => 518,
                 ],
 				[
                     'genre'    =>1 ,
@@ -173,7 +173,7 @@ class Modeles3Seeder extends Seeder
                     'couleur'    =>1 ,
                     'hauteur'    => 2300,
                     'largeur'  =>900 ,
-                    'prix'  => 630,
+                    'prix'  => 550,
                 ],
 				[
                     'genre'    =>1 ,
@@ -181,7 +181,7 @@ class Modeles3Seeder extends Seeder
                     'couleur'    =>1 ,
                     'hauteur'    => 2400,
                     'largeur'  =>900 ,
-                    'prix'  => 642,
+                    'prix'  => 562,
                 ],
 				[
                     'genre'    =>1 ,
@@ -189,7 +189,7 @@ class Modeles3Seeder extends Seeder
                     'couleur'    =>1 ,
                     'hauteur'    => 2500,
                     'largeur'  =>900 ,
-                    'prix'  =>660 ,
+                    'prix'  =>581 ,
                 ],
 
             /*Larg= 1000*/
@@ -199,7 +199,7 @@ class Modeles3Seeder extends Seeder
                 'couleur'    =>1 ,
                 'hauteur'    => 500,
                 'largeur'  =>1000 ,
-                'prix'  => 377,
+                'prix'  => 291,
             ],
             [
                 'genre'    =>1 ,
@@ -207,7 +207,7 @@ class Modeles3Seeder extends Seeder
                 'couleur'    => 1,
                 'hauteur'    =>600 ,
                 'largeur'  =>1000 ,
-                'prix'  => 389,
+                'prix'  => 303,
             ],
             [
                 'genre'    =>1 ,
@@ -215,7 +215,7 @@ class Modeles3Seeder extends Seeder
                 'couleur'    => 1,
                 'hauteur'    => 700,
                 'largeur'  =>1000 ,
-                'prix'  => 399,
+                'prix'  => 312,
             ],
             [
                 'genre'    =>1 ,
@@ -223,7 +223,7 @@ class Modeles3Seeder extends Seeder
                 'couleur'    => 1,
                 'hauteur'    => 800,
                 'largeur'  =>1000 ,
-                'prix'  => 414,
+                'prix'  => 328,
             ],
             [
                 'genre'    =>1 ,
@@ -231,7 +231,7 @@ class Modeles3Seeder extends Seeder
                 'couleur'    => 1,
                 'hauteur'    => 900,
                 'largeur'  =>1000 ,
-                'prix'  => 426,
+                'prix'  => 340,
             ],
             [
                 'genre'    =>1 ,
@@ -239,7 +239,7 @@ class Modeles3Seeder extends Seeder
                 'couleur'    =>1 ,
                 'hauteur'    => 1000,
                 'largeur'  =>1000 ,
-                'prix'  => 442,
+                'prix'  => 356,
             ],
             [
                 'genre'    =>1 ,
@@ -247,7 +247,7 @@ class Modeles3Seeder extends Seeder
                 'couleur'    =>1 ,
                 'hauteur'    =>1100 ,
                 'largeur'  =>1000 ,
-                'prix'  => 451,
+                'prix'  => 365,
             ],
             [
                 'genre'    =>1 ,
@@ -255,7 +255,7 @@ class Modeles3Seeder extends Seeder
                 'couleur'    =>1 ,
                 'hauteur'    => 1200,
                 'largeur'  =>1000 ,
-                'prix'  => 462,
+                'prix'  => 375,
             ],
             [
                 'genre'    =>1 ,
@@ -263,7 +263,7 @@ class Modeles3Seeder extends Seeder
                 'couleur'    =>1 ,
                 'hauteur'    => 1300,
                 'largeur'  =>1000 ,
-                'prix'  => 476,
+                'prix'  => 390,
             ],
             [
                 'genre'    =>1 ,
@@ -271,7 +271,7 @@ class Modeles3Seeder extends Seeder
                 'couleur'    =>1 ,
                 'hauteur'    => 1400,
                 'largeur'  =>1000 ,
-                'prix'  => 488,
+                'prix'  => 402,
             ],
             [
                 'genre'    =>1 ,
@@ -279,7 +279,7 @@ class Modeles3Seeder extends Seeder
                 'couleur'    =>1 ,
                 'hauteur'    => 1500,
                 'largeur'  =>1000 ,
-                'prix'  => 508,
+                'prix'  => 423,
             ],
             [
                 'genre'    =>1 ,
@@ -287,7 +287,7 @@ class Modeles3Seeder extends Seeder
                 'couleur'    =>1 ,
                 'hauteur'    => 1600,
                 'largeur'  =>1000 ,
-                'prix'  =>521 ,
+                'prix'  =>436 ,
             ],
             [
                 'genre'    =>1 ,
@@ -295,7 +295,7 @@ class Modeles3Seeder extends Seeder
                 'couleur'    =>1 ,
                 'hauteur'    => 1700,
                 'largeur'  =>1000 ,
-                'prix'  => 538,
+                'prix'  => 454,
             ],
             [
                 'genre'    =>1 ,
@@ -303,7 +303,7 @@ class Modeles3Seeder extends Seeder
                 'couleur'    =>1 ,
                 'hauteur'    => 1800,
                 'largeur'  =>1000 ,
-                'prix'  => 554,
+                'prix'  => 471,
             ],
             [
                 'genre'    =>1 ,
@@ -311,7 +311,7 @@ class Modeles3Seeder extends Seeder
                 'couleur'    =>1 ,
                 'hauteur'    => 1900,
                 'largeur'  =>1000 ,
-                'prix'  => 578,
+                'prix'  => 496,
             ],
             [
                 'genre'    =>1 ,
@@ -319,7 +319,7 @@ class Modeles3Seeder extends Seeder
                 'couleur'    =>1 ,
                 'hauteur'    => 2000,
                 'largeur'  =>1000 ,
-                'prix'  => 591,
+                'prix'  => 509,
             ],
             [
                 'genre'    =>1 ,
@@ -327,7 +327,7 @@ class Modeles3Seeder extends Seeder
                 'couleur'    =>1 ,
                 'hauteur'    => 2100,
                 'largeur'  =>1000 ,
-                'prix'  => 604,
+                'prix'  => 523,
             ],
             [
                 'genre'    =>1 ,
@@ -335,7 +335,7 @@ class Modeles3Seeder extends Seeder
                 'couleur'    =>1 ,
                 'hauteur'    => 2200,
                 'largeur'  =>1000 ,
-                'prix'  => 620,
+                'prix'  => 538,
             ],
             [
                 'genre'    =>1 ,
@@ -343,7 +343,7 @@ class Modeles3Seeder extends Seeder
                 'couleur'    =>1 ,
                 'hauteur'    => 2300,
                 'largeur'  =>1000 ,
-                'prix'  => 642,
+                'prix'  => 562,
             ],
             [
                 'genre'    =>1 ,
@@ -351,7 +351,7 @@ class Modeles3Seeder extends Seeder
                 'couleur'    =>1 ,
                 'hauteur'    => 2400,
                 'largeur'  =>1000 ,
-                'prix'  => 659,
+                'prix'  => 579,
             ],
             [
                 'genre'    =>1 ,
@@ -359,7 +359,7 @@ class Modeles3Seeder extends Seeder
                 'couleur'    =>1 ,
                 'hauteur'    => 2500,
                 'largeur'  =>1000 ,
-                'prix'  => 679,
+                'prix'  => 601,
             ],
         /*Larg=1100*/
         [
@@ -368,7 +368,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 500,
             'largeur'  =>1100 ,
-            'prix'  => 385,
+            'prix'  => 298,
         ],
         [
             'genre'    =>1 ,
@@ -376,7 +376,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    => 1,
             'hauteur'    =>600 ,
             'largeur'  =>1100 ,
-            'prix'  => 397,
+            'prix'  => 310,
         ],
         [
             'genre'    =>1 ,
@@ -384,7 +384,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    => 1,
             'hauteur'    => 700,
             'largeur'  =>1100 ,
-            'prix'  => 409,
+            'prix'  => 322,
         ],
         [
             'genre'    =>1 ,
@@ -392,7 +392,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    => 1,
             'hauteur'    => 800,
             'largeur'  =>1100 ,
-            'prix'  => 421,
+            'prix'  => 334,
         ],
         [
             'genre'    =>1 ,
@@ -400,7 +400,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    => 1,
             'hauteur'    => 900,
             'largeur'  =>1100 ,
-            'prix'  => 435,
+            'prix'  => 348,
         ],
         [
             'genre'    =>1 ,
@@ -408,7 +408,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 1000,
             'largeur'  =>1100 ,
-            'prix'  => 448,
+            'prix'  => 393,
         ],
         [
             'genre'    =>1 ,
@@ -416,7 +416,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    =>1100 ,
             'largeur'  =>1100 ,
-            'prix'  => 458,
+            'prix'  => 371,
         ],
         [
             'genre'    =>1 ,
@@ -424,7 +424,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 1200,
             'largeur'  =>1100 ,
-            'prix'  => 473,
+            'prix'  => 387,
         ],
         [
             'genre'    =>1 ,
@@ -432,7 +432,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 1300,
             'largeur'  =>1100 ,
-            'prix'  => 485,
+            'prix'  => 399,
         ],
         [
             'genre'    =>1 ,
@@ -440,7 +440,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 1400,
             'largeur'  =>1100 ,
-            'prix'  => 502,
+            'prix'  => 417,
         ],
         [
             'genre'    =>1 ,
@@ -448,7 +448,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 1500,
             'largeur'  =>1100 ,
-            'prix'  => 521,
+            'prix'  => 436,
         ],
         [
             'genre'    =>1 ,
@@ -456,7 +456,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 1600,
             'largeur'  =>1100 ,
-            'prix'  => 537,
+            'prix'  => 452,
         ],
         [
             'genre'    =>1 ,
@@ -464,7 +464,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 1700,
             'largeur'  =>1100 ,
-            'prix'  => 554,
+            'prix'  => 471,
         ],
         [
             'genre'    =>1 ,
@@ -472,7 +472,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 1800,
             'largeur'  =>1100 ,
-            'prix'  => 571,
+            'prix'  => 488,
         ],
         [
             'genre'    =>1 ,
@@ -480,7 +480,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 1900,
             'largeur'  =>1100 ,
-            'prix'  => 593,
+            'prix'  => 512,
         ],
         [
             'genre'    =>1 ,
@@ -488,7 +488,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 2000,
             'largeur'  =>1100 ,
-            'prix'  => 604,
+            'prix'  => 523,
         ],
         [
             'genre'    =>1 ,
@@ -496,7 +496,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 2100,
             'largeur'  =>1100 ,
-            'prix'  => 637,
+            'prix'  => 541,
         ],
         [
             'genre'    =>1 ,
@@ -504,7 +504,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 2200,
             'largeur'  =>1100 ,
-            'prix'  => 637,//faute ?
+            'prix'  => 556,//faute ?
         ],
         [
             'genre'    =>1 ,
@@ -512,7 +512,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 2300,
             'largeur'  =>1100 ,
-            'prix'  => 661,
+            'prix'  => 581,
         ],
         [
             'genre'    =>1 ,
@@ -520,7 +520,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 2400,
             'largeur'  =>1100 ,
-            'prix'  => 676,
+            'prix'  => 597,
         ],
         [
             'genre'    =>1 ,
@@ -528,7 +528,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 2500,
             'largeur'  =>1100 ,
-            'prix'  => 697,
+            'prix'  => 619,
         ],
 
         /*larg=1200*/
@@ -538,7 +538,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 500,
             'largeur'  =>1200 ,
-            'prix'  => 394,
+            'prix'  => 306,
         ],
         [
             'genre'    =>1 ,
@@ -546,7 +546,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    => 1,
             'hauteur'    =>600 ,
             'largeur'  =>1200 ,
-            'prix'  => 404,
+            'prix'  => 317,
         ],
         [
             'genre'    =>1 ,
@@ -554,7 +554,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    => 1,
             'hauteur'    => 700,
             'largeur'  =>1200 ,
-            'prix'  => 416,
+            'prix'  => 328,
         ],
         [
             'genre'    =>1 ,
@@ -562,7 +562,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    => 1,
             'hauteur'    => 800,
             'largeur'  =>1200 ,
-            'prix'  => 427,
+            'prix'  => 340,
         ],
         [
             'genre'    =>1 ,
@@ -570,7 +570,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    => 1,
             'hauteur'    => 900,
             'largeur'  =>1200 ,
-            'prix'  => 440,
+            'prix'  => 352,
         ],
         [
             'genre'    =>1 ,
@@ -578,7 +578,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 1000,
             'largeur'  =>1200 ,
-            'prix'  => 546,
+            'prix'  => 369,
         ],
         [
             'genre'    =>1 ,
@@ -586,7 +586,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    =>1100 ,
             'largeur'  =>1200 ,
-            'prix'  => 468,
+            'prix'  => 381,
         ],
         [
             'genre'    =>1 ,
@@ -594,7 +594,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 1200,
             'largeur'  =>1200 ,
-            'prix'  => 482,
+            'prix'  => 395,
         ],
         [
             'genre'    =>1 ,
@@ -602,7 +602,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 1300,
             'largeur'  =>1200 ,
-            'prix'  => 497,
+            'prix'  => 411,
         ],
         [
             'genre'    =>1 ,
@@ -610,7 +610,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 1400,
             'largeur'  =>1200 ,
-            'prix'  => 515,
+            'prix'  => 429,
         ],
         [
             'genre'    =>1 ,
@@ -618,7 +618,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 1500,
             'largeur'  =>1200 ,
-            'prix'  => 533,
+            'prix'  => 448,
         ],
         [
             'genre'    =>1 ,
@@ -626,7 +626,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 1600,
             'largeur'  =>1200 ,
-            'prix'  => 546,
+            'prix'  => 461,
         ],
         [
             'genre'    =>1 ,
@@ -634,7 +634,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 1700,
             'largeur'  =>1200 ,
-            'prix'  => 569,
+            'prix'  => 486,
         ],
         [
             'genre'    =>1 ,
@@ -642,7 +642,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 1800,
             'largeur'  =>1200 ,
-            'prix'  => 583,
+            'prix'  => 200,
         ],
         [
             'genre'    =>1 ,
@@ -650,7 +650,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 1900,
             'largeur'  =>1200 ,
-            'prix'  => 608,
+            'prix'  => 526,
         ],
         [
             'genre'    =>1 ,
@@ -658,7 +658,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 2000,
             'largeur'  =>1200 ,
-            'prix'  => 622,
+            'prix'  => 541,
         ],
         [
             'genre'    =>1 ,
@@ -666,7 +666,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 2100,
             'largeur'  =>1200 ,
-            'prix'  => 653,
+            'prix'  => 556,
         ],
         [
             'genre'    =>1 ,
@@ -674,7 +674,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 2200,
             'largeur'  =>1200 ,
-            'prix'  => 652,
+            'prix'  => 572,
         ],
         [
             'genre'    =>1 ,
@@ -682,7 +682,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 2300,
             'largeur'  =>1200 ,
-            'prix'  => 680,
+            'prix'  => 601,
         ],
         [
             'genre'    =>1 ,
@@ -690,7 +690,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 2400,
             'largeur'  =>1200 ,
-            'prix'  => 693,
+            'prix'  => 615,
         ],
         [
             'genre'    =>1 ,
@@ -698,7 +698,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 2500,
             'largeur'  =>1200 ,
-            'prix'  => 716,
+            'prix'  => 639,
         ],
 
         /*Larg=1300*/
@@ -708,7 +708,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 500,
             'largeur'  =>1300 ,
-            'prix'  => 400,
+            'prix'  => 309,
         ],
         [
             'genre'    =>1 ,
@@ -716,7 +716,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    => 1,
             'hauteur'    =>600 ,
             'largeur'  =>1300 ,
-            'prix'  => 411,
+            'prix'  => 319,
         ],
         [
             'genre'    =>1 ,
@@ -724,7 +724,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    => 1,
             'hauteur'    => 700,
             'largeur'  =>1300 ,
-            'prix'  => 420,
+            'prix'  => 328,
         ],
         [
             'genre'    =>1 ,
@@ -732,7 +732,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    => 1,
             'hauteur'    => 800,
             'largeur'  =>1300 ,
-            'prix'  => 436,
+            'prix'  => 344,
         ],
         [
             'genre'    =>1 ,
@@ -740,7 +740,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    => 1,
             'hauteur'    => 900,
             'largeur'  =>1300 ,
-            'prix'  => 448,
+            'prix'  => 355,
         ],
         [
             'genre'    =>1 ,
@@ -748,7 +748,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 1000,
             'largeur'  =>1300 ,
-            'prix'  => 459,
+            'prix'  => 366,
         ],
         [
             'genre'    =>1 ,
@@ -756,7 +756,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    =>1100 ,
             'largeur'  =>1300 ,
-            'prix'  => 477,
+            'prix'  => 399,
         ],
         [
             'genre'    =>1 ,
@@ -764,7 +764,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 1200,
             'largeur'  =>1300 ,
-            'prix'  => 493,
+            'prix'  => 406,
         ],
         [
             'genre'    =>1 ,
@@ -772,7 +772,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 1300,
             'largeur'  =>1300 ,
-            'prix'  => 512,
+            'prix'  => 427,
         ],
         [
             'genre'    =>1 ,
@@ -780,7 +780,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 1400,
             'largeur'  =>1300 ,
-            'prix'  => 529,
+            'prix'  => 444,
         ],
         [
             'genre'    =>1 ,
@@ -788,7 +788,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 1500,
             'largeur'  =>1300 ,
-            'prix'  => 543,
+            'prix'  => 458,
         ],
         [
             'genre'    =>1 ,
@@ -796,7 +796,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 1600,
             'largeur'  =>1300 ,
-            'prix'  => 562,
+            'prix'  => 478,
         ],
         [
             'genre'    =>1 ,
@@ -804,7 +804,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 1700,
             'largeur'  =>1300 ,
-            'prix'  => 583,
+            'prix'  => 500,
         ],
         [
             'genre'    =>1 ,
@@ -812,7 +812,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 1800,
             'largeur'  =>1300 ,
-            'prix'  => 597,
+            'prix'  => 514,
         ],
         [
             'genre'    =>1 ,
@@ -820,7 +820,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 1900,
             'largeur'  =>1300 ,
-            'prix'  => 640,
+            'prix'  => 541,
         ],
         [
             'genre'    =>1 ,
@@ -828,7 +828,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 2000,
             'largeur'  =>1300 ,
-            'prix'  => 637,
+            'prix'  => 556,
         ],
         [
             'genre'    =>1 ,
@@ -836,7 +836,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 2100,
             'largeur'  =>1300 ,
-            'prix'  => 671,
+            'prix'  => 572,
         ],
         [
             'genre'    =>1 ,
@@ -844,7 +844,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 2200,
             'largeur'  =>1300 ,
-            'prix'  => 665,
+            'prix'  => 585,
         ],
         [
             'genre'    =>1 ,
@@ -852,7 +852,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 2300,
             'largeur'  =>1300 ,
-            'prix'  => 697,
+            'prix'  => 619,
         ],
         [
             'genre'    =>1 ,
@@ -860,7 +860,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 2400,
             'largeur'  =>1300 ,
-            'prix'  => 713,
+            'prix'  => 635,
         ],
         [
             'genre'    =>1 ,
@@ -868,7 +868,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 2500,
             'largeur'  =>1300 ,
-            'prix'  => 733,
+            'prix'  => 656,
         ],
         /*larg=1400*/
         [
@@ -877,7 +877,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    => 1,
             'hauteur'    =>500 ,
             'largeur'  =>1400 ,
-            'prix'  => 412,
+            'prix'  => 324,
         ],
         [
             'genre'    =>1 ,
@@ -885,7 +885,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    => 1,
             'hauteur'    =>600 ,
             'largeur'  =>1400 ,
-            'prix'  => 420,
+            'prix'  => 331,
         ],
         [
             'genre'    =>1 ,
@@ -893,7 +893,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    => 1,
             'hauteur'    => 700,
             'largeur'  =>1400 ,
-            'prix'  => 432,
+            'prix'  => 344,
         ],
         [
             'genre'    =>1 ,
@@ -901,7 +901,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    => 1,
             'hauteur'    => 800,
             'largeur'  =>1400 ,
-            'prix'  => 445,
+            'prix'  => 356,
         ],
         [
             'genre'    =>1 ,
@@ -909,7 +909,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    => 1,
             'hauteur'    => 900,
             'largeur'  =>1400 ,
-            'prix'  => 454,
+            'prix'  => 366,
         ],
         [
             'genre'    =>1 ,
@@ -917,7 +917,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 1000,
             'largeur'  =>1400 ,
-            'prix'  => 477,
+            'prix'  => 390,
         ],
         [
             'genre'    =>1 ,
@@ -925,7 +925,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    =>1100 ,
             'largeur'  =>1400 ,
-            'prix'  => 488,
+            'prix'  => 403,
         ],
         [
             'genre'    =>1 ,
@@ -933,7 +933,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 1200,
             'largeur'  =>1400 ,
-            'prix'  => 509,
+            'prix'  => 423,
         ],
         [
             'genre'    =>1 ,
@@ -941,7 +941,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 1300,
             'largeur'  =>1400 ,
-            'prix'  => 523,
+            'prix'  => 437,
         ],
         [
             'genre'    =>1 ,
@@ -949,7 +949,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 1400,
             'largeur'  =>1400 ,
-            'prix'  => 543,
+            'prix'  => 458,
         ],
         [
             'genre'    =>1 ,
@@ -957,7 +957,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 1500,
             'largeur'  =>1400 ,
-            'prix'  =>651 ,
+            'prix'  =>478 ,
         ],
         [
             'genre'    =>1 ,
@@ -965,7 +965,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 1600,
             'largeur'  =>1400 ,
-            'prix'  => 576,
+            'prix'  => 493,
         ],
         [
             'genre'    =>1 ,
@@ -973,7 +973,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 1700,
             'largeur'  =>1400 ,
-            'prix'  => 597,
+            'prix'  => 514,
         ],
         [
             'genre'    =>1 ,
@@ -981,7 +981,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 1800,
             'largeur'  =>1400 ,
-            'prix'  => 612,
+            'prix'  => 530,
         ],
         [
             'genre'    =>1 ,
@@ -989,7 +989,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 1900,
             'largeur'  =>1400 ,
-            'prix'  => 655,
+            'prix'  => 560,
         ],
         [
             'genre'    =>1 ,
@@ -997,7 +997,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 2000,
             'largeur'  =>1400 ,
-            'prix'  => 655,
+            'prix'  => 575,
         ],
         [
             'genre'    =>1 ,
@@ -1005,7 +1005,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 2100,
             'largeur'  =>1400 ,
-            'prix'  => 688,
+            'prix'  => 591,
         ],
         [
             'genre'    =>1 ,
@@ -1013,7 +1013,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 2200,
             'largeur'  =>1400 ,
-            'prix'  => 688,
+            'prix'  => 609,
         ],
         [
             'genre'    =>1 ,
@@ -1021,7 +1021,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 2300,
             'largeur'  =>1400 ,
-            'prix'  => 716,
+            'prix'  => 639,
         ],
         [
             'genre'    =>1 ,
@@ -1029,7 +1029,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 2400,
             'largeur'  =>1400 ,
-            'prix'  => 731,
+            'prix'  => 654,
         ],
         [
             'genre'    =>1 ,
@@ -1037,7 +1037,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 2400,
             'largeur'  =>1400 ,
-            'prix'  => 755,
+            'prix'  => 679,
         ],
         /*larg=1500*/
         [
@@ -1046,7 +1046,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    => 1,
             'hauteur'    =>500 ,
             'largeur'  =>1500 ,
-            'prix'  => 428,
+            'prix'  => 328,
         ],
         [
             'genre'    =>1 ,
@@ -1054,7 +1054,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    => 1,
             'hauteur'    =>600 ,
             'largeur'  =>1500 ,
-            'prix'  => 424,
+            'prix'  => 335,
         ],
         [
             'genre'    =>1 ,
@@ -1062,7 +1062,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    => 1,
             'hauteur'    => 700,
             'largeur'  =>1500 ,
-            'prix'  => 437,
+            'prix'  => 348,
         ],
         [
             'genre'    =>1 ,
@@ -1070,7 +1070,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    => 1,
             'hauteur'    => 800,
             'largeur'  =>1500 ,
-            'prix'  => 451,
+            'prix'  => 362,
         ],
         [
             'genre'    =>1 ,
@@ -1078,7 +1078,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    => 1,
             'hauteur'    => 900,
             'largeur'  =>1500 ,
-            'prix'  => 460,
+            'prix'  => 371,
         ],
         [
             'genre'    =>1 ,
@@ -1086,7 +1086,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 1000,
             'largeur'  =>1500 ,
-            'prix'  => 484,
+            'prix'  => 396,
         ],
         [
             'genre'    =>1 ,
@@ -1094,7 +1094,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    =>1100 ,
             'largeur'  =>1500 ,
-            'prix'  => 502,
+            'prix'  => 415,
         ],
         [
             'genre'    =>1 ,
@@ -1102,7 +1102,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 1200,
             'largeur'  =>1500 ,
-            'prix'  => 518,
+            'prix'  => 432,
         ],
         [
             'genre'    =>1 ,
@@ -1110,7 +1110,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 1300,
             'largeur'  =>1500 ,
-            'prix'  => 534,
+            'prix'  => 448,
         ],
         [
             'genre'    =>1 ,
@@ -1118,7 +1118,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 1400,
             'largeur'  =>1500 ,
-            'prix'  => 556,
+            'prix'  => 471,
         ],
         [
             'genre'    =>1 ,
@@ -1126,7 +1126,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 1500,
             'largeur'  =>1500 ,
-            'prix'  =>573 ,
+            'prix'  =>488 ,
         ],
         [
             'genre'    =>1 ,
@@ -1134,7 +1134,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 1600,
             'largeur'  =>1500 ,
-            'prix'  => 592,
+            'prix'  => 509,
         ],
         [
             'genre'    =>1 ,
@@ -1142,7 +1142,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 1700,
             'largeur'  =>1500 ,
-            'prix'  => 612,
+            'prix'  => 530,
         ],
         [
             'genre'    =>1 ,
@@ -1150,7 +1150,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 1800,
             'largeur'  =>1500 ,
-            'prix'  => 626,
+            'prix'  => 544,
         ],
         [
             'genre'    =>1 ,
@@ -1158,7 +1158,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 1900,
             'largeur'  =>1500 ,
-            'prix'  => 671,
+            'prix'  => 575,
         ],
         [
             'genre'    =>1 ,
@@ -1166,7 +1166,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 2000,
             'largeur'  =>1500 ,
-            'prix'  => 671,
+            'prix'  => 591,
         ],
         [
             'genre'    =>1 ,
@@ -1174,7 +1174,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 2100,
             'largeur'  =>1500 ,
-            'prix'  => 701,
+            'prix'  => 609,
         ],
         [
             'genre'    =>1 ,
@@ -1182,7 +1182,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 2200,
             'largeur'  =>1500 ,
-            'prix'  => 701,
+            'prix'  => 622,
         ],
         [
             'genre'    =>1 ,
@@ -1190,7 +1190,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 2300,
             'largeur'  =>1500 ,
-            'prix'  => 716,
+            'prix'  => 656,
         ],
         [
             'genre'    =>1 ,
@@ -1198,7 +1198,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 2400,
             'largeur'  =>1500 ,
-            'prix'  => 733,
+            'prix'  => 671,
         ],
         [
             'genre'    =>1 ,
@@ -1206,15 +1206,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 2400,
             'largeur'  =>1500 ,
-            'prix'  => 748,
-        ],
-        [
-            'genre'    =>1 ,
- 	 	 	 'type'    =>3 ,
-            'couleur'    =>1 ,
-            'hauteur'    => 2400,
-            'largeur'  =>1500 ,
-            'prix'  => 774,
+            'prix'  => 699,
         ],
         /*larg=1600*/ // erreur à vérifier
         [
@@ -1223,7 +1215,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    => 1,
             'hauteur'    =>500 ,
             'largeur'  =>1600 ,
-            'prix'  => 434,
+            'prix'  => 335,
         ],
         [
             'genre'    =>1 ,
@@ -1231,7 +1223,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    => 1,
             'hauteur'    =>600 ,
             'largeur'  =>1600 ,
-            'prix'  => 433,
+            'prix'  => 344,
         ],
         [
             'genre'    =>1 ,
@@ -1239,7 +1231,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    => 1,
             'hauteur'    => 700,
             'largeur'  =>1600 ,
-            'prix'  => 446,
+            'prix'  => 356,
         ],
         [
             'genre'    =>1 ,
@@ -1247,7 +1239,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    => 1,
             'hauteur'    => 800,
             'largeur'  =>1600 ,
-            'prix'  => 459,
+            'prix'  => 369,
         ],
         [
             'genre'    =>1 ,
@@ -1255,7 +1247,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    => 1,
             'hauteur'    => 900,
             'largeur'  =>1600 ,
-            'prix'  => 476,
+            'prix'  => 387,
         ],
         [
             'genre'    =>1 ,
@@ -1263,7 +1255,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 1000,
             'largeur'  =>1600 ,
-            'prix'  => 494,
+            'prix'  => 406,
         ],
         [
             'genre'    =>1 ,
@@ -1271,7 +1263,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    =>1100 ,
             'largeur'  =>1600 ,
-            'prix'  => 514,
+            'prix'  => 427,
         ],
         [
             'genre'    =>1 ,
@@ -1279,7 +1271,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 1200,
             'largeur'  =>1600 ,
-            'prix'  => 531,
+            'prix'  => 444,
         ],
         [
             'genre'    =>1 ,
@@ -1287,7 +1279,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 1300,
             'largeur'  =>1600 ,
-            'prix'  => 547,
+            'prix'  => 461,
         ],
         [
             'genre'    =>1 ,
@@ -1295,7 +1287,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 1400,
             'largeur'  =>1600 ,
-            'prix'  => 567,
+            'prix'  => 482,
         ],
         [
             'genre'    =>1 ,
@@ -1303,7 +1295,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 1500,
             'largeur'  =>1600 ,
-            'prix'  =>587 ,
+            'prix'  =>503 ,
         ],
         [
             'genre'    =>1 ,
@@ -1311,7 +1303,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 1600,
             'largeur'  =>1600 ,
-            'prix'  => 602,
+            'prix'  => 519,
         ],
         [
             'genre'    =>1 ,
@@ -1319,7 +1311,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 1700,
             'largeur'  =>1600 ,
-            'prix'  => 624,
+            'prix'  => 541,
         ],
         [
             'genre'    =>1 ,
@@ -1327,7 +1319,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 1800,
             'largeur'  =>1600 ,
-            'prix'  => 642,
+            'prix'  => 560,
         ],
         [
             'genre'    =>1 ,
@@ -1335,7 +1327,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 1900,
             'largeur'  =>1600 ,
-            'prix'  => 685,
+            'prix'  => 591,
         ],
         [
             'genre'    =>1 ,
@@ -1343,7 +1335,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 2000,
             'largeur'  =>1600 ,
-            'prix'  => 685,
+            'prix'  => 605,
         ],
         [
             'genre'    =>1 ,
@@ -1351,7 +1343,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 2100,
             'largeur'  =>1600 ,
-            'prix'  => 718,
+            'prix'  => 622,
         ],
         [
             'genre'    =>1 ,
@@ -1359,7 +1351,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 2200,
             'largeur'  =>1600 ,
-            'prix'  => 720,
+            'prix'  => 642,
         ],
         [
             'genre'    =>1 ,
@@ -1367,7 +1359,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 2300,
             'largeur'  =>1600 ,
-            'prix'  => 748,
+            'prix'  => 671,
         ],
         [
             'genre'    =>1 ,
@@ -1375,15 +1367,15 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 2400,
             'largeur'  =>1600 ,
-            'prix'  => 766,
+            'prix'  => 690,
         ],
         [
             'genre'    =>1 ,
  	 	 	 'type'    =>3 ,
             'couleur'    =>1 ,
-            'hauteur'    => 2400,
+            'hauteur'    => 2500,
             'largeur'  =>1600 ,
-            'prix'  => 792,
+            'prix'  => 717,
         ],
 
         /*larg=1700*/
@@ -1393,7 +1385,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    => 1,
             'hauteur'    =>500 ,
             'largeur'  =>1700 ,
-            'prix'  => 442,
+            'prix'  => 342,
         ],
         [
             'genre'    =>1 ,
@@ -1401,7 +1393,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    => 1,
             'hauteur'    =>600 ,
             'largeur'  =>1700 ,
-            'prix'  => 443,
+            'prix'  => 353,
         ],
         [
             'genre'    =>1 ,
@@ -1409,7 +1401,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    => 1,
             'hauteur'    => 700,
             'largeur'  =>1700 ,
-            'prix'  => 452,
+            'prix'  => 362,
         ],
         [
             'genre'    =>1 ,
@@ -1417,7 +1409,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    => 1,
             'hauteur'    => 800,
             'largeur'  =>1700 ,
-            'prix'  => 466,
+            'prix'  => 376,
         ],
         [
             'genre'    =>1 ,
@@ -1425,7 +1417,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    => 1,
             'hauteur'    => 900,
             'largeur'  =>1700 ,
-            'prix'  => 483,
+            'prix'  => 394,
         ],
         [
             'genre'    =>1 ,
@@ -1433,7 +1425,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 1000,
             'largeur'  =>1700 ,
-            'prix'  => 505,
+            'prix'  => 417,
         ],
         [
             'genre'    =>1 ,
@@ -1441,7 +1433,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    =>1100 ,
             'largeur'  =>1700 ,
-            'prix'  => 524,
+            'prix'  => 437,
         ],
         [
             'genre'    =>1 ,
@@ -1449,7 +1441,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 1200,
             'largeur'  =>1700 ,
-            'prix'  => 542,
+            'prix'  => 455,
         ],
         [
             'genre'    =>1 ,
@@ -1457,7 +1449,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 1300,
             'largeur'  =>1700 ,
-            'prix'  => 560,
+            'prix'  => 474,
         ],
         [
             'genre'    =>1 ,
@@ -1465,7 +1457,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 1400,
             'largeur'  =>1700 ,
-            'prix'  => 581,
+            'prix'  => 496,
         ],
         [
             'genre'    =>1 ,
@@ -1473,7 +1465,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 1500,
             'largeur'  =>1700 ,
-            'prix'  =>598 ,
+            'prix'  =>514 ,
         ],
         [
             'genre'    =>1 ,
@@ -1481,7 +1473,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 1600,
             'largeur'  =>1700 ,
-            'prix'  => 617,
+            'prix'  => 534,
         ],
         [
             'genre'    =>1 ,
@@ -1489,7 +1481,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 1700,
             'largeur'  =>1700 ,
-            'prix'  => 639,
+            'prix'  => 556,
         ],
         [
             'genre'    =>1 ,
@@ -1497,7 +1489,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 1800,
             'largeur'  =>1700 ,
-            'prix'  => 656,
+            'prix'  => 575,
         ],
         [
             'genre'    =>1 ,
@@ -1505,7 +1497,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 1900,
             'largeur'  =>1700 ,
-            'prix'  => 699,
+            'prix'  => 605,
         ],
         [
             'genre'    =>1 ,
@@ -1513,7 +1505,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 2000,
             'largeur'  =>1700 ,
-            'prix'  => 699,
+            'prix'  => 619,
         ],
         [
             'genre'    =>1 ,
@@ -1521,7 +1513,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 2100,
             'largeur'  =>1700 ,
-            'prix'  => 735,
+            'prix'  => 639,
         ],
         [
             'genre'    =>1 ,
@@ -1529,7 +1521,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 2200,
             'largeur'  =>1700 ,
-            'prix'  => 735,
+            'prix'  => 656,
         ],
         [
             'genre'    =>1 ,
@@ -1537,7 +1529,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 2300,
             'largeur'  =>1700 ,
-            'prix'  => 766,
+            'prix'  => 690,
         ],
         [
             'genre'    =>1 ,
@@ -1545,15 +1537,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 2400,
             'largeur'  =>1700 ,
-            'prix'  => 782,
-        ],
-        [
-            'genre'    =>1 ,
- 	 	 	 'type'    =>3 ,
-            'couleur'    =>1 ,
-            'hauteur'    => 2400,
-            'largeur'  =>1700 ,
-            'prix'  => 805,
+            'prix'  => 707,
         ],
 
         /*larg=1800*/
@@ -1563,7 +1547,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    => 1,
             'hauteur'    =>500 ,
             'largeur'  =>1800 ,
-            'prix'  => 449,
+            'prix'  => 349,
         ],
         [
             'genre'    =>1 ,
@@ -1571,7 +1555,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    => 1,
             'hauteur'    =>600 ,
             'largeur'  =>1800 ,
-            'prix'  => 460,
+            'prix'  => 360,
         ],
         [
             'genre'    =>1 ,
@@ -1579,7 +1563,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    => 1,
             'hauteur'    => 700,
             'largeur'  =>1800 ,
-            'prix'  => 460,
+            'prix'  => 369,
         ],
         [
             'genre'    =>1 ,
@@ -1587,7 +1571,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    => 1,
             'hauteur'    => 800,
             'largeur'  =>1700 ,
-            'prix'  => 480,
+            'prix'  => 390,
         ],
         [
             'genre'    =>1 ,
@@ -1595,7 +1579,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    => 1,
             'hauteur'    => 900,
             'largeur'  =>1800 ,
-            'prix'  => 496,
+            'prix'  => 406,
         ],
         [
             'genre'    =>1 ,
@@ -1603,7 +1587,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 1000,
             'largeur'  =>1800 ,
-            'prix'  => 518,
+            'prix'  => 429,
         ],
         [
             'genre'    =>1 ,
@@ -1611,7 +1595,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    =>1100 ,
             'largeur'  =>1800 ,
-            'prix'  => 536,
+            'prix'  => 448,
         ],
         [
             'genre'    =>1 ,
@@ -1619,7 +1603,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 1200,
             'largeur'  =>1800 ,
-            'prix'  => 558,
+            'prix'  => 471,
         ],
         [
             'genre'    =>1 ,
@@ -1627,7 +1611,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 1300,
             'largeur'  =>1800 ,
-            'prix'  => 574,
+            'prix'  => 488,
         ],
         [
             'genre'    =>1 ,
@@ -1635,7 +1619,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 1400,
             'largeur'  =>1800 ,
-            'prix'  => 594,
+            'prix'  => 509,
         ],
         [
             'genre'    =>1 ,
@@ -1643,7 +1627,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 1500,
             'largeur'  =>1800 ,
-            'prix'  =>614 ,
+            'prix'  =>530 ,
         ],
         [
             'genre'    =>1 ,
@@ -1651,7 +1635,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 1600,
             'largeur'  =>1800 ,
-            'prix'  => 634,
+            'prix'  => 551,
         ],
         [
             'genre'    =>1 ,
@@ -1659,7 +1643,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 1700,
             'largeur'  =>1800 ,
-            'prix'  => 657,
+            'prix'  => 575,
         ],
         [
             'genre'    =>1 ,
@@ -1667,7 +1651,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 1800,
             'largeur'  =>1800 ,
-            'prix'  => 675,
+            'prix'  => 594,
         ],
         [
             'genre'    =>1 ,
@@ -1675,7 +1659,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 1900,
             'largeur'  =>1800 ,
-            'prix'  => 721,
+            'prix'  => 619,
         ],
         [
             'genre'    =>1 ,
@@ -1683,7 +1667,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 2000,
             'largeur'  =>1800 ,
-            'prix'  => 718,
+            'prix'  => 639,
         ],
         [
             'genre'    =>1 ,
@@ -1691,7 +1675,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 2100,
             'largeur'  =>1800 ,
-            'prix'  => 757,
+            'prix'  => 656,
         ],
         [
             'genre'    =>1 ,
@@ -1699,7 +1683,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 2200,
             'largeur'  =>1800 ,
-            'prix'  => 753,
+            'prix'  => 676,
         ],
         [
             'genre'    =>1 ,
@@ -1707,8 +1691,8 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 2300,
             'largeur'  =>1800 ,
-            'prix'  => 783,
-        ],
+            'prix'  => 707,
+        ],/*
         [
             'genre'    =>1 ,
  	 	 	 'type'    =>3 ,
@@ -1725,7 +1709,7 @@ class Modeles3Seeder extends Seeder
             'largeur'  =>1800 ,
             'prix'  => 806,
         ],
-
+*/
         /*larg=1900*/
         [
             'genre'    =>1 ,
@@ -1733,7 +1717,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    => 1,
             'hauteur'    => 600,
             'largeur'  =>1900 ,
-            'prix'  => 466,
+            'prix'  => 366,
         ],
         [
             'genre'    =>1 ,
@@ -1741,7 +1725,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    => 1,
             'hauteur'    => 700,
             'largeur'  =>1900 ,
-            'prix'  => 467,
+            'prix'  => 376,
         ],
         [
             'genre'    =>1 ,
@@ -1749,7 +1733,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    => 1,
             'hauteur'    => 800,
             'largeur'  =>1900 ,
-            'prix'  => 493,
+            'prix'  => 403,
         ],
         [
             'genre'    =>1 ,
@@ -1757,7 +1741,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    => 1,
             'hauteur'    => 900,
             'largeur'  =>1900 ,
-            'prix'  => 512,
+            'prix'  => 423,
         ],
         [
             'genre'    =>1 ,
@@ -1765,7 +1749,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 1000,
             'largeur'  =>1900 ,
-            'prix'  => 536,
+            'prix'  => 448,
         ],
         [
             'genre'    =>1 ,
@@ -1773,7 +1757,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    =>1100 ,
             'largeur'  =>1900 ,
-            'prix'  => 555,
+            'prix'  => 468,
         ],
         [
             'genre'    =>1 ,
@@ -1781,7 +1765,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 1200,
             'largeur'  =>1900 ,
-            'prix'  => 575,
+            'prix'  => 488,
         ],
         [
             'genre'    =>1 ,
@@ -1789,7 +1773,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 1300,
             'largeur'  =>1900 ,
-            'prix'  => 594,
+            'prix'  => 509,
         ],
         [
             'genre'    =>1 ,
@@ -1797,7 +1781,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 1400,
             'largeur'  =>1900 ,
-            'prix'  => 614,
+            'prix'  => 530,
         ],
         [
             'genre'    =>1 ,
@@ -1805,7 +1789,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 1500,
             'largeur'  =>1900 ,
-            'prix'  =>634 ,
+            'prix'  =>551 ,
         ],
         [
             'genre'    =>1 ,
@@ -1813,7 +1797,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 1600,
             'largeur'  =>1900 ,
-            'prix'  => 654,
+            'prix'  => 572,
         ],
         [
             'genre'    =>1 ,
@@ -1821,7 +1805,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 1700,
             'largeur'  =>1900 ,
-            'prix'  => 678,
+            'prix'  => 597,
         ],
         [
             'genre'    =>1 ,
@@ -1829,7 +1813,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 1800,
             'largeur'  =>1900 ,
-            'prix'  => 695,
+            'prix'  => 615,
         ],
         [
             'genre'    =>1 ,
@@ -1837,7 +1821,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 1900,
             'largeur'  =>1900 ,
-            'prix'  => 735,
+            'prix'  => 642,
         ],
         [
             'genre'    =>1 ,
@@ -1845,7 +1829,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 2000,
             'largeur'  =>1900 ,
-            'prix'  => 737,
+            'prix'  => 659,
         ],
         [
             'genre'    =>1 ,
@@ -1853,7 +1837,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 2100,
             'largeur'  =>1900 ,
-            'prix'  => 776,
+            'prix'  => 649,
         ],
         [
             'genre'    =>1 ,
@@ -1861,7 +1845,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 2200,
             'largeur'  =>1900 ,
-            'prix'  => 776,
+            'prix'  => 699,
         ],
         [
             'genre'    =>1 ,
@@ -1869,8 +1853,8 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 2300,
             'largeur'  =>1900 ,
-            'prix'  => 805,
-        ],
+            'prix'  => 730,
+        ],/*
         [
             'genre'    =>1 ,
  	 	 	 'type'    =>3 ,
@@ -1886,7 +1870,7 @@ class Modeles3Seeder extends Seeder
             'hauteur'    => 2500,
             'largeur'  =>1900 ,
             'prix'  => 873,
-        ],
+        ],*/
         /*larg=2000*/
         [
             'genre'    =>1 ,
@@ -1894,7 +1878,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    => 1,
             'hauteur'    =>600 ,
             'largeur'  =>2000 ,
-            'prix'  => 473,
+            'prix'  => 371,
         ],
         [
             'genre'    =>1 ,
@@ -1902,7 +1886,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    => 1,
             'hauteur'    => 700,
             'largeur'  =>2000 ,
-            'prix'  => 479,
+            'prix'  => 387,
         ],
         [
             'genre'    =>1 ,
@@ -1910,7 +1894,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    => 1,
             'hauteur'    => 800,
             'largeur'  =>2000 ,
-            'prix'  => 505,
+            'prix'  => 415,
         ],
         [
             'genre'    =>1 ,
@@ -1918,7 +1902,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    => 1,
             'hauteur'    => 900,
             'largeur'  =>2000 ,
-            'prix'  => 521,
+            'prix'  => 432,
         ],
         [
             'genre'    =>1 ,
@@ -1926,7 +1910,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 1000,
             'largeur'  =>2000 ,
-            'prix'  => 546,
+            'prix'  => 458,
         ],
         [
             'genre'    =>1 ,
@@ -1934,7 +1918,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    =>1100 ,
             'largeur'  =>2000 ,
-            'prix'  => 565,
+            'prix'  => 478,
         ],
         [
             'genre'    =>1 ,
@@ -1942,7 +1926,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 1200,
             'largeur'  =>2000 ,
-            'prix'  => 586,
+            'prix'  => 500,
         ],
         [
             'genre'    =>1 ,
@@ -1950,7 +1934,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 1300,
             'largeur'  =>2000 ,
-            'prix'  => 604,
+            'prix'  => 519,
         ],
         [
             'genre'    =>1 ,
@@ -1958,7 +1942,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 1400,
             'largeur'  =>2000 ,
-            'prix'  => 625,
+            'prix'  => 541,
         ],
         [
             'genre'    =>1 ,
@@ -1966,7 +1950,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 1500,
             'largeur'  =>2000 ,
-            'prix'  =>646 ,
+            'prix'  =>562 ,
         ],
         [
             'genre'    =>1 ,
@@ -1974,7 +1958,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 1600,
             'largeur'  =>2000 ,
-            'prix'  => 664,
+            'prix'  => 581,
         ],
         [
             'genre'    =>1 ,
@@ -1982,7 +1966,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 1700,
             'largeur'  =>2000 ,
-            'prix'  => 690,
+            'prix'  => 609,
         ],
         [
             'genre'    =>1 ,
@@ -1990,7 +1974,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 1800,
             'largeur'  =>2000 ,
-            'prix'  => 710,
+            'prix'  => 630,
         ],
         [
             'genre'    =>1 ,
@@ -1998,7 +1982,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 1900,
             'largeur'  =>2000 ,
-            'prix'  => 754,
+            'prix'  => 656,
         ],
         [
             'genre'    =>1 ,
@@ -2006,7 +1990,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 2000,
             'largeur'  =>2000 ,
-            'prix'  => 754,
+            'prix'  => 676,
         ],
         [
             'genre'    =>1 ,
@@ -2014,7 +1998,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 2100,
             'largeur'  =>2000 ,
-            'prix'  => 788,
+            'prix'  => 699,
         ],
         [
             'genre'    =>1 ,
@@ -2022,8 +2006,8 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 2200,
             'largeur'  =>2000 ,
-            'prix'  => 793,
-        ],
+            'prix'  => 717,
+        ],/*
         [
             'genre'    =>1 ,
  	 	 	 'type'    =>3 ,
@@ -2031,7 +2015,7 @@ class Modeles3Seeder extends Seeder
             'hauteur'    => 2300,
             'largeur'  =>2000 ,
             'prix'  => 823,
-        ],
+        ],*/
         /*larg=2100*/
         [
             'genre'    =>1 ,
@@ -2039,7 +2023,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    => 1,
             'hauteur'    =>600 ,
             'largeur'  =>2100 ,
-            'prix'  => 483,
+            'prix'  => 381,
         ],
         [
             'genre'    =>1 ,
@@ -2047,7 +2031,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    => 1,
             'hauteur'    => 700,
             'largeur'  =>2100 ,
-            'prix'  => 495,
+            'prix'  => 394,
         ],
         [
             'genre'    =>1 ,
@@ -2055,13 +2039,45 @@ class Modeles3Seeder extends Seeder
             'couleur'    => 1,
             'hauteur'    => 800,
             'largeur'  =>2100 ,
-            'prix'  => 514,
+            'prix'  => 423,
         ],
         [
             'genre'    =>1 ,
  	 	 	 'type'    =>3 ,
             'couleur'    => 1,
             'hauteur'    => 900,
+            'largeur'  =>2100 ,
+            'prix'  => 441,
+        ],
+        [
+            'genre'    =>1 ,
+ 	 	 	 'type'    =>3 ,
+            'couleur'    =>1 ,
+            'hauteur'    => 1000,
+            'largeur'  =>2100 ,
+            'prix'  => 468,
+        ],
+        [
+            'genre'    =>1 ,
+ 	 	 	 'type'    =>3 ,
+            'couleur'    =>1 ,
+            'hauteur'    =>1100 ,
+            'largeur'  =>2100 ,
+            'prix'  => 488,
+        ],
+        [
+            'genre'    =>1 ,
+ 	 	 	 'type'    =>3 ,
+            'couleur'    =>1 ,
+            'hauteur'    => 1200,
+            'largeur'  =>2100 ,
+            'prix'  => 512,
+        ],
+        [
+            'genre'    =>1 ,
+ 	 	 	 'type'    =>3 ,
+            'couleur'    =>1 ,
+            'hauteur'    => 1300,
             'largeur'  =>2100 ,
             'prix'  => 530,
         ],
@@ -2069,41 +2085,9 @@ class Modeles3Seeder extends Seeder
             'genre'    =>1 ,
  	 	 	 'type'    =>3 ,
             'couleur'    =>1 ,
-            'hauteur'    => 1000,
-            'largeur'  =>2100 ,
-            'prix'  => 556,
-        ],
-        [
-            'genre'    =>1 ,
- 	 	 	 'type'    =>3 ,
-            'couleur'    =>1 ,
-            'hauteur'    =>1100 ,
-            'largeur'  =>2100 ,
-            'prix'  => 576,
-        ],
-        [
-            'genre'    =>1 ,
- 	 	 	 'type'    =>3 ,
-            'couleur'    =>1 ,
-            'hauteur'    => 1200,
-            'largeur'  =>2100 ,
-            'prix'  => 598,
-        ],
-        [
-            'genre'    =>1 ,
- 	 	 	 'type'    =>3 ,
-            'couleur'    =>1 ,
-            'hauteur'    => 1300,
-            'largeur'  =>2100 ,
-            'prix'  => 615,
-        ],
-        [
-            'genre'    =>1 ,
- 	 	 	 'type'    =>3 ,
-            'couleur'    =>1 ,
             'hauteur'    => 1400,
             'largeur'  =>2100 ,
-            'prix'  => 638,
+            'prix'  => 553,
         ],
         [
             'genre'    =>1 ,
@@ -2111,7 +2095,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 1500,
             'largeur'  =>2100 ,
-            'prix'  =>658 ,
+            'prix'  =>575 ,
         ],
         [
             'genre'    =>1 ,
@@ -2119,7 +2103,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 1600,
             'largeur'  =>2100 ,
-            'prix'  => 679,
+            'prix'  => 597,
         ],
         [
             'genre'    =>1 ,
@@ -2127,7 +2111,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 1700,
             'largeur'  =>2100 ,
-            'prix'  => 703,
+            'prix'  => 622,
         ],
         [
             'genre'    =>1 ,
@@ -2135,7 +2119,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 1800,
             'largeur'  =>2100 ,
-            'prix'  => 725,
+            'prix'  => 646,
         ],
         [
             'genre'    =>1 ,
@@ -2143,7 +2127,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 1900,
             'largeur'  =>2100 ,
-            'prix'  => 768,
+            'prix'  => 676,
         ],
         [
             'genre'    =>1 ,
@@ -2151,7 +2135,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 2000,
             'largeur'  =>2100 ,
-            'prix'  => 768,
+            'prix'  => 690,
         ],
         [
             'genre'    =>1 ,
@@ -2159,8 +2143,8 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 2100,
             'largeur'  =>2100 ,
-            'prix'  => 804,
-        ],
+            'prix'  => 711,
+        ],/*
         [
             'genre'    =>1 ,
  	 	 	 'type'    =>3 ,
@@ -2168,7 +2152,7 @@ class Modeles3Seeder extends Seeder
             'hauteur'    => 2200,
             'largeur'  =>2100 ,
             'prix'  => 806,
-        ],
+        ],*/
         /*larg=2200*/
         [
             'genre'    =>1 ,
@@ -2176,7 +2160,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    => 1,
             'hauteur'    =>600 ,
             'largeur'  =>2200 ,
-            'prix'  => 491,
+            'prix'  => 389,
         ],
         [
             'genre'    =>1 ,
@@ -2184,7 +2168,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    => 1,
             'hauteur'    => 700,
             'largeur'  =>2200 ,
-            'prix'  => 523,
+            'prix'  => 423,
         ],
         [
             'genre'    =>1 ,
@@ -2192,7 +2176,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    => 1,
             'hauteur'    => 800,
             'largeur'  =>2200 ,
-            'prix'  => 520,
+            'prix'  => 429,
         ],
         [
             'genre'    =>1 ,
@@ -2200,7 +2184,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    => 1,
             'hauteur'    => 900,
             'largeur'  =>2200 ,
-            'prix'  => 543,
+            'prix'  => 453,
         ],
         [
             'genre'    =>1 ,
@@ -2208,7 +2192,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 1000,
             'largeur'  =>2200 ,
-            'prix'  => 566,
+            'prix'  => 478,
         ],
         [
             'genre'    =>1 ,
@@ -2216,7 +2200,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    =>1100 ,
             'largeur'  =>2200 ,
-            'prix'  => 487,
+            'prix'  => 500,
         ],
         [
             'genre'    =>1 ,
@@ -2224,7 +2208,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 1200,
             'largeur'  =>2200 ,
-            'prix'  => 609,
+            'prix'  => 523,
         ],
         [
             'genre'    =>1 ,
@@ -2232,7 +2216,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 1300,
             'largeur'  =>2200 ,
-            'prix'  => 627,
+            'prix'  => 541,
         ],
         [
             'genre'    =>1 ,
@@ -2240,7 +2224,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 1400,
             'largeur'  =>2200 ,
-            'prix'  => 651,
+            'prix'  => 567,
         ],
         [
             'genre'    =>1 ,
@@ -2248,7 +2232,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 1500,
             'largeur'  =>2200 ,
-            'prix'  =>675 ,
+            'prix'  => 591,
         ],
         [
             'genre'    =>1 ,
@@ -2256,7 +2240,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 1600,
             'largeur'  =>2200 ,
-            'prix'  => 695,
+            'prix'  => 612,
         ],
         [
             'genre'    =>1 ,
@@ -2264,7 +2248,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 1700,
             'largeur'  =>2200 ,
-            'prix'  => 720,
+            'prix'  => 639,
         ],
         [
             'genre'    =>1 ,
@@ -2272,7 +2256,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 1800,
             'largeur'  =>2200 ,
-            'prix'  => 739,
+            'prix'  => 659,
         ],
         [
             'genre'    =>1 ,
@@ -2280,7 +2264,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 1900,
             'largeur'  =>2200 ,
-            'prix'  => 782,
+            'prix'  => 690,
         ],
         [
             'genre'    =>1 ,
@@ -2288,9 +2272,9 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 2000,
             'largeur'  =>2200 ,
-            'prix'  => 784,
+            'prix'  => 707,
         ],
-        /*larg=2300*/
+        /*larg=2300
         [
             'genre'    =>1 ,
  	 	 	 'type'    =>3 ,
@@ -2298,14 +2282,14 @@ class Modeles3Seeder extends Seeder
             'hauteur'    =>600 ,
             'largeur'  =>2300 ,
             'prix'  => 537,
-        ],
+        ],*/
         [
             'genre'    =>1 ,
  	 	 	 'type'    =>3 ,
             'couleur'    => 1,
             'hauteur'    => 700,
             'largeur'  =>2300 ,
-            'prix'  => 532,
+            'prix'  => 436,
         ],
         [
             'genre'    =>1 ,
@@ -2313,7 +2297,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    => 1,
             'hauteur'    => 800,
             'largeur'  =>2300 ,
-            'prix'  => 552,
+            'prix'  => 441,
         ],
         [
             'genre'    =>1 ,
@@ -2321,7 +2305,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    => 1,
             'hauteur'    => 900,
             'largeur'  =>2300 ,
-            'prix'  => 577,
+            'prix'  => 461,
         ],
         [
             'genre'    =>1 ,
@@ -2329,7 +2313,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 1000,
             'largeur'  =>2300 ,
-            'prix'  => 600,
+            'prix'  => 488,
         ],
         [
             'genre'    =>1 ,
@@ -2337,7 +2321,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    =>1100 ,
             'largeur'  =>2300 ,
-            'prix'  => 620,
+            'prix'  => 512,
         ],
         [
             'genre'    =>1 ,
@@ -2345,7 +2329,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 1200,
             'largeur'  =>2300 ,
-            'prix'  => 642,
+            'prix'  => 534,
         ],
         [
             'genre'    =>1 ,
@@ -2353,7 +2337,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 1300,
             'largeur'  =>2300 ,
-            'prix'  => 664,
+            'prix'  => 556,
         ],
         [
             'genre'    =>1 ,
@@ -2361,7 +2345,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 1400,
             'largeur'  =>2300 ,
-            'prix'  => 688,
+            'prix'  => 579,
         ],
         [
             'genre'    =>1 ,
@@ -2369,7 +2353,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 1500,
             'largeur'  =>2300 ,
-            'prix'  =>698 ,
+            'prix'  => 605,
         ],
         [
             'genre'    =>1 ,
@@ -2377,7 +2361,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 1600,
             'largeur'  =>2300 ,
-            'prix'  => 705,
+            'prix'  => 622,
         ],
         [
             'genre'    =>1 ,
@@ -2385,7 +2369,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 1700,
             'largeur'  =>2300 ,
-            'prix'  => 736,
+            'prix'  => 656,
         ],
         [
             'genre'    =>1 ,
@@ -2393,7 +2377,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 1800,
             'largeur'  =>2300 ,
-            'prix'  => 758,
+            'prix'  => 679,
         ],
         [
             'genre'    =>1 ,
@@ -2401,8 +2385,8 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 1900,
             'largeur'  =>2200 ,
-            'prix'  => 784,
-        ],
+            'prix'  => 705,
+        ],/*
         [
             'genre'    =>1 ,
  	 	 	 'type'    =>3 ,
@@ -2410,8 +2394,8 @@ class Modeles3Seeder extends Seeder
             'hauteur'    => 2000,
             'largeur'  =>2300 ,
             'prix'  => 802,
-        ],
-        /*larg=2400*/
+        ],*/
+        /*larg=2400
         [
             'genre'    =>1 ,
  	 	 	 'type'    =>3 ,
@@ -2525,219 +2509,7 @@ class Modeles3Seeder extends Seeder
             'prix'  => 870,
         ],
 
-        /*larg=2700*/
-        [
-            'genre'    =>1 ,
- 	 	 	 'type'    =>3 ,
-            'couleur'    => 1,
-            'hauteur'    => 700,
-            'largeur'  =>2400 ,
-            'prix'  => 571,
-        ],
-        [
-            'genre'    =>1 ,
- 	 	 	 'type'    =>3 ,
-            'couleur'    => 1,
-            'hauteur'    => 800,
-            'largeur'  =>2400 ,
-            'prix'  => 574,
-        ],
-        [
-            'genre'    =>1 ,
- 	 	 	 'type'    =>3 ,
-            'couleur'    => 1,
-            'hauteur'    => 900,
-            'largeur'  =>2400 ,
-            'prix'  => 573,
-        ],
-        [
-            'genre'    =>1 ,
- 	 	 	 'type'    =>3 ,
-            'couleur'    =>1 ,
-            'hauteur'    => 1000,
-            'largeur'  =>2400 ,
-            'prix'  => 601,
-        ],
-        [
-            'genre'    =>1 ,
- 	 	 	 'type'    =>3 ,
-            'couleur'    =>1 ,
-            'hauteur'    =>1100 ,
-            'largeur'  =>2400 ,
-            'prix'  => 622,
-        ],
-        [
-            'genre'    =>1 ,
- 	 	 	 'type'    =>3 ,
-            'couleur'    =>1 ,
-            'hauteur'    => 1200,
-            'largeur'  =>2400 ,
-            'prix'  => 643,
-        ],
-        [
-            'genre'    =>1 ,
- 	 	 	 'type'    =>3 ,
-            'couleur'    =>1 ,
-            'hauteur'    => 1300,
-            'largeur'  =>2400 ,
-            'prix'  => 665,
-        ],
-        [
-            'genre'    =>1 ,
- 	 	 	 'type'    =>3 ,
-            'couleur'    =>1 ,
-            'hauteur'    => 1400,
-            'largeur'  =>2400 ,
-            'prix'  => 689,
-        ],
-        [
-            'genre'    =>1 ,
- 	 	 	 'type'    =>3 ,
-            'couleur'    =>1 ,
-            'hauteur'    => 1500,
-            'largeur'  =>2400 ,
-            'prix'  =>713 ,
-        ],
-        [
-            'genre'    =>1 ,
- 	 	 	 'type'    =>3 ,
-            'couleur'    =>1 ,
-            'hauteur'    => 1600,
-            'largeur'  =>2400 ,
-            'prix'  => 736,
-        ],
-        [
-            'genre'    =>1 ,
- 	 	 	 'type'    =>3 ,
-            'couleur'    =>1 ,
-            'hauteur'    => 1700,
-            'largeur'  =>2400 ,
-            'prix'  => 752,
-        ],
-        [
-            'genre'    =>1 ,
- 	 	 	 'type'    =>3 ,
-            'couleur'    =>1 ,
-            'hauteur'    => 1800,
-            'largeur'  =>2400 ,
-            'prix'  => 775,
-        ],
-
-        /*larg=2400*/
-        [
-            'genre'    =>1 ,
- 	 	 	 'type'    =>3 ,
-            'couleur'    => 1,
-            'hauteur'    => 700,
-            'largeur'  =>2400 ,
-            'prix'  => 554,
-        ],
-        [
-            'genre'    =>1 ,
- 	 	 	 'type'    =>3 ,
-            'couleur'    => 1,
-            'hauteur'    => 800,
-            'largeur'  =>2400 ,
-            'prix'  => 561,
-        ],
-        [
-            'genre'    =>1 ,
- 	 	 	 'type'    =>3 ,
-            'couleur'    => 1,
-            'hauteur'    => 900,
-            'largeur'  =>2400 ,
-            'prix'  => 562,
-        ],
-        [
-            'genre'    =>1 ,
- 	 	 	 'type'    =>3 ,
-            'couleur'    =>1 ,
-            'hauteur'    => 1000,
-            'largeur'  =>2400 ,
-            'prix'  => 589,
-        ],
-        [
-            'genre'    =>1 ,
- 	 	 	 'type'    =>3 ,
-            'couleur'    =>1 ,
-            'hauteur'    =>1100 ,
-            'largeur'  =>2400 ,
-            'prix'  => 611,
-        ],
-        [
-            'genre'    =>1 ,
- 	 	 	 'type'    =>3 ,
-            'couleur'    =>1 ,
-            'hauteur'    => 1200,
-            'largeur'  =>2400 ,
-            'prix'  => 630,
-        ],
-        [
-            'genre'    =>1 ,
- 	 	 	 'type'    =>3 ,
-            'couleur'    =>1 ,
-            'hauteur'    => 1300,
-            'largeur'  =>2400 ,
-            'prix'  => 653,
-        ],
-        [
-            'genre'    =>1 ,
- 	 	 	 'type'    =>3 ,
-            'couleur'    =>1 ,
-            'hauteur'    => 1400,
-            'largeur'  =>2400 ,
-            'prix'  => 678,
-        ],
-        [
-            'genre'    =>1 ,
- 	 	 	 'type'    =>3 ,
-            'couleur'    =>1 ,
-            'hauteur'    => 1500,
-            'largeur'  =>2400 ,
-            'prix'  =>698 ,
-        ],
-        [
-            'genre'    =>1 ,
- 	 	 	 'type'    =>3 ,
-            'couleur'    =>1 ,
-            'hauteur'    => 1600,
-            'largeur'  =>2400 ,
-            'prix'  => 721,
-        ],
-        [
-            'genre'    =>1 ,
- 	 	 	 'type'    =>3 ,
-            'couleur'    =>1 ,
-            'hauteur'    => 1700,
-            'largeur'  =>2400 ,
-            'prix'  => 751,
-        ],
-        [
-            'genre'    =>1 ,
- 	 	 	 'type'    =>3 ,
-            'couleur'    =>1 ,
-            'hauteur'    => 1800,
-            'largeur'  =>2400 ,
-            'prix'  => 773,
-        ],
-        [
-            'genre'    =>1 ,
- 	 	 	 'type'    =>3 ,
-            'couleur'    =>1 ,
-            'hauteur'    => 1900,
-            'largeur'  =>2400 ,
-            'prix'  => 851,
-        ],
-        [
-            'genre'    =>1 ,
- 	 	 	 'type'    =>3 ,
-            'couleur'    =>1 ,
-            'hauteur'    => 2000,
-            'largeur'  =>2400 ,
-            'prix'  => 870,
-        ],
-
-        /*larg=2500*/
+        /*larg=2500
         [
             'genre'    =>1 ,
  	 	 	 'type'    =>3 ,
@@ -2834,7 +2606,7 @@ class Modeles3Seeder extends Seeder
             'largeur'  =>2500 ,
             'prix'  => 775,
         ],
-        /*larg=2600*/
+        /*larg=2600
         [
             'genre'    =>1 ,
  	 	 	 'type'    =>3 ,
@@ -2931,7 +2703,7 @@ class Modeles3Seeder extends Seeder
             'largeur'  =>2600 ,
             'prix'  => 776,
         ],
-
+*/
             ];
 
             Modele::insert($modeles);

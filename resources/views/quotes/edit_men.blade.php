@@ -650,12 +650,14 @@
 								<option  @if( old("type")==2)  selected="selected" @endif  value="2">Fenêtre 1 vantail</option>
 								<option  @if( old("type")==3)  selected="selected" @endif  value="3">Fenêtre 2 vantaux </option>
 								<option  @if( old("type")==4)  selected="selected" @endif  value="4">Fenêtre 3 vantaux</option>
+								<option  @if( old("type")==11)  selected="selected" @endif  value="11">Fenêtre 4 vantaux</option>
 								<option  @if( old("type")==5)  selected="selected" @endif  value="5">Fenêtre fixe</option>
 								<option  @if( old("type")==6)  selected="selected" @endif  value="6">Porte Fenêtre 1 vantail</option>
 								<option  @if( old("type")==7)  selected="selected" @endif  value="7">Porte Fenêtre 2 vantaux</option>
 								<option  @if( old("type")==8)  selected="selected" @endif  value="8">Coulissant 1 </option>
 								<option  @if( old("type")==9)  selected="selected" @endif  value="9">Coulissant 2 </option>
 								<option  @if( old("type")==10)  selected="selected" @endif  value="10">Coulissant 3 </option>
+								<option  @if( old("type")==12)  selected="selected" @endif  value="12">Coulissant 2 vantaux</option>
 							</select>
 						</div>
 					</div>

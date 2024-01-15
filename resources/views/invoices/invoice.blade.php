@@ -279,7 +279,7 @@
 	   </div>
 	   <div class="clearfix"></div>
 	   <div style="width:100%;page-break-inside: avoid;">
-		   <div style="width:45%;float:left;font-size:9px;padding-top:10px">
+		   <div style="width:42%;float:left;font-size:9px;padding-top:10px;margin-right:3%">
 			   @if($invoice->modalite!='')
 				   <b>Règlement par :</b> {{ $invoice->modalite }}
 
@@ -312,19 +312,28 @@
 
 		   <div style="width:55%;float:left;font-weight:bold;padding-top:15px">
 		   		@if($type =='Devis')
-					@php
-						$lieu=\App\Models\Signature::where('quote',$invoice->id)->first()->lieu ?? '';
-						$date=\App\Models\Signature::where('quote',$invoice->id)->first()->date ?? '';
-						$signature=\App\Models\Signature::where('quote',$invoice->id)->first()->signature ?? '';
-					@endphp
-					<table style="width:100%;font-size:10px">
-						<tr rowspan="2"><td>Fait à</td>@if($lieu !='')<img src="{{$lieu}}" width= '130'     height='auto'/>@endif<td></td><td>Le</td>@if($date !='')<td><img src="{{$date}}" width= '130'     height= 'auto'/>@endif</td></tr>
-						<tr><td colspan="4"> J'ai lu et j'accepte les Conditions Générales de Ventes</td></tr>
-						<tr><td colspan="4">Signature précédée de la mention "Bon pour accord"</td></tr>
-					</table>
-					<div style="border:1px solid grey;width:100%;height:110px">
-						@if($signature !='')<img style="margin-left:15px;margin-top:15px;" src="{{$signature}}"  width='200'     height= ''/>@endif
-					</div>
+				  	@if($format=='avecsignature')
+						@php
+							$lieu=\App\Models\Signature::where('quote',$invoice->id)->first()->lieu ?? '';
+							$date=\App\Models\Signature::where('quote',$invoice->id)->first()->date ?? '';
+							$signature=\App\Models\Signature::where('quote',$invoice->id)->first()->signature ?? '';
+						@endphp
+						<table style="width:100%;font-size:10px">
+							<tr rowspan="2"><td>Fait à</td>@if($lieu !='')<img src="{{$lieu}}" width= '130'     height='auto'/>@endif<td></td><td>Le</td>@if($date !='')<td><img src="{{$date}}" width= '130'     height= 'auto'/>@endif</td></tr>
+							<tr><td colspan="4"> J'ai lu et j'accepte les Conditions Générales de Ventes</td></tr>
+							<tr><td colspan="4">Signature précédée de la mention "Bon pour accord"</td></tr>
+						</table>
+						<div style="border:1px solid grey;width:100%;height:110px">
+							@if($signature !='')<img style="margin-left:15px;margin-top:15px;" src="{{$signature}}"  width='200'     height= ''/>@endif
+						</div>
+					@else
+						<table style="width:300px;font-size:10px">
+							<tr rowspan="2"><td>Fait à</td><td></td><td>Le</td><td></td></tr>
+							<tr><td colspan="4">Signature précédée de la mention "Bon pour accord"</td></tr>
+						</table>
+						<div style="border:1px solid grey;width:100%;height:100px">
+						</div>
+					@endif
 				@endif
 		   </div>
 	   </div>
