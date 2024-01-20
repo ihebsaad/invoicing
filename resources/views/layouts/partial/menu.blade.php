@@ -39,7 +39,7 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-          <li class="nav-item menu-open">
+          <li class="nav-item {{ request()->is('invoices') || request()->is('quotes') || request()->is('invoices/*') || request()->is('quotes/*')   ? 'menu-open' : '' }}">
             <a href="#" class="nav-link {{ request()->is('invoices') || request()->is('quotes') || request()->is('invoices/*') || request()->is('quotes/*')   ? 'active' : '' }}">
               <i class="nav-icon fas fa-file text-white"></i>
               <p>
@@ -71,7 +71,7 @@
             </ul>
           </li>
 
-            <li class="nav-item menu-open">
+            <li class="nav-item {{  request()->is('categories') || request()->is('products')|| request()->is('modeles') || request()->is('categories/*') || request()->is('products/*')   ? 'menu-open' : '' }} ">
               <a href="#" class="nav-link {{  request()->is('categories') || request()->is('products') || request()->is('categories/*') || request()->is('products/*')   ? 'active' : '' }}">
                 <i class="nav-icon fas fa-store text-white"></i>
                 <p>
@@ -88,7 +88,7 @@
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="{{route('products.index')}}" class="nav-link {{ request()->is('products.index')  ? 'active' : '' }}">
+                  <a href="{{route('products.index')}}" class="nav-link {{ request()->is('products')  ? 'active' : '' }}">
                   <i class="fas fa-cubes nav-icon text-secondary"></i>
                     <p>Produits</p>
                   </a>
@@ -115,8 +115,8 @@
               </ul>
             </li>
           @can('isAdmin')
-            <li class="nav-item menu-open">
-              <a href="#" class="nav-link {{ request()->is('users')   ? 'active' : '' }}">
+            <li class="nav-item  {{ request()->is('users') || request()->is('settings') ||  request()->is('settings.index')    ? 'menu-open' : '' }}">
+              <a href="#" class="nav-link {{ request()->is('users') || request()->is('settings.index') ||  request()->is('settings')    ? 'active' : '' }}">
                 <i class="nav-icon fas fa-cog text-white"></i>
                 <p>
                   Paramètres
@@ -124,8 +124,15 @@
                 </p>
               </a>
               <ul class="nav nav-treeview">
+
                 <li class="nav-item">
-                  <a href="{{route('users.index')}}" class="nav-link {{ request()->is('users') ? 'active' : '' }}">
+                  <a href="{{route('settings')}}" class="nav-link {{ request()->is('settings.index') ||  request()->is('settings')  ? 'active' : '' }}">
+                    <i class="fas fa-calculator nav-icon text-secondary"></i>
+                    <p>Coefficients</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="{{route('users.index')}}" class="nav-link {{ request()->is('users.index') ||  request()->is('users')  ? 'active' : '' }}">
                     <i class="fas fa-users nav-icon text-secondary"></i>
                     <p>Utilisateurs</p>
                   </a>

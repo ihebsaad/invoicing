@@ -21,6 +21,7 @@ use App\Http\Controllers\InvoicesController;
 use App\Http\Controllers\QuotesController;
 use App\Http\Controllers\CustomersController;
 use App\Http\Controllers\ModelesController;
+use App\Http\Controllers\SettingsController;
 
 Route::get('/quotes/all', [QuotesController::class, 'all'])->name('quotes.all');
 
@@ -40,6 +41,10 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+//Settings
+Route::get('/settings', [App\Http\Controllers\SettingsController::class, 'index'])->name('settings');
+Route::post('/update_setting', [App\Http\Controllers\SettingsController::class, 'update_setting'])->name('update_setting');
 
 
 // users

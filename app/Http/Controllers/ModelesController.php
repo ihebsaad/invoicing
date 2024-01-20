@@ -10,6 +10,8 @@ use App\Models\Porte;
 use App\Models\Door;
 use App\Models\Shutter;
 use App\Models\Volet;
+use App\Models\Setting;
+
 use Illuminate\Http\Request;
 
 class ModelesController extends Controller
@@ -207,7 +209,9 @@ class ModelesController extends Controller
         $modele=Modele::where('genre',$genre)->where('type',$type)->where('couleur',1)->where('hauteur',$hauteur)->where('largeur',$largeur)->first();
         if (isset($modele)){
             $model['id']=$modele->id;
-            $prix=$modele->prix * 3;   // coefficient
+            $coefficient = floatval( Setting::where('model','Modele')->where('model_id',''.$type)->first()->value  );
+            //$prix=$modele->prix * 3;   // coefficient
+            $prix=$modele->prix * $coefficient;   //
             if($couleur==1){
                 $prix=$prix;
             }elseif($couleur==2){
@@ -389,7 +393,10 @@ class ModelesController extends Controller
 
         if (isset($shutter)){
             $shutter['id']=$shutter->id;
-            $prix=$shutter->prix *2.5 ;   // coefficient
+            $coefficient = floatval( Setting::where('model','Shutter')->where('model_id',''.$type)->first()->value  );
+
+            $prix=$shutter->prix * $coefficient ;
+            //$prix=$shutter->prix *2.5 ;   // coefficient
 
             $shutter['prix']=number_format($prix,2,'.','');
             $shutter['prix_ht']=number_format($prix,2,'.','');

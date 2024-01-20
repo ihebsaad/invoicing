@@ -34,6 +34,7 @@ class DatabaseSeeder extends Seeder
             ModelesShutterSeeder::class,
             ModelesShutter2Seeder::class,
             ModelesShutter3Seeder::class,
+            SettingsSeeder::class,
         ]);
     }
 }
