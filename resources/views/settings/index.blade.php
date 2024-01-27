@@ -95,6 +95,58 @@
 					</div>
 				</div>
 			</div>
+			<h4 class="mt-3">Addition en €</h4>
+			<div class="row ">
+				<div class="col-xs-4 col-sm-4 col-md-4">
+					<div class="form-group">
+						<strong>Ext couleur & intérieur blanc Groupe 1 :</strong>
+						<input type="number" name="name" class="form-control w-1" step="10" min="0" placeholder="" value="{!! \App\Models\Setting::where('Model','Color')->where('model_id','1')->first()->value !!}" onchange="update_setting(this,'Coefficient Coulissant 2V', 'Color','1')">
+					</div>
+				</div>
+
+				<div class="col-xs-4 col-sm-4 col-md-4">
+					<div class="form-group">
+						<strong>Ext couleur & intérieur blanc Groupe 2 :</strong>
+						<input type="number" name="name" class="form-control w-1" step="10" min="0" placeholder="" value="{!! \App\Models\Setting::where('Model','Color')->where('model_id','2')->first()->value !!}" onchange="update_setting(this,'Coefficient Coulissant 2V', 'Color','2')">
+					</div>
+				</div>
+
+				<div class="col-xs-4 col-sm-4 col-md-4">
+					<div class="form-group">
+						<strong>Ext couleur & intérieur blanc Groupe 3 :</strong>
+						<input type="number" name="name" class="form-control w-1" step="10" min="0" placeholder="" value="{!! \App\Models\Setting::where('Model','Color')->where('model_id','3')->first()->value !!}" onchange="update_setting(this,'Coefficient Coulissant 2V', 'Color','3')">
+					</div>
+				</div>
+
+				<div class="col-xs-4 col-sm-4 col-md-4">
+					<div class="form-group">
+						<strong>Ext & intérieur couleur Groupe 1 :</strong>
+						<input type="number" name="name" class="form-control w-1" step="10" min="0" placeholder="" value="{!! \App\Models\Setting::where('Model','Color')->where('model_id','4')->first()->value !!}" onchange="update_setting(this,'Coefficient Coulissant 2V', 'Color','4')">
+					</div>
+				</div>
+
+				<div class="col-xs-4 col-sm-4 col-md-4">
+					<div class="form-group">
+						<strong>Ext & intérieur couleur Groupe 2 :</strong>
+						<input type="number" name="name" class="form-control w-1" step="10" min="0" placeholder="" value="{!! \App\Models\Setting::where('Model','Color')->where('model_id','5')->first()->value !!}" onchange="update_setting(this,'Coefficient Coulissant 2V', 'Color','5')">
+					</div>
+				</div>
+
+				<div class="col-xs-4 col-sm-4 col-md-4">
+					<div class="form-group">
+						<strong>Ext & intérieur couleur Groupe 3 :</strong>
+						<input type="number" name="name" class="form-control w-1" step="10" min="0" placeholder="" value="{!! \App\Models\Setting::where('Model','Color')->where('model_id','6')->first()->value !!}" onchange="update_setting(this,'Coefficient Coulissant 2V', 'Color','6')">
+					</div>
+				</div>
+			</div>
+			<div class="row mt-4">
+				<div class="col-xs-4 col-sm-4 col-md-4">
+					<div class="form-group">
+						<strong>Coefficient Cintrage :</strong>
+						<input type="number" name="name" class="form-control w-1" step="0.1" min="0" placeholder="" value="{!! \App\Models\Setting::where('Model','Bending')->where('model_id','1')->first()->value !!}" onchange="update_setting(this,'Coefficient cintrage', 'Bending','1')">
+					</div>
+				</div>
+			</div>
 		</div>
 		<div class="tab-pane fade" id="volets-tab" role="tabpanel" aria-labelledby="custom-tabs-three-volets-tab">
 			<div class="row">

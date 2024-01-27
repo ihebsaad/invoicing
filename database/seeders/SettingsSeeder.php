@@ -115,8 +115,53 @@ class SettingsSeeder extends Seeder
                 'value' => '2.5',
                 'model' => 'Shutter',
                 'model_id' => '3',
-				]
+                ],
 
+                // Groupes couleurs
+				[
+                    'name' => 'Extérieur couleur G1',
+                    'value' => '200',
+                    'model' => 'Color',
+                    'model_id' => '1',
+                ],
+				[
+                    'name' => 'Extérieur couleur G2',
+                    'value' => '200',
+                    'model' => 'Color',
+                    'model_id' => '2',
+                ],
+				[
+                    'name' => 'Extérieur couleur G3',
+                    'value' => '300',
+                    'model' => 'Color',
+                    'model_id' => '3',
+                ],
+            	    //(Tous couleur ) Extérieur couleur & intérieur couleur
+				[
+                    'name' => 'Tous couleur G1',
+                    'value' => '360',
+                    'model' => 'Color',
+                    'model_id' => '4',
+                ],
+				[
+                    'name' => 'Tous couleur G2',
+                    'value' => '360',
+                    'model' => 'Color',
+                    'model_id' => '5',
+                ],
+				[
+                    'name' => 'Tous couleur G3',
+                    'value' => '550',
+                    'model' => 'Color',
+                    'model_id' => '6',
+                ],
+                // coeff cintrage
+				[
+                    'name' => 'Cintrage',
+                    'value' => '1.4',
+                    'model' => 'Bending',
+                    'model_id' => '1',
+                ]
 
             ];
 

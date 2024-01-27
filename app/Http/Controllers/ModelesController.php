@@ -218,11 +218,11 @@ class ModelesController extends Controller
             //    $prix=$prix*1.1;
 
                 if($groupe_couleur==1){
-                    $prix=$prix+200;
+                    $prix=$prix + floatval( Setting::where('model','Color')->where('model_id','1')->first()->value ) ;
                 }elseif($groupe_couleur==2){
-                    $prix=$prix+200;
+                    $prix=$prix+ floatval( Setting::where('model','Color')->where('model_id','2')->first()->value );
                 }elseif($groupe_couleur==3){
-                    $prix=$prix+300;
+                    $prix=$prix+floatval( Setting::where('model','Color')->where('model_id','3')->first()->value );
                 }
 
             }
@@ -230,17 +230,17 @@ class ModelesController extends Controller
             //    $prix=$prix*1.2;
 
                 if($groupe_couleur==1){
-                    $prix=$prix+360;
+                    $prix=$prix + floatval( Setting::where('model','Color')->where('model_id','4')->first()->value );
                 }elseif($groupe_couleur==2){
-                    $prix=$prix+360;
+                    $prix=$prix + floatval( Setting::where('model','Color')->where('model_id','5')->first()->value );
                 }elseif($groupe_couleur==3){
-                    $prix=$prix+550;
+                    $prix=$prix + floatval( Setting::where('model','Color')->where('model_id','6')->first()->value );
                 }
 
             }
 
             if($cintrage){
-                $prix=$prix*1.4;
+                $prix=$prix * floatval( Setting::where('model','Bending')->where('model_id','1')->first()->value );
             }
 
             $model['prix']=number_format($prix,2,'.','');
