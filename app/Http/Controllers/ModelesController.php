@@ -193,6 +193,76 @@ class ModelesController extends Controller
         }
     }
 
+    public function edit_article(Request $request)
+    {
+        $article_id=$request->get('article');
+        $modele=$request->get('modele');
+        $qty=$request->get('qte');
+        $price=$request->get('prix');
+        $price_ht=$request->get('prix_ht');
+        $text=$request->get('texte');
+        $total_ttc=$request->get('total');
+        $note=$request->get('note');
+        $groupe=$request->get('groupe');
+        $cintrage=$request->get('cintrage');
+        $couleur=$request->get('couleur');
+
+        $article=Article::find($article_id);
+        $article->modele=$modele;
+        $article->qty=$qty;
+        $article->price=$price;
+        $article->price_ht=$price_ht;
+        $article->text=$text;
+        $article->note=$note;
+        $article->total_ttc=$total_ttc;
+        $article->groupe=$groupe;
+        $article->cintrage=$cintrage;
+        $article->couleur=$couleur;
+        $article->save();
+        return $article_id;
+    }
+
+    public function get_article(Request $request)
+    {
+        $article=Article::find($request->get('article'));
+
+        $modele=Modele::find($article->modele);
+        $data=array();
+        $data['modele']=$article->modele;
+        $data['prix']=$article->price;
+        $data['note']=$article->note;
+        $data['qte']=$article->qty;
+        $data['total']=$article->modele;
+        $data['groupe']=$article->groupe;
+        $data['cintrage']=$article->cintrage;
+        $data['couleur']=$article->couleur;
+        $data['quote']=$article->quote;
+        $data['invoice']=$article->invoice;
+        $data['hauteur']=$modele->hauteur;
+        $data['largeur']=$modele->largeur;
+        $data['genre']=$modele->genre;
+        $data['type']=$modele->type;
+
+       return $data;
+
+    }
+
+    public function get_door(Request $request)
+    {
+        $porte=Porte::find($request->get('item'));
+        $data=array();
+        $data['door']=$porte->door;
+        $data['prix']=$porte->price;
+        $data['prixht']=$porte->price_ht;
+        $data['note']=$porte->note;
+        $data['qte']=$porte->qty;
+        $data['total']=$porte->total_ttc;
+        $data['groupe']=$porte->groupe;
+        $data['cintrage']=$porte->cintrage;
+        $data['couleur']=$porte->couleur;
+       return $data;
+    }
+
     // menuiserie
     public function pricing(Request $request)
     {
@@ -306,6 +376,34 @@ class ModelesController extends Controller
         }
     }
 
+    public function edit_door(Request $request)
+    {
+        $id=$request->get('item');
+        $door=$request->get('door');
+        $qty=$request->get('qte');
+        $price=$request->get('prix');
+        $price_ht=$request->get('prix_ht');
+        $texte=$request->get('texte');
+        $total_ttc=$request->get('total');
+        $note=$request->get('note');
+        $groupe=$request->get('groupe');
+        $couleur=$request->get('couleur');
+        $cintrage=$request->get('cintrage');
+
+        $porte=Porte::find($id);
+        $porte->door=$door;
+        $porte->qty=$qty;
+        $porte->price=$price;
+        $porte->price_ht=$price_ht;
+        $porte->text=$texte;
+        $porte->note=$note;
+        $porte->total_ttc=$total_ttc;
+        $porte->groupe=$groupe;
+        $porte->couleur=$couleur;
+        $porte->cintrage=$cintrage;
+        $porte->save();
+        return $id;
+    }
 
     public function add_volet(Request $request)
     {
@@ -349,6 +447,56 @@ class ModelesController extends Controller
             ]);
             return $volet->id;
         }
+    }
+
+    public function get_volet(Request $request)
+    {
+
+        $volet=Volet::find($request->get('item'));
+        $shutter=Shutter::find($volet->shutter);
+        $data=array();
+        $data['qty']=$volet->qty;
+        $data['prix']=$volet->price;
+        $data['prix_ht']=$volet->price_ht;
+        $data['text']=$volet->text;
+        $data['note']=$volet->note;
+        $data['total_ttc']=$volet->total_ttc;
+        $data['shutter']=$volet->shutter;
+        $data['type']=$shutter->type;
+        $data['hauteur']=$shutter->hauteur;
+        $data['largeur']=$shutter->largeur;
+        $data['couleur']=$volet->couleur;
+
+        return $data;
+    }
+
+
+    public function edit_volet(Request $request)
+    {
+
+        $shutter=$request->get('shutter');
+        $qty=$request->get('qte');
+        $price=$request->get('prix');
+        $price_ht=$request->get('prix_ht');
+        $texte=$request->get('texte');
+        $total_ttc=$request->get('total');
+        $note=$request->get('note');
+        $couleur=$request->get('couleur');
+
+        $volet=Volet::find($request->get('volet'));
+
+        $volet->shutter=$shutter;
+        $volet->qty=$qty;
+        $volet->price=$price;
+        $volet->price_ht=$price_ht;
+        $volet->text=$texte;
+        $volet->total_ttc=$total_ttc;
+        $volet->note=$note;
+        $volet->couleur=$couleur;
+
+        $volet->save();
+
+        return $request->get('volet');
     }
 
 

@@ -250,7 +250,7 @@
 						<table class="tab-products table-responsive table-striped  " style="width:100%">
 							<thead class="th-products">
 								<tr>
-									<th style="width:35%">Produit</th><th style="width:8%">Prix U</th><th style="width:8%">Qté</th><th style="width:8%">TVA</th><th style="width:14%">Total</th><th style="width:10%">+/-</th>
+									<th style="width:35%">Produit</th><th style="width:8%">Prix U</th><th style="width:8%">Qté</th><th style="width:8%">TVA</th><th style="width:14%">Total</th><th style="width:10%">Action</th>
 								</tr>
 							</thead>
 							<tbody id="list-prods" style="min-height:300px list-prods">
@@ -267,7 +267,7 @@
 									@endphp
 									@if(isset($modele))
 									<tr class="myproduct product bg-lightgrey tr-prod" id="row-{{$article->id}}">
-										<td class="myproducttd" data-prix="{{$article->price}}" data-prixht="{{$article->price_ht}}" data-id="{{$article->id}}"  ><b>{{$article->text}}<br>{{$article->note}}</b></td><td >{{$article->price_ht}} €</td><td><input id="qty-{{$article->id}}" type="number" step="1" min="1" class="number" value="{{$article->qty}}" readonly onchange="save_article_qty(this,{{$article->id}},{{$article->price}});calcul();"/></td><td><input readonly step="0.5" min="5.5" type="number" step="0.5" min="1" class="number bg-transparent" value="5.5"/> %</td><td><input id="total-{{$article->id}}" type="number" readonly class="total-prod number" value="{{$total_prod}}"/> €</td><td><button id="delete_item"   class="btn-sm btn-danger" onclick="delete_article({{$article->id}})"><i class="fas fa-minus " data-id="{{$article->id}}"></i></td>
+										<td class="myproducttd" data-prix="{{$article->price}}" data-prixht="{{$article->price_ht}}" data-id="{{$article->id}}"  ><b>{{$article->text}}<br>{{$article->note}}</b></td><td >{{$article->price_ht}} €</td><td><input id="qty-{{$article->id}}" type="number" step="1" min="1" class="number" value="{{$article->qty}}" readonly onchange="save_article_qty(this,{{$article->id}},{{$article->price}});calcul();"/></td><td><input readonly step="0.5" min="5.5" type="number" step="0.5" min="1" class="number bg-transparent" value="5.5"/> %</td><td><input id="total-{{$article->id}}" type="number" readonly class="total-prod number" value="{{$total_prod}}"/> €</td><td><button    class="btn-xs btn-info mr-2" onclick="get_article({{$article->id}})"><i class="fas fa-pen " data-id="{{$article->id}}"></i></button><button id="delete_item"   class="btn-xs btn-danger" onclick="delete_article({{$article->id}})"><i class="fas fa-trash " data-id="{{$article->id}}"></i></button></td>
 									</tr>
 									@endif
 								@endforeach
@@ -278,7 +278,7 @@
 										$c++;
 									@endphp
 									<tr class="myproduct product bg-lightgrey tr-prod" id="row-d-{{$porte->id}}">
-										<td class="doortd" data-prix="{{$porte->price}}" data-prixht="{{$porte->price_ht}}" data-id="{{$porte->id}}"  ><b>{!!nl2br($porte->text)!!}<br>{{$porte->note}}</b></td><td >{{$porte->price_ht}} €</td><td><input id="qty-d-{{$porte->id}}" type="number" step="1" min="1" class="number" value="{{$porte->qty}}"  onchange="save_door_qty(this,{{$porte->id}},{{$porte->price}});calcul();"/></td><td><input readonly step="0.5" min="5.5" type="number" step="0.5" min="1" class="number bg-transparent" value="5.5"/> %</td><td><input id="total-d-{{$porte->id}}" type="number" readonly class="total-prod number" value="{{$porte->total_ttc}}"/> €</td><td><button    class="btn-sm btn-danger" onclick="delete_door({{$porte->id}})"><i class="fas fa-minus " data-id="{{$porte->id}}"></i></td>
+										<td class="doortd" data-prix="{{$porte->price}}" data-prixht="{{$porte->price_ht}}" data-id="{{$porte->id}}"  ><b>{!!nl2br($porte->text)!!}<br>{{$porte->note}}</b></td><td >{{$porte->price_ht}} €</td><td><input id="qty-d-{{$porte->id}}" type="number" step="1" min="1" class="number" value="{{$porte->qty}}"  onchange="save_door_qty(this,{{$porte->id}},{{$porte->price}});calcul();"/></td><td><input readonly step="0.5" min="5.5" type="number" step="0.5" min="1" class="number bg-transparent" value="5.5"/> %</td><td><input id="total-d-{{$porte->id}}" type="number" readonly class="total-prod number" value="{{$porte->total_ttc}}"/> €</td><td><button    class="btn-xs btn-info mr-2" onclick="get_door({{$porte->id}})"><i class="fas fa-pen " data-id="{{$porte->id}}"></i></button><button    class="btn-xs btn-danger" onclick="delete_door({{$porte->id}})"><i class="fas fa-trash " data-id="{{$porte->id}}"></i></button></td>
 									</tr>
 								@endforeach
 
@@ -288,13 +288,13 @@
 										$c++;
 									@endphp
 									<tr class="myproduct product bg-lightgrey tr-prod" id="row-v-{{$volet->id}}">
-										<td class="volettd" data-prix="{{$volet->price}}" data-prixht="{{$volet->price_ht}}" data-id="{{$volet->id}}"  ><b>{{$volet->text}}<br>{{$volet->note}}</b></td><td >{{$volet->price_ht}} €</td><td><input id="qty-v-{{$volet->id}}" type="number" step="1" min="1" class="number" value="{{$volet->qty}}"  onchange="save_volet_qty(this,{{$volet->id}},{{$volet->price}});calcul();"/></td><td><input readonly step="0.5" min="5.5" type="number" step="0.5" min="1" class="number bg-transparent" value="5.5"/> %</td><td><input id="total-v-{{$volet->id}}" type="number" readonly class="total-prod number" value="{{$volet->total_ttc}}"/> €</td><td><button    class="btn-sm btn-danger" onclick="delete_volet({{$volet->id}})"><i class="fas fa-minus " data-id="{{$volet->id}}"></i></td>
+										<td class="volettd" data-prix="{{$volet->price}}" data-prixht="{{$volet->price_ht}}" data-id="{{$volet->id}}"  ><b>{{$volet->text}}<br>{{$volet->note}}</b></td><td >{{$volet->price_ht}} €</td><td><input id="qty-v-{{$volet->id}}" type="number" step="1" min="1" class="number" value="{{$volet->qty}}"  onchange="save_volet_qty(this,{{$volet->id}},{{$volet->price}});calcul();"/></td><td><input readonly step="0.5" min="5.5" type="number" step="0.5" min="1" class="number bg-transparent" value="5.5"/> %</td><td><input id="total-v-{{$volet->id}}" type="number" readonly class="total-prod number" value="{{$volet->total_ttc}}"/> €</td><td><button    class="btn-xs btn-info mr-2" onclick="get_volet({{$volet->id}})"><i class="fas fa-pen " data-id="{{$volet->id}}"></i></button><button    class="btn-xs btn-danger" onclick="delete_volet({{$volet->id}})"><i class="fas fa-trash " data-id="{{$volet->id}}"></i></button></td>
 									</tr>
 								@endforeach
 
 								@foreach($items as $item)
 									<tr class="myproduct product bg-lightgrey tr-prod" id="row-i-{{$item->id}}">
-										<td  id="item-{{$item->id}}" class="itemtd" data-prix="{{$item->price_ttc}}" data-prixht="{{$item->price_ht}}" data-id="{{$item->id}}"  >{{$item->description}}</td><td >{{$item->price_ht}} €</td><td><input id="qty-i-{{$item->id}}" type="number" step="1" min="1" class="number" value="{{$item->qty}}"  onchange="save_item_qty(this,{{$item->id}},{{$item->price_ht}},{{$item->price_ttc}});calcul();"/></td><td><input readonly step="0.5" min="5.5" type="number" step="0.5" min="1" class="number bg-transparent" value="{{$item->tva}}"/> %</td><td><input id="total-i-{{$item->id}}" type="number" readonly class="total-prod number" value="{{ ($item->price_ttc * $item->qty) }}"/> €</td><td><button id="delete_item"   class="btn-sm btn-danger" onclick="delete_item({{$item->id}})"><i class="fas fa-minus " data-id="{{$item->id}}"></i></td>
+										<td  id="item-{{$item->id}}" class="itemtd" data-prix="{{$item->price_ttc}}" data-prixht="{{$item->price_ht}}" data-id="{{$item->id}}"  ><b>{!! nl2br($item->description)!!}<br>{{$item->note}}</b></td><td >{{$item->price_ht}} €</td><td><input id="qty-i-{{$item->id}}" type="number" step="1" min="1" class="number" value="{{$item->qty}}"  onchange="save_item_qty(this,{{$item->id}},{{$item->price_ht}},{{$item->price_ttc}});calcul();"/></td><td><input readonly step="0.5" min="5.5" type="number" step="0.5" min="1" class="number bg-transparent" value="{{$item->tva}}"/> %</td><td><input id="total-i-{{$item->id}}" type="number" readonly class="total-prod number" value="{{ ($item->price_ttc * $item->qty) }}"/> €</td><td><button    class="btn-xs btn-info mr-2" onclick="get_item({{$item->id}})"><i class="fas fa-pen " data-id="{{$item->id}}"></i></button><button id="delete_item"   class="btn-xs btn-danger" onclick="delete_item({{$item->id}})"><i class="fas fa-trash " data-id="{{$item->id}}"></i></td>
 									</tr>
 								@endforeach
 							</tbody>
@@ -616,7 +616,7 @@
 
 
 
-
+<!-- ajouter fenetre -->
 <div class="modal fade" id="add-prod">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -634,7 +634,7 @@
 						<div class="form-group">
 							<strong>Matière:</strong>
 							<input type="hidden" id="article" value="0"/>
-							<select  name="genre" required class="form-control" id="genre"   onchange="pricing(0)">
+							<select  name="genre" required class="form-control" id="genre"   onchange="pricing(0,'')">
 								<option></option>
 								<option    value="1">PVC</option>
 								<option    value="2">Aluminium</option>
@@ -644,7 +644,7 @@
 					<div class="col-xs-12 col-sm-8 col-md-8">
 						<div class="form-group">
 							<strong>Type:</strong>
-							<select  name="type" required class="form-control" id="type"  onchange="pricing(0)">
+							<select  name="type" required class="form-control" id="type"  onchange="pricing(0,'')">
 								<option></option>
 								<option  @if( old("type")==1)  selected="selected" @endif value="1">Fenêtre à souflet</option>
 								<option  @if( old("type")==2)  selected="selected" @endif  value="2">Fenêtre 1 vantail</option>
@@ -665,7 +665,7 @@
 					<div class="col-xs-12 col-sm-8  col-md-8">
 						<div class="form-group">
 							<strong>Couleur:</strong>
-							<select   name="couleur" required class="form-control" id="couleur"   onchange="pricing(0)">
+							<select   name="couleur" required class="form-control" id="couleur"   onchange="pricing(0,'')">
 								<option></option>
 								<option @if( old("couleur")==1)  selected="selected" @endif value="1">Extérieur et intérieur blanc</option>
 								<option @if( old("couleur")==2)  selected="selected" @endif  value="2">Extérieur couleur et intérieur blanc</option>
@@ -676,7 +676,7 @@
 					<div class="col-xs-12 col-sm-4  col-md-4">
 						<div class="form-group">
 							<strong>Groupe:</strong>
-							<select   name="groupe_couleur" required class="form-control" id="groupe_couleur"   onchange="pricing(0)">
+							<select   name="groupe_couleur" required class="form-control" id="groupe_couleur"   onchange="pricing(0,'')">
 								<option></option>
 								<option  value="1">1</option>
 								<option  value="2">2</option>
@@ -688,20 +688,21 @@
 					<div class="col-xs-12 col-sm-6 col-md-4">
 						<div class="form-group">
 							<strong>Hauteur:</strong>
-							<input id="hauteur" type="number" name="hauteur" rerquired class="form-control" step ="100" min="200" max="3200"  value="{{old('hauteur')}}" onchange="pricing(0)" style="max-width:150px">
+							<input id="hauteur" type="number" name="hauteur" rerquired class="form-control" step ="100" min="200" max="3200"  value="{{old('hauteur')}}" onchange="pricing(0,'')" style="max-width:150px">
 						</div>
 					</div>
 
 					<div class="col-xs-12 col-sm-6 col-md-4">
 						<div class="form-group">
 							<strong>Largeur:</strong>
-							<input id="largeur" type="number" name="largeur" rerquired class="form-control" step ="100" min="200" max="2200"  value="{{old('largeur')}}" onchange="pricing(0)" style="max-width:150px">
+							<input id="largeur" type="number" name="largeur" rerquired class="form-control" step ="100" min="200" max="2200"  value="{{old('largeur')}}" onchange="pricing(0,'')" style="max-width:150px">
 						</div>
 					</div>
 					<div class="col-xs-12 col-sm-6 col-md-4">
 						<div class="form-group">
 							<strong> </strong>
-							<label class=pointer><input type="checkbox"   name="cintrage" id="cintrage" value="1"  onchange="pricing(0)"/> Cintrage </label>						</div>
+							<label class=pointer><input type="checkbox"   name="cintrage" id="cintrage" value="1"  onchange="pricing(0,'')"/> Cintrage </label>
+						</div>
 					</div>
 
 					<div class="col-md-12">
@@ -720,7 +721,7 @@
 					<div class="col-xs-12 col-sm-4 col-md-4">
 						<div class="form-group">
 							<strong>Qté :</strong>
-							<input  id="qte" type="number" name="qte" rerquired class="form-control" step ="1" min="1"  value="1" onchange="pricing(0)" >
+							<input  id="qte" type="number" name="qte" rerquired class="form-control" step ="1" min="1"  value="1" onchange="pricing(0,'')" >
 						</div>
 					</div>
 
@@ -736,7 +737,7 @@
 							<textarea  id="note"   name="note"  class="form-control" ></textarea>
 						</div>
 					</div>
-					<div class="col-xs-12 col-sm-12 col-md-12 text-right" onmouseover="pricing(0)">
+					<div class="col-xs-12 col-sm-12 col-md-12 text-right" onmouseover="pricing(0,'')">
 						<button type="button" id="insert" onclick="add_article()" disabled class="btn btn-primary mt-3 mr-3">Insérer</button>
 					</div>
 				</div>
@@ -746,6 +747,136 @@
     </div>
 </div>
 
+<!-- modifier fenetre -->
+<div class="modal fade" id="edit-prod">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+			    <h4 class="modal-title text-center text-primary"> Modifier le produit </h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fermer">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body" style="padding:10px 10px 1" >
+
+				<div class="row pl-3">
+					<div class="col-xs-12 col-sm-4 col-md-4">
+						<div class="form-group">
+							<strong>Matière:</strong>
+							<input type="hidden" id="article-edit" value="0"/>
+							<select  name="genre" required class="form-control" id="genre-edit"   onchange="pricing(0,'-edit')">
+								<option></option>
+								<option    value="1">PVC</option>
+								<option    value="2">Aluminium</option>
+							</select>
+						</div>
+					</div>
+					<div class="col-xs-12 col-sm-8 col-md-8">
+						<div class="form-group">
+							<strong>Type:</strong>
+							<select  name="type" required class="form-control" id="type-edit"  onchange="pricing(0,'-edit')">
+								<option></option>
+								<option  @if( old("type")==1)  selected="selected" @endif value="1">Fenêtre à souflet</option>
+								<option  @if( old("type")==2)  selected="selected" @endif  value="2">Fenêtre 1 vantail</option>
+								<option  @if( old("type")==3)  selected="selected" @endif  value="3">Fenêtre 2 vantaux </option>
+								<option  @if( old("type")==4)  selected="selected" @endif  value="4">Fenêtre 3 vantaux</option>
+								<option  @if( old("type")==11)  selected="selected" @endif  value="11">Fenêtre 4 vantaux</option>
+								<option  @if( old("type")==5)  selected="selected" @endif  value="5">Fenêtre fixe</option>
+								<option  @if( old("type")==6)  selected="selected" @endif  value="6">Porte Fenêtre 1 vantail</option>
+								<option  @if( old("type")==7)  selected="selected" @endif  value="7">Porte Fenêtre 2 vantaux</option>
+								<option  @if( old("type")==8)  selected="selected" @endif  value="8">Coulissant 1 </option>
+								<option  @if( old("type")==9)  selected="selected" @endif  value="9">Coulissant 2 </option>
+								<option  @if( old("type")==10)  selected="selected" @endif  value="10">Coulissant 3 </option>
+								<option  @if( old("type")==12)  selected="selected" @endif  value="12">Coulissant 2 vantaux</option>
+							</select>
+						</div>
+					</div>
+
+					<div class="col-xs-12 col-sm-8  col-md-8">
+						<div class="form-group">
+							<strong>Couleur:</strong>
+							<select   name="couleur" required class="form-control" id="couleur-edit"   onchange="pricing(0,'-edit')">
+								<option></option>
+								<option @if( old("couleur")==1)  selected="selected" @endif value="1">Extérieur et intérieur blanc</option>
+								<option @if( old("couleur")==2)  selected="selected" @endif  value="2">Extérieur couleur et intérieur blanc</option>
+								<option @if( old("couleur")==3)  selected="selected" @endif  value="3">Extérieur et intérieur couleur</option>
+							</select>
+						</div>
+					</div>
+					<div class="col-xs-12 col-sm-4  col-md-4">
+						<div class="form-group">
+							<strong>Groupe:</strong>
+							<select   name="groupe_couleur" required class="form-control" id="groupe_couleur-edit"   onchange="pricing(0,'-edit')">
+								<option></option>
+								<option  value="1">1</option>
+								<option  value="2">2</option>
+								<option  value="3">3</option>
+							</select>
+						</div>
+					</div>
+
+					<div class="col-xs-12 col-sm-6 col-md-4">
+						<div class="form-group">
+							<strong>Hauteur:</strong>
+							<input id="hauteur-edit" type="number" name="hauteur" rerquired class="form-control" step ="100" min="200" max="3200"  value="{{old('hauteur')}}" onchange="pricing(0,'-edit')" style="max-width:150px">
+						</div>
+					</div>
+
+					<div class="col-xs-12 col-sm-6 col-md-4">
+						<div class="form-group">
+							<strong>Largeur:</strong>
+							<input id="largeur-edit" type="number" name="largeur" rerquired class="form-control" step ="100" min="200" max="2200"  value="{{old('largeur')}}" onchange="pricing(0,'-edit')" style="max-width:150px">
+						</div>
+					</div>
+					<div class="col-xs-12 col-sm-6 col-md-4">
+						<div class="form-group">
+							<strong> </strong>
+							<label class=pointer><input type="checkbox"   name="cintrage" id="cintrage-edit" value="1"  onchange="pricing(0,'-edit')"/> Cintrage </label>
+						</div>
+					</div>
+
+					<div class="col-md-12">
+						<div class="text-danger-edit pl-5" style="color:red">
+
+						</div>
+					</div>
+					<div class="col-xs-12 col-sm-4 col-md-4">
+						<div class="form-group">
+							<strong>Prix U <small style="display:none">€</small>:</strong>
+							<input readonly id="prix-edit" type="number" name="prix" rerquired class="form-control" step ="0.01" min="0"  value="{{old('prix')}}"  >
+							<input type="hidden" id="modele-edit" value="0"  />
+						</div>
+					</div>
+
+					<div class="col-xs-12 col-sm-4 col-md-4">
+						<div class="form-group">
+							<strong>Qté :</strong>
+							<input  id="qte-edit" type="number" name="qte" rerquired class="form-control" step ="1" min="1"  value="1" onchange="pricing(0,'-edit')" >
+						</div>
+					</div>
+
+					<div class="col-xs-12 col-sm-4 col-md-4">
+						<div class="form-group">
+							<strong>Total <small style="display:none">€</small>:</strong>
+							<input readonly id="total-edit" type="number" name="total" rerquired class="form-control" step ="0.01" min="0"  >
+						</div>
+					</div>
+					<div class="col-xs-12 col-sm-8 col-md-8">
+						<div class="form-group">
+							<strong>Note :</strong>
+							<textarea  id="note-edit"   name="note"  class="form-control" ></textarea>
+						</div>
+					</div>
+					<div class="col-xs-12 col-sm-12 col-md-12 text-right" onmouseover="pricing(0,'-edit')">
+						<button type="button" id="insert-edit" onclick="edit_article()" disabled class="btn btn-primary mt-3 mr-3">Modifier</button>
+					</div>
+				</div>
+			</div>
+
+        </div>
+    </div>
+</div>
 
 <div class="modal fade" id="add-door">
     <div class="modal-dialog">
@@ -763,7 +894,7 @@
 				<div class="col-xs-12 col-sm-6 col-md-6">
 						<div class="form-group">
 							<strong>Modèle:</strong>
-							<select  name="door" required class="form-control select2" id="door"   onchange="pricing_door()">
+							<select  name="door" required class="form-control select2" id="door"   onchange="pricing_door('')">
 								<option></option>
 								@foreach($doors as $door)
 									<option value="{{$door->id}}">{{$door->texte}}</option>
@@ -775,7 +906,7 @@
 					<div class="col-xs-12 col-sm-6  col-md-6">
 						<div class="form-group">
 							<strong>Style:</strong>
-							<select   name="groupe" required class="form-control" id="groupe-d"   onchange="pricing_door()">
+							<select   name="groupe" required class="form-control" id="groupe-d"   onchange="pricing_door('')">
 								<option value="0"></option>
 								<option  value="1">Extérieur couleur et intérieur blanc</option>
 								<option  value="2">Extérieur et intérieur couleur</option>
@@ -821,7 +952,8 @@
 					<div class="col-xs-12 col-sm-6 col-md-4">
 						<div class="form-group">
 							<strong> </strong>
-							<label class=pointer><input type="checkbox"   name="cintrage" id="cintrage-d" value="1"  onchange="pricing_door()"/> Cintrage </label>						</div>
+							<label class=pointer><input type="checkbox"   name="cintrage" id="cintrage-d" value="1"  onchange="pricing_door('')"/> Cintrage </label>
+						</div>
 					</div>
 
 					<div class="col-md-12">
@@ -846,7 +978,7 @@
 					<div class="col-xs-12 col-sm-4 col-md-4">
 						<div class="form-group">
 							<strong>Qté :</strong>
-							<input  id="qte-d" type="number" name="qte" rerquired class="form-control" step ="1" min="1"  value="1" onchange="pricing_door()" >
+							<input  id="qte-d" type="number" name="qte" rerquired class="form-control" step ="1" min="1"  value="1" onchange="pricing_door('')" >
 						</div>
 					</div>
 
@@ -862,7 +994,7 @@
 							<textarea  id="note-d"   name="note"  class="form-control" ></textarea>
 						</div>
 					</div>
-					<div class="col-xs-12 col-sm-12 col-md-12 text-right" onmouseover="pricing_door()">
+					<div class="col-xs-12 col-sm-12 col-md-12 text-right" onmouseover="pricing_door('')">
 						<button type="button" id="insert2" onclick="add_door()"   class="btn btn-primary mt-3 mr-3">Insérer</button>
 					</div>
 				</div>
@@ -872,8 +1004,131 @@
     </div>
 </div>
 
+<!-- modifier porte (door)-->
+<div class="modal fade" id="edit-door">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+			    <h4 class="modal-title text-center text-primary"> Modifier une porte </h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fermer">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
 
+            <div class="modal-body" style="padding:10px 10px 1" >
+				<input type="hidden" value="0" id="porte">
+				<div class="row pl-3">
+					<div class="col-xs-12 col-sm-6 col-md-6">
+						<div class="form-group">
+							<strong>Modèle:</strong>
+							<select  name="door" required class="form-control select2" id="door-edit"   onchange="pricing_door('-edit')">
+								<option></option>
+								@foreach($doors as $door)
+									<option value="{{$door->id}}">{{$door->texte}}</option>
+								@endforeach
+							</select>
+						</div>
+					</div>
 
+					<div class="col-xs-12 col-sm-6  col-md-6">
+						<div class="form-group">
+							<strong>Style:</strong>
+							<select   name="groupe" required class="form-control" id="groupe-d-edit"   onchange="pricing_door('-edit')">
+								<option value="0"></option>
+								<option  value="1">Extérieur couleur et intérieur blanc</option>
+								<option  value="2">Extérieur et intérieur couleur</option>
+							</select>
+						</div>
+					</div>
+
+					<div class="col-xs-12 col-sm-8 col-md-8">
+						<div class="form-group">
+							<strong>Couleur:</strong>
+							<select  name="couleur" required class="form-control select2" id="couleur-d-edit"   >
+								<option></option>
+								<option value="CHENE SHEFFIELD">CHENE SHEFFIELD</option>
+								<option value="CHENE NATUREL WOODEC TURNER">CHENE NATUREL WOODEC TURNER</option>
+								<option value="WINCHESTER">WINCHESTER</option>
+								<option value="CHENE MAT">CHENE MAT</option>
+								<option value="CHENE DORE">CHENE DORE</option>
+								<option value="CHENE NATUREL WOODEC FONCE">CHENE NATUREL WOODEC FONCE</option>
+								<option value="NOIR GRANITE">NOIR GRANITE</option>
+								<option value="GRIS ANTHRACITE VEINE">GRIS ANTHRACITE VEINE</option>
+								<option value="GRIS ANTHRACITE LISSE III">GRIS ANTHRACITE LISSE III</option>
+								<option value="GRIS GRAPHITE">GRIS GRAPHITE</option>
+								<option value="CHENE RUSTIQUE">CHENE RUSTIQUE</option>
+								<option value="NOYER RUSTIQUE">NOYER RUSTIQUE</option>
+								<option value="NOYER">NOYER</option>
+								<option value="ACAJOU">ACAJOU</option>
+								<option value="CHENE KITAMI MAT">CHENE KITAMI MAT</option>
+								<option value="ALU TITANE BRUT">ALU TITANE BRUT</option>
+								<option value="GRIS ANTHRACITE CERUSE">GRIS ANTHRACITE CERUSE</option>
+								<option value="BRONZE MAT">BRONZE MAT</option>
+								<option value="GRIS OMBRE MAT">GRIS OMBRE MAT</option>
+								<option value="GRIS QUARTZ MAT">GRIS QUARTZ MAT</option>
+								<option value="GRIS BASALTE MAT">GRIS BASALTE MAT</option>
+								<option value="GRIS ARGENT">GRIS ARGENT</option>
+								<option value="GRIS MAT">GRIS MAT</option>
+								<option value="BEIGE II">BEIGE II</option>
+								<option value="BLANC BRILLANT">BLANC BRILLANT</option>
+								<option value="BLANC MAT">BLANC MAT</option>
+							</select>
+						</div>
+					</div>
+
+					<div class="col-xs-12 col-sm-6 col-md-4">
+						<div class="form-group">
+							<strong> </strong>
+							<label class=pointer><input type="checkbox"   name="cintrage" id="cintrage-d-edit" value="1"  onchange="pricing_door('-edit')"/> Cintrage </label>						</div>
+					</div>
+
+					<div class="col-md-12">
+						<div class="text-door-edit pl-5" style="color:red">
+
+						</div>
+					</div>
+					<div class="col-xs-12 col-sm-4 col-md-4">
+						<div class="form-group">
+							<strong>Prix U <small style="display:none">€</small>:</strong>
+							<input readonly id="prix-d-edit" type="number" name="prix" rerquired class="form-control" step ="0.01" min="0"    >
+							<input type="hidden" id="prixht-d-edit" value="0"  />
+						</div>
+					</div>
+					<div class="col-xs-12 col-sm-4 col-md-4">
+						<div class="form-group">
+							<strong>TVA <small style="">%</small>:</strong>
+							<input readonly id="tva-d-edit" type="number" name="prix" rerquired class="form-control" step ="0.01" min="0"  value="5.5"  >
+						</div>
+					</div>
+
+					<div class="col-xs-12 col-sm-4 col-md-4">
+						<div class="form-group">
+							<strong>Qté :</strong>
+							<input  id="qte-d-edit" type="number" name="qte" rerquired class="form-control" step ="1" min="1"  value="1" onchange="pricing_door('-edit')" >
+						</div>
+					</div>
+
+					<div class="col-xs-12 col-sm-4 col-md-4">
+						<div class="form-group">
+							<strong>Total <small style="display:none">€</small>:</strong>
+							<input readonly id="total-d-edit" type="number" name="total" rerquired class="form-control" step ="0.01" min="0"  >
+						</div>
+					</div>
+					<div class="col-xs-12 col-sm-8 col-md-8">
+						<div class="form-group">
+							<strong>Note :</strong>
+							<textarea  id="note-d-edit"   name="note"  class="form-control" ></textarea>
+						</div>
+					</div>
+					<div class="col-xs-12 col-sm-12 col-md-12 text-right" onmouseover="pricing_door('-edit')">
+						<button type="button" id="insert2-edit" onclick="edit_door()"   class="btn btn-primary mt-3 mr-3">Modifier</button>
+					</div>
+				</div>
+			</div>
+
+        </div>
+    </div>
+</div>
 
 
 <div class="modal fade" id="add-volet">
@@ -892,7 +1147,7 @@
 					<div class="col-xs-12 col-sm-6 col-md-6">
 						<div class="form-group">
 							<strong>Type:</strong>
-							<select  name="type" required class="form-control" id="type-v"  onchange="pricing_volet(0)">
+							<select  name="type" required class="form-control" id="type-v"  onchange="pricing_volet(0,'')">
 								<option></option>
 								<option  @if( old("type")==1)  selected="selected" @endif value="1">Multicom</option>
 								<option  @if( old("type")==2)  selected="selected" @endif  value="2">Futurcom simple</option>
@@ -950,14 +1205,14 @@
 					<div class="col-xs-12 col-sm-6 col-md-4">
 						<div class="form-group">
 							<strong>Hauteur:</strong>
-							<input id="hauteur-v" type="number" name="hauteur" rerquired class="form-control" step ="100" min="200" max="3200"  value="{{old('hauteur')}}" onchange="pricing_volet(0)" style="max-width:150px">
+							<input id="hauteur-v" type="number" name="hauteur" rerquired class="form-control" step ="100" min="200" max="3200"  value="{{old('hauteur')}}" onchange="pricing_volet(0,'')" style="max-width:150px">
 						</div>
 					</div>
 
 					<div class="col-xs-12 col-sm-6 col-md-4">
 						<div class="form-group">
 							<strong>Largeur:</strong>
-							<input id="largeur-v" type="number" name="largeur" rerquired class="form-control" step ="100" min="200" max="2200"  value="{{old('largeur')}}" onchange="pricing_volet(0)" style="max-width:150px">
+							<input id="largeur-v" type="number" name="largeur" rerquired class="form-control" step ="100" min="200" max="2200"  value="{{old('largeur')}}" onchange="pricing_volet(0,'')" style="max-width:150px">
 						</div>
 					</div>
 
@@ -985,14 +1240,14 @@
 					<div class="col-xs-12 col-sm-4 col-md-4">
 						<div class="form-group">
 							<strong>Qté :</strong>
-							<input  id="qte-v" type="number" name="qte" rerquired class="form-control" step ="1" min="1"  value="1" onchange="pricing_volet(0)" >
+							<input  id="qte-v" type="number" name="qte" rerquired class="form-control" step ="1" min="1"  value="1" onchange="pricing_volet(0,'')" >
 						</div>
 					</div>
 
 					<div class="col-xs-12 col-sm-4 col-md-4">
 						<div class="form-group">
 							<strong>TVA <small style="">%</small>:</strong>
-							<input readonly id="tva-v" type="number" name="prix" rerquired class="form-control" step ="0.01" min="0"  value="5.5"  >
+							<input readonly id="tva-v" type="number" name="tva" rerquired class="form-control" step ="0.01" min="0"  value="5.5"  >
 						</div>
 					</div>
 
@@ -1009,7 +1264,7 @@
 							<textarea  id="note-v"   name="note"  class="form-control" ></textarea>
 						</div>
 					</div>
-					<div class="col-xs-12 col-sm-12 col-md-12 text-right" onmouseover="pricing_volet(1)">
+					<div class="col-xs-12 col-sm-12 col-md-12 text-right" onmouseover="pricing_volet(1,'')">
 						<button type="button" id="insert-volet" onclick="add_volet()" disabled class="btn btn-primary mt-3 mr-3">Insérer</button>
 					</div>
 				</div>
@@ -1019,6 +1274,149 @@
     </div>
 </div>
 
+
+<div class="modal fade" id="edit-volet">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+			    <h4 class="modal-title text-center text-primary"> Modifier le volet roulant </h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fermer">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body" style="padding:10px 10px 1" >
+				<input type="hidden" value="0" id="volet">
+				<div class="row pl-3">
+					<div class="col-xs-12 col-sm-6 col-md-6">
+						<div class="form-group">
+							<strong>Type:</strong>
+							<select  name="type" required class="form-control" id="type-v-edit"  onchange="pricing_volet(0,'-edit')">
+								<option></option>
+								<option  @if( old("type")==1)  selected="selected" @endif value="1">Multicom</option>
+								<option  @if( old("type")==2)  selected="selected" @endif  value="2">Futurcom simple</option>
+								<option  @if( old("type")==3)  selected="selected" @endif  value="3">Futurcom avec moustiquaire </option>
+							</select>
+						</div>
+					</div>
+
+					<div class="col-xs-12 col-sm-6  col-md-6">
+						<div class="form-group">
+							<strong>Couleur:</strong>
+							<select   name="couleur" required class="form-control select2" id="couleur-v-edit"    >
+								<option></option>
+								<option value="BLANC 99">BLANC 99</option>
+								<option value="TON PIERRE">TON PIERRE</option>
+								<option value="IVOIRE">IVOIRE</option>
+								<option value="GRIS 7035">GRIS 7035</option>
+								<option value="GRIS 7038">GRIS 7038</option>
+								<option value="GRIS 7039">GRIS 7039</option>
+								<option value="GRIS 7040">GRIS 7040</option>
+								<option value="GRIS ALU">GRIS ALU</option>
+								<option value="GRIS 7004 SATINÉ">GRIS 7004 SATINÉ</option>
+								<option value="GRIS 9007">GRIS 9007</option>
+								<option value="GRIS 7012">GRIS 7012</option>
+								<option value="GRIS 7016">GRIS 7016</option>
+								<option value="GRIS 7021">GRIS 7021</option>
+								<option value="GRIS 7022">GRIS 7022</option>
+								<option value="GRIS DB 703">GRIS DB 703</option>
+								<option value="NOIR 9005">NOIR 9005</option>
+								<option value="MARRON 8011">MARRON 8011</option>
+								<option value="MARRON 8014">MARRON 8014</option>
+								<option value="MARRON 8019">MARRON 8019</option>
+								<option value="BRONZE B 390 S">BRONZE B 390 S</option>
+								<option value="GOLDEN OAK">GOLDEN OAK</option>
+								<option value="FAUX BOIS FONCÉ">FAUX BOIS FONCÉ</option>
+								<option value="FAUX BOIS CLAIR">FAUX BOIS CLAIR</option>
+								<option value="IRISH OAK">IRISH OAK</option>
+								<option value="WINCHESTER">WINCHESTER</option>
+								<option value="GRIS SABLÉ 2800">GRIS SABLÉ 2800</option>
+								<option value="NOIR SABLÉ 2100">NOIR SABLÉ 2100</option>
+								<option value="NOIR SABLÉ 100">NOIR SABLÉ 100</option>
+								<option value="GRIS SABLÉ 2400">GRIS SABLÉ 2400</option>
+								<option value="GRIS SABLÉ 2900">GRIS SABLÉ 2900</option>
+								<option value="GRIS SABLÉ 900">GRIS SABLÉ 900</option>
+								<option value="VERT 6005">VERT 6005</option>
+								<option value="VERT 6021">VERT 6021</option>
+								<option value="ROUGE 3004">ROUGE 3004</option>
+								<option value="BLEU 5023">BLEU 5023</option>
+								<option value="BLEU 5024">BLEU 5024</option>
+								<option value="BLEU 5003">BLEU 5003</option>
+								<option value="BLEU CANON">BLEU CANON</option>
+							</select>
+						</div>
+					</div>
+					<div class="col-xs-12 col-sm-6 col-md-4">
+						<div class="form-group">
+							<strong>Hauteur:</strong>
+							<input id="hauteur-v-edit" type="number" name="hauteur" rerquired class="form-control" step ="100" min="200" max="3200"  value="{{old('hauteur')}}" onchange="pricing_volet(0,'-edit')" style="max-width:150px">
+						</div>
+					</div>
+
+					<div class="col-xs-12 col-sm-6 col-md-4">
+						<div class="form-group">
+							<strong>Largeur:</strong>
+							<input id="largeur-v-edit" type="number" name="largeur" rerquired class="form-control" step ="100" min="200" max="2200"  value="{{old('largeur')}}" onchange="pricing_volet(0,'-edit')" style="max-width:150px">
+						</div>
+					</div>
+
+					<div class="col-md-12">
+						<div class="text-volet-edit pl-5" style="color:red">
+						</div>
+					</div>
+
+				</div>
+
+
+
+				<div class="row pl-3">
+
+					<div class="col-xs-12 col-sm-4 col-md-4">
+						<div class="form-group">
+							<strong>Prix U <small style="display:none">€</small>:</strong>
+							<input readonly id="prix-v-edit" type="number" name="prix" rerquired class="form-control" step ="0.01" min="0"  value="{{old('prix')}}"  >
+							<input type="hidden" id="shutter-edit" value="0"  />
+							<input type="hidden" id="prixht-v-edit" value="0"  />
+
+						</div>
+					</div>
+
+					<div class="col-xs-12 col-sm-4 col-md-4">
+						<div class="form-group">
+							<strong>Qté :</strong>
+							<input  id="qte-v-edit" type="number" name="qte" rerquired class="form-control" step ="1" min="1"  value="1" onchange="pricing_volet(0,'-edit')" >
+						</div>
+					</div>
+
+					<div class="col-xs-12 col-sm-4 col-md-4">
+						<div class="form-group">
+							<strong>TVA <small style="">%</small>:</strong>
+							<input readonly id="tva-v-edit" type="number" name="prix" rerquired class="form-control" step ="0.01" min="0"  value="5.5"  >
+						</div>
+					</div>
+
+					<div class="col-xs-12 col-sm-4 col-md-4">
+						<div class="form-group">
+							<strong>Total <small style="display:none">€</small>:</strong>
+							<input readonly id="total-v-edit" type="number" name="total" rerquired class="form-control" step ="0.01" min="0"  >
+						</div>
+					</div>
+
+					<div class="col-xs-12 col-sm-8 col-md-8">
+						<div class="form-group">
+							<strong>Note :</strong>
+							<textarea  id="note-v-edit"   name="note"  class="form-control" ></textarea>
+						</div>
+					</div>
+					<div class="col-xs-12 col-sm-12 col-md-12 text-right" onmouseover="pricing_volet(1,'-edit')">
+						<button type="button" id="insert-volet-edit" onclick="edit_volet()" disabled class="btn btn-primary mt-3 mr-3">Modifier</button>
+					</div>
+				</div>
+			</div>
+
+        </div>
+    </div>
+</div>
 
 <div class="modal fade" id="add-item">
     <div class="modal-dialog">
@@ -1044,21 +1442,21 @@
 					<div class="col-xs-12 col-sm-4 col-md-6">
 						<div class="form-group">
 							<strong>Prix U HT<small style="display:none">€</small>:</strong>
-							<input   id="prixht-i" type="number" name="prix" rerquired class="form-control" step ="0.01" min="0" onchange="pricing_item()"  >
+							<input   id="prixht-i" type="number" name="prix" rerquired class="form-control" step ="0.01" min="0" onchange="pricing_item('')"  >
 							<input type="hidden" id="prix-i" value="0"  />
 						</div>
 					</div>
 					<div class="col-xs-12 col-sm-4 col-md-6">
 						<div class="form-group">
 							<strong>TVA <small style="">%</small>:</strong>
-							<input   id="tva-i" type="number" name="prix" rerquired class="form-control" step ="0.01" min="0"  value="5.5" onchange="pricing_item()" >
+							<input   id="tva-i" type="number" name="prix" rerquired class="form-control" step ="0.01" min="0"  value="5.5" onchange="pricing_item('')" >
 						</div>
 					</div>
 
 					<div class="col-xs-12 col-sm-4 col-md-6">
 						<div class="form-group">
 							<strong>Qté :</strong>
-							<input  id="qte-i" type="number" name="qte" rerquired class="form-control" step ="1" min="1"  value="1" onchange="pricing_item()" >
+							<input  id="qte-i" type="number" name="qte" rerquired class="form-control" step ="1" min="1"  value="1" onchange="pricing_item('')" >
 						</div>
 					</div>
 
@@ -1083,6 +1481,72 @@
         </div>
     </div>
 </div>
+
+
+<div class="modal fade" id="edit-item">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+			    <h4 class="modal-title text-center text-primary"> Modifier le produit libre </h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fermer">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body" style="padding:10px 10px 1" >
+
+				<div class="row pl-3">
+					<input type="hidden" value="0" id="product"   />
+					<div class="col-xs-12 col-sm-12 col-md-12">
+						<div class="form-group">
+							<strong>Desctiption:</strong>
+							<textarea  id="description-edit"   name="description"  class="form-control" ></textarea>
+						</div>
+					</div>
+
+					<div class="col-xs-12 col-sm-4 col-md-6">
+						<div class="form-group">
+							<strong>Prix U HT<small style="display:none">€</small>:</strong>
+							<input   id="prixht-i-edit" type="number" name="prix" rerquired class="form-control" step ="0.01" min="0" onchange="pricing_item('-edit')"  >
+							<input type="hidden" id="prix-i-edit" value="0"  />
+						</div>
+					</div>
+					<div class="col-xs-12 col-sm-4 col-md-6">
+						<div class="form-group">
+							<strong>TVA <small style="">%</small>:</strong>
+							<input   id="tva-i-edit" type="number" name="prix" rerquired class="form-control" step ="0.01" min="0"  value="5.5" onchange="pricing_item('-edit')" >
+						</div>
+					</div>
+
+					<div class="col-xs-12 col-sm-4 col-md-6">
+						<div class="form-group">
+							<strong>Qté :</strong>
+							<input  id="qte-i-edit" type="number" name="qte" rerquired class="form-control" step ="1" min="1"  value="1" onchange="pricing_item('-edit')" >
+						</div>
+					</div>
+
+					<div class="col-xs-12 col-sm-4 col-md-6">
+						<div class="form-group">
+							<strong>Total <small style="display:none">€</small>:</strong>
+							<input readonly id="total-i-edit" type="number" name="total" rerquired class="form-control" step ="0.01" min="0"  >
+						</div>
+					</div>
+					<div class="col-xs-12 col-sm-12 col-md-12">
+						<div class="form-group">
+							<strong>Note :</strong>
+							<textarea  id="note-i-edit"   name="note"  class="form-control" ></textarea>
+						</div>
+					</div>
+					<div class="col-xs-12 col-sm-12 col-md-12 text-right"  >
+						<button type="button" id="add_item-edit" onclick="edit_item()"   class="btn btn-primary mt-3 mr-3">Modifier</button>
+					</div>
+				</div>
+			</div>
+
+        </div>
+    </div>
+</div>
+
 
 @endsection
 
@@ -1305,12 +1769,12 @@
         url: "{{ route('add_article') }}",
         method: "POST",
 		async:false,
-        data: {modele:modele,prix:prix,prix_ht:prix_ht,note:note,qte:qte,texte:product_text,total:total,cintrage:cintrage,couleur:couleur,quote:quote,_token:_token},
+        data: {modele:modele,prix:prix,prix_ht:prix_ht,note:note,qte:qte,texte:product_text,total:total,cintrage:cintrage,couleur:couleur,quote:quote,groupe:groupe,_token:_token},
         success: function (data) {
 			if(data!=''){
 
 				item_id=data;
-				var row='<tr class="myproduct product bg-lightgrey tr-prod" id="row-'+item_id+'"><td class="myproducttd"  data-prix="'+prix+'" data-prixht="'+prix_ht+'" data-id="'+item_id+'"  ><b>'+product_text+ '<br>'+note+'</b></td><td>'+prix+' €</td><td><input type="number" step="1" min="1" class="number" value="'+qte+'" onchange="save_article_qty(this,'+data+','+prix+');calcul();"  id="qty-'+item_id+'"/></td><td><input  step="0.5" min="5.5" type="number" step="1" min="1" class="number bg-transparent" readonly value="5.5"/> %</td><td><input id="total-'+data+'" type="number" readonly class="total-prod number" value="'+total+'"/> €</td><td><button id="delete_item"   class="btn-sm btn-danger" onclick="delete_article('+item_id+')"><i class="fas fa-minus "  ></i></td></tr>';
+				var row='<tr class="myproduct product bg-lightgrey tr-prod" id="row-'+item_id+'"><td class="myproducttd"  data-prix="'+prix+'" data-prixht="'+prix_ht+'" data-id="'+item_id+'"  ><b>'+product_text+ '<br>'+note+'</b></td><td>'+prix+' €</td><td><input type="number" step="1" min="1" class="number" value="'+qte+'" onchange="save_article_qty(this,'+item_id+','+prix+');calcul();"  id="qty-'+item_id+'"/></td><td><input  step="0.5" min="5.5" type="number" step="1" min="1" class="number bg-transparent" readonly value="5.5"/> %</td><td><input id="total-'+item_id+'" type="number" readonly class="total-prod number" value="'+total+'"/> €</td><td><button id="delete_item"   class="btn-xs btn-info mr-2" onclick="get_article('+item_id+')"><i class="fas fa-pen "  ></i></button><button     class="btn-xs btn-danger" onclick="delete_article('+item_id+')"><i class="fas fa-trash "  ></i></button></td></tr>';
 
 				$('#list-prods').append(row);
 				$('#add-prod').modal('hide');
@@ -1327,6 +1791,75 @@
 	$('#insert').prop('disabled',true);
 	}
 
+	function get_article(item){
+		var _token = $('input[name="_token"]').val();
+
+		$.ajax({
+			url: "{{ route('get_article') }}",
+			method: "GET",
+			data: {article:item,_token:_token},
+			success: function (data) {
+
+				$("#article-edit").val(item);
+				$("#modele-edit").val(data.modele);
+				$('#prix-edit').val(data.prix);
+				$('#note-edit').val(data.note);
+				$('#qte-edit').val(data.qte);
+				$('#total-edit').val(data.total);
+				$('#hauteur-edit').val(data.hauteur);
+				$('#largeur-edit').val(data.largeur);
+				$('#couleur-edit').val(data.couleur);
+				$('#groupe_couleur-edit').val(data.groupe);
+				$('#type-edit').val(data.type);
+				$('#genre-edit').val(data.genre);
+				if(data.cintrage)
+					$('#cintrage-edit').prop('checked',true);
+				else
+					$('#cintrage-edit').prop('checked',false);
+				$("#couleur-edit").val(data.couleur);
+
+				pricing(0,'-edit');
+				$('#edit-prod').modal('show');
+
+			}
+		});
+	}
+
+	function edit_article(){
+		var _token = $('input[name="_token"]').val();
+		var article = $('#article-edit').val();
+		var modele= parseInt($("#modele-edit").val());
+		var prix=	parseFloat($('#prix-edit').val());
+		var note=	$('#note-edit').val();
+		var tva =	(prix / 1.055) * 0.055
+		var prix_ht = (prix - tva).toFixed(2);
+		var qte=	parseInt($('#qte-edit').val());
+		var total=parseFloat($('#total-edit').val());
+		var groupe = $('#groupe_couleur-edit').val();
+		var cintrage = $('#cintrage-edit').is(":checked") ? 1 : 0;
+		var couleur= $("#couleur-edit").val();
+		var	groupe_text='(Groupe '+groupe+')';
+		var cintrage_text='';
+		if(cintrage)
+			cintrage_text='(avec cintrage)';
+		var product_text= $('#type-edit option:selected').text()+' '+$('#genre-edit option:selected').text()+' - Couleur: '+$('#couleur-edit option:selected').text()+ groupe_text+' - Dimensions [H: '+$('#hauteur-edit').val()+'mm * L: '+$('#largeur-edit').val()+'mm]'+ cintrage_text;
+
+		$.ajax({
+			url: "{{ route('edit_article') }}",
+			method: "POST",
+			data: {article:article,modele:modele,prix:prix,prix_ht:prix_ht,note:note,qte:qte,texte:product_text,total:total,cintrage:cintrage,couleur:couleur,groupe:groupe,_token:_token},
+			success: function (item_id) {
+
+				var row='<td class="myproducttd"  data-prix="'+prix+'" data-prixht="'+prix_ht+'" data-id="'+item_id+'"  ><b>'+product_text+ '<br>'+note+'</b></td><td>'+prix+' €</td><td><input type="number" step="1" min="1" class="number" value="'+qte+'" onchange="save_article_qty(this,'+item_id+','+prix+');calcul();"  id="qty-'+item_id+'"/></td><td><input  step="0.5" min="5.5" type="number" step="1" min="1" class="number bg-transparent" readonly value="5.5"/> %</td><td><input id="total-'+item_id+'" type="number" readonly class="total-prod number" value="'+total+'"/> €</td><td><button    class="btn-xs btn-info mr-2" onclick="get_article('+item_id+')"><i class="fas fa-pen " data-id="'+item_id+'"></i></button><button id="delete_item"   class="btn-xs btn-danger" onclick="delete_article('+item_id+')"><i class="fas fa-trash "  ></i></td>';
+
+				$('#row-'+item_id).html(row);
+				$('#edit-prod').modal('hide');
+
+			}
+		});
+
+		calcul();
+	}
 
 
 	function add_door(){
@@ -1357,12 +1890,12 @@
 	url: "{{ route('add_door') }}",
 	method: "POST",
 	async:false,
-	data: {door:door,prix:prix,prix_ht:prix_ht,note:note,qte:qte,texte:product_text,total:total,couleur:couleur,cintrage:cintrage,quote:quote,_token:_token},
+	data: {door:door,prix:prix,prix_ht:prix_ht,note:note,qte:qte,texte:product_text,total:total,couleur:couleur,cintrage:cintrage,groupe:groupe,quote:quote,_token:_token},
 	success: function (data) {
 		if(data!=''){
 
 			item_id=data;//here
-			var row='<tr class="myproduct product bg-lightgrey tr-prod" id="row-d-'+item_id+'"><td class="doortd"  data-prix="'+prix+'" data-prixht="'+prix_ht+'" data-id="'+item_id+'"  ><b>'+product_text+ '<br>'+note+'</b></td><td>'+prix_ht+' €</td><td><input type="number" step="1" min="1" class="number" value="'+qte+'" onchange="save_door_qty(this,'+data+','+prix+');calcul();"  id="qty-d-'+item_id+'"/></td><td><input  step="0.5" min="5.5" type="number" step="1" min="1" class="number bg-transparent" readonly value="5.5"/> %</td><td><input id="total-d-'+data+'" type="number" readonly class="total-prod number" value="'+total+'"/> €</td><td><button id="delete_item"   class="btn-sm btn-danger" onclick="delete_door('+item_id+')"><i class="fas fa-minus "  ></i></td></tr>';
+			var row='<tr class="myproduct product bg-lightgrey tr-prod" id="row-d-'+item_id+'"><td class="doortd"  data-prix="'+prix+'" data-prixht="'+prix_ht+'" data-id="'+item_id+'"  ><b>'+product_text+ '<br>'+note+'</b></td><td>'+prix_ht+' €</td><td><input type="number" step="1" min="1" class="number" value="'+qte+'" onchange="save_door_qty(this,'+item_id+','+prix+');calcul();"  id="qty-d-'+item_id+'"/></td><td><input  step="0.5" min="5.5" type="number" step="1" min="1" class="number bg-transparent" readonly value="5.5"/> %</td><td><input id="total-d-'+item_id+'" type="number" readonly class="total-prod number" value="'+total+'"/> €</td><td><button   class="btn-xs btn-info mr-2" onclick="get_door('+item_id+')"><i class="fas fa-pen "  ></i><button id="delete_item"   class="btn-xs btn-danger" onclick="delete_door('+item_id+')"><i class="fas fa-trash "  ></i></td></tr>';
 
 			$('#list-prods').append(row);
 			$('#add-door').modal('hide');
@@ -1378,7 +1911,82 @@
 	calcul();
 	}
 
+	function get_door(item){
+		var _token = $('input[name="_token"]').val();
 
+		$.ajax({
+			url: "{{ route('get_door') }}",
+			method: "GET",
+			data: {item:item,_token:_token},
+			success: function (data) {
+				console.log('Detailed data:', data);
+ 				$("#porte").val(item);
+ 				$("#door-edit").val(data.door).trigger('change');
+ 				$('#prix-d-edit').val(data.prix);
+ 				$('#prixht-d-edit').val(data.prixht);
+				$('#note-d-edit').val(data.note);
+				$('#qte-d-edit').val(data.qte);
+				$('#total-d-edit').val(data.total);
+  				$('#couleur-d-edit').val(data.couleur).trigger('change');
+				$('#groupe-d-edit').val(data.groupe);
+  				if(data.cintrage)
+					$('#cintrage-d-edit').prop('checked',true);
+				else
+					$('#cintrage-d-edit').prop('checked',false);
+
+				pricing(0,'-edit');
+				$('#edit-door').modal('show');
+
+			}
+		});
+	}
+
+
+
+	function edit_door(){
+		var _token = $('input[name="_token"]').val();
+
+		pricing_door(0,'-edit');
+
+		var item= parseInt($("#porte").val());
+		var door= parseInt($("#door-edit").val());
+		var prix=	parseFloat($('#prix-d-edit').val());
+		var prix_ht=	parseFloat($('#prixht-d-edit').val()).toFixed(2);
+		var note=	$('#note-d-edit').val();
+		var qte=	parseInt($('#qte-d-edit').val());
+		var total=parseFloat($('#total-d-edit').val());
+		var quote=	parseInt($('#quote').val());
+		var groupe = $('#groupe-d-edit').val();
+		var couleur= $("#couleur-d-edit").val();
+		var cintrage = $('#cintrage-d-edit').is(":checked") ? 1 : 0;
+
+		if(groupe==1){
+			groupe_text=' (Extérieur COULEUR, Intérieur BLANC)';
+		}else{
+			groupe_text=' (Extérieur COULEUR, Intérieur COULEUR)';
+		}
+		if(cintrage==1){
+			groupe_text+=' avec cintrage';
+		}
+		var product_text= $('#door-edit option:selected').text()+' '+' - Couleur: '+$('#couleur-d-door option:selected').text()+ groupe_text;
+
+
+		$.ajax({
+			url: "{{ route('edit_door') }}",
+			method: "POST",
+			data: {item:item,door:door,prix:prix,prix_ht:prix_ht,note:note,qte:qte,texte:product_text,total:total,couleur:couleur,cintrage:cintrage,groupe:groupe,_token:_token},
+			success: function (item_id) {
+
+				var row='<td class="doortd"  data-prix="'+prix+'" data-prixht="'+prix_ht+'" data-id="'+item_id+'"  ><b>'+product_text+ '<br>'+note+'</b></td><td>'+prix_ht+' €</td><td><input type="number" step="1" min="1" class="number" value="'+qte+'" onchange="save_door_qty(this,'+item_id+','+prix+');calcul();"  id="qty-d-'+item_id+'"/></td><td><input  step="0.5" min="5.5" type="number" step="1" min="1" class="number bg-transparent" readonly value="5.5"/> %</td><td><input id="total-d-'+item_id+'" type="number" readonly class="total-prod number" value="'+total+'"/> €</td><td><button   class="btn-xs btn-info mr-2" onclick="get_door('+item_id+')"><i class="fas fa-pen "  ></i><button   class="btn-xs btn-danger" onclick="delete_door('+item_id+')"><i class="fas fa-trash "  ></i></td>';
+
+				$('#row-d-'+item_id).html(row);
+				$('#edit-door').modal('hide');
+
+			}
+		});
+
+		calcul();
+	}
 
 	function add_volet(){
 
@@ -1406,7 +2014,7 @@
 			if(data!=''){
 
 				item_id=data;//here
-				var row='<tr class="myproduct product bg-lightgrey tr-prod" id="row-v-'+item_id+'"><td class="volettd"  data-prix="'+prix+'" data-prixht="'+prix_ht+'" data-id="'+item_id+'"  ><b>'+product_text+ '<br>'+note+'</b></td><td>'+prix_ht+' €</td><td><input type="number" step="1" min="1" class="number" value="'+qte+'" onchange="save_volet_qty(this,'+data+','+prix+');calcul();"  id="qty-v-'+item_id+'"/></td><td><input  step="0.5" min="5.5" type="number" step="1" min="1" class="number bg-transparent" readonly value="5.5"/> %</td><td><input id="total-v-'+data+'" type="number" readonly class="total-prod number" value="'+total+'"/> €</td><td><button id=""   class="btn-sm btn-danger" onclick="delete_volet('+item_id+')"><i class="fas fa-minus "  ></i></td></tr>';
+				var row='<tr class="myproduct product bg-lightgrey tr-prod" id="row-v-'+item_id+'"><td class="volettd"  data-prix="'+prix+'" data-prixht="'+prix_ht+'" data-id="'+item_id+'"  ><b>'+product_text+ '<br>'+note+'</b></td><td>'+prix_ht+' €</td><td><input type="number" step="1" min="1" class="number" value="'+qte+'" onchange="save_volet_qty(this,'+item_id+','+prix+');calcul();"  id="qty-v-'+item_id+'"/></td><td><input  step="0.5" min="5.5" type="number" step="1" min="1" class="number bg-transparent" readonly value="5.5"/> %</td><td><input id="total-v-'+item_id+'" type="number" readonly class="total-prod number" value="'+total+'"/> €</td><td><button id=""   class="btn-xs mr-2" onclick="get_volet('+item_id+')"><i class="fas fa-pen "  ></i></button><button id=""   class="btn-xs btn-danger" onclick="delete_volet('+item_id+')"><i class="fas fa-trash "  ></i></button></td></tr>';
 
 				$('#list-prods').append(row);
 				$('#add-volet').modal('hide');
@@ -1423,6 +2031,67 @@
 	}
 
 
+	function get_volet(item){
+		var _token = $('input[name="_token"]').val();
+
+		$.ajax({
+			url: "{{ route('get_volet') }}",
+			method: "GET",
+			data: {item:item,_token:_token},
+			success: function (data) {
+				console.log('Detailed colet data:', data);
+				$("#volet").val(item);
+				$("#type-v-edit").val(data.type).trigger('change');
+ 				$('#prix-v-edit').val(data.prix);
+ 				$('#prixht-v-edit').val(data.prix_ht);
+				$('#note-v-edit').val(data.note);
+				$('#qte-v-edit').val(data.qty);
+				$('#total-v-edit').val(data.total);
+  				$('#couleur-v-edit').val(data.couleur).trigger('change');
+				$('#hauteur-v-edit').val(data.hauteur);
+				$('#largeur-v-edit').val(data.largeur);
+				$('#edit-volet').modal('show');
+				pricing_volet(0,'-edit');
+			}
+		});
+	}
+
+
+	function edit_volet(){
+		var _token = $('input[name="_token"]').val();
+		pricing_volet(0,'-edit');
+		var volet= parseInt($("#volet").val());
+		var shutter= parseInt($("#shutter-edit").val());
+		var prix=	parseFloat($('#prix-v-edit').val());
+		var prix_ht=	parseFloat($('#prixht-v-edit').val()).toFixed(2);//here
+		var note=	$('#note-v-edit').val();
+		var qte=	parseInt($('#qte-v-edit').val());
+		var total=parseFloat($('#total-v-edit').val());
+ 		var couleur= $("#couleur-v-edit").val();
+ 		var hauteur= $("#hauteur-v-edit").val();
+ 		var largeur= $("#largeur-v-edit").val();
+
+		var product_text= $('#type-v-edit option:selected').text()+' '+' - Couleur: '+$('#couleur-v-edit option:selected').text();
+		var texte= 'Hauteur :'+hauteur+' Largeur: '+largeur;
+
+		$.ajax({
+			url: "{{ route('edit_volet') }}",
+			method: "POST",
+			data: {volet:volet,shutter:shutter,prix:prix,prix_ht:prix_ht,note:note,qte:qte,texte:texte,total:total,couleur:couleur,_token:_token},
+			success: function (item_id) {
+
+				var row='<td class="volettd"  data-prix="'+prix+'" data-prixht="'+prix_ht+'" data-id="'+item_id+'"  ><b>'+product_text+ '<br>'+note+'</b></td><td>'+prix_ht+' €</td><td><input type="number" step="1" min="1" class="number" value="'+qte+'" onchange="save_volet_qty(this,'+item_id+','+prix+');calcul();"  id="qty-v-'+item_id+'"/></td><td><input  step="0.5" min="5.5" type="number" step="1" min="1" class="number bg-transparent" readonly value="5.5"/> %</td><td><input id="total-v-'+item_id+'" type="number" readonly class="total-prod number" value="'+total+'"/> €</td><td><button id=""   class="btn-xs btn-info mr-2" onclick="get_volet('+item_id+')"><i class="fas fa-pen "  ></i></button><button id=""   class="btn-xs btn-danger" onclick="delete_volet('+item_id+')"><i class="fas fa-trash "  ></i></button></td>';
+
+				$('#row-v-'+item_id).html(row);
+				$('#edit-volet').modal('hide');
+
+			}
+		});
+
+		calcul();
+	}
+
+	/* produit libre */
 	function add_item(){
 
 		var _token = $('input[name="_token"]').val();
@@ -1435,6 +2104,7 @@
 		var quote=	parseInt($('#quote').val());
 
 		var description= $('#description').val();
+
 		var texte=  description+'<br>'+note;
 
 		$('#tva_remise').val(tva);
@@ -1443,12 +2113,12 @@
 			url: "{{ route('add_item_men') }}",
 			method: "POST",
 			async:false,
-			data: { prix:prix,prix_ht:prix_ht,qte:qte,tva,description:texte, quote:quote,_token:_token},
+			data: { prix:prix,prix_ht:prix_ht,qte:qte,tva,description:description,note:note, quote:quote,_token:_token},
 			success: function (data) {
 				if(data!=''){
 
 					item_id=data;//here
-					var row='<tr class="myproduct product bg-lightgrey tr-prod" id="row-i-'+item_id+'"><td class="itemtd"  id="item-'+item_id+'" data-prix="'+prix+'" data-prixht="'+prix_ht+'" data-id="'+item_id+'"  >'+texte+'</td><td>'+prix_ht+' €</td><td><input type="number" step="1" min="1" class="number" value="'+qte+'" onchange="save_item_qty(this,'+data+','+prix_ht+','+prix+');calcul();"  id="qty-i-'+item_id+'"/></td><td><input  step="0.5" min="5.5" type="number" step="1" min="1" class="number bg-transparent" readonly value="'+tva+'"/> %</td><td><input id="total-i-'+data+'" type="number" readonly class="total-prod number" value="'+total+'"/> €</td><td><button id=""   class="btn-sm btn-danger" onclick="delete_item('+item_id+')"><i class="fas fa-minus "  ></i></td></tr>';
+					var row='<tr class="myproduct product bg-lightgrey tr-prod" id="row-i-'+item_id+'"><td class="itemtd"  id="item-'+item_id+'" data-prix="'+prix+'" data-prixht="'+prix_ht+'" data-id="'+item_id+'"  ><b>'+texte+'</b></td><td>'+prix_ht+' €</td><td><input type="number" step="1" min="1" class="number" value="'+qte+'" onchange="save_item_qty(this,'+item_id+','+prix_ht+','+prix+');calcul();"  id="qty-i-'+item_id+'"/></td><td><input  step="0.5" min="5.5" type="number" step="1" min="1" class="number bg-transparent" readonly value="'+tva+'"/> %</td><td><input id="total-i-'+item_id+'" type="number" readonly class="total-prod number" value="'+total+'"/> €</td><td><button id=""   class="btn-xs btn-info mr-2" onclick="get_item('+item_id+')"><i class="fas fa-pen "  ></i></button><button id=""   class="btn-xs btn-danger" onclick="delete_item('+item_id+')"><i class="fas fa-trash "  ></i></button></td></tr>';
 
 					$('#list-prods').append(row);
 					$('#add-item').modal('hide');
@@ -1464,6 +2134,77 @@
 		calcul();
 	}
 
+
+	function get_item(item){
+
+		var _token = $('input[name="_token"]').val();
+		$.ajax({
+			url: "{{ route('get_item_men') }}",
+			method: "GET",
+			async:false,
+			data: { item:item, _token:_token},
+			success: function (data) {
+				if(data!=''){
+					console.log(data);
+					$("#product").val(item);
+					$('#prixht-i-edit').val(data.prix_ht);
+					$('#prix-i-edit').val(data.prix);
+					$('#total-i-edit').val(data.total);
+					$('#note-i-edit').val(data.note);
+					$('#tva-i-edit').val(data.tva);
+					$('#qte-i-edit').val(data.qty);
+					$('#description-edit').val(data.description);
+					pricing_item('-edit');
+					$('#edit-item').modal('show');
+				}else{
+					alert('erreur !')
+				}
+
+			}
+		});
+
+
+	}
+
+
+	function edit_item(){
+
+	var _token = $('input[name="_token"]').val();
+	var item = $('#product').val();
+	pricing_item('-edit');
+
+	var prix_ht=	parseFloat($('#prixht-i-edit').val()).toFixed(2);
+	var prix=	parseFloat($('#prix-i-edit').val()).toFixed(2);
+	var total=	$('#total-i-edit').val();
+	var note=	$('#note-i-edit').val();
+	var tva=	$('#tva-i-edit').val();
+	var qte=	parseInt($('#qte-i-edit').val());
+	var description= $('#description-edit').val();
+	var texte=  description+'<br>'+note;
+
+	$.ajax({
+		url: "{{ route('edit_item_men') }}",
+		method: "POST",
+		async:false,
+		data: {item:item, prix:prix,prix_ht:prix_ht,qte:qte,tva:tva,description:description,note:note, _token:_token},
+		success: function (data) {
+			if(data!=''){
+
+				item_id=data;//here
+				var row='<td class="itemtd"  id="item-'+item_id+'" data-prix="'+prix+'" data-prixht="'+prix_ht+'" data-id="'+item_id+'"  ><b>'+texte+'</b></td><td>'+prix_ht+' €</td><td><input type="number" step="1" min="1" class="number" value="'+qte+'" onchange="save_item_qty(this,'+item_id+','+prix_ht+','+prix+');calcul();"  id="qty-i-'+item_id+'"/></td><td><input  step="0.5" min="5.5" type="number" step="1" min="1" class="number bg-transparent" readonly value="'+tva+'"/> %</td><td><input id="total-i-'+item_id+'" type="number" readonly class="total-prod number" value="'+total+'"/> €</td><td><button id=""   class="btn-xs btn-info mr-2" onclick="get_item('+item_id+')"><i class="fas fa-pen "  ></i></button><button id=""   class="btn-xs btn-danger" onclick="delete_item('+item_id+')"><i class="fas fa-trash "  ></i></button></td>';
+
+				$('#row-i-'+item_id).html(row);
+				$('#edit-item').modal('hide');
+
+			}else{
+				alert('erreur !')
+			}
+
+		}
+	});
+
+	calcul();
+	}
 
 	function delete_article(item){
 		if(!confirm("Êtes vous sûres?")) {
@@ -1569,18 +2310,18 @@
 	}
 
 
-	function pricing(btn){
+	function pricing(btn,edit){
 		if(btn==0)
-		{$("#insert").prop('disabled',true);}
+		{$("#insert"+edit).prop('disabled',true);}
 		var _token = $('input[name="_token"]').val();
-		var genre= $("#genre").val();
-		var type= $("#type").val();
-		var couleur= $("#couleur").val();
-		var largeur= parseInt($("#largeur").val());
-		var hauteur= parseInt($('#hauteur').val());
-		var qte= parseInt($('#qte').val());
-		var cintrage = $('#cintrage').is(":checked") ? 1 : 0;
-		var groupe_couleur =  $("#groupe_couleur").val();
+		var genre= $("#genre"+edit).val();
+		var type= $("#type"+edit).val();
+		var couleur= $("#couleur"+edit).val();
+		var largeur= parseInt($("#largeur"+edit).val());
+		var hauteur= parseInt($('#hauteur'+edit).val());
+		var qte= parseInt($('#qte'+edit).val());
+		var cintrage = $('#cintrage'+edit).is(":checked") ? 1 : 0;
+		var groupe_couleur =  $("#groupe_couleur"+edit).val();
 		if(largeur>0 && hauteur>0){
 			$.ajax({
 				url: "{{ route('pricing') }}",
@@ -1590,37 +2331,37 @@
 
 					if(parseFloat(data.prix)>0)
 					{
-						$('.text-danger').html('');
-						$("#modele").val(data.id);
+						$('.text-danger'+edit).html('');
+						$("#modele"+edit).val(data.id);
 						//$("#insert").prop('disabled',false);
 
-						$("#prix").val(data.prix);
+						$("#prix"+edit).val(data.prix);
 						var total = parseFloat(data.prix) * qte;
-						$("#total").val(total);
+						$("#total"+edit).val(total.toFixed(2));
 
 					}
 					else{
-						$('.text-danger').html('<b class="pb-2"> Modèle non trouvé, vérifiez les données insérées</b>');
-						$('#prix').val(0);
-						$('#total').val(0);
+						$('.text-danger'+edit).html('<b class="pb-2"> Modèle non trouvé, vérifiez les données insérées</b>');
+						$('#prix'+edit).val(0);
+						$('#total'+edit).val(0);
 						//$("#insert").prop('disabled',true);
 					}
 					calcul();
-					$('#insert').prop('disabled',false);
+					$('#insert'+edit).prop('disabled',false);
 				}
 			});
 		}
 
 	}
 
-	function pricing_door(){
+	function pricing_door(id){
 		var _token = $('input[name="_token"]').val();
-		var door= $("#door").val();
-		var groupe= $("#groupe-d").val();
-		var couleur= $("#couleur-d").val();
-		var qte= parseInt($('#qte-d').val());
-		var p_tva= parseInt($('#tva-d').val());
-		var cintrage = $('#cintrage-d').is(":checked") ? 1 : 0;
+		var door= $("#door"+id).val();
+		var groupe= $("#groupe-d"+id).val();
+		var couleur= $("#couleur-d"+id).val();
+		var qte= parseInt($('#qte-d'+id).val());
+		var p_tva= parseInt($('#tva-d'+id).val());
+		var cintrage = $('#cintrage-d'+id).is(":checked") ? 1 : 0;
 
 		if(door>0 && groupe>0  ){
 			$.ajax({
@@ -1631,22 +2372,22 @@
 
 					if(parseFloat(data.prix)>0)
 					{
-						$('.text-door').html('');
-						$("#door").val(data.id);
+						$('.text-door'+id).html('');
+						$("#door"+id).val(data.id);
 						//$("#insert").prop('disabled',false);
 
-						$("#prix-d").val(data.prix);
+						$("#prix-d"+id).val(data.prix);
 						var prix_ht = data.prix / (1+(p_tva*0.01));
-						$("#prixht-d").val(prix_ht);
+						$("#prixht-d"+id).val(prix_ht);
 						var total = parseFloat(data.prix) * qte;
-						$("#total-d").val(total);
+						$("#total-d"+id).val(total);
 
 					}
 					else{
-						$('.text-door').html('<b class="pb-2"> Modèle non trouvé, vérifiez les données insérées</b>');
-						$('#prix-d').val(0);
-						$('#prixht-d').val(0);
-						$('#total-d').val(0);
+						$('.text-door'+id).html('<b class="pb-2"> Modèle non trouvé, vérifiez les données insérées</b>');
+						$('#prix-d'+id).val(0);
+						$('#prixht-d'+id).val(0);
+						$('#total-d'+id).val(0);
 						//$("#insert").prop('disabled',true);
 					}
 					calcul();
@@ -1657,15 +2398,15 @@
 	}
 
 
-	function pricing_volet(btn){
+	function pricing_volet(btn,id){
 		if(btn==0)
-		{$("#insert-volet").prop('disabled',true);}
+		{$("#insert-volet"+id).prop('disabled',true);}
 		var _token = $('input[name="_token"]').val();
-		var largeur= parseInt($("#largeur-v").val());
-		var hauteur= parseInt($('#hauteur-v').val());
-		var qte= parseInt($('#qte-v').val());
-		var type= parseInt($('#type-v').val());
-		var p_tva= parseInt($('#tva-v').val());
+		var largeur= parseInt($("#largeur-v"+id).val());
+		var hauteur= parseInt($('#hauteur-v'+id).val());
+		var qte= parseInt($('#qte-v'+id).val());
+		var type= parseInt($('#type-v'+id).val());
+		var p_tva= parseInt($('#tva-v'+id).val());
 		if(hauteur<800){
 			hauteur=800;
 		}
@@ -1715,22 +2456,22 @@
 
 					if(parseFloat(data.prix)>0)
 					{
-						$('.text-volet').html('');
-						$("#shutter").val(data.id);
-						$("#insert-volet").prop('disabled',false);
+						$('.text-volet'+id).html('');
+						$("#shutter"+id).val(data.id);
+						$("#insert-volet"+id).prop('disabled',false);
 
-						$("#prix-v").val(data.prix);
+						$("#prix-v"+id).val(data.prix);
 						var prix_ht = data.prix / (1+(p_tva*0.01));
-						$("#prixht-v").val(prix_ht);
+						$("#prixht-v"+id).val(prix_ht);
 						var total = parseFloat(data.prix) * qte;
-						$("#total-v").val(total);
+						$("#total-v"+id).val(total);
 					}
 					else{
-						$('.text-volet').html('<b class="pb-2"> Modèle non trouvé, vérifiez les données insérées</b>');
-						$('#prix-v').val(0);
-						$('#prixht-v').val(0);
-						$('#total-v').val(0);
-						$("#insert-volet").prop('disabled',true);
+						$('.text-volet'+id).html('<b class="pb-2"> Modèle non trouvé, vérifiez les données insérées</b>');
+						$('#prix-v'+id).val(0);
+						$('#prixht-v'+id).val(0);
+						$('#total-v'+id).val(0);
+						$("#insert-volet"+id).prop('disabled',true);
 					}
 					calcul();
 				}
@@ -1740,17 +2481,17 @@
 	}
 
 
-	function pricing_item(){
-		var prix_ht= parseFloat($("#prixht-i").val());
-		var p_tva= parseFloat($("#tva-i").val());
+	function pricing_item(id){
+		var prix_ht= parseFloat($("#prixht-i"+id).val());
+		var p_tva= parseFloat($("#tva-i"+id).val());
 
 		var prix= prix_ht+ (prix_ht*p_tva*0.01);
-		$("#prix-i").val(prix);
+		$("#prix-i"+id).val(prix);
 
-		var qte= parseInt($("#qte-i").val());
+		var qte= parseInt($("#qte-i"+id).val());
 
 		var total = prix * qte;
-		$("#total-i").val(total.toFixed(2));
+		$("#total-i"+id).val(total.toFixed(2));
 	}
 
 	function save_article_qty(elm,article,price){

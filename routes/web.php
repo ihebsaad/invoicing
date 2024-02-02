@@ -82,6 +82,8 @@ Route::get('/quotes/edit_men/{id}', [QuotesController::class, 'edit_men'])->name
 //products
 Route::post('/add_item',[ProductsController::class, 'add_item'])->name('add_item');
 Route::post('/add_item_men',[ProductsController::class, 'add_item_men'])->name('add_item_men');
+Route::post('/edit_item_men',[ProductsController::class, 'edit_item_men'])->name('edit_item_men');
+Route::get('/get_item_men',[ProductsController::class, 'get_item_men'])->name('get_item_men');
 Route::post('/delete_item',[ProductsController::class, 'delete_item'])->name('delete_item');
 Route::post('/save_item_qty',[ProductsController::class, 'save_item_qty'])->name('save_item_qty');
 Route::get('products/trashed', [ProductsController::class, 'trashed'])->name('products.trashed');
@@ -94,17 +96,23 @@ Route::resource('products', ProductsController::class);
 Route::post('/additem',[ModelesController::class, 'add_item'])->name('modeles.add_item');
 Route::get('/pricing',[ModelesController::class, 'pricing'])->name('pricing');
 Route::post('/add_article',[ModelesController::class, 'add_article'])->name('add_article');
+Route::post('/edit_article',[ModelesController::class, 'edit_article'])->name('edit_article');
+Route::get('/get_article',[ModelesController::class, 'get_article'])->name('get_article');
 Route::post('/delete_article',[ModelesController::class, 'delete_article'])->name('delete_article');
 Route::post('/save_article_qty',[ModelesController::class, 'save_article_qty'])->name('save_article_qty');
 
 //doors
 Route::get('/pricing_door',[ModelesController::class, 'pricing_door'])->name('pricing_door');
 Route::post('/add_door',[ModelesController::class, 'add_door'])->name('add_door');
+Route::get('/get_door',[ModelesController::class, 'get_door'])->name('get_door');
+Route::post('/edit_door',[ModelesController::class, 'edit_door'])->name('edit_door');
 Route::post('/delete_door',[ModelesController::class, 'delete_door'])->name('delete_door');
 Route::post('/save_door_qty',[ModelesController::class, 'save_door_qty'])->name('save_door_qty');
 
 //volets
 Route::get('/pricing_volet',[ModelesController::class, 'pricing_volet'])->name('pricing_volet');
 Route::post('/add_volet',[ModelesController::class, 'add_volet'])->name('add_volet');
+Route::get('/get_volet',[ModelesController::class, 'get_volet'])->name('get_volet');
+Route::post('/edit_volet',[ModelesController::class, 'edit_volet'])->name('edit_volet');
 Route::post('/delete_volet',[ModelesController::class, 'delete_volet'])->name('delete_volet');
 Route::post('/save_volet_qty',[ModelesController::class, 'save_volet_qty'])->name('save_volet_qty');

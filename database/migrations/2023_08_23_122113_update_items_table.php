@@ -16,6 +16,7 @@ class UpdateItemsTable extends Migration
         Schema::table('items', function (Blueprint $table) {
             $table->double('price_ht', 8, 2)->nullable();
             $table->double('price_ttc', 8, 2)->nullable();
+            $table->text('note')->nullable();
         });
     }
 

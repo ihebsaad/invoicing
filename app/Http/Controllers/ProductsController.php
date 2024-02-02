@@ -200,6 +200,7 @@ class ProductsController extends Controller
                 'price_ttc'=>$price_ttc,
                 'price_ht'=>$price_ht,
                 'description'=>$description,
+                'note'=>$note,
                 'quote'=>$quote,
             ]);
             return $item->id;
@@ -212,11 +213,39 @@ class ProductsController extends Controller
                 'price_ttc'=>$price_ttc,
                 'price_ht'=>$price_ht,
                 'description'=>$description,
+                'note'=>$note,
                 'invoice'=>$invoice,
             ]);
             return $item->id;
         }
 
+    }
+
+    public function get_item_men(Request $request)
+    {
+        $item=Item::find($request->get('item'));
+        $data=array();
+        $data['qty']=$item->qty;
+        $data['tva']=$item->tva;
+        $data['prix']=$item->price;
+        $data['prix_ht']=$item->price_ht;
+        $data['description']=$item->description;
+        $data['note']=$item->note;
+        return $data;
+    }
+
+    public function edit_item_men(Request $request)
+    {
+        $item=Item::find($request->get('item'));
+        $item->qty=$request->get('qte');
+        $item->tva=$request->get('tva');
+        $item->price_ttc=$request->get('prix');
+        $item->price_ht=$request->get('prix_ht');
+        $item->description=$request->get('description');
+        $item->note=$request->get('note');
+        $item->save();
+
+        return $item->id;
     }
 
     public function delete_item(Request $request)

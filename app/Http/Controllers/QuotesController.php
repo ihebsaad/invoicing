@@ -141,7 +141,7 @@ class QuotesController extends Controller
         $portes = Porte::where('quote',$quote->id)->get();
         $volets = Volet::where('quote',$quote->id)->get();
         $countries=CustomersController::countries();
-        $items = Item::where('invoice',$quote->id)->get();
+        $items = Item::where('quote',$quote->id)->get();
 
         return view('quotes.edit_men',compact('quote','customers','articles','modeles','countries','doors','portes','volets','shutters','items'));
     }
