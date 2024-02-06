@@ -1833,7 +1833,7 @@
         url: "{{ route('add_article') }}",
         method: "POST",
 		async:false,
-        data: {modele:modele,prix:prix,prix_ht:prix_ht,note:note,qte:qte,texte:product_text,total:total,cintrage:cintrage,couleur:couleur,surface:surface,tva_pose:tva,pose:pose_ht,pose_ttc:pose_ttc,quote:quote,groupe:groupe,_token:_token},
+        data: {modele:modele,prix:prix,prix_ht:prix_ht,note:note,qte:qte,texte:product_text,total:total,cintrage:cintrage,couleur:couleur,surface:surface,tva_pose:tva,pose:pose_ht,pose_ttc:pose_ttc,quote:quote,groupe:groupe,hauteur:hauteur,largeur:largeur,_token:_token},
         success: function (data) {
 			if(data!=''){
 
@@ -1924,7 +1924,7 @@
 		$.ajax({
 			url: "{{ route('edit_article') }}",
 			method: "POST",
-			data: {article:article,modele:modele,prix:prix,prix_ht:prix_ht,note:note,qte:qte,texte:product_text,total:total,cintrage:cintrage,couleur:couleur,groupe:groupe,surface:surface,pose:pose_ht,tva_pose:tva_pose,pose_ttc:pose_ttc,_token:_token},
+			data: {article:article,modele:modele,prix:prix,prix_ht:prix_ht,note:note,qte:qte,texte:product_text,total:total,cintrage:cintrage,couleur:couleur,groupe:groupe,surface:surface,pose:pose_ht,tva_pose:tva_pose,pose_ttc:pose_ttc,hauteur:hauteur,largeur:largeur,_token:_token},
 			success: function (item_id) {
 
 				var row='<td class="myproducttd"  data-prix="'+prix+'" data-prixht="'+prix_ht+'" data-id="'+item_id+'" data-surface="'+surface+'"  ><b>'+product_text+ '<br>'+note+'</b></td><td>'+prix_ht+' €</td><td><input type="number" step="1" min="1" class="number" value="'+qte+'" readonly onchange="save_article_qty(this,'+item_id+','+prix+');"  id="qty-'+item_id+'"  data-qty="qty-'+qte+'" /></td><td><input  step="0.5" min="5.5" type="number" step="1" min="1" class="number bg-transparent" readonly value="5.5"/> %</td><td><input id="total-'+item_id+'" type="number" readonly class="total-prod number" value="'+total+'"/> €</td><td><button    class="btn-xs btn-info mr-2" onclick="get_article('+item_id+')"><i class="fas fa-pen " data-id="'+item_id+'"></i></button><button id="delete_item"   class="btn-xs btn-danger" onclick="delete_article('+item_id+')"><i class="fas fa-trash "  ></i></td>';
@@ -2108,7 +2108,7 @@
 		url: "{{ route('add_volet') }}",
 		method: "POST",
 		async:false,
-		data: {shutter:shutter,prix:prix,prix_ht:prix_ht,note:note,qte:qte,texte:product_text,total:total,couleur:couleur,surface:surface,pose:pose_ht,pose_ttc:pose_ttc,tva_pose:tva_pose,quote:quote,_token:_token},
+		data: {shutter:shutter,prix:prix,prix_ht:prix_ht,note:note,qte:qte,texte:product_text,total:total,couleur:couleur,surface:surface,pose:pose_ht,pose_ttc:pose_ttc,tva_pose:tva_pose,quote:quote,hauteur:hauteur,largeur:largeur,_token:_token},
 		success: function (data) {
 			if(data!=''){
 
@@ -2185,7 +2185,7 @@
 		$.ajax({
 			url: "{{ route('edit_volet') }}",
 			method: "POST",
-			data: {volet:volet,shutter:shutter,prix:prix,prix_ht:prix_ht,note:note,qte:qte,texte:product_text,surface:surface,pose:pose_ht,tva_pose:tva_pose,pose_ttc:pose_ttc,total:total,couleur:couleur,_token:_token},
+			data: {volet:volet,shutter:shutter,prix:prix,prix_ht:prix_ht,note:note,qte:qte,texte:product_text,surface:surface,pose:pose_ht,tva_pose:tva_pose,pose_ttc:pose_ttc,total:total,couleur:couleur,hauteur:hauteur,largeur:largeur,_token:_token},
 			success: function (item_id) {
 
 				var row='<td class="volettd"  data-prix="'+prix+'" data-prixht="'+prix_ht+'" data-id="'+item_id+'" data-surface="'+surface+'"  ><b>'+product_text+ '<br>'+note+'</b></td><td>'+prix_ht+' €</td><td><input type="number" step="1" min="1" class="number" value="'+qte+'" readonly onchange="save_volet_qty(this,'+item_id+','+prix+');" data-qty='+qte+' id="qty-v-'+item_id+'"/></td><td><input  step="0.5" min="5.5" type="number" step="1" min="1" class="number bg-transparent" readonly value="5.5"/> %</td><td><input id="total-v-'+item_id+'" type="number" readonly class="total-prod number" value="'+total+'"/> €</td><td><button id=""   class="btn-xs btn-info mr-2" onclick="get_volet('+item_id+')"><i class="fas fa-pen "  ></i></button><button id=""   class="btn-xs btn-danger" onclick="delete_volet('+item_id+')"><i class="fas fa-trash "  ></i></button></td>';

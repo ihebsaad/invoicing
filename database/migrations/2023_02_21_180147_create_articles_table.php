@@ -23,6 +23,8 @@ class CreateArticlesTable extends Migration
             $table->string('note')->nullable();
             $table->double('total_ttc', 8, 2)->nullable();
             $table->double('pose', 8, 2)->nullable();
+            $table->double('hauteur', 8, 2)->nullable();
+            $table->double('largeur', 8, 2)->nullable();
             $table->double('tva_pose', 8, 2)->nullable();
             $table->double('pose_ttc', 8, 2)->nullable();
             $table->double('surface', 8, 2)->nullable();

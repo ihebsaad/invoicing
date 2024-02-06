@@ -157,6 +157,8 @@ class ModelesController extends Controller
         $quote=$request->get('quote') ?? 0;
         $invoice=$request->get('invoice') ?? 0;
         $couleur=$request->get('couleur');
+        $hauteur=$request->get('hauteur');
+        $largeur=$request->get('largeur');
         $surface=$request->get('surface');
         $pose=$request->get('pose');
         $tva_pose=$request->get('tva_pose');
@@ -175,6 +177,8 @@ class ModelesController extends Controller
                 'tva_pose'=>$tva_pose,
                 'pose_ttc'=>$pose_ttc,
                 'groupe'=>$groupe,
+                'hauteur'=>$hauteur,
+                'largeur'=>$largeur,
                 'cintrage'=>$cintrage,
                 'surface'=>$surface,
                 'couleur'=>$couleur,
@@ -195,6 +199,8 @@ class ModelesController extends Controller
                 'pose'=>$pose,
                 'tva_pose'=>$tva_pose,
                 'pose_ttc'=>$pose_ttc,
+                'hauteur'=>$hauteur,
+                'largeur'=>$largeur,
                 'groupe'=>$groupe,
                 'cintrage'=>$cintrage,
                 'surface'=>$surface,
@@ -219,6 +225,8 @@ class ModelesController extends Controller
         $cintrage=$request->get('cintrage');
         $couleur=$request->get('couleur');
         $surface=$request->get('surface');
+        $hauteur=$request->get('hauteur');
+        $largeur=$request->get('largeur');
         $pose=$request->get('pose');
         $tva_pose=$request->get('tva_pose');
         $pose_ttc=$request->get('pose_ttc');
@@ -234,6 +242,8 @@ class ModelesController extends Controller
         $article->groupe=$groupe;
         $article->cintrage=$cintrage;
         $article->couleur=$couleur;
+        $article->hauteur=$hauteur;
+        $article->largeur=$largeur;
         $article->surface=$surface;
         $article->pose=$pose;
         $article->tva_pose=$tva_pose;
@@ -258,8 +268,8 @@ class ModelesController extends Controller
         $data['couleur']=$article->couleur;
         $data['quote']=$article->quote;
         $data['invoice']=$article->invoice;
-        $data['hauteur']=$modele->hauteur;
-        $data['largeur']=$modele->largeur;
+        $data['hauteur']=$article->hauteur;
+        $data['largeur']=$article->largeur;
         $data['genre']=$modele->genre;
         $data['type']=$modele->type;
         $data['surface']=$modele->surface;
@@ -458,6 +468,8 @@ class ModelesController extends Controller
         $invoice=$request->get('invoice') ?? 0;
         $couleur=$request->get('couleur');
         $surface=$request->get('surface');
+        $hauteur=$request->get('hauteur');
+        $largeur=$request->get('largeur');
         $pose=$request->get('pose');
         $tva_pose=$request->get('tva_pose');
         $pose_ttc=$request->get('pose_ttc');
@@ -475,6 +487,8 @@ class ModelesController extends Controller
                 'tva_pose'=>$tva_pose,
                 'pose_ttc'=>$pose_ttc,
                 'surface'=>$surface,
+                'hauteur'=>$hauteur,
+                'largeur'=>$largeur,
                 'couleur'=>$couleur,
                 'quote'=>$quote,
             ]);
@@ -493,6 +507,8 @@ class ModelesController extends Controller
                 'pose'=>$pose,
                 'tva_pose'=>$tva_pose,
                 'pose_ttc'=>$pose_ttc,
+                'hauteur'=>$hauteur,
+                'largeur'=>$largeur,
                 'surface'=>$surface,
                 'couleur'=>$couleur,
                 'invoice'=>$invoice,
@@ -515,8 +531,8 @@ class ModelesController extends Controller
         $data['total_ttc']=$volet->total_ttc;
         $data['shutter']=$volet->shutter;
         $data['type']=$shutter->type;
-        $data['hauteur']=$shutter->hauteur;
-        $data['largeur']=$shutter->largeur;
+        $data['hauteur']=$volet->hauteur;
+        $data['largeur']=$volet->largeur;
         $data['couleur']=$volet->couleur;
         $data['surface']=$volet->surface;
 
@@ -536,6 +552,8 @@ class ModelesController extends Controller
         $note=$request->get('note');
         $couleur=$request->get('couleur');
         $surface=$request->get('surface');
+        $hauteur=$request->get('hauteur');
+        $largeur=$request->get('largeur');
         $pose=$request->get('pose');
         $tva_pose=$request->get('tva_pose');
         $pose_ttc=$request->get('pose_ttc');
@@ -551,6 +569,8 @@ class ModelesController extends Controller
         $volet->note=$note;
         $volet->couleur=$couleur;
         $volet->surface=$surface;
+        $volet->hauteur=$hauteur;
+        $volet->largeur=$largeur;
 
         $volet->pose=$pose;
         $volet->tva_pose=$tva_pose;

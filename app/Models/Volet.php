@@ -19,6 +19,8 @@ class Volet extends Model
         'note',
         'price_ht',
         'total_ttc',
+        'hauteur',
+        'largeur',
         'pose',
         'tva_pose',
         'pose_ttc',
