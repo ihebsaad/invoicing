@@ -161,6 +161,13 @@ class SettingsSeeder extends Seeder
                     'value' => '1.4',
                     'model' => 'Bending',
                     'model_id' => '1',
+                ],
+                // pose menuiserie pour les moment pour tous égale à 200
+				[
+                    'name' => 'Pose menuiserie',
+                    'value' => '200',
+                    'model' => 'Pose',
+                    'model_id' => '1',
                 ]
 
             ];

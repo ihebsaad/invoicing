@@ -142,6 +142,12 @@
 			<div class="row mt-4">
 				<div class="col-xs-4 col-sm-4 col-md-4">
 					<div class="form-group">
+						<strong>Coût Pose :</strong>
+						<input type="number" name="name" class="form-control w-1" step="1" min="0" placeholder="" value="{!! \App\Models\Setting::where('Model','Pose')->where('model_id','1')->first()->value !!}" onchange="update_setting(this,'Pose menuiserie', 'Pose','1')">
+					</div>
+				</div>
+				<div class="col-xs-4 col-sm-4 col-md-4">
+					<div class="form-group">
 						<strong>Coefficient Cintrage :</strong>
 						<input type="number" name="name" class="form-control w-1" step="0.1" min="0" placeholder="" value="{!! \App\Models\Setting::where('Model','Bending')->where('model_id','1')->first()->value !!}" onchange="update_setting(this,'Coefficient cintrage', 'Bending','1')">
 					</div>

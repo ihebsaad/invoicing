@@ -104,6 +104,9 @@
             <div class="float-right">
                 <a class="btn btn-primary mb-2" href="{{ route('quotes.index') }}"> Retour</a>
             </div>
+			<div class="float-right mr-3 ml-3 mb-2">
+				<a class="btn btn-dark mb-3 mr-2 " href="{{ route('quotes.download_pdf_signature',$quote->id) }}" style="float:left" title="Télécharger avec signature"><i class="fas fa-signature"></i></a>
+			</div>
             <div class="float-right mr-3 ml-3 mb-2">
 				<a class="btn btn-success " target="_blank"  href="{{ route('quotes.show_pdf',$quote->id) }}" style="float:left" title="Ouvrir en PDF"><i class="fas fa-file-pdf"></i></a>
 			</div>
@@ -296,7 +299,10 @@
 							</tbody>
 							<tfoot>
 								<tr class="product bg-grey">
-									<td>Remise GROUPE HER ENR</td><td  ><input readonly style="text-align:right" id="remise" type="number" class="number bg-transparent" value="{{$quote->remise ?? 0}}" />€</td><td style="text-align:center;padding-right:15px">1</td><td><input type="number" class="number  bg-transparent" id="tva_remise" name="tva_remise" style="width:100px" step="0.5" value="{{$quote->tva_remise ?? 0}}" readonly onchange="calcul();" /> %</td><td><input id="total_remise" type="number"  class="number" style="max-width:70px" value="{{$quote->total_remise ?? 0}}" onchange="calcul();$('#remise2').val($(this).val())"/> €</td><td></td>
+									<td>Frais de déplacement</td><td  ><input style="text-align:right" id="deplacement" type="number" class="number bg-transparent" readonly value="{{$quote->deplacement ?? 0}}" />€</td><td style="text-align:center;padding-right:15px">1</td><td><input type="number" class="number bg-transparent" id="tva_deplacement" name="tva_deplacement" style="width:100px" step="0.5" value="{{$quote->tva_deplacement ?? 0}}"   onchange="calcul_deplacement();" /> %</td><td><input id="total_deplacement" type="number"  class="number" style="max-width:70px" value="{{$quote->total_deplacement ?? 0}}" onchange="calcul_deplacement();"/> €</td><td></td>
+								</tr>
+								<tr class="product bg-grey">
+									<td>Remise GROUPE HER ENR</td><td  ><input readonly style="text-align:right" id="remise" type="number" class="number bg-transparent" value="{{$quote->remise ?? 0}}" />€</td><td style="text-align:center;padding-right:15px">1</td><td><input type="number" class="number  bg-transparent" id="tva_remise" name="tva_remise" style="width:100px" step="0.5" value="{{$quote->tva_remise ?? 0}}" readonly onchange="calcul_remise();" /> %</td><td><input id="total_remise" type="number"  class="number" style="max-width:70px" value="{{$quote->total_remise ?? 0}}" onchange="calcul_remise();"/> €</td><td></td>
 								</tr>
 							</tfoot>
 						</table>
@@ -347,6 +353,7 @@
 									<tr><td colspan="2">Total HT</td><td><input id="total_ht" type="number"  class="number numbers bg-transparent" readonly  value="{{number_format($quote->total_ht,2,'.','') ?? 0}}"/> €</td></tr>
 									<tr><td colspan="2">Total TVA</td><td><input id="total_tva" type="number"  class="number numbers bg-transparent"  readonly  value="{{number_format($quote->total_tva,2,'.','') ?? 0}}"/> €</td></tr>
 									<tr><td colspan="2">TOTAL TTC</td><td><input id="total_ttc" type="number" readonly  class="number numbers bg-transparent" value="{{number_format($quote->total_ttc,2,'.','') ?? 0}}" /> €</td></tr>
+									<tr><td colspan="2" style="color:#f07f32">Déplacement</td><td><input id="deplacement2" type="number" readonly  class="number numbers bg-transparent" value="{{$quote->total_deplacement ?? 0}}" /> €</td></tr>
 									<tr><td colspan="2" style="color:#f07f32">Remise</td><td><input id="remise2" type="number" readonly  class="number numbers bg-transparent" value="{{$quote->total_remise ?? 0}}" /> €</td></tr>
 									<tr><td colspan="2" style="color:#f07f32">Acompte</td><td><input id="acompte2" type="number" readonly  class="number numbers bg-transparent" value="{{$quote->acompte ?? 0}}" /> €</td></tr>
 									<tr><td colspan="2" style="color:#f07f32">Aide éligible</td><td><input id="aide2" type="number" readonly  class="number numbers bg-transparent" value="{{number_format($quote->aide,2,'.','') ?? 0}}" /> €</td></tr>
@@ -712,13 +719,20 @@
 		var tva_remise=parseFloat($('#tva_remise').val()) || 0;
 		var total_remise=parseFloat($('#total_remise').val())  || 0;
 
+		var tva_deplacement=parseFloat($('#tva_deplacement').val()) || 0;
+		var total_deplacement=parseFloat($('#total_deplacement').val()) || 0;
+
 		var remise = total_remise / (1+(tva_remise*0.01));
 		$('#remise').val(remise.toFixed(2));
-		var val_total_ht= total_ht-remise;
+
+		var deplacement = total_deplacement / (1+(tva_deplacement*0.01));
+		$('#deplacement').val(deplacement.toFixed(2));
+
+		var val_total_ht= total_ht-remise + deplacement;
 		$("#total_ht").val(val_total_ht.toFixed(2));
-		total_tva = total_ttc-total_ht - (remise*tva_remise*0.01);
+		total_tva = total_ttc-total_ht - (remise*tva_remise*0.01) + tva_deplacement;
 	    $('#total_tva').val(total_tva.toFixed(2));
-		total_ttc=total_ttc-total_remise;
+		total_ttc=total_ttc-total_remise + total_deplacement;
 		$('#total_ttc').val(total_ttc.toFixed(2));
 
 		var aide=parseFloat($('#aide2').val()) || 0;
@@ -928,6 +942,9 @@
 	var total_ttc=	$('#total_ttc').val();
 	var total_remise=	$('#total_remise').val();
 	var tva_remise=	$('#tva_remise').val();
+	var total_deplacement=	$('#total_deplacement').val();
+	var tva_deplacement=	$('#tva_deplacement').val();
+	var deplacement=$('#deplacement').val();
 	var remise= $('#remise').val();
 	var aide=	$('#aide2').val();
 	var aide_renov=	$('#aide_renov').val();
@@ -939,7 +956,7 @@
 	$.ajax({
 		url: "{{ route('update_totals') }}",
 		method: "POST",
-		data: {total_ht:total_ht,total_tva:total_tva,total_ttc:total_ttc,total_remise:total_remise,remise:remise,quote:quote,aide:aide,aide_renov:aide_renov,aide_cee:aide_cee,net:net,acompte:acompte,tva_remise:tva_remise, _token:_token},
+		data: {total_ht:total_ht,total_tva:total_tva,total_ttc:total_ttc,total_remise:total_remise,remise:remise,total_deplacement:total_deplacement,deplacement:deplacement,tva_deplacement:tva_deplacement,quote:quote,aide:aide,aide_renov:aide_renov,aide_cee:aide_cee,net:net,acompte:acompte,tva_remise:tva_remise, _token:_token},
 		success: function (data) {
 			init();
 		}
@@ -965,6 +982,25 @@
 
 		}
 		});
+	}
+
+
+	function calcul_remise(){
+		var remise=$('#total_remise').val();
+		$('#remise2').val(remise);
+		var p_tva_remise= $('#tva_remise').val();
+		var remise_ht = (remise / (1+(p_tva_remise*0.01))).toFixed(2);
+		$('#remise').val(remise_ht);
+		calcul();
+	}
+
+	function calcul_deplacement(){
+		var deplacement=$('#total_deplacement').val();
+		$('#deplacement2').val(deplacement);
+		var p_tva_deplacement= $('#tva_deplacement').val();
+		var deplacement_ht = (deplacement / (1+(p_tva_deplacement*0.01))).toFixed(2);
+		$('#deplacement').val(deplacement_ht);
+		calcul();
 	}
 </script>
 

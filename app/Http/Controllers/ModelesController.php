@@ -157,6 +157,10 @@ class ModelesController extends Controller
         $quote=$request->get('quote') ?? 0;
         $invoice=$request->get('invoice') ?? 0;
         $couleur=$request->get('couleur');
+        $surface=$request->get('surface');
+        $pose=$request->get('pose');
+        $tva_pose=$request->get('tva_pose');
+        $pose_ttc=$request->get('pose_ttc');
 
         if( $quote>0   ){
             $article=Article::create([
@@ -167,8 +171,12 @@ class ModelesController extends Controller
                 'text'=>$text,
                 'note'=>$note,
                 'total_ttc'=>$total_ttc,
+                'pose'=>$pose,
+                'tva_pose'=>$tva_pose,
+                'pose_ttc'=>$pose_ttc,
                 'groupe'=>$groupe,
                 'cintrage'=>$cintrage,
+                'surface'=>$surface,
                 'couleur'=>$couleur,
                 'quote'=>$quote,
             ]);
@@ -184,8 +192,12 @@ class ModelesController extends Controller
                 'text'=>$text,
                 'note'=>$note,
                 'total_ttc'=>$total_ttc,
+                'pose'=>$pose,
+                'tva_pose'=>$tva_pose,
+                'pose_ttc'=>$pose_ttc,
                 'groupe'=>$groupe,
                 'cintrage'=>$cintrage,
+                'surface'=>$surface,
                 'couleur'=>$couleur,
                 'invoice'=>$invoice,
             ]);
@@ -206,6 +218,10 @@ class ModelesController extends Controller
         $groupe=$request->get('groupe');
         $cintrage=$request->get('cintrage');
         $couleur=$request->get('couleur');
+        $surface=$request->get('surface');
+        $pose=$request->get('pose');
+        $tva_pose=$request->get('tva_pose');
+        $pose_ttc=$request->get('pose_ttc');
 
         $article=Article::find($article_id);
         $article->modele=$modele;
@@ -218,6 +234,10 @@ class ModelesController extends Controller
         $article->groupe=$groupe;
         $article->cintrage=$cintrage;
         $article->couleur=$couleur;
+        $article->surface=$surface;
+        $article->pose=$pose;
+        $article->tva_pose=$tva_pose;
+        $article->pose_ttc=$pose_ttc;
         $article->save();
         return $article_id;
     }
@@ -242,6 +262,7 @@ class ModelesController extends Controller
         $data['largeur']=$modele->largeur;
         $data['genre']=$modele->genre;
         $data['type']=$modele->type;
+        $data['surface']=$modele->surface;
 
        return $data;
 
@@ -274,6 +295,10 @@ class ModelesController extends Controller
         $prix=$request->get('prix');
         $groupe_couleur=intval($request->get('groupe_couleur'));
         $cintrage=$request->get('cintrage');
+
+        // arrondir
+        $largeur = ceil($largeur / 100) * 100;
+        $hauteur = ceil($hauteur / 100) * 100;
 
         $model=array();
         $modele=Modele::where('genre',$genre)->where('type',$type)->where('couleur',1)->where('hauteur',$hauteur)->where('largeur',$largeur)->first();
@@ -340,6 +365,9 @@ class ModelesController extends Controller
         $invoice=$request->get('invoice') ?? 0;
         $couleur=$request->get('couleur');
         $cintrage=$request->get('cintrage');
+        $pose=$request->get('pose');
+        $tva_pose=$request->get('tva_pose');
+        $pose_ttc=$request->get('pose_ttc');
 
         if( $quote>0   ){
             $porte=Porte::create([
@@ -350,6 +378,9 @@ class ModelesController extends Controller
                 'text'=>$texte,
                 'note'=>$note,
                 'total_ttc'=>$total_ttc,
+                'pose'=>$pose,
+                'tva_pose'=>$tva_pose,
+                'pose_ttc'=>$pose_ttc,
                 'groupe'=>$groupe,
                 'couleur'=>$couleur,
                 'cintrage'=>$cintrage,
@@ -367,6 +398,9 @@ class ModelesController extends Controller
                 'text'=>$texte,
                 'note'=>$note,
                 'total_ttc'=>$total_ttc,
+                'pose'=>$pose,
+                'tva_pose'=>$tva_pose,
+                'pose_ttc'=>$pose_ttc,
                 'groupe'=>$groupe,
                 'couleur'=>$couleur,
                 'cintrage'=>$cintrage,
@@ -389,6 +423,9 @@ class ModelesController extends Controller
         $groupe=$request->get('groupe');
         $couleur=$request->get('couleur');
         $cintrage=$request->get('cintrage');
+        $pose=$request->get('pose');
+        $tva_pose=$request->get('tva_pose');
+        $pose_ttc=$request->get('pose_ttc');
 
         $porte=Porte::find($id);
         $porte->door=$door;
@@ -401,6 +438,9 @@ class ModelesController extends Controller
         $porte->groupe=$groupe;
         $porte->couleur=$couleur;
         $porte->cintrage=$cintrage;
+        $porte->pose=$pose;
+        $porte->tva_pose=$tva_pose;
+        $porte->pose_ttc=$pose_ttc;
         $porte->save();
         return $id;
     }
@@ -417,6 +457,10 @@ class ModelesController extends Controller
         $quote=$request->get('quote') ?? 0;
         $invoice=$request->get('invoice') ?? 0;
         $couleur=$request->get('couleur');
+        $surface=$request->get('surface');
+        $pose=$request->get('pose');
+        $tva_pose=$request->get('tva_pose');
+        $pose_ttc=$request->get('pose_ttc');
 
         if( $quote>0   ){
             $volet=Volet::create([
@@ -427,6 +471,10 @@ class ModelesController extends Controller
                 'text'=>$texte,
                 'note'=>$note,
                 'total_ttc'=>$total_ttc,
+                'pose'=>$pose,
+                'tva_pose'=>$tva_pose,
+                'pose_ttc'=>$pose_ttc,
+                'surface'=>$surface,
                 'couleur'=>$couleur,
                 'quote'=>$quote,
             ]);
@@ -442,6 +490,10 @@ class ModelesController extends Controller
                 'text'=>$texte,
                 'note'=>$note,
                 'total_ttc'=>$total_ttc,
+                'pose'=>$pose,
+                'tva_pose'=>$tva_pose,
+                'pose_ttc'=>$pose_ttc,
+                'surface'=>$surface,
                 'couleur'=>$couleur,
                 'invoice'=>$invoice,
             ]);
@@ -466,6 +518,7 @@ class ModelesController extends Controller
         $data['hauteur']=$shutter->hauteur;
         $data['largeur']=$shutter->largeur;
         $data['couleur']=$volet->couleur;
+        $data['surface']=$volet->surface;
 
         return $data;
     }
@@ -482,6 +535,10 @@ class ModelesController extends Controller
         $total_ttc=$request->get('total');
         $note=$request->get('note');
         $couleur=$request->get('couleur');
+        $surface=$request->get('surface');
+        $pose=$request->get('pose');
+        $tva_pose=$request->get('tva_pose');
+        $pose_ttc=$request->get('pose_ttc');
 
         $volet=Volet::find($request->get('volet'));
 
@@ -493,7 +550,11 @@ class ModelesController extends Controller
         $volet->total_ttc=$total_ttc;
         $volet->note=$note;
         $volet->couleur=$couleur;
+        $volet->surface=$surface;
 
+        $volet->pose=$pose;
+        $volet->tva_pose=$tva_pose;
+        $volet->pose_ttc=$pose_ttc;
         $volet->save();
 
         return $request->get('volet');
@@ -535,6 +596,10 @@ class ModelesController extends Controller
         $type=$request->get('type');
         $hauteur=$request->get('hauteur');
         $largeur=$request->get('largeur');
+
+        // arrondir
+        $largeur = ceil($largeur / 100) * 100;
+        $hauteur = ceil($hauteur / 100) * 100;
 
         $shutter=array();
         $shutter=Shutter::where('type',$type)->where('hauteur',$hauteur)->where('largeur',$largeur)->first();
@@ -589,6 +654,7 @@ class ModelesController extends Controller
 
         $porte->qty=$request->get('qty');
         $porte->total_ttc=$request->get('total');
+        $porte->pose_ttc=$request->get('pose_ttc');
         $porte->save();
 
     }
@@ -600,6 +666,8 @@ class ModelesController extends Controller
 
         $article->qty=$request->get('qty');
         $article->total_ttc=$request->get('total');
+        $article->surface=$request->get('surface');
+        $article->pose_ttc=$request->get('pose_ttc');
         $article->save();
 
     }
@@ -612,6 +680,8 @@ class ModelesController extends Controller
 
         $volet->qty=$request->get('qty');
         $volet->total_ttc=$request->get('total');
+        $volet->surface=$request->get('surface');
+        $volet->pose_ttc=$request->get('pose_ttc');
         $volet->save();
 
     }

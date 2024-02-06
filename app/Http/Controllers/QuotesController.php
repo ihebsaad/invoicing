@@ -192,6 +192,9 @@ class QuotesController extends Controller
         $total_ttc=$request->get('total_ttc');
         $total_remise=$request->get('total_remise');
         $remise=$request->get('remise');
+        $deplacement=$request->get('deplacement');
+        $total_deplacement=$request->get('total_deplacement');
+        $tva_deplacement=$request->get('tva_deplacement');
         $quote=$request->get('quote');
         $aide=$request->get('aide');
         $aide_renov=$request->get('aide_renov');
@@ -201,6 +204,7 @@ class QuotesController extends Controller
         $tva_remise=$request->get('tva_remise');
         $loi=$request->get('loi');
         $total_loi=$request->get('total_loi');
+        $surface=$request->get('surface');
 
         Quote::where('id',$quote)->update(
             [
@@ -209,6 +213,10 @@ class QuotesController extends Controller
                 'remise'=>$remise,
                 'total_ttc'=>$total_ttc,
                 'total_remise'=>$total_remise,
+                'total_deplacement'=>$total_deplacement,
+                'tva_deplacement'=>$tva_deplacement,
+                'deplacement'=>$deplacement,
+                'surface_produits'=>$surface,
                 'aide'=>$aide,
                 'aide_renov'=>$aide_renov,
                 'aide_cee'=>$aide_cee,
@@ -319,11 +327,15 @@ class QuotesController extends Controller
             'total_tva'=>$quote->total_tva,
             'total_remise'=>$quote->total_remise,
             'tva_remise'=>$quote->tva_remise,
+            'deplacement'=>$quote->deplacement,
+            'tva_deplacement'=>$quote->tva_deplacement,
+            'total_deplacement'=>$quote->total_deplacement,
             'total_ht'=>$quote->total_ht,
             'total_ttc'=>$quote->total_ttc,
             'aide_cee'=>$quote->aide_cee,
             'aide_renov'=>$quote->aide_renov,
             'aide'=>$quote->aide,
+            'surface_produits'=>$quote->surface_produits,
             'montant_finance'=>$quote->montant_finance,
             'report_echeance'=>$quote->report_echeance,
             'mensualites'=>$quote->mensualites,

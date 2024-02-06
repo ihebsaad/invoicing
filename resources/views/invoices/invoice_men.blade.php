@@ -272,7 +272,7 @@
 			   		@php
 						$count_articles=count($articles); $i=0;
 					@endphp
-				   @foreach($articles as $article)
+				   	@foreach($articles as $article)
 					   @php
 					   		$i++; $desc='';
 						   $modele=\App\Models\Modele::find($article->modele);
@@ -578,6 +578,11 @@
 					   <tr class="product"  >
 						   <td @if($i!=$count_articles) style="border-bottom: 1px solid #f07f32" @endif ><img src="{!! public_path($img)!!}"   style="max-width:120px;max-height:90px;" /></td><td  @if($i!=$count_articles) style="border-bottom: 1px solid #f07f32" @endif class="text" ><b>{{$article->text}} @if($article->note!='')<br>{{$article->note}} @endif </b><br>{!!nl2br($desc)!!}</td><td @if($i!=$count_articles) style="border-bottom: 1px solid #f07f32" @endif >{{$article->qty}}</td><td @if($i!=$count_articles) style="border-bottom: 1px solid #f07f32" @endif >{{$article->price_ht}} €</td><td @if($i!=$count_articles) style="border-bottom: 1px solid #f07f32" @endif>{{$total_prod_ht}} €</td><td @if($i!=$count_articles) style="border-bottom: 1px solid #f07f32" @endif >5.5 %</td><td @if($i!=$count_articles) style="border-bottom: 1px solid #f07f32" @endif >{{$total_prod_ttc}} €</td>
 					   </tr>
+					   	@if($article->pose > 0 )
+							<tr class="product"  >
+								<td @if($i!=$count_articles) style="border-bottom: 1px solid #f07f32" @endif ></td><td  @if($i!=$count_articles) style="border-bottom: 1px solid #f07f32" @endif class="text" ><i>Pose</i></td><td @if($i!=$count_articles) style="border-bottom: 1px solid #f07f32" @endif >{{$article->qty}}</td><td @if($i!=$count_articles) style="border-bottom: 1px solid #f07f32" @endif >{!! \App\Models\Setting::where('Model','Pose')->where('model_id','1')->first()->value !!} €</td><td @if($i!=$count_articles) style="border-bottom: 1px solid #f07f32" @endif>{{$article->pose}} €</td><td @if($i!=$count_articles) style="border-bottom: 1px solid #f07f32" @endif >5.5 %</td><td @if($i!=$count_articles) style="border-bottom: 1px solid #f07f32" @endif >{{$article->pose_ttc}} €</td>
+							</tr>
+					   	@endif
 				   @endforeach
 			   </tr>
 			   <tr class="product " >
@@ -619,10 +624,15 @@
 							';
 						   	$img='img/m11.jpg';
 
-					   @endphp
-					   <tr class="product"  >
+					   	@endphp
+					   	<tr class="product"  >
 						   <td @if($i!=$count_portes) style="border-bottom: 1px solid #f07f32" @endif ><img src="{!! public_path($img)!!}"   style="max-width:120px;max-height:90px;" /></td><td  @if($i!=$count_portes) style="border-bottom: 1px solid #f07f32" @endif class="text" ><b>{{$porte->text}} @if($porte->note!='')<br>{{$porte->note}} @endif </b><br>{!!nl2br($desc)!!}</td><td @if($i!=$count_portes) style="border-bottom: 1px solid #f07f32" @endif >{{$porte->qty}}</td><td @if($i!=$count_portes) style="border-bottom: 1px solid #f07f32" @endif >{{$porte->price_ht}} €</td><td @if($i!=$count_portes) style="border-bottom: 1px solid #f07f32" @endif>{{$total_prod_ht}} €</td><td @if($i!=$count_portes) style="border-bottom: 1px solid #f07f32" @endif >5.5 %</td><td @if($i!=$count_portes) style="border-bottom: 1px solid #f07f32" @endif >{{$total_prod_ttc}} €</td>
-					   </tr>
+					   	</tr>
+					   	@if($porte->pose > 0)
+							<tr class="product"  >
+								<td @if($i!=$count_portes) style="border-bottom: 1px solid #f07f32" @endif ></td><td  @if($i!=$count_portes) style="border-bottom: 1px solid #f07f32" @endif class="text" ><i>Pose</i></td><td @if($i!=$count_portes) style="border-bottom: 1px solid #f07f32" @endif >{{$porte->qty}}</td><td @if($i!=$count_portes) style="border-bottom: 1px solid #f07f32" @endif >{!! \App\Models\Setting::where('Model','Pose')->where('model_id','1')->first()->value !!} €</td><td @if($i!=$count_portes) style="border-bottom: 1px solid #f07f32" @endif>{{$porte->pose}} €</td><td @if($i!=$count_portes) style="border-bottom: 1px solid #f07f32" @endif >5.5 %</td><td @if($i!=$count_portes) style="border-bottom: 1px solid #f07f32" @endif >{{$porte->poste_ttc}} €</td>
+							</tr>
+					   	@endif
 				  	@endforeach
 			   </tr>
 
@@ -631,7 +641,7 @@
 						$count_volets=count($volets); $i=0;
 					@endphp
 				   	@foreach($volets as $volet)
-					   @php
+					   	@php
 					   		$i++;
 						   	$shutter=\App\Models\Shutter::find($volet->shutter);
 						   	$total_prod_ht=floatval($volet->price_ht) * intval($volet->qty);
@@ -677,10 +687,15 @@
 							}
 						   	$img='img/volet.png';
 
-					   @endphp
-					   <tr class="product"  >
+					   	@endphp
+					   	<tr class="product"  >
 						   <td @if($i!=$count_volets) style="border-bottom: 1px solid #f07f32" @endif ><img src="{!! public_path($img)!!}"   style="max-width:120px;max-height:90px;" /></td><td  @if($i!=$count_volets) style="border-bottom: 1px solid #f07f32" @endif class="text" >{!!nl2br($desc)!!} @if($volet->note!='')<br>{{$volet->note}} @endif </b></td><td @if($i!=$count_volets) style="border-bottom: 1px solid #f07f32" @endif >{{$volet->qty}}</td><td @if($i!=$count_volets) style="border-bottom: 1px solid #f07f32" @endif >{{$volet->price_ht}} €</td><td @if($i!=$count_volets) style="border-bottom: 1px solid #f07f32" @endif>{{$total_prod_ht}} €</td><td @if($i!=$count_volets) style="border-bottom: 1px solid #f07f32" @endif >5.5 %</td><td @if($i!=$count_volets) style="border-bottom: 1px solid #f07f32" @endif >{{$total_prod_ttc}} €</td>
-					   </tr>
+					   	</tr>
+					   	@if($volet->pose > 0)
+							<tr class="product"  >
+								<td @if($i!=$count_volets) style="border-bottom: 1px solid #f07f32" @endif ></td><td  @if($i!=$count_volets) style="border-bottom: 1px solid #f07f32" @endif class="text" ><i>Pose</i></td><td @if($i!=$count_volets) style="border-bottom: 1px solid #f07f32" @endif >{{$volet->qty}}</td><td @if($i!=$count_volets) style="border-bottom: 1px solid #f07f32" @endif >{!! \App\Models\Setting::where('Model','Pose')->where('model_id','1')->first()->value !!} €</td><td @if($i!=$count_volets) style="border-bottom: 1px solid #f07f32" @endif>{{$volet->pose}} €</td><td @if($i!=$count_volets) style="border-bottom: 1px solid #f07f32" @endif >5.5 %</td><td @if($i!=$count_volets) style="border-bottom: 1px solid #f07f32" @endif >{{$volet->pose_ttc}} €</td>
+							</tr>
+					   	@endif
 				  	@endforeach
 			   </tr>
 
@@ -689,12 +704,17 @@
 						<td  ></td><td class="text" >{!! nl2br($item->description) !!}</td><td>{{$item->qty}}</td><td  >{{$item->price_ht}} €</td><td>{{ $item->price_ht * $item->qty }} €</td><td>{{$item->tva}} %</td><td>{{  $item->price_ttc * $item->qty  }} €</td>
 					</tr>
 				@endforeach
-
+				@if($invoice->deplacement>0)
+				   <tr class="product" style="color:#f07f32">
+					   <td>Frais de déplacment</td><td style="text-align:center"></td><td ></td><td> {{$invoice->deplacement}}  €</td><td> {{ $invoice->tva_deplacement ?? 0 }} %</td><td>{{$invoice->total_deplacement ?? 0}} €</td>
+				   </tr>
+			   @endif
 			   @if($invoice->remise>0)
 				   <tr class="product" style="color:#f07f32">
 					   <td colspan="2">Remise GROUPE HER ENR</td><td style="text-align:center"></td><td></td><td> {{$invoice->remise}}  €</td><td> {{$invoice->tva_remise ?? '5.5'}} %</td><td>{{$invoice->total_remise}} €</td>
 				   </tr>
 			   @endif
+
 		   </tbody>
 	   </table>
 
@@ -705,6 +725,9 @@
 			   	@endif
 			   {!!nl2br($invoice->description) !!}
 			   <div class="clearfix"></div>
+			   @if($invoice->surface_produits>0)
+					<b>Mètre linéaire: {!!$invoice->surface_produits!!} m²</b><br>
+				@endif
 			   @if($invoice->chaudiere!='' && $invoice->chaudiere!='Autre')
 				   Dépose de la chaudière individuelle: <b> Chaudière à {{$invoice->chaudiere}}</b><br>
 			   @endif

@@ -235,12 +235,17 @@
 						@endif
 				   @endforeach
 			   </tr>
-
+			   @if($invoice->deplacement>0)
+				   <tr class="product" style="color:#f07f32">
+					   <td>Frais de déplacment</td><td style="text-align:center"></td><td ></td><td> {{$invoice->deplacement}}  €</td><td> {{ $invoice->tva_deplacement ?? 0 }} %</td><td>{{$invoice->total_deplacement ?? 0}} €</td>
+				   </tr>
+			   @endif
 			   @if($invoice->remise>0)
 				   <tr class="product" style="color:#f07f32">
 					   <td>Remise GROUPE HER ENR</td><td style="text-align:center"></td><td ></td><td> {{$invoice->remise}}  €</td><td> {{ $invoice->tva_remise ?? 0 }} %</td><td>{{$invoice->total_remise ?? 0}} €</td>
 				   </tr>
 			   @endif
+
 		   </tbody>
 	   </table>
 

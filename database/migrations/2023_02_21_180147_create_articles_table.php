@@ -22,6 +22,10 @@ class CreateArticlesTable extends Migration
             $table->string('text')->nullable();
             $table->string('note')->nullable();
             $table->double('total_ttc', 8, 2)->nullable();
+            $table->double('pose', 8, 2)->nullable();
+            $table->double('tva_pose', 8, 2)->nullable();
+            $table->double('pose_ttc', 8, 2)->nullable();
+            $table->double('surface', 8, 2)->nullable();
             $table->tinyInteger('groupe')->nullable();
             $table->tinyInteger('cintrage')->nullable();
             $table->integer('couleur')->nullable();

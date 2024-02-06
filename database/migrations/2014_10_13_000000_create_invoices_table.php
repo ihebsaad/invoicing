@@ -45,6 +45,11 @@ class CreateInvoicesTable extends Migration
             $table->double('taeg', 8, 2)->default(0)->nullable();
             $table->double('pose', 8, 2)->default(0)->nullable();
 
+            $table->double('deplacement', 8, 2)->default(0)->nullable();
+            $table->double('tva_deplacement', 8, 2)->default(0)->nullable();
+            $table->double('total_deplacement', 8, 2)->default(0)->nullable();
+            $table->double('surface_produits', 8, 2)->default(0)->nullable();
+
             $table->double('montant1', 8, 2)->default(0)->nullable();
             $table->string('note1')->nullable();
             $table->double('montant2', 8, 2)->default(0)->nullable();

@@ -32,6 +32,11 @@ class CreateQuotesTable extends Migration
             $table->double('total_ht', 8, 2)->default(0)->nullable();
             $table->double('total_ttc', 8, 2)->default(0)->nullable();
 
+            $table->double('deplacement', 8, 2)->default(0)->nullable();
+            $table->double('tva_deplacement', 8, 2)->default(0)->nullable();
+            $table->double('total_deplacement', 8, 2)->default(0)->nullable();
+            $table->double('surface_produits', 8, 2)->default(0)->nullable();
+
             $table->string('type_aide')->nullable();
             $table->double('aide', 8, 2)->default(0)->nullable();
             $table->double('acompte', 8, 2)->default(0)->nullable();
