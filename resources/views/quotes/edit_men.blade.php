@@ -199,7 +199,7 @@
 							@if( $quote->surface!='' )
 							<div class="col-xs-12 col-sm-12 col-md-4">
 								<div class="form-group">
-									<strong>Surface  @if($quote->menuiserie==-7) isolée @else chauffée @endif (m²):</strong>
+									<strong>Surface  @if($quote->menuiserie==-7) isolée @elseif($quote->menuiserie==-9) de la maison @else chauffée @endif (m²):</strong>
 									<input type="number" class="form-control"   name="surface" value="{{ $quote->surface }}" style="max-width:180px"/>
 								</div>
 							</div>
@@ -276,7 +276,7 @@
 											<td class="myproducttd" data-prix="{{$article->price}}" data-prixht="{{$article->price_ht}}" data-id="{{$article->id}}" data-surface="{{$article->surface}}"   ><b>{{$article->text}}<br>{{$article->note}}</b></td><td >{{$article->price_ht}} €</td><td><input id="qty-{{$article->id}}" type="number" step="1" min="1" class="number" value="{{$article->qty}}" readonly  onchange="save_article_qty(this,{{$article->id}},{{$article->price}});"  data-qty="{{$article->qty}}"  /></td><td><input readonly step="0.5" min="5.5" type="number" step="0.5" min="1" class="number bg-transparent" value="5.5"/> %</td><td><input id="total-{{$article->id}}" type="number" readonly class="total-prod number" value="{{$total_prod}}"/> €</td><td><button    class="btn-xs btn-info mr-2" onclick="get_article({{$article->id}})"><i class="fas fa-pen " data-id="{{$article->id}}"></i></button><button id="delete_item"   class="btn-xs btn-danger" onclick="delete_article({{$article->id}})"><i class="fas fa-trash " data-id="{{$article->id}}"></i></button></td>
 										</tr>
 										<tr class="myproduct product bg-lightgrey tr-prod" id="rowp-{{$article->id}}">
-											<td class="myproducttdpose" data-pose="{{$article->pose}}" data-pose_ttc="{{$article->pose_ttc}}" data-id="{{$article->id}}"   ><i>Pose</i></td><td >{!! \App\Models\Setting::where('Model','Pose')->where('model_id','1')->first()->value !!} €</td><td><input id="qtyp-{{$article->id}}" type="number" step="1" min="1" class="number" value="{{$article->qty}}"  readonly /></td><td><input readonly step="0.5" min="5.5" type="number" step="0.5" min="1" class="number bg-transparent" value="5.5"/> %</td><td><input id="totalp-{{$article->id}}" type="number" readonly class="total-prod number" value="{{$article->pose_ttc}}"/> €</td><td></td>
+											<td class="myproducttdpose" data-pose="{{$article->pose}}" data-pose_ttc="{{$article->pose_ttc}}" data-id="{{$article->id}}"   ><i>FORFAIT POSE MENUISERIE</i></td><td >{!! \App\Models\Setting::where('Model','Pose')->where('model_id','1')->first()->value !!} €</td><td><input id="qtyp-{{$article->id}}" type="number" step="1" min="1" class="number" value="{{$article->qty}}"  readonly /></td><td><input readonly step="0.5" min="5.5" type="number" step="0.5" min="1" class="number bg-transparent" value="5.5"/> %</td><td><input id="totalp-{{$article->id}}" type="number" readonly class="total-prod number" value="{{$article->pose_ttc}}"/> €</td><td></td>
 										</tr>
 									@endif
 								@endforeach
@@ -290,7 +290,7 @@
 										<td class="doortd" data-prix="{{$porte->price}}" data-prixht="{{$porte->price_ht}}" data-id="{{$porte->id}}"  ><b>{!!nl2br($porte->text)!!}<br>{{$porte->note}}</b></td><td >{{$porte->price_ht}} €</td><td><input id="qty-d-{{$porte->id}}" type="number" step="1" min="1" class="number" value="{{$porte->qty}}"  onchange="save_door_qty(this,{{$porte->id}},{{$porte->price}});"/></td><td><input readonly step="0.5" min="5.5" type="number" step="0.5" min="1" class="number bg-transparent" value="5.5"/> %</td><td><input id="total-d-{{$porte->id}}" type="number" readonly class="total-prod number" value="{{$porte->total_ttc}}"/> €</td><td><button    class="btn-xs btn-info mr-2" onclick="get_door({{$porte->id}})"><i class="fas fa-pen " data-id="{{$porte->id}}"></i></button><button    class="btn-xs btn-danger" onclick="delete_door({{$porte->id}})"><i class="fas fa-trash " data-id="{{$porte->id}}"></i></button></td>
 									</tr>
 									<tr class="myproduct product bg-lightgrey tr-prod" id="rowp-d-{{$porte->id}}">
-										<td class="doorposetd" data-pose="{{$porte->pose}}" data-pose_ttc="{{$porte->pose_ttc}}" data-id="{{$porte->id}}"   ><i>Pose</i></td><td >{!! \App\Models\Setting::where('Model','Pose')->where('model_id','1')->first()->value !!} €</td><td><input id="qtyp-d-{{$porte->id}}" type="number" step="1" min="1" class="number" value="{{$porte->qty}}"  readonly /></td><td><input readonly step="0.5" min="5.5" type="number" step="0.5" min="1" class="number bg-transparent" value="5.5"/> %</td><td><input id="totalp-d-{{$porte->id}}" type="number" readonly class="total-prod number" value="{{$porte->pose_ttc}}"/> €</td><td></td>
+										<td class="doorposetd" data-pose="{{$porte->pose}}" data-pose_ttc="{{$porte->pose_ttc}}" data-id="{{$porte->id}}"   ><i>FORFAIT POSE MENUISERIE</i></td><td >{!! \App\Models\Setting::where('Model','Pose')->where('model_id','1')->first()->value !!} €</td><td><input id="qtyp-d-{{$porte->id}}" type="number" step="1" min="1" class="number" value="{{$porte->qty}}"  readonly /></td><td><input readonly step="0.5" min="5.5" type="number" step="0.5" min="1" class="number bg-transparent" value="5.5"/> %</td><td><input id="totalp-d-{{$porte->id}}" type="number" readonly class="total-prod number" value="{{$porte->pose_ttc}}"/> €</td><td></td>
 									</tr>
 								@endforeach
 
@@ -303,7 +303,7 @@
 										<td class="volettd" data-prix="{{$volet->price}}" data-prixht="{{$volet->price_ht}}" data-id="{{$volet->id}}" data-surface="{{$volet->surface}}" ><b>{{$volet->text}}<br>{{$volet->note}}</b></td><td >{{$volet->price_ht}} €</td><td><input id="qty-v-{{$volet->id}}" type="number" step="1" min="1" class="number" value="{{$volet->qty}}" readonly  onchange="save_volet_qty(this,{{$volet->id}},{{$volet->price}});" data-qty="{{$volet->qty}}"  /></td><td><input readonly step="0.5" min="5.5" type="number" step="0.5" min="1" class="number bg-transparent" value="5.5"/> %</td><td><input id="total-v-{{$volet->id}}" type="number" readonly class="total-prod number" value="{{$volet->total_ttc}}"/> €</td><td><button    class="btn-xs btn-info mr-2" onclick="get_volet({{$volet->id}})"><i class="fas fa-pen " data-id="{{$volet->id}}"></i></button><button    class="btn-xs btn-danger" onclick="delete_volet({{$volet->id}})"><i class="fas fa-trash " data-id="{{$volet->id}}"></i></button></td>
 									</tr>
 									<tr class="myproduct product bg-lightgrey tr-prod" id="rowp-v-{{$volet->id}}">
-										<td class="voletposetd" data-pose="{{$volet->pose}}" data-pose_ttc="{{$volet->pose_ttc}}" data-id="{{$volet->id}}"   ><i>Pose</i></td><td >{!! \App\Models\Setting::where('Model','Pose')->where('model_id','1')->first()->value !!} €</td><td><input id="qtyp-v-{{$volet->id}}" type="number" step="1" min="1" class="number" value="{{$volet->qty}}"  readonly /></td><td><input readonly step="0.5" min="5.5" type="number" step="0.5" min="1" class="number bg-transparent" value="5.5"/> %</td><td><input id="totalp-v-{{$volet->id}}" type="number" readonly class="total-prod number" value="{{$volet->pose_ttc}}"/> €</td><td></td>
+										<td class="voletposetd" data-pose="{{$volet->pose}}" data-pose_ttc="{{$volet->pose_ttc}}" data-id="{{$volet->id}}"   ><i>FORFAIT POSE MENUISERIE</i></td><td >{!! \App\Models\Setting::where('Model','Pose')->where('model_id','1')->first()->value !!} €</td><td><input id="qtyp-v-{{$volet->id}}" type="number" step="1" min="1" class="number" value="{{$volet->qty}}"  readonly /></td><td><input readonly step="0.5" min="5.5" type="number" step="0.5" min="1" class="number bg-transparent" value="5.5"/> %</td><td><input id="totalp-v-{{$volet->id}}" type="number" readonly class="total-prod number" value="{{$volet->pose_ttc}}"/> €</td><td></td>
 									</tr>
 								@endforeach
 
@@ -1814,9 +1814,9 @@
 	var largeur= $("#largeur").val();
 	var surface= ( (parseInt(hauteur)*parseInt(largeur) * qte ) / 1000000 ).toFixed(3);
 	var tva=5.5;
-	var pose = parseInt($("#pose").val());
+	var pose = parseFloat($("#pose").val());
 	var pose_ht= pose* qte;
-	var pose_ttc= pose_ht +  tva * pose_ht* 0.01   ;
+	var pose_ttc= Math.ceil(pose_ht +  tva * pose_ht* 0.01)   ;
 
 	$('#tva_remise').val(tva);
 
@@ -1839,7 +1839,7 @@
 
 				item_id=data;
 				var row='<tr class="myproduct product bg-lightgrey tr-prod" id="row-'+item_id+'"><td class="myproducttd"  data-prix="'+prix+'" data-prixht="'+prix_ht+'" data-id="'+item_id+'" data-surface="'+surface+'" ><b>'+product_text+ '<br>'+note+'</b></td><td>'+prix_ht+' €</td><td><input type="number" step="1" min="1" class="number" value="'+qte+'" readonly  onchange="save_article_qty(this,'+item_id+','+prix+');"  id="qty-'+item_id+'" data-qty="'+qte+'" /></td><td><input  step="0.5" min="5.5" type="number" step="1" min="1" class="number bg-transparent" readonly value="5.5"/> %</td><td><input id="total-'+item_id+'" type="number" readonly class="total-prod number" value="'+total+'"/> €</td><td><button id="delete_item"   class="btn-xs btn-info mr-2" onclick="get_article('+item_id+')"><i class="fas fa-pen "  ></i></button><button     class="btn-xs btn-danger" onclick="delete_article('+item_id+')"><i class="fas fa-trash "  ></i></button></td></tr>';
-				var row2='<tr class="myproduct product bg-lightgrey tr-prod" id="rowp-'+item_id+'"><td class="myproducttdpose"  data-pose="'+pose+'" data-pose_ttc="'+pose_ttc+'" data-id="'+item_id+'" ><i>Pose</i></td><td>'+pose+' €</td><td><input type="number" step="1" min="1" class="number" value="'+qte+'"  id="qtyp-'+item_id+'" readonly  /></td><td><input  step="0.5" min="5.5" type="number" step="1" min="1" class="number bg-transparent" readonly value="5.5"/> %</td><td><input id="totalp-'+item_id+'" type="number" readonly class="total-prod number" value="'+pose_ttc+'"/> €</td><td></td></tr>';
+				var row2='<tr class="myproduct product bg-lightgrey tr-prod" id="rowp-'+item_id+'"><td class="myproducttdpose"  data-pose="'+pose+'" data-pose_ttc="'+pose_ttc+'" data-id="'+item_id+'" ><i>FORFAIT POSE MENUISERIE</i></td><td>'+pose+' €</td><td><input type="number" step="1" min="1" class="number" value="'+qte+'"  id="qtyp-'+item_id+'" readonly  /></td><td><input  step="0.5" min="5.5" type="number" step="1" min="1" class="number bg-transparent" readonly value="5.5"/> %</td><td><input id="totalp-'+item_id+'" type="number" readonly class="total-prod number" value="'+pose_ttc+'"/> €</td><td></td></tr>';
 
 				$('#list-prods').append(row);
 				$('#list-prods').append(row2);
@@ -1908,9 +1908,9 @@
 		var cintrage_text='';
 
 		var tva_pose=5.5;
-		var pose = parseInt($("#pose").val());
+		var pose = parseFloat($("#pose").val());
 		var pose_ht= pose* qte;
-		var pose_ttc= pose_ht +  tva_pose * pose_ht* 0.01   ;
+		var pose_ttc= Math.ceil(pose_ht +  tva_pose * pose_ht* 0.01)   ;
 
 		var hauteur= $("#hauteur-edit").val();
 		var largeur= $("#largeur-edit").val();
@@ -1928,7 +1928,7 @@
 			success: function (item_id) {
 
 				var row='<td class="myproducttd"  data-prix="'+prix+'" data-prixht="'+prix_ht+'" data-id="'+item_id+'" data-surface="'+surface+'"  ><b>'+product_text+ '<br>'+note+'</b></td><td>'+prix_ht+' €</td><td><input type="number" step="1" min="1" class="number" value="'+qte+'" readonly onchange="save_article_qty(this,'+item_id+','+prix+');"  id="qty-'+item_id+'"  data-qty="qty-'+qte+'" /></td><td><input  step="0.5" min="5.5" type="number" step="1" min="1" class="number bg-transparent" readonly value="5.5"/> %</td><td><input id="total-'+item_id+'" type="number" readonly class="total-prod number" value="'+total+'"/> €</td><td><button    class="btn-xs btn-info mr-2" onclick="get_article('+item_id+')"><i class="fas fa-pen " data-id="'+item_id+'"></i></button><button id="delete_item"   class="btn-xs btn-danger" onclick="delete_article('+item_id+')"><i class="fas fa-trash "  ></i></td>';
-				var row2='<td class="myproducttdpose"  data-pose="'+pose+'" data-pose_ttc="'+pose_ttc+'" data-id="'+item_id+'" ><i>Pose</i></td><td>'+pose+' €</td><td><input type="number" step="1" min="1" class="number" value="'+qte+'"  id="qtyp-'+item_id+'" readonly /></td><td><input  step="0.5" min="5.5" type="number" step="1" min="1" class="number bg-transparent" readonly value="5.5"/> %</td><td><input id="totalp-'+item_id+'" type="number" readonly class="total-prod number" value="'+pose_ttc+'"/> €</td><td></td>';
+				var row2='<td class="myproducttdpose"  data-pose="'+pose+'" data-pose_ttc="'+pose_ttc+'" data-id="'+item_id+'" ><i>FORFAIT POSE MENUISERIE</i></td><td>'+pose+' €</td><td><input type="number" step="1" min="1" class="number" value="'+qte+'"  id="qtyp-'+item_id+'" readonly /></td><td><input  step="0.5" min="5.5" type="number" step="1" min="1" class="number bg-transparent" readonly value="5.5"/> %</td><td><input id="totalp-'+item_id+'" type="number" readonly class="total-prod number" value="'+pose_ttc+'"/> €</td><td></td>';
 
 				$('#row-'+item_id).html(row);
 				$('#rowp-'+item_id).html(row2);
@@ -1956,9 +1956,9 @@
 	var cintrage = $('#cintrage-d').is(":checked") ? 1 : 0;
 
 	var tva=5.5;
-	var pose = parseInt($("#pose").val());
+	var pose = parseFloat($("#pose").val());
 	var pose_ht= pose* qte;
-	var pose_ttc= pose_ht +  tva * pose_ht* 0.01   ;
+	var pose_ttc= Math.ceil(pose_ht +  tva * pose_ht* 0.01)   ;
 
 	if(groupe==1){
 		groupe_text=' (Extérieur COULEUR, Intérieur BLANC)';
@@ -1980,7 +1980,7 @@
 
 			item_id=data;//here
 			var row='<tr class="myproduct product bg-lightgrey tr-prod" id="row-d-'+item_id+'"><td class="doortd"  data-prix="'+prix+'" data-prixht="'+prix_ht+'" data-id="'+item_id+'"  ><b>'+product_text+ '<br>'+note+'</b></td><td>'+prix_ht+' €</td><td><input type="number" step="1" min="1" class="number" value="'+qte+'" onchange="save_door_qty(this,'+item_id+','+prix+');"  id="qty-d-'+item_id+'"/></td><td><input  step="0.5" min="5.5" type="number" step="1" min="1" class="number bg-transparent" readonly value="5.5"/> %</td><td><input id="total-d-'+item_id+'" type="number" readonly class="total-prod number" value="'+total+'"/> €</td><td><button   class="btn-xs btn-info mr-2" onclick="get_door('+item_id+')"><i class="fas fa-pen "  ></i><button id="delete_item"   class="btn-xs btn-danger" onclick="delete_door('+item_id+')"><i class="fas fa-trash "  ></i></td></tr>';
-			var row2='<tr class="myproduct product bg-lightgrey tr-prod" id="rowp-d-'+item_id+'"><td class="doorposetd"  data-pose="'+pose+'" data-pose_ttc="'+pose_ttc+'" data-id="'+item_id+'" ><i>Pose</i></td><td>'+pose+' €</td><td><input type="number" step="1" min="1" class="number" value="'+qte+'"  id="qtyp-d-'+item_id+'" readonly /></td><td><input  step="0.5" min="5.5" type="number" step="1" min="1" class="number bg-transparent" readonly value="5.5"/> %</td><td><input id="totalp-d-'+item_id+'" type="number" readonly class="total-prod number" value="'+pose_ttc+'"/> €</td><td></td></tr>';
+			var row2='<tr class="myproduct product bg-lightgrey tr-prod" id="rowp-d-'+item_id+'"><td class="doorposetd"  data-pose="'+pose+'" data-pose_ttc="'+pose_ttc+'" data-id="'+item_id+'" ><i>FORFAIT POSE MENUISERIE</i></td><td>'+pose+' €</td><td><input type="number" step="1" min="1" class="number" value="'+qte+'"  id="qtyp-d-'+item_id+'" readonly /></td><td><input  step="0.5" min="5.5" type="number" step="1" min="1" class="number bg-transparent" readonly value="5.5"/> %</td><td><input id="totalp-d-'+item_id+'" type="number" readonly class="total-prod number" value="'+pose_ttc+'"/> €</td><td></td></tr>';
 
 			$('#list-prods').append(row);
 			$('#list-prods').append(row2);
@@ -2047,9 +2047,9 @@
 		var cintrage = $('#cintrage-d-edit').is(":checked") ? 1 : 0;
 
 		var tva_pose=5.5;
-		var pose = parseInt($("#pose").val());
+		var pose = parseFloat($("#pose").val());
 		var pose_ht= pose* qte;
-		var pose_ttc= pose_ht +  tva_pose * pose_ht* 0.01   ;
+		var pose_ttc= Math.ceil(pose_ht +  tva_pose * pose_ht* 0.01)   ;
 
 		if(groupe==1){
 			groupe_text=' (Extérieur COULEUR, Intérieur BLANC)';
@@ -2069,7 +2069,7 @@
 			success: function (item_id) {
 
 				var row='<td class="doortd"  data-prix="'+prix+'" data-prixht="'+prix_ht+'" data-id="'+item_id+'"  ><b>'+product_text+ '<br>'+note+'</b></td><td>'+prix_ht+' €</td><td><input type="number" step="1" min="1" class="number" value="'+qte+'" onchange="save_door_qty(this,'+item_id+','+prix+');"  id="qty-d-'+item_id+'"/></td><td><input  step="0.5" min="5.5" type="number" step="1" min="1" class="number bg-transparent" readonly value="5.5"/> %</td><td><input id="total-d-'+item_id+'" type="number" readonly class="total-prod number" value="'+total+'"/> €</td><td><button   class="btn-xs btn-info mr-2" onclick="get_door('+item_id+')"><i class="fas fa-pen "  ></i><button   class="btn-xs btn-danger" onclick="delete_door('+item_id+')"><i class="fas fa-trash "  ></i></td>';
-				var row2='<td class="doorposetd"  data-pose="'+pose+'" data-pose_ttc="'+pose_ttc+'" data-id="'+item_id+'" ><i>Pose</i></td><td>'+pose+' €</td><td><input type="number" step="1" min="1" class="number" value="'+qte+'"  id="qtyp-d-'+item_id+'" readonly  /></td><td><input  step="0.5" min="5.5" type="number" step="1" min="1" class="number bg-transparent" readonly value="5.5"/> %</td><td><input id="totalp-d-'+item_id+'" type="number" readonly class="total-prod number" value="'+pose_ttc+'"/> €</td><td></td>';
+				var row2='<td class="doorposetd"  data-pose="'+pose+'" data-pose_ttc="'+pose_ttc+'" data-id="'+item_id+'" ><i>FORFAIT POSE MENUISERIE</i></td><td>'+pose+' €</td><td><input type="number" step="1" min="1" class="number" value="'+qte+'"  id="qtyp-d-'+item_id+'" readonly  /></td><td><input  step="0.5" min="5.5" type="number" step="1" min="1" class="number bg-transparent" readonly value="5.5"/> %</td><td><input id="totalp-d-'+item_id+'" type="number" readonly class="total-prod number" value="'+pose_ttc+'"/> €</td><td></td>';
 
 				$('#row-d-'+item_id).html(row);
 				$('#rowp-d-'+item_id).html(row2);
@@ -2097,9 +2097,9 @@
 		var surface= ( (parseInt(hauteur)*parseInt(largeur) * qte ) / 1000000 ).toFixed(3);
 
 		var tva_pose=5.5;
-		var pose = parseInt($("#pose").val());
+		var pose = parseFloat($("#pose").val());
 		var pose_ht= pose* qte;
-		var pose_ttc= pose_ht +  tva_pose * pose_ht* 0.01   ;
+		var pose_ttc= Math.ceil(pose_ht +  tva_pose * pose_ht* 0.01)   ;
 
 		var product_text= $('#type-v option:selected').text()+' '+' - Couleur: '+$('#couleur-v option:selected').text();
 		product_text+= ' - Hauteur: '+hauteur+'mm - Largeur: '+largeur + 'mm - Mètre linéaire : '+surface+ '  m²';
@@ -2114,7 +2114,7 @@
 
 				item_id=data;//here
 				var row='<tr class="myproduct product bg-lightgrey tr-prod" id="row-v-'+item_id+'" ><td class="volettd"  data-prix="'+prix+'" data-prixht="'+prix_ht+'" data-id="'+item_id+'" data-surface="'+surface+'"  ><b>'+product_text+ '</b><br>'+note+'</td><td>'+prix_ht+' €</td><td><input type="number" step="1" min="1" class="number" value="'+qte+'" readonly onchange="save_volet_qty(this,'+item_id+','+prix+');" data-qty='+qte+' id="qty-v-'+item_id+'"/></td><td><input  step="0.5" min="5.5" type="number" step="1" min="1" class="number bg-transparent" readonly value="5.5"/> %</td><td><input id="total-v-'+item_id+'" type="number" readonly class="total-prod number" value="'+total+'"/> €</td><td><button id=""   class="btn-xs btn-info mr-2" onclick="get_volet('+item_id+')"><i class="fas fa-pen "  ></i></button><button id=""   class="btn-xs btn-danger" onclick="delete_volet('+item_id+')"><i class="fas fa-trash "  ></i></button></td></tr>';
-				var row2='<tr class="myproduct product bg-lightgrey tr-prod" id="rowp-v-'+item_id+'"><td class="voletposetd"  data-pose="'+pose+'" data-pose_ttc="'+pose_ttc+'" data-id="'+item_id+'" ><i>Pose</i></td><td>'+pose+' €</td><td><input type="number" step="1" min="1" class="number" value="'+qte+'"  id="qtyp-v-'+item_id+'" readonly /></td><td><input  step="0.5" min="5.5" type="number" step="1" min="1" class="number bg-transparent" readonly value="5.5"/> %</td><td><input id="totalp-v-'+item_id+'" type="number" readonly class="total-prod number" value="'+pose_ttc+'"/> €</td><td></td></tr>';
+				var row2='<tr class="myproduct product bg-lightgrey tr-prod" id="rowp-v-'+item_id+'"><td class="voletposetd"  data-pose="'+pose+'" data-pose_ttc="'+pose_ttc+'" data-id="'+item_id+'" ><i>FORFAIT POSE MENUISERIE</i></td><td>'+pose+' €</td><td><input type="number" step="1" min="1" class="number" value="'+qte+'"  id="qtyp-v-'+item_id+'" readonly /></td><td><input  step="0.5" min="5.5" type="number" step="1" min="1" class="number bg-transparent" readonly value="5.5"/> %</td><td><input id="totalp-v-'+item_id+'" type="number" readonly class="total-prod number" value="'+pose_ttc+'"/> €</td><td></td></tr>';
 
 				$('#list-prods').append(row);
 				$('#list-prods').append(row2);
@@ -2175,9 +2175,9 @@
 		$('#row-v-'+volet+' .volettd').data('surface',surface);
 
 		var tva_pose=5.5;
-		var pose = parseInt($("#pose").val());
+		var pose = parseFloat($("#pose").val());
 		var pose_ht= pose* qte;
-		var pose_ttc= pose_ht +  tva_pose * pose_ht* 0.01   ;
+		var pose_ttc= Math.ceil(pose_ht +  tva_pose * pose_ht* 0.01)   ;
 
 		var product_text= $('#type-v-edit option:selected').text()+' '+' - Couleur: '+$('#couleur-v-edit option:selected').text();
 		product_text+= '- Hauteur: '+hauteur+'mm - Largeur: '+largeur+ 'mm - Mètre linéaire : '+surface+ '  m²';
@@ -2189,7 +2189,7 @@
 			success: function (item_id) {
 
 				var row='<td class="volettd"  data-prix="'+prix+'" data-prixht="'+prix_ht+'" data-id="'+item_id+'" data-surface="'+surface+'"  ><b>'+product_text+ '<br>'+note+'</b></td><td>'+prix_ht+' €</td><td><input type="number" step="1" min="1" class="number" value="'+qte+'" readonly onchange="save_volet_qty(this,'+item_id+','+prix+');" data-qty='+qte+' id="qty-v-'+item_id+'"/></td><td><input  step="0.5" min="5.5" type="number" step="1" min="1" class="number bg-transparent" readonly value="5.5"/> %</td><td><input id="total-v-'+item_id+'" type="number" readonly class="total-prod number" value="'+total+'"/> €</td><td><button id=""   class="btn-xs btn-info mr-2" onclick="get_volet('+item_id+')"><i class="fas fa-pen "  ></i></button><button id=""   class="btn-xs btn-danger" onclick="delete_volet('+item_id+')"><i class="fas fa-trash "  ></i></button></td>';
-				var row2='<td class="voletposetd"  data-pose="'+pose+'" data-pose_ttc="'+pose_ttc+'" data-id="'+item_id+'" ><i>Pose</i></td><td>'+pose+' €</td><td><input type="number" step="1" min="1" class="number" value="'+qte+'"  id="qtyp-v-'+item_id+'"  readonly /></td><td><input  step="0.5" min="5.5" type="number" step="1" min="1" class="number bg-transparent" readonly value="5.5"/> %</td><td><input id="totalp-v-'+item_id+'" type="number" readonly class="total-prod number" value="'+pose_ttc+'"/> €</td><td></td>';
+				var row2='<td class="voletposetd"  data-pose="'+pose+'" data-pose_ttc="'+pose_ttc+'" data-id="'+item_id+'" ><i>FORFAIT POSE MENUISERIE</i></td><td>'+pose+' €</td><td><input type="number" step="1" min="1" class="number" value="'+qte+'"  id="qtyp-v-'+item_id+'"  readonly /></td><td><input  step="0.5" min="5.5" type="number" step="1" min="1" class="number bg-transparent" readonly value="5.5"/> %</td><td><input id="totalp-v-'+item_id+'" type="number" readonly class="total-prod number" value="'+pose_ttc+'"/> €</td><td></td>';
 
 				$('#row-v-'+item_id).html(row);
 				$('#rowp-v-'+item_id).html(row2);
@@ -2619,7 +2619,7 @@
 		$('#row-'+article+' .myproducttd').data('surface',new_surface);
 		$('#total-'+article).val(total);
 		var pose = parseInt($('#pose').val());
-		var pose_ttc = ( pose +  (pose * 5.5 *0.01 ) ) * qty ;
+		var pose_ttc = Math.ceil(( pose +  (pose * 5.5 *0.01 ) ) * qty) ;
 		$('#qtyp-'+article).val(qty);
 		$('#totalp-'+article).val(pose_ttc);
 		$('#rowp-'+article+' .myproducttdpose').data('pose',pose*qty);
@@ -2641,7 +2641,7 @@
 		var total= (qty*price).toFixed(2) ;
 		$('#total-d-'+porte).val(total);
 		var pose = parseInt($('#pose').val());
-		var pose_ttc = ( pose +  (pose * 5.5 *0.01 ) ) * qty ;
+		var pose_ttc = Math.ceil(( pose +  (pose * 5.5 *0.01 ) ) * qty) ;
 		$('#qtyp-d-'+porte).val(qty);
 		$('#totalp-d-'+porte).val(pose_ttc);
 		$('#rowp-d-'+porte+' .doorposetd').data('pose',pose*qty);
@@ -2668,7 +2668,7 @@
 		var total= (qty*price).toFixed(2) ;
 		$('#total-v-'+volet).val(total);
 		var pose = parseInt($('#pose').val());
-		var pose_ttc = ( pose +  (pose * 5.5 *0.01 ) ) * qty ;
+		var pose_ttc = Math.ceil(( pose +  (pose * 5.5 *0.01 ) ) * qty );
 		$('#qtyp-v-'+volet).val(qty);
 		$('#totalp-v-'+volet).val(pose_ttc);
 		$('#rowp-v-'+volet+' .voletposetd').data('pose',pose*qty);

@@ -60,6 +60,7 @@
                     <option value="-7">BTD</option>
                     <option value="1">MENUISERIE</option>
                     <option value="2">VOLET ROULANT</option>
+                    <option value="-9">KIT TETE THERMOSTATIQUE</option>
                     <option value="-8">AUTRES</option>
                 </select>
             </div>
@@ -90,7 +91,7 @@
 
         <div class="col-xs-12 col-sm-12 col-md-4"  id="div-surface" >
 			<div class="form-group">
-            <strong>Surface <span id="chauff">chauffée</span><span style="display:none" id="isol">à isoler</span> (m²):</strong>
+            <strong>Surface <span id="chauff">chauffée</span><span style="display:none" id="isol">à isoler</span><span style="display:none" id="home"> de la maison</span> (m²):</strong>
             <input type="number" class="form-control" required  id="surface"  name="surface"   style="max-width:180px"/>
             </div>
 		</div>
@@ -340,17 +341,24 @@
             $('#div-chauffage').hide('slow');
         }
         // surface
-        if(menuiserie==-1 || menuiserie==-2 || menuiserie==-5 ||  menuiserie==-6   ){
+        if(menuiserie==-1 || menuiserie==-2 || menuiserie==-5 ||  menuiserie==-6 ||  menuiserie==-9   ){
             $('#surface').prop('required',true);
             $('#div-surface').show('slow');
 
-            if(menuiserie==-6){
+            if(menuiserie==-6 ){
                 $('#isol').show('slow');
                 $('#chauff').hide('slow');
             }else{
                 $('#isol').hide('slow');
                 $('#chauff').show('slow');
             }
+
+            if(menuiserie==-9 ){
+                $('#home').show('slow');
+            }else{
+                $('#home').hide('slow');
+            }
+
 
         }else{
             $('#surface').prop('required',false);

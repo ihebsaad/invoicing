@@ -202,7 +202,7 @@
 	   <table style="width:100%;margin-top:5px;margin-bottom:5px">
 		   <tr>
 			   <td style="width:50%;">
-				   @if( $invoice->logement!='')<b>Logement :</b>{{ $invoice->logement }}    @endif  @if($invoice->surface!='')<b>Surface @if($invoice->menuiserie==-7)à isoler @else chauffée @endif  (m²) :</b>   {{ $invoice->surface }}<br>@endif
+				   @if( $invoice->logement!='')<b>Logement :</b>{{ $invoice->logement }}    @endif  @if($invoice->surface!='')<b>Surface @if($invoice->menuiserie==-7)à isoler @elseif($invoice->menuiserie==-9) de la maison @else chauffée @endif (m²):</b>   {{ $invoice->surface }}<br>@endif
 				   <b>Date de visite technique préalable :</b>   {{ $date_facture }}
 			   </td>
 			   <td style="width:50%;">
@@ -580,7 +580,7 @@
 					   </tr>
 					   	@if($article->pose > 0 )
 							<tr class="product"  >
-								<td @if($i!=$count_articles) style="border-bottom: 1px solid #f07f32" @endif ></td><td  @if($i!=$count_articles) style="border-bottom: 1px solid #f07f32" @endif class="text" ><i>Pose</i></td><td @if($i!=$count_articles) style="border-bottom: 1px solid #f07f32" @endif >{{$article->qty}}</td><td @if($i!=$count_articles) style="border-bottom: 1px solid #f07f32" @endif >{!! \App\Models\Setting::where('Model','Pose')->where('model_id','1')->first()->value !!} €</td><td @if($i!=$count_articles) style="border-bottom: 1px solid #f07f32" @endif>{{$article->pose}} €</td><td @if($i!=$count_articles) style="border-bottom: 1px solid #f07f32" @endif >5.5 %</td><td @if($i!=$count_articles) style="border-bottom: 1px solid #f07f32" @endif >{{$article->pose_ttc}} €</td>
+								<td @if($i!=$count_articles) style="border-bottom: 1px solid #f07f32" @endif ></td><td  @if($i!=$count_articles) style="border-bottom: 1px solid #f07f32" @endif class="text" ><i>FORFAIT POSE MENUISERIE</i></td><td @if($i!=$count_articles) style="border-bottom: 1px solid #f07f32" @endif >{{$article->qty}}</td><td @if($i!=$count_articles) style="border-bottom: 1px solid #f07f32" @endif >{!! \App\Models\Setting::where('Model','Pose')->where('model_id','1')->first()->value !!} €</td><td @if($i!=$count_articles) style="border-bottom: 1px solid #f07f32" @endif>{{$article->pose}} €</td><td @if($i!=$count_articles) style="border-bottom: 1px solid #f07f32" @endif >5.5 %</td><td @if($i!=$count_articles) style="border-bottom: 1px solid #f07f32" @endif >{{$article->pose_ttc}} €</td>
 							</tr>
 					   	@endif
 				   @endforeach
@@ -630,7 +630,7 @@
 					   	</tr>
 					   	@if($porte->pose > 0)
 							<tr class="product"  >
-								<td @if($i!=$count_portes) style="border-bottom: 1px solid #f07f32" @endif ></td><td  @if($i!=$count_portes) style="border-bottom: 1px solid #f07f32" @endif class="text" ><i>Pose</i></td><td @if($i!=$count_portes) style="border-bottom: 1px solid #f07f32" @endif >{{$porte->qty}}</td><td @if($i!=$count_portes) style="border-bottom: 1px solid #f07f32" @endif >{!! \App\Models\Setting::where('Model','Pose')->where('model_id','1')->first()->value !!} €</td><td @if($i!=$count_portes) style="border-bottom: 1px solid #f07f32" @endif>{{$porte->pose}} €</td><td @if($i!=$count_portes) style="border-bottom: 1px solid #f07f32" @endif >5.5 %</td><td @if($i!=$count_portes) style="border-bottom: 1px solid #f07f32" @endif >{{$porte->poste_ttc}} €</td>
+								<td @if($i!=$count_portes) style="border-bottom: 1px solid #f07f32" @endif ></td><td  @if($i!=$count_portes) style="border-bottom: 1px solid #f07f32" @endif class="text" ><i>FORFAIT POSE MENUISERIE</i></td><td @if($i!=$count_portes) style="border-bottom: 1px solid #f07f32" @endif >{{$porte->qty}}</td><td @if($i!=$count_portes) style="border-bottom: 1px solid #f07f32" @endif >{!! \App\Models\Setting::where('Model','Pose')->where('model_id','1')->first()->value !!} €</td><td @if($i!=$count_portes) style="border-bottom: 1px solid #f07f32" @endif>{{$porte->pose}} €</td><td @if($i!=$count_portes) style="border-bottom: 1px solid #f07f32" @endif >5.5 %</td><td @if($i!=$count_portes) style="border-bottom: 1px solid #f07f32" @endif >{{$porte->poste_ttc}} €</td>
 							</tr>
 					   	@endif
 				  	@endforeach
@@ -693,7 +693,7 @@
 					   	</tr>
 					   	@if($volet->pose > 0)
 							<tr class="product"  >
-								<td @if($i!=$count_volets) style="border-bottom: 1px solid #f07f32" @endif ></td><td  @if($i!=$count_volets) style="border-bottom: 1px solid #f07f32" @endif class="text" ><i>Pose</i></td><td @if($i!=$count_volets) style="border-bottom: 1px solid #f07f32" @endif >{{$volet->qty}}</td><td @if($i!=$count_volets) style="border-bottom: 1px solid #f07f32" @endif >{!! \App\Models\Setting::where('Model','Pose')->where('model_id','1')->first()->value !!} €</td><td @if($i!=$count_volets) style="border-bottom: 1px solid #f07f32" @endif>{{$volet->pose}} €</td><td @if($i!=$count_volets) style="border-bottom: 1px solid #f07f32" @endif >5.5 %</td><td @if($i!=$count_volets) style="border-bottom: 1px solid #f07f32" @endif >{{$volet->pose_ttc}} €</td>
+								<td @if($i!=$count_volets) style="border-bottom: 1px solid #f07f32" @endif ></td><td  @if($i!=$count_volets) style="border-bottom: 1px solid #f07f32" @endif class="text" ><i>FORFAIT POSE MENUISERIE</i></td><td @if($i!=$count_volets) style="border-bottom: 1px solid #f07f32" @endif >{{$volet->qty}}</td><td @if($i!=$count_volets) style="border-bottom: 1px solid #f07f32" @endif >{!! \App\Models\Setting::where('Model','Pose')->where('model_id','1')->first()->value !!} €</td><td @if($i!=$count_volets) style="border-bottom: 1px solid #f07f32" @endif>{{$volet->pose}} €</td><td @if($i!=$count_volets) style="border-bottom: 1px solid #f07f32" @endif >5.5 %</td><td @if($i!=$count_volets) style="border-bottom: 1px solid #f07f32" @endif >{{$volet->pose_ttc}} €</td>
 							</tr>
 					   	@endif
 				  	@endforeach
@@ -726,7 +726,7 @@
 			   {!!nl2br($invoice->description) !!}
 			   <div class="clearfix"></div>
 			   @if($invoice->surface_produits>0)
-					<b>Mètre linéaire: {!!$invoice->surface_produits!!} m²</b><br>
+					<b>TOTAL METRE LINEAIRE: {!!$invoice->surface_produits!!} m²</b><br>
 				@endif
 			   @if($invoice->chaudiere!='' && $invoice->chaudiere!='Autre')
 				   Dépose de la chaudière individuelle: <b> Chaudière à {{$invoice->chaudiere}}</b><br>
