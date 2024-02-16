@@ -294,7 +294,7 @@ class QuotesController extends Controller
         $items = Item::where('quote',$id)->get();
         $articles = Article::where('quote',$id)->get();
         $portes = Porte::where('quote',$id)->get();
-        $volets = Porte::where('quote',$id)->get();
+        $volets = Volet::where('quote',$id)->get();
         $count=count($items);
 
         if($invoice->menuiserie>0)

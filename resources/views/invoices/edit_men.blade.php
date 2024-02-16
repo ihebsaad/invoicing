@@ -17,7 +17,6 @@
 		.kbw-signature {
 			display: inline-block;
 			border: 1px solid #a0a0a0;
-			-ms-touch-action: none;
 			 width: 100%; height: 200px;
 		}
 		.kbw-signature-disabled {
@@ -264,7 +263,7 @@
 									@endphp
 									@if(isset($modele))
 										<tr class="myproduct product bg-lightgrey tr-prod" id="row-{{$article->id}}">
-											<td class="myproducttd" data-prix="{{$article->price}}" data-prixht="{{$article->price_ht}}" data-id="{{$article->id}}"  ><b>{{$article->text}}<br>{{$article->note}}</b></td><td >{{$article->price_ht}} €</td><td><input id="qty-{{$article->id}}" type="number" step="1" min="1" class="number" value="{{$article->qty}}"  onchange="save_article_qty(this,{{$article->id}},{{$article->price}});calcul();"/></td><td><input readonly step="0.5" min="5.5" type="number" step="0.5" min="1" class="number bg-transparent" value="5.5"/> %</td><td><input id="total-{{$article->id}}" type="number" readonly class="total-prod number" value="{{$total_prod}}"/> €</td><td><button id="delete_item"   class="btn-sm btn-danger" onclick="delete_article({{$article->id}})"><i class="fas fa-minus " data-id="{{$article->id}}"></i></td>
+											<td class="myproducttd" data-prix="{{$article->price}}" data-prixht="{{$article->price_ht}}" data-id="{{$article->id}}"  ><b>{{$article->text}}<br>{{$article->note}}</b></td><td >{{$article->price_ht}} €</td><td><input id="qty-{{$article->id}}" type="number" step="1" min="1" class="number" value="{{$article->qty}}"  onchange="save_article_qty(this,'{{$article->id}}','{{$article->price}}');calcul();"/></td><td><input readonly step="0.5" min="5.5" type="number" step="0.5" min="1" class="number bg-transparent" value="5.5"/> %</td><td><input id="total-{{$article->id}}" type="number" readonly class="total-prod number" value="{{$total_prod}}"/> €</td><td><button id="delete_item"   class="btn-sm btn-danger" onclick="delete_article('{{$article->id}}')"><i class="fas fa-minus " data-id="{{$article->id}}"></i></td>
 										</tr>
 									@endif
 								@endforeach
@@ -275,7 +274,7 @@
 										$c++;
 									@endphp
 									<tr class="myproduct product bg-lightgrey tr-prod" id="row-d-{{$porte->id}}">
-										<td class="doortd" data-prix="{{$porte->price}}" data-prixht="{{$porte->price_ht}}" data-id="{{$porte->id}}"  ><b>{{$porte->text}}<br>{{$porte->note}}</b></td><td >{{$porte->price_ht}} €</td><td><input id="qty-d-{{$porte->id}}" type="number" step="1" min="1" class="number" value="{{$porte->qty}}"  onchange="save_door_qty(this,{{$porte->id}},{{$porte->price}});calcul();"/></td><td><input readonly step="0.5" min="5.5" type="number" step="0.5" min="1" class="number bg-transparent" value="5.5"/> %</td><td><input id="total-d-{{$porte->id}}" type="number" readonly class="total-prod number" value="{{$porte->total_ttc}}"/> €</td><td><button    class="btn-sm btn-danger" onclick="delete_door({{$porte->id}})"><i class="fas fa-minus " data-id="{{$porte->id}}"></i></td>
+										<td class="doortd" data-prix="{{$porte->price}}" data-prixht="{{$porte->price_ht}}" data-id="{{$porte->id}}"  ><b>{{$porte->text}}<br>{{$porte->note}}</b></td><td >{{$porte->price_ht}} €</td><td><input id="qty-d-{{$porte->id}}" type="number" step="1" min="1" class="number" value="{{$porte->qty}}"  onchange="save_door_qty(this,'{{$porte->id}}','{{$porte->price}}');calcul();"/></td><td><input readonly step="0.5" min="5.5" type="number" step="0.5" min="1" class="number bg-transparent" value="5.5"/> %</td><td><input id="total-d-{{$porte->id}}" type="number" readonly class="total-prod number" value="{{$porte->total_ttc}}"/> €</td><td><button    class="btn-sm btn-danger" onclick="delete_door('{{$porte->id}}')"><i class="fas fa-minus " data-id="{{$porte->id}}"></i></td>
 									</tr>
 								@endforeach
 
@@ -285,13 +284,13 @@
 										$c++;
 									@endphp
 									<tr class="myproduct product bg-lightgrey tr-prod" id="row-v-{{$volet->id}}">
-										<td class="volettd" data-prix="{{$volet->price}}" data-prixht="{{$volet->price_ht}}" data-id="{{$volet->id}}"  ><b>{{$volet->text}}<br>{{$volet->note}}</b></td><td >{{$volet->price_ht}} €</td><td><input id="qty-v-{{$volet->id}}" type="number" step="1" min="1" class="number" value="{{$volet->qty}}"  onchange="save_volet_qty(this,{{$volet->id}},{{$volet->price}});calcul();"/></td><td><input readonly step="0.5" min="5.5" type="number" step="0.5" min="1" class="number bg-transparent" value="5.5"/> %</td><td><input id="total-v-{{$volet->id}}" type="number" readonly class="total-prod number" value="{{$volet->total_ttc}}"/> €</td><td><button    class="btn-sm btn-danger" onclick="delete_volet({{$volet->id}})"><i class="fas fa-minus " data-id="{{$volet->id}}"></i></td>
+										<td class="volettd" data-prix="{{$volet->price}}" data-prixht="{{$volet->price_ht}}" data-id="{{$volet->id}}"  ><b>{{$volet->text}}<br>{{$volet->note}}</b></td><td >{{$volet->price_ht}} €</td><td><input id="qty-v-{{$volet->id}}" type="number" step="1" min="1" class="number" value="{{$volet->qty}}"  onchange="save_volet_qty(this,'{{$volet->id}}','{{$volet->price}}');calcul();"/></td><td><input readonly step="0.5" min="5.5" type="number" step="0.5" min="1" class="number bg-transparent" value="5.5"/> %</td><td><input id="total-v-{{$volet->id}}" type="number" readonly class="total-prod number" value="{{$volet->total_ttc}}"/> €</td><td><button    class="btn-sm btn-danger" onclick="delete_volet('{{$volet->id}}')"><i class="fas fa-minus " data-id="{{$volet->id}}"></i></td>
 									</tr>
 								@endforeach
 
 								@foreach($items as $item)
 									<tr class="myproduct product bg-lightgrey tr-prod" id="row-i-{{$item->id}}">
-										<td id="item-{{$item->id}}" class="itemtd" data-prix="{{$item->price_ttc}}" data-prixht="{{$item->price_ht}}" data-id="{{$item->id}}"  >{!! nl2br($item->description) !!}</td><td >{{$item->price_ht}} €</td><td><input id="qty-i-{{$item->id}}" type="number" step="1" min="1" class="number" value="{{$item->qty}}"  onchange="save_item_qty(this,{{$item->id}},{{$item->price_ht}},{{$item->price_ttc}});calcul();"/></td><td><input readonly step="0.5" min="5.5" type="number" step="0.5" min="1" class="number bg-transparent" value="{{$item->tva}}"/> %</td><td><input id="total-i-{{$item->id}}" type="number" readonly class="total-prod number" value="{{ ($item->price_ttc * $item->qty) }}"/> €</td><td><button id="delete_item"   class="btn-sm btn-danger" onclick="delete_item({{$item->id}})"><i class="fas fa-minus " data-id="{{$item->id}}"></i></td>
+										<td id="item-{{$item->id}}" class="itemtd" data-prix="{{$item->price_ttc}}" data-prixht="{{$item->price_ht}}" data-id="{{$item->id}}"  >{!! nl2br($item->description) !!}</td><td >{{$item->price_ht}} €</td><td><input id="qty-i-{{$item->id}}" type="number" step="1" min="1" class="number" value="{{$item->qty}}"  onchange="save_item_qty(this,'{{$item->id}}','{{$item->price_ht}}','{{$item->price_ttc}}');calcul();"/></td><td><input readonly step="0.5" min="5.5" type="number" step="0.5" min="1" class="number bg-transparent" value="{{$item->tva}}"/> %</td><td><input id="total-i-{{$item->id}}" type="number" readonly class="total-prod number" value="{{ ($item->price_ttc * $item->qty) }}"/> €</td><td><button id="delete_item"   class="btn-sm btn-danger" onclick="delete_item('{{$item->id}}')"><i class="fas fa-minus " data-id="{{$item->id}}"></i></td>
 									</tr>
 								@endforeach
 							</tbody>
@@ -325,7 +324,7 @@
 												<input type="number" class="form-control" style="max-width:100px" min="0" value="{{$invoice->aide_renov ?? 0}}" id="aide_renov" onchange="$('#aide2').val(parseFloat($(this).val())+parseFloat($('#aide_cee').val()));calcul();"/>
 											</div>
 										</td>
-										<td style="">€</td>
+										<td>€</td>
 									</tr>
 									<tr>
 										<td >
@@ -338,7 +337,7 @@
 												<input type="number" class="form-control" style="max-width:100px" min="0" value="{{$invoice->aide_cee ?? 0}}" id="aide_cee" onchange="$('#aide2').val(parseFloat($(this).val())+parseFloat($('#aide_renov').val()));calcul();"/>
 											</div>
 										</td>
-										<td style="">€</td>
+										<td>€</td>
 									</tr>
 								</table>
 								<table style="max-width:360px;height:100px;float:left;margin-left:60px" class="table-aide" >
@@ -757,7 +756,7 @@
 					</div>
 					<div class="col-xs-12 col-sm-4 col-md-4">
 						<div class="form-group">
-							<strong>TVA <small style="">%</small>:</strong>
+							<strong>TVA <small>%</small>:</strong>
 							<input readonly id="tva-d" type="number" name="prix" rerquired class="form-control" step ="0.01" min="0"  value="5.5"  >
 						</div>
 					</div>
@@ -910,7 +909,7 @@
 
 					<div class="col-xs-12 col-sm-4 col-md-4">
 						<div class="form-group">
-							<strong>TVA <small style="">%</small>:</strong>
+							<strong>TVA <small>%</small>:</strong>
 							<input readonly id="tva-v" type="number" name="prix" rerquired class="form-control" step ="0.01" min="0"  value="5.5"  >
 						</div>
 					</div>
@@ -969,7 +968,7 @@
 					</div>
 					<div class="col-xs-12 col-sm-4 col-md-6">
 						<div class="form-group">
-							<strong>TVA <small style="">%</small>:</strong>
+							<strong>TVA <small>%</small>:</strong>
 							<input   id="tva-i" type="number" name="prix" rerquired class="form-control" step ="0.01" min="0"  value="5.5" onchange="pricing_item()" >
 						</div>
 					</div>

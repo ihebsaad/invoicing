@@ -28,6 +28,7 @@ class Article extends Model
         'quote',
         'invoice',
         'cintrage',
+        'type_modele',
         'couleur'
     ];
 

@@ -25,6 +25,7 @@
    <style>
 	   @font-face {
 		   font-family: 'Nunito';
+		   src:url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap");
 	   }/*
 	   .vtop{
 			vertical-align:top;
@@ -169,7 +170,7 @@
 
    <table style="margin-top:-25px">
 	   <tr>
-		   <td><img src="{!! public_path('img/logo.png')!!}"  width="170" style="margin-right:50px"></img></td><td style=" "><img src="{!! public_path('img/edf.jpg')!!}"  width="120" style="margin-right:40px;margin-top:30px" ></img><img src="{!! public_path('img/bat.png')!!}"  width="60" style="margin-right:50px" ></img></td><td><img src="{!! public_path('img/sol.png')!!}"  width="80" style=""></img><br><img src="{!! public_path('img/pv.png')!!}"  width="80" style=""></img></td><td><img src="{!! public_path('img/pac.png')!!}"  width="80"  ></img><br><img src="{!! public_path('img/bois.png')!!}"  width="80"></img></td>
+		   <td><img src="{!! public_path('img/logo.png')!!}"  width="170" style="margin-right:50px"></img></td><td ><img src="{!! public_path('img/edf.jpg')!!}"  width="120" style="margin-right:40px;margin-top:30px" ></img><img src="{!! public_path('img/bat.png')!!}"  width="60" style="margin-right:50px" ></img></td><td><img src="{!! public_path('img/sol.png')!!}"  width="80" ></img><br><img src="{!! public_path('img/pv.png')!!}"  width="80" ></img></td><td><img src="{!! public_path('img/pac.png')!!}"  width="80"  ></img><br><img src="{!! public_path('img/bois.png')!!}"  width="80"></img></td>
 	   </tr>
    </table>
    <div class="container">
@@ -275,7 +276,9 @@
 				   	@foreach($articles as $article)
 					   @php
 					   		$i++; $desc='';
-						   $modele=\App\Models\Modele::find($article->modele);
+							if($article->modele>0)
+						   		$modele=\App\Models\Modele::find($article->modele);
+
 						   $total_prod_ht=floatval($article->price_ht) * intval($article->qty);
 						   $total_prod_ttc=$article->total_ttc;
 						   $couleur=$article->couleur;
@@ -291,14 +294,18 @@
 						   if($article->cintrage)
 						   		$cintrage='_2';
 
-						   $img='img/trans.png';
+						   $img='img/m10_1.jpg';
 						   if (isset($modele)) {
+								$typep=$modele->type;
+						   }else{
+								$typep=$article->type_modele;
+						   }
 
-							$img='img/m'.$modele->type.$cintrage.'.jpg';
-							switch ($modele->type) {
+							$img='img/m'.$typep.$cintrage.'.jpg';
+							switch ($typep) {
 								case 1:
 									$desc='
-									-	POSE EN RENOVATION DE MENUISERIES PVC DE LA MARQUE OKNOPLAST – MODELE CHARME MINI – FINITION PURE
+									-	POSE DE MENUISERIES PVC DE LA MARQUE OKNOPLAST – MODELE CHARME MINI – FINITION PURE
 									-	INSTALLATION DE MATERIAUX D’ISOLATION THERMIQUE DES PAROIS VITREES VERTICALES
 									-	INSTALLATION DE FENETRE A SOUFFLET EN DOUBLE VITRAGE VENANT EN REMPLACEMENT DE MENUISERIES SIMPLE VITRAGE
 									-	Système breveté équipé de renforts en acier sur l’ensemble du dormant et des ouvrants
@@ -326,7 +333,7 @@
 									break;
 								case 2:
 									$desc='
-									-	POSE EN RENOVATION DE MENUISERIES PVC DE LA MARQUE OKNOPLAST – MODELE CHARME MINI – FINITION PURE
+									-	POSE DE MENUISERIES PVC DE LA MARQUE OKNOPLAST – MODELE CHARME MINI – FINITION PURE
 									-	INSTALLATION DE MATERIAUX D’ISOLATION THERMIQUE DES PAROIS VITREES VERTICALES
 									-	INSTALLATION DE FENETRE 1 VANTAIL EN DOUBLE VITRAGE VENANT EN REMPLACEMENT DE MENUISERIES SIMPLE VITRAGE
 									-	Système breveté équipé de renforts en acier sur l’ensemble du dormant et des ouvrants
@@ -355,7 +362,7 @@
 									break;
 								case 3:
 									$desc='
-									-	POSE EN RENOVATION DE MENUISERIES PVC DE LA MARQUE OKNOPLAST – MODELE CHARME MINI – FINITION PURE
+									-	POSE DE MENUISERIES PVC DE LA MARQUE OKNOPLAST – MODELE CHARME MINI – FINITION PURE
 									-	INSTALLATION DE MATERIAUX D’ISOLATION THERMIQUE DES PAROIS VITREES VERTICALES
 									-	INSTALLATION DE FENETRE 2 VANTAUX EN DOUBLE VITRAGE VENANT EN REMPLACEMENT DE MENUISERIES SIMPLE VITRAGE
 									-	Système breveté équipé de renforts en acier sur l’ensemble du dormant et des ouvrants
@@ -384,7 +391,7 @@
 									break;
 								case 4:
 									$desc='
-									-	POSE EN RENOVATION DE MENUISERIES PVC DE LA MARQUE OKNOPLAST – MODELE CHARME MINI – FINITION PURE
+									-	POSE DE MENUISERIES PVC DE LA MARQUE OKNOPLAST – MODELE CHARME MINI – FINITION PURE
 									-	INSTALLATION DE MATERIAUX D’ISOLATION THERMIQUE DES PAROIS VITREES VERTICALES
 									-	INSTALLATION DE FENETRE 2 VANTAUX EN DOUBLE VITRAGE VENANT EN REMPLACEMENT DE MENUISERIES SIMPLE VITRAGE
 									-	Système breveté équipé de renforts en acier sur l’ensemble du dormant et des ouvrants
@@ -414,7 +421,7 @@
 									// fenetre fixe
 								case 5:
 									$desc='
-									-	POSE EN RENOVATION DE MENUISERIES PVC DE LA MARQUE OKNOPLAST – MODELE CHARME MINI – FINITION PURE
+									-	POSE DE MENUISERIES PVC DE LA MARQUE OKNOPLAST – MODELE CHARME MINI – FINITION PURE
 									-	INSTALLATION DE MATERIAUX D’ISOLATION THERMIQUE DES PAROIS VITREES VERTICALES
 									-	INSTALLATION DE FENETRE FIXE EN DOUBLE VITRAGE VENANT EN REMPLACEMENT DE MENUISERIES SIMPLE VITRAGE
 									-	Système breveté équipé de renforts en acier sur l’ensemble du dormant et des ouvrants
@@ -437,7 +444,7 @@
 									break;
 								case 6:
 									$desc='
-									-	POSE EN RENOVATION DE MENUISERIES PVC DE LA MARQUE OKNOPLAST – MODELE CHARME MINI – FINITION PURE
+									-	POSE DE MENUISERIES PVC DE LA MARQUE OKNOPLAST – MODELE CHARME MINI – FINITION PURE
 									-	INSTALLATION DE MATERIAUX D’ISOLATION THERMIQUE DES PAROIS VITREES VERTICALES
 									-	INSTALLATION DE PORTES-FENETRES EN DOUBLE VITRAGE VENANT EN REMPLACEMENT DE MENUISERIES SIMPLE VITRAGE
 									-	Système breveté équipé de renforts en acier sur l’ensemble du dormant et des ouvrants
@@ -465,7 +472,7 @@
 									break;
 								case 7:
 									$desc='
-									-	POSE EN RENOVATION DE MENUISERIES PVC DE LA MARQUE OKNOPLAST – MODELE CHARME MINI – FINITION PURE
+									-	POSE DE MENUISERIES PVC DE LA MARQUE OKNOPLAST – MODELE CHARME MINI – FINITION PURE
 									-	INSTALLATION DE MATERIAUX D’ISOLATION THERMIQUE DES PAROIS VITREES VERTICALES
 									-	INSTALLATION DE PORTES-FENETRES EN DOUBLE VITRAGE VENANT EN REMPLACEMENT DE MENUISERIES SIMPLE VITRAGE
 									-	Système breveté équipé de renforts en acier sur l’ensemble du dormant et des ouvrants
@@ -493,7 +500,7 @@
 									break;
 									case 8:
 									$desc='
-									-	POSE EN RENOVATION DE MENUISERIES ALUMINIUM DE LA MARQUE OKNOPLAST - GAMME ALUHAUS
+									-	POSE DE MENUISERIES ALUMINIUM DE LA MARQUE OKNOPLAST - GAMME ALUHAUS
 									-	INSTALLATION DE MATERIAUX D’ISOLATION THERMIQUE DES PAROIS VITREES VERTICALES
 									-	INSTALLATION DE COULISSANT EN DOUBLE VITRAGE VENANT EN REMPLACEMENT DE MENUISERIES SIMPLE VITRAGE
 									-	Ouvrant 44mm
@@ -519,7 +526,7 @@
 									break;
 									case 9:
 									$desc='
-									-	POSE EN RENOVATION DE MENUISERIES ALUMINIUM DE LA MARQUE OKNOPLAST - GAMME ALUHAUS
+									-	POSE DE MENUISERIES ALUMINIUM DE LA MARQUE OKNOPLAST - GAMME ALUHAUS
 									-	INSTALLATION DE MATERIAUX D’ISOLATION THERMIQUE DES PAROIS VITREES VERTICALES
 									-	INSTALLATION DE COULISSANT EN DOUBLE VITRAGE VENANT EN REMPLACEMENT DE MENUISERIES SIMPLE VITRAGE
 									-	Ouvrant 44mm
@@ -545,7 +552,7 @@
 									break;
 									case 10:
 									$desc='
-									-	POSE EN RENOVATION DE MENUISERIES ALUMINIUM DE LA MARQUE OKNOPLAST - GAMME ALUHAUS
+									-	POSE DE MENUISERIES ALUMINIUM DE LA MARQUE OKNOPLAST - GAMME ALUHAUS
 									-	INSTALLATION DE MATERIAUX D’ISOLATION THERMIQUE DES PAROIS VITREES VERTICALES
 									-	INSTALLATION DE COULISSANT EN DOUBLE VITRAGE VENANT EN REMPLACEMENT DE MENUISERIES SIMPLE VITRAGE
 									-	Ouvrant 44mm
@@ -572,8 +579,8 @@
 
 									// Porte
 
-								}
 							}
+
 					   @endphp
 					   <tr class="product"  >
 						   <td @if($i!=$count_articles) style="border-bottom: 1px solid #f07f32" @endif ><img src="{!! public_path($img)!!}"   style="max-width:120px;max-height:90px;" /></td><td  @if($i!=$count_articles) style="border-bottom: 1px solid #f07f32" @endif class="text" ><b>{{$article->text}} @if($article->note!='')<br>{{$article->note}} @endif </b><br>{!!nl2br($desc)!!}</td><td @if($i!=$count_articles) style="border-bottom: 1px solid #f07f32" @endif >{{$article->qty}}</td><td @if($i!=$count_articles) style="border-bottom: 1px solid #f07f32" @endif >{{$article->price_ht}} €</td><td @if($i!=$count_articles) style="border-bottom: 1px solid #f07f32" @endif>{{$total_prod_ht}} €</td><td @if($i!=$count_articles) style="border-bottom: 1px solid #f07f32" @endif >5.5 %</td><td @if($i!=$count_articles) style="border-bottom: 1px solid #f07f32" @endif >{{$total_prod_ttc}} €</td>
@@ -643,49 +650,58 @@
 				   	@foreach($volets as $volet)
 					   	@php
 					   		$i++;
-						   	$shutter=\App\Models\Shutter::find($volet->shutter);
+							if($volet->shutter>0){
+						   		$typep=\App\Models\Shutter::find($volet->shutter)->type;
+							}
+							else{
+								$typep=$volet->type_modele;
+							}
+
 						   	$total_prod_ht=floatval($volet->price_ht) * intval($volet->qty);
 						   	$total_prod_ttc=$volet->total_ttc;
 						   	$couleur=$volet->couleur;
-							if($shutter->type==1){
-								$desc='
-								VOLET ROULANT SOMFI
-								<b>FOURNITURE ET POSE EN RENOVATION DE VOLET ROULANT SOLAIRE</b>
-								DE LA MARQUE FUTUROL
-								CAISSON A PAN COUPE
-								RENOVATION LAMES ALUMINIUM ISOLEE 43 MM
-								COULISSE 53x22
-								MOTEUR SOLAIRE SOMFI
-								EMETTEURS MURAL 1 CANAL
-								GARANTIE 7 ANS PIECE, MAIN D’ŒUVRE ET DEPLACEMENT)
-								COULEUR : '.$couleur.'<br>'.$volet->text;
-								;
-							}
-							if($shutter->type==2){
-								$desc='
-								VOLET ROULANT FUTURCOM
-								<b>FOURNITURE ET POSE EN RENOVATION DE VOLET ROULANT SOLAIRE DE LA MARQUE FUTUROL</b>
-								CAISSON A PAN COUPE
-								RENOVATION LAMES ALUMINIUM ISOLEE 43 MM
-								COULISSE 53x22
-								MOTEUR SOLAIRE FUTURCOM
-								EMETTEURS MURAL 1 CANAL
-								GARANTIE 7 ANS PIECE (HORS FRAIS DE DEPLACEMENT ET MAIN D’ŒUVRE)
-								COULEUR : '.$couleur.'<br>'.$volet->text;
-							}
-							if($shutter->type==3){
-								$desc='
-								VOLET ROULANT FUTURCOM AVEC MOUSTIQUAIRE MOTORISEE INTEGREE
-								<b>FOURNITURE ET POSE EN RENOVATION DE VOLET ROULANT SOLAIRE DE LA MARQUE FUTUROL</b>
-								CAISSON A PAN COUPE
-								RENOVATION LAMES ALUMINIUM ISOLEE 43 MM
-								COULISSE 53x22
-								MOTEUR SOLAIRE FUTURCOM
-								EMETTEURS MURAL 1 CANAL
-								GARANTIE 7 ANS PIECE (HORS FRAIS DE DEPLACEMENT ET MAIN D’ŒUVRE)
-								COULEUR : '.$couleur.'<br>'.$volet->text;
-							}
-						   	$img='img/volet.png';
+							$desc='';
+							$img='img/m10_1.jpg';
+
+								if( $typep==1){
+									$desc='
+									VOLET ROULANT SOMFI
+									<b>FOURNITURE ET POSE DE VOLET ROULANT SOLAIRE</b>
+									DE LA MARQUE FUTUROL
+									CAISSON A PAN COUPE
+									RENOVATION LAMES ALUMINIUM ISOLEE 43 MM
+									COULISSE 53x22
+									MOTEUR SOLAIRE SOMFI
+									EMETTEURS MURAL 1 CANAL
+									GARANTIE 7 ANS PIECE, MAIN D’ŒUVRE ET DEPLACEMENT)
+									COULEUR : '.$couleur.'<br>'.$volet->text;
+									;
+								}
+								if($typep==2){
+									$desc='
+									VOLET ROULANT FUTURCOM
+									<b>FOURNITURE ET POSE DE VOLET ROULANT SOLAIRE DE LA MARQUE FUTUROL</b>
+									CAISSON A PAN COUPE
+									RENOVATION LAMES ALUMINIUM ISOLEE 43 MM
+									COULISSE 53x22
+									MOTEUR SOLAIRE FUTURCOM
+									EMETTEURS MURAL 1 CANAL
+									GARANTIE 7 ANS PIECE (HORS FRAIS DE DEPLACEMENT ET MAIN D’ŒUVRE)
+									COULEUR : '.$couleur.'<br>'.$volet->text;
+								}
+								if($typep==3){
+									$desc='
+									VOLET ROULANT FUTURCOM AVEC MOUSTIQUAIRE MOTORISEE INTEGREE
+									<b>FOURNITURE ET POSE DE VOLET ROULANT SOLAIRE DE LA MARQUE FUTUROL</b>
+									CAISSON A PAN COUPE
+									RENOVATION LAMES ALUMINIUM ISOLEE 43 MM
+									COULISSE 53x22
+									MOTEUR SOLAIRE FUTURCOM
+									EMETTEURS MURAL 1 CANAL
+									GARANTIE 7 ANS PIECE (HORS FRAIS DE DEPLACEMENT ET MAIN D’ŒUVRE)
+									COULEUR : '.$couleur.'<br>'.$volet->text;
+								}
+								$img='img/volet.png';
 
 					   	@endphp
 					   	<tr class="product"  >
@@ -742,10 +758,10 @@
 			   <tr><td colspan="2">Total TTC</td><td class="text-right">{{number_format($invoice->total_ttc,2,',',' ')}} €</td></tr>
 			   @if($invoice->aide>0)
 			   		@if($invoice->aide_cee>0)
-			   			<tr style="color:#f07f32"><td colspan="2" style=";font-size:9px;max-width:90px;">- Prime CEE EDF<br><small>  Siren EDF 552 081 317</small></td><td class="text-right">- {{number_format($invoice->aide_cee,2,',',' ')}} €</td></tr>
+			   			<tr style="color:#f07f32"><td colspan="2" style="font-size:9px;max-width:90px;">- Prime CEE EDF<br><small>  Siren EDF 552 081 317</small></td><td class="text-right">- {{number_format($invoice->aide_cee,2,',',' ')}} €</td></tr>
 					@endif
 			   		@if($invoice->aide_renov>0)
-						<tr style="color:#f07f32"><td colspan="2" style=";font-size:9px;max-width:90px;">- Montant Estimatif<br>Prime Renov</td><td class="text-right">- {{number_format($invoice->aide_renov,2,',',' ')}} €</td></tr>
+						<tr style="color:#f07f32"><td colspan="2" style="font-size:9px;max-width:90px;">- Montant Estimatif<br>Prime Renov</td><td class="text-right">- {{number_format($invoice->aide_renov,2,',',' ')}} €</td></tr>
 			   		@endif
 			   @endif
 

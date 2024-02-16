@@ -31,6 +31,7 @@ class CreateArticlesTable extends Migration
             $table->tinyInteger('groupe')->nullable();
             $table->tinyInteger('cintrage')->nullable();
             $table->integer('couleur')->nullable();
+            $table->integer('type_modele')->nullable();
 
             $table->unsignedBigInteger('modele')->nullable();
     //        $table->foreign('modele')->references('id')->on('modeles')->onDelete('cascade');

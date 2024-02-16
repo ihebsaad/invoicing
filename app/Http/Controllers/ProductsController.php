@@ -237,6 +237,7 @@ class ProductsController extends Controller
     public function edit_item_men(Request $request)
     {
         $item=Item::find($request->get('item'));
+
         $item->qty=$request->get('qte');
         $item->tva=$request->get('tva');
         $item->price_ttc=$request->get('prix');

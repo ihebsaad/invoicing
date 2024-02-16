@@ -29,6 +29,7 @@ class CreateVoletsTable extends Migration
             $table->string('note')->nullable();
             $table->double('total_ttc', 8, 2)->nullable();
             $table->string('couleur')->nullable();
+            $table->integer('type_modele')->nullable();
 
             $table->unsignedBigInteger('shutter')->nullable();
             //$table->foreign('shutter')->references('id')->on('shutters')->onDelete('cascade');

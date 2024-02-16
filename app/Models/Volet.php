@@ -25,6 +25,7 @@ class Volet extends Model
         'tva_pose',
         'pose_ttc',
         'surface',
+        'type_modele',
         'quote',
         'invoice',
     ];

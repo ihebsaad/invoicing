@@ -163,6 +163,7 @@ class ModelesController extends Controller
         $pose=$request->get('pose');
         $tva_pose=$request->get('tva_pose');
         $pose_ttc=$request->get('pose_ttc');
+        $type=$request->get('type');
 
         if( $quote>0   ){
             $article=Article::create([
@@ -182,6 +183,7 @@ class ModelesController extends Controller
                 'cintrage'=>$cintrage,
                 'surface'=>$surface,
                 'couleur'=>$couleur,
+                'type_modele'=>$type,
                 'quote'=>$quote,
             ]);
             return $article->id;
@@ -230,6 +232,7 @@ class ModelesController extends Controller
         $pose=$request->get('pose');
         $tva_pose=$request->get('tva_pose');
         $pose_ttc=$request->get('pose_ttc');
+        $type=$request->get('type');
 
         $article=Article::find($article_id);
         $article->modele=$modele;
@@ -248,6 +251,7 @@ class ModelesController extends Controller
         $article->pose=$pose;
         $article->tva_pose=$tva_pose;
         $article->pose_ttc=$pose_ttc;
+        $article->type_modele=$type;
         $article->save();
         return $article_id;
     }
@@ -255,8 +259,11 @@ class ModelesController extends Controller
     public function get_article(Request $request)
     {
         $article=Article::find($request->get('article'));
+        if($article->modele>0)
+            $modele=Modele::find($article->modele);
+        else
+            $modele=Modele::find($article->type_modele);
 
-        $modele=Modele::find($article->modele);
         $data=array();
         $data['modele']=$article->modele;
         $data['prix']=$article->price;
@@ -271,7 +278,7 @@ class ModelesController extends Controller
         $data['hauteur']=$article->hauteur;
         $data['largeur']=$article->largeur;
         $data['genre']=$modele->genre;
-        $data['type']=$modele->type;
+        $data['type']=$article->type_modele;
         $data['surface']=$modele->surface;
 
        return $data;
@@ -473,6 +480,7 @@ class ModelesController extends Controller
         $pose=$request->get('pose');
         $tva_pose=$request->get('tva_pose');
         $pose_ttc=$request->get('pose_ttc');
+        $type=$request->get('type');
 
         if( $quote>0   ){
             $volet=Volet::create([
@@ -490,6 +498,7 @@ class ModelesController extends Controller
                 'hauteur'=>$hauteur,
                 'largeur'=>$largeur,
                 'couleur'=>$couleur,
+                'type_modele'=>$type,
                 'quote'=>$quote,
             ]);
             return $volet->id;
@@ -511,6 +520,7 @@ class ModelesController extends Controller
                 'largeur'=>$largeur,
                 'surface'=>$surface,
                 'couleur'=>$couleur,
+                'type_modele'=>$type,
                 'invoice'=>$invoice,
             ]);
             return $volet->id;
@@ -521,7 +531,11 @@ class ModelesController extends Controller
     {
 
         $volet=Volet::find($request->get('item'));
-        $shutter=Shutter::find($volet->shutter);
+        if($volet->shutter>0)
+            $shutter=Shutter::find($volet->shutter);
+        else
+            $shutter=Shutter::find($volet->type_modele);
+
         $data=array();
         $data['qty']=$volet->qty;
         $data['prix']=$volet->price;
@@ -530,11 +544,11 @@ class ModelesController extends Controller
         $data['note']=$volet->note;
         $data['total_ttc']=$volet->total_ttc;
         $data['shutter']=$volet->shutter;
-        $data['type']=$shutter->type;
         $data['hauteur']=$volet->hauteur;
         $data['largeur']=$volet->largeur;
         $data['couleur']=$volet->couleur;
         $data['surface']=$volet->surface;
+        $data['type']=$volet->type_modele;
 
         return $data;
     }
@@ -557,6 +571,7 @@ class ModelesController extends Controller
         $pose=$request->get('pose');
         $tva_pose=$request->get('tva_pose');
         $pose_ttc=$request->get('pose_ttc');
+        $type=$request->get('type');
 
         $volet=Volet::find($request->get('volet'));
 
@@ -575,6 +590,7 @@ class ModelesController extends Controller
         $volet->pose=$pose;
         $volet->tva_pose=$tva_pose;
         $volet->pose_ttc=$pose_ttc;
+        $volet->type_modele=$type;
         $volet->save();
 
         return $request->get('volet');
