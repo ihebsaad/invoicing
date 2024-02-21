@@ -314,7 +314,7 @@
 									<input type="hidden" id="total_loi" value="0" /><input type="hidden" id="tva_loi" value="0" />
 								@endif
 								<tr class="product bg-grey">
-									<td>Frais de déplacement</td><td  ><input style="text-align:right" id="deplacement" type="number" class="number bg-transparent" readonly value="{{$quote->deplacement ?? 0}}" />€</td><td style="text-align:center;padding-right:15px">1</td><td><input type="number" class="number bg-transparent" id="tva_deplacement" name="tva_deplacement" style="width:100px" step="0.5" value="{{$quote->tva_deplacement ?? 0}}"   onchange="calcul_deplacement();" /> %</td><td><input id="total_deplacement" type="number"  class="number" style="max-width:70px" value="{{$quote->total_deplacement ?? 0}}" onchange="calcul_deplacement();"/> €</td><td></td>
+									<td>Frais de déplacement</td><td  ><input style="text-align:right" id="deplacement" type="number" class="number bg-transparent" readonly value="{{$quote->deplacement ?? 5.5}}" />€</td><td style="text-align:center;padding-right:15px">1</td><td><input type="number" class="number bg-transparent" id="tva_deplacement" name="tva_deplacement" style="width:100px" step="0.5" value="{{$quote->tva_deplacement ?? 0}}"   onchange="calcul_deplacement();" /> %</td><td><input id="total_deplacement" type="number"  class="number" style="max-width:70px" value="{{$quote->total_deplacement ?? 0}}" onchange="calcul_deplacement();"/> €</td><td></td>
 								</tr>
 								<tr class="product bg-grey">
 									<td>Remise GROUPE HER ENR</td><td  ><input style="text-align:right" id="remise" type="number" class="number bg-transparent" readonly value="{{$quote->remise ?? 0}}" />€</td><td style="text-align:center;padding-right:15px">1</td><td><input type="number" class="number bg-transparent" id="tva_remise" name="tva_remise" style="width:100px" step="0.5" value="{{$quote->tva_remise ?? 0}}"   onchange="calcul_remise();" /> %</td><td><input id="total_remise" type="number"  class="number" style="max-width:70px" value="{{$quote->total_remise ?? 0}}" onchange="calcul_remise();"/> €</td><td></td>
@@ -1696,11 +1696,20 @@
 		$('#deplacement').val(deplacement.toFixed(2));
 
 		var val_total_ht=total_ht-remise    + loi + deplacement;
+		// desactivation calcul manuel (supposant toujours tva =5.5%)
+		/*
 		$("#total_ht").val(val_total_ht.toFixed(2));
 		total_tva = total_ttc-total_ht - (remise*tva_remise*0.01)    + tva_loi + tva_deplacement;
 	    $('#total_tva').val(total_tva.toFixed(2));
+		*/
 		total_ttc=total_ttc-total_remise   +total_loi +total_deplacement;
 		$('#total_ttc').val(total_ttc.toFixed(2));
+
+		//nouveau calcul ici :
+		total_ht = total_ttc / 1.055;
+		total_tva = total_ttc-total_ht;
+		$("#total_ht").val(total_ht.toFixed(2));
+		$("#total_tva").val(total_tva.toFixed(2));
 
 		var aide=parseFloat($('#aide2').val()) || 0;
 		var acompte=parseFloat($('#acompte').val()) || 0;
@@ -1850,6 +1859,7 @@
 				$('#add-prod').modal('hide');
 
 				init();
+				calcul();
 			}else{
 			alert('erreur !')
 			}
@@ -1857,7 +1867,7 @@
 		}
 	});
 
-	calcul();
+
 	$('#insert').prop('disabled',true);
 	}
 
@@ -1943,11 +1953,11 @@
 				$('#row-'+item_id).html(row);
 				$('#rowp-'+item_id).html(row2);
 				$('#edit-prod').modal('hide');
-
+				calcul();
 			}
 		});
 
-		calcul();
+
 	}
 
 
@@ -1997,6 +2007,7 @@
 			$('#add-door').modal('hide');
 
 			init_door();
+			calcul();
 		}else{
 		alert('erreur !')
 		}
@@ -2004,7 +2015,7 @@
 	}
 	});
 
-	calcul();
+
 	}
 
 	function get_door(item){
@@ -2084,11 +2095,11 @@
 				$('#row-d-'+item_id).html(row);
 				$('#rowp-d-'+item_id).html(row2);
 				$('#edit-door').modal('hide');
-
+				calcul();
 			}
 		});
 
-		calcul();
+
 	}
 
 	function add_volet(){
@@ -2132,6 +2143,7 @@
 				$('#add-volet').modal('hide');
 
 				init_volet();
+				calcul();
 			}else{
 				alert('erreur !')
 			}
@@ -2139,7 +2151,7 @@
 		}
 		});
 
-		calcul();
+
 	}
 
 
@@ -2211,10 +2223,12 @@
 				$('#rowp-v-'+item_id).html(row2);
 				$('#edit-volet').modal('hide');
 
+				calcul();
+
 			}
 		});
 
-		calcul();
+
 	}
 
 	/* produit libre */
@@ -2250,6 +2264,7 @@
 					$('#add-item').modal('hide');
 
 					init_item();
+					calcul();
 				}else{
 					alert('erreur !')
 				}
@@ -2257,7 +2272,7 @@
 			}
 		});
 
-		calcul();
+
 	}
 
 
@@ -2322,6 +2337,7 @@
 				$('#row-i-'+item_id).html(row);
 				$('#edit-item').modal('hide');
 
+				calcul();
 			}else{
 				alert('erreur !')
 			}
@@ -2329,7 +2345,7 @@
 		}
 	});
 
-	calcul();
+
 	}
 
 	function delete_article(item){
@@ -2763,7 +2779,8 @@
 		$('#deplacement').val(deplacement_ht);
 		calcul();
 	}
-
+	// appeler calcul pour sychroniser les calculs
+	calcul();
 </script>
 
  <!-- signature -->

@@ -287,7 +287,7 @@
 										}
 									@endphp
 									<tr class="myproduct product bg-lightgrey tr-prod"   id="row-{{$item->id}}">
-										<td class="myproducttd  itemtd" data-prix="{{$price}}" data-prixht="{{$price_ht}}" data-id="{{$item->id}}"  ><b>{!!nl2br($texte)!!}</b></td><td >{{$price_ht}} €</td><td><input id="qty-{{$item->id}}" type="number" step="1" min="1" class="number" value="{{$item->qty}}"  onchange="save_item_qty(this,'{{$item->id}}','{{$price_ht}}','{{$pose}}');calcul();"/></td><td><input readonly step="0.5" min="5.5" type="number" step="0.5" min="1" class="number bg-transparent" value="{{$item->tva}}"/> %</td><td><input id="total-{{$item->id}}" type="number" readonly class="total-prod number" value="{{($total)}}"/> €</td><td>@if(! isset($product ) ) <button  class="btn-xs mr-2 btn-info" onclick="get_item('{{$item->id}}')"><i class="fas fa-pen " data-id="{{$item->id}}"></i></button>  @endif<button id="delete_item"   class="btn-xs btn-danger"  onclick="delete_item('{{$item->id}}')"><i class="fas fa-trash " data-id="{{$item->id}}"></i></button></td>
+										<td class="myproducttd  itemtd" data-prix="{{$price}}" data-prixht="{{$price_ht}}" data-id="{{$item->id}}"  ><b>{!!nl2br($texte)!!}</b></td><td >{{$price_ht}} €</td><td><input id="qty-{{$item->id}}" type="number" step="1" min="1" class="number" value="{{$item->qty}}"  onchange="calcul();save_item_qty(this,'{{$item->id}}','{{$price_ht}}','{{$pose}}');"/></td><td><input readonly step="0.5" min="5.5" type="number" step="0.5" min="1" class="number bg-transparent" value="{{$item->tva}}"/> %</td><td><input id="total-{{$item->id}}" type="number" readonly class="total-prod number" value="{{($total)}}"/> €</td><td>@if(! isset($product ) ) <button  class="btn-xs mr-2 btn-info" onclick="get_item('{{$item->id}}')"><i class="fas fa-pen " data-id="{{$item->id}}"></i></button>  @endif<button id="delete_item"   class="btn-xs btn-danger"  onclick="delete_item('{{$item->id}}')"><i class="fas fa-trash " data-id="{{$item->id}}"></i></button></td>
 									</tr>
 
 										@if(isset($product) && $product->pose > 0)
@@ -907,11 +907,12 @@
 			if(data!=''){
 			init();
 			item_id=data;
-			var row='<tr class="myproduct product bg-lightgrey tr-prod" id="row-'+item_id+'"><td class="myproducttd"  data-prix="'+price+'" data-prixht="'+price_ht+'" data-id="'+item_id+'"  ><b>'+product_text+'</b></td><td>'+price_ht+' €</td><td><input type="number" step="1" min="1" class="number" value="'+qty+'"  id="qty-'+item_id+'"  onchange="calcul();save_item_qty(this,'+item_id+','+price+','+posettc+')"/></td><td><input  step="0.5" min="5.5" type="number" step="1" min="1" class="number bg-transparent" readonly value="'+tva+'"/> %</td><td><input id="total-'+data+'" type="number" readonly class="total-prod number" value="'+total+'"/> €</td><td><button   class="btn-xs btn-info mr-2" onclick="get_item('+item_id+')"><i class="fas fa-pen"  ></i></button><button   class="btn-xs btn-danger" onclick="delete_item('+item_id+')"><i class="fas fa-trash"  ></i></button></td></tr>';
+			var row='<tr class="myproduct product bg-lightgrey tr-prod" id="row-'+item_id+'"><td class="myproducttd"  data-prix="'+price+'" data-prixht="'+price_ht+'" data-id="'+item_id+'"  ><b>'+product_text+'</b></td><td>'+price_ht+' €</td><td><input type="number" step="1" min="1" class="number" value="'+qty+'"  id="qty-'+item_id+'"  onchange="save_item_qty(this,'+item_id+','+price+','+posettc+');calcul();"/></td><td><input  step="0.5" min="5.5" type="number" step="1" min="1" class="number bg-transparent" readonly value="'+tva+'"/> %</td><td><input id="total-'+data+'" type="number" readonly class="total-prod number" value="'+total+'"/> €</td><td><button   class="btn-xs btn-info mr-2" onclick="get_item('+item_id+')"><i class="fas fa-pen"  ></i></button><button   class="btn-xs btn-danger" onclick="delete_item('+item_id+')"><i class="fas fa-trash"  ></i></button></td></tr>';
 					if(pose>0){
 						row+='<tr class="myproduct product bg-lightgrey tr-prod" id="row-pose-'+item_id+'"><td class="myproductpose"  data-prix="'+price+'" data-prixht="'+price_ht+'" data-id="'+item_id+'" data-pose="'+pose+'" data-tvapose="'+tvapose+'"   data-posettc="'+posettc+'" ><i>Pose '+product_text+'</i></td><td><input type="number" id="pose-'+data+'" value="'+pose+'"  class="number bg-transparent"/> €</td><td><input type="number"  value="'+qty+'"  id="pose-qty-'+data+'" readonly class="number" /></td><td><input readonly step="0.5" min="5.5" type="number" step="0.5" min="1" class="number bg-transparent" readonly value="'+tvapose+'"/> %</td><td><input id="totalpose-'+data+'" type="number" readonly class="total-prod number" value="'+totalpose+'"/> €</td><td></td></tr>';
 					}
 					$('#list-prods').append(row);
+					calcul();
 			}else{
 				alert('Ce produit existe déja, modifiez la quantité !')
 			}
@@ -922,7 +923,7 @@
 	/*setTimeout(function(){
     	calcul();
 	}, 1000);*/
-	calcul();
+
 
 	}
 
@@ -959,13 +960,14 @@
 					var row='<tr class="myproduct product bg-lightgrey tr-prod" id="row-'+item_id+'"><td class="myproducttd"  data-prix="'+prix+'" data-prixht="'+prix_ht+'" data-id="'+item_id+'"  ><b>'+texte+'</b></td><td>'+prix_ht+' €</td><td><input type="number" step="1" min="1" class="number" value="'+qte+'"  id="qty-'+item_id+'"  onchange="calcul();save_item_qty(this,'+item_id+','+prix+','+0+')"/></td><td><input  step="0.5" min="5.5" type="number" step="1" min="1" class="number bg-transparent" readonly value="'+tva+'"/> %</td><td><input id="total-'+data+'" type="number" readonly class="total-prod number" value="'+total+'"/> €</td><td><button   class="btn-xs btn-info mr-2" onclick="get_item('+item_id+')"><i class="fas fa-pen"  ></i></button><button  class="btn-xs btn-danger" onclick="delete_item('+item_id+')"><i class="fas fa-trash "  ></i></button></td></tr>';
 					$('#list-prods').append(row);
 					$('#add-item').modal('hide');
+					calcul();
 					init_item();
 				}else{
 					alert('Ce produit existe déja, modifiez la quantité !')
 				}
 			}
 		});
-		calcul();
+
 	}
 
 
@@ -1057,9 +1059,10 @@
 			if(data!=''){
 
 				item_id=data;//here
-				var row='<td class="itemtd"  id="item-'+item_id+'" data-prix="'+prix+'" data-prixht="'+prix_ht+'" data-id="'+item_id+'"  ><b>'+texte+'</b></td><td>'+prix_ht+' €</td><td><input type="number" step="1" min="1" class="number" value="'+qte+'" onchange="save_item_qty(this,'+item_id+','+prix_ht+','+prix+');"  id="qty-i-'+item_id+'"/></td><td><input  step="0.5" min="5.5" type="number" step="1" min="1" class="number bg-transparent" readonly value="'+tva+'"/> %</td><td><input id="total-i-'+item_id+'" type="number" readonly class="total-prod number" value="'+total+'"/> €</td><td><button id=""   class="btn-xs btn-info mr-2" onclick="get_item('+item_id+')"><i class="fas fa-pen "  ></i></button><button id=""   class="btn-xs btn-danger" onclick="delete_item('+item_id+')"><i class="fas fa-trash "  ></i></button></td>';
+				var row='<td class="myproducttd itemtd"  data-prix="'+prix+'" data-prixht="'+prix_ht+'" data-id="'+item_id+'"  ><b>'+texte+'</b></td><td>'+prix_ht+' €</td><td><input type="number" step="1" min="1" class="number" value="'+qte+'" onchange="save_item_qty(this,'+item_id+','+prix_ht+','+prix+');"  id="qty-'+item_id+'"/></td><td><input  step="0.5" min="5.5" type="number" step="1" min="1" class="number bg-transparent" readonly value="'+tva+'"/> %</td><td><input id="total-i-'+item_id+'" type="number" readonly class="total-prod number" value="'+total+'"/> €</td><td><button id=""   class="btn-xs btn-info mr-2" onclick="get_item('+item_id+')"><i class="fas fa-pen "  ></i></button><button id=""   class="btn-xs btn-danger" onclick="delete_item('+item_id+')"><i class="fas fa-trash "  ></i></button></td>';
 
 				$('#row-'+item_id).html(row);
+				calcul();
 				$('#edit-item').modal('hide');
 
 			}else{
@@ -1069,7 +1072,7 @@
 		}
 		});
 
-		calcul();
+
 	}
 
 	function update_totals(){
@@ -1140,6 +1143,8 @@
 		$('#deplacement').val(deplacement_ht);
 		calcul();
 	}
+		// appeler calcul pour sychroniser les calculs
+		calcul();
 </script>
 
  <!-- signature -->
