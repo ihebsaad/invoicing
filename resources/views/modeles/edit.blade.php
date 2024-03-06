@@ -53,7 +53,7 @@
 							<option value="8" @if($modele->type==8) selected="selected" @endif>Coulissant 1</option>
 							<option value="9" @if($modele->type==9) selected="selected" @endif>Coulissant 2</option>
 							<option value="10" @if($modele->type==10) selected="selected" @endif>Coulissant 3 </option>
-							<option value="12" @if($modele->type==12) selected="selected" @endif>Coulissant 2V </option>
+							<option value="12" @if($modele->type==12) selected="selected" @endif>Porte fenêtre serrure 1V</option>
 						</select>
 					</div>
         		</div>

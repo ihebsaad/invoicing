@@ -6,7 +6,7 @@ use Illuminate\Database\Seeder;
 use App\Models\Modele;
 use App\Models\Seeders;
 
-class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
+class Modeles9Couliss2_PVC extends Seeder  //coulissant 2 PVC
 {
     /**
      * Run the database seeds.
@@ -15,7 +15,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
      */
     public function run()
     {
-        $seeder = Modele::where('type',12)->count();
+        $seeder = Modele::where('type',9)->where('genre',1)->count();
         //Coulissant 2V PVC
         //Check if the seeder exist in the DB
         if ($seeder==0) {
@@ -25,7 +25,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
             /*larg= 1000*/
             [
                 'genre'    =>1 ,
-                'type'    =>12 ,
+                'type'    =>9 ,
                 'couleur'    =>1 ,
                 'hauteur'    => 500,
                 'largeur'  =>1000 ,
@@ -33,7 +33,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
             ],
             [
                 'genre'    =>1 ,
-                'type'    =>12 ,
+                'type'    =>9 ,
                 'couleur'    => 1,
                 'hauteur'    =>600 ,
                 'largeur'  =>1000 ,
@@ -41,7 +41,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
             ],
             [
                 'genre'    =>1 ,
-                'type'    =>12 ,
+                'type'    =>9 ,
                 'couleur'    => 1,
                 'hauteur'    => 700,
                 'largeur'  =>1000 ,
@@ -49,7 +49,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
             ],
             [
                 'genre'    =>1 ,
-                'type'    =>12 ,
+                'type'    =>9 ,
                 'couleur'    => 1,
                 'hauteur'    => 800,
                 'largeur'  =>1000 ,
@@ -57,7 +57,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
             ],
             [
                 'genre'    =>1 ,
-                'type'    =>12 ,
+                'type'    =>9 ,
                 'couleur'    => 1,
                 'hauteur'    => 900,
                 'largeur'  =>1000 ,
@@ -65,7 +65,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
             ],
             [
                 'genre'    =>1 ,
-                'type'    =>12 ,
+                'type'    =>9 ,
                 'couleur'    =>1 ,
                 'hauteur'    => 1000,
                 'largeur'  =>1000 ,
@@ -73,7 +73,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
             ],
             [
                 'genre'    =>1 ,
-                'type'    =>12 ,
+                'type'    =>9 ,
                 'couleur'    =>1 ,
                 'hauteur'    =>1100 ,
                 'largeur'  =>1000 ,
@@ -81,7 +81,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
             ],
             [
                 'genre'    =>1 ,
-                'type'    =>12 ,
+                'type'    =>9 ,
                 'couleur'    =>1 ,
                 'hauteur'    => 1200,
                 'largeur'  =>1000 ,
@@ -89,7 +89,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
             ],
             [
                 'genre'    =>1 ,
-                'type'    =>12 ,
+                'type'    =>9 ,
                 'couleur'    =>1 ,
                 'hauteur'    => 1300,
                 'largeur'  =>1000 ,
@@ -97,7 +97,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
             ],
             [
                 'genre'    =>1 ,
-                'type'    =>12 ,
+                'type'    =>9 ,
                 'couleur'    =>1 ,
                 'hauteur'    => 1400,
                 'largeur'  =>1000 ,
@@ -105,7 +105,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
             ],
             [
                 'genre'    =>1 ,
-                'type'    =>12 ,
+                'type'    =>9 ,
                 'couleur'    =>1 ,
                 'hauteur'    => 1500,
                 'largeur'  =>1000 ,
@@ -113,7 +113,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
             ],
             [
                 'genre'    =>1 ,
-                'type'    =>12 ,
+                'type'    =>9 ,
                 'couleur'    =>1 ,
                 'hauteur'    => 1600,
                 'largeur'  =>1000 ,
@@ -122,7 +122,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
             /*larg= 1100*/
             [
                 'genre'    =>1 ,
-                'type'    =>12 ,
+                'type'    =>9 ,
                 'couleur'    =>1 ,
                 'hauteur'    => 500,
                 'largeur'  =>1100 ,
@@ -130,7 +130,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
             ],
             [
                 'genre'    =>1 ,
-                'type'    =>12 ,
+                'type'    =>9 ,
                 'couleur'    => 1,
                 'hauteur'    =>600 ,
                 'largeur'  =>1100 ,
@@ -138,7 +138,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
             ],
             [
                 'genre'    =>1 ,
-                'type'    =>12 ,
+                'type'    =>9 ,
                 'couleur'    => 1,
                 'hauteur'    => 700,
                 'largeur'  =>1100 ,
@@ -146,7 +146,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
             ],
             [
                 'genre'    =>1 ,
-                'type'    =>12 ,
+                'type'    =>9 ,
                 'couleur'    => 1,
                 'hauteur'    => 800,
                 'largeur'  =>1100 ,
@@ -154,7 +154,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
             ],
             [
                 'genre'    =>1 ,
-                'type'    =>12 ,
+                'type'    =>9 ,
                 'couleur'    => 1,
                 'hauteur'    => 900,
                 'largeur'  =>1100 ,
@@ -162,7 +162,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
             ],
             [
                 'genre'    =>1 ,
-                'type'    =>12 ,
+                'type'    =>9 ,
                 'couleur'    =>1 ,
                 'hauteur'    => 1000,
                 'largeur'  =>1100 ,
@@ -170,7 +170,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
             ],
             [
                 'genre'    =>1 ,
-                'type'    =>12 ,
+                'type'    =>9 ,
                 'couleur'    =>1 ,
                 'hauteur'    =>1100 ,
                 'largeur'  =>1100 ,
@@ -178,7 +178,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
             ],
             [
                 'genre'    =>1 ,
-                'type'    =>12 ,
+                'type'    =>9 ,
                 'couleur'    =>1 ,
                 'hauteur'    => 1200,
                 'largeur'  =>1100 ,
@@ -186,7 +186,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
             ],
             [
                 'genre'    =>1 ,
-                'type'    =>12 ,
+                'type'    =>9 ,
                 'couleur'    =>1 ,
                 'hauteur'    => 1300,
                 'largeur'  =>1100 ,
@@ -194,7 +194,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
             ],
             [
                 'genre'    =>1 ,
-                'type'    =>12 ,
+                'type'    =>9 ,
                 'couleur'    =>1 ,
                 'hauteur'    => 1400,
                 'largeur'  =>1100 ,
@@ -202,7 +202,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
             ],
             [
                 'genre'    =>1 ,
-                'type'    =>12 ,
+                'type'    =>9 ,
                 'couleur'    =>1 ,
                 'hauteur'    => 1500,
                 'largeur'  =>1100 ,
@@ -210,7 +210,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
             ],
             [
                 'genre'    =>1 ,
-                'type'    =>12 ,
+                'type'    =>9 ,
                 'couleur'    =>1 ,
                 'hauteur'    => 1600,
                 'largeur'  =>1100 ,
@@ -219,7 +219,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
             /*larg= 1200*/
 				[
                     'genre'    =>1 ,
-					'type'    =>12 ,
+					'type'    =>9 ,
                     'couleur'    =>1 ,
                     'hauteur'    => 500,
                     'largeur'  =>1200 ,
@@ -227,7 +227,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
 				],
 				[
                     'genre'    =>1 ,
-					'type'    =>12 ,
+					'type'    =>9 ,
                     'couleur'    => 1,
                     'hauteur'    =>600 ,
                     'largeur'  =>1200 ,
@@ -235,7 +235,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
                 ],
 				[
                     'genre'    =>1 ,
-					'type'    =>12 ,
+					'type'    =>9 ,
                     'couleur'    => 1,
                     'hauteur'    => 700,
                     'largeur'  =>1200 ,
@@ -243,7 +243,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
                 ],
 				[
                     'genre'    =>1 ,
-					'type'    =>12 ,
+					'type'    =>9 ,
                     'couleur'    => 1,
                     'hauteur'    => 800,
                     'largeur'  =>1200 ,
@@ -251,7 +251,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
                 ],
 				[
                     'genre'    =>1 ,
-					'type'    =>12 ,
+					'type'    =>9 ,
                     'couleur'    => 1,
                     'hauteur'    => 900,
                     'largeur'  =>1200 ,
@@ -259,7 +259,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
                 ],
 				[
                     'genre'    =>1 ,
-					'type'    =>12 ,
+					'type'    =>9 ,
                     'couleur'    =>1 ,
                     'hauteur'    => 1000,
                     'largeur'  =>1200 ,
@@ -267,7 +267,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
                 ],
 				[
                     'genre'    =>1 ,
-					'type'    =>12 ,
+					'type'    =>9 ,
                     'couleur'    =>1 ,
                     'hauteur'    =>1100 ,
                     'largeur'  =>1200 ,
@@ -275,7 +275,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
                 ],
 				[
                     'genre'    =>1 ,
-					'type'    =>12 ,
+					'type'    =>9 ,
                     'couleur'    =>1 ,
                     'hauteur'    => 1200,
                     'largeur'  =>1200 ,
@@ -283,7 +283,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
                 ],
 				[
                     'genre'    =>1 ,
-					'type'    =>12 ,
+					'type'    =>9 ,
                     'couleur'    =>1 ,
                     'hauteur'    => 1300,
                     'largeur'  =>1200 ,
@@ -291,7 +291,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
                 ],
 				[
                     'genre'    =>1 ,
-					'type'    =>12 ,
+					'type'    =>9 ,
                     'couleur'    =>1 ,
                     'hauteur'    => 1400,
                     'largeur'  =>1200 ,
@@ -299,7 +299,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
                 ],
 				[
                     'genre'    =>1 ,
-					'type'    =>12 ,
+					'type'    =>9 ,
                     'couleur'    =>1 ,
                     'hauteur'    => 1500,
                     'largeur'  =>1200 ,
@@ -307,7 +307,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
                 ],
 				[
                     'genre'    =>1 ,
-					'type'    =>12 ,
+					'type'    =>9 ,
                     'couleur'    =>1 ,
                     'hauteur'    => 1600,
                     'largeur'  =>1200 ,
@@ -317,7 +317,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
                 /*larg= 1300*/
 				[
                     'genre'    =>1 ,
-					'type'    =>12 ,
+					'type'    =>9 ,
                     'couleur'    =>1 ,
                     'hauteur'    => 500,
                     'largeur'  =>1300 ,
@@ -325,7 +325,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
 				],
 				[
                     'genre'    =>1 ,
-					'type'    =>12 ,
+					'type'    =>9 ,
                     'couleur'    => 1,
                     'hauteur'    =>600 ,
                     'largeur'  =>1300 ,
@@ -333,7 +333,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
                 ],
 				[
                     'genre'    =>1 ,
-					'type'    =>12 ,
+					'type'    =>9 ,
                     'couleur'    => 1,
                     'hauteur'    => 700,
                     'largeur'  =>1300 ,
@@ -341,7 +341,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
                 ],
 				[
                     'genre'    =>1 ,
-					'type'    =>12 ,
+					'type'    =>9 ,
                     'couleur'    => 1,
                     'hauteur'    => 800,
                     'largeur'  =>1300 ,
@@ -349,7 +349,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
                 ],
 				[
                     'genre'    =>1 ,
-					'type'    =>12 ,
+					'type'    =>9 ,
                     'couleur'    => 1,
                     'hauteur'    => 900,
                     'largeur'  =>1300 ,
@@ -357,7 +357,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
                 ],
 				[
                     'genre'    =>1 ,
-					'type'    =>12 ,
+					'type'    =>9 ,
                     'couleur'    =>1 ,
                     'hauteur'    => 1000,
                     'largeur'  =>1300 ,
@@ -365,7 +365,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
                 ],
 				[
                     'genre'    =>1 ,
-					'type'    =>12 ,
+					'type'    =>9 ,
                     'couleur'    =>1 ,
                     'hauteur'    =>1100 ,
                     'largeur'  =>1300 ,
@@ -373,7 +373,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
                 ],
 				[
                     'genre'    =>1 ,
-					'type'    =>12 ,
+					'type'    =>9 ,
                     'couleur'    =>1 ,
                     'hauteur'    => 1200,
                     'largeur'  =>1300 ,
@@ -381,7 +381,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
                 ],
 				[
                     'genre'    =>1 ,
-					'type'    =>12 ,
+					'type'    =>9 ,
                     'couleur'    =>1 ,
                     'hauteur'    => 1300,
                     'largeur'  =>1300 ,
@@ -389,7 +389,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
                 ],
 				[
                     'genre'    =>1 ,
-					'type'    =>12 ,
+					'type'    =>9 ,
                     'couleur'    =>1 ,
                     'hauteur'    => 1400,
                     'largeur'  =>1300 ,
@@ -397,7 +397,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
                 ],
 				[
                     'genre'    =>1 ,
-					'type'    =>12 ,
+					'type'    =>9 ,
                     'couleur'    =>1 ,
                     'hauteur'    => 1500,
                     'largeur'  =>1300 ,
@@ -405,7 +405,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
                 ],
 				[
                     'genre'    =>1 ,
-					'type'    =>12 ,
+					'type'    =>9 ,
                     'couleur'    =>1 ,
                     'hauteur'    => 1600,
                     'largeur'  =>1300 ,
@@ -415,7 +415,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
             /*larg= 1400*/
 				[
                     'genre'    =>1 ,
-					'type'    =>12 ,
+					'type'    =>9 ,
                     'couleur'    =>1 ,
                     'hauteur'    => 500,
                     'largeur'  =>1400 ,
@@ -423,7 +423,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
 				],
 				[
                     'genre'    =>1 ,
-					'type'    =>12 ,
+					'type'    =>9 ,
                     'couleur'    => 1,
                     'hauteur'    =>600 ,
                     'largeur'  =>1400 ,
@@ -431,7 +431,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
                 ],
 				[
                     'genre'    =>1 ,
-					'type'    =>12 ,
+					'type'    =>9 ,
                     'couleur'    => 1,
                     'hauteur'    => 700,
                     'largeur'  =>1400 ,
@@ -439,7 +439,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
                 ],
 				[
                     'genre'    =>1 ,
-					'type'    =>12 ,
+					'type'    =>9 ,
                     'couleur'    => 1,
                     'hauteur'    => 800,
                     'largeur'  =>1400 ,
@@ -447,7 +447,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
                 ],
 				[
                     'genre'    =>1 ,
-					'type'    =>12 ,
+					'type'    =>9 ,
                     'couleur'    => 1,
                     'hauteur'    => 900,
                     'largeur'  =>1400 ,
@@ -455,7 +455,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
                 ],
 				[
                     'genre'    =>1 ,
-					'type'    =>12 ,
+					'type'    =>9 ,
                     'couleur'    =>1 ,
                     'hauteur'    => 1000,
                     'largeur'  =>1400 ,
@@ -463,7 +463,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
                 ],
 				[
                     'genre'    =>1 ,
-					'type'    =>12 ,
+					'type'    =>9 ,
                     'couleur'    =>1 ,
                     'hauteur'    =>1100 ,
                     'largeur'  =>1400 ,
@@ -471,7 +471,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
                 ],
 				[
                     'genre'    =>1 ,
-					'type'    =>12 ,
+					'type'    =>9 ,
                     'couleur'    =>1 ,
                     'hauteur'    => 1200,
                     'largeur'  =>1400 ,
@@ -479,7 +479,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
                 ],
 				[
                     'genre'    =>1 ,
-					'type'    =>12 ,
+					'type'    =>9 ,
                     'couleur'    =>1 ,
                     'hauteur'    => 1300,
                     'largeur'  =>1400 ,
@@ -487,7 +487,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
                 ],
 				[
                     'genre'    =>1 ,
-					'type'    =>12 ,
+					'type'    =>9 ,
                     'couleur'    =>1 ,
                     'hauteur'    => 1400,
                     'largeur'  =>1400 ,
@@ -495,7 +495,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
                 ],
 				[
                     'genre'    =>1 ,
-					'type'    =>12 ,
+					'type'    =>9 ,
                     'couleur'    =>1 ,
                     'hauteur'    => 1500,
                     'largeur'  =>1400 ,
@@ -503,7 +503,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
                 ],
 				[
                     'genre'    =>1 ,
-					'type'    =>12 ,
+					'type'    =>9 ,
                     'couleur'    =>1 ,
                     'hauteur'    => 1600,
                     'largeur'  =>1400 ,
@@ -514,7 +514,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
             /*Larg= 1500*/
             [
                 'genre'    =>1 ,
- 	 	 	    'type'    =>12 ,
+ 	 	 	    'type'    =>9 ,
                 'couleur'    =>1 ,
                 'hauteur'    => 500,
                 'largeur'  =>1500 ,
@@ -522,7 +522,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
             ],
             [
                 'genre'    =>1 ,
- 	 	 	    'type'    =>12 ,
+ 	 	 	    'type'    =>9 ,
                 'couleur'    => 1,
                 'hauteur'    =>600 ,
                 'largeur'  =>1500 ,
@@ -530,7 +530,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
             ],
             [
                 'genre'    =>1 ,
- 	 	 	    'type'    =>12 ,
+ 	 	 	    'type'    =>9 ,
                 'couleur'    => 1,
                 'hauteur'    => 700,
                 'largeur'  =>1500 ,
@@ -538,7 +538,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
             ],
             [
                 'genre'    =>1 ,
- 	 	 	    'type'    =>12 ,
+ 	 	 	    'type'    =>9 ,
                 'couleur'    => 1,
                 'hauteur'    => 800,
                 'largeur'  =>1500 ,
@@ -546,7 +546,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
             ],
             [
                 'genre'    =>1 ,
- 	 	 	    'type'    =>12 ,
+ 	 	 	    'type'    =>9 ,
                 'couleur'    => 1,
                 'hauteur'    => 900,
                 'largeur'  =>1500 ,
@@ -554,7 +554,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
             ],
             [
                 'genre'    =>1 ,
- 	 	 	    'type'    =>12 ,
+ 	 	 	    'type'    =>9 ,
                 'couleur'    =>1 ,
                 'hauteur'    => 1000,
                 'largeur'  =>1500 ,
@@ -562,7 +562,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
             ],
             [
                 'genre'    =>1 ,
- 	 	 	    'type'    =>12 ,
+ 	 	 	    'type'    =>9 ,
                 'couleur'    =>1 ,
                 'hauteur'    =>1100 ,
                 'largeur'  =>1500 ,
@@ -570,7 +570,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
             ],
             [
                 'genre'    =>1 ,
- 	 	 	    'type'    =>12 ,
+ 	 	 	    'type'    =>9 ,
                 'couleur'    =>1 ,
                 'hauteur'    => 1200,
                 'largeur'  =>1500 ,
@@ -578,7 +578,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
             ],
             [
                 'genre'    =>1 ,
- 	 	 	    'type'    =>12 ,
+ 	 	 	    'type'    =>9 ,
                 'couleur'    =>1 ,
                 'hauteur'    => 1300,
                 'largeur'  =>1500 ,
@@ -586,7 +586,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
             ],
             [
                 'genre'    =>1 ,
- 	 	 	    'type'    =>12 ,
+ 	 	 	    'type'    =>9 ,
                 'couleur'    =>1 ,
                 'hauteur'    => 1400,
                 'largeur'  =>1500 ,
@@ -594,7 +594,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
             ],
             [
                 'genre'    =>1 ,
- 	 	 	    'type'    =>12 ,
+ 	 	 	    'type'    =>9 ,
                 'couleur'    =>1 ,
                 'hauteur'    => 1500,
                 'largeur'  =>1500 ,
@@ -602,7 +602,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
             ],
             [
                 'genre'    =>1 ,
- 	 	 	    'type'    =>12 ,
+ 	 	 	    'type'    =>9 ,
                 'couleur'    =>1 ,
                 'hauteur'    => 1600,
                 'largeur'  =>1500 ,
@@ -612,7 +612,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         /*Larg=1600*/
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    =>1 ,
             'hauteur'    => 500,
             'largeur'  =>1600 ,
@@ -620,7 +620,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    => 1,
             'hauteur'    =>600 ,
             'largeur'  =>1600 ,
@@ -628,7 +628,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    => 1,
             'hauteur'    => 700,
             'largeur'  =>1600 ,
@@ -636,7 +636,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    => 1,
             'hauteur'    => 800,
             'largeur'  =>1600 ,
@@ -644,7 +644,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    => 1,
             'hauteur'    => 900,
             'largeur'  =>1600 ,
@@ -652,7 +652,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    =>1 ,
             'hauteur'    => 1000,
             'largeur'  =>1600 ,
@@ -660,7 +660,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    =>1 ,
             'hauteur'    =>1100 ,
             'largeur'  =>1600 ,
@@ -668,7 +668,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    =>1 ,
             'hauteur'    => 1200,
             'largeur'  =>1600 ,
@@ -676,7 +676,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    =>1 ,
             'hauteur'    => 1300,
             'largeur'  =>1600 ,
@@ -684,7 +684,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    =>1 ,
             'hauteur'    => 1400,
             'largeur'  =>1600 ,
@@ -692,7 +692,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    =>1 ,
             'hauteur'    => 1500,
             'largeur'  =>1600 ,
@@ -700,7 +700,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    =>1 ,
             'hauteur'    => 1600,
             'largeur'  =>1600 ,
@@ -710,7 +710,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         /*larg=1700*/
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    =>1 ,
             'hauteur'    => 500,
             'largeur'  =>1700 ,
@@ -718,7 +718,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    => 1,
             'hauteur'    =>600 ,
             'largeur'  =>1700 ,
@@ -726,7 +726,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    => 1,
             'hauteur'    => 700,
             'largeur'  =>1700 ,
@@ -734,7 +734,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    => 1,
             'hauteur'    => 800,
             'largeur'  =>1700 ,
@@ -742,7 +742,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    => 1,
             'hauteur'    => 900,
             'largeur'  =>1700 ,
@@ -750,7 +750,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    =>1 ,
             'hauteur'    => 1000,
             'largeur'  =>1700 ,
@@ -758,7 +758,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    =>1 ,
             'hauteur'    =>1100 ,
             'largeur'  =>1700 ,
@@ -766,7 +766,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    =>1 ,
             'hauteur'    => 1200,
             'largeur'  =>1700 ,
@@ -774,7 +774,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    =>1 ,
             'hauteur'    => 1300,
             'largeur'  =>1700 ,
@@ -782,7 +782,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    =>1 ,
             'hauteur'    => 1400,
             'largeur'  =>1700 ,
@@ -790,7 +790,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    =>1 ,
             'hauteur'    => 1500,
             'largeur'  =>1700 ,
@@ -798,7 +798,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    =>1 ,
             'hauteur'    => 1600,
             'largeur'  =>1700 ,
@@ -808,7 +808,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         /*Larg=1800*/
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    =>1 ,
             'hauteur'    => 500,
             'largeur'  =>1800 ,
@@ -816,7 +816,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    => 1,
             'hauteur'    =>600 ,
             'largeur'  =>1800 ,
@@ -824,7 +824,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    => 1,
             'hauteur'    => 700,
             'largeur'  =>1800 ,
@@ -832,7 +832,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    => 1,
             'hauteur'    => 800,
             'largeur'  =>1800 ,
@@ -840,7 +840,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    => 1,
             'hauteur'    => 900,
             'largeur'  =>1800 ,
@@ -848,7 +848,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    =>1 ,
             'hauteur'    => 1000,
             'largeur'  =>1800 ,
@@ -856,7 +856,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    =>1 ,
             'hauteur'    =>1100 ,
             'largeur'  =>1800 ,
@@ -864,7 +864,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    =>1 ,
             'hauteur'    => 1200,
             'largeur'  =>1800 ,
@@ -872,7 +872,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    =>1 ,
             'hauteur'    => 1300,
             'largeur'  =>1800 ,
@@ -880,7 +880,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    =>1 ,
             'hauteur'    => 1400,
             'largeur'  =>1800 ,
@@ -888,7 +888,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    =>1 ,
             'hauteur'    => 1500,
             'largeur'  =>1800 ,
@@ -896,7 +896,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    =>1 ,
             'hauteur'    => 1600,
             'largeur'  =>1800 ,
@@ -906,7 +906,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         /*larg=1900*/
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    => 1,
             'hauteur'    =>500 ,
             'largeur'  =>1900 ,
@@ -914,7 +914,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    => 1,
             'hauteur'    =>600 ,
             'largeur'  =>1900 ,
@@ -922,7 +922,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    => 1,
             'hauteur'    => 700,
             'largeur'  =>1900 ,
@@ -930,7 +930,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    => 1,
             'hauteur'    => 800,
             'largeur'  =>1900 ,
@@ -938,7 +938,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    => 1,
             'hauteur'    => 900,
             'largeur'  =>1900 ,
@@ -946,7 +946,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    =>1 ,
             'hauteur'    => 1000,
             'largeur'  =>1900 ,
@@ -954,7 +954,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    =>1 ,
             'hauteur'    =>1100 ,
             'largeur'  =>1900 ,
@@ -962,7 +962,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    =>1 ,
             'hauteur'    => 1200,
             'largeur'  =>1900 ,
@@ -970,7 +970,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    =>1 ,
             'hauteur'    => 1300,
             'largeur'  =>1900 ,
@@ -978,7 +978,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    =>1 ,
             'hauteur'    => 1400,
             'largeur'  =>1900 ,
@@ -986,7 +986,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    =>1 ,
             'hauteur'    => 1500,
             'largeur'  =>1900 ,
@@ -994,7 +994,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    =>1 ,
             'hauteur'    => 1600,
             'largeur'  =>1900 ,
@@ -1004,7 +1004,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         /*larg=2000*/
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    => 1,
             'hauteur'    =>500 ,
             'largeur'  =>2000 ,
@@ -1012,7 +1012,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    => 1,
             'hauteur'    =>600 ,
             'largeur'  =>2000 ,
@@ -1020,7 +1020,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    => 1,
             'hauteur'    => 700,
             'largeur'  =>2000 ,
@@ -1028,7 +1028,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    => 1,
             'hauteur'    => 800,
             'largeur'  =>2000 ,
@@ -1036,7 +1036,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    => 1,
             'hauteur'    => 900,
             'largeur'  =>2000 ,
@@ -1044,7 +1044,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    =>1 ,
             'hauteur'    => 1000,
             'largeur'  =>2000 ,
@@ -1052,7 +1052,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    =>1 ,
             'hauteur'    =>1100 ,
             'largeur'  =>2000 ,
@@ -1060,7 +1060,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    =>1 ,
             'hauteur'    => 1200,
             'largeur'  =>2000 ,
@@ -1068,7 +1068,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    =>1 ,
             'hauteur'    => 1300,
             'largeur'  =>2000 ,
@@ -1076,7 +1076,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    =>1 ,
             'hauteur'    => 1400,
             'largeur'  =>2000 ,
@@ -1084,7 +1084,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    =>1 ,
             'hauteur'    => 1500,
             'largeur'  =>2000 ,
@@ -1092,7 +1092,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    =>1 ,
             'hauteur'    => 1600,
             'largeur'  =>2000 ,
@@ -1102,7 +1102,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         /*larg=2100*/
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    => 1,
             'hauteur'    =>500 ,
             'largeur'  =>2100 ,
@@ -1110,7 +1110,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    => 1,
             'hauteur'    => 600,
             'largeur'  =>2100 ,
@@ -1118,7 +1118,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    => 1,
             'hauteur'    => 700,
             'largeur'  =>2100 ,
@@ -1126,7 +1126,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    => 1,
             'hauteur'    => 800,
             'largeur'  =>2100 ,
@@ -1134,7 +1134,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    =>1 ,
             'hauteur'    => 900,
             'largeur'  =>2100 ,
@@ -1142,7 +1142,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    =>1 ,
             'hauteur'    =>1000 ,
             'largeur'  =>2100 ,
@@ -1150,7 +1150,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    =>1 ,
             'hauteur'    => 1200,
             'largeur'  =>2100 ,
@@ -1158,7 +1158,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    =>1 ,
             'hauteur'    => 1200,
             'largeur'  =>2100 ,
@@ -1166,7 +1166,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    =>1 ,
             'hauteur'    => 1300,
             'largeur'  =>2100 ,
@@ -1174,7 +1174,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    =>1 ,
             'hauteur'    => 1400,
             'largeur'  =>2100 ,
@@ -1182,7 +1182,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    =>1 ,
             'hauteur'    => 1500,
             'largeur'  =>2100 ,
@@ -1190,7 +1190,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    =>1 ,
             'hauteur'    => 1600,
             'largeur'  =>2100 ,
@@ -1199,7 +1199,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         /*larg=2200*/
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    => 1,
             'hauteur'    =>500 ,
             'largeur'  =>2200 ,
@@ -1207,7 +1207,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    => 1,
             'hauteur'    => 600,
             'largeur'  =>2200 ,
@@ -1215,7 +1215,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    => 1,
             'hauteur'    => 700,
             'largeur'  =>2200 ,
@@ -1223,7 +1223,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    => 1,
             'hauteur'    => 800,
             'largeur'  =>2200 ,
@@ -1231,7 +1231,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    => 1,
             'hauteur'    => 900,
             'largeur'  =>2200 ,
@@ -1239,7 +1239,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    =>1 ,
             'hauteur'    => 1000,
             'largeur'  =>2200 ,
@@ -1247,7 +1247,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    =>1 ,
             'hauteur'    =>1100 ,
             'largeur'  =>2200 ,
@@ -1255,7 +1255,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    =>1 ,
             'hauteur'    => 1200,
             'largeur'  =>2200 ,
@@ -1263,7 +1263,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    =>1 ,
             'hauteur'    => 1300,
             'largeur'  =>2200 ,
@@ -1271,7 +1271,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    =>1 ,
             'hauteur'    => 1400,
             'largeur'  =>2200 ,
@@ -1279,7 +1279,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    =>1 ,
             'hauteur'    => 1500,
             'largeur'  =>2200 ,
@@ -1287,7 +1287,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    =>1 ,
             'hauteur'    => 1600,
             'largeur'  =>2200 ,
@@ -1297,7 +1297,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         /*larg=2300*/
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    => 1,
             'hauteur'    =>600 ,
             'largeur'  =>2300 ,
@@ -1305,7 +1305,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    => 1,
             'hauteur'    =>600 ,
             'largeur'  =>2300 ,
@@ -1313,7 +1313,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    => 1,
             'hauteur'    => 700,
             'largeur'  =>2300 ,
@@ -1321,7 +1321,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    => 1,
             'hauteur'    => 800,
             'largeur'  =>2300 ,
@@ -1329,7 +1329,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    => 1,
             'hauteur'    => 900,
             'largeur'  =>2300 ,
@@ -1337,7 +1337,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    =>1 ,
             'hauteur'    => 1000,
             'largeur'  =>2300 ,
@@ -1345,7 +1345,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    =>1 ,
             'hauteur'    =>1100 ,
             'largeur'  =>2300 ,
@@ -1353,7 +1353,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    =>1 ,
             'hauteur'    => 1200,
             'largeur'  =>2300 ,
@@ -1361,7 +1361,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    =>1 ,
             'hauteur'    => 1300,
             'largeur'  =>2300 ,
@@ -1369,7 +1369,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    =>1 ,
             'hauteur'    => 1400,
             'largeur'  =>2300 ,
@@ -1377,7 +1377,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    =>1 ,
             'hauteur'    => 1500,
             'largeur'  =>2300 ,
@@ -1385,7 +1385,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    =>1 ,
             'hauteur'    => 1600,
             'largeur'  =>2300 ,
@@ -1395,7 +1395,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         /*larg=2400*/
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    => 1,
             'hauteur'    =>500 ,
             'largeur'  =>2400 ,
@@ -1403,7 +1403,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    => 1,
             'hauteur'    =>600 ,
             'largeur'  =>2400 ,
@@ -1411,7 +1411,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    => 1,
             'hauteur'    => 700,
             'largeur'  =>2400 ,
@@ -1419,7 +1419,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    => 1,
             'hauteur'    => 800,
             'largeur'  =>2400 ,
@@ -1427,7 +1427,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    => 1,
             'hauteur'    => 900,
             'largeur'  =>2400 ,
@@ -1435,7 +1435,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    =>1 ,
             'hauteur'    => 1000,
             'largeur'  =>2400 ,
@@ -1443,7 +1443,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    =>1 ,
             'hauteur'    =>1100 ,
             'largeur'  =>2400 ,
@@ -1451,7 +1451,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    =>1 ,
             'hauteur'    => 1200,
             'largeur'  =>2400 ,
@@ -1459,7 +1459,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    =>1 ,
             'hauteur'    => 1300,
             'largeur'  =>2400 ,
@@ -1467,7 +1467,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    =>1 ,
             'hauteur'    => 1400,
             'largeur'  =>2400 ,
@@ -1475,7 +1475,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    =>1 ,
             'hauteur'    => 1500,
             'largeur'  =>2400 ,
@@ -1483,7 +1483,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    =>1 ,
             'hauteur'    => 1600,
             'largeur'  =>2400 ,
@@ -1493,7 +1493,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
 
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    => 1,
             'hauteur'    =>500 ,
             'largeur'  =>2500 ,
@@ -1501,7 +1501,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    => 1,
             'hauteur'    => 600,
             'largeur'  =>2500 ,
@@ -1509,7 +1509,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    => 1,
             'hauteur'    => 700,
             'largeur'  =>2500 ,
@@ -1517,7 +1517,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    => 1,
             'hauteur'    => 800,
             'largeur'  =>2500 ,
@@ -1525,7 +1525,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    =>1 ,
             'hauteur'    => 900,
             'largeur'  =>2500 ,
@@ -1533,7 +1533,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    =>1 ,
             'hauteur'    =>1000 ,
             'largeur'  =>2500 ,
@@ -1541,7 +1541,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    =>1 ,
             'hauteur'    => 1100,
             'largeur'  =>2500 ,
@@ -1549,7 +1549,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    =>1 ,
             'hauteur'    => 1200,
             'largeur'  =>2500 ,
@@ -1557,7 +1557,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    =>1 ,
             'hauteur'    => 1300,
             'largeur'  =>2500 ,
@@ -1565,7 +1565,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    =>1 ,
             'hauteur'    => 1400,
             'largeur'  =>2500 ,
@@ -1573,7 +1573,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    =>1 ,
             'hauteur'    => 1500,
             'largeur'  =>2500 ,
@@ -1581,7 +1581,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    =>1 ,
             'hauteur'    => 1600,
             'largeur'  =>2500 ,
@@ -1591,7 +1591,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         /*larg=2600*/
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    => 1,
             'hauteur'    => 500,
             'largeur'  =>2600 ,
@@ -1599,7 +1599,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    => 1,
             'hauteur'    => 600,
             'largeur'  =>2600 ,
@@ -1607,7 +1607,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    => 1,
             'hauteur'    => 700,
             'largeur'  =>2600 ,
@@ -1615,7 +1615,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    => 1,
             'hauteur'    => 800,
             'largeur'  =>2600 ,
@@ -1623,7 +1623,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    =>1 ,
             'hauteur'    => 900,
             'largeur'  =>2600 ,
@@ -1631,7 +1631,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    =>1 ,
             'hauteur'    =>1000 ,
             'largeur'  =>2600 ,
@@ -1639,7 +1639,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    =>1 ,
             'hauteur'    =>1100 ,
             'largeur'  =>2600 ,
@@ -1647,7 +1647,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    =>1 ,
             'hauteur'    => 1200,
             'largeur'  =>2600 ,
@@ -1655,7 +1655,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    =>1 ,
             'hauteur'    => 1300,
             'largeur'  =>2600 ,
@@ -1663,7 +1663,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    =>1 ,
             'hauteur'    => 1400,
             'largeur'  =>2600 ,
@@ -1671,7 +1671,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    =>1 ,
             'hauteur'    => 1500,
             'largeur'  =>2600 ,
@@ -1679,7 +1679,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    =>1 ,
             'hauteur'    => 1600,
             'largeur'  =>2600 ,
@@ -1689,7 +1689,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         /*larg=2700*/
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    => 1,
             'hauteur'    => 500,
             'largeur'  =>2700 ,
@@ -1697,7 +1697,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    => 1,
             'hauteur'    => 600,
             'largeur'  =>2700 ,
@@ -1705,7 +1705,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    => 1,
             'hauteur'    => 700,
             'largeur'  =>2700 ,
@@ -1713,7 +1713,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    => 1,
             'hauteur'    => 800,
             'largeur'  =>2700 ,
@@ -1721,7 +1721,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    => 1,
             'hauteur'    => 900,
             'largeur'  =>2700 ,
@@ -1729,7 +1729,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    =>1 ,
             'hauteur'    => 1000,
             'largeur'  =>2700 ,
@@ -1737,7 +1737,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    =>1 ,
             'hauteur'    =>1100 ,
             'largeur'  =>2700 ,
@@ -1745,7 +1745,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    =>1 ,
             'hauteur'    => 1200,
             'largeur'  =>2700 ,
@@ -1753,7 +1753,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    =>1 ,
             'hauteur'    => 1300,
             'largeur'  =>2700 ,
@@ -1761,7 +1761,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    =>1 ,
             'hauteur'    => 1400,
             'largeur'  =>2700 ,
@@ -1769,7 +1769,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    =>1 ,
             'hauteur'    => 1500,
             'largeur'  =>2700 ,
@@ -1777,7 +1777,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    =>1 ,
             'hauteur'    => 1600,
             'largeur'  =>2700 ,
@@ -1787,7 +1787,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         /*larg=2800*/
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    => 1,
             'hauteur'    => 500,
             'largeur'  =>2800 ,
@@ -1795,7 +1795,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    => 1,
             'hauteur'    => 600,
             'largeur'  =>2800 ,
@@ -1803,7 +1803,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    => 1,
             'hauteur'    => 700,
             'largeur'  =>2800 ,
@@ -1811,7 +1811,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    => 1,
             'hauteur'    => 800,
             'largeur'  =>1700 ,
@@ -1819,7 +1819,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    => 1,
             'hauteur'    => 900,
             'largeur'  =>2800 ,
@@ -1827,7 +1827,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    =>1 ,
             'hauteur'    => 1000,
             'largeur'  =>2800 ,
@@ -1835,7 +1835,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    =>1 ,
             'hauteur'    =>1100 ,
             'largeur'  =>2800 ,
@@ -1843,7 +1843,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    =>1 ,
             'hauteur'    => 1200,
             'largeur'  =>2800 ,
@@ -1851,7 +1851,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    =>1 ,
             'hauteur'    => 1300,
             'largeur'  =>2800 ,
@@ -1859,7 +1859,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    =>1 ,
             'hauteur'    => 1400,
             'largeur'  =>2800 ,
@@ -1867,7 +1867,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    =>1 ,
             'hauteur'    => 1500,
             'largeur'  =>2800 ,
@@ -1875,7 +1875,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    =>1 ,
             'hauteur'    => 1600,
             'largeur'  =>2800 ,
@@ -1885,7 +1885,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         /*larg=2900*/
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    => 1,
             'hauteur'    => 500,
             'largeur'  =>2900 ,
@@ -1893,7 +1893,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    => 1,
             'hauteur'    => 600,
             'largeur'  =>2900 ,
@@ -1901,7 +1901,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    => 1,
             'hauteur'    => 700,
             'largeur'  =>2900 ,
@@ -1909,7 +1909,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    => 1,
             'hauteur'    => 800,
             'largeur'  =>2900 ,
@@ -1917,7 +1917,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    => 1,
             'hauteur'    => 900,
             'largeur'  =>2900 ,
@@ -1925,7 +1925,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    =>1 ,
             'hauteur'    => 1000,
             'largeur'  =>2900 ,
@@ -1933,7 +1933,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    =>1 ,
             'hauteur'    =>1100 ,
             'largeur'  =>2900 ,
@@ -1941,7 +1941,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    =>1 ,
             'hauteur'    => 1200,
             'largeur'  =>2900 ,
@@ -1949,7 +1949,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    =>1 ,
             'hauteur'    => 1300,
             'largeur'  =>2900 ,
@@ -1957,7 +1957,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    =>1 ,
             'hauteur'    => 1400,
             'largeur'  =>2900 ,
@@ -1965,7 +1965,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    =>1 ,
             'hauteur'    => 1500,
             'largeur'  =>2900 ,
@@ -1973,7 +1973,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    =>1 ,
             'hauteur'    => 1600,
             'largeur'  =>2900 ,
@@ -1983,7 +1983,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         /*larg=3000*/
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    => 1,
             'hauteur'    => 500,
             'largeur'  =>3000 ,
@@ -1991,7 +1991,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    => 1,
             'hauteur'    => 600,
             'largeur'  =>3000 ,
@@ -1999,7 +1999,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    => 1,
             'hauteur'    => 700,
             'largeur'  =>3000 ,
@@ -2007,7 +2007,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    => 1,
             'hauteur'    => 800,
             'largeur'  =>3000 ,
@@ -2015,7 +2015,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    => 1,
             'hauteur'    => 900,
             'largeur'  =>3000 ,
@@ -2023,7 +2023,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    =>1 ,
             'hauteur'    => 1000,
             'largeur'  =>3000 ,
@@ -2031,7 +2031,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    =>1 ,
             'hauteur'    =>1100 ,
             'largeur'  =>3000 ,
@@ -2039,7 +2039,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    =>1 ,
             'hauteur'    => 1200,
             'largeur'  =>3000 ,
@@ -2047,7 +2047,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    =>1 ,
             'hauteur'    => 1300,
             'largeur'  =>3000 ,
@@ -2055,7 +2055,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    =>1 ,
             'hauteur'    => 1400,
             'largeur'  =>3000 ,
@@ -2063,7 +2063,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    =>1 ,
             'hauteur'    => 1500,
             'largeur'  =>3000 ,
@@ -2071,7 +2071,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    =>1 ,
             'hauteur'    => 1600,
             'largeur'  =>3000 ,
@@ -2080,7 +2080,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         /*larg=3100*/
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    => 1,
             'hauteur'    => 500,
             'largeur'  =>3100 ,
@@ -2088,7 +2088,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    => 1,
             'hauteur'    => 600,
             'largeur'  =>3100 ,
@@ -2096,7 +2096,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    => 1,
             'hauteur'    => 700,
             'largeur'  =>3100 ,
@@ -2104,7 +2104,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    => 1,
             'hauteur'    => 800,
             'largeur'  =>3100 ,
@@ -2112,7 +2112,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    => 1,
             'hauteur'    => 900,
             'largeur'  =>3100 ,
@@ -2120,7 +2120,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    =>1 ,
             'hauteur'    => 1000,
             'largeur'  =>3100 ,
@@ -2128,7 +2128,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    =>1 ,
             'hauteur'    =>1100 ,
             'largeur'  =>3100 ,
@@ -2136,7 +2136,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    =>1 ,
             'hauteur'    => 1200,
             'largeur'  =>3100 ,
@@ -2144,7 +2144,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    =>1 ,
             'hauteur'    => 1300,
             'largeur'  =>3100 ,
@@ -2152,7 +2152,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    =>1 ,
             'hauteur'    => 1400,
             'largeur'  =>3100 ,
@@ -2160,7 +2160,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    =>1 ,
             'hauteur'    => 1500,
             'largeur'  =>3100 ,
@@ -2168,7 +2168,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    =>1 ,
             'hauteur'    => 1600,
             'largeur'  =>3100 ,
@@ -2177,7 +2177,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         /*larg=3200*/
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    => 1,
             'hauteur'    => 500,
             'largeur'  =>3200 ,
@@ -2185,7 +2185,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    => 1,
             'hauteur'    => 600,
             'largeur'  =>3200 ,
@@ -2193,7 +2193,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    => 1,
             'hauteur'    => 700,
             'largeur'  =>3200 ,
@@ -2201,7 +2201,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    => 1,
             'hauteur'    => 800,
             'largeur'  =>3200 ,
@@ -2209,7 +2209,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    => 1,
             'hauteur'    => 900,
             'largeur'  =>3200 ,
@@ -2217,7 +2217,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    =>1 ,
             'hauteur'    => 1000,
             'largeur'  =>3200 ,
@@ -2225,7 +2225,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    =>1 ,
             'hauteur'    =>1100 ,
             'largeur'  =>3200 ,
@@ -2233,7 +2233,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    =>1 ,
             'hauteur'    => 1200,
             'largeur'  =>3200 ,
@@ -2241,7 +2241,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    =>1 ,
             'hauteur'    => 1300,
             'largeur'  =>3200 ,
@@ -2249,7 +2249,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    =>1 ,
             'hauteur'    => 1400,
             'largeur'  =>3200 ,
@@ -2257,7 +2257,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    =>1 ,
             'hauteur'    => 1500,
             'largeur'  =>3200 ,
@@ -2265,7 +2265,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    =>1 ,
             'hauteur'    => 1600,
             'largeur'  =>3200 ,
@@ -2275,7 +2275,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         /*larg=3300*/
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    => 1,
             'hauteur'    => 500,
             'largeur'  =>3300 ,
@@ -2283,7 +2283,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    => 1,
             'hauteur'    => 600,
             'largeur'  =>3300 ,
@@ -2291,7 +2291,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    => 1,
             'hauteur'    => 700,
             'largeur'  =>3300 ,
@@ -2299,7 +2299,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    => 1,
             'hauteur'    => 800,
             'largeur'  =>3300 ,
@@ -2307,7 +2307,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    => 1,
             'hauteur'    => 900,
             'largeur'  =>3300 ,
@@ -2315,7 +2315,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    =>1 ,
             'hauteur'    => 1000,
             'largeur'  =>3300 ,
@@ -2323,7 +2323,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    =>1 ,
             'hauteur'    =>1100 ,
             'largeur'  =>3300 ,
@@ -2331,7 +2331,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    =>1 ,
             'hauteur'    => 1200,
             'largeur'  =>3300 ,
@@ -2339,7 +2339,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    =>1 ,
             'hauteur'    => 1300,
             'largeur'  =>3300 ,
@@ -2347,7 +2347,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    =>1 ,
             'hauteur'    => 1400,
             'largeur'  =>3300 ,
@@ -2355,7 +2355,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    =>1 ,
             'hauteur'    => 1500,
             'largeur'  =>3300 ,
@@ -2363,7 +2363,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    =>1 ,
             'hauteur'    => 1600,
             'largeur'  =>3300 ,
@@ -2373,7 +2373,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         /*larg=3400*/
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    => 1,
             'hauteur'    => 500,
             'largeur'  =>3400 ,
@@ -2381,7 +2381,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    => 1,
             'hauteur'    => 600,
             'largeur'  =>3400 ,
@@ -2389,7 +2389,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    => 1,
             'hauteur'    => 700,
             'largeur'  =>3400 ,
@@ -2397,7 +2397,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    => 1,
             'hauteur'    => 800,
             'largeur'  =>3400 ,
@@ -2405,7 +2405,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    => 1,
             'hauteur'    => 900,
             'largeur'  =>3400 ,
@@ -2413,7 +2413,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    =>1 ,
             'hauteur'    => 1000,
             'largeur'  =>3400 ,
@@ -2421,7 +2421,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    =>1 ,
             'hauteur'    =>1100 ,
             'largeur'  =>3400 ,
@@ -2429,7 +2429,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    =>1 ,
             'hauteur'    => 1200,
             'largeur'  =>3400 ,
@@ -2437,7 +2437,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    =>1 ,
             'hauteur'    => 1300,
             'largeur'  =>3400 ,
@@ -2445,7 +2445,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    =>1 ,
             'hauteur'    => 1400,
             'largeur'  =>3400 ,
@@ -2453,7 +2453,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    =>1 ,
             'hauteur'    => 1500,
             'largeur'  =>3400 ,
@@ -2461,7 +2461,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    =>1 ,
             'hauteur'    => 1500,
             'largeur'  =>3400 ,
@@ -2470,7 +2470,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
          /*larg=3500*/
          [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    => 1,
             'hauteur'    => 500,
             'largeur'  =>3500 ,
@@ -2478,7 +2478,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    => 1,
             'hauteur'    => 600,
             'largeur'  =>3500 ,
@@ -2486,7 +2486,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    => 1,
             'hauteur'    => 700,
             'largeur'  =>3500 ,
@@ -2494,7 +2494,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    => 1,
             'hauteur'    => 800,
             'largeur'  =>3500 ,
@@ -2502,7 +2502,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    => 1,
             'hauteur'    => 900,
             'largeur'  =>3500 ,
@@ -2510,7 +2510,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    =>1 ,
             'hauteur'    => 1000,
             'largeur'  =>3500 ,
@@ -2518,7 +2518,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    =>1 ,
             'hauteur'    =>1100 ,
             'largeur'  =>3500 ,
@@ -2526,7 +2526,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    =>1 ,
             'hauteur'    => 1200,
             'largeur'  =>3500 ,
@@ -2534,7 +2534,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    =>1 ,
             'hauteur'    => 1300,
             'largeur'  =>3500 ,
@@ -2542,7 +2542,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    =>1 ,
             'hauteur'    => 1400,
             'largeur'  =>3500 ,
@@ -2550,7 +2550,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    =>1 ,
             'hauteur'    => 1500,
             'largeur'  =>3500 ,
@@ -2558,7 +2558,7 @@ class Modeles12PVCSeeder extends Seeder  //Coulissant 2V  PVC
         ],
         [
             'genre'    =>1 ,
- 	 	 	 'type'    =>12 ,
+ 	 	 	 'type'    =>9 ,
             'couleur'    =>1 ,
             'hauteur'    => 1600,
             'largeur'  =>3500 ,

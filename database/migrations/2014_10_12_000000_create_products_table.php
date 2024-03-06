@@ -23,11 +23,12 @@ class CreateProductsTable extends Migration
             $table->double('pose_ttc', 8, 2);
             $table->double('tva', 8, 2);
             $table->longText('description')->nullable();
+            $table->string('unite')->nullable();
             $table->string('reference')->nullable();
 
             $table->unsignedBigInteger('categorie')->nullable();
             $table->foreign('categorie')->references('id')->on('categories')->onDelete('cascade');
-            
+
             $table->timestamps();
         });
     }

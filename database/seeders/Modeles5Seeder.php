@@ -15,7 +15,7 @@ class Modeles5Seeder extends Seeder  //fenetre fixe
      */
     public function run()
     {
-        $seeder = Modele::where('type',5)->count();
+        $seeder = Modele::where('type',5)->where('genre',1)->count();
         // fenetre fixe  pvc
         //Check if the seeder exist in the DB
         if ($seeder==0) {
@@ -941,7 +941,7 @@ class Modeles5Seeder extends Seeder  //fenetre fixe
                     'genre'    =>1 ,
 					'type'    =>5 ,
                     'couleur'    =>1 ,
-                    'hauteur'    => 2500,
+                    'hauteur'    => 3000,
                     'largeur'  =>500 ,
                     'prix'  =>244 ,
                 ],

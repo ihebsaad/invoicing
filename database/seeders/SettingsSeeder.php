@@ -89,13 +89,6 @@ class SettingsSeeder extends Seeder
                 'model' => 'Modele',
                 'model_id' => '10'
 				],
-				[
-				'name' => 'Coulissant 2V',
-                'value' => '3',
-                'model' => 'Modele',
-                'model_id' => '12'
-				],
-
                 //volets
 				[
 				'name' => 'Multicom',
@@ -115,6 +108,12 @@ class SettingsSeeder extends Seeder
                 'value' => '2.5',
                 'model' => 'Shutter',
                 'model_id' => '3',
+                ],
+                [
+                    'name' => 'Porte Fenêtre serrure 1 vantail',
+                    'value' => '3',
+                    'model' => 'Modele',
+                    'model_id' => '13'
                 ],
 
                 // Groupes couleurs

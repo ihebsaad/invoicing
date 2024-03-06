@@ -23,20 +23,23 @@
     </head>
     <body class="antialiased">
         <div class="relative flex items-top justify-center min-h-screen sm:items-center sm:pt-0">
-                 <div class="  fixed top-0 right-0 px-6 py-4 sm:block">
-                    @auth
-                        <a href="{{ url('/home') }}" class="text-sm text-gray-700 underline">Accueil</a>
-                    @else
-                        <a href="{{ route('login') }}" class="text-sm text-gray-700 underline">Connexion</a>
+            <div class="  fixed top-0 right-0 px-6 py-4 sm:block">
+                @auth
+                    <a href="{{ url('/home') }}" class="text-sm text-gray-700 underline">Accueil</a>
+                @else
+                    <a href="{{ route('login') }}" class="text-sm text-gray-700 underline">Connexion</a>
 
-                        @if (Route::has('register'))
+                    @if (Route::has('register'))
                             <!--<a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 underline">Register</a>-->
-                        @endif
                     @endif
-                </div>
- 
-            <img src="{{ asset('img/logo.png')}}" alt="her group" class="responsive" style="max-width:250px;height:auto"  >
+                @endif
+            </div>
 
+            <div style="text-align: center; margin-top: 20px;">
+                <img src="{{ asset('img/logo.png')}}" alt="her group" class="responsive" style="max-width:250px;height:auto;"><br>
+                Logiciel de devis pour <b>Groupe Her Enr</b> par <a style="color:#6c70f2;font-weight:bold" href="https:\\www.elinyom.com">Elinyom</a>
+            </div>
         </div>
+
     </body>
 </html>

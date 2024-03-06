@@ -18,14 +18,14 @@
             </div>
         </div>
     </div>
-    
+
     <div class="row">
 		<div class="col-lg-7">
 
 			<form action="{{ route('products.update',$product->id) }}" method="POST">
 				@csrf
 				@method('PUT')
-		   
+
 				 <div class="row">
 					<div class="col-xs-12 col-sm-12 col-md-12">
 						<div class="form-group">
@@ -52,7 +52,7 @@
 							<textarea class="form-control summernote"  rows="3" name="description" placeholder="Description">{{ $product->description }}</textarea>
 						</div>
 					</div>
-		
+
 					<div class="col-xs-12 col-sm-12 col-md-7">
 						<div class="form-group">
 							<strong>Prix HT(€):</strong>
@@ -74,7 +74,7 @@
 						</div>
 					</div>
 
-					
+
 					<div class="col-xs-12 col-sm-12 col-md-7">
 						<div class="form-group">
 							<strong>Pose(€):</strong>
@@ -95,12 +95,23 @@
 							<input id="pose_ttc" type="number" name="pose_ttc" rerquired class="form-control" step ="0.01" min="0"   value="{{ $product->pose_ttc }}"  >
 						</div>
 					</div>
-		
+
+					<div class="col-xs-12 col-sm-12 col-md-7">
+						<div class="form-group">
+							<strong>Unité:</strong>
+							<select name="unite" class="form-control">
+								<option @if($product->unite=="") selected="selected" @endif></option>
+								<option @if($product->unite=="ML") selected="selected"  @endif value="ML">ML</option>
+								<option @if($product->unite=="㎡") selected="selected"  @endif value="㎡">㎡</option>
+							</select>
+						</div>
+					</div>
+
 					<div class="col-xs-12 col-sm-12 col-md-7 ">
 					  <button type="submit" class="btn btn-primary mb-3">Enregistrer</button>
 					</div>
 				</div>
-		   
+
 			</form>
 		</div>
 
@@ -141,8 +152,8 @@
     // Summernote
    // $('.summernote').summernote()
   });
-  
+
 </script>
- 
+
 @endsection
 

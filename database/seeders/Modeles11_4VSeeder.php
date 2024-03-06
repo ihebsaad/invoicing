@@ -6,7 +6,7 @@ use Illuminate\Database\Seeder;
 use App\Models\Modele;
 use App\Models\Seeders;
 
-class Modeles4VSeeder extends Seeder  //4V
+class Modeles11_4VSeeder extends Seeder  //4V
 {
     /**
      * Run the database seeds.
@@ -15,7 +15,7 @@ class Modeles4VSeeder extends Seeder  //4V
      */
     public function run()
     {
-        $seeder = Modele::where('type',11)->count();
+        $seeder = Modele::where('type',11)->where('genre',1)->count();
         // fenetre 4V  pvc
         //Check if the seeder exist in the DB
         if ($seeder==0) {

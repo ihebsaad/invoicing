@@ -42,7 +42,8 @@
 					<option value="8" @if(old("type")==8) selected="selected" @endif>Coulissant 1</option>
 					<option value="9" @if(old("type")==9) selected="selected" @endif>Coulissant 2</option>
 					<option value="10" @if(old("type")==10) selected="selected" @endif>Coulissant 3 </option>
-					<option value="12" @if(old("type")==12) selected="selected" @endif>Coulissant 2V </option>
+                    <option value="12" @if(old("type")==12) selected="selected" @endif>Porte fenêtre serrure 1V</option>
+
                 </select>
             </div>
         </div>

@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-  
+
 @section('content')
 <div class="row 3">
     <div class="col-lg-12 margin-tb">
@@ -11,10 +11,10 @@
         </div>
     </div>
 </div>
-   
+
 <form action="{{ route('products.store') }}" method="POST">
     @csrf
-  
+
      <div class="row pl-3">
         <div class="col-xs-12 col-sm-12 col-md-7">
             <div class="form-group">
@@ -83,12 +83,23 @@
                 <input id="pose_ttc" type="number" name="pose_ttc" rerquired class="form-control" step ="0.01" min="0"  value="{{old('pose_ttc')}}">
             </div>
         </div>
-        
+
+        <div class="col-xs-12 col-sm-12 col-md-7">
+            <div class="form-group">
+                <strong>Unité:</strong>
+                <select name="unite" class="form-control">
+                    <option></option>
+                    <option value="ML">ML</option>
+                    <option value="㎡">㎡</option>
+                </select>
+            </div>
+        </div>
+
         <div class="col-xs-12 col-sm-12 col-md-7">
                 <button type="submit" class="btn btn-primary">Enregistrer</button>
         </div>
     </div>
-   
+
 </form>
 @endsection
 
@@ -121,7 +132,7 @@
     // Summernote
    // $('.summernote').summernote()
   });
-  
+
 </script>
 
 @endsection

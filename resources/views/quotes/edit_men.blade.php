@@ -314,10 +314,10 @@
 									<input type="hidden" id="total_loi" value="0" /><input type="hidden" id="tva_loi" value="0" />
 								@endif
 								<tr class="product bg-grey">
-									<td>Frais de déplacement</td><td  ><input style="text-align:right" id="deplacement" type="number" class="number bg-transparent" readonly value="{{$quote->deplacement ?? 5.5}}" />€</td><td style="text-align:center;padding-right:15px">1</td><td><input type="number" class="number bg-transparent" id="tva_deplacement" name="tva_deplacement" style="width:100px" step="0.5" value="{{$quote->tva_deplacement ?? 0}}"   onchange="calcul_deplacement();" /> %</td><td><input id="total_deplacement" type="number"  class="number" style="max-width:70px" value="{{$quote->total_deplacement ?? 0}}" onchange="calcul_deplacement();"/> €</td><td></td>
+									<td>Frais de déplacement</td><td  ><input style="text-align:right" id="deplacement" type="number" class="number bg-transparent" readonly value="{{$quote->deplacement ?? 5.5}}" />€</td><td style="text-align:center;padding-right:15px">1</td><td><input type="number" class="number bg-transparent" id="tva_deplacement" name="tva_deplacement" style="width:100px" step="0.5" value="{{$quote->tva_deplacement ?? 5.5}}"   onchange="calcul_deplacement();" /> %</td><td><input id="total_deplacement" type="number"  class="number" style="max-width:70px" value="{{$quote->total_deplacement ?? 0}}" onchange="calcul_deplacement();"/> €</td><td></td>
 								</tr>
 								<tr class="product bg-grey">
-									<td>Remise GROUPE HER ENR</td><td  ><input style="text-align:right" id="remise" type="number" class="number bg-transparent" readonly value="{{$quote->remise ?? 0}}" />€</td><td style="text-align:center;padding-right:15px">1</td><td><input type="number" class="number bg-transparent" id="tva_remise" name="tva_remise" style="width:100px" step="0.5" value="{{$quote->tva_remise ?? 0}}"   onchange="calcul_remise();" /> %</td><td><input id="total_remise" type="number"  class="number" style="max-width:70px" value="{{$quote->total_remise ?? 0}}" onchange="calcul_remise();"/> €</td><td></td>
+									<td>Remise GROUPE HER ENR</td><td  ><input style="text-align:right" id="remise" type="number" class="number bg-transparent" readonly value="{{$quote->remise ?? 0}}" />€</td><td style="text-align:center;padding-right:15px">1</td><td><input type="number" class="number bg-transparent" id="tva_remise" name="tva_remise" style="width:100px" step="0.5" value="{{$quote->tva_remise ?? 5.5}}"   onchange="calcul_remise();" /> %</td><td><input id="total_remise" type="number"  class="number" style="max-width:70px" value="{{$quote->total_remise ?? 0}}" onchange="calcul_remise();"/> €</td><td></td>
 								</tr>
 							</tfoot>
 						</table>
@@ -676,7 +676,7 @@
 								<option  @if( old("type")==8)  selected="selected" @endif  value="8">Coulissant 1 </option>
 								<option  @if( old("type")==9)  selected="selected" @endif  value="9">Coulissant 2 </option>
 								<option  @if( old("type")==10)  selected="selected" @endif  value="10">Coulissant 3 </option>
-								<option  @if( old("type")==12)  selected="selected" @endif  value="12">Coulissant 2 vantaux</option>
+								<option  @if( old("type")==12)  selected="selected" @endif  value="12">Porte Fenêtre serrure 1 vantail </option>
 							</select>
 						</div>
 					</div>
@@ -809,7 +809,7 @@
 								<option  @if( old("type")==8)  selected="selected" @endif  value="8">Coulissant 1 </option>
 								<option  @if( old("type")==9)  selected="selected" @endif  value="9">Coulissant 2 </option>
 								<option  @if( old("type")==10)  selected="selected" @endif  value="10">Coulissant 3 </option>
-								<option  @if( old("type")==12)  selected="selected" @endif  value="12">Coulissant 2 vantaux</option>
+								<option  @if( old("type")==12)  selected="selected" @endif  value="12">Porte Fenêtre serrure 1 vantail </option>
 							</select>
 						</div>
 					</div>
@@ -1596,10 +1596,11 @@
 
 			// Vérifiez si la valeur sélectionnée est égale à 1 (PVC)
 			if (selectedGenre == 1) {
-			// Cacher les options 8, 9 et 10 dans le menu déroulant `type`
+			// Cacher les options 8, 10 dans le menu déroulant `type`
 			$('#type option[value="8"]').hide();
-			$('#type option[value="9"]').hide();
+			//$('#type option[value="9"]').hide();
 			$('#type option[value="10"]').hide();
+			$('#type option[value="12"]').hide();
 			} else {
 			// Afficher toutes les options dans le menu déroulant `type`
 			$('#type option').show();

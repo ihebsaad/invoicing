@@ -206,7 +206,7 @@
 	   <table class="tab-products" style="min-height:150px;width:100%;margin-top:5px;margin-bottom:5px">
 		   <thead class="th-products">
 			   <tr>
-				   <th style="width:40%">Désignation</th><th style="width:6%">Qté</th><th style="width:8%">P.U HT</th><th style="width:10%">Montant HT</th><th style="width:6%">TVA</th><th style="width:10%">Montant TTC</th>
+				   <th style="width:41%">Désignation</th><th style="width:3%">U</th><th style="width:5%">Qté</th><th style="width:7%">P.U HT</th><th style="width:9%">Montant HT</th><th style="width:6%">TVA</th><th style="width:9%">Montant TTC</th>
 			   </tr>
 		   </thead>
 		   <tbody >
@@ -221,28 +221,28 @@
 					   		@endphp
 
 							<tr class="product"  >
-								<td class="text" ><b>{{$product->name}}<br>{!! nl2br($product->description) !!}</b></td><td>{{$item->qty}}</td><td>{{$product->prix_ht}} €</td><td>{{$total_prod_ht}} €</td><td>{{$item->tva}} %</td><td>{{$total_prod_ttc}} €</td>
+								<td class="text" ><b>{{$product->name}}<br>{!! nl2br($product->description) !!}</b></td><td>{{$product->unite}}</td><td>{{$item->qty}}</td><td>{{$product->prix_ht}} €</td><td>{{$total_prod_ht}} €</td><td>{{$item->tva}} %</td><td>{{$total_prod_ttc}} €</td>
 							</tr>
 							@if($product->pose > 0)
 								<tr class="product"  >
-									<td class="text" ><i>Pose {{$product->name}}</i></td><td>{{$item->qty}}</td><td>{{$product->pose}} €</td><td>{{$product->pose * intval($item->qty) }} €</td><td>{{$product->tva_pose}} %</td><td>{{$product->pose_ttc * intval($item->qty)}} €</td>
+									<td class="text" ><i>Pose {{$product->name}}</i></td><td></td><td>{{$item->qty}}</td><td>{{$product->pose}} €</td><td>{{$product->pose * intval($item->qty) }} €</td><td>{{$product->tva_pose}} %</td><td>{{$product->pose_ttc * intval($item->qty)}} €</td>
 								</tr>
 							@endif
 						@else
 							<tr class="product"  >
-								<td class="text" >{!! nl2br($item->description) !!}</td><td>{{$item->qty}}</td><td  >{{$item->price_ht}} €</td><td>{{ floatval($item->price_ht) * intval($item->qty) }} €</td><td>{{$item->tva}} %</td><td>{{  floatval($item->price_ttc) * intval($item->qty)  }} €</td>
+								<td class="text" >{!! nl2br($item->description) !!}</td><td></td><td>{{$item->qty}}</td><td  >{{$item->price_ht}} €</td><td>{{ floatval($item->price_ht) * intval($item->qty) }} €</td><td>{{$item->tva}} %</td><td>{{  floatval($item->price_ttc) * intval($item->qty)  }} €</td>
 							</tr>
 						@endif
 				   @endforeach
 			   </tr>
 			   @if($invoice->deplacement>0)
 				   <tr class="product" style="color:#f07f32">
-					   <td>Frais de déplacment</td><td style="text-align:center"></td><td ></td><td> {{$invoice->deplacement}}  €</td><td> {{ $invoice->tva_deplacement ?? 0 }} %</td><td>{{$invoice->total_deplacement ?? 0}} €</td>
+					   <td>Frais de déplacment</td><td style="text-align:center"></td><td ></td><td></td><td> {{$invoice->deplacement}}  €</td><td> {{ $invoice->tva_deplacement ?? 0 }} %</td><td>{{$invoice->total_deplacement ?? 0}} €</td>
 				   </tr>
 			   @endif
 			   @if($invoice->remise>0)
 				   <tr class="product" style="color:#f07f32">
-					   <td>Remise GROUPE HER ENR</td><td style="text-align:center"></td><td ></td><td> {{$invoice->remise}}  €</td><td> {{ $invoice->tva_remise ?? 0 }} %</td><td>{{$invoice->total_remise ?? 0}} €</td>
+					   <td>Remise GROUPE HER ENR</td><td style="text-align:center"></td><td ></td><td></td><td> {{$invoice->remise}}  €</td><td> {{ $invoice->tva_remise ?? 0 }} %</td><td>{{$invoice->total_remise ?? 0}} €</td>
 				   </tr>
 			   @endif
 
@@ -269,10 +269,10 @@
 			   <tr><td colspan="2">Total TTC</td><td class="text-right">{{number_format($invoice->total_ttc,2,',',' ')}} €</td></tr>
 			   @if($invoice->aide>0)
 			   		@if($invoice->aide_cee>0)
-			   			<tr style="color:#f07f32"><td colspan="2" style=";font-size:9px;max-width:90px;">- Prime CEE EDF<br><small>  Siren EDF 552 081 317</small></td><td class="text-right">- {{number_format($invoice->aide_cee,2,',',' ')}} €</td></tr>
+			   			<tr style="color:#f07f32"><td colspan="2" style="font-size:9px;max-width:90px;">- Prime CEE EDF<br><small>  Siren EDF 552 081 317</small></td><td class="text-right">- {{number_format($invoice->aide_cee,2,',',' ')}} €</td></tr>
 			   		@endif
 			   		@if($invoice->aide_renov>0)
-						<tr style="color:#f07f32"><td colspan="2" style=";font-size:9px;max-width:90px;">- Montant Estimatif<br>Prime Renov</td><td class="text-right">- {{number_format($invoice->aide_renov,2,',',' ')}} €</td></tr>
+						<tr style="color:#f07f32"><td colspan="2" style="font-size:9px;max-width:90px;">- Montant Estimatif<br>Prime Renov</td><td class="text-right">- {{number_format($invoice->aide_renov,2,',',' ')}} €</td></tr>
 			   		@endif
 			   @endif
 			   @if($invoice->acompte>0)

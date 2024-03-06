@@ -14,12 +14,14 @@
             <div class="float-left">
                 <h2>Liste des utilisateurs</h2>
             </div>
+            @if(auth()->user()->id==1)
             <div class="float-right mb-3"  >
                 <a class="btn btn-success" href="{{ route('users.create') }}"><i class="fas fa-plus"></i> Ajouter un utilisateur</a>
             </div>
+            @endif
         </div>
     </div>
-   
+
    <style>
 		.small-img{width:150px;}
    </style>
@@ -35,12 +37,12 @@
             </tr>
         </thead>
         @foreach ($users as $user)
-		<?php 
+		<?php
         if($user->thumb!='')
         $url_img= asset('img/users/'.$user->thumb);
         else
         $url_img= asset('img/users/user.png');
-        ?>        
+        ?>
         <tr>
             <td>{!! sprintf('%04d',$user->id) !!}</td>
             <td><img  width="100" src="{!! $url_img !!}"/></td>
@@ -52,12 +54,12 @@
 			    <a class="btn btn-primary mb-3" href="{{ route('users.edit',$user->id) }}" style="float:left" title="Modifier"><i class="fas fa-edit"></i></a>
 			<!--	    @if($user->status)
                     <a title="Désactiver"   href="{{route('desactiver', ['id'=>$user->id] )}}" class="btn btn-danger mb-3" role="button" data-toggle="tooltip" data-tooltip="tooltip" data-placement="bottom" data-original-title="Désactiver" style="float:left">
-                        <span class="fas fa-user-times"></span> Désactiver   
-                    </a>  
+                        <span class="fas fa-user-times"></span> Désactiver
+                    </a>
                     @else
                     <a title="Activer"   href="{{route('activer', $user->id )}}" class="btn btn-success mb-3" role="button" data-toggle="tooltip" data-tooltip="tooltip" data-placement="bottom" data-original-title="Activer" style="float:left" >
-                        <span class="fas fa-user-check  "></span> Activer   
-                    </a>  
+                        <span class="fas fa-user-check  "></span> Activer
+                    </a>
                     @endif
 -->
                     <form action="{{ route('users.destroy',$user->id) }}" method="POST" style="float:left" class="mr-2 ml-2">
@@ -66,15 +68,15 @@
                         <button type="submit" class="btn btn-danger mb-3" title="Supprimer"><i class="fas fa-trash"></i></button>
                     </form>
                     <!--<a title="se connecter en tant que"   href="{{route('loginAs', $user->id )}}" class="btn btn-secondary mb-3" role="button" data-toggle="tooltip" data-tooltip="tooltip" data-placement="bottom" data-original-title="Connexion" >
-                                <span class="fas fa-sign-out-alt  "></span> Se connecter   
+                                <span class="fas fa-sign-out-alt  "></span> Se connecter
                     </a>-->
 				@endif
             </td>
         </tr>
         @endforeach
     </table>
-  
-      
+
+
 @endsection
 @section('footer-scripts')
 
@@ -96,7 +98,7 @@
   $(function () {
     $("#mytable").DataTable({
       "responsive": true, "lengthChange": false, "autoWidth": false,
-      buttons: [						 
+      buttons: [
                     {
                     extend: 'print',
                     text: '<i class="fa fa-print"></i>  Imprimer',
@@ -117,7 +119,7 @@
                     exportOptions: {
                     columns: [ 1,2,3,4,5,6]
                	}
-                    },				
+                    },
 				{
                     extend: 'pdf',
                     text: '<i class="fa fa-file-pdf"></i>  Pdf',

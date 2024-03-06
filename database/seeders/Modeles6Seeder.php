@@ -15,7 +15,7 @@ class Modeles6Seeder extends Seeder
      */
     public function run()
     {
-        $seeder = Modele::where('type',6)->count();
+        $seeder = Modele::where('type',6)->where('genre',1)->count();
 
         //Check if the seeder exist in the DB
         //Porte fenetre 1V   //PVC
