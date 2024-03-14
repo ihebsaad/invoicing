@@ -37,6 +37,7 @@ class DatabaseSeeder extends Seeder
             //Modeles12PVCSeeder::class,
             Modeles12Serrure_Alu::class,
             ModelesDoorsSeeder::class,
+            ModelesDoorsALUSeeder::class,
             ModelesShutterSeeder::class,
             ModelesShutter2Seeder::class,
             ModelesShutter3Seeder::class,

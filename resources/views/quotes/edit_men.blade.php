@@ -911,7 +911,16 @@
             </div>
 
             <div class="modal-body" style="padding:10px 10px 1" >
-
+				<div class="row pl-3">
+					<div class="col-xs-12 col-sm-6 col-md-6">
+						<strong>Matière:</strong>
+						<select  name="genre" class="form-control" id="matiere" >
+							<option value=""></option>
+							<option value="pvc">PVC</option>
+							<option value="alu">Aluminuim</option>
+						</select>
+					</div>
+				</div>
 				<div class="row pl-3">
 				<div class="col-xs-12 col-sm-6 col-md-6">
 						<div class="form-group">
@@ -919,7 +928,7 @@
 							<select  name="door" required class="form-control select2" id="door"   onchange="pricing_door('')">
 								<option></option>
 								@foreach($doors as $door)
-									<option value="{{$door->id}}">{{$door->texte}}</option>
+									<option class="door-option" value="{{$door->id}}">{{$door->texte}}</option>
 								@endforeach
 							</select>
 						</div>
@@ -1039,6 +1048,7 @@
 
             <div class="modal-body" style="padding:10px 10px 1" >
 				<input type="hidden" value="0" id="porte">
+
 				<div class="row pl-3">
 					<div class="col-xs-12 col-sm-6 col-md-6">
 						<div class="form-group">
@@ -1589,7 +1599,38 @@
 
 <script>
 
+	document.addEventListener("DOMContentLoaded", function() {
+        // Sélecteur de matière
+        var matiereSelect = $("#matiere");
+        // Sélecteur de porte avec Select2
+        var doorSelect = $("#door");
+
+        // Initialiser Select2
+        doorSelect.select2();
+
+        // Écouter les changements sur le sélecteur de matière
+        matiereSelect.on("change", function() {
+            // Récupérer la valeur sélectionnée dans le sélecteur de matière
+            var selectedMatiere = matiereSelect.val();
+
+            // Mettre à jour les options du sélecteur de porte en fonction de la matière sélectionnée
+            doorSelect.find("option").each(function() {
+                var doorValue = parseInt($(this).val());
+
+                if ((selectedMatiere === "pvc" && doorValue >= 63) || (selectedMatiere === "alu" && doorValue <= 62)) {
+                    $(this).prop("disabled", true).hide();
+                } else {
+                    $(this).prop("disabled", false).show();
+                }
+            });
+
+            // Mettre à jour Select2 après avoir modifié les options
+            doorSelect.trigger("change");
+        });
+    });
+
 	$(document).ready(function() {
+
 		// Écouteur d'événement pour le changement de valeur dans le menu déroulant `genre`
 		$('#genre').on('change', function() {
 			var selectedGenre = $(this).val();
@@ -1597,13 +1638,15 @@
 			// Vérifiez si la valeur sélectionnée est égale à 1 (PVC)
 			if (selectedGenre == 1) {
 			// Cacher les options 8, 10 dans le menu déroulant `type`
-			$('#type option[value="8"]').hide();
-			//$('#type option[value="9"]').hide();
-			$('#type option[value="10"]').hide();
-			$('#type option[value="12"]').hide();
+				$('#type option[value="8"]').hide();
+				//$('#type option[value="9"]').hide();
+				$('#type option[value="10"]').hide();
+				$('#type option[value="12"]').hide();
 			} else {
 			// Afficher toutes les options dans le menu déroulant `type`
 			$('#type option').show();
+			$('#type option[value="4"]').hide();
+			$('#type option[value="11"]').hide();
 			}
 		});
 	});
@@ -2540,8 +2583,8 @@
 						$("#prix-d"+id).val(data.prix);
 						var prix_ht = data.prix / (1+(p_tva*0.01));
 						$("#prixht-d"+id).val(prix_ht);
-						var total = parseFloat(data.prix) * qte;
-						$("#total-d"+id).val(total);
+						var total = parseFloat(data.prix) * qte * 1.055;
+						$("#total-d"+id).val(total.toFixed(2));
 
 					}
 					else{
