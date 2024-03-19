@@ -207,6 +207,7 @@ class ModelesController extends Controller
                 'cintrage'=>$cintrage,
                 'surface'=>$surface,
                 'couleur'=>$couleur,
+                'type_modele'=>$type,
                 'invoice'=>$invoice,
             ]);
             return $article->id;
@@ -232,7 +233,7 @@ class ModelesController extends Controller
         $pose=$request->get('pose');
         $tva_pose=$request->get('tva_pose');
         $pose_ttc=$request->get('pose_ttc');
-        $type=$request->get('type');
+        //$type=$request->get('type');
 
         $article=Article::find($article_id);
         $article->modele=$modele;
@@ -251,7 +252,7 @@ class ModelesController extends Controller
         $article->pose=$pose;
         $article->tva_pose=$tva_pose;
         $article->pose_ttc=$pose_ttc;
-        $article->type_modele=$type;
+        //$article->type_modele=$type;
         $article->save();
         return $article_id;
     }

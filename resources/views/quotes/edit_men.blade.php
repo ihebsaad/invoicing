@@ -1048,7 +1048,16 @@
 
             <div class="modal-body" style="padding:10px 10px 1" >
 				<input type="hidden" value="0" id="porte">
-
+				<div class="row pl-3">
+					<div class="col-xs-12 col-sm-6 col-md-6">
+						<strong>Matière:</strong>
+						<select  name="genre" class="form-control" id="matiere-edit" >
+							<option value=""></option>
+							<option value="pvc">PVC</option>
+							<option value="alu">Aluminuim</option>
+						</select>
+					</div>
+				</div>
 				<div class="row pl-3">
 					<div class="col-xs-12 col-sm-6 col-md-6">
 						<div class="form-group">
@@ -1746,14 +1755,17 @@
 		total_tva = total_ttc-total_ht - (remise*tva_remise*0.01)    + tva_loi + tva_deplacement;
 	    $('#total_tva').val(total_tva.toFixed(2));
 		*/
-		total_ttc=total_ttc-total_remise   +total_loi +total_deplacement;
-		$('#total_ttc').val(total_ttc.toFixed(2));
 
+		total_ttc=total_ttc-total_remise ;
 		//nouveau calcul ici :
 		total_ht = total_ttc / 1.055;
 		total_tva = total_ttc-total_ht;
 		$("#total_ht").val(total_ht.toFixed(2));
 		$("#total_tva").val(total_tva.toFixed(2));
+
+		total_ttc=total_ttc  + total_loi +total_deplacement;
+		$('#total_ttc').val(total_ttc.toFixed(2));
+
 
 		var aide=parseFloat($('#aide2').val()) || 0;
 		var acompte=parseFloat($('#acompte').val()) || 0;
@@ -1826,6 +1838,7 @@
 		$('#qte').val('1');
 		$('#total').val('');
 		$('#insert').prop('disabled',true);
+		$('#note').val('');
 	}
 
 	function init_door(){
@@ -1833,6 +1846,7 @@
 		$('#prix-d').val('');
 		$('#qte-d').val('1');
 		$('#total-d').val('');
+		$('#note-d').val('');
 	}
 
 	function init_volet(){
@@ -1840,6 +1854,7 @@
 		$('#prix-v').val('');
 		$('#qte-v').val('1');
 		$('#total-v').val('');
+		$('#note-v').val('');
 	}
 
 	function init_item(){
@@ -1864,7 +1879,7 @@
 	var qte=	parseInt($('#qte').val());
 	var total=parseFloat($('#total').val());
 	var quote=	parseInt($('#quote').val());
-	var groupe = $('#groupe_couleur').val();
+	var groupe = parseInt($('#groupe_couleur').val());
 	var cintrage = $('#cintrage').is(":checked") ? 1 : 0;
 	var couleur= $("#couleur").val();
 	var hauteur= $("#hauteur").val();
@@ -1877,12 +1892,15 @@
 
 	$('#tva_remise').val(tva);
 
-	var	groupe_text='(Groupe '+groupe+')';
+	var	groupe_text='';
 	var cintrage_text='';
-
-		if(cintrage){
-			cintrage_text='(avec cintrage)';
-		}
+	if(groupe>0)
+	{
+		groupe_text='(Groupe '+groupe+')';
+	}
+	if(cintrage){
+		cintrage_text='(avec cintrage)';
+	}
 
 	var product_text= $('#type option:selected').text()+' '+$('#genre option:selected').text()+' - Couleur: '+$('#couleur option:selected').text()+ groupe_text+' - Dimensions [H: '+hauteur+'mm * L: '+largeur+'mm] Mètre linéaire : '+ surface +' m² '+ cintrage_text;
 
@@ -2009,7 +2027,7 @@
 
 	var _token = $('input[name="_token"]').val();
 	var door= parseInt($("#door").val());
-	var prix=	parseFloat($('#prix-d').val());
+	//var prix=	parseFloat($('#prix-d').val());
 	var prix_ht=	parseFloat($('#prixht-d').val()).toFixed(2);
 	var note=	$('#note-d').val();
 	var qte=	parseInt($('#qte-d').val());
@@ -2018,7 +2036,7 @@
 	var groupe = $('#groupe-d').val();
 	var couleur= $("#couleur-d").val();
 	var cintrage = $('#cintrage-d').is(":checked") ? 1 : 0;
-
+	var prix= total/qte;
 	var tva=5.5;
 	var pose = parseFloat($("#pose").val());
 	var pose_ht= pose* qte;
@@ -2032,7 +2050,7 @@
 	if(cintrage==1){
 		groupe_text+=' avec cintrage';
 	}
-	var product_text= $('#door option:selected').text()+' '+' - Couleur: '+$('#couleur-d option:selected').text()+ groupe_text;
+	var product_text= $('#door option:selected').text()+' '+$('#matiere option:selected').text()+' '+' - Couleur: '+$('#couleur-d option:selected').text()+ groupe_text;
 
 	$.ajax({
 	url: "{{ route('add_door') }}",
@@ -2124,7 +2142,7 @@
 		if(cintrage==1){
 			groupe_text+=' avec cintrage';
 		}
-		var product_text= $('#door-edit option:selected').text()+' '+' - Couleur: '+$('#couleur-d-door option:selected').text()+ groupe_text;
+		var product_text= $('#door-edit option:selected').text()+' '+$('#matiere-edit option:selected').text()+' '+' - Couleur: '+$('#couleur-d-door option:selected').text()+ groupe_text;
 
 
 		$.ajax({
@@ -2581,7 +2599,7 @@
 						//$("#insert").prop('disabled',false);
 
 						$("#prix-d"+id).val(data.prix);
-						var prix_ht = data.prix / (1+(p_tva*0.01));
+						var prix_ht = data.prix ;// / (1+(p_tva*0.01));
 						$("#prixht-d"+id).val(prix_ht);
 						var total = parseFloat(data.prix) * qte * 1.055;
 						$("#total-d"+id).val(total.toFixed(2));

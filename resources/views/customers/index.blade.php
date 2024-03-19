@@ -39,7 +39,8 @@
             $agent='';
             if($customer->commercial!=''){
                 $Commercial=\App\Models\User::find($customer->commercial);
-                $agent=$Commercial->name.' '.$Commercial->lastname;
+                if(isset($Commercial))
+                    $agent=$Commercial->name ?? '' .' '.$Commercial->lastname ?? '';
             }
 
         @endphp
