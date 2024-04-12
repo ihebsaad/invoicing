@@ -90,7 +90,7 @@
                 <select name="unite" class="form-control">
                     <option></option>
                     <option value="ML">ML</option>
-                    <option value="㎡">㎡</option>
+                    <option value="m2">㎡</option>
                 </select>
             </div>
         </div>

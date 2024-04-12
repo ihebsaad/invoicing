@@ -642,7 +642,7 @@ class Modeles3Seeder extends Seeder
             'couleur'    =>1 ,
             'hauteur'    => 1800,
             'largeur'  =>1200 ,
-            'prix'  => 200,
+            'prix'  => 500,
         ],
         [
             'genre'    =>1 ,

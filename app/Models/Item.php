@@ -19,6 +19,7 @@ class Item extends Model
         'price_ht',
         'price_ttc',
         'note',
+        'unite'
     ];
 
     public function product()

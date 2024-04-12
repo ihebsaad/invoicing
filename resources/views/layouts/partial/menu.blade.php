@@ -101,8 +101,14 @@
                 </li>
                 <li class="nav-item">
                   <a href="{{route('modeles.index')}}" class="nav-link {{ request()->is('modeles') || request()->is('modeles/*') ? 'active' : '' }}">
-                  <i class="fas fa-cubes nav-icon text-secondary"></i>
-                    <p>Menuiserie</p>
+                  <i class="far fa-window-maximize nav-icon text-secondary"></i>
+                    <p>Fenêtres menuiserie</p>
+                  </a>
+                </li>
+				<li class="nav-item">
+                  <a href="{{route('doors.index')}}" class="nav-link {{ request()->is('doors') || request()->is('doors/*') ? 'active' : '' }}">
+                  <i class="fas fa-door-open nav-icon text-secondary"></i>
+                    <p>Portes menuiserie</p>
                   </a>
                 </li>
                 @endcan

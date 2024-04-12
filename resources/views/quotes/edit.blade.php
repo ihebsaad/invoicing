@@ -665,6 +665,18 @@
 							<textarea  id="note-i"   name="note"  class="form-control" ></textarea>
 						</div>
 					</div>
+
+					<div class="col-xs-12 col-sm-12 col-md-7">
+						<div class="form-group">
+							<strong>Unité:</strong>
+							<select name="unite" class="form-control" id="unite">
+								<option></option>
+								<option value="ML">ML</option>
+								<option value="m2">㎡</option>
+							</select>
+						</div>
+					</div>
+
 					<div class="col-xs-12 col-sm-12 col-md-12 text-right"  >
 						<button type="button" id="add_item" onclick="add_item()"   class="btn btn-primary mt-3 mr-3">Insérer</button>
 					</div>
@@ -732,6 +744,18 @@
 							<textarea  id="note-i-edit"   name="note"  class="form-control" ></textarea>
 						</div>
 					</div>
+
+					<div class="col-xs-12 col-sm-12 col-md-7">
+						<div class="form-group">
+							<strong>Unité:</strong>
+							<select name="unite" id="unite-i-edit" class="form-control">
+								<option></option>
+								<option value="ML">ML</option>
+								<option value="m2">m²</option>
+							</select>
+						</div>
+					</div>
+
 					<div class="col-xs-12 col-sm-12 col-md-12 text-right"  >
 						<button type="button" id="add_item-edit" onclick="edit_item()"   class="btn btn-primary mt-3 mr-3">Modifier</button>
 					</div>
@@ -959,13 +983,14 @@
 		var qte=	parseInt($('#qte-i').val());
 		var quote=	parseInt($('#quote').val());
 		var description= $('#description').val();
+		var unite= $('#unite').val();
 		var texte=  description+'<br>'+note;
 		$('#tva_remise').val(tva);
 		$.ajax({
 			url: "{{ route('add_item_men') }}",
 			method: "POST",
 			async:false,
-			data: { prix:prix,prix_ht:prix_ht,qte:qte,tva,description:description,note:note, quote:quote,_token:_token},
+			data: { prix:prix,prix_ht:prix_ht,qte:qte,tva,description:description,note:note,unite:unite, quote:quote,_token:_token},
 			success: function (data) {
 				if(data!=''){
 					item_id=data;
@@ -1033,6 +1058,7 @@
 					$('#note-i-edit').val(data.note);
 					$('#tva-i-edit').val(data.tva);
 					$('#qte-i-edit').val(data.qty);
+					$('#unite-i-edit').val(data.unite);
 					$('#description-edit').val(data.description);
 					pricing_item('-edit');
 					$('#edit-item').modal('show');
@@ -1059,6 +1085,7 @@
 		var note=	$('#note-i-edit').val();
 		var tva=	$('#tva-i-edit').val();
 		var qte=	parseInt($('#qte-i-edit').val());
+		var unite=	$('#unite-i-edit').val();
 		var description= $('#description-edit').val();
 		var texte=  description+'<br>'+note;
 
@@ -1066,7 +1093,7 @@
 		url: "{{ route('edit_item_men') }}",
 		method: "POST",
 		async:false,
-		data: {item:item, prix:prix,prix_ht:prix_ht,qte:qte,tva:tva,description:description,note:note, _token:_token},
+		data: {item:item, prix:prix,prix_ht:prix_ht,qte:qte,tva:tva,description:description,note:note,unite:unite, _token:_token},
 		success: function (data) {
 			if(data!=''){
 

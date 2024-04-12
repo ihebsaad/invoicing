@@ -156,6 +156,7 @@ class ProductsController extends Controller
         $price=$request->get('price');
         $quote=$request->get('quote');
         $invoice=$request->get('invoice');
+        $unite=$request->get('unite');
 
         if( $quote>0 /*&&   Item::where('quote',$quote)->where('product',$product)->doesntExist()*/  ){
             $item=Item::create([
@@ -163,6 +164,7 @@ class ProductsController extends Controller
                 'qty'=>$qty,
                 'tva'=>$tva,
                 'price'=>$price,
+                'unite'=>$unite,
                 'quote'=>$quote,
             ]);
             return $item->id;
@@ -175,6 +177,7 @@ class ProductsController extends Controller
                 'tva'=>$tva,
                 'price'=>$price,
                 'invoice'=>$invoice,
+                'unite'=>$unite,
             ]);
             return $item->id;
         }
@@ -192,6 +195,7 @@ class ProductsController extends Controller
         $invoice=$request->get('invoice');
         $description=$request->get('description');
         $note=$request->get('note');
+        $unite=$request->get('unite');
 
         if( $quote>0   ){
             $item=Item::create([
@@ -201,6 +205,7 @@ class ProductsController extends Controller
                 'price_ht'=>$price_ht,
                 'description'=>$description,
                 'note'=>$note,
+                'unite'=>$unite,
                 'quote'=>$quote,
             ]);
             return $item->id;
@@ -214,6 +219,7 @@ class ProductsController extends Controller
                 'price_ht'=>$price_ht,
                 'description'=>$description,
                 'note'=>$note,
+                'unite'=>$unite,
                 'invoice'=>$invoice,
             ]);
             return $item->id;
@@ -231,6 +237,7 @@ class ProductsController extends Controller
         $data['prix_ht']=$item->price_ht;
         $data['description']=$item->description;
         $data['note']=$item->note;
+        $data['unite']=$item->unite;
         return $data;
     }
 
@@ -243,6 +250,7 @@ class ProductsController extends Controller
         $item->price_ttc=$request->get('prix');
         $item->price_ht=$request->get('prix_ht');
         $item->description=$request->get('description');
+        $item->unite=$request->get('unite');
         $item->note=$request->get('note');
         $item->save();
 

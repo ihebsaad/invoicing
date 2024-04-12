@@ -696,7 +696,7 @@
 						<div class="form-group">
 							<strong>Groupe:</strong>
 							<select   name="groupe_couleur" required class="form-control" id="groupe_couleur"   onchange="pricing(0,'')">
-								<option></option>
+								<option value="0"></option>
 								<option  value="1">1</option>
 								<option  value="2">2</option>
 								<option  value="3">3</option>
@@ -818,7 +818,7 @@
 						<div class="form-group">
 							<strong>Couleur:</strong>
 							<select   name="couleur" required class="form-control" id="couleur-edit"   onchange="pricing(0,'-edit')">
-								<option></option>
+								<option  @if( old("couleur")==1)  selected="selected" @endif value="0"></option>
 								<option @if( old("couleur")==1)  selected="selected" @endif value="1">Extérieur et intérieur blanc</option>
 								<option @if( old("couleur")==2)  selected="selected" @endif  value="2">Extérieur couleur et intérieur blanc</option>
 								<option @if( old("couleur")==3)  selected="selected" @endif  value="3">Extérieur et intérieur couleur</option>
@@ -829,7 +829,7 @@
 						<div class="form-group">
 							<strong>Groupe:</strong>
 							<select   name="groupe_couleur" required class="form-control" id="groupe_couleur-edit"   onchange="pricing(0,'-edit')">
-								<option></option>
+								<option value="0"></option>
 								<option  value="1">1</option>
 								<option  value="2">2</option>
 								<option  value="3">3</option>
@@ -1626,7 +1626,7 @@
             doorSelect.find("option").each(function() {
                 var doorValue = parseInt($(this).val());
 
-                if ((selectedMatiere === "pvc" && doorValue >= 63) || (selectedMatiere === "alu" && doorValue <= 62)) {
+                if ((selectedMatiere === "pvc" && doorValue >= 86) || (selectedMatiere === "alu" && doorValue <= 86)) {
                     $(this).prop("disabled", true).hide();
                 } else {
                     $(this).prop("disabled", false).show();
@@ -1758,7 +1758,7 @@
 
 		total_ttc=total_ttc-total_remise ;
 		//nouveau calcul ici :
-		total_ht = total_ttc / 1.055;
+		total_ht = total_ttc / 1.055 + loi ;
 		total_tva = total_ttc-total_ht;
 		$("#total_ht").val(total_ht.toFixed(2));
 		$("#total_tva").val(total_tva.toFixed(2));
@@ -1983,10 +1983,13 @@
 		var prix_ht = (prix - tva).toFixed(2);
 		var qte=	parseInt($('#qte-edit').val());
 		var total=parseFloat($('#total-edit').val());
-		var groupe = $('#groupe_couleur-edit').val();
+		var groupe = parseInt($('#groupe_couleur-edit').val());
 		var cintrage = $('#cintrage-edit').is(":checked") ? 1 : 0;
 		var couleur= $("#couleur-edit").val();
-		var	groupe_text='(Groupe '+groupe+')';
+		groupe_text='';
+		if(groupe>0){
+			var	groupe_text='(Groupe '+groupe+')';
+		}
 		var cintrage_text='';
 
 		var tva_pose=5.5;

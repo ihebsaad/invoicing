@@ -212,16 +212,17 @@
 		   <tbody >
 			   <tr class="product " >
 				   @foreach($items as $item)
-				  		@php $product=\App\Models\Product::withTrashed()->find($item->product); @endphp
-
+				  		@php $product=\App\Models\Product::withTrashed()->find($item->product);
+						@endphp
 				   		@if(isset($product))
 					   		@php
 								$total_prod_ht=floatval($product->prix_ht) * intval($item->qty);
 								$total_prod_ttc=floatval($product->prix) * intval($item->qty);
+								$unite =  $product->unite!='' ? $product->unite : '';
 					   		@endphp
 
 							<tr class="product"  >
-								<td class="text" ><b>{{$product->name}}<br>{!! nl2br($product->description) !!}</b></td><td>{{$product->unite}}</td><td>{{$item->qty}}</td><td>{{$product->prix_ht}} €</td><td>{{$total_prod_ht}} €</td><td>{{$item->tva}} %</td><td>{{$total_prod_ttc}} €</td>
+								<td class="text" ><b>{{$product->name}}<br>{!! nl2br($product->description) !!}</b></td><td>{!! $unite !!}</td><td>{{$item->qty}}</td><td>{{$product->prix_ht}} €</td><td>{{$total_prod_ht}} €</td><td>{{$item->tva}} %</td><td>{{$total_prod_ttc}} €</td>
 							</tr>
 							@if($product->pose > 0)
 								<tr class="product"  >
@@ -229,8 +230,9 @@
 								</tr>
 							@endif
 						@else
+							@php $unite =  $item->unite!='' ? $item->unite : ''; @endphp
 							<tr class="product"  >
-								<td class="text" >{!! nl2br($item->description) !!}</td><td></td><td>{{$item->qty}}</td><td  >{{$item->price_ht}} €</td><td>{{ floatval($item->price_ht) * intval($item->qty) }} €</td><td>{{$item->tva}} %</td><td>{{  floatval($item->price_ttc) * intval($item->qty)  }} €</td>
+								<td class="text" >{!! nl2br($item->description) !!}</td><td>{!! $unite !!}</td><td>{{$item->qty}}</td><td  >{{$item->price_ht}} €</td><td>{{ floatval($item->price_ht) * intval($item->qty) }} €</td><td>{{$item->tva}} %</td><td>{{  floatval($item->price_ttc) * intval($item->qty)  }} €</td>
 							</tr>
 						@endif
 				   @endforeach

@@ -564,6 +564,16 @@
 							<textarea  id="note-i"   name="note"  class="form-control" ></textarea>
 						</div>
 					</div>
+					<div class="col-xs-12 col-sm-12 col-md-7">
+						<div class="form-group">
+							<strong>Unité:</strong>
+							<select name="unite" class="form-control">
+								<option></option>
+								<option value="ML">ML</option>
+								<option value="m2">㎡</option>
+							</select>
+						</div>
+					</div>
 					<div class="col-xs-12 col-sm-12 col-md-12 text-right"  >
 						<button type="button" id="add_item" onclick="add_item()"   class="btn btn-primary mt-3 mr-3">Insérer</button>
 					</div>
@@ -786,13 +796,14 @@
 		var qte=	parseInt($('#qte-i').val());
 		var invoice=	parseInt($('#invoice').val());
 		var description= $('#description').val();
+		var unite= $('#unite').val();
 		var texte=  description+'<br>'+note;
 		$('#tva_remise').val(tva);
 		$.ajax({
 			url: "{{ route('add_item_men') }}",
 			method: "POST",
 			async:false,
-			data: { prix:prix,prix_ht:prix_ht,qte:qte,tva,description:texte, invoice:invoice,_token:_token},
+			data: { prix:prix,prix_ht:prix_ht,qte:qte,tva,description:texte,unite:unite, invoice:invoice,_token:_token},
 			success: function (data) {
 				if(data!=''){
 					item_id=data;

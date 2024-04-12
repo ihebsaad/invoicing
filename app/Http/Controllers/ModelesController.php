@@ -322,7 +322,7 @@ class ModelesController extends Controller
         $modele=Modele::where('genre',$genre)->where('type',$type)->where('couleur',1)->where('hauteur',$hauteur)->where('largeur',$largeur)->first();
         if (isset($modele)){
             $model['id']=$modele->id;
-            $coefficient = floatval( Setting::where('model','Modele')->where('model_id',''.$type)->first()->value  );
+            $coefficient = floatval( Setting::where('model','Modele')->where('model_id',$type)->where('genre',$genre)->first()->value  );
             //$prix=$modele->prix * 3;   // coefficient
             $prix=$modele->prix * $coefficient;   //
             if($couleur==1){
@@ -331,11 +331,11 @@ class ModelesController extends Controller
             //    $prix=$prix*1.1;
 
                 if($groupe_couleur==1){
-                    $prix=$prix + floatval( Setting::where('model','Color')->where('model_id','1')->first()->value ) ;
+                    $prix=$prix + floatval( Setting::where('model','Color')->where('model_id','1')->where('genre',$genre)->first()->value ) ;
                 }elseif($groupe_couleur==2){
-                    $prix=$prix+ floatval( Setting::where('model','Color')->where('model_id','2')->first()->value );
+                    $prix=$prix+ floatval( Setting::where('model','Color')->where('model_id','2')->where('genre',$genre)->first()->value );
                 }elseif($groupe_couleur==3){
-                    $prix=$prix+floatval( Setting::where('model','Color')->where('model_id','3')->first()->value );
+                    $prix=$prix+floatval( Setting::where('model','Color')->where('model_id','3')->where('genre',$genre)->first()->value );
                 }
 
             }
@@ -343,11 +343,11 @@ class ModelesController extends Controller
             //    $prix=$prix*1.2;
 
                 if($groupe_couleur==1){
-                    $prix=$prix + floatval( Setting::where('model','Color')->where('model_id','4')->first()->value );
+                    $prix=$prix + floatval( Setting::where('model','Color')->where('model_id','4')->where('genre',$genre)->first()->value );
                 }elseif($groupe_couleur==2){
-                    $prix=$prix + floatval( Setting::where('model','Color')->where('model_id','5')->first()->value );
+                    $prix=$prix + floatval( Setting::where('model','Color')->where('model_id','5')->where('genre',$genre)->first()->value );
                 }elseif($groupe_couleur==3){
-                    $prix=$prix + floatval( Setting::where('model','Color')->where('model_id','6')->first()->value );
+                    $prix=$prix + floatval( Setting::where('model','Color')->where('model_id','6')->where('genre',$genre)->first()->value );
                 }
 
             }

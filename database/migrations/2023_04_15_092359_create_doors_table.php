@@ -16,7 +16,7 @@ class CreateDoorsTable extends Migration
         Schema::create('doors', function (Blueprint $table) {
             //
             $table->bigIncrements('id');
-        //    $table->integer('type'); //Omicron..
+            $table->integer('genre')->nullable(); //PVC  ALU..
             $table->double('prix', 8, 2);
             $table->string('texte')->nullable();
             $table->timestamps();

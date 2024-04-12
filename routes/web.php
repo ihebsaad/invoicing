@@ -21,6 +21,7 @@ use App\Http\Controllers\InvoicesController;
 use App\Http\Controllers\QuotesController;
 use App\Http\Controllers\CustomersController;
 use App\Http\Controllers\ModelesController;
+use App\Http\Controllers\DoorsController;
 use App\Http\Controllers\SettingsController;
 
 Route::get('/quotes/all', [QuotesController::class, 'all'])->name('quotes.all');
@@ -33,6 +34,7 @@ Route::resource('invoices', InvoicesController::class);
 Route::resource('quotes', QuotesController::class);
 Route::resource('customers', CustomersController::class);
 Route::resource('modeles', ModelesController::class);
+Route::resource('doors', DoorsController::class);
 
 Route::get('/', function () {
     return view('welcome');

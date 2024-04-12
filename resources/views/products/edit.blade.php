@@ -102,7 +102,7 @@
 							<select name="unite" class="form-control">
 								<option @if($product->unite=="") selected="selected" @endif></option>
 								<option @if($product->unite=="ML") selected="selected"  @endif value="ML">ML</option>
-								<option @if($product->unite=="㎡") selected="selected"  @endif value="㎡">㎡</option>
+								<option @if($product->unite=="m2") selected="selected"  @endif value="m2">m²</option>
 							</select>
 						</div>
 					</div>
