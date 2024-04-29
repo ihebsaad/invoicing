@@ -807,28 +807,33 @@
 
     		});
 		});
+
+
 		var tva_remise=parseFloat($('#tva_remise').val()) || 0;
 		var total_remise=parseFloat($('#total_remise').val())  || 0;
 
-		var tva_deplacement=parseFloat($('#tva_deplacement').val()) || 0;
+		var p_tva_deplacement=parseFloat($('#tva_deplacement').val()) || 0;
 		var total_deplacement=parseFloat($('#total_deplacement').val()) || 0;
 
 		var remise = total_remise / (1+(tva_remise*0.01));
 		$('#remise').val(remise.toFixed(2));
-
-		var deplacement = total_deplacement / (1+(tva_deplacement*0.01));
+		// deplacement ht
+		var deplacement = total_deplacement / (1+(p_tva_deplacement*0.01));
 		$('#deplacement').val(deplacement.toFixed(2));
 
-		/*
+		var deplacement_tva = total_deplacement- deplacement;
+
 		var val_total_ht= total_ht-remise + deplacement;
 		$("#total_ht").val(val_total_ht.toFixed(2));
-		total_tva = total_ttc-total_ht - (remise*tva_remise*0.01) + tva_deplacement;
-
+		total_tva = total_ttc-total_ht - (remise*tva_remise*0.01) + deplacement_tva;
+		console.log(  total_ttc+'-'+total_ht+' - ('+remise+'*'+tva_remise+'*0.01) + '+deplacement_tva);
 	    $('#total_tva').val(total_tva.toFixed(2));
-		*/
+		total_ttc=total_ttc-total_remise + total_deplacement;
+		$('#total_ttc').val(total_ttc.toFixed(2));
 
-		total_ttc=total_ttc-total_remise ;
+/*
 		//nouveau calcul ici :
+
 		total_ht = total_ttc / 1.055;
 		total_tva = total_ttc-total_ht;
 		$("#total_ht").val(total_ht.toFixed(2));
@@ -836,7 +841,7 @@
 
 		total_ttc=total_ttc  + total_deplacement;
 		$('#total_ttc').val(total_ttc.toFixed(2));
-
+*/
 
 		var aide=parseFloat($('#aide2').val()) || 0;
 		var acompte=parseFloat($('#acompte').val()) || 0;

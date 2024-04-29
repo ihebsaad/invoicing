@@ -1731,7 +1731,7 @@
 		var tva_remise=parseFloat($('#tva_remise').val()) || 0;
 		var total_remise=parseFloat($('#total_remise').val()) || 0;
 
-		var tva_deplacement=parseFloat($('#tva_deplacement').val()) || 0;
+		var p_tva_deplacement=parseFloat($('#tva_deplacement').val()) || 0;
 		var total_deplacement=parseFloat($('#total_deplacement').val()) || 0;
 
 		//var loi=parseFloat($('#loi').val()) || 0;
@@ -1745,14 +1745,14 @@
 		var remise = total_remise / (1+(tva_remise*0.01));
 		$('#remise').val(remise.toFixed(2));
 
-		var deplacement = total_deplacement / (1+(tva_deplacement*0.01));
+		var deplacement = total_deplacement / (1+(p_tva_deplacement*0.01));
 		$('#deplacement').val(deplacement.toFixed(2));
 
 		var val_total_ht=total_ht-remise    + loi + deplacement;
 		// desactivation calcul manuel (supposant toujours tva =5.5%)
 		/*
 		$("#total_ht").val(val_total_ht.toFixed(2));
-		total_tva = total_ttc-total_ht - (remise*tva_remise*0.01)    + tva_loi + tva_deplacement;
+		total_tva = total_ttc-total_ht - (remise*tva_remise*0.01)    + tva_loi + p_tva_deplacement;
 	    $('#total_tva').val(total_tva.toFixed(2));
 		*/
 
@@ -1960,9 +1960,9 @@
 					$('#cintrage-edit').prop('checked',false);
 
 				if(parseInt(data.type) >0)
-					$('#catalogue-edit').prop('checked',true);
-				else
 					$('#catalogue-edit').prop('checked',false);
+				else
+					$('#catalogue-edit').prop('checked',true);
 
 				$("#couleur-edit").val(data.couleur);
 
@@ -2241,9 +2241,9 @@
 				$('#largeur-v-edit').val(data.largeur);
 				$('#edit-volet').modal('show');
 				if(parseInt(data.type) >0)
-					$('#catalogue-v-edit').prop('checked',true);
-				else
 					$('#catalogue-v-edit').prop('checked',false);
+				else
+					$('#catalogue-v-edit').prop('checked',true);
 				pricing_volet(0,'-edit');
 			}
 		});

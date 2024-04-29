@@ -201,7 +201,12 @@ class InvoicesController extends Controller
         $date=Carbon::parse($invoice->created_at)->format('Y-m');
         $date_facture=Carbon::parse($invoice->date)->format('d/m/Y');
         $reference= $invoice->reference ;
-        $user= User::find($invoice->par) ; $par = $user->name.' '.$user->lastname;
+        $user= User::find($invoice->par) ;
+        if (isset($user))
+            $par = $user->name.' '.$user->lastname;
+        else
+            $par ='';
+
         $items = Item::where('invoice',$id)->get();
         $articles = Article::where('invoice',$id)->get();
         $portes = Porte::where('invoice',$id)->get();
@@ -236,7 +241,12 @@ class InvoicesController extends Controller
         $date=Carbon::parse($invoice->created_at)->format('Y-m');
         $date_facture=Carbon::parse($invoice->date)->format('d/m/Y');
         $reference= $invoice->reference ;
-        $user= User::find($invoice->par) ; $par = $user->name.' '.$user->lastname;
+        $user= User::find($invoice->par) ;
+        if (isset($user))
+            $par = $user->name.' '.$user->lastname;
+        else
+            $par ='';
+
         $items = Item::where('invoice',$id)->get();
         $articles = Article::where('invoice',$id)->get();
         $portes = Porte::where('invoice',$id)->get();
@@ -259,7 +269,11 @@ class InvoicesController extends Controller
         $date=Carbon::parse($invoice->created_at)->format('Y-m');
         $date_facture=Carbon::parse($invoice->date)->format('d/m/Y');
         $reference= $invoice->reference ;
-        $user= User::find($invoice->par) ; $par = $user->name.' '.$user->lastname;
+        $user= User::find($invoice->par) ;
+        if (isset($user))
+            $par = $user->name.' '.$user->lastname;
+        else
+            $par ='';
 
         $items = Item::where('invoice',$id)->get();
         $articles = Article::where('invoice',$id)->get();

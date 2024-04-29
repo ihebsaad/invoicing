@@ -235,7 +235,11 @@ class QuotesController extends Controller
         $invoice = Quote::find($id);
         $type='Devis';
         $reference= $invoice->reference;
-        $user= User::find($invoice->par) ; $par = $user->name.' '.$user->lastname;
+        $user= User::find($invoice->par) ;
+        if (isset($user))
+            $par = $user->name.' '.$user->lastname;
+        else
+            $par ='';
 
         $date=Carbon::parse($invoice->created_at)->format('Y-m');
         $date_facture=Carbon::parse($invoice->date)->format('d/m/Y');
@@ -261,7 +265,11 @@ class QuotesController extends Controller
         $invoice = Quote::find($id);
         $type='Devis';
         $reference= $invoice->reference;
-        $user= User::find($invoice->par) ; $par = $user->name.' '.$user->lastname;
+        $user= User::find($invoice->par) ;
+        if (isset($user))
+            $par = $user->name.' '.$user->lastname;
+        else
+            $par ='';
 
         $date=Carbon::parse($invoice->created_at)->format('Y-m');
         $date_facture=Carbon::parse($invoice->date)->format('d/m/Y');
@@ -288,7 +296,12 @@ class QuotesController extends Controller
         $type='Devis';
         $date=Carbon::parse($invoice->created_at)->format('Y-m');
         $date_facture=Carbon::parse($invoice->date)->format('d/m/Y');
-        $user= User::find($invoice->par) ; $par = $user->name.' '.$user->lastname;
+        $user= User::find($invoice->par) ;
+        if (isset($user))
+            $par = $user->name.' '.$user->lastname;
+        else
+            $par ='';
+
         $format='avecsignature';
         $reference= $invoice->reference;
         $items = Item::where('quote',$id)->get();
