@@ -107,7 +107,7 @@
 	   }
 
 		.financement td{
-		   text-align:center;
+		   text-align:left;
 		   vertical-align:middle;
 
 	   }
@@ -116,6 +116,7 @@
 		   border:1px solid grey;
 		   padding:5px 5px;
 		   margin-top:10px;
+		   width:80%;
 	   }
 	   .pagenum:before {
 		   content: counter(page);
@@ -263,6 +264,37 @@
 			   @endif
 				<b>Délai de Livraison : 90 jours</b><br>
 				<b>Durée de validité du devis : 15 jours</b>
+
+				<div style="width:100%;padding-top:30px;page-break-inside: avoid;">
+				   @if($invoice->modalite!='')
+					   <b>Règlement par :</b> {{ $invoice->modalite }}
+
+					   @if(str_contains($invoice->modalite, 'Financement') )
+						   <table class="financement">
+							   <tr><td>Montant Financé :</td><td class="text-right" style="padding-right:20px;font-weight:bold;">{{number_format($invoice->montant_finance,2,',',' ')}} €</td><td>Montant mensuel<br>de l'assurance :</td><td style="font-weight:bold;" class="text-right">{{number_format($invoice->montant_assurance,2,',',' ')}} €</td></tr>
+							   <tr><td>Report 1ère échéance (en jours) :</td><td class="text-right" style="padding-right:20px;font-weight:bold;">{{$invoice->report_echeance}} jours</td><td>Taux débiteur :</td><td style="font-weight:bold;" class="text-right">{{$invoice->taux_nominal}} %</td></tr>
+							   <tr><td>Nombre de mensualités :</td><td class="text-right" style="padding-right:20px;font-weight:bold;">{{$invoice->mensualites}}</td><td>TAEG :</td><td style="font-weight:bold;" class="text-right">{{$invoice->taeg}} %</td></tr>
+							   <tr><td>Montant mensuel<br>sans assurance :</td><td class="text-right" style="padding-right:20px;font-weight:bold;">{{number_format($invoice->montant_mensuel,2,',',' ')}} €</td><td>Solde de la pose :</td><td style="font-weight:bold;" class="text-right">{{number_format($invoice->pose,2,',',' ')}} €</td></tr>
+						   </table>
+					   @endif
+					   @if( str_contains($invoice->modalite, 'Chèques') || $invoice->modalite=='Chèque')
+						   <table class="financement">
+								@if($invoice->modalite=='4 Chèques' || $invoice->modalite=='3 Chèques' || $invoice->modalite=='2 Chèques' || $invoice->modalite=='Chèque' )
+								<tr><td class="vtop">Montant:</td><td class="text-right vtop" style="padding-right:20px;font-weight:bold;">{{number_format($invoice->montant1,2,',',' ')}} €</td><td class="vtop">Note:</td><td class="text vtop">{{ $invoice->note1 }}</td></tr>
+								@endif
+								@if($invoice->modalite=='4 Chèques' || $invoice->modalite=='3 Chèques'|| $invoice->modalite=='2 Chèques'   )
+								<tr><td class="vtop">Montant 2:</td><td class="text-right vtop" style="padding-right:20px;font-weight:bold;">{{number_format($invoice->montant2,2,',',' ')}} €</td><td class="vtop">Note 2:</td><td class="text vtop">{{ $invoice->note2 }}</td></tr>
+								@endif
+								@if($invoice->modalite=='4 Chèques' || $invoice->modalite=='3 Chèques' )
+								<tr><td class="vtop">Montant 3:</td><td class="text-right vtop" style="padding-right:20px;font-weight:bold;">{{number_format($invoice->montant3,2,',',' ')}} €</td><td class="vtop">Note 3</td><td class="text vtop">{{ $invoice->note3 }}</td></tr>
+								@endif
+								@if($invoice->modalite=='4 Chèques'   )
+								<tr><td class="vtop">Montant 4:</td><td class="text-right vtop" style="padding-right:20px;font-weight:bold;">{{number_format($invoice->montant4,2,',',' ')}} €</td><td class="vtop">Note 4:</td><td class="text vtop">{{ $invoice->note4 }}</td></tr>
+								@endif
+						   </table>
+					   @endif
+				   @endif
+				</div>
 		   </div>
 		   <div style="width:33%;float:left;">
 			   <table class="totals">
@@ -284,40 +316,9 @@
 			   </table>
 		   </div>
 	   </div>
-	   <div class="clearfix"></div>
-	   <div style="width:100%;page-break-inside: avoid;">
-		   <div style="width:42%;float:left;font-size:9px;padding-top:10px;margin-right:3%">
-			   @if($invoice->modalite!='')
-				   <b>Règlement par :</b> {{ $invoice->modalite }}
 
-				   @if(str_contains($invoice->modalite, 'Financement') )
-					   <table class="financement">
-						   <tr><td>Montant Financé :</td><td class="text-right" style="padding-right:20px;font-weight:bold;">{{number_format($invoice->montant_finance,2,',',' ')}} €</td><td>Montant mensuel<br>de l'assurance :</td><td style="font-weight:bold;" class="text-right">{{number_format($invoice->montant_assurance,2,',',' ')}} €</td></tr>
-						   <tr><td>Report 1ère échéance :</td><td class="text-right" style="padding-right:20px;font-weight:bold;">{{$invoice->report_echeance}} jours</td><td>Taux débiteur :</td><td style="font-weight:bold;" class="text-right">{{$invoice->taux_nominal}} %</td></tr>
-						   <tr><td>Nombre de mensualités :</td><td class="text-right" style="padding-right:20px;font-weight:bold;">{{$invoice->mensualites}}</td><td>TAEG :</td><td style="font-weight:bold;" class="text-right">{{$invoice->taeg}} %</td></tr>
-						   <tr><td>Montant mensuel<br>sans assurance :</td><td class="text-right" style="padding-right:20px;font-weight:bold;">{{number_format($invoice->montant_mensuel,2,',',' ')}} €</td><td>Solde de la pose :</td><td style="font-weight:bold;" class="text-right">{{number_format($invoice->pose,2,',',' ')}} €</td></tr>
-					   </table>
-				   @endif
-				   @if( str_contains($invoice->modalite, 'Chèques') || $invoice->modalite=='Chèque')
-					   <table class="financement">
-							@if($invoice->modalite=='4 Chèques' || $invoice->modalite=='3 Chèques' || $invoice->modalite=='2 Chèques' || $invoice->modalite=='Chèque' )
-					 		<tr><td class="vtop">Montant:</td><td class="text-right vtop" style="padding-right:20px;font-weight:bold;">{{number_format($invoice->montant1,2,',',' ')}} €</td><td class="vtop">Note:</td><td class="text vtop">{{ $invoice->note1 }}</td></tr>
-							@endif
-							@if($invoice->modalite=='4 Chèques' || $invoice->modalite=='3 Chèques'|| $invoice->modalite=='2 Chèques'   )
-							<tr><td class="vtop">Montant 2:</td><td class="text-right vtop" style="padding-right:20px;font-weight:bold;">{{number_format($invoice->montant2,2,',',' ')}} €</td><td class="vtop">Note 2:</td><td class="text vtop">{{ $invoice->note2 }}</td></tr>
-							@endif
-							@if($invoice->modalite=='4 Chèques' || $invoice->modalite=='3 Chèques' )
-							<tr><td class="vtop">Montant 3:</td><td class="text-right vtop" style="padding-right:20px;font-weight:bold;">{{number_format($invoice->montant3,2,',',' ')}} €</td><td class="vtop">Note 3</td><td class="text vtop">{{ $invoice->note3 }}</td></tr>
-							@endif
-							@if($invoice->modalite=='4 Chèques'   )
-							<tr><td class="vtop">Montant 4:</td><td class="text-right vtop" style="padding-right:20px;font-weight:bold;">{{number_format($invoice->montant4,2,',',' ')}} €</td><td class="vtop">Note 4:</td><td class="text vtop">{{ $invoice->note4 }}</td></tr>
-							@endif
-					   </table>
-				   @endif
-			   @endif
-		   </div>
-
-		   <div style="width:55%;float:left;font-weight:bold;padding-top:15px">
+	   <div class="clearfix pagebreak"></div>
+		   <div style="width:100%;font-weight:bold;padding-top:15px">
 		   		@if($type =='Devis')
 				  	@if($format=='avecsignature')
 						@php
@@ -330,20 +331,20 @@
 							<tr><td colspan="4"> J'ai lu et j'accepte les Conditions Générales de Ventes</td></tr>
 							<tr><td colspan="4">Signature précédée de la mention "Bon pour accord"</td></tr>
 						</table>
-						<div style="border:1px solid grey;width:100%;height:110px">
+						<div style="border:1px solid grey;width:60%;height:110px">
 							@if($signature !='')<img style="margin-left:15px;margin-top:15px;" src="{{$signature}}"  width='200'     height= ''/>@endif
 						</div>
 					@else
 						<table style="width:300px;font-size:10px">
 							<tr rowspan="2"><td>Fait à</td><td></td><td>Le</td><td></td></tr>
+							<tr><td colspan="4"> J'ai lu et j'accepte les Conditions Générales de Ventes</td></tr>
 							<tr><td colspan="4">Signature précédée de la mention "Bon pour accord"</td></tr>
 						</table>
-						<div style="border:1px solid grey;width:100%;height:100px">
+						<div style="border:1px solid grey;width:60%;height:100px">
 						</div>
 					@endif
 				@endif
 		   </div>
-	   </div>
 	   <div class="clearfix"></div>
 
 

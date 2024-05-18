@@ -51,11 +51,13 @@
 			    <a class="btn btn-success mb-3 mr-2 " target="_blank" href="{{ route('invoices.show_pdf',$invoice->id) }}" style="float:left" title="Ouvrir en PDF"><i class="fas fa-file-pdf"></i></a>
 			    <a class="btn btn-secondary mb-3 mr-2 " href="{{ route('invoices.download_pdf',$invoice->id) }}" style="float:left" title="Télécharger"><i class="fas fa-download"></i></a>
 			    <a class="btn btn-warning mb-3 mr-2 " href="{{ route('invoices.send_pdf',$invoice->id) }}" style="float:left" title="Envoyer par email"><i class="fas fa-envelope"></i></a>
+                @if($User->user_type=='admin')
                 <form action="{{ route('invoices.destroy',$invoice->id) }}" method="POST" style="float:left" class="mr-2  ">
                     @csrf
                     @method('DELETE')
                     <button type="submit" class="btn btn-danger mb-3" title="Supprimer" onclick="return ConfirmDelete();"><i class="fas fa-trash"></i></button>
                 </form>
+                @endif
             </td>
         </tr>
         @endforeach

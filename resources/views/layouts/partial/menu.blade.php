@@ -134,7 +134,7 @@
                 <li class="nav-item">
                   <a href="{{route('settings')}}" class="nav-link {{ request()->is('settings.index') ||  request()->is('settings')  ? 'active' : '' }}">
                     <i class="fas fa-calculator nav-icon text-secondary"></i>
-                    <p>Coefficients</p>
+                    <p>Coeffs & Textes</p>
                   </a>
                 </li>
                 <li class="nav-item">

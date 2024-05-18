@@ -175,12 +175,10 @@ class QuotesController extends Controller
      * @param  \App\Quote  $quote
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Quote $quote)
+    public function destroy(Request $request, Quote $quote)
     {
         $quote->delete();
-
-        return redirect()->route('quotes.index')
-                        ->with('success','Devis supprimé ');
+        return back()->with('success', 'Devis supprimé');
     }
 
 
@@ -255,6 +253,34 @@ class QuotesController extends Controller
             $pdf = PDF::loadView('invoices.invoice_men', compact('invoice','type','reference','date_facture','articles','par','count','portes','volets','items','format'));
         else
             $pdf = PDF::loadView('invoices.invoice', compact('invoice','type','reference','date_facture','items','par','count','portes','volets','items','format'));
+
+        return $pdf->stream('quote-'.$id.'.pdf');
+
+    }
+
+
+    public function show_pdf_tva($id)
+	{
+        $invoice = Quote::find($id);
+        $type='Devis';
+        $reference= $invoice->reference;
+        $user= User::find($invoice->par) ;
+        if (isset($user))
+            $par = $user->name.' '.$user->lastname;
+        else
+            $par ='';
+
+        $date=Carbon::parse($invoice->created_at)->format('Y-m');
+        $date_facture=Carbon::parse($invoice->date)->format('d/m/Y');
+        $format='sanssignature';
+        $items = Item::where('quote',$id)->get();
+        $articles = Article::where('quote',$id)->get();
+        $portes = Porte::where('quote',$id)->get();
+        $volets = Volet::where('quote',$id)->get();
+
+        $count=count($items);
+
+        $pdf = PDF::loadView('invoices.invoice_tva', compact('invoice','type','reference','date_facture','items','par','count','portes','volets','items','format'));
 
         return $pdf->stream('quote-'.$id.'.pdf');
 

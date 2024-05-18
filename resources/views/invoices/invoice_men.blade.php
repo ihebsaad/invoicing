@@ -109,7 +109,7 @@
 	   }
 
 		.financement td{
-		   text-align:center;
+		   text-align:left;
 		   vertical-align:middle;
 	   }
 	   .financement{
@@ -117,6 +117,7 @@
 		   border:1px solid grey;
 		   padding:5px 5px;
 		   margin-top:10px;
+		   width:80%;
 	   }
 	   .pagenum:before {
 		   content: counter(page);
@@ -124,7 +125,6 @@
 	   .page{
 	   counter-reset: page;
 	   }
-	   /* coupons */
 	   .pagebreak { page-break-before: always; } /* page-break-after works, as well */
 	   .conditions{
 		   width:100%;
@@ -297,289 +297,18 @@
 						   $img='img/m10_1.jpg';
 						   if (isset($modele)) {
 								$typep=$modele->type;
+								$genre=$modele->genre;
 						   }else{
 								$typep=$article->type_modele;
+								$genre=1;
 						   }
 
 							$img='img/m'.$typep.$cintrage.'.jpg';
-							switch ($typep) {
-								case 1:
-									$desc='
-									-	POSE DE MENUISERIES PVC DE LA MARQUE OKNOPLAST – MODELE CHARME MINI – FINITION PURE
-									-	INSTALLATION DE MATERIAUX D’ISOLATION THERMIQUE DES PAROIS VITREES VERTICALES
-									-	INSTALLATION DE FENETRE A SOUFFLET EN DOUBLE VITRAGE VENANT EN REMPLACEMENT DE MENUISERIES SIMPLE VITRAGE
-									-	Système breveté équipé de renforts en acier sur l’ensemble du dormant et des ouvrants
-									-	Système d’ouverture Oscillo-Battant
-									-	Parclose Charme
-									-	Ouvrant 70mm
-									-	Dormant rénovation, aile de 65
-									-   Joint de propreté total
-									-	Couleur 2 faces : '.$couleur_text.'
-									-	Vitrage 4/16/4 FE (argon) Ug = 1,1
-									-	Intercalaire Warm-Edge Noir 9005
-									-	Appui bas pour dormant rénovation 110.102.2 (haut. 2mm)
-									-	Pièce d’appui non comprise dans la hauteur
-									-	Ferrage standard
-									-	Poignée KISKA : Blanc
-									-	Hauteur de poignée standard
-									-	2 aérateurs à fente Aéromat (suivant emplacement)
-									-	Coefficient de transmission surfacique : Uw = 1,3 W/m².K
-									-	Performance thermique du vitrage : Uw = 1,1 W/m².K
-									-	Facteur solaire : Sw = 0.45 W/m².K
-									-	Fermeture par crémone simple
-									-	Habillage intérieur : A déterminer au métrage
-									-	Habillage extérieur : A déterminer au métrage
-									-	LES ELEMENTS SUIVANT SONT A CONFIRMER AU METTRAGE.';
-									break;
-								case 2:
-									$desc='
-									-	POSE DE MENUISERIES PVC DE LA MARQUE OKNOPLAST – MODELE CHARME MINI – FINITION PURE
-									-	INSTALLATION DE MATERIAUX D’ISOLATION THERMIQUE DES PAROIS VITREES VERTICALES
-									-	INSTALLATION DE FENETRE 1 VANTAIL EN DOUBLE VITRAGE VENANT EN REMPLACEMENT DE MENUISERIES SIMPLE VITRAGE
-									-	Système breveté équipé de renforts en acier sur l’ensemble du dormant et des ouvrants
-									-	Système d’ouverture Oscillo-Battant
-									-	Parclose Charme
-									-	Ouvrant 70mm
-									-	Dormant rénovation, aile de 65
-									-	Dim. Fabrication (Dos de dormant sans les ailes)
-									-	Joint de propreté total
-									-	Couleur 2 faces : '.$couleur_text.'
-									-	Vitrage 4/16/4 FE (argon) Ug = 1,1
-									-	Intercalaire Warm-Edge Noir 9005
-									-	Appui bas pour dormant rénovation 110.102.2 (haut. 2mm)
-									-	Pièce d’appui non comprise dans la hauteur
-									-	Ferrage standard
-									-	Poignée KISKA : Blanc
-									-	Hauteur de poignée standard
-									-	2 aérateurs à fente Aéromat (suivant emplacement)
-									-	Coefficient de transmission surfacique : Uw = 1,3 W/m².K
-									-	Performance thermique du vitrage : Uw = 1,1 W/m².K
-									-	Facteur solaire : Sw = 0.45 W/m².K
-									-	Fermeture par crémone simple
-									-	Habillage intérieur : A déterminer au métrage
-									-	Habillage extérieur : A déterminer au métrage
-									-	LES ELEMENTS SUIVANT SONT A CONFIRMER AU METTRAGE.';
-									break;
-								case 3:
-									$desc='
-									-	POSE DE MENUISERIES PVC DE LA MARQUE OKNOPLAST – MODELE CHARME MINI – FINITION PURE
-									-	INSTALLATION DE MATERIAUX D’ISOLATION THERMIQUE DES PAROIS VITREES VERTICALES
-									-	INSTALLATION DE FENETRE 2 VANTAUX EN DOUBLE VITRAGE VENANT EN REMPLACEMENT DE MENUISERIES SIMPLE VITRAGE
-									-	Système breveté équipé de renforts en acier sur l’ensemble du dormant et des ouvrants
-									-	Système d’ouverture Oscillo-Battant
-									-	Parclose Charme
-									-	Ouvrant 70mm
-									-	Dormant rénovation, aile de 65
-									-	Dim. Fabrication (Dos de dormant sans les ailes)
-									-	Joint de propreté total
-									-	Couleur 2 faces : '.$couleur_text.'
-									-	Vitrage 4/16/4 FE (argon) Ug = 1,1
-									-	Intercalaire Warm-Edge Noir 9005
-									-	Appui bas pour dormant rénovation 110.102.2 (haut. 2mm)
-									-	Pièce d’appui non comprise dans la hauteur
-									-	Ferrage standard
-									-	Poignée KISKA : Blanc
-									-	Hauteur de poignée standard
-									-	2 aérateurs à fente Aéromat (suivant emplacement)
-									-	Coefficient de transmission surfacique : Uw = 1,3 W/m².K
-									-	Performance thermique du vitrage : Uw = 1,1 W/m².K
-									-	Facteur solaire : Sw = 0.45 W/m².K
-									-	Fermeture par crémone simple
-									-	Habillage intérieur : A déterminer au métrage
-									-	Habillage extérieur : A déterminer au métrage
-									-	LES ELEMENTS SUIVANT SONT A CONFIRMER AU METTRAGE.';
-									break;
-								case 4:
-									$desc='
-									-	POSE DE MENUISERIES PVC DE LA MARQUE OKNOPLAST – MODELE CHARME MINI – FINITION PURE
-									-	INSTALLATION DE MATERIAUX D’ISOLATION THERMIQUE DES PAROIS VITREES VERTICALES
-									-	INSTALLATION DE FENETRE 2 VANTAUX EN DOUBLE VITRAGE VENANT EN REMPLACEMENT DE MENUISERIES SIMPLE VITRAGE
-									-	Système breveté équipé de renforts en acier sur l’ensemble du dormant et des ouvrants
-									-	Système d’ouverture Oscillo-Battant
-									-	Parclose Charme
-									-	Ouvrant 70mm
-									-	Dormant rénovation, aile de 65
-									-	Dim. Fabrication (Dos de dormant sans les ailes)
-									-	Joint de propreté total
-									-	Couleur 2 faces : '.$couleur_text.'
-									-	Vitrage 4/16/4 FE (argon) Ug = 1,1
-									-	Intercalaire Warm-Edge Noir 9005
-									-	Appui bas pour dormant rénovation 110.102.2 (haut. 2mm)
-									-	Pièce d’appui non comprise dans la hauteur
-									-	Ferrage standard
-									-	Poignée KISKA : Blanc
-									-	Hauteur de poignée standard
-									-	2 aérateurs à fente Aéromat (suivant emplacement)
-									-	Coefficient de transmission surfacique : Uw = 1,3 W/m².K
-									-	Performance thermique du vitrage : Uw = 1,1 W/m².K
-									-	Facteur solaire : Sw = 0.45 W/m².K
-									-	Fermeture par crémone simple
-									-	Habillage intérieur : A déterminer au métrage
-									-	Habillage extérieur : A déterminer au métrage
-									-	LES ELEMENTS SUIVANT SONT A CONFIRMER AU METTRAGE.';
-									break;
-									// fenetre fixe
-								case 5:
-									$desc='
-									-	POSE DE MENUISERIES PVC DE LA MARQUE OKNOPLAST – MODELE CHARME MINI – FINITION PURE
-									-	INSTALLATION DE MATERIAUX D’ISOLATION THERMIQUE DES PAROIS VITREES VERTICALES
-									-	INSTALLATION DE FENETRE FIXE EN DOUBLE VITRAGE VENANT EN REMPLACEMENT DE MENUISERIES SIMPLE VITRAGE
-									-	Système breveté équipé de renforts en acier sur l’ensemble du dormant et des ouvrants
-									-	Système d’ouverture Oscillo-Battant
-									-	Parclose Charme
-									-	Dormant rénovation, aile de 65
-									-	Dim. Fabrication (Dos de dormant sans les ailes)
-									-	Couleur 2 faces : '.$couleur_text.'
-									-	Vitrage 4/16/4 FE (argon) Ug = 1,1
-									-	Intercalaire Warm-Edge Noir 9005
-									-	Appui bas pour dormant rénovation 110.102.2 (haut. 2mm)
-									-	Pièce d’appui non comprise dans la hauteur
-									-	Coefficient de transmission surfacique : Uw = 1,3 W/m².K
-									-	Performance thermique du vitrage : Uw = 1,1 W/m².K
-									-	Facteur solaire : Sw = 0.45 W/m².K
-									-	Fermeture par crémone simple
-									-	Habillage intérieur : A déterminer au métrage
-									-	Habillage extérieur : A déterminer au métrage
-									-	LES ELEMENTS SUIVANT SONT A CONFIRMER AU METTRAGE.';
-									break;
-								case 6:
-									$desc='
-									-	POSE DE MENUISERIES PVC DE LA MARQUE OKNOPLAST – MODELE CHARME MINI – FINITION PURE
-									-	INSTALLATION DE MATERIAUX D’ISOLATION THERMIQUE DES PAROIS VITREES VERTICALES
-									-	INSTALLATION DE PORTES-FENETRES EN DOUBLE VITRAGE VENANT EN REMPLACEMENT DE MENUISERIES SIMPLE VITRAGE
-									-	Système breveté équipé de renforts en acier sur l’ensemble du dormant et des ouvrants
-									-	Système d’ouverture Oscillo-Battant
-									-	Parclose Charme
-									-	Ouvrant 70mm
-									-	Dormant rénovation, aile de 65
-									-	Dim. Fabrication (Dos de dormant sans les ailes)
-									-	Joint de propreté total
-									-	Couleur 2 faces : '.$couleur_text.'
-									-	Vitrage 4/16/4 FE (argon) Ug = 1,1
-									-	Intercalaire Warm-Edge Noir 9005
-									-	Seuil bas Aluminium
-									-	Ferrage standard
-									-	Poignée KISKA : Blanc
-									-	Hauteur de poignée standard
-									-	2 aérateurs à fente Aéromat (suivant emplacement)
-									-	Coefficient de transmission surfacique : Uw = 1,3 W/m².K
-									-	Performance thermique du vitrage : Uw = 1,1 W/m².K
-									-	Facteur solaire : Sw = 0.45 W/m².K
-									-	Fermeture par crémone simple ou serrure à barillet
-									-	Habillage intérieur : A déterminer au métrage
-									-	Habillage extérieur : A déterminer au métrage
-									-	LES ELEMENTS SUIVANT SONT A CONFIRMER AU METTRAGE';
-									break;
-								case 7:
-									$desc='
-									-	POSE DE MENUISERIES PVC DE LA MARQUE OKNOPLAST – MODELE CHARME MINI – FINITION PURE
-									-	INSTALLATION DE MATERIAUX D’ISOLATION THERMIQUE DES PAROIS VITREES VERTICALES
-									-	INSTALLATION DE PORTES-FENETRES EN DOUBLE VITRAGE VENANT EN REMPLACEMENT DE MENUISERIES SIMPLE VITRAGE
-									-	Système breveté équipé de renforts en acier sur l’ensemble du dormant et des ouvrants
-									-	Système d’ouverture Oscillo-Battant
-									-	Parclose Charme
-									-	Ouvrant 70mm
-									-	Dormant rénovation, aile de 65
-									-	Dim. Fabrication (Dos de dormant sans les ailes)
-									-	Joint de propreté total
-									-	Couleur 2 faces : '.$couleur_text.'
-									-	Vitrage 4/16/4 FE (argon) Ug = 1,1
-									-	Intercalaire Warm-Edge Noir 9005
-									-	Seuil bas Aluminium
-									-	Ferrage standard
-									-	Poignée KISKA : Blanc
-									-	Hauteur de poignée standard
-									-	2 aérateurs à fente Aéromat (suivant emplacement)
-									-	Coefficient de transmission surfacique : Uw = 1,3 W/m².K
-									-	Performance thermique du vitrage : Uw = 1,1 W/m².K
-									-	Facteur solaire : Sw = 0.45 W/m².K
-									-	Fermeture par crémone simple ou serrure à barillet
-									-	Habillage intérieur : A déterminer au métrage
-									-	Habillage extérieur : A déterminer au métrage
-									-	LES ELEMENTS SUIVANT SONT A CONFIRMER AU METTRAGE';
-									break;
-									case 8:
-									$desc='
-									-	POSE DE MENUISERIES ALUMINIUM DE LA MARQUE OKNOPLAST - GAMME ALUHAUS
-									-	INSTALLATION DE MATERIAUX D’ISOLATION THERMIQUE DES PAROIS VITREES VERTICALES
-									-	INSTALLATION DE COULISSANT EN DOUBLE VITRAGE VENANT EN REMPLACEMENT DE MENUISERIES SIMPLE VITRAGE
-									-	Ouvrant 44mm
-									-	Dormant rénovation, aile de 60
-									-	Dim. Fabrication (Dos de dormant sans les ailes)
-									-	Bouclier thermique
-									-	Rail aluminium anodisé
-									-	Couleur 2 faces : '.$couleur_text.'
-									-	Vitrage 4/20/4 FE (argon) Ug = 1,1
-									-	Intercalaire Warm-Edge Noir 9005
-									-	Appui bas pour dormant rénovation 110.102.2 (haut. 2mm)
-									-	Pièce d’appui non comprise dans la hauteur
-									-	Ferrage standard
-									-	Poignée CUADRO : Blanc
-									-	Hauteur de poignée standard
-									-	2 aérateurs à fente Aéromat (suivant emplacent)
-									-	Coefficient de transmission surfacique : Uw = 1,77 W/m².K
-									-	Performance thermique du vitrage : Uw = 1,77 W/m².K
-									-	Facteur solaire : Sw = 0,43 W/m².K
-									-	Habillage intérieur : A déterminer au métrage
-									-	Habillage extérieur : A déterminer au métrage
-									-	LES ELEMENTS SUIVANT SONT A CONFIRMER AU METTRAGE.';
-									break;
-									case 9:
-									$desc='
-									-	POSE DE MENUISERIES ALUMINIUM DE LA MARQUE OKNOPLAST - GAMME ALUHAUS
-									-	INSTALLATION DE MATERIAUX D’ISOLATION THERMIQUE DES PAROIS VITREES VERTICALES
-									-	INSTALLATION DE COULISSANT EN DOUBLE VITRAGE VENANT EN REMPLACEMENT DE MENUISERIES SIMPLE VITRAGE
-									-	Ouvrant 44mm
-									-	Dormant rénovation, aile de 60
-									-	Dim. Fabrication (Dos de dormant sans les ailes)
-									-	Bouclier thermique
-									-	Rail aluminium anodisé
-									-	Couleur 2 faces : '.$couleur_text.'
-									-	Vitrage 4/20/4 FE (argon) Ug = 1,1
-									-	Intercalaire Warm-Edge Noir 9005
-									-	Appui bas pour dormant rénovation 110.102.2 (haut. 2mm)
-									-	Pièce d’appui non comprise dans la hauteur
-									-	Ferrage standard
-									-	Poignée CUADRO : Blanc
-									-	Hauteur de poignée standard
-									-	2 aérateurs à fente Aéromat (suivant emplacement)
-									-	Coefficient de transmission surfacique : Uw = 1,77 W/m².K
-									-	Performance thermique du vitrage : Uw = 1,77 W/m².K
-									-	Facteur solaire : Sw = 0,43 W/m².K
-									-	Habillage intérieur : A déterminer au métrage
-									-	Habillage extérieur : A déterminer au métrage
-									-	LES ELEMENTS SUIVANT SONT A CONFIRMER AU METTRAGE.';
-									break;
-									case 10:
-									$desc='
-									-	POSE DE MENUISERIES ALUMINIUM DE LA MARQUE OKNOPLAST - GAMME ALUHAUS
-									-	INSTALLATION DE MATERIAUX D’ISOLATION THERMIQUE DES PAROIS VITREES VERTICALES
-									-	INSTALLATION DE COULISSANT EN DOUBLE VITRAGE VENANT EN REMPLACEMENT DE MENUISERIES SIMPLE VITRAGE
-									-	Ouvrant 44mm
-									-	Dormant rénovation, aile de 60
-									-	Dim. Fabrication (Dos de dormant sans les ailes)
-									-	Bouclier thermique
-									-	Rail aluminium anodisé
-									-	Couleur 2 faces : Blanc (Ral 9016) Modification en fonction de la couleur choisie
-									-	Vitrage 4/20/4 FE (argon) Ug = 1,1
-									-	Intercalaire Warm-Edge Noir 9005
-									-	Appui bas pour dormant rénovation 110.102.2 (haut. 2mm)
-									-	Pièce d’appui non comprise dans la hauteur
-									-	Ferrage standard
-									-	Poignée CUADRO : Blanc
-									-	Hauteur de poignée standard
-									-	2 aérateurs à fente Aéromat (suivant emplacement)
-									-	Coefficient de transmission surfacique : Uw = 1,77 W/m².K
-									-	Performance thermique du vitrage : Uw = 1,77 W/m².K
-									-	Facteur solaire : Sw = 0,43 W/m².K
-									-	Habillage intérieur : A déterminer au métrage
-									-	Habillage extérieur : A déterminer au métrage
-									-	LES ELEMENTS SUIVANT SONT A CONFIRMER AU METTRAGE.';
-									break;
 
-									// Porte
+							$desc= (\App\Models\Setting::where('Model','Modele')->where('model_id',$typep)->where('genre',$genre)->first()->text).'
+							-	Couleur 2 faces : '.$couleur_text.'
+							-	LES ELEMENTS SUIVANT SONT A CONFIRMER AU METTRAGE.';
 
-							}
 
 					   @endphp
 					   <tr class="product"  >
@@ -610,25 +339,9 @@
 								$couleur_text= $couleur.' (Extérieur et intérieur couleur) ';
 							}
 
-							$desc='
-							- Gamme Koncept
-							- Ouvrant 70mm
-							- Dormant rénovation, aile de 35
-							- Dim. Fabrication (Dos de dormant sans les ailes)
-							- Joint de propreté total
-							- Couleur 2 faces : '.$couleur_text .'
-							- Panneaux de portes à définir (catalogue)
-							- Seuil bas aluminium
-							- Ferrage standard
-							- Poignée double béquille
-							- Crémone 3 points auto (GU Sécury Automatic)
-							- Type de cylindre : Sécurité (Standard)
-							- Paumelle : D3D ou GU HAHN
-							- Hauteur de poignée standard
-							- Habillage intérieur : A déterminé au métrage
-							- Habillage extérieur : A déterminer au métrage
-							- LES ELEMENTS SUIVANT SONT A CONFIRMER AU METTRAGE.
-							';
+							$desc=(\App\Models\Setting::where('Model','Door')->where('model_id',1)->first()->text).
+							'<br>- Couleur 2 faces : '.$couleur_text .
+							'<br>- LES ELEMENTS SUIVANT SONT A CONFIRMER AU METTRAGE.';
 						   	$img='img/m11.jpg';
 
 					   	@endphp
@@ -663,45 +376,9 @@
 							$desc='';
 							$img='img/m10_1.jpg';
 
-								if( $typep==1){
-									$desc='
-									VOLET ROULANT SOMFI
-									<b>FOURNITURE ET POSE DE VOLET ROULANT SOLAIRE</b>
-									DE LA MARQUE FUTUROL
-									CAISSON A PAN COUPE
-									RENOVATION LAMES ALUMINIUM ISOLEE 43 MM
-									COULISSE 53x22
-									MOTEUR SOLAIRE SOMFI
-									EMETTEURS MURAL 1 CANAL
-									GARANTIE 7 ANS PIECE, MAIN D’ŒUVRE ET DEPLACEMENT)
-									COULEUR : '.$couleur.'<br>'.$volet->text;
-									;
-								}
-								if($typep==2){
-									$desc='
-									VOLET ROULANT FUTURCOM
-									<b>FOURNITURE ET POSE DE VOLET ROULANT SOLAIRE DE LA MARQUE FUTUROL</b>
-									CAISSON A PAN COUPE
-									RENOVATION LAMES ALUMINIUM ISOLEE 43 MM
-									COULISSE 53x22
-									MOTEUR SOLAIRE FUTURCOM
-									EMETTEURS MURAL 1 CANAL
-									GARANTIE 7 ANS PIECE (HORS FRAIS DE DEPLACEMENT ET MAIN D’ŒUVRE)
-									COULEUR : '.$couleur.'<br>'.$volet->text;
-								}
-								if($typep==3){
-									$desc='
-									VOLET ROULANT FUTURCOM AVEC MOUSTIQUAIRE MOTORISEE INTEGREE
-									<b>FOURNITURE ET POSE DE VOLET ROULANT SOLAIRE DE LA MARQUE FUTUROL</b>
-									CAISSON A PAN COUPE
-									RENOVATION LAMES ALUMINIUM ISOLEE 43 MM
-									COULISSE 53x22
-									MOTEUR SOLAIRE FUTURCOM
-									EMETTEURS MURAL 1 CANAL
-									GARANTIE 7 ANS PIECE (HORS FRAIS DE DEPLACEMENT ET MAIN D’ŒUVRE)
-									COULEUR : '.$couleur.'<br>'.$volet->text;
-								}
-								$img='img/volet.png';
+							$desc=(\App\Models\Setting::where('Model','Shutter')->where('model_id',$typep)->first()->text).
+							'<br>COULEUR : '.$couleur.'<br>'.$volet->text;
+							$img='img/volet.png';
 
 					   	@endphp
 					   	<tr class="product"  >
@@ -750,6 +427,36 @@
 			   @if($invoice->chauffage!='')<b> Chauffage {{$invoice->chauffage}}</b><br>@endif
 				<b>Délai de Livraison : 180 jours</b><br>
 				<b>Durée de validité du devis : 15 jours</b>
+				<div style="width:100%; padding-top:30px;page-break-inside: avoid;">
+				   @if($invoice->modalite!='')
+					   <b>Règlement par :</b> {{ $invoice->modalite }}
+
+					   @if(str_contains($invoice->modalite, 'Financement') )
+						   <table class="financement">
+							   <tr><td>Montant Financé :</td><td class="text-right" style="padding-right:20px;font-weight:bold;">{{number_format($invoice->montant_finance,2,',',' ')}} €</td><td>Montant mensuel<br>de l'assurance :</td><td style="font-weight:bold;" class="text-right">{{number_format($invoice->montant_assurance,2,',',' ')}} €</td></tr>
+							   <tr><td>Report 1ère échéance (en jours) :</td><td class="text-right" style="padding-right:20px;font-weight:bold;">{{$invoice->report_echeance}} jours</td><td>Taux débiteur :</td><td style="font-weight:bold;" class="text-right">{{$invoice->taux_nominal}} %</td></tr>
+							   <tr><td>Nombre de mensualités :</td><td class="text-right" style="padding-right:20px;font-weight:bold;">{{$invoice->mensualites}}</td><td>TAEG :</td><td style="font-weight:bold;" class="text-right">{{$invoice->taeg}} %</td></tr>
+							   <tr><td>Montant mensuel<br>sans assurance :</td><td class="text-right" style="padding-right:20px;font-weight:bold;">{{number_format($invoice->montant_mensuel,2,',',' ')}} €</td><td>Solde de la pose :</td><td style="font-weight:bold;" class="text-right">{{number_format($invoice->pose,2,',',' ')}} €</td></tr>
+						   </table>
+					   @endif
+					   @if( str_contains($invoice->modalite, 'Chèques') || $invoice->modalite=='Chèque')
+						   <table class="financement" style="color:black">
+								@if($invoice->modalite=='4 Chèques' || $invoice->modalite=='3 Chèques' || $invoice->modalite=='2 Chèques' || $invoice->modalite=='Chèque' && $invoice->montant1>0 )
+								<tr><td class="vtop">Montant:</td><td class="vtop" style="padding-right:20px;font-weight:bold;">  {{number_format($invoice->montant1,2,',',' ')}} €</td><td class="vtop">Note:</td><td class=" vtop">{{ $invoice->note1 }}</td></tr>
+								@endif
+								@if($invoice->modalite=='4 Chèques' || $invoice->modalite=='3 Chèques'|| $invoice->modalite=='2 Chèques' && $invoice->montant2>0   )
+								<tr><td class="vtop">Montant 2:</td><td class="vtop" style="padding-right:20px;font-weight:bold;">  {{number_format($invoice->montant2,2,',',' ')}} €</td><td class="vtop">Note 2:</td><td class=" vtop">{{ $invoice->note2 }}</td></tr>
+								@endif
+								@if($invoice->modalite=='4 Chèques' || $invoice->modalite=='3 Chèques' && $invoice->montant3>0  )
+								<tr><td class="vtop">Montant 3:</td><td class="vtop" style="padding-right:20px;font-weight:bold;">  {{number_format($invoice->montant3,2,',',' ')}} €</td><td class="vtop">Note 3</td><td class=" vtop">{{ $invoice->note3 }}</td></tr>
+								@endif
+								@if($invoice->modalite=='4 Chèques'  && $invoice->montant4>0  )
+								<tr><td class="vtop">Montant 4:</td><td class="vtop" style="padding-right:20px;font-weight:bold;">  {{number_format($invoice->montant4,2,',',' ')}} €</td><td class="vtop">Note 4:</td><td class=" vtop">{{ $invoice->note4 }}</td></tr>
+								@endif
+						   </table>
+					   @endif
+				   @endif
+				</div>
 		   </div>
 		   <div style="width:33%;float:left;">
 			   <table class="totals">
@@ -772,39 +479,10 @@
 			   </table>
 		   </div>
 	   </div>
-	   <div class="clearfix"></div>
-	   <div style="width:100%;page-break-inside: avoid;">
-		   <div style="width:42%;float:left;font-size:9px;padding-top:10px;padding-right:20px;margin-right:3%">
-			   @if($invoice->modalite!='')
-				   <b>Règlement par :</b> {{ $invoice->modalite }}
 
-				   @if(str_contains($invoice->modalite, 'Financement') )
-					   <table class="financement">
-						   <tr><td>Montant Financé :</td><td class="text-right" style="padding-right:20px;font-weight:bold;">{{number_format($invoice->montant_finance,2,',',' ')}} €</td><td>Montant mensuel<br>de l'assurance :</td><td style="font-weight:bold;" class="text-right">{{number_format($invoice->montant_assurance,2,',',' ')}} €</td></tr>
-						   <tr><td>Report 1ère échéance :</td><td class="text-right" style="padding-right:20px;font-weight:bold;">{{$invoice->report_echeance}} jours</td><td>Taux débiteur :</td><td style="font-weight:bold;" class="text-right">{{$invoice->taux_nominal}} %</td></tr>
-						   <tr><td>Nombre de mensualités :</td><td class="text-right" style="padding-right:20px;font-weight:bold;">{{$invoice->mensualites}}</td><td>TAEG :</td><td style="font-weight:bold;" class="text-right">{{$invoice->taeg}} %</td></tr>
-						   <tr><td>Montant mensuel<br>sans assurance :</td><td class="text-right" style="padding-right:20px;font-weight:bold;">{{number_format($invoice->montant_mensuel,2,',',' ')}} €</td><td>Solde de la pose :</td><td style="font-weight:bold;" class="text-right">{{number_format($invoice->pose,2,',',' ')}} €</td></tr>
-					   </table>
-				   @endif
-				   @if( str_contains($invoice->modalite, 'Chèques') || $invoice->modalite=='Chèque')
-					   <table class="financement" style="color:black">
-							@if($invoice->modalite=='4 Chèques' || $invoice->modalite=='3 Chèques' || $invoice->modalite=='2 Chèques' || $invoice->modalite=='Chèque' && $invoice->montant1>0 )
-					 		<tr><td class="vtop">Montant:</td><td class="vtop" style="padding-right:20px;font-weight:bold;">  {{number_format($invoice->montant1,2,',',' ')}} €</td><td class="vtop">Note:</td><td class=" vtop">{{ $invoice->note1 }}</td></tr>
-							@endif
-							@if($invoice->modalite=='4 Chèques' || $invoice->modalite=='3 Chèques'|| $invoice->modalite=='2 Chèques' && $invoice->montant2>0   )
-							<tr><td class="vtop">Montant 2:</td><td class="vtop" style="padding-right:20px;font-weight:bold;">  {{number_format($invoice->montant2,2,',',' ')}} €</td><td class="vtop">Note 2:</td><td class=" vtop">{{ $invoice->note2 }}</td></tr>
-							@endif
-							@if($invoice->modalite=='4 Chèques' || $invoice->modalite=='3 Chèques' && $invoice->montant3>0  )
-							<tr><td class="vtop">Montant 3:</td><td class="vtop" style="padding-right:20px;font-weight:bold;">  {{number_format($invoice->montant3,2,',',' ')}} €</td><td class="vtop">Note 3</td><td class=" vtop">{{ $invoice->note3 }}</td></tr>
-							@endif
-							@if($invoice->modalite=='4 Chèques'  && $invoice->montant4>0  )
-							<tr><td class="vtop">Montant 4:</td><td class="vtop" style="padding-right:20px;font-weight:bold;">  {{number_format($invoice->montant4,2,',',' ')}} €</td><td class="vtop">Note 4:</td><td class=" vtop">{{ $invoice->note4 }}</td></tr>
-							@endif
-					   </table>
-				   @endif
-			   @endif
-		   </div>
-		   <div style="width:55%;float:left;font-weight:bold;padding-top:15px">
+	   <div class="clearfix pagebreak"></div>
+
+		<div style="width:100%;font-weight:bold;padding-top:15px">
 		   		@if($type =='Devis')
 					@if($format=='avecsignature')
 						@php
@@ -817,21 +495,21 @@
 							<tr><td colspan="4"> J'ai lu et j'accepte les Conditions Générales de Ventes</td></tr>
 							<tr><td colspan="4">Signature précédée de la mention "Bon pour accord"</td></tr>
 						</table>
-						<div style="border:1px solid grey;width:100%;height:110px">
+						<div style="border:1px solid grey;width:60%;height:110px">
 							@if($signature !='')<img style="margin-left:15px;margin-top:15px;" src="{{$signature}}"  width='200'     height= ''/>@endif
 						</div>
 					@else
 						<table style="width:300px;font-size:10px">
 							<tr rowspan="2"><td>Fait à</td><td></td><td>Le</td><td></td></tr>
+							<tr><td colspan="4"> J'ai lu et j'accepte les Conditions Générales de Ventes</td></tr>
 							<tr><td colspan="4">Signature précédée de la mention "Bon pour accord"</td></tr>
 						</table>
-						<div style="border:1px solid grey;width:100%;height:100px">
+						<div style="border:1px solid grey;width:60%;height:100px">
 						</div>
 					@endif
 
 				@endif
-		   </div>
-	   </div>
+		</div>
 	   <div class="clearfix"></div>
 
 

@@ -20,9 +20,7 @@
 			background-color:#f07f32;color:white;padding:10px 20px;
 			letter-spacing:2px;
 			text-align:center;
-
 		}
-
 		.tab-content{
 			min-height:400px;
 		}
@@ -46,7 +44,6 @@
 		.totals td{
 			padding:5px 2px 2px 12px;
 		}
-
 		.bg-grey{
 			background-color:#e3e8ea;
 		}
@@ -266,7 +263,7 @@
 										}
 									@endphp
 									<tr class="myproduct product bg-lightgrey tr-prod" id="row-{{$item->id}}">
-										<td class="myproducttd" data-prix="{{$price}}" data-prixht="{{$price_ht}}" data-id="{{$item->id}}"  ><b>{!!nl2br($texte)!!}</b></td><td >{{$price_ht}} €</td><td><input id="qty-{{$item->id}}" type="number" step="1" min="1" class="number" value="{{$item->qty}}"  onchange="save_item_qty(this,{{$item->id}},{{$price_ht}},{{$pose}});calcul();"/></td><td><input readonly step="0.5" min="5.5" type="number" step="0.5" min="1" class="number bg-transparent" value="{{$item->tva}}"/> %</td><td><input id="total-{{$item->id}}" type="number" readonly class="total-prod number" value="{{($total)}}"/> €</td><td><button id="delete_item"   class="btn-sm btn-danger" onclick="delete_item({{$item->id}})"><i class="fas fa-minus " data-id="{{$item->id}}"></i></td>
+										<td class="myproducttd" data-prix="{{$price}}" data-prixht="{{$price_ht}}" data-id="{{$item->id}}"  ><b>{!!nl2br($texte)!!}</b></td><td >{{$price_ht}} €</td><td><input id="qty-{{$item->id}}" type="number" step="1" min="1" class="number" value="{{$item->qty}}"  onchange="save_item_qty(this,'{{$item->id}}','{{$price_ht}}','{{$pose}}');calcul();"/></td><td><input readonly step="0.5" min="5.5" type="number" step="0.5" min="1" class="number bg-transparent" value="{{$item->tva}}"/> %</td><td><input id="total-{{$item->id}}" type="number" readonly class="total-prod number" value="{{($total)}}"/> €</td><td><button id="delete_item"   class="btn-sm btn-danger" onclick="delete_item('{{$item->id}}')"><i class="fas fa-minus " data-id="{{$item->id}}"></i></td>
 									</tr>
 										@if(isset($product) && $product->pose > 0)
 										<tr class="myproduct product bg-lightgrey tr-prod" id="row-pose-{{$item->id}}">
@@ -379,7 +376,7 @@
 
 								<div class="col-xs-12 col-sm-12 col-md-6">
 									<div class="form-group">
-										<strong>Report 1ère échéance :</strong>
+										<strong>Report 1ère échéance (en jours) :</strong>
 										<input type="number"  class="form-control" min="0"   name="report_echeance" style="width:180px" value="{{$invoice->report_echeance}}">
 									</div>
 								</div>

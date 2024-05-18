@@ -47,6 +47,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 //Settings
 Route::get('/settings', [App\Http\Controllers\SettingsController::class, 'index'])->name('settings');
 Route::post('/update_setting', [App\Http\Controllers\SettingsController::class, 'update_setting'])->name('update_setting');
+Route::post('/update_text', [App\Http\Controllers\SettingsController::class, 'update_text'])->name('update_text');
 
 
 // users
@@ -75,6 +76,7 @@ Route::get('/invoices/edit_men/{id}', [InvoicesController::class, 'edit_men'])->
 Route::get('/quotes/download_pdf/{id}', [QuotesController::class, 'download_pdf'])->name('quotes.download_pdf');
 Route::get('/quotes/download_pdf_signature/{id}', [QuotesController::class, 'download_pdf_signature'])->name('quotes.download_pdf_signature');
 Route::get('/quotes/show_pdf/{id}', [QuotesController::class, 'show_pdf'])->name('quotes.show_pdf');
+Route::get('/quotes/show_pdf_tva/{id}', [QuotesController::class, 'show_pdf_tva'])->name('quotes.show_pdf_tva');
 Route::get('/quotes/save_invoice/{id}', [QuotesController::class, 'save_invoice'])->name('quotes.save_invoice');
 Route::post('/update_totals',[QuotesController::class, 'update_totals'])->name('update_totals');
 Route::get('/quotes/add/{customer_id}', [QuotesController::class, 'add'])->name('quotes.add');

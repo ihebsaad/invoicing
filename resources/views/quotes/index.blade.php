@@ -39,9 +39,47 @@
             </tr>
         </thead>
         @foreach ($quotes as $quote)
+            @php
+                switch ($quote->menuiserie) {
+                case 1:
+                    $type_devis= "<b>Menuiserie</b>";
+                    break;
+                case 2:
+                    $type_devis= "<i>Volets roulants</i>";
+                    break;
+                case -1:
+                    $type_devis= "PAC AIR <b>EAU</b>";
+                    break;
+                case -2:
+                    $type_devis= "PAC AIR <b>AIR</b>";
+                    break;
+                case -3:
+                    $type_devis= "<u>PANNEAU PHOTOVOLTAÏQUE</u>";
+                    break;
+                case -4:
+                    $type_devis= "CESI";
+                    break;
+                case -5:
+                    $type_devis= "POELE GRANULÉS OU BOIS";
+                    break;
+                case -6:
+                    $type_devis= "ISOLATION";
+                    break;
+                case -7:
+                    $type_devis= "BTD";
+                    break;
+                case -9:
+                    $type_devis= "KIT TETE THERMOSTATIQUE";
+                    break;
+                case -8:
+                    $type_devis= "AUTRES";
+                    break;
+                }
+
+            @endphp
 		<tr>
             <td>{!! sprintf('%04d',$quote->id) !!}</td>
-            <td>{!!  $quote->reference !!}  @if($quote->menuiserie==1)<br><small>Menuiserie</small> @endif @if($quote->menuiserie==2)<br><small>Volets roulants</small> @endif</td>
+            <td>{!!  $quote->reference !!} <br><small>{!! $type_devis !!}</small></td>
             <td>{{ $quote->customer()->first()->company ?? ''}} {{ $quote->customer()->first()->civility ?? '' }} {{ $quote->customer()->first()->name  ?? ''}} {{ $quote->customer()->first()->lastname  ?? '' }}</td>
             <td>{{date('d/m/Y', strtotime($quote->created_at))}}</td>
             <td>{{number_format($quote->total_ttc,0,',',' ')}} €</td>
@@ -60,11 +98,13 @@
                     @if(\App\Models\Invoice::where('quote',$quote->id)->doesntExist() &&  $User->user_type=='admin')
                         <a class="btn btn-warning mb-3 mr-2 " href="{{ route('quotes.save_invoice',$quote->id) }}" style="float:left" title="Enregistrer en Facture"><i class="fas fa-file"></i></a>
                     @endif
+                    @if($User->user_type=='admin')
                     <form action="{{ route('quotes.destroy',$quote->id) }}" method="POST" style="float:left" class="mr-2" >
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="btn btn-danger mb-3" title="Supprimer" onclick="return ConfirmDelete();"><i class="fas fa-trash"></i></button>
                     </form>
+                    @endif
                 @endif
             </td>
         </tr>

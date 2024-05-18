@@ -403,7 +403,7 @@
 
 								<div class="col-xs-12 col-sm-12 col-md-6">
 									<div class="form-group">
-										<strong>Report 1ère échéance :</strong>
+										<strong>Report 1ère échéance (en jours) :</strong>
 										<input type="number"  class="form-control" min="0"   name="report_echeance" style="max-width:180px" value="{{$invoice->report_echeance}}">
 									</div>
 								</div>

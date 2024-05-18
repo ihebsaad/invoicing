@@ -43,5 +43,18 @@ class SettingsController extends Controller
         );
     }
 
+    public function update_text(Request $request)
+    {
+        $model=$request->get('model');
+        $model_id=$request->get('model_id');
+        $value=$request->get('value');
+
+        Setting::where('model',$model)->where('model_id',$model_id)->update(
+            [
+                'text'=>$value,
+            ]
+        );
+    }
+
 
 }
