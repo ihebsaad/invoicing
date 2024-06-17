@@ -243,6 +243,7 @@
 					   <td>Frais de déplacment</td><td style="text-align:center"></td><td ></td><td></td><td> {{$invoice->deplacement}}  €</td><td> {{ $invoice->tva_deplacement ?? 0 }} %</td><td>{{$invoice->total_deplacement ?? 0}} €</td>
 				   </tr>
 			   @endif
+
 			   @if($invoice->remise>0)
 				   <tr class="product" style="color:#f07f32">
 					   <td>Remise GROUPE HER ENR</td><td style="text-align:center"></td><td ></td><td></td><td> {{$invoice->remise}}  €</td><td> {{ $invoice->tva_remise ?? 0 }} %</td><td>{{$invoice->total_remise ?? 0}} €</td>
@@ -312,6 +313,11 @@
 			   @if($invoice->acompte>0)
 			   <tr style="color:#f07f32"><td colspan="2" >Acompte</td><td class="text-right">{{number_format($invoice->acompte,2,',',' ')}} €</td></tr>
 			   @endif
+			   <!--
+			   @if($invoice->remise>0)
+			  		<tr style="color:#f07f32"><td colspan="2" >Remise <small>GROUPE<br>HER ENR</small></td><td class="text-right">{{number_format($invoice->total_remise,2,',',' ')}} €</td></tr>
+			   @endif
+				-->
 			   <tr><td colspan="2">Net à payer</td><td class="text-right">{{number_format($invoice->net,2,',',' ')}} €</td></tr>
 			   </table>
 		   </div>

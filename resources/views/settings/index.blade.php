@@ -82,13 +82,14 @@
 						<input type="number" name="name" class="form-control w-1" step="0.1" min="0" placeholder="" value="{!! \App\Models\Setting::where('Model','Modele')->where('model_id','7')->where('genre','1')->first()->value !!}" onchange="update_setting(this,'Coefficient Porte fenêtre 2V', 'Modele','7')">
 					</div>
 				</div>
-				<!--
+
 				<div class="col-xs-4 col-sm-4 col-md-4">
 					<div class="form-group">
 						<strong>Coefficient Coulissant 2:</strong>
-						<input type="number" name="name" class="form-control w-1" step="0.1" min="0" placeholder="" value="{!! \App\Models\Setting::where('Model','Modele')->where('model_id','9')->where('genre','2')->first()->value !!}" onchange="update_setting(this,'Coefficient Coulissant 2', 'Modele','9')">
+						<input type="number" name="name" class="form-control w-1" step="0.1" min="0" placeholder="" value="{!! \App\Models\Setting::where('Model','Modele')->where('model_id','9')->where('genre','1')->first()->value !!}" onchange="update_setting(this,'Coefficient Coulissant 2', 'Modele','9')">
 					</div>
 				</div>
+				<!--
 				<div class="col-xs-4 col-sm-4 col-md-4">
 					<div class="form-group">
 						<strong>Coefficient Porte fenêtre serrure 1V: </strong>

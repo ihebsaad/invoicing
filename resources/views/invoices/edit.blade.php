@@ -627,11 +627,11 @@
 
 		var remise = total_remise / (1+(tva_remise*0.01));
 		$('#remise').val(remise.toFixed(2));
-		var val_total_ht=total_ht-remise;
+		var val_total_ht=total_ht ;//-remise;
 		$("#total_ht").val(val_total_ht.toFixed(2));
-		total_tva = total_ttc-total_ht - (remise*tva_remise*0.01);
+		total_tva = total_ttc-total_ht ;//- (remise*tva_remise*0.01);
 	    $('#total_tva').val(total_tva.toFixed(2));
-		total_ttc=total_ttc-total_remise;
+		total_ttc=total_ttc; /* -total_remise */;
 		$('#total_ttc').val(total_ttc.toFixed(2));
 	/*
 

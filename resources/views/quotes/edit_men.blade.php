@@ -1748,7 +1748,7 @@
 		var deplacement = total_deplacement / (1+(p_tva_deplacement*0.01));
 		$('#deplacement').val(deplacement.toFixed(2));
 
-		var val_total_ht=total_ht-remise    + loi + deplacement;
+		var val_total_ht=total_ht -remise   + loi + deplacement;
 		// desactivation calcul manuel (supposant toujours tva =5.5%)
 		/*
 		$("#total_ht").val(val_total_ht.toFixed(2));
@@ -1756,7 +1756,7 @@
 	    $('#total_tva').val(total_tva.toFixed(2));
 		*/
 
-		total_ttc=total_ttc-total_remise ;
+		total_ttc=total_ttc -total_remise  ;
 		//nouveau calcul ici :
 		total_ht = total_ttc / 1.055 + loi ;
 		total_tva = total_ttc-total_ht;
@@ -1770,7 +1770,7 @@
 		var aide=parseFloat($('#aide2').val()) || 0;
 		var acompte=parseFloat($('#acompte').val()) || 0;
 
- 		var net=parseFloat(total_ttc - aide  - acompte);
+ 		var net=parseFloat(total_ttc - aide  - acompte /*- total_remise*/);
 		$('#net').val(net.toFixed(2));
 		$('#surface').val(surface.toFixed(2));
 

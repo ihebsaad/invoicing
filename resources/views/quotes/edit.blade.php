@@ -826,9 +826,8 @@
 		var val_total_ht= total_ht-remise + deplacement;
 		$("#total_ht").val(val_total_ht.toFixed(2));
 		total_tva = total_ttc-total_ht - (remise*tva_remise*0.01) + deplacement_tva;
-		console.log(  total_ttc+'-'+total_ht+' - ('+remise+'*'+tva_remise+'*0.01) + '+deplacement_tva);
-	    $('#total_tva').val(total_tva.toFixed(2));
-		total_ttc=total_ttc-total_remise + total_deplacement;
+		$('#total_tva').val(total_tva.toFixed(2));
+		total_ttc=total_ttc -total_remise + total_deplacement;
 		$('#total_ttc').val(total_ttc.toFixed(2));
 
 /*
@@ -846,7 +845,7 @@
 		var aide=parseFloat($('#aide2').val()) || 0;
 		var acompte=parseFloat($('#acompte').val()) || 0;
 
- 		var net=parseFloat(total_ttc - aide  - acompte);
+ 		var net=parseFloat(total_ttc - aide  - acompte /*- total_remise*/);
 		$('#net').val(net.toFixed(2));
 		update_totals();
 	}

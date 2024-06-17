@@ -262,6 +262,14 @@ class SettingsSeeder extends Seeder
                         -	Habillage intérieur : A déterminer au métrage
                         -	Habillage extérieur : A déterminer au métrage'
                     ],
+                    [
+                        'name' => 'Coulissant 2',
+                        'value' => '2.5',
+                        'model' => 'Modele',
+                        'model_id' => '9',
+                        'genre' => '1',
+                        'text' =>''
+                    ],
                     //ALU
                     [
                         'name' => 'Fenêtre à souflet',
