@@ -212,30 +212,85 @@
 		   </thead>
 		   <tbody >
 			   <tr class="product " >
+			   		<?php
+						$tva_totals= [];
+						$unite=''; $total_prod_ht=$total_prod_ttc=0;
+					?>
 				   @foreach($items as $item)
-				  		@php $product=\App\Models\Product::withTrashed()->find($item->product);
-						@endphp
-				   		@if(isset($product))
-					   		@php
-								$total_prod_ht=floatval($product->prix_ht) * intval($item->qty);
-								$total_prod_ttc=floatval($product->prix) * intval($item->qty);
-								$unite =  $product->unite!='' ? $product->unite : '';
-					   		@endphp
+				   <?php
+				  		$product=\App\Models\Product::withTrashed()->find($item->product);
 
+						if(isset($product)){
+
+							$total_prod_ht = floatval($product->prix_ht) * intval($item->qty);
+							$total_prod_ttc = floatval($product->prix) * intval($item->qty);
+							$unite = $product->unite != '' ? $product->unite : '';
+							$tva_rate = $item->tva;
+							if(!isset($tva_totals[''.$tva_rate])) {
+							$tva_totals[''.$tva_rate] = [
+								'montant_ht' => 0,
+								'montant_tva' => 0,
+							];
+							}
+							$tva_totals[''.$tva_rate]['montant_ht'] += $total_prod_ht;
+							$tva_totals[''.$tva_rate]['montant_tva'] += $total_prod_ttc - $total_prod_ht;
+?>
 							<tr class="product"  >
 								<td class="text" ><b>{{$product->name}}<br>{!! nl2br($product->description) !!}</b></td><td>{!! $unite !!}</td><td>{{$item->qty}}</td><td>{{$product->prix_ht}} €</td><td>{{$total_prod_ht}} €</td><td>{{$item->tva}} %</td><td>{{$total_prod_ttc}} €</td>
 							</tr>
 							@if($product->pose > 0)
+								<?php
+									$tva_rate=$product->tva_pose;
+									$pose_ht=$product->pose * intval($item->qty);
+									$pose_ttc=$product->pose_ttc * intval($item->qty);
+									if(!isset($tva_totals[''.$tva_rate])) {
+									$tva_totals[''.$tva_rate] = [
+										'montant_ht' => 0,
+										'montant_tva' => 0,
+									];
+									}
+									$tva_totals[''.$tva_rate]['montant_ht'] += $pose_ht;
+									$tva_totals[''.$tva_rate]['montant_tva'] += $pose_ttc - $pose_ht;
+								?>
 								<tr class="product"  >
-									<td class="text" ><i>Pose {{$product->name}}</i></td><td></td><td>{{$item->qty}}</td><td>{{$product->pose}} €</td><td>{{$product->pose * intval($item->qty) }} €</td><td>{{$product->tva_pose}} %</td><td>{{$product->pose_ttc * intval($item->qty)}} €</td>
+									<td class="text" ><i>Pose {{$product->name}}</i></td><td></td><td>{{$item->qty}}</td><td>{{$product->pose}} €</td><td>{{$pose_ht }} €</td><td>{{$product->tva_pose}} %</td><td>{{$pose_ttc}} €</td>
+								</tr>
+
+							@else
+								<?php
+									$tva_rate = $item->tva;
+									if(!isset($tva_totals[''.$tva_rate])) {
+									$tva_totals[''.$tva_rate] = [
+										'montant_ht' => 0,
+										'montant_tva' => 0,
+									];
+									}
+									$tva_totals[''.$tva_rate]['montant_ht'] += $total_prod_ht;
+									$tva_totals[''.$tva_rate]['montant_tva'] += $total_prod_ttc - $total_prod_ht;
+									$unite =  $item->unite!='' ? $item->unite : '';
+								?>
+								<tr class="product"  >
+									<td class="text" >{!! nl2br($item->description) !!}</td><td>{!! $unite !!}</td><td>{{$item->qty}}</td><td  >{{$item->price_ht}} €</td><td>{{ floatval($item->price_ht) * intval($item->qty) }} €</td><td>{{$item->tva}} %</td><td>{{  floatval($item->price_ttc) * intval($item->qty)  }} €</td>
 								</tr>
 							@endif
-						@else
-							@php $unite =  $item->unite!='' ? $item->unite : ''; @endphp
+							<?php
+							}else{
+								$tva_rate = $item->tva; // Get the TVA rate for the current item
+								// Update the TVA totals array
+								if(!isset($tva_totals[''.$tva_rate])) {
+								$tva_totals[''.$tva_rate] = [
+									'montant_ht' => 0,
+									'montant_tva' => 0,
+								];
+								}
+								$tva_totals[''.$tva_rate]['montant_ht'] += $total_prod_ht;
+								$tva_totals[''.$tva_rate]['montant_tva'] += $total_prod_ttc - $total_prod_ht;
+								$unite =  $item->unite!='' ? $item->unite : '';
+							?>
 							<tr class="product"  >
 								<td class="text" >{!! nl2br($item->description) !!}</td><td>{!! $unite !!}</td><td>{{$item->qty}}</td><td  >{{$item->price_ht}} €</td><td>{{ floatval($item->price_ht) * intval($item->qty) }} €</td><td>{{$item->tva}} %</td><td>{{  floatval($item->price_ttc) * intval($item->qty)  }} €</td>
 							</tr>
-						@endif
+						<?php	} ?>
 				   @endforeach
 			   </tr>
 			   @if($invoice->deplacement>0)
@@ -300,7 +355,21 @@
 		   <div style="width:33%;float:left;">
 			   <table class="totals">
 			   <tr><td colspan="2">Total HT</td><td class="text-right">{{number_format($invoice->total_ht,2,',',' ')}} €</td></tr>
+			   <?php
+			   $total_tvas=0;
+			   if(count($tva_totals)>1){
+					foreach ($tva_totals as $tva_rate => $totals) {
+						$total_tvas+=$totals["montant_tva"];
+						echo '<tr><td colspan="2">TVA '.$tva_rate.'%</td><td class="text-right">'.number_format($totals["montant_tva"],2,',',' ').' €</td></tr>';
+					}
+				}
+				if($invoice->remise>0 && $total_tvas>0){  ?>
+				<tr><td colspan="2">Total TVA</td><td class="text-right">{{number_format($total_tvas,2,',',' ')}} €</td></tr>
+				<?php
+				}else{
+				?>
 			   <tr><td colspan="2">Total TVA</td><td class="text-right">{{number_format($invoice->total_tva,2,',',' ')}} €</td></tr>
+			   <?php } ?>
 			   <tr><td colspan="2">Total TTC</td><td class="text-right">{{number_format($invoice->total_ttc,2,',',' ')}} €</td></tr>
 			   @if($invoice->aide>0)
 			   		@if($invoice->aide_cee>0)

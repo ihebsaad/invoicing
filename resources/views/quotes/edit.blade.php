@@ -192,6 +192,8 @@
 										<option  @if($quote->chaudiere=='Gaz') selected="selected" @endif value="Gaz">Gaz</option>
 										<option  @if($quote->chaudiere=='Fioul') selected="selected" @endif value="Fioul">Fioul</option>
 										<option  @if($quote->chaudiere=='Charbon') selected="selected" @endif value="Charbon">Charbon</option>
+										<option  @if($quote->chaudiere=='Pompe à chaleur air-eau') selected="selected" @endif value="Pompe à chaleur air-eau">Pompe à chaleur air-eau</option>
+										<option  @if($quote->chaudiere=='Pompe à chaleur eau-eau') selected="selected" @endif value="Pompe à chaleur eau-eau">Pompe à chaleur eau-eau</option>
 										<option  @if($quote->chaudiere=='Autre') selected="selected" @endif value="Autre">Autre</option>
 									</select>
 								</div>
@@ -214,7 +216,7 @@
 								<div class="form-group">
 									<strong>Type de logement:</strong>
 									<select class="form-control"   name="logement"  value="{{ $quote->logement}}" style="max-width:300px">
-										<option value="Maison individuel" @if($quote->logement=='Maison individuel') selected="selected" @endif >Maison individuel</option>
+										<option value="Maison individuelle" @if($quote->logement=='Maison individuelle') selected="selected" @endif >Maison individuelle</option>
 										<option value="Appartement" @if($quote->logement=='Appartement') selected="selected" @endif >Appartement</option>
 									</select>
 								</div>

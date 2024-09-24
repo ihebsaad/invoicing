@@ -304,8 +304,12 @@
 						   }
 
 							$img='img/m'.$typep.$cintrage.'.jpg';
+							$md=\App\Models\Setting::where('Model','Modele')->where('model_id',$typep)->where('genre',$genre)->first();
+							$desc='';
+							if(isset($md))
+								$desc=$md->text;
 
-							$desc= (\App\Models\Setting::where('Model','Modele')->where('model_id',$typep)->where('genre',$genre)->first()->text).'
+							$desc= $desc.'
 							-	Couleur 2 faces : '.$couleur_text.'
 							-	LES ELEMENTS SUIVANT SONT A CONFIRMER AU METTRAGE.';
 

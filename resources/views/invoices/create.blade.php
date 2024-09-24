@@ -57,7 +57,7 @@
                     <option value="-1">PAC AIR EAU</option>
                     <option value="-2">PAC AIR AIR</option>
                     <option value="-3">PANNEAU PHOTOVOLTAÏQUE</option>
-                    <option value="-4">CESI</option>
+                    <option value="-4">CESI / SSC</option>
                     <option value="-5">POELE GRANULÉS OU BOIS</option>
                     <option value="-6">ISOLATION</option>
                     <option value="-7">BTD</option>
@@ -78,6 +78,8 @@
 					<option  value="Gaz">Gaz</option>
 					<option  value="Fioul">Fioul</option>
 					<option  value="Charbon">Charbon</option>
+					<option  value="Pompe à chaleur air-eau">Pompe à chaleur air-eau</option>
+					<option  value="Pompe à chaleur eau-eau">Pompe à chaleur eau-eau</option>
 				</select>
 			</div>
 		</div>

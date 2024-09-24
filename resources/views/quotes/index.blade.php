@@ -57,7 +57,7 @@
                     $type_devis= "<u>PANNEAU PHOTOVOLTAÏQUE</u>";
                     break;
                 case -4:
-                    $type_devis= "CESI";
+                    $type_devis= "CESI / SSC";
                     break;
                 case -5:
                     $type_devis= "POELE GRANULÉS OU BOIS";

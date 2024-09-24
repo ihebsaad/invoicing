@@ -168,6 +168,8 @@
 										<option  @if($invoice->chaudiere=='Gaz') selected="selected" @endif value="Gaz">Gaz</option>
 										<option  @if($invoice->chaudiere=='Fioul') selected="selected" @endif value="Fioul">Fioul</option>
 										<option  @if($invoice->chaudiere=='Charbon') selected="selected" @endif value="Charbon">Charbon</option>
+										<option  @if($invoice->chaudiere=='Pompe à chaleur air-eau') selected="selected" @endif value="Pompe à chaleur air-eau">Pompe à chaleur air-eau</option>
+										<option  @if($invoice->chaudiere=='Pompe à chaleur eau-eau') selected="selected" @endif value="Pompe à chaleur eau-eau">Pompe à chaleur eau-eau</option>
 										<option  @if($invoice->chaudiere=='Autre') selected="selected" @endif value="Autre">Autre</option>
 									</select>
 								</div>
@@ -191,7 +193,7 @@
 								<div class="form-group">
 									<strong>Type de logement:</strong>
 									<select class="form-control"   name="logement"  value="{{ $invoice->logement}}" style="max-width:300px">
-										<option value="Maison individuel" @if($invoice->logement=='Maison individuel') selected="selected" @endif >Maison individuel</option>
+										<option value="Maison individuelle" @if($invoice->logement=='Maison individuelle') selected="selected" @endif >Maison individuelle</option>
 										<option value="Appartement" @if($invoice->logement=='Appartement') selected="selected" @endif >Appartement</option>
 									</select>
 								</div>

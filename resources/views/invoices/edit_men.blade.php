@@ -201,7 +201,7 @@
 								<div class="form-group">
 									<strong>Type de logement:</strong>
 									<select class="form-control"   name="logement"  value="{{ $invoice->logement}}" style="max-width:300px">
-										<option value="Maison individuel" @if($invoice->logement=='Maison individuel') selected="selected" @endif >Maison individuel</option>
+										<option value="Maison individuelle" @if($invoice->logement=='Maison individuelle') selected="selected" @endif >Maison individuelle</option>
 										<option value="Appartement" @if($invoice->logement=='Appartement') selected="selected" @endif >Appartement</option>
 									</select>
 								</div>
