@@ -33,6 +33,7 @@
             <th>Prénom</th>
             <th>Nom</th>
             <th>Email</th>
+            <th>Type</th>
             <th class="no-sort" style="width:20%"  >Action</th>
             </tr>
         </thead>
@@ -49,6 +50,7 @@
             <td>{{ $user->name }}</td>
             <td>{{ $user->lastname }}</td>
             <td>{{ $user->email }}</td>
+            <td>{{ $user->user_type=='user' ? 'commercial' : $user->user_type }}</td>
             <td>
                 @if($user->user_type!='admin' )
 			    <a class="btn btn-primary mb-3" href="{{ route('users.edit',$user->id) }}" style="float:left" title="Modifier"><i class="fas fa-edit"></i></a>

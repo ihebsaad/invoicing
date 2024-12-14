@@ -65,6 +65,18 @@
                 case -6:
                     $type_devis= "ISOLATION";
                     break;
+                case -60:
+                    $type_devis= "ISOLATION soufflée";
+                    break;
+                case -61:
+                    $type_devis= "ISOLATION sous rampant";
+                    break;
+                    case -62:
+                $type_devis= "ISOLATION extérieur";
+                    break;
+                    case -63:
+                $type_devis= "ISOLATION intérieur";
+                    break;
                 case -7:
                     $type_devis= "BTD";
                     break;
@@ -80,7 +92,8 @@
 		<tr>
             <td>{!! sprintf('%04d',$quote->id) !!}</td>
             <td>{!!  $quote->reference !!} <br><small>{!! $type_devis !!}</small></td>
-            <td>{{ $quote->customer()->first()->company ?? ''}} {{ $quote->customer()->first()->civility ?? '' }} {{ $quote->customer()->first()->name  ?? ''}} {{ $quote->customer()->first()->lastname  ?? '' }}</td>
+            <td>{{ $quote->customer()->first()->company ?? ''}} {{ $quote->customer()->first()->civility ?? '' }} {{ $quote->customer()->first()->name  ?? ''}} {{ $quote->customer()->first()->lastname  ?? '' }}<br>
+            {{ $quote->customer()->first()->civility2 ?? '' }} {{ $quote->customer()->first()->name2  ?? ''}} {{ $quote->customer()->first()->lastname2  ?? '' }}</td>
             <td>{{date('d/m/Y', strtotime($quote->created_at))}}</td>
             <td>{{number_format($quote->total_ttc,0,',',' ')}} €</td>
             <td>

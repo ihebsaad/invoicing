@@ -56,7 +56,11 @@
                     <option value="-3">PANNEAU PHOTOVOLTAÏQUE</option>
                     <option value="-4">CESI / SSC</option>
                     <option value="-5">POELE GRANULÉS OU BOIS</option>
-                    <option value="-6">ISOLATION</option>
+                    <option value="-6">ISOLATION </option>
+                    <option value="-60">ISOLATION soufflée</option>
+                    <option value="-61">ISOLATION sous rampant</option>
+                    <option value="-62">ISOLATION extérieur</option>
+                    <option value="-63">ISOLATION intérieur</option>
                     <option value="-7">BTD</option>
                     <option value="1">MENUISERIE</option>
                     <option value="2">VOLET ROULANT</option>
@@ -343,7 +347,7 @@
             $('#div-chauffage').hide('slow');
         }
         // surface
-        if(menuiserie==-1 || menuiserie==-2 || menuiserie==-5 ||  menuiserie==-6 ||  menuiserie==-9   ){
+        if(menuiserie==-1 || menuiserie==-2 || menuiserie==-5 ||  menuiserie==-6 ||  menuiserie==-60 ||  menuiserie==-61 ||  menuiserie==-62 ||  menuiserie==-63 ||  menuiserie==-9   ){
             $('#surface').prop('required',true);
             $('#div-surface').show('slow');
 

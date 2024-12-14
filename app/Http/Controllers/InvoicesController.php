@@ -128,7 +128,14 @@ class InvoicesController extends Controller
             return  redirect('/home');
 
         $customers = Customer::all();
-        $products = Product::all();
+
+        if(auth()->user()->user_type=='admin')
+            $products = Product::all();
+        elseif(auth()->user()->user_type=='user')
+            $products = Product::where('affichage',1)->orWhere('affichage',2)->get();
+        elseif(auth()->user()->user_type=='telepro')
+            $products = Product::where('affichage',1)->orWhere('affichage',3)->get();
+
         $items = Item::where('invoice',$invoice->id)->get();
         $countries=CustomersController::countries();
         return view('invoices.edit',compact('invoice','customers','products','items','countries'));

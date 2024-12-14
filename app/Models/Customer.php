@@ -32,4 +32,9 @@ class Customer extends Model
         'company'
     ];
 
+    public function quotes()
+    {
+        return $this->hasMany(Quote::class);
+    }
+
 }

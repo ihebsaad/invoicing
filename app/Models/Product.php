@@ -23,7 +23,8 @@ class Product extends Model
         'pose',
         'tva_pose',
         'pose_ttc',
-        'unite'
+        'unite',
+        'affichage'
     ];
 
     public function categorie()

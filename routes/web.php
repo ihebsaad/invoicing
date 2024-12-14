@@ -24,7 +24,10 @@ use App\Http\Controllers\ModelesController;
 use App\Http\Controllers\DoorsController;
 use App\Http\Controllers\SettingsController;
 
-Route::get('/quotes/all', [QuotesController::class, 'all'])->name('quotes.all');
+//Route::get('/quotes/all', [QuotesController::class, 'all'])->name('quotes.all');
+Route::get('/quotes/all', [QuotesController::class, 'liste'])->name('quotes.all');
+Route::get('/quotes/liste', [QuotesController::class, 'liste']);
+Route::get('/quotes/list', [QuotesController::class, 'getQuotes'])->name('quotes.list');
 
 
 Route::resource('shops', ShopsController::class);

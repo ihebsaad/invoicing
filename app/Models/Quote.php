@@ -65,11 +65,15 @@ class Quote extends Model
         'total_loi',
     ];
 
-		public function customer()
+	/*	public function customer()
 	{
 		return $this->belongsTo('App\Models\Customer', 'customer', 'id');
-	}
+	}*/
 
+    public function customer()
+    {
+        return $this->belongsTo(Customer::class, 'customer', 'id');
+    }
     public function user()
 	{
 		return $this->belongsTo('App\Models\User', 'par', 'id');

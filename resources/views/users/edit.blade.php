@@ -48,6 +48,19 @@
 						</div>
 					</div>
 
+					<div class="col-xs-12 col-sm-12 col-md-6">
+					@if(auth()->user()->id==1)
+					<div class="form-group">
+						<strong>Accès:</strong>
+						<select class="form-control" name="user_type">
+							<option @if($user->user_type=='user') selected="selected" @endif value="user">Accès Commercial</option>
+							<option @if($user->user_type=='telepro') selected="selected" @endif value="telepro">Accès Telepro Vente</option>
+							<option @if($user->user_type=='admin') selected="selected" @endif value="admin">Accès Complet</option>
+						</select>
+					</div>
+					@endif
+				</div>
+
 					<div class="col-xs-12 col-sm-12 col-md-12 text-center ">
 					  <button type="submit" class="btn btn-primary float-right mb-3">Enregistrer</button>
 					</div>

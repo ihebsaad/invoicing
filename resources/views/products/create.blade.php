@@ -95,6 +95,19 @@
             </div>
         </div>
 
+        @if(auth()->user()->user_type=='admin')
+            <div class="col-xs-12 col-sm-12 col-md-7">
+                <div class="form-group">
+                    <strong>Affichage:</strong>
+                    <select name="affichage" class="form-control">
+                        <option value="1">Tous</option>
+                        <option value="2">Commercial</option>
+                        <option value="3">Telepro</option>
+                    </select>
+                </div>
+            </div>
+        @endif
+
         <div class="col-xs-12 col-sm-12 col-md-7">
                 <button type="submit" class="btn btn-primary">Enregistrer</button>
         </div>

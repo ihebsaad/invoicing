@@ -270,8 +270,12 @@
 									<td><input  class="number bg-transparent"  id="price"  value="0" /> €</td>
 									<td><input  id="qty" type="number" step="1" min="1" value="1" class="number" style="width:60px" onchange="set_price()"    /></td><td><input readonly id="tva" type="number"  class="number bg-transparent" value="0" style="width:60px"/> %</td><td><input id="total_prod" type="number"   class="number bg-transparent" value="0" readonly /> €</td><td><button id="add_product" disabled class="btn-sm btn-success add-prod" onclick="add_product();  "><i class="fas fa-plus "></i></td>
 								</tr>
+								@php $tva_55 = true; @endphp
 								@foreach($items as $item)
 									@php
+										if( floatval($item->tva) != 5.5 ){
+											 $tva_55 = false;
+										}
 										$product=\App\Models\Product::withTrashed()->find($item->product);
 										if(isset($product ) ){
 											$texte=$product->name;
@@ -285,7 +289,7 @@
 											$pose=0;
 											$price=$item->price_ttc;
 											$price_ht=$item->price_ht;
-											$total=$item->price_ttc * $item->qty;
+											$total=$item->price_ttc * $item->qty;											
 										}
 									@endphp
 									<tr class="myproduct product bg-lightgrey tr-prod"   id="row-{{$item->id}}">
@@ -798,6 +802,7 @@
     		$(this).find('.myproducttd').each(function(){
 				id_item=$(this).data('id');
 				qty= parseInt($('#qty-'+id_item).val());
+				console.log( 'prix : '+$(this).data('prixht')* qty);
 				total_ht+=parseFloat(( $(this).data('prixht')* qty ));
 				total_ttc+=parseFloat(( $(this).data('prix') *  qty));
     	});
@@ -805,6 +810,7 @@
 				id_item=$(this).data().id;
 				qty= ($('#qty-'+id_item).val());
 				total_ht+=(( $(this).data().pose * qty  ));
+				console.log( 'prix pose: '+$(this).data().pose * qty );
 				total_ttc+=(( $(this).data().posettc * qty));
 
     		});
@@ -827,7 +833,15 @@
 
 		var val_total_ht= total_ht-remise + deplacement;
 		$("#total_ht").val(val_total_ht.toFixed(2));
-		total_tva = total_ttc-total_ht - (remise*tva_remise*0.01) + deplacement_tva;
+		//total_tva = total_ttc-total_ht - (remise*tva_remise*0.01) + deplacement_tva;
+		total_tva = (total_ttc * 0.055) - (remise*tva_remise*0.01) + deplacement_tva;;
+		<?php  if (! $tva_55 ){
+		?>
+			total_tva = total_ttc-total_ht - (remise*tva_remise*0.01) + deplacement_tva;
+		<?php	
+		}
+		?>
+		
 		$('#total_tva').val(total_tva.toFixed(2));
 		total_ttc=total_ttc -total_remise + total_deplacement;
 		$('#total_ttc').val(total_ttc.toFixed(2));

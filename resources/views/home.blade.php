@@ -106,7 +106,7 @@
 			<!-- Item -->
 			<div class="col-lg-3 col-md-6">
 				<div class="dashboard-stat color-3">
-					<div class="dashboard-stat-content"><a href="{{route('quotes.index')}}"><h4>{{$quotes}}</h4> <span>Devis</span></a></div>
+					<div class="dashboard-stat-content"><a href="{{route('quotes.all')}}"><h4>{{$quotes}}</h4> <span>Devis</span></a></div>
 					<div class="dashboard-stat-icon"><i class="fas fa-file-invoice"></i></div>
 				</div>
 			</div>

@@ -33,18 +33,20 @@
                 <input type="email" class="form-control form-control-user" id="email" name="email"  required   Autocomplete="NoAutocomplete"       value="{{old('email')}}"  placeholder="Adresse Email*"   oninvalid="this.setCustomValidity('Insérez une adresse email valide')"   oninput="this.setCustomValidity('')">
             </div>
         </div>
+            @if(auth()->user()->id==1)
+
             <div class="col-xs-12 col-sm-12 col-md-6">
-                @if(auth()->user()->id==1)
+                <strong>Accès:</strong>
                 <div class="form-group">
                     <select class="form-control" name="user_type">
-                        <option selected="selected" value="user">Accès commercial</option>
-                        <option value="admin">Accès complet</option>
+                        <option selected="selected" value="user">Accès Commercial</option>
+                        <option value="telepro">Accès Telepro Vente</option>
+                        <option value="admin">Accès Complet</option>
                     </select>
                 </div>
-                @endif
             </div>
 
-
+            @endif
         <div class="col-xs-12 col-sm-12 col-md-6">
         <label><small>Le mot de passe doit contenir 8 caractères, une majuscule, un chiffre et un caractère spécial au minimum.</small></label>
 
