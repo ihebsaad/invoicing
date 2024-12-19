@@ -500,6 +500,7 @@ class QuotesController extends Controller
         if ($request->ajax()) {
             $quotesQuery = Quote::query()
                 ->join('customers', 'quotes.customer', '=', 'customers.id')
+                ->join('users', 'quotes.par', '=', 'users.id')
                 ->select('quotes.*', 'customers.civility as customer_civility', 'customers.name as customer_name', 'customers.lastname as customer_lastname', 'customers.company as customer_company', 'customers.civility2 as customer_civility2', 'customers.name2 as customer_name2', 'customers.lastname2 as customer_lastname2');
 
             if (auth()->user()->user_type != 'admin') {
@@ -518,6 +519,9 @@ class QuotesController extends Controller
                 ->editColumn('customer', function ($quote) {
                     return $quote->customer_company . ' ' . $quote->customer_civility . ' ' . $quote->customer_name . ' ' . $quote->customer_lastname . '<br>' . $quote->customer_civility2 . ' ' . $quote->customer_name2 . ' ' . $quote->customer_lastname2;
                 })
+                ->editColumn('par', function ($quote) {
+                    return $quote->user()->first()->name  .' '. $quote->user()->first()->lastname  ;
+                })
                 ->editColumn('created_at', function ($quote) {
                     return date('d/m/Y', strtotime($quote->created_at));
                 })
@@ -535,6 +539,12 @@ class QuotesController extends Controller
                             ->orWhere('customers.lastname2', 'like', "%{$keyword}%")
                             ->orWhere('customers.name2', 'like', "%{$keyword}%")
                             ->orWhere('customers.civility2', 'like', "%{$keyword}%");
+                    });
+                })
+                ->filterColumn('par', function ($query, $keyword) {
+                    $query->where(function ($q) use ($keyword) {
+                        $q->where('users.lastname', 'like', "%{$keyword}%")
+                            ->orWhere('users.name', 'like', "%{$keyword}%");
                     });
                 })
                 ->filterColumn('created_at', function ($query, $keyword) {

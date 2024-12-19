@@ -60,6 +60,7 @@
             <th>Référence</th>
             <th>Client</th>
             <th>Créé le</th>
+            <th>Conseillé</th>
             <th>Total</th>
             <th>Action</th>
         </tr>
@@ -184,6 +185,10 @@
                 {
                     data: 'created_at',
                     name: 'created_at'
+                },
+                {
+                    data: 'par',
+                    name: 'par'
                 },
                 {
                     data: 'total_ttc',

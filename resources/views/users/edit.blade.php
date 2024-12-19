@@ -32,7 +32,7 @@
 					<div class="col-xs-12 col-sm-6 col-md-6">
 						<div class="form-group">
 							<strong>Nom:</strong>
-							<input type="text" name="name" value="{{ $user->lastname }}" class="form-control" placeholder="lastname">
+							<input type="text" name="lastname" value="{{ $user->lastname }}" class="form-control" placeholder="lastname">
 						</div>
 					</div>
 					<div class="col-xs-12 col-sm-6 col-md-6">
