@@ -43,6 +43,7 @@ class Quote extends Model
         'net',
         'par',
         'surface',
+        'surface_maison',
         'logement',
         'delivery_address',
         'delivery_city',

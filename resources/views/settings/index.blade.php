@@ -29,6 +29,9 @@
 		<li class="nav-item">
             <a class="nav-link" id="custom-tabs-three-textes-tab" data-toggle="pill" href="#textes-tab" role="tab" aria-controls="custom-tab-textes" aria-selected="false">Textes</a>
         </li>
+		<li class="nav-item">
+            <a class="nav-link" id="custom-tabs-three-garde-tab" data-toggle="pill" href="#garde-tab" role="tab" aria-controls="custom-tab-garde" aria-selected="false">Page de garde</a>
+        </li>
     </ul>
 
 	<div class="tab-content pt-3 pb-3 pl-3 pr-3" id="custom-tabs-three-tabContent">
@@ -304,83 +307,147 @@
 				</div>
 			</div>
 		</div>
-
+		<!----------------------------------------- TEXTES  ---------------------------------->
 		<div class="tab-pane fade" id="textes-tab" role="tabpanel" aria-labelledby="custom-tabs-three-textes-tab">
 			<div class="row">
 				<div class="form-group">
 					<strong>Texte Portes:</strong>
-					<textarea  class="form-control summernote"   data-model="Door" data-model-id="1"   >{!! \App\Models\Setting::where('Model','Door')->where('model_id','1')->first()->text !!}</textarea>
+					<textarea  class="form-control summernote"   data-model="Door" data-model-id="1"  data-genre="1"   >{!! \App\Models\Setting::where('Model','Door')->where('model_id','1')->first()->text !!}</textarea>
 				</div>
 			</div>
 			<hr>
 			<div class="row">
 				<div class="form-group">
 					<strong>Texte Volet Multicom:</strong>
-					<textarea  class="form-control summernote" data-model="Shutter" data-model-id="1"   >{!! \App\Models\Setting::where('Model','Shutter')->where('model_id','1')->first()->text !!}</textarea>
+					<textarea  class="form-control summernote" data-model="Shutter" data-model-id="1"   data-genre="1"  >{!! \App\Models\Setting::where('Model','Shutter')->where('model_id','1')->first()->text !!}</textarea>
 				</div>
 				<div class="form-group">
 					<strong>Texte Volet Futurcom sans moustiquaire:</strong>
-					<textarea  class="form-control summernote"  data-model="Shutter" data-model-id="2"  >{!! \App\Models\Setting::where('Model','Shutter')->where('model_id','2')->first()->text !!}</textarea>
+					<textarea  class="form-control summernote"  data-model="Shutter" data-model-id="2"  data-genre="1"  >{!! \App\Models\Setting::where('Model','Shutter')->where('model_id','2')->first()->text !!}</textarea>
 				</div>
 				<div class="form-group">
 					<strong>Texte Volet Futurcom avec moustiquaire:</strong>
-					<textarea  class="form-control summernote"  data-model="Shutter" data-model-id="3"  >{!! \App\Models\Setting::where('Model','Shutter')->where('model_id','3')->first()->text !!}</textarea>
+					<textarea  class="form-control summernote"  data-model="Shutter" data-model-id="3"  data-genre="1"  >{!! \App\Models\Setting::where('Model','Shutter')->where('model_id','3')->first()->text !!}</textarea>
 				</div>
 			</div>
 			<hr>
 			<div class="row">
 				<div class="form-group">
 					<strong>Texte Fenêtre à souflet:</strong>
-					<textarea  class="form-control summernote"  data-model="Modele" data-model-id="1"  >{!! \App\Models\Setting::where('Model','Modele')->where('model_id','1')->first()->text !!}</textarea>
+					<textarea  class="form-control summernote"  data-model="Modele" data-model-id="1" data-genre="1"  >{!! \App\Models\Setting::where('Model','Modele')->where('model_id','1')->first()->text !!}</textarea>
 				</div>
 				<div class="form-group">
 					<strong>Texte Fenêtre 1V:</strong>
-					<textarea  class="form-control summernote"  data-model="Modele" data-model-id="2" >{!! \App\Models\Setting::where('Model','Modele')->where('model_id','2')->first()->text !!}</textarea>
+					<textarea  class="form-control summernote"  data-model="Modele" data-model-id="2" data-genre="1" >{!! \App\Models\Setting::where('Model','Modele')->where('model_id','2')->first()->text !!}</textarea>
 				</div>
 				<div class="form-group">
 					<strong>Texte Fenêtre 2V:</strong>
-					<textarea  class="form-control summernote"  data-model="Modele" data-model-id="3" >{!! \App\Models\Setting::where('Model','Modele')->where('model_id','3')->first()->text !!}</textarea>
+					<textarea  class="form-control summernote"  data-model="Modele" data-model-id="3" data-genre="1" >{!! \App\Models\Setting::where('Model','Modele')->where('model_id','3')->first()->text !!}</textarea>
 				</div>
 				<div class="form-group">
 					<strong>Texte Fenêtre 3V:</strong>
-					<textarea  class="form-control summernote"  data-model="Modele" data-model-id="4" >{!! \App\Models\Setting::where('Model','Modele')->where('model_id','4')->first()->text !!}</textarea>
+					<textarea  class="form-control summernote"  data-model="Modele" data-model-id="4" data-genre="1" >{!! \App\Models\Setting::where('Model','Modele')->where('model_id','4')->first()->text !!}</textarea>
 				</div>
 				<div class="form-group">
 					<strong>Texte Fenêtre 4V:</strong>
-					<textarea  class="form-control summernote" data-model="Modele" data-model-id="11" >{!! \App\Models\Setting::where('Model','Modele')->where('model_id','11')->first()->text !!}</textarea>
+					<textarea  class="form-control summernote" data-model="Modele" data-model-id="11" data-genre="1" >{!! \App\Models\Setting::where('Model','Modele')->where('model_id','11')->first()->text !!}</textarea>
 				</div>
 				<div class="form-group">
 					<strong>Texte Fenêtre fixe:</strong>
-					<textarea  class="form-control summernote"  data-model="Modele" data-model-id="5" >{!! \App\Models\Setting::where('Model','Modele')->where('model_id','5')->first()->text !!}</textarea>
+					<textarea  class="form-control summernote"  data-model="Modele" data-model-id="5" data-genre="1" >{!! \App\Models\Setting::where('Model','Modele')->where('model_id','5')->first()->text !!}</textarea>
 				</div>
 				<div class="form-group">
 					<strong>Texte Porte fenêtre 1V:</strong>
-					<textarea  class="form-control summernote"  data-model="Modele" data-model-id="6" >{!! \App\Models\Setting::where('Model','Modele')->where('model_id','6')->first()->text  !!}</textarea>
+					<textarea  class="form-control summernote"  data-model="Modele" data-model-id="6" data-genre="1">{!! \App\Models\Setting::where('Model','Modele')->where('model_id','6')->first()->text  !!}</textarea>
 				</div>
 				<div class="form-group">
 					<strong>Texte Porte fenêtre 2V:</strong>
-					<textarea  class="form-control summernote"  data-model="Modele" data-model-id="7" >{!! \App\Models\Setting::where('Model','Modele')->where('model_id','7')->first()->text !!}</textarea>
+					<textarea  class="form-control summernote"  data-model="Modele" data-model-id="7" data-genre="1">{!! \App\Models\Setting::where('Model','Modele')->where('model_id','7')->first()->text !!}</textarea>
+				</div>
+
+				<div class="form-group">
+					<strong>Texte Coulissant 2:</strong>
+					<textarea  class="form-control summernote"  data-model="Modele" data-model-id="9"  data-genre="1" >{!! \App\Models\Setting::where('Model','Modele')->where('model_id','9')->where('genre',1)->first()->text !!}</textarea>
+				</div>
+			</div>
+			<hr>
+			<h2>Aluminium</h2>
+			<hr>
+
+			<div class="row">
+
+				<div class="form-group">
+					<strong>Texte Fenêtre à souflet ALU:</strong>
+					<textarea  class="form-control summernote"  data-model="Modele" data-model-id="1" data-genre="2" >{!! \App\Models\Setting::where('Model','Modele')->where('model_id','1')->where('genre','2')->first()->text !!}</textarea>
 				</div>
 				<div class="form-group">
+					<strong>Texte Fenêtre 1V ALU:</strong>
+					<textarea  class="form-control summernote"  data-model="Modele" data-model-id="2" data-genre="2" >{!! \App\Models\Setting::where('Model','Modele')->where('model_id','2')->where('genre','2')->first()->text !!}</textarea>
+				</div>
+				<div class="form-group">
+					<strong>Texte Fenêtre 2V ALU:</strong>
+					<textarea  class="form-control summernote"  data-model="Modele" data-model-id="3" data-genre="2" >{!! \App\Models\Setting::where('Model','Modele')->where('model_id','3')->where('genre','2')->first()->text !!}</textarea>
+				</div>
+				<div class="form-group">
+					<strong>Texte Fenêtre fixe ALU:</strong>
+					<textarea  class="form-control summernote"  data-model="Modele" data-model-id="5" data-genre="2" >{!! \App\Models\Setting::where('Model','Modele')->where('model_id','5')->where('genre','2')->first()->text !!}</textarea>
+				</div>
+				<div class="form-group">
+					<strong>Texte Porte fenêtre 1V ALU:</strong>
+					<textarea  class="form-control summernote"  data-model="Modele" data-model-id="6" data-genre="2" >{!! \App\Models\Setting::where('Model','Modele')->where('model_id','6')->where('genre','2')->first()->text  !!}</textarea>
+				</div>
+				<div class="form-group">
+					<strong>Texte Porte fenêtre 2V ALU:</strong>
+					<textarea  class="form-control summernote"  data-model="Modele" data-model-id="7" data-genre="2">{!! \App\Models\Setting::where('Model','Modele')->where('model_id','7')->where('genre','2')->first()->text !!}</textarea>
+				</div>
+
+
+				<div class="form-group">
 					<strong>Texte Coulissant 1:</strong>
-					<textarea  class="form-control summernote"  data-model="Modele" data-model-id="8" >{!! \App\Models\Setting::where('Model','Modele')->where('model_id','8')->first()->text !!}</textarea>
+					<textarea  class="form-control summernote"  data-model="Modele" data-model-id="8" data-genre="2" >{!! \App\Models\Setting::where('Model','Modele')->where('model_id','8')->where('genre','2')->first()->text !!}</textarea>
 				</div>
 				<div class="form-group">
 					<strong>Texte Coulissant 2:</strong>
-					<textarea  class="form-control summernote"  data-model="Modele" data-model-id="9" >{!! \App\Models\Setting::where('Model','Modele')->where('model_id','9')->first()->text !!}</textarea>
+					<textarea  class="form-control summernote"  data-model="Modele" data-model-id="9" data-genre="2">{!! \App\Models\Setting::where('Model','Modele')->where('model_id','9')->where('genre','2')->first()->text !!}</textarea>
 				</div>
 				<div class="form-group">
 					<strong>Texte Coulissant 3:</strong>
-					<textarea  class="form-control summernote" data-model="Modele" data-model-id="10" >{!! \App\Models\Setting::where('Model','Modele')->where('model_id','10')->first()->text !!}</textarea>
+					<textarea  class="form-control summernote" data-model="Modele" data-model-id="10" data-genre="2" >{!! \App\Models\Setting::where('Model','Modele')->where('model_id','10')->where('genre','2')->first()->text !!}</textarea>
 				</div>
 				<div class="form-group">
 					<strong>Texte Porte fenêtre serrure 1V:</strong>
-					<textarea  class="form-control summernote"  data-model="Modele" data-model-id="12" >{!! \App\Models\Setting::where('Model','Modele')->where('model_id','12')->first()->text !!}</textarea>
+					<textarea  class="form-control summernote"  data-model="Modele" data-model-id="12" data-genre="2" >{!! \App\Models\Setting::where('Model','Modele')->where('model_id','12')->where('genre','2')->first()->text !!}</textarea>
 				</div>
 
 			</div>
 
 		</div>
+
+		<div class="tab-pane fade" id="garde-tab" role="tabpanel" aria-labelledby="custom-tabs-three-garde-tab">
+
+			<div class="row">
+				<div class="form-group">
+					<strong>Texte OKNOPLAST:</strong>
+					<textarea  class="form-control summernote"  data-model="Garde" data-model-id="1" data-genre="2" >{!! \App\Models\Setting::where('Model','Garde')->where('model_id','1')->where('genre','2')->first()->text !!}</textarea>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="form-group">
+					<strong>Texte Garantie:</strong>
+					<textarea  class="form-control summernote"  data-model="Garde" data-model-id="2" data-genre="2" >{!! \App\Models\Setting::where('Model','Garde')->where('model_id','2')->where('genre','2')->first()->text !!}</textarea>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="form-group">
+					<strong>Texte Loi Anti-Gaspillage:</strong>
+					<textarea  class="form-control summernote"  data-model="Garde" data-model-id="3" data-genre="2" >{!! \App\Models\Setting::where('Model','Garde')->where('model_id','3')->where('genre','2')->first()->text !!}</textarea>
+				</div>
+			</div>
+
+		</div>
+
 
 
 	</div>
@@ -402,13 +469,13 @@
 		});
 	}
 
-	function update_text(value,model,model_id,field){
+	function update_text(value,model,model_id,field,genre_id){
 		var _token = $('input[name="_token"]').val();
 		//var value = $(field).val();
 		$.ajax({
 			url: "{{ route('update_text') }}",
 			method: "POST",
-			data: { value:value,model:model,model_id:model_id, _token:_token},
+			data: { value:value,model:model,model_id:model_id,genre_id:genre_id, _token:_token},
 			success: function (data) {
 				//$(field).animate({opacity: 0.1}, 500);
 				//$(field).animate({opacity: 1}, 500);
@@ -438,12 +505,13 @@
 			var $textarea = $(this);
 			var model = $textarea.data('model');
 			var model_id = $textarea.data('model-id');
+			var genre_id = $textarea.data('genre');
 
 			$textarea.summernote({
 				callbacks: {
 					onChange: function (contents, $editable) {
 						// Call the update_setting function with appropriate values
-						update_text(contents, model, model_id,this);
+						update_text(contents, model, model_id,this,genre_id);
 					}
 				}
 			});

@@ -107,6 +107,14 @@
             </div>
 		</div>
 
+        <div class="col-xs-12 col-sm-12 col-md-4"  id="div-surface-maison">
+			<div class="form-group">
+            <strong>Surface maison (m²):</strong>
+            <input type="number" class="form-control"   id="surface_maison"  name="surface_maison"   style="max-width:180px"/>
+
+            </div>
+		</div>
+
     </div>
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-7">
@@ -148,7 +156,7 @@
 
                         <div class="col-xs-12 col-sm-6 col-md-6">
                             <div class="form-group">
-                                <strong>Commercial:</strong>
+                                <strong>Mon accompagnateur:</strong>
                                 <select class="form-control select2" name="commercial"  >
                                     <option></option>
                                     @foreach($commercials as $commercial)
@@ -379,6 +387,15 @@
                 $('#div-chaudiere').hide('slow');
                 $('#chaudiere').prop('required',false);
             }
+            //cesi surface maison
+            if(menuiserie==-4){
+                $('#div-surface-maison').show('slow');
+                $('#surface_maison').prop('required',true);
+            }else{
+                $('#div-surface-maison').hide('slow');
+                $('#surface_maison').prop('required',false);
+            }
+
         }
     }
 

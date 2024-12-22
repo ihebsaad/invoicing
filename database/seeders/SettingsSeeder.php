@@ -22,13 +22,13 @@ class SettingsSeeder extends Seeder
         if (Setting::count() == 0) {
             $settings =
                 [
-                //PVC
+                    //PVC
                     [
                         'name' => 'Fenêtre à souflet',
                         'value' => '2.7',
                         'model' => 'Modele',
                         'model_id' => '1',
-                        'genre' => '1',//PVC
+                        'genre' => '1', //PVC
                         'text' => '-	POSE DE MENUISERIES PVC DE LA MARQUE OKNOPLAST – MODELE CHARME MINI – FINITION PURE
                         -	INSTALLATION DE MATERIAUX D’ISOLATION THERMIQUE DES PAROIS VITREES VERTICALES
                         -	INSTALLATION DE FENETRE A SOUFFLET EN DOUBLE VITRAGE VENANT EN REMPLACEMENT DE MENUISERIES SIMPLE VITRAGE
@@ -58,8 +58,8 @@ class SettingsSeeder extends Seeder
                         'value' => '2.7',
                         'model' => 'Modele',
                         'model_id' => '2',
-                        'genre' => '1',//PVC
-                        'text' =>	'-	POSE DE MENUISERIES PVC DE LA MARQUE OKNOPLAST – MODELE CHARME MINI – FINITION PURE
+                        'genre' => '1', //PVC
+                        'text' =>    '-	POSE DE MENUISERIES PVC DE LA MARQUE OKNOPLAST – MODELE CHARME MINI – FINITION PURE
                         -	INSTALLATION DE MATERIAUX D’ISOLATION THERMIQUE DES PAROIS VITREES VERTICALES
                         -	INSTALLATION DE FENETRE 1 VANTAIL EN DOUBLE VITRAGE VENANT EN REMPLACEMENT DE MENUISERIES SIMPLE VITRAGE
                         -	Système breveté équipé de renforts en acier sur l’ensemble du dormant et des ouvrants
@@ -90,7 +90,7 @@ class SettingsSeeder extends Seeder
                         'model' => 'Modele',
                         'model_id' => '3',
                         'genre' => '1',
-                        'text' =>'- POSE DE MENUISERIES PVC DE LA MARQUE OKNOPLAST – MODELE CHARME MINI – FINITION PURE
+                        'text' => '- POSE DE MENUISERIES PVC DE LA MARQUE OKNOPLAST – MODELE CHARME MINI – FINITION PURE
                         -	INSTALLATION DE MATERIAUX D’ISOLATION THERMIQUE DES PAROIS VITREES VERTICALES
                         -	INSTALLATION DE FENETRE 2 VANTAUX EN DOUBLE VITRAGE VENANT EN REMPLACEMENT DE MENUISERIES SIMPLE VITRAGE
                         -	Système breveté équipé de renforts en acier sur l’ensemble du dormant et des ouvrants
@@ -121,7 +121,7 @@ class SettingsSeeder extends Seeder
                         'model' => 'Modele',
                         'model_id' => '4',
                         'genre' => '1',
-                        'text' =>'-	POSE DE MENUISERIES PVC DE LA MARQUE OKNOPLAST – MODELE CHARME MINI – FINITION PURE
+                        'text' => '-	POSE DE MENUISERIES PVC DE LA MARQUE OKNOPLAST – MODELE CHARME MINI – FINITION PURE
                         -	INSTALLATION DE MATERIAUX D’ISOLATION THERMIQUE DES PAROIS VITREES VERTICALES
                         -	INSTALLATION DE FENETRE 2 VANTAUX EN DOUBLE VITRAGE VENANT EN REMPLACEMENT DE MENUISERIES SIMPLE VITRAGE
                         -	Système breveté équipé de renforts en acier sur l’ensemble du dormant et des ouvrants
@@ -152,7 +152,7 @@ class SettingsSeeder extends Seeder
                         'model' => 'Modele',
                         'model_id' => '5',
                         'genre' => '1',
-                        'text' =>'-	POSE DE MENUISERIES PVC DE LA MARQUE OKNOPLAST – MODELE CHARME MINI – FINITION PURE
+                        'text' => '-	POSE DE MENUISERIES PVC DE LA MARQUE OKNOPLAST – MODELE CHARME MINI – FINITION PURE
                         -	INSTALLATION DE MATERIAUX D’ISOLATION THERMIQUE DES PAROIS VITREES VERTICALES
                         -	INSTALLATION DE FENETRE FIXE EN DOUBLE VITRAGE VENANT EN REMPLACEMENT DE MENUISERIES SIMPLE VITRAGE
                         -	Système breveté équipé de renforts en acier sur l’ensemble du dormant et des ouvrants
@@ -177,7 +177,7 @@ class SettingsSeeder extends Seeder
                         'model' => 'Modele',
                         'model_id' => '6',
                         'genre' => '1',
-                        'text' =>'-	POSE DE MENUISERIES PVC DE LA MARQUE OKNOPLAST – MODELE CHARME MINI – FINITION PURE
+                        'text' => '-	POSE DE MENUISERIES PVC DE LA MARQUE OKNOPLAST – MODELE CHARME MINI – FINITION PURE
                         -	INSTALLATION DE MATERIAUX D’ISOLATION THERMIQUE DES PAROIS VITREES VERTICALES
                         -	INSTALLATION DE PORTES-FENETRES EN DOUBLE VITRAGE VENANT EN REMPLACEMENT DE MENUISERIES SIMPLE VITRAGE
                         -	Système breveté équipé de renforts en acier sur l’ensemble du dormant et des ouvrants
@@ -207,7 +207,7 @@ class SettingsSeeder extends Seeder
                         'model' => 'Modele',
                         'model_id' => '7',
                         'genre' => '1',
-                        'text' =>'-	POSE DE MENUISERIES PVC DE LA MARQUE OKNOPLAST – MODELE CHARME MINI – FINITION PURE
+                        'text' => '-	POSE DE MENUISERIES PVC DE LA MARQUE OKNOPLAST – MODELE CHARME MINI – FINITION PURE
                         -	INSTALLATION DE MATERIAUX D’ISOLATION THERMIQUE DES PAROIS VITREES VERTICALES
                         -	INSTALLATION DE PORTES-FENETRES EN DOUBLE VITRAGE VENANT EN REMPLACEMENT DE MENUISERIES SIMPLE VITRAGE
                         -	Système breveté équipé de renforts en acier sur l’ensemble du dormant et des ouvrants
@@ -237,7 +237,7 @@ class SettingsSeeder extends Seeder
                         'model' => 'Modele',
                         'model_id' => '11',
                         'genre' => '1',
-                        'text' =>'-	POSE DE MENUISERIES PVC DE LA MARQUE OKNOPLAST – MODELE CHARME MINI – FINITION PURE
+                        'text' => '-	POSE DE MENUISERIES PVC DE LA MARQUE OKNOPLAST – MODELE CHARME MINI – FINITION PURE
                         -	INSTALLATION DE MATERIAUX D’ISOLATION THERMIQUE DES PAROIS VITREES VERTICALES
                         -	INSTALLATION DE FENETRE 2 VANTAUX EN DOUBLE VITRAGE VENANT EN REMPLACEMENT DE MENUISERIES SIMPLE VITRAGE
                         -	Système breveté équipé de renforts en acier sur l’ensemble du dormant et des ouvrants
@@ -268,7 +268,7 @@ class SettingsSeeder extends Seeder
                         'model' => 'Modele',
                         'model_id' => '9',
                         'genre' => '1',
-                        'text' =>''
+                        'text' => ''
                     ],
                     //ALU
                     [
@@ -277,7 +277,7 @@ class SettingsSeeder extends Seeder
                         'model' => 'Modele',
                         'model_id' => '1',
                         'genre' => '2',
-                        'text' =>''
+                        'text' => ''
                     ],
                     [
                         'name' => 'Fenêtre 1V',
@@ -285,7 +285,7 @@ class SettingsSeeder extends Seeder
                         'model' => 'Modele',
                         'model_id' => '2',
                         'genre' => '2',
-                        'text' =>''
+                        'text' => ''
                     ],
                     [
                         'name' => 'Fenêtre 2V',
@@ -293,7 +293,7 @@ class SettingsSeeder extends Seeder
                         'model' => 'Modele',
                         'model_id' => '3',
                         'genre' => '2',
-                        'text' =>''
+                        'text' => ''
                     ],
                     [
                         'name' => 'Fenêtre fixe',
@@ -301,7 +301,7 @@ class SettingsSeeder extends Seeder
                         'model' => 'Modele',
                         'model_id' => '5',
                         'genre' => '2',
-                        'text' =>''
+                        'text' => ''
                     ],
                     [
                         'name' => 'Porte fenêtre 1V',
@@ -309,7 +309,7 @@ class SettingsSeeder extends Seeder
                         'model' => 'Modele',
                         'model_id' => '6',
                         'genre' => '2',
-                        'text' =>''
+                        'text' => ''
                     ],
                     [
                         'name' => 'Porte fenêtre 2V',
@@ -317,7 +317,7 @@ class SettingsSeeder extends Seeder
                         'model' => 'Modele',
                         'model_id' => '7',
                         'genre' => '2',
-                        'text' =>''
+                        'text' => ''
                     ],
                     [
                         'name' => 'Coulissant 1',
@@ -325,7 +325,7 @@ class SettingsSeeder extends Seeder
                         'model' => 'Modele',
                         'model_id' => '8',
                         'genre' => '2',
-                        'text' =>'-	POSE DE MENUISERIES ALUMINIUM DE LA MARQUE OKNOPLAST - GAMME ALUHAUS
+                        'text' => '-	POSE DE MENUISERIES ALUMINIUM DE LA MARQUE OKNOPLAST - GAMME ALUHAUS
                         -	INSTALLATION DE MATERIAUX D’ISOLATION THERMIQUE DES PAROIS VITREES VERTICALES
                         -	INSTALLATION DE COULISSANT EN DOUBLE VITRAGE VENANT EN REMPLACEMENT DE MENUISERIES SIMPLE VITRAGE
                         -	Ouvrant 44mm
@@ -354,7 +354,7 @@ class SettingsSeeder extends Seeder
                         'model' => 'Modele',
                         'model_id' => '9',
                         'genre' => '2',
-                        'text' =>'-	POSE DE MENUISERIES ALUMINIUM DE LA MARQUE OKNOPLAST - GAMME ALUHAUS
+                        'text' => '-	POSE DE MENUISERIES ALUMINIUM DE LA MARQUE OKNOPLAST - GAMME ALUHAUS
                         -	INSTALLATION DE MATERIAUX D’ISOLATION THERMIQUE DES PAROIS VITREES VERTICALES
                         -	INSTALLATION DE COULISSANT EN DOUBLE VITRAGE VENANT EN REMPLACEMENT DE MENUISERIES SIMPLE VITRAGE
                         -	Ouvrant 44mm
@@ -382,7 +382,7 @@ class SettingsSeeder extends Seeder
                         'model' => 'Modele',
                         'model_id' => '10',
                         'genre' => '2',
-                        'text' =>'-	POSE DE MENUISERIES ALUMINIUM DE LA MARQUE OKNOPLAST - GAMME ALUHAUS
+                        'text' => '-	POSE DE MENUISERIES ALUMINIUM DE LA MARQUE OKNOPLAST - GAMME ALUHAUS
                         -	INSTALLATION DE MATERIAUX D’ISOLATION THERMIQUE DES PAROIS VITREES VERTICALES
                         -	INSTALLATION DE COULISSANT EN DOUBLE VITRAGE VENANT EN REMPLACEMENT DE MENUISERIES SIMPLE VITRAGE
                         -	Ouvrant 44mm
@@ -411,7 +411,7 @@ class SettingsSeeder extends Seeder
                         'model' => 'Modele',
                         'model_id' => '12',
                         'genre' => '2',
-                        'text' =>'-	POSE DE MENUISERIES PVC DE LA MARQUE OKNOPLAST – MODELE CHARME MINI – FINITION PURE
+                        'text' => '-	POSE DE MENUISERIES PVC DE LA MARQUE OKNOPLAST – MODELE CHARME MINI – FINITION PURE
                         -	INSTALLATION DE MATERIAUX D’ISOLATION THERMIQUE DES PAROIS VITREES VERTICALES
                         -	INSTALLATION DE PORTES-FENETRES EN DOUBLE VITRAGE VENANT EN REMPLACEMENT DE MENUISERIES SIMPLE VITRAGE
                         -	Système breveté équipé de renforts en acier sur l’ensemble du dormant et des ouvrants
@@ -491,7 +491,7 @@ class SettingsSeeder extends Seeder
                         'model' => 'Color',
                         'model_id' => '1',
                         'genre' => '1',
-                        'text' =>''
+                        'text' => ''
                     ],
                     [
                         'name' => 'Extérieur couleur, Interieur blanc G2',
@@ -499,7 +499,7 @@ class SettingsSeeder extends Seeder
                         'model' => 'Color',
                         'model_id' => '2',
                         'genre' => '1',
-                        'text' =>''
+                        'text' => ''
                     ],
                     [
                         'name' => 'Extérieur couleur, Interieur blanc G3',
@@ -507,7 +507,7 @@ class SettingsSeeder extends Seeder
                         'model' => 'Color',
                         'model_id' => '3',
                         'genre' => '1',
-                        'text' =>''
+                        'text' => ''
                     ],
                     [
                         'name' => 'Extérieur couleur & intérieur couleur G1',
@@ -515,7 +515,7 @@ class SettingsSeeder extends Seeder
                         'model' => 'Color',
                         'model_id' => '4',
                         'genre' => '1',
-                        'text' =>''
+                        'text' => ''
                     ],
                     [
                         'name' => 'Extérieur couleur & intérieur couleur G2',
@@ -523,7 +523,7 @@ class SettingsSeeder extends Seeder
                         'model' => 'Color',
                         'model_id' => '5',
                         'genre' => '1',
-                        'text' =>''
+                        'text' => ''
                     ],
                     [
                         'name' => 'Extérieur couleur & intérieur couleur G3',
@@ -531,7 +531,7 @@ class SettingsSeeder extends Seeder
                         'model' => 'Color',
                         'model_id' => '6',
                         'genre' => '1',
-                        'text' =>''
+                        'text' => ''
                     ],
                     //genre 2
                     [
@@ -540,7 +540,7 @@ class SettingsSeeder extends Seeder
                         'model' => 'Color',
                         'model_id' => '1',
                         'genre' => '2',
-                        'text' =>''
+                        'text' => ''
                     ],
                     [
                         'name' => 'Extérieur couleur, Interieur blanc G2',
@@ -548,7 +548,7 @@ class SettingsSeeder extends Seeder
                         'model' => 'Color',
                         'model_id' => '2',
                         'genre' => '2',
-                        'text' =>''
+                        'text' => ''
                     ],
                     [
                         'name' => 'Extérieur couleur, Interieur blanc G3',
@@ -556,7 +556,7 @@ class SettingsSeeder extends Seeder
                         'model' => 'Color',
                         'model_id' => '3',
                         'genre' => '2',
-                        'text' =>''
+                        'text' => ''
                     ],
                     [
                         'name' => 'Extérieur couleur & intérieur couleur G1',
@@ -564,7 +564,7 @@ class SettingsSeeder extends Seeder
                         'model' => 'Color',
                         'model_id' => '4',
                         'genre' => '2',
-                        'text' =>''
+                        'text' => ''
                     ],
                     [
                         'name' => 'Extérieur couleur & intérieur couleur G2',
@@ -572,7 +572,7 @@ class SettingsSeeder extends Seeder
                         'model' => 'Color',
                         'model_id' => '5',
                         'genre' => '2',
-                        'text' =>''
+                        'text' => ''
                     ],
                     [
                         'name' => 'Extérieur couleur & intérieur couleur G3',
@@ -580,7 +580,7 @@ class SettingsSeeder extends Seeder
                         'model' => 'Color',
                         'model_id' => '6',
                         'genre' => '2',
-                        'text' =>''
+                        'text' => ''
                     ],
                     // coeff cintrage
                     [
@@ -589,7 +589,7 @@ class SettingsSeeder extends Seeder
                         'model' => 'Bending',
                         'model_id' => '1',
                         'genre' => '0',
-                        'text' =>''
+                        'text' => ''
                     ],
                     // pose menuiserie pour les moment pour tous égale à 200
                     [
@@ -598,7 +598,7 @@ class SettingsSeeder extends Seeder
                         'model' => 'Pose',
                         'model_id' => '1',
                         'genre' => '0',
-                        'text' =>''
+                        'text' => ''
                     ],
                     // text portes
                     [
@@ -607,7 +607,7 @@ class SettingsSeeder extends Seeder
                         'model' => 'Door',
                         'model_id' => '1',
                         'genre' => '0',
-                        'text' =>'  - Gamme Koncept
+                        'text' => '  - Gamme Koncept
                         - Ouvrant 70mm
                         - Dormant rénovation, aile de 35
                         - Dim. Fabrication (Dos de dormant sans les ailes)
@@ -622,7 +622,32 @@ class SettingsSeeder extends Seeder
                         - Hauteur de poignée standard
                         - Habillage intérieur : A déterminé au métrage
                         - Habillage extérieur : A déterminer au métrage'
-                    ]
+                    ],
+                    // Page de garde
+                    [
+                        'name' => 'Texte OKNOPLAST',
+                        'value' => '',
+                        'model' => 'Garde',
+                        'model_id' => '1',
+                        'genre' => '2',
+                        'text' => ''
+                    ],
+                    [
+                        'name' => 'Texte Garantie',
+                        'value' => '',
+                        'model' => 'Garde',
+                        'model_id' => '2',
+                        'genre' => '2',
+                        'text' => ''
+                    ],
+                    [
+                        'name' => 'Texte Loi Anti-Gaspillage',
+                        'value' => '',
+                        'model' => 'Garde',
+                        'model_id' => '1',
+                        'genre' => '3',
+                        'text' => ''
+                    ],
 
                 ];
 

@@ -47,13 +47,23 @@ class SettingsController extends Controller
     {
         $model=$request->get('model');
         $model_id=$request->get('model_id');
+        $genre_id=$request->get('genre_id');
         $value=$request->get('value');
 
-        Setting::where('model',$model)->where('model_id',$model_id)->update(
-            [
-                'text'=>$value,
-            ]
-        );
+        if($model=='Modele'){
+            Setting::where('model',$model)->where('genre',$genre_id)->where('model_id',$model_id)->update(
+                [
+                    'text'=>$value,
+                ]
+            );
+        }else{
+            Setting::where('model',$model)->where('model_id',$model_id)->update(
+                [
+                    'text'=>$value,
+                ]
+            );
+        }
+
     }
 
 

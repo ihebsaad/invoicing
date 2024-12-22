@@ -30,7 +30,7 @@
             <th>Nom</th>
             <th>Tél</th>
             <th>Adresse fisc</th>
-            <th>Commercial</th>
+            <th>Mon accompagnateur</th>
             <th class="no-sort"  style="width:20%"  >Action</th>
             </tr>
         </thead>

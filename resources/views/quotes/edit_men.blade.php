@@ -203,6 +203,14 @@
 							</div>
 							@endif
 
+							@if( $quote->surface_maison!='' )
+							<div class="col-xs-12 col-sm-12 col-md-4">
+								<div class="form-group">
+									<strong>Surface de la maison (m²):</strong>
+									<input type="number" class="form-control"   name="surface_maison" value="{{ $quote->surface_maison }}" style="max-width:180px"/>
+								</div>
+							</div>
+							@endif
 						</div>
 						<div class="row pl-3 mt-2">
 							<div class="col-xs-12 col-sm-12 col-md-4">

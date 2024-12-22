@@ -23,7 +23,7 @@
 
             <div class="col-xs-12 col-sm-6 col-md-6">
                 <div class="form-group">
-                    <strong>Commercial*:</strong>
+                    <strong>Mon accompagnateur*:</strong>
                     <select class="form-control select2" name="commercial"  >
                         <option></option>
                         @foreach($commercials as $commercial)

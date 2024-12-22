@@ -203,7 +203,8 @@
 	   <table style="width:100%;margin-top:5px;margin-bottom:5px">
 		   <tr>
 			   <td style="width:50%;">
-				   @if( $invoice->logement!='')<b>Logement :</b>{{ $invoice->logement }}    @endif  @if($invoice->surface!='')<b>Surface @if($invoice->menuiserie==-7)à isoler @elseif($invoice->menuiserie==-9) de la maison @else chauffée @endif (m²):</b>   {{ $invoice->surface }}<br>@endif
+				   @if( $invoice->logement!='')<b>Logement : </b>{{ $invoice->logement }}    @endif  @if($invoice->surface!='')<b>Surface @if($invoice->menuiserie==-7)à isoler @elseif($invoice->menuiserie==-9) de la maison @else chauffée @endif (m²):</b>   {{ $invoice->surface }}<br>@endif
+				   @if( $invoice->surface_maison!='') Surface de la maison : {{$invoice->surface_maison}}  (m²)<br> @endif
 				   <b>Date de visite technique préalable :</b>   {{ $date_facture }}
 			   </td>
 			   <td style="width:50%;">
@@ -213,7 +214,10 @@
 		   </tr>
 	   </table>
 		@php
-	   		$texte_loi='<b>Gestion, évacuation et traitement des déchets de chantier.</b></br> Comprend :<br>- La main d’œuvre liée à la dépose et au tri<br>- Le transport des déchets de chantier vers un ou plusieurs points de collecte.<br>- Les coûts de traitement.<br>- Ouvrages déconstruits (déchets susceptibles d’être en mélange)<br>- Le point de collecte envisagé : Déchetterie';
+	   		//$texte_loi='<b>Gestion, évacuation et traitement des déchets de chantier.</b></br> Comprend :<br>- La main d’œuvre liée à la dépose et au tri<br>- Le transport des déchets de chantier vers un ou plusieurs points de collecte.<br>- Les coûts de traitement.<br>- Ouvrages déconstruits (déchets susceptibles d’être en mélange)<br>- Le point de collecte envisagé : Déchetterie';
+	   		$texte_oknoplast=\App\Models\Setting::where('Model','Garde')->where('model_id',1)->where('genre',2)->first()->text;
+	   		$texte_garantie=\App\Models\Setting::where('Model','Garde')->where('model_id',2)->where('genre',2)->first()->text;
+	   		$texte_loi=\App\Models\Setting::where('Model','Garde')->where('model_id',3)->where('genre',2)->first()->text;
 		@endphp
 		@if($type=='Devis' && $invoice->menuiserie==1)
 		<table class="tab-products tab1" style="min-height:150px;width:100%;margin-top:50px;margin-bottom:5px">
@@ -228,30 +232,19 @@
 						<img src="{!! public_path('img/okno.png')!!}"  width="100" />
 					</td>
 					<td class="text"  style="border-bottom: 1px solid #f07f32">
-						Le GROUPE HER ENR est sensible à la qualité des produits installés chez ses clients.<br>
-						Pour cela nous avons choisi le Groupe OKNOPLAST.<br>
-						Représenté dans 17 pays, il fait parti du top 3 mondial dans la fabrication de menuiserie.<br>
-						Une gamme spécialement conçue pour le GROUPE HER ENR
-						<h3>CHARME MINI</h3>
-
-						<h5>L'ÉLÉGANCE DES COURBES ET UN MAXIMUM DE LUMIÈRE</h5>
-						La fenêtre en PVC Charme Mini offre luminosité et sécurité. En effet cette menuiserie PVC révolutionne votre intérieur grâce à un battement central réduit ainsi que des nouvelles générations de renforts. La finesse de son battement central permet une luminosité maximale de la pièce. La fenêtre standard en PVC Charme Mini est également disponible en porte fenêtre pour s'adapter à tous vos intérieurs.<br>
-						<h5>FENÊTRES PVC CHARME MINI : UNE SÉCURITÉ RENFORCÉE</h5>
-						La gamme Charme Mini comporte plusieurs équipements étudiés spécialement pour renforcer la sécurité du logement, comme un vitrage retardateur d'effraction ou des points multiples de fermeture à galets.<br>
+						{!!nl2br($texte_oknoplast)!!}
 					</td>
 					<td style="border-bottom: 1px solid #f07f32" ></td>
 				</tr>
 				<tr class="product" >
 					<td style="border-bottom: 1px solid #f07f32" ></td>
 					<td class="text" style="border-bottom: 1px solid #f07f32">
-						CHEZ GROUPE HER ENR, NOUS GARANTISSONS VOS MENUISERIES <label style="color:#f07f32;font-weight:800;text-decoration:underline;font-size:13px; "> A VIE</label>.<br>
-						DEVIS CHIFFRES AVEC POSE ET CONSOMABLE COMPRIS<br>
-						REALISATION DES TRAVAUX FAITE PAR LES SALARIÉES DU GROUPE HER ENR
+						{!!nl2br($texte_garantie)!!}
 					</td>
 					<td style="border-bottom: 1px solid #f07f32"></td>
 				</tr>
 				<tr class="product" >
-					<td   ><img src="{!! public_path('img/loi.png')!!}"  width="100" /> </td><td class="text" >{!!nl2br($texte_loi)!!}</td><td   >{{$invoice->total_loi ?? 100}} €</td>
+					<td   ><img src="{!! public_path('img/loi.png')!!}"  width="80" style="margin-right:20px"/> </td><td class="text" >{!!nl2br($texte_loi)!!}</td><td   >{{$invoice->total_loi ?? 100}} €</td>
 				</tr>
 		   </tbody>
 	   </table>

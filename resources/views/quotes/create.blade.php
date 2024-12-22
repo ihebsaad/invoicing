@@ -24,32 +24,32 @@
 
 <form action="{{ route('quotes.store') }}" method="POST">
     @csrf
-    <input type="hidden" name="par"  value="{{$User->id}}" />
+    <input type="hidden" name="par" value="{{$User->id}}" />
     <div class="row pl-3">
         <div class="col-xs-12 col-sm-12 col-md-7">
             <div class="form-group">
                 <strong>Client*:</strong>
-                <select class="form-control select2" name="customer" required >
+                <select class="form-control select2" name="customer" required>
                     <option></option>
                     @foreach($customers as $customer)
-                        <option @if($customer_id==$customer->id) selected="selected" @endif value="{{$customer->id}}">{{ $customer->name!='' ? $customer->civility: ''}} {{$customer->company ?? ''}} {{$customer->name ?? ''}} {{$customer->lastname ?? ''}}</option>
+                    <option @if($customer_id==$customer->id) selected="selected" @endif value="{{$customer->id}}">{{ $customer->name!='' ? $customer->civility: ''}} {{$customer->company ?? ''}} {{$customer->name ?? ''}} {{$customer->lastname ?? ''}}</option>
                     @endforeach
                 </select>
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-2">
-            <a href="#" class="btn btn-sm btn-success" data-toggle="modal" data-target="#add-customer" title="Ajouter un client"  ><i class="fa fa-user-plus"></i> Nouveau Client</a>
+            <a href="#" class="btn btn-sm btn-success" data-toggle="modal" data-target="#add-customer" title="Ajouter un client"><i class="fa fa-user-plus"></i> Nouveau Client</a>
         </div>
         <div class="col-xs-12 col-sm-4 col-md-4">
             <div class="form-group">
                 <strong>Date de visite technique préalable:</strong>
-                <input type="text" class="form-control datepicker" autocomplete="off"  name="date" placeholder="jj/mm/aaaa"  value="{{date('d/m/Y')}}"/>
+                <input type="text" class="form-control datepicker" autocomplete="off" name="date" placeholder="jj/mm/aaaa" value="{{date('d/m/Y')}}" />
             </div>
         </div>
         <div class="col-xs-12 col-sm-4 col-md-4">
             <div class="form-group">
                 <strong>Type de devis*:</strong>
-                <select   name="menuiserie" id="menuiserie"  class="form-control"   onchange="update_required()" style="width:300px" required >
+                <select name="menuiserie" id="menuiserie" class="form-control" onchange="update_required()" style="width:300px" required>
                     <option value=""></option>
                     <option value="-1">PAC AIR EAU</option>
                     <option value="-2">PAC AIR AIR</option>
@@ -71,36 +71,45 @@
         </div>
     </div>
     <div class="row pl-3">
-        <div class="col-xs-12 col-sm-12 col-md-4"  id="div-chaudiere" >
-			<div class="form-group">
-				<strong>Chaudière à :</strong>
-				<select  class="form-control" required  name="chaudiere"  id="chaudiere"   style="max-width:180px" >
-					<option  value=""></option>
-					<option  value="Gaz">Gaz</option>
-					<option  value="Fioul">Fioul</option>
-					<option  value="Charbon">Charbon</option>
-                    <option  value="Pompe à chaleur air-eau">Pompe à chaleur air-eau</option>
-					<option  value="Pompe à chaleur eau-eau">Pompe à chaleur eau-eau</option>
-				</select>
-			</div>
-		</div>
-        <div class="col-xs-12 col-sm-12 col-md-4" id="div-chauffage"  >
-			<div class="form-group">
-				<strong>Type de chauffage :</strong>
-				<select  class="form-control"   name="chauffage"  id="chauffage"   style="max-width:180px;" >
-					<option  value=""></option>
-                    <option  value="Electrique">Electrique</option>
-					<option  value="Combustible">Combustible </option>
-				</select>
-			</div>
-		</div>
+        <div class="col-xs-12 col-sm-12 col-md-4" id="div-chaudiere">
+            <div class="form-group">
+                <strong>Chaudière à :</strong>
+                <select class="form-control" required name="chaudiere" id="chaudiere" style="max-width:180px">
+                    <option value=""></option>
+                    <option value="Gaz">Gaz</option>
+                    <option value="Fioul">Fioul</option>
+                    <option value="Charbon">Charbon</option>
+                    <option value="Pompe à chaleur air-eau">Pompe à chaleur air-eau</option>
+                    <option value="Pompe à chaleur eau-eau">Pompe à chaleur eau-eau</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-4" id="div-chauffage">
+            <div class="form-group">
+                <strong>Type de chauffage :</strong>
+                <select class="form-control" name="chauffage" id="chauffage" style="max-width:180px;">
+                    <option value=""></option>
+                    <option value="Electrique">Electrique</option>
+                    <option value="Combustible">Combustible </option>
+                </select>
+            </div>
+        </div>
 
-        <div class="col-xs-12 col-sm-12 col-md-4"  id="div-surface" >
+        <div class="col-xs-12 col-sm-12 col-md-4" id="div-surface">
+            <div class="form-group">
+                <strong>Surface <span id="chauff">chauffée</span><span style="display:none" id="isol">à isoler</span><span style="display:none" id="home"> de la maison</span> (m²):</strong>
+                <input type="number" class="form-control" required id="surface" name="surface" style="max-width:180px" />
+            </div>
+        </div>
+
+        <div class="col-xs-12 col-sm-12 col-md-4"  id="div-surface-maison">
 			<div class="form-group">
-            <strong>Surface <span id="chauff">chauffée</span><span style="display:none" id="isol">à isoler</span><span style="display:none" id="home"> de la maison</span> (m²):</strong>
-            <input type="number" class="form-control" required  id="surface"  name="surface"   style="max-width:180px"/>
+            <strong>Surface maison (m²):</strong>
+            <input type="number" class="form-control"   id="surface_maison"  name="surface_maison"   style="max-width:180px"/>
+
             </div>
 		</div>
+
     </div>
     <div class="row pl-3">
         <div class="col-xs-12 col-sm-12 col-md-7">
@@ -111,7 +120,7 @@
         </div>
 
         <div class="col-xs-12 col-sm-12 col-md-7">
-                <button type="submit" class="btn btn-primary">Enregistrer</button>
+            <button type="submit" class="btn btn-primary">Enregistrer</button>
         </div>
     </div>
 
@@ -123,13 +132,13 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-			    <h4 class="modal-title text-center text-primary"> Ajouter un client </h4>
+                <h4 class="modal-title text-center text-primary"> Ajouter un client </h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Fermer">
-                  <span aria-hidden="true">&times;</span>
+                    <span aria-hidden="true">&times;</span>
                 </button>
             </div>
 
-            <div class="modal-body" style="padding:10px 10px 1" >
+            <div class="modal-body" style="padding:10px 10px 1">
 
                 <form action="{{ route('customers.store') }}" method="POST">
                     <input type="hidden" name="source" value="quote" />
@@ -138,11 +147,11 @@
 
                         <div class="col-xs-12 col-sm-6 col-md-6">
                             <div class="form-group">
-                                <strong>Commercial:</strong>
-                                <select class="form-control select2" name="commercial"  >
+                                <strong>Mon accompagnateur:</strong>
+                                <select class="form-control select2" name="commercial">
                                     <option></option>
                                     @foreach($commercials as $commercial)
-                                        <option  value="{{$commercial->id}}">{{$commercial->id}} : {{$commercial->name}} {{$commercial->lastname}}</option>
+                                    <option value="{{$commercial->id}}">{{$commercial->id}} : {{$commercial->name}} {{$commercial->lastname}}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -153,7 +162,7 @@
                         <div class="col-xs-12 col-sm-12 col-md-3">
                             <div class="form-group">
                                 <strong>Civilité:</strong>
-                                <select   name="civility" class="form-control" placeholder="civility" >
+                                <select name="civility" class="form-control" placeholder="civility">
                                     <option value=""></option>
                                     <option value="Mr">Mr</option>
                                     <option value="Mme">Mme</option>
@@ -181,7 +190,7 @@
                         <div class="col-xs-12 col-sm-12 col-md-3">
                             <div class="form-group">
                                 <strong>Civilité:</strong>
-                                <select   name="civility2" class="form-control" placeholder="civility2" >
+                                <select name="civility2" class="form-control" placeholder="civility2">
                                     <option value=""></option>
                                     <option value="Mr">Mr</option>
                                     <option value="Mme">Mme</option>
@@ -236,7 +245,7 @@
                         <div class="col-xs-12 col-sm-12 col-md-12">
                             <div class="form-group">
                                 <strong>Adresse fiscale:</strong>
-                                <input type="text"   name="address" id="address" class="form-control" placeholder="Adresse" value="{{old('address')}}" onchange="copy('address')"  />
+                                <input type="text" name="address" id="address" class="form-control" placeholder="Adresse" value="{{old('address')}}" onchange="copy('address')" />
                             </div>
                         </div>
                     </div>
@@ -246,15 +255,15 @@
 
                         <div class="col-xs-12 col-sm-12 col-md-4">
                             <div class="form-group">
-                                <input type="text" name="city" id="city" class="form-control" placeholder="Ville" value="{{old('city')}}"  onchange="copy('city')">
+                                <input type="text" name="city" id="city" class="form-control" placeholder="Ville" value="{{old('city')}}" onchange="copy('city')">
                             </div>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-4">
                             <div class="form-group">
-                                <select type="text" name="country" id="country" class="form-control" onchange="copy('country')" >
+                                <select type="text" name="country" id="country" class="form-control" onchange="copy('country')">
                                     <option></option>
                                     @foreach($countries as $key =>$value)
-                                        <option value="{{$value}}"  @if($value=='France') selected="selected" @endif >{{$value}}</option>
+                                    <option value="{{$value}}" @if($value=='France' ) selected="selected" @endif>{{$value}}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -262,7 +271,7 @@
 
                         <div class="col-xs-12 col-sm-12 col-md-4">
                             <div class="form-group">
-                                <input type="text" name="postal" id="postal"  class="form-control" placeholder="Code postal" value="{{old('postal')}}"  onchange="copy('postal')">
+                                <input type="text" name="postal" id="postal" class="form-control" placeholder="Code postal" value="{{old('postal')}}" onchange="copy('postal')">
                             </div>
                         </div>
 
@@ -274,7 +283,7 @@
                         <div class="col-xs-12 col-sm-12 col-md-12">
                             <div class="form-group">
                                 <strong>Adresse du chantier:</strong>
-                                <input type="text"   name="delivery_address" id="delivery_address" class="form-control" placeholder="Adresse" value="{{old('delivery_address')}}" />
+                                <input type="text" name="delivery_address" id="delivery_address" class="form-control" placeholder="Adresse" value="{{old('delivery_address')}}" />
                             </div>
                         </div>
                     </div>
@@ -289,10 +298,10 @@
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-4">
                             <div class="form-group">
-                                <select type="text" name="delivery_country" id="delivery_country" class="form-control"  >
+                                <select type="text" name="delivery_country" id="delivery_country" class="form-control">
                                     <option></option>
                                     @foreach($countries as $key =>$value)
-                                        <option value="{{$value}}"  @if($value=='France') selected="selected" @endif >{{$value}}</option>
+                                    <option value="{{$value}}" @if($value=='France' ) selected="selected" @endif>{{$value}}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -300,14 +309,14 @@
 
                         <div class="col-xs-12 col-sm-12 col-md-4">
                             <div class="form-group">
-                                <input type="text" name="delivery_postal" id="delivery_postal"  class="form-control" placeholder="Code postal" value="{{old('delivery_postal')}}">
+                                <input type="text" name="delivery_postal" id="delivery_postal" class="form-control" placeholder="Code postal" value="{{old('delivery_postal')}}">
                             </div>
                         </div>
 
                     </div>
 
                     <div class="col-xs-12 col-sm-12 col-md-6">
-                            <button type="submit" class="btn btn-primary">Enregistrer</button>
+                        <button type="submit" class="btn btn-primary">Enregistrer</button>
                     </div>
 
                 </form>
@@ -325,74 +334,83 @@
 @section('footer-scripts')
 <script src="{{asset('plugins/select2/js/select2.full.min.js')}}"></script>
 
-<script src="{{ asset('plugins/summernote/summernote-bs4.min.js') }}" ></script>
+<script src="{{ asset('plugins/summernote/summernote-bs4.min.js') }}"></script>
 
 <script>
+    function copy(champ) {
+        val = $('#' + champ).val();
+        if ($('#delivery_' + champ).val() == '' || $('#delivery_' + champ).val() == 'France') {
+            $('#delivery_' + champ).val(val);
+        }
+    }
 
-    function copy(champ){
-      val= $('#'+champ).val();
-      if( $('#delivery_'+champ).val()==''||$('#delivery_'+champ).val()=='France' ){
-        $('#delivery_'+champ).val(val);
-      }
-  }
-
-  function update_required(){
-        var menuiserie =$('#menuiserie').val()   ;
+    function update_required() {
+        var menuiserie = $('#menuiserie').val();
         // chauffage
-        if(menuiserie==1){
-            $('#chauffage').prop('required',true);
+        if (menuiserie == 1) {
+            $('#chauffage').prop('required', true);
             $('#div-chauffage').show('slow');
-        }else{
-            $('#chauffage').prop('required',false);
+        } else {
+            $('#chauffage').prop('required', false);
             $('#div-chauffage').hide('slow');
         }
         // surface
-        if(menuiserie==-1 || menuiserie==-2 || menuiserie==-5 ||  menuiserie==-6 ||  menuiserie==-60 ||  menuiserie==-61 ||  menuiserie==-62 ||  menuiserie==-63 ||  menuiserie==-9   ){
-            $('#surface').prop('required',true);
+        if (menuiserie == -1 || menuiserie == -2 || menuiserie == -5 || menuiserie == -6 || menuiserie == -60 || menuiserie == -61 || menuiserie == -62 || menuiserie == -63 || menuiserie == -9) {
+            $('#surface').prop('required', true);
             $('#div-surface').show('slow');
 
-            if(menuiserie==-6 ){
+            if (menuiserie == -6) {
                 $('#isol').show('slow');
                 $('#chauff').hide('slow');
-            }else{
+            } else {
                 $('#isol').hide('slow');
                 $('#chauff').show('slow');
             }
 
-            if(menuiserie==-9 ){
+            if (menuiserie == -9) {
                 $('#home').show('slow');
-            }else{
+            } else {
                 $('#home').hide('slow');
             }
 
 
-        }else{
-            $('#surface').prop('required',false);
+        } else {
+            $('#surface').prop('required', false);
             $('#div-surface').hide('slow');
         }
         //chaudiere
-        if(menuiserie==-1){
+        if (menuiserie == -1) {
             $('#div-chaudiere').show('slow');
-            $('#chaudiere').prop('required',true);
-        }else{
+            $('#chaudiere').prop('required', true);
+        } else {
             $('#div-chaudiere').hide('slow');
-            $('#chaudiere').prop('required',false);
+            $('#chaudiere').prop('required', false);
+        }
+
+        //cesi surface maison
+        if (menuiserie == -4) {
+            $('#div-surface-maison').show('slow');
+            $('#surface_maison').prop('required', true);
+        } else {
+            $('#div-surface-maison').hide('slow');
+            $('#surface_maison').prop('required', false);
         }
     }
 
-  $(function () {
-    // Summernote
-    $('.summernote').summernote();
+    $(function() {
+        // Summernote
+        $('.summernote').summernote();
 
 
-    $('.select2').select2();
+        $('.select2').select2();
 
-    $('.datepicker').datepicker({ changeMonth: true,
-      //changeYear: true,
-      dateFormat: 'dd/mm/yy' }).val();
+        $('.datepicker').datepicker({
+            changeMonth: true,
+            //changeYear: true,
+            dateFormat: 'dd/mm/yy'
+        }).val();
 
-  });
-
+    });
 </script>
 
 @endsection
