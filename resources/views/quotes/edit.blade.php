@@ -119,7 +119,7 @@
 			<h2> Devis {{$quote->id}} - {{$quote->reference}} </h2>
 		</div>
 		<div class="float-right">
-			<a class="btn btn-primary mb-2" href="{{ route('quotes.index') }}"> Retour</a>
+			<a class="btn btn-primary mb-2" href="{{route('quotes.all')}}"> Retour</a>
 		</div>
 		<div class="float-right mr-3 ml-3 mb-2">
 			<a class="btn btn-dark mb-3 mr-2 " href="{{ route('quotes.download_pdf_signature',$quote->id) }}" style="float:left" title="Télécharger avec signature"><i class="fas fa-signature"></i></a>
@@ -766,6 +766,13 @@
 						</div>
 					</div>
 
+					<div class="col-xs-12 col-sm-12 col-md-12">
+						<div class="form-group">
+							<strong>Image :</strong>
+							<input type="file" id="image-i" name="image" class="form-control" accept="image/*">
+						</div>
+					</div>
+
 					<div class="col-xs-12 col-sm-12 col-md-12 text-right">
 						<button type="button" id="add_item" onclick="add_item()" class="btn btn-primary mt-3 mr-3">Insérer</button>
 					</div>
@@ -1098,10 +1105,23 @@
 		var unite = $('#unite').val();
 		var texte = description + '<br>' + note;
 		$('#tva_remise').val(tva);
+		var formData = new FormData();
+		formData.append('prix', prix);
+		formData.append('prix_ht', prix_ht);
+		formData.append('qte', qte);
+		formData.append('tva', tva);
+		formData.append('description', texte);
+		formData.append('unite', unite);
+		formData.append('quote', quote);
+		formData.append('image', $('#image-i')[0].files[0]); // Ajouter l'image
+		formData.append('_token', _token);
 		$.ajax({
 			url: "{{ route('add_item_men') }}",
 			method: "POST",
-			async: false,
+			//async: false,
+			processData: false,
+			contentType: false,
+			data: formData,/*
 			data: {
 				prix: prix,
 				prix_ht: prix_ht,
@@ -1112,7 +1132,7 @@
 				unite: unite,
 				quote: quote,
 				_token: _token
-			},
+			},*/
 			success: function(data) {
 				if (data != '') {
 					item_id = data;

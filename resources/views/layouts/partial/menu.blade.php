@@ -121,7 +121,7 @@
                   </li>
                 </ul>
               </li>
-              @can('isAdmin')
+              @if(auth()->id()==1)
               <li class="nav-item  {{ request()->is('users') || request()->is('settings') ||  request()->is('settings.index')    ? 'menu-open' : '' }}">
                 <a href="#" class="nav-link {{ request()->is('users') || request()->is('settings.index') ||  request()->is('settings')    ? 'active' : '' }}">
                   <i class="nav-icon fas fa-cog text-white"></i>
@@ -147,7 +147,7 @@
 
                 </ul>
               </li>
-              @endcan
+              @endif
 
 
 

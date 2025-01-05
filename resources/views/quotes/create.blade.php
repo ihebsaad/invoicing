@@ -16,7 +16,7 @@
             <h2>Ajouter un devis</h2>
         </div>
         <div class="float-right">
-            <a class="btn btn-primary" href="{{ route('quotes.index') }}"> Retour</a>
+            <a class="btn btn-primary" href="{{route('quotes.all')}}"> Retour</a>
         </div>
     </div>
 </div>

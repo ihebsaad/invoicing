@@ -573,6 +573,14 @@
 							</select>
 						</div>
 					</div>
+
+					<div class="col-xs-12 col-sm-12 col-md-12">
+						<div class="form-group">
+							<strong>Image :</strong>
+							<input type="file" id="image-i" name="image" class="form-control" accept="image/*">
+						</div>
+					</div>
+
 					<div class="col-xs-12 col-sm-12 col-md-12 text-right"  >
 						<button type="button" id="add_item" onclick="add_item()"   class="btn btn-primary mt-3 mr-3">Insérer</button>
 					</div>
@@ -817,6 +825,7 @@
 		});
 		calcul();
 	}
+
 	function pricing_item(){
 		var prix_ht= parseFloat($("#prixht-i").val());
 		var p_tva= parseFloat($("#tva-i").val());

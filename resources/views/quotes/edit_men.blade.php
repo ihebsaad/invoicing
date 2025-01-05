@@ -96,7 +96,7 @@
                 <h2> Devis <small>@if($quote->menuiserie==1) Menuiserie @else Volets roulants @endif</small> {{$quote->id}} -  {{$quote->reference}}  </h2>
             </div>
             <div class="float-right">
-                <a class="btn btn-primary mb-2" href="{{ route('quotes.index') }}"> Retour</a>
+                <a class="btn btn-primary mb-2" href="{{route('quotes.all')}}"> Retour</a>
             </div>
             <div class="float-right mr-3 ml-3 mb-2">
 				<a class="btn btn-dark mb-3 mr-2 " href="{{ route('quotes.download_pdf_signature',$quote->id) }}" style="float:left" title="Télécharger avec signature"><i class="fas fa-signature"></i></a>

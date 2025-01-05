@@ -12,7 +12,7 @@
     </div>
 </div>
 
-<form action="{{ route('products.store') }}" method="POST">
+<form action="{{ route('products.store') }}" method="POST"  enctype='multipart/form-data'>
     @csrf
 
      <div class="row pl-3">
@@ -94,6 +94,13 @@
                 </select>
             </div>
         </div>
+
+        <div class="col-xs-12 col-sm-12 col-md-7">
+			<div class="form-group">
+				<strong>Image:</strong>
+				<input type="file"   name="image" class="form-control" accept="image/*">
+			</div>
+		</div>
 
         @if(auth()->user()->user_type=='admin')
             <div class="col-xs-12 col-sm-12 col-md-7">

@@ -155,6 +155,18 @@
 		.pageplus1:after {
 		content: counter(pageplus1);
 		}
+		.checkboxes label {
+		display: inline-block;
+		padding-right: 10px;
+		white-space: nowrap;
+		}
+		.checkboxes input {
+		vertical-align: middle;
+		}
+		.checkboxes label span {
+		vertical-align: middle;
+		}
+
    </style>
    <section class="body">
 
@@ -172,7 +184,7 @@
 				   <span>82000 MONTAUBAN</span><br>
 				   <span><b>Tél :</b> 09.77.59.57.42</span>  <span><b>Email :</b> contact@groupe-her.com</span><br><br>
 				   <div style="font-size:9px">
-				   		SARL au capital de 50 000 euros<br>
+				   		SARL au capital de 300 000 euros<br>
 	   					SIRET 851 566 455 00032  - R.C.S MONTAUBAN - NAF 3511Z<br>
 	   					TVA intracommunautaire : FR95851566455<br>
 					</div><br>
@@ -203,12 +215,17 @@
 			   </td>
 		   </tr>
 	   </table>
+		@php
+			$isolation=false;
+			if($invoice->menuiserie==-6 || $invoice->menuiserie==-61 || $invoice->menuiserie==-62 || $invoice->menuiserie==-63 )
+				$isolation=true;
 
+		@endphp
 
 	   <table class="tab-products" style="min-height:150px;width:100%;margin-top:5px;margin-bottom:5px">
 		   <thead class="th-products">
 			   <tr>
-				   <th style="width:41%">Désignation</th><th style="width:3%">U</th><th style="width:5%">Qté</th><th style="width:7%">P.U HT</th><th style="width:9%">Montant HT</th><th style="width:6%">TVA</th><th style="width:9%">Montant TTC</th>
+				   <th style="width:5%">Image</th><th style="width:36%">Désignation</th>@if($isolation)<th style="width:3%">U</th>@endif<th style="width:5%">Qté</th><th style="width:7%">P.U HT</th><th style="width:9%">Montant HT</th><th style="width:6%">TVA</th><th style="width:9%">Montant TTC</th>
 			   </tr>
 		   </thead>
 		   <tbody >
@@ -220,8 +237,13 @@
 				   @foreach($items as $item)
 				   <?php
 				  		$product=\App\Models\Product::withTrashed()->find($item->product);
-
+						  $url_img='';
+						  if($item->image!='')
+						  $url_img=asset("storage/".$item->image);
 						if(isset($product)){
+
+							if ($product->image)
+								$url_img =asset('images/products/' . $product->image) ;
 
 							$total_prod_ht = floatval($product->prix_ht) * intval($item->qty);
 							$total_prod_ttc = floatval($product->prix) * intval($item->qty);
@@ -237,7 +259,7 @@
 							$tva_totals[''.$tva_rate]['montant_tva'] += $total_prod_ttc - $total_prod_ht;
 ?>
 							<tr class="product"  >
-								<td class="text" ><b>{{$product->name}}<br>{!! nl2br($product->description) !!}</b></td><td>{!! $unite !!}</td><td>{{$item->qty}}</td><td>{{$product->prix_ht}} €</td><td>{{$total_prod_ht}} €</td><td>{{$item->tva}} %</td><td>{{$total_prod_ttc}} €</td>
+								<td>@if($url_img!='') <img src="{!! $url_img !!}"  width="100" style="max-width:100px"></img>@endif</td><td class="text" ><b>{{$product->name}}<br>{!! nl2br($product->description) !!}</b></td>@if($isolation)<td>{!! $unite !!}</td>@endif<td>{{$item->qty}}</td><td>{{$product->prix_ht}} €</td><td>{{$total_prod_ht}} €</td><td>{{$item->tva}} %</td><td>{{$total_prod_ttc}} €</td>
 							</tr>
 							@if($product->pose > 0)
 								<?php
@@ -254,11 +276,13 @@
 									$tva_totals[''.$tva_rate]['montant_tva'] += $pose_ttc - $pose_ht;
 								?>
 								<tr class="product"  >
-									<td class="text" ><i>Pose {{$product->name}}</i></td><td></td><td>{{$item->qty}}</td><td>{{$product->pose}} €</td><td>{{$pose_ht }} €</td><td>{{$product->tva_pose}} %</td><td>{{$pose_ttc}} €</td>
+									<td></td><td class="text" ><i>Pose {{$product->name}}</i></td>@if($isolation)<td></td>@endif<td>{{$item->qty}}</td><td>{{$product->pose}} €</td><td>{{$pose_ht }} €</td><td>{{$product->tva_pose}} %</td><td>{{$pose_ttc}} €</td>
 								</tr>
 
 							@else
+								<!--
 								<?php
+								/*
 									$tva_rate = $item->tva;
 									if(!isset($tva_totals[''.$tva_rate])) {
 									$tva_totals[''.$tva_rate] = [
@@ -269,13 +293,19 @@
 									$tva_totals[''.$tva_rate]['montant_ht'] += $total_prod_ht;
 									$tva_totals[''.$tva_rate]['montant_tva'] += $total_prod_ttc - $total_prod_ht;
 									$unite =  $item->unite!='' ? $item->unite : '';
+									*/
 								?>
+
 								<tr class="product"  >
-									<td class="text" >{!! nl2br($item->description) !!}</td><td>{!! $unite !!}</td><td>{{$item->qty}}</td><td  >{{$item->price_ht}} €</td><td>{{ floatval($item->price_ht) * intval($item->qty) }} €</td><td>{{$item->tva}} %</td><td>{{  floatval($item->price_ttc) * intval($item->qty)  }} €</td>
+									<td>@if($item->image!='') <img src="{!! $url_img !!}"  width="100" style="max-width:100px"></img>@endif</td><td class="text" >{!! nl2br($item->description) !!}</td><td>{!! $unite !!}</td><td>{{$item->qty}}</td><td  >{{$item->price_ht}} €</td><td>{{ floatval($item->price_ht) * intval($item->qty) }} €</td><td>{{$item->tva}} %</td><td>{{  floatval($item->price_ttc) * intval($item->qty)  }} €</td>
 								</tr>
+								-->
 							@endif
 							<?php
 							}else{
+
+								$total_prod_ht = floatval($item->price_ht) * intval($item->qty);
+								$total_prod_ttc = floatval($item->price_ttc) * intval($item->qty);
 								$tva_rate = $item->tva; // Get the TVA rate for the current item
 								// Update the TVA totals array
 								if(!isset($tva_totals[''.$tva_rate])) {
@@ -289,20 +319,20 @@
 								$unite =  $item->unite!='' ? $item->unite : '';
 							?>
 							<tr class="product"  >
-								<td class="text" >{!! nl2br($item->description) !!}</td><td>{!! $unite !!}</td><td>{{$item->qty}}</td><td  >{{$item->price_ht}} €</td><td>{{ floatval($item->price_ht) * intval($item->qty) }} €</td><td>{{$item->tva}} %</td><td>{{  floatval($item->price_ttc) * intval($item->qty)  }} €</td>
+								<td>@if($item->image!='') <img src="{!! $url_img !!}"  width="100" style="max-width:100px"></img>@endif</td><td class="text" >{!! nl2br($item->description) !!}</td>@if($isolation)<td>{!! $unite !!}</td>@endif<td>{{$item->qty}}</td><td  >{{$item->price_ht}} €</td><td>{{ floatval($item->price_ht) * intval($item->qty) }} €</td><td>{{$item->tva}} %</td><td>{{  floatval($item->price_ttc) * intval($item->qty)  }} €</td>
 							</tr>
 						<?php	} ?>
 				   @endforeach
 			   </tr>
 			   @if($invoice->deplacement>0)
 				   <tr class="product" style="color:#f07f32">
-					   <td>Frais de déplacment</td><td style="text-align:center"></td><td ></td><td></td><td> {{$invoice->deplacement}}  €</td><td> {{ $invoice->tva_deplacement ?? 0 }} %</td><td>{{$invoice->total_deplacement ?? 0}} €</td>
+				   		<td></td><td>Frais de déplacment</td><td style="text-align:center"></td>@if($isolation)<td ></td>@endif<td></td><td> {{$invoice->deplacement}}  €</td><td> {{ $invoice->tva_deplacement ?? 0 }} %</td><td>{{$invoice->total_deplacement ?? 0}} €</td>
 				   </tr>
 			   @endif
 
 			   @if($invoice->remise>0)
 				   <tr class="product" style="color:#f07f32">
-					   <td>Remise GROUPE HER ENR</td><td style="text-align:center"></td><td ></td><td></td><td> {{$invoice->remise}}  €</td><td> {{ $invoice->tva_remise ?? 0 }} %</td><td>{{$invoice->total_remise ?? 0}} €</td>
+				   		<td></td><td>Remise GROUPE HER ENR</td><td style="text-align:center"></td><td ></td>@if($isolation)<td></td>@endif<td> {{$invoice->remise}}  €</td><td> {{ $invoice->tva_remise ?? 0 }} %</td><td>{{$invoice->total_remise ?? 0}} €</td>
 				   </tr>
 			   @endif
 
@@ -404,7 +434,7 @@
 						@endphp
 						<table style="width:100%;font-size:10px">
 							<tr rowspan="2"><td>Fait à</td>@if($lieu !='')<img src="{{$lieu}}" width= '130'     height='auto'/>@endif<td></td><td>Le</td>@if($date !='')<td><img src="{{$date}}" width= '130'     height= 'auto'/>@endif</td></tr>
-							<tr><td colspan="4"> J'ai lu et j'accepte les Conditions Générales de Ventes</td></tr>
+							<tr><td colspan="4" style="padding-top:10px;padding-bottom:10px">  <div class="checkboxes">  <label><input type="checkbox"> <span> J'ai lu et j'accepte les Conditions Générales de Ventes</span></label></div></td></tr>
 							<tr><td colspan="4">Signature précédée de la mention "Bon pour accord"</td></tr>
 						</table>
 						<div style="border:1px solid grey;width:60%;height:110px">
@@ -413,7 +443,7 @@
 					@else
 						<table style="width:300px;font-size:10px">
 							<tr rowspan="2"><td>Fait à</td><td></td><td>Le</td><td></td></tr>
-							<tr><td colspan="4"> J'ai lu et j'accepte les Conditions Générales de Ventes</td></tr>
+							<tr><td colspan="4" style="padding-top:10px;padding-bottom:10px">  <div class="checkboxes">  <label><input type="checkbox"> <span> J'ai lu et j'accepte les Conditions Générales de Ventes</span></label></div></td></tr>
 							<tr><td colspan="4">Signature précédée de la mention "Bon pour accord"</td></tr>
 						</table>
 						<div style="border:1px solid grey;width:60%;height:100px">

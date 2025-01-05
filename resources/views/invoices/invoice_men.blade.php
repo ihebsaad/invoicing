@@ -165,6 +165,17 @@
 			padding-top:20px!important;
 			padding-bottom:20px!important;
 		}
+		.checkboxes label {
+		display: inline-block;
+		padding-right: 10px;
+		white-space: nowrap;
+		}
+		.checkboxes input {
+		vertical-align: middle;
+		}
+		.checkboxes label span {
+		vertical-align: middle;
+		}
    </style>
    <section class="body">
 
@@ -182,7 +193,7 @@
 				   <span>82000 MONTAUBAN</span><br>
 				   <span><b>Tél :</b> 09.77.59.57.42</span>  <span><b>Email :</b> contact@groupe-her.com</span><br><br>
 				   <div style="font-size:9px">
-				   		SARL au capital de 50 000 euros<br>
+				   		SARL au capital de 300 000 euros<br>
 	   					SIRET 851 566 455 00032  - R.C.S MONTAUBAN - NAF 3511Z<br>
 	   					TVA intracommunautaire : FR95851566455<br>
 					</div><br>
@@ -495,7 +506,7 @@
 						@endphp
 						<table style="width:100%;font-size:10px">
 							<tr rowspan="2"><td>Fait à</td>@if($lieu !='')<img src="{{$lieu}}" width= '130'     height='auto'/>@endif<td></td><td>Le</td>@if($date !='')<td><img src="{{$date}}" width= '130'     height= 'auto'/>@endif</td></tr>
-							<tr><td colspan="4"> J'ai lu et j'accepte les Conditions Générales de Ventes</td></tr>
+							<tr><td colspan="4" style="padding-top:10px;padding-bottom:10px">  <div class="checkboxes">  <label><input type="checkbox"> <span> J'ai lu et j'accepte les Conditions Générales de Ventes</span></label></div></td></tr>
 							<tr><td colspan="4">Signature précédée de la mention "Bon pour accord"</td></tr>
 						</table>
 						<div style="border:1px solid grey;width:60%;height:110px">
@@ -504,7 +515,7 @@
 					@else
 						<table style="width:300px;font-size:10px">
 							<tr rowspan="2"><td>Fait à</td><td></td><td>Le</td><td></td></tr>
-							<tr><td colspan="4"> J'ai lu et j'accepte les Conditions Générales de Ventes</td></tr>
+							<tr><td colspan="4" style="padding-top:10px;padding-bottom:10px">  <div class="checkboxes">  <label><input type="checkbox"> <span> J'ai lu et j'accepte les Conditions Générales de Ventes</span></label></div></td></tr>
 							<tr><td colspan="4">Signature précédée de la mention "Bon pour accord"</td></tr>
 						</table>
 						<div style="border:1px solid grey;width:60%;height:100px">

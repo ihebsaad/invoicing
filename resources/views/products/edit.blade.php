@@ -22,7 +22,7 @@
     <div class="row">
 		<div class="col-lg-7">
 
-			<form action="{{ route('products.update',$product->id) }}" method="POST">
+			<form action="{{ route('products.update',$product->id) }}" method="POST"  enctype='multipart/form-data'>
 				@csrf
 				@method('PUT')
 
@@ -106,6 +106,19 @@
 							</select>
 						</div>
 					</div>
+					<div class="col-xs-12 col-sm-12 col-md-7">
+						<div class="form-group">
+							<strong>Image:</strong>
+							<input type="file"   name="image" class="form-control" accept="image/*">
+						</div>
+					</div>
+
+					<div class="col-xs-12 col-sm-12 col-md-3">
+						@if ($product->image)
+							<img src="{{ asset('images/products/' . $product->image) }}" alt="{{ $product->name }}" width="100">
+						@endif
+					</div>
+
 
 					@if(auth()->user()->user_type=='admin')
 						<div class="col-xs-12 col-sm-12 col-md-7">

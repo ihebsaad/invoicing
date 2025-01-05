@@ -6,6 +6,8 @@ use App\Models\Product;
 use App\Models\Categorie;
 use App\Models\Item;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Http\UploadedFile;
 
 class ProductsController extends Controller
 {
@@ -64,9 +66,19 @@ class ProductsController extends Controller
     {
         $request->validate([
             'name' => 'required',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+
         ]);
 
-        Product::create($request->all());
+        $data = $request->all();
+
+        if ($request->hasFile('image')) {
+            $imageName = time() . '.' . $request->image->extension();
+            $request->image->move(public_path('images/products'), $imageName);
+            $data['image'] = $imageName;
+        }
+
+        Product::create($data);
 
         return redirect()->route('products.index')
                         ->with('success','Produit créé avec succès.');
@@ -110,9 +122,19 @@ class ProductsController extends Controller
     {
         $request->validate([
             'name' => 'required',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+
         ]);
 
-        $product->update($request->all());
+        $data = $request->all();
+
+        if ($request->hasFile('image')) {
+            $imageName = time() . '.' . $request->image->extension();
+            $request->image->move(public_path('images/products'), $imageName);
+            $data['image'] = $imageName;
+        }
+
+        $product->update($data);
 
         return redirect()->route('products.index')
                         ->with('success','Produit modifié avec succès');
@@ -187,6 +209,7 @@ class ProductsController extends Controller
 
     public function add_item_men(Request $request)
     {
+
         $qty=$request->get('qte');
         $tva=$request->get('tva');
         $price_ttc=$request->get('prix');
@@ -196,6 +219,11 @@ class ProductsController extends Controller
         $description=$request->get('description');
         $note=$request->get('note');
         $unite=$request->get('unite');
+        $imagePath = null;
+
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('products', 'public'); // Sauvegarde dans storage/app/public/products
+        }
 
         if( $quote>0   ){
             $item=Item::create([
@@ -207,6 +235,7 @@ class ProductsController extends Controller
                 'note'=>$note,
                 'unite'=>$unite,
                 'quote'=>$quote,
+                'image' => $imagePath,
             ]);
             return $item->id;
         }
@@ -221,6 +250,7 @@ class ProductsController extends Controller
                 'note'=>$note,
                 'unite'=>$unite,
                 'invoice'=>$invoice,
+                'image' => $imagePath,
             ]);
             return $item->id;
         }

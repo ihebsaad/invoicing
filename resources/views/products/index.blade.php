@@ -37,7 +37,11 @@
         @foreach ($products as $product)
 		<tr>
             <td>{!! sprintf('%04d',$product->id) !!}</td>
-            <td>{{ $product->name }} @if($product->affichage==2 )<br><b>Commercial</b> @elseif($product->affichage==3 )<br><b>Telepro</b> @endif  </td>
+            <td>
+                @if ($product->image)
+					<img src="{{ asset('images/products/' . $product->image) }}" alt="{{ $product->name }}" width="80"><br>
+				@endif
+                {{ $product->name }} @if($product->affichage==2 )<br><b>Commercial</b> @elseif($product->affichage==3 )<br><b>Telepro</b> @endif  </td>
             <td>{{ $product->categorie()->first()->name ?? '' }}</td>
             <td>{{ $product->prix }} €</td>
             <td>{!!nl2br($product->description) !!}</td>
