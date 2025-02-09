@@ -29,6 +29,7 @@ Route::get('/quotes/all', [QuotesController::class, 'liste'])->name('quotes.all'
 Route::get('/quotes/liste', [QuotesController::class, 'liste']);
 Route::get('/quotes/list', [QuotesController::class, 'getQuotes'])->name('quotes.list');
 
+Route::post('/delete-selected', [QuotesController::class, 'deleteSelected']);
 
 Route::resource('shops', ShopsController::class);
 Route::resource('categories', CategoriesController::class);

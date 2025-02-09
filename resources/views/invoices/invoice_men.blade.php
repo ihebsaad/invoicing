@@ -214,7 +214,7 @@
 	   <table style="width:100%;margin-top:5px;margin-bottom:5px">
 		   <tr>
 			   <td style="width:50%;">
-				   @if( $invoice->logement!='')<b>Logement : </b>{{ $invoice->logement }}    @endif  @if($invoice->surface!='')<b>Surface @if($invoice->menuiserie==-7)à isoler @elseif($invoice->menuiserie==-9) de la maison @else chauffée @endif (m²):</b>   {{ $invoice->surface }}<br>@endif
+				   @if( $invoice->logement!='')<b>Logement : </b>{{ $invoice->logement }}    @endif  @if($invoice->surface!='')<b>Surface @if($invoice->menuiserie==-7)à isoler @elseif($invoice->menuiserie==-9) de la maison @else à isoler @endif (m²):</b>   {{ $invoice->surface }}<br>@endif
 				   @if( $invoice->surface_maison!='') Surface de la maison : {{$invoice->surface_maison}}  (m²)<br> @endif
 				   <b>Date de visite technique préalable :</b>   {{ $date_facture }}
 			   </td>
@@ -413,7 +413,7 @@
 
 			   @if($invoice->remise>0)
 				   <tr class="product" style="color:#f07f32">
-					   <td colspan="2">Remise GROUPE HER ENR</td><td style="text-align:center"></td><td></td><td> {{$invoice->remise}}  €</td><td> {{$invoice->tva_remise ?? '5.5'}} %</td><td>{{$invoice->total_remise}} €</td>
+					   <td colspan="2">{{$texte_remise}}</td><td style="text-align:center"></td><td></td><td> {{$invoice->remise}}  €</td><td> {{$invoice->tva_remise ?? '5.5'}} %</td><td>{{$invoice->total_remise}} €</td>
 				   </tr>
 			   @endif
 

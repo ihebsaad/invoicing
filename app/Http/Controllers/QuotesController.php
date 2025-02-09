@@ -251,6 +251,11 @@ class QuotesController extends Controller
     {
         $invoice = Quote::find($id);
         $type = 'Devis';
+		
+		if($invoice->menuiserie== 1 || $invoice->menuiserie == -2 || $invoice->menuiserie== -3 )
+			$texte_remise='PRIME PROTOCOLE SECURITAIRE GROUPE HER ENR';
+		else
+			$texte_remise='REMISE GROUPE HER ENR';
         $reference = $invoice->reference;
         $user = User::find($invoice->par);
         if (isset($user))
@@ -269,9 +274,9 @@ class QuotesController extends Controller
         $count = count($items);
 
         if ($invoice->menuiserie > 0)
-            $pdf = PDF::loadView('invoices.invoice_men', compact('invoice', 'type', 'reference', 'date_facture', 'articles', 'par', 'count', 'portes', 'volets', 'items', 'format'));
+            $pdf = PDF::loadView('invoices.invoice_men', compact('invoice', 'type', 'reference', 'date_facture', 'articles', 'par', 'count', 'portes', 'volets', 'items', 'format','texte_remise'));
         else
-            $pdf = PDF::loadView('invoices.invoice', compact('invoice', 'type', 'reference', 'date_facture', 'items', 'par', 'count', 'portes', 'volets', 'items', 'format'));
+            $pdf = PDF::loadView('invoices.invoice', compact('invoice', 'type', 'reference', 'date_facture', 'items', 'par', 'count', 'portes', 'volets', 'items', 'format','texte_remise'));
 
         return $pdf->stream('quote-' . $id . '.pdf');
     }
@@ -281,6 +286,12 @@ class QuotesController extends Controller
     {
         $invoice = Quote::find($id);
         $type = 'Devis';
+		
+		if($invoice->menuiserie== 1 || $invoice->menuiserie == -2 || $invoice->menuiserie== -3 )
+			$texte_remise='PRIME PROTOCOLE SECURITAIRE GROUPE HER ENR';
+		else
+			$texte_remise='REMISE GROUPE HER ENR';
+
         $reference = $invoice->reference;
         $user = User::find($invoice->par);
         if (isset($user))
@@ -298,7 +309,7 @@ class QuotesController extends Controller
 
         $count = count($items);
 
-        $pdf = PDF::loadView('invoices.invoice_tva', compact('invoice', 'type', 'reference', 'date_facture', 'items', 'par', 'count', 'portes', 'volets', 'items', 'format'));
+        $pdf = PDF::loadView('invoices.invoice_tva', compact('invoice', 'type', 'reference', 'date_facture', 'items', 'par', 'count', 'portes', 'volets', 'items', 'format','texte_remise'));
 
         return $pdf->stream('quote-' . $id . '.pdf');
     }
@@ -307,6 +318,12 @@ class QuotesController extends Controller
     {
         $invoice = Quote::find($id);
         $type = 'Devis';
+		
+		if($invoice->menuiserie== 1 || $invoice->menuiserie == -2 || $invoice->menuiserie== -3 )
+			$texte_remise='PRIME PROTOCOLE SECURITAIRE GROUPE HER ENR';
+		else
+			$texte_remise='REMISE GROUPE HER ENR';
+		
         $reference = $invoice->reference;
         $user = User::find($invoice->par);
         if (isset($user))
@@ -325,9 +342,9 @@ class QuotesController extends Controller
         $count = count($items);
 
         if ($invoice->menuiserie > 0)
-            $pdf = PDF::loadView('invoices.invoice_men', compact('invoice', 'type', 'reference', 'date_facture', 'articles', 'par', 'count', 'portes', 'volets', 'items', 'format'));
+            $pdf = PDF::loadView('invoices.invoice_men', compact('invoice', 'type', 'reference', 'date_facture', 'articles', 'par', 'count', 'portes', 'volets', 'items', 'format','texte_remise'));
         else
-            $pdf = PDF::loadView('invoices.invoice', compact('invoice', 'type', 'reference', 'date_facture', 'items', 'par', 'count', 'portes', 'volets', 'items', 'format'));
+            $pdf = PDF::loadView('invoices.invoice', compact('invoice', 'type', 'reference', 'date_facture', 'items', 'par', 'count', 'portes', 'volets', 'items', 'format','texte_remise'));
 
         return $pdf->download('quote-' . $id . '.pdf');
     }
@@ -336,6 +353,12 @@ class QuotesController extends Controller
     {
         $invoice = Quote::find($id);
         $type = 'Devis';
+		
+		if($invoice->menuiserie== 1 || $invoice->menuiserie == -2 || $invoice->menuiserie== -3 )
+			$texte_remise='PRIME PROTOCOLE SECURITAIRE GROUPE HER ENR';
+		else
+			$texte_remise='REMISE GROUPE HER ENR';
+		
         $date = Carbon::parse($invoice->created_at)->format('Y-m');
         $date_facture = Carbon::parse($invoice->date)->format('d/m/Y');
         $user = User::find($invoice->par);
@@ -353,9 +376,9 @@ class QuotesController extends Controller
         $count = count($items);
 
         if ($invoice->menuiserie > 0)
-            $pdf = PDF::loadView('invoices.invoice_men', compact('invoice', 'type', 'reference', 'date_facture', 'articles', 'par', 'count', 'portes', 'volets', 'items', 'format'));
+            $pdf = PDF::loadView('invoices.invoice_men', compact('invoice', 'type', 'reference', 'date_facture', 'articles', 'par', 'count', 'portes', 'volets', 'items', 'format','texte_remise'));
         else
-            $pdf = PDF::loadView('invoices.invoice', compact('invoice', 'type', 'reference', 'date_facture', 'items', 'par', 'count', 'portes', 'volets', 'items', 'format'));
+            $pdf = PDF::loadView('invoices.invoice', compact('invoice', 'type', 'reference', 'date_facture', 'items', 'par', 'count', 'portes', 'volets', 'items', 'format','texte_remise'));
 
         //$pdf = PDF::loadView('quotes.quote', compact('invoice','type','reference','date_facture','items','par','count'));
         return $pdf->download('quote-' . $reference . '.pdf');
@@ -647,5 +670,19 @@ class QuotesController extends Controller
             default:
                 return "AUTRES";
         }
+    }
+
+
+    public function deleteSelected(Request $request)
+    {
+        $ids = $request->input('ids');
+
+        if (!$ids || count($ids) === 0) {
+            return response()->json(['message' => 'Aucune ligne sélectionnée.'], 400);
+        }
+
+        Quote::whereIn('id', $ids)->delete();
+
+        return response()->json(['message' => 'Les lignes sélectionnées ont été supprimées avec succès.']);
     }
 }
