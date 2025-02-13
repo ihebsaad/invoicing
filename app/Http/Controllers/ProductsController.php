@@ -179,6 +179,12 @@ class ProductsController extends Controller
         $quote=$request->get('quote');
         $invoice=$request->get('invoice');
         $unite=$request->get('unite');
+        $imageName=null;
+
+        if ($request->hasFile('image')) {
+            $imageName = time() . '.' . $request->image->extension();
+            $request->image->move(public_path('images/products'), $imageName);
+         }
 
         if( $quote>0 /*&&   Item::where('quote',$quote)->where('product',$product)->doesntExist()*/  ){
             $item=Item::create([
@@ -188,6 +194,7 @@ class ProductsController extends Controller
                 'price'=>$price,
                 'unite'=>$unite,
                 'quote'=>$quote,
+                'image' => $imageName,
             ]);
             return $item->id;
         }
@@ -200,6 +207,7 @@ class ProductsController extends Controller
                 'price'=>$price,
                 'invoice'=>$invoice,
                 'unite'=>$unite,
+                'image' => $imageName,
             ]);
             return $item->id;
         }
@@ -219,11 +227,12 @@ class ProductsController extends Controller
         $description=$request->get('description');
         $note=$request->get('note');
         $unite=$request->get('unite');
-        $imagePath = null;
+        $imageName=null;
 
         if ($request->hasFile('image')) {
-            $imagePath = $request->file('image')->store('products', 'public'); // Sauvegarde dans storage/app/public/products
-        }
+            $imageName = time() . '.' . $request->image->extension();
+            $request->image->move(public_path('images/products'), $imageName);
+         }
 
         if( $quote>0   ){
             $item=Item::create([
@@ -235,7 +244,7 @@ class ProductsController extends Controller
                 'note'=>$note,
                 'unite'=>$unite,
                 'quote'=>$quote,
-                'image' => $imagePath,
+                'image' => $imageName,
             ]);
             return $item->id;
         }
@@ -250,7 +259,7 @@ class ProductsController extends Controller
                 'note'=>$note,
                 'unite'=>$unite,
                 'invoice'=>$invoice,
-                'image' => $imagePath,
+                'image' => $imageName,
             ]);
             return $item->id;
         }

@@ -401,8 +401,13 @@
 			   </tr>
 
 			   	@foreach($items as $item)
+					@php
+					$url_img='';
+					if($item->image!='')
+						$url_img =asset('images/products/' . $item->image) ;
+					@endphp
 					<tr class="product"  >
-						<td  ></td><td class="text" >{!! nl2br($item->description) !!}</td><td>{{$item->qty}}</td><td  >{{$item->price_ht}} €</td><td>{{ $item->price_ht * $item->qty }} €</td><td>{{$item->tva}} %</td><td>{{  $item->price_ttc * $item->qty  }} €</td>
+						<td  >@if($item->image!='') <img src="{!! $url_img !!}"  width="100" style="max-width:100px"></img>@endif</td><td class="text" >{!! nl2br($item->description) !!}</td><td>{{$item->qty}}</td><td  >{{$item->price_ht}} €</td><td>{{ $item->price_ht * $item->qty }} €</td><td>{{$item->tva}} %</td><td>{{  $item->price_ttc * $item->qty  }} €</td>
 					</tr>
 				@endforeach
 				@if($invoice->deplacement>0)

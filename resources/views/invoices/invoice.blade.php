@@ -317,9 +317,11 @@
 								$tva_totals[''.$tva_rate]['montant_ht'] += $total_prod_ht;
 								$tva_totals[''.$tva_rate]['montant_tva'] += $total_prod_ttc - $total_prod_ht;
 								$unite =  $item->unite!='' ? $item->unite : '';
+								if ($item->image)
+									$url_img =asset('images/products/' . $item->image) ;
 							?>
 							<tr class="product"  >
-								<td>@if($item->image!='') <img src="{!! $url_img !!}"  width="100" style="max-width:100px"></img>@endif</td><td class="text" >{!! nl2br($item->description) !!}</td>@if($isolation)<td>{!! $unite !!}</td>@endif<td>{{$item->qty}}</td><td  >{{$item->price_ht}} €</td><td>{{ floatval($item->price_ht) * intval($item->qty) }} €</td><td>{{$item->tva}} %</td><td>{{  floatval($item->price_ttc) * intval($item->qty)  }} €</td>
+								<td>@if($item->image!='') <img src="{!! $url_img !!}"  width="100" style="max-width:100px"></img>@endif</td><td class="text" >{!! nl2br($item->description) !!}</td>@if($isolation)<td>{!! $unite !!}</td>@endif<td>{{$item->qty}}</td><td  >{{$item->price_ht}} €</td><td>{{ floatval($item->price_ht) * intval($item->qty) }} €</td><td>{{$item->tva}} %</td><td>{{  floatval($item->price_ttc) * intval($item->qty)  }} €</td>
 							</tr>
 						<?php	} ?>
 				   @endforeach

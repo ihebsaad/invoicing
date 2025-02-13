@@ -1530,6 +1530,12 @@
 							<textarea  id="note-i"   name="note"  class="form-control" ></textarea>
 						</div>
 					</div>
+					<div class="col-xs-12 col-sm-12 col-md-12">
+						<div class="form-group">
+							<strong>Image :</strong>
+							<input type="file" id="image-i" name="image" class="form-control" accept="image/*">
+						</div>
+					</div>
 					<div class="col-xs-12 col-sm-12 col-md-12 text-right"  >
 						<button type="button" id="add_item" onclick="add_item()"   class="btn btn-primary mt-3 mr-3">Insérer</button>
 					</div>
@@ -2322,11 +2328,25 @@
 
 		$('#tva_remise').val(tva);
 
+		var formData = new FormData();
+		formData.append('prix', prix);
+		formData.append('prix_ht', prix_ht);
+		formData.append('qte', qte);
+		formData.append('tva', tva);
+		formData.append('note', note);
+		formData.append('description', texte);
+ 		formData.append('quote', quote);
+		formData.append('image', $('#image-i')[0].files[0]); // Ajouter l'image
+		formData.append('_token', _token);
+
 		$.ajax({
 			url: "{{ route('add_item_men') }}",
 			method: "POST",
-			async:false,
-			data: { prix:prix,prix_ht:prix_ht,qte:qte,tva,description:description,note:note, quote:quote,_token:_token},
+			//async:false,
+			processData: false,
+			contentType: false,
+			//data: { prix:prix,prix_ht:prix_ht,qte:qte,tva,description:description,note:note, quote:quote,_token:_token},
+			data:  formData,
 			success: function (data) {
 				if(data!=''){
 
