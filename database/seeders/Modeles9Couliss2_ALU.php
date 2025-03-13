@@ -2545,7 +2545,7 @@ class Modeles9Couliss2_ALU extends Seeder  //coulissant 2 ALU
                         'couleur'    => 1,
                         'hauteur'    => 2400,
                         'largeur'  => 2400,
-                        'prix'  => 13013,
+                        'prix'  => 1313,
                     ],
                     [
                         'genre'    => 2,

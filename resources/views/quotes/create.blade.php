@@ -359,12 +359,12 @@
             $('#surface').prop('required', true);
             $('#div-surface').show('slow');
 
-            if (menuiserie == -6) {
-                $('#isol').show('slow');
-                $('#chauff').hide('slow');
-            } else {
+            if (menuiserie == -1 || menuiserie == -2 || menuiserie == -5 ) {
                 $('#isol').hide('slow');
                 $('#chauff').show('slow');
+            } else {
+                $('#isol').show('slow');
+                $('#chauff').hide('slow');
             }
 
             if (menuiserie == -9) {

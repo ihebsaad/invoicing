@@ -214,7 +214,7 @@
 	   <table style="width:100%;margin-top:5px;margin-bottom:5px">
 		   <tr>
 			   <td style="width:50%;">
-				   @if( $invoice->logement!='')<b>Logement : </b>{{ $invoice->logement }}    @endif  @if($invoice->surface!='')<b>Surface @if($invoice->menuiserie==-7)à isoler @elseif($invoice->menuiserie==-9) de la maison @else à isoler @endif (m²):</b>   {{ $invoice->surface }}<br>@endif
+				   @if( $invoice->logement!='')<b>Logement : </b>{{ $invoice->logement }}    @endif  @if($invoice->surface!='')<b>Surface @if($invoice->menuiserie== -6 || $invoice->menuiserie== -60 || $invoice->menuiserie==  -61 || $invoice->menuiserie==  -62 || $invoice->menuiserie==  -63)à isoler @elseif($invoice->menuiserie  -1 || $invoice->menuiserie  -2 || $invoice->menuiserie  -5 ) chauffée @endif (m²):</b>   {{ $invoice->surface }}<br>@endif
 				   @if( $invoice->surface_maison!='') Surface de la maison : {{$invoice->surface_maison}}  (m²)<br> @endif
 				   <b>Date de visite technique préalable :</b>   {{ $date_facture }}
 			   </td>

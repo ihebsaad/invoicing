@@ -241,7 +241,7 @@
 						@if( $quote->surface!='' )
 						<div class="col-xs-12 col-sm-12 col-md-3">
 							<div class="form-group">
-								<strong>Surface @if($quote->menuiserie==-7) isolée @elseif($quote->menuiserie==-9) de la maison @else à isoler @endif (m²):</strong>
+								<strong>Surface @if($quote->menuiserie== -6 || $quote->menuiserie== -60 || $quote->menuiserie==  -61 || $quote->menuiserie==  -62 || $quote->menuiserie==  -63) à isoler @elseif($quote->menuiserie  -1 || $quote->menuiserie  -2 || $quote->menuiserie  -5 ) chauffée @endif  (m²):</strong>
 								<input type="number" class="form-control" name="surface" value="{{ $quote->surface }}" style="max-width:180px" />
 							</div>
 						</div>
