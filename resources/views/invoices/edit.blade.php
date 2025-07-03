@@ -295,7 +295,7 @@
 										</td>
 										<td style="padding-right:0">
 											<div class="form-group">
-												<input type="number" class="form-control" style="max-width:100px" min="0" value="{{$invoice->aide_renov ?? 0}}" id="aide_renov" onchange="$('#aide2').val(parseFloat($(this).val())+parseFloat($('#aide_cee').val()));calcul();"/>
+												<input type="number" class="form-control" style="max-width:100px" min="0" value="{{$invoice->aide_renov ?? 0}}" id="aide_renov" onchange="calcul();"/>
 											</div>
 										</td>
 										<td style="">€</td>
@@ -308,11 +308,12 @@
 										</td>
 										<td style="padding-right:0">
 											<div class="form-group">
-												<input type="number" class="form-control" style="max-width:100px" min="0" value="{{$invoice->aide_cee ?? 0}}" id="aide_cee" onchange="$('#aide2').val(parseFloat($(this).val())+parseFloat($('#aide_renov').val()));calcul();"/>
+												<input type="number" class="form-control" style="max-width:100px" min="0" value="{{$invoice->aide_cee ?? 0}}" id="aide_cee" onchange="calcul();"/>
 											</div>
 										</td>
 										<td style="">€</td>
 									</tr>
+ 
 								</table>
 								<table style="max-width:360px;height:100px;float:left;margin-left:60px" class="table-aide" >
 									<tr>
@@ -614,9 +615,13 @@
 
 
 	  function calcul(){
+
+		$('#aide2').val(parseFloat($('#aide_renov').val())+parseFloat($('#aide_cee').val()) );
+
 		var total_ht=0;
 		var total_ttc=0;
 		var total_tva=0;
+		
 		$('#list-prods .myproduct').each(function(){
     		$(this).find('.myproducttd').each(function(){
 				id_item=$(this).data('id');

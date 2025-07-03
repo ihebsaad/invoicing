@@ -216,6 +216,9 @@ class QuotesController extends Controller
         $aide = $request->get('aide');
         $aide_renov = $request->get('aide_renov');
         $aide_cee = $request->get('aide_cee');
+        $protocole = $request->get('protocole');
+        $total_protocole = $request->get('total_protocole');
+        $tva_protocole = $request->get('tva_protocole');
         $net = $request->get('net');
         $acompte = $request->get('acompte');
         $tva_remise = $request->get('tva_remise');
@@ -237,6 +240,9 @@ class QuotesController extends Controller
                 'aide' => $aide,
                 'aide_renov' => $aide_renov,
                 'aide_cee' => $aide_cee,
+                'protocole' => $protocole,
+                'total_protocole' => $total_protocole,
+                'tva_protocole' => $tva_protocole,
                 'net' => $net,
                 'acompte' => $acompte,
                 'tva_remise' => $tva_remise,
@@ -251,11 +257,9 @@ class QuotesController extends Controller
     {
         $invoice = Quote::find($id);
         $type = 'Devis';
-		
-		if($invoice->menuiserie== 1 || $invoice->menuiserie == -2 || $invoice->menuiserie== -3 )
-			$texte_remise='PRIME PROTOCOLE SECURITAIRE GROUPE HER ENR';
-		else
-			$texte_remise='REMISE GROUPE HER ENR';
+
+        $texte_remise='REMISE GROUPE HER ENR';
+        
         $reference = $invoice->reference;
         $user = User::find($invoice->par);
         if (isset($user))
@@ -286,7 +290,7 @@ class QuotesController extends Controller
     {
         $invoice = Quote::find($id);
         $type = 'Devis';
-		
+
 		if($invoice->menuiserie== 1 || $invoice->menuiserie == -2 || $invoice->menuiserie== -3 )
 			$texte_remise='PRIME PROTOCOLE SECURITAIRE GROUPE HER ENR';
 		else
@@ -318,12 +322,12 @@ class QuotesController extends Controller
     {
         $invoice = Quote::find($id);
         $type = 'Devis';
-		
+
 		if($invoice->menuiserie== 1 || $invoice->menuiserie == -2 || $invoice->menuiserie== -3 )
 			$texte_remise='PRIME PROTOCOLE SECURITAIRE GROUPE HER ENR';
 		else
 			$texte_remise='REMISE GROUPE HER ENR';
-		
+
         $reference = $invoice->reference;
         $user = User::find($invoice->par);
         if (isset($user))
@@ -353,12 +357,12 @@ class QuotesController extends Controller
     {
         $invoice = Quote::find($id);
         $type = 'Devis';
-		
+
 		if($invoice->menuiserie== 1 || $invoice->menuiserie == -2 || $invoice->menuiserie== -3 )
 			$texte_remise='PRIME PROTOCOLE SECURITAIRE GROUPE HER ENR';
 		else
 			$texte_remise='REMISE GROUPE HER ENR';
-		
+
         $date = Carbon::parse($invoice->created_at)->format('Y-m');
         $date_facture = Carbon::parse($invoice->date)->format('d/m/Y');
         $user = User::find($invoice->par);
@@ -410,6 +414,9 @@ class QuotesController extends Controller
             'total_ht' => $quote->total_ht,
             'total_ttc' => $quote->total_ttc,
             'aide_cee' => $quote->aide_cee,
+            'protocole' => $quote->protocole,
+            'total_protocole'=> $quote->total_protocole,
+            'tva_protocole'=> $quote->tva_protocole,
             'aide_renov' => $quote->aide_renov,
             'aide' => $quote->aide,
             'surface_produits' => $quote->surface_produits,
@@ -577,7 +584,7 @@ class QuotesController extends Controller
                     $query->where(function ($q) use ($keyword) {
                         if (stripos($keyword, 'menuiserie') !== false) {
                             $q->where('quotes.menuiserie', 1);
-                        } elseif (stripos($keyword, 'volets roulants') !== false) {
+                        } elseif (stripos($keyword, 'VOLET ROULANT') !== false) {
                             $q->where('quotes.menuiserie', 2);
                         } elseif (stripos($keyword, 'PAC AIR EAU') !== false) {
                             $q->where('quotes.menuiserie', -1);
@@ -585,6 +592,8 @@ class QuotesController extends Controller
                             $q->where('quotes.menuiserie', -2);
                         } elseif (stripos($keyword, 'PANNEAU PHOTOVOLTAÏQUE') !== false) {
                             $q->where('quotes.menuiserie', -3);
+                        } elseif (stripos($keyword, 'VMC') !== false) {
+                            $q->where('quotes.menuiserie', -9);
                         } else {
                             $q->where('quotes.menuiserie', 0); // Pour rechercher les autres types
                         }
@@ -598,9 +607,9 @@ class QuotesController extends Controller
                     if ($user->user_type == 'admin' || $user->id == $quote->par) {
                         // Button to edit menuiserie if applicable
                         if ($quote->menuiserie > 0) {
-                            $buttons .= '<a class="btn btn-primary mb-3 mr-2" href="' . route('quotes.edit_men', $quote->id) . '" style="float:left" title="Modifier"><i class="fas fa-edit"></i></a>';
+                            $buttons .= '<a class="btn btn-primary mb-3 mr-2"  target="_blank" href="' . route('quotes.edit_men', $quote->id) . '" style="float:left" title="Modifier"><i class="fas fa-edit"></i></a>';
                         } else {
-                            $buttons .= '<a class="btn btn-primary mb-3 mr-2" href="' . route('quotes.edit', $quote->id) . '" style="float:left" title="Modifier"><i class="fas fa-edit"></i></a>';
+                            $buttons .= '<a class="btn btn-primary mb-3 mr-2"  target="_blank" href="' . route('quotes.edit', $quote->id) . '" style="float:left" title="Modifier"><i class="fas fa-edit"></i></a>';
                         }
                         // PDF view button
                         $buttons .= '<a class="btn btn-success mb-3 mr-2" target="_blank" href="' . route('quotes.show_pdf', $quote->id) . '" style="float:left" title="Ouvrir en PDF"><i class="fas fa-file-pdf"></i></a>';
@@ -636,9 +645,9 @@ class QuotesController extends Controller
     {
         switch ($type) {
             case 1:
-                return "<b>Menuiserie</b>";
+                return "<b>MENUISERIE</b>";
             case 2:
-                return "<i>Volets roulants</i>";
+                return "<i>VOLET ROULANT</i>";
             case -1:
                 return "PAC AIR <b>EAU</b>";
             case -2:
@@ -650,19 +659,19 @@ class QuotesController extends Controller
             case -5:
                 return "POELE GRANULÉS OU BOIS";
             case -6:
-                return "ISOLATION";
+                return "ISOLATION DU PLANCHER BAS";
             case -60:
-                return "ISOLATION soufflée";
+                return "ISOLATION SOUFFLEE";
             case -61:
-                return "ISOLATION sous rampant";
+                return "ISOLATION SOUS RAMPANT";
             case -62:
-                return "ISOLATION extérieur";
+                return "ISOLATION PAR L'EXTÉRIEUR ";
             case -63:
-                return "ISOLATION intérieur";
+                return "ISOLATION PAR L'INTÉRIEUR";
             case -7:
                 return "BTD";
             case -9:
-                return "KIT TETE THERMOSTATIQUE";
+                return "VMC";
             case -8:
                 return "AUTRES";
 
@@ -671,7 +680,6 @@ class QuotesController extends Controller
                 return "AUTRES";
         }
     }
-
 
     public function deleteSelected(Request $request)
     {

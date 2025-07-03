@@ -321,7 +321,7 @@
 										</td>
 										<td style="padding-right:0">
 											<div class="form-group">
-												<input type="number" class="form-control" style="max-width:100px" min="0" value="{{$invoice->aide_renov ?? 0}}" id="aide_renov" onchange="$('#aide2').val(parseFloat($(this).val())+parseFloat($('#aide_cee').val()));calcul();"/>
+												<input type="number" class="form-control" style="max-width:100px" min="0" value="{{$invoice->aide_renov ?? 0}}" id="aide_renov" onchange="add_articlecalcul();"/>
 											</div>
 										</td>
 										<td>€</td>
@@ -334,7 +334,7 @@
 										</td>
 										<td style="padding-right:0">
 											<div class="form-group">
-												<input type="number" class="form-control" style="max-width:100px" min="0" value="{{$invoice->aide_cee ?? 0}}" id="aide_cee" onchange="$('#aide2').val(parseFloat($(this).val())+parseFloat($('#aide_renov').val()));calcul();"/>
+												<input type="number" class="form-control" style="max-width:100px" min="0" value="{{$invoice->aide_cee ?? 0}}" id="aide_cee" onchange=" calcul();"/>
 											</div>
 										</td>
 										<td>€</td>
@@ -1048,6 +1048,9 @@
 
 
 	  function calcul(){
+
+		$('#aide2').val(parseFloat($('#aide_renov').val())+parseFloat($('#aide_cee').val()));
+
 		var total_ht=0;
 		var total_ttc=0;
 		var total_tva=0;
@@ -1078,14 +1081,7 @@
 				total_ht+=parseFloat(( $(this).data('prixht')* qty ));
 				total_ttc+=parseFloat(( $(this).data('prix') *  qty));
     		});
-		/*
-		$(this).find('.myproductpose').each(function(){
-				//id_item=$(this).data().id;
-				//qty= ($('#qty-'+id_item).val());
-				total_ht+=(( $(this).data().pose  ));
-				total_ttc+=(( $(this).data().posettc));
-
-    		});*/
+ 
 		});
 
 		var tva_remise=parseFloat($('#tva_remise').val()) || 0;
@@ -1475,7 +1471,8 @@
 	var remise=$('#remise').val();
 	var aide=	$('#aide2').val();
 	var aide_renov=	$('#aide_renov').val();
-	var aide_cee=	$('#aide_cee').val();	var acompte=	$('#acompte').val();
+	var aide_cee=	$('#aide_cee').val();	
+	var acompte=	$('#acompte').val();
 	var net=	$('#net').val();
 	var loi=	$('#loi').val();
 	var total_loi=	$('#total_loi').val();

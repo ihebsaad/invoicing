@@ -292,6 +292,15 @@ class ProductsController extends Controller
         $item->unite=$request->get('unite');
         $item->note=$request->get('note');
         $item->save();
+        if ($request->hasFile('image')) {
+            $imageName = time() . '.' . $request->image->extension();
+            $request->image->move(public_path('images/products'), $imageName);
+            $item->note=$request->get('note');
+            $item->image=$imageName;
+            $item->save();
+         }
+
+
 
         return $item->id;
     }

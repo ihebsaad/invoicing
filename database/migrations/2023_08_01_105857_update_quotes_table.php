@@ -17,6 +17,9 @@ class UpdateQuotesTable extends Migration
             $table->dropColumn('type_aide');
             $table->double('aide_cee', 8, 2)->nullable();
             $table->double('aide_renov', 8, 2)->nullable();
+            $table->double('total_protocole', 8, 2)->nullable();
+            $table->double('tva_protocole', 8, 2)->nullable();
+            $table->double('protocole', 8, 2)->nullable();
 
         });
     }

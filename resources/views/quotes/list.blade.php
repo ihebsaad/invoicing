@@ -43,20 +43,20 @@
     <div class="col-md-3">
         <select id="filter_type_devis" class="form-control" style="width:300px; ;margin-bottom:20px;float:right">
             <option value="">Tous les types</option>
-            <option value="1">Menuiserie</option>
-            <option value="2">Volets roulants</option>
+            <option value="1">MENUISERIE</option>
+            <option value="2">VOLET ROULANT</option>
             <option value="-1">PAC AIR EAU</option>
             <option value="-2">PAC AIR AIR</option>
-            <option value="-3">Panneau Photovoltaïque</option>
+            <option value="-3">PANNEAU PHOTOVOLTAIQUE </option>
             <option value="-4">CESI / SSC</option>
             <option value="-5">POELE GRANULÉS OU BOIS</option>
-            <option value="-6">ISOLATION </option>
-            <option value="-60">ISOLATION soufflée</option>
-            <option value="-61">ISOLATION sous rampant</option>
+            <option value="-6">ISOLATION  DU PLANCHER BAS</option>
+            <option value="-60">ISOLATION SOUFFLEE</option>
+            <option value="-61">ISOLATION SOUS RAMPANT</option>
             <option value="-62">ISOLATION extérieur</option>
             <option value="-63">ISOLATION intérieur</option>
             <option value="-7">BTD</option>
-            <option value="-9">KIT TETE THERMOSTATIQUE</option>
+            <option value="-9">VMC</option>
             <option value="-8">AUTRES</option>
         </select>
         <label class="mt-2 mr-2" style="float:right">Type</label>

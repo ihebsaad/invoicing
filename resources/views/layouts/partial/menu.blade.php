@@ -54,6 +54,12 @@
                   <p>Devis</p>
                 </a>
               </li>
+              <li class="nav-item">
+                    <a href="{{route('customers.index')}}" class="nav-link {{ request()->is('customers') || request()->is('customers/*') ? 'active' : '' }}">
+                      <i class="fas fa-address-card nav-icon text-secondary"></i>
+                      <p>Clients</p>
+                    </a>
+              </li>
               @can('isAdmin')
               <li class="nav-item">
                 <a href="{{route('invoices.index')}}" class="nav-link {{ request()->is('invoices') ||  request()->is('invoices/*') ? 'active' : '' }}">
@@ -72,6 +78,7 @@
             </ul>
           </li>
 -->
+          @if(auth()->id()==1)
               <li class="nav-item menu-open ">
                 <a href="#" class="nav-link {{  request()->is('categories') || request()->is('products') || request()->is('categories/*') || request()->is('products/*')   ? 'active' : '' }}">
                   <i class="nav-icon fas fa-store text-white"></i>
@@ -113,15 +120,9 @@
                     </a>
                   </li>
                   @endcan
-                  <li class="nav-item">
-                    <a href="{{route('customers.index')}}" class="nav-link {{ request()->is('customers') || request()->is('customers/*') ? 'active' : '' }}">
-                      <i class="fas fa-address-card nav-icon text-secondary"></i>
-                      <p>Clients</p>
-                    </a>
-                  </li>
                 </ul>
               </li>
-              @if(auth()->id()==1)
+              
               <li class="nav-item  {{ request()->is('users') || request()->is('settings') ||  request()->is('settings.index')    ? 'menu-open' : '' }}">
                 <a href="#" class="nav-link {{ request()->is('users') || request()->is('settings.index') ||  request()->is('settings')    ? 'active' : '' }}">
                   <i class="nav-icon fas fa-cog text-white"></i>

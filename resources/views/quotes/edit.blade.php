@@ -317,6 +317,7 @@
 							$price=$product->prix;
 							$price_ht=$product->prix_ht;
 							$total=floatval($product->prix) * intval($item->qty);
+							$tva=$product->tva ;
 							}else{
 							$texte=nl2br($item->description);
 							if($item->note!='') $texte.='<br>'.$item->note;
@@ -324,10 +325,11 @@
 							$price=$item->price_ttc;
 							$price_ht=$item->price_ht;
 							$total=$item->price_ttc * $item->qty;
+							$tva=$item->tva ;
 							}
 							@endphp
 							<tr class="myproduct product bg-lightgrey tr-prod" id="row-{{$item->id}}">
-								<td class="myproducttd  itemtd" data-prix="{{$price}}" data-prixht="{{$price_ht}}" data-id="{{$item->id}}"><b>{!!nl2br($texte)!!}</b></td>
+								<td class="myproducttd  itemtd"   data-tva="{{ $tva }}"  data-prix="{{$price}}" data-prixht="{{$price_ht}}" data-id="{{$item->id}}"><b>{!!nl2br($texte)!!}</b></td>
 								<td>{{$price_ht}} €</td>
 								<td><input id="qty-{{$item->id}}" type="number" step="1" min="1" class="number" value="{{$item->qty}}" onchange="calcul();save_item_qty(this,'{{$item->id}}','{{$price_ht}}','{{$pose}}');" /></td>
 								<td><input readonly step="0.5" min="5.5" type="number" step="0.5" min="1" class="number bg-transparent" value="{{$item->tva}}" /> %</td>
@@ -337,7 +339,7 @@
 
 							@if(isset($product) && $product->pose > 0)
 							<tr class="myproduct product bg-lightgrey tr-prod" id="row-pose-{{$item->id}}">
-								<td class="myproductpose" data-id="{{$item->id}}" data-pose="{{$product->pose}}" data-tvapose="{{$product->tva_pose}}" data-posettc="{{$product->pose_ttc}}"><i>Pose {{$product->name}}</i></td>
+								<td class="myproductpose"  data-tva="{{ $product->tva_pose }}"  data-id="{{$item->id}}" data-pose="{{$product->pose}}" data-tvapose="{{$product->tva_pose}}" data-posettc="{{$product->pose_ttc}}"><i>Pose {{$product->name}}</i></td>
 								<td><input type="number" id="pose-{{$item->id}}" value="{{$product->pose * $item->qty}}" class="number bg-transparent" /> €</td>
 								<td><input type="number" value="{{$item->qty}}" id="pose-qty-{{$item->id}}" readonly class="number" /></td>
 								<td><input readonly step="0.5" min="5.5" type="number" step="0.5" min="1" class="number bg-transparent" readonly value="{{$product->tva_pose}}" /> %</td>
@@ -360,10 +362,18 @@
 								<td>Remise GROUPE HER ENR</td>
 								<td><input readonly style="text-align:right" id="remise" type="number" class="number bg-transparent" value="{{$quote->remise ?? 0}}" />€</td>
 								<td style="text-align:center;padding-right:15px">1</td>
-								<td><input type="number" class="number  bg-transparent" id="tva_remise" name="tva_remise" style="width:100px" step="0.5" value="{{$quote->tva_remise ?? 5.5}}" readonly onchange="calcul_remise();" /> %</td>
+								<td><input type="number" class="number  bg-transparent" id="tva_remise" name="tva_remise" style="width:100px" step="0.5" value="{{$quote->tva_remise ?? 5.5}}"  onchange="calcul_remise();" /> %</td>
 								<td><input id="total_remise" type="number" class="number" style="max-width:70px" value="{{$quote->total_remise ?? 0}}" onchange="calcul_remise();" /> €</td>
 								<td></td>
 							</tr>
+							<tr class="product bg-grey">
+								<td>Protocole sécuritaire GROUPE HER ENR</td>
+								<td><input readonly style="text-align:right" id="protocole" type="number" class="number bg-transparent" value="{{$quote->protocole ?? 0}}" />€</td>
+								<td style="text-align:center;padding-right:15px">1</td>
+								<td><input type="number" class="number  bg-transparent" id="tva_protocole" name="tva_protocole" style="width:100px" step="0.5" value="{{$quote->tva_protocole ?? 5.5}}"  onchange="calcul_protocole();" /> %</td>
+								<td><input id="total_protocole" type="number" class="number" style="max-width:70px" value="{{$quote->total_protocole ?? 0}}" onchange="calcul_protocole();" /> €</td>
+								<td></td>
+							</tr>							
 						</tfoot>
 					</table>
 					<div class="row">
@@ -381,7 +391,7 @@
 									</td>
 									<td style="padding-right:0">
 										<div class="form-group">
-											<input type="number" class="form-control" style="max-width:100px" min="0" value="{{$quote->aide_renov ?? 0}}" id="aide_renov" onchange="$('#aide2').val(parseFloat($(this).val())+parseFloat($('#aide_cee').val()));calcul();" />
+											<input type="number" class="form-control" style="max-width:100px" min="0" value="{{$quote->aide_renov ?? 0}}" id="aide_renov" onchange="calcul();" />
 										</div>
 									</td>
 									<td>€</td>
@@ -394,11 +404,12 @@
 									</td>
 									<td style="padding-right:0">
 										<div class="form-group">
-											<input type="number" class="form-control" style="max-width:100px" min="0" value="{{$quote->aide_cee ?? 0}}" id="aide_cee" onchange="$('#aide2').val(parseFloat($(this).val())+parseFloat($('#aide_renov').val()));calcul();" />
+											<input type="number" class="form-control" style="max-width:100px" min="0" value="{{$quote->aide_cee ?? 0}}" id="aide_cee" onchange=" calcul();" />
 										</div>
 									</td>
 									<td>€</td>
 								</tr>
+
 							</table>
 							<table style="max-width:360px;height:100px;float:left;margin-left:60px" class="table-aide">
 								<tr>
@@ -476,6 +487,8 @@
 									<option @if($quote->modalite=='Chèque & Financement FRANFINANCE') selected="selected" @endif value="Chèque & Financement FRANFINANCE">Chèque et Financement FRANFINANCE</option>
 									<option @if($quote->modalite=='Chèque & Financement SOFINCO') selected="selected" @endif value="Chèque & Financement SOFINCO">Chèque et Financement SOFINCO</option>
 									<option @if($quote->modalite=='Chèque & Financement PROJEXIO') selected="selected" @endif value="Chèque & Financement PROJEXIO">Chèque et Financement PROJEXIO</option>
+									<option @if($quote->modalite=='Financement ARKEA') selected="selected" @endif value="Financement ARKEA">Financement ARKEA</option>
+									<option @if($quote->modalite=='Financement ARKEA + Chèque') selected="selected" @endif value="Financement ARKEA + Chèque">Financement ARKEA + Chèque</option>
 								</select>
 							</div>
 						</div>
@@ -659,6 +672,19 @@
 							@if($signature != '') <img class="mt-2" src="{{$signature}}" width='300' height='' /> @endif
 							@endif
 						</div>
+						<div class="col-lg-9 col-md-6 col-sm-12 pt-2">
+							<label class="pt-2">Signature Groupe Her:</label><br>
+							<div style="width:100%;">
+								<canvas style="border:1px dotted grey" id="canvas4" width="650" height="300"></canvas><br>
+							</div>
+							<span class="btn btn-sm btn-danger mr-2" onclick="empty(signaturePad4);"><i class="fas fa-redo"></i> Vider</span><span id="" class="btn btn-sm btn-warning" onclick="undo(signaturePad4);"><i class="fas fa-arrow-left"></i> Retour</span><br>
+							<input id="signature4" name="signed4" style="display: none"></input>
+							@if(\App\Models\Signature::where('quote',$quote->id)->exists())
+							@php $signature_her=\App\Models\Signature::where('quote',$quote->id)->first()->signature_her;
+							@endphp
+							@if($signature_her != '') <img class="mt-2" src="{{$signature_her}}" width='300' height='' /> @endif
+							@endif
+						</div>						
 					</div>
 					<div class="row">
 						<div class="col-12">
@@ -762,6 +788,7 @@
 								<option></option>
 								<option value="ML">ML</option>
 								<option value="m2">㎡</option>
+								<option value="U">U</option>
 							</select>
 						</div>
 					</div>
@@ -852,6 +879,13 @@
 						</div>
 					</div>
 
+					<div class="col-xs-12 col-sm-12 col-md-12">
+						<div class="form-group">
+							<strong>Image :</strong>
+							<input type="file" id="image-i-edit" name="image" class="form-control" accept="image/*">
+						</div>
+					</div>
+
 					<div class="col-xs-12 col-sm-12 col-md-12 text-right">
 						<button type="button" id="add_item-edit" onclick="edit_item()" class="btn btn-primary mt-3 mr-3">Modifier</button>
 					</div>
@@ -890,6 +924,9 @@
 		var total_ht = 0;
 		var total_ttc = 0;
 		var total_tva = 0;
+		var tva = 0;
+		$('#aide2').val(parseFloat($('#aide_renov').val())+parseFloat($('#aide_cee').val()) );
+
 		$('#list-prods .myproduct').each(function() {
 			$(this).find('.myproducttd').each(function() {
 				id_item = $(this).data('id');
@@ -897,6 +934,7 @@
 				console.log('prix : ' + $(this).data('prixht') * qty);
 				total_ht += parseFloat(($(this).data('prixht') * qty));
 				total_ttc += parseFloat(($(this).data('prix') * qty));
+				tva =  parseFloat($(this).data('tva') );
 			});
 			$(this).find('.myproductpose').each(function() {
 				id_item = $(this).data().id;
@@ -904,59 +942,58 @@
 				total_ht += (($(this).data().pose * qty));
 				console.log('prix pose: ' + $(this).data().pose * qty);
 				total_ttc += (($(this).data().posettc * qty));
-
+				tva =  parseFloat($(this).data('tva') );
 			});
 		});
 
-
-		var tva_remise = parseFloat($('#tva_remise').val()) || 0;
+		var p_tva_remise = parseFloat($('#tva_remise').val()) || 0;
 		var total_remise = parseFloat($('#total_remise').val()) || 0;
+
+		var p_tva_protocole = parseFloat($('#tva_protocole').val()) || 0;
+		var total_protocole = parseFloat($('#total_protocole').val()) || 0;
 
 		var p_tva_deplacement = parseFloat($('#tva_deplacement').val()) || 0;
 		var total_deplacement = parseFloat($('#total_deplacement').val()) || 0;
 
-		var remise = total_remise / (1 + (tva_remise * 0.01));
-		$('#remise').val(remise.toFixed(2));
-		// deplacement ht
-		var deplacement = total_deplacement / (1 + (p_tva_deplacement * 0.01));
-		$('#deplacement').val(deplacement.toFixed(2));
+		var deplacement_ht = total_deplacement / (1 + (p_tva_deplacement * 0.01));
+		var remise_ht = total_remise / (1 + (p_tva_remise * 0.01));
+		var protocole_ht = total_protocole / (1 + (p_tva_protocole * 0.01));
 
-		var deplacement_tva = total_deplacement - deplacement;
+		//HT
+		$('#remise').val(remise_ht.toFixed(2));
+		$('#protocole').val(protocole_ht.toFixed(2));
+		$('#deplacement').val(deplacement_ht.toFixed(2));
 
-		var val_total_ht = total_ht - remise + deplacement;
-		$("#total_ht").val(val_total_ht.toFixed(2));
-		//total_tva = total_ttc-total_ht - (remise*tva_remise*0.01) + deplacement_tva;
-		total_tva = (total_ttc * 0.055) - (remise * tva_remise * 0.01) + deplacement_tva;;
-		<?php if (!$tva_55) {
-		?>
-			total_tva = total_ttc - total_ht - (remise * tva_remise * 0.01) + deplacement_tva;
-		<?php
-		}
-		?>
+		var remise_tva = total_remise - remise_ht;
+		var protocole_tva = total_protocole - protocole_ht;
+		var deplacement_tva = total_deplacement - deplacement_ht;
 
+		var total_tva = total_ttc - total_ht ;
+		var total_ht2 = total_ttc / (1 + (tva * 0.01));
+
+		console.log( 'total_ttc produits pures '+ total_ttc);
+		console.log( 'total_tva produits pures '+ total_tva);
+		console.log( 'total_ht produits pures '+ total_ht);
+		//console.log( 'total_ht2  produits pures '+ total_ht2);
+		let total_tva2 =total_ttc - total_ht;
+		//console.log('total_tva 2 = '+ total_tva2 );
+		// calcul totaux apres remises + deplacement
+		total_ttc = total_ttc - total_remise  - total_protocole  + total_deplacement ;
+		total_ht = total_ht  - remise_ht  - protocole_ht  + deplacement_ht ;
+		total_tva = total_tva - remise_tva - protocole_tva + deplacement_tva ;
+
+
+		$("#total_ht").val(total_ht.toFixed(2));
 		$('#total_tva').val(total_tva.toFixed(2));
-		total_ttc = total_ttc - total_remise + total_deplacement;
 		$('#total_ttc').val(total_ttc.toFixed(2));
-
-		/*
-				//nouveau calcul ici :
-
-				total_ht = total_ttc / 1.055;
-				total_tva = total_ttc-total_ht;
-				$("#total_ht").val(total_ht.toFixed(2));
-				$("#total_tva").val(total_tva.toFixed(2));
-
-				total_ttc=total_ttc  + total_deplacement;
-				$('#total_ttc').val(total_ttc.toFixed(2));
-		*/
 
 		var aide = parseFloat($('#aide2').val()) || 0;
 		var acompte = parseFloat($('#acompte').val()) || 0;
-
-		var net = parseFloat(total_ttc - aide - acompte /*- total_remise*/ );
+		var net = parseFloat(total_ttc - aide - acompte  );
 		$('#net').val(net.toFixed(2));
 		update_totals();
 	}
+
 
 	function check_finances() {
 		if ($('#modalite').val().includes('Chèque') || $('#modalite').val() == 'Chèque' || $('#modalite').val() == '') {
@@ -1045,6 +1082,7 @@
 
 		var tva = parseFloat($('#tva').val());
 		$('#tva_remise').val(tva);
+		$('#tva_protocole').val(tva);
 
 		$.ajax({
 			url: "{{ route('add_item') }}",
@@ -1062,9 +1100,9 @@
 				if (data != '') {
 					init();
 					item_id = data;
-					var row = '<tr class="myproduct product bg-lightgrey tr-prod" id="row-' + item_id + '"><td class="myproducttd"  data-prix="' + price + '" data-prixht="' + price_ht + '" data-id="' + item_id + '"  ><b>' + product_text + '</b></td><td>' + price_ht + ' €</td><td><input type="number" step="1" min="1" class="number" value="' + qty + '"  id="qty-' + item_id + '"  onchange="save_item_qty(this,' + item_id + ',' + price + ',' + posettc + ');calcul();"/></td><td><input  step="0.5" min="5.5" type="number" step="1" min="1" class="number bg-transparent" readonly value="' + tva + '"/> %</td><td><input id="total-' + data + '" type="number" readonly class="total-prod number" value="' + total + '"/> €</td><td><button   class="btn-xs btn-info mr-2" onclick="get_item(' + item_id + ')"><i class="fas fa-pen"  ></i></button><button   class="btn-xs btn-danger" onclick="delete_item(' + item_id + ')"><i class="fas fa-trash"  ></i></button></td></tr>';
+					var row = '<tr class="myproduct product bg-lightgrey tr-prod" id="row-' + item_id + '"><td class="myproducttd" data-tva="'+tva+'"  data-prix="' + price + '" data-prixht="' + price_ht + '" data-id="' + item_id + '"  ><b>' + product_text + '</b></td><td>' + price_ht + ' €</td><td><input type="number" step="1" min="1" class="number" value="' + qty + '"  id="qty-' + item_id + '"  onchange="save_item_qty(this,' + item_id + ',' + price + ',' + posettc + ');calcul();"/></td><td><input  step="0.5" min="5.5" type="number" step="1" min="1" class="number bg-transparent" readonly value="' + tva + '"/> %</td><td><input id="total-' + data + '" type="number" readonly class="total-prod number" value="' + total + '"/> €</td><td><button   class="btn-xs btn-info mr-2" onclick="get_item(' + item_id + ')"><i class="fas fa-pen"  ></i></button><button   class="btn-xs btn-danger" onclick="delete_item(' + item_id + ')"><i class="fas fa-trash"  ></i></button></td></tr>';
 					if (pose > 0) {
-						row += '<tr class="myproduct product bg-lightgrey tr-prod" id="row-pose-' + item_id + '"><td class="myproductpose"  data-prix="' + price + '" data-prixht="' + price_ht + '" data-id="' + item_id + '" data-pose="' + pose + '" data-tvapose="' + tvapose + '"   data-posettc="' + posettc + '" ><i>Pose ' + product_text + '</i></td><td><input type="number" id="pose-' + data + '" value="' + pose + '"  class="number bg-transparent"/> €</td><td><input type="number"  value="' + qty + '"  id="pose-qty-' + data + '" readonly class="number" /></td><td><input readonly step="0.5" min="5.5" type="number" step="0.5" min="1" class="number bg-transparent" readonly value="' + tvapose + '"/> %</td><td><input id="totalpose-' + data + '" type="number" readonly class="total-prod number" value="' + totalpose + '"/> €</td><td></td></tr>';
+						row += '<tr class="myproduct product bg-lightgrey tr-prod" id="row-pose-' + item_id + '"><td class="myproductpose"  data-tva="'+tvapose+'"  data-prix="' + price + '" data-prixht="' + price_ht + '" data-id="' + item_id + '" data-pose="' + pose + '" data-tvapose="' + tvapose + '"   data-posettc="' + posettc + '" ><i>Pose ' + product_text + '</i></td><td><input type="number" id="pose-' + data + '" value="' + pose + '"  class="number bg-transparent"/> €</td><td><input type="number"  value="' + qty + '"  id="pose-qty-' + data + '" readonly class="number" /></td><td><input readonly step="0.5" min="5.5" type="number" step="0.5" min="1" class="number bg-transparent" readonly value="' + tvapose + '"/> %</td><td><input id="totalpose-' + data + '" type="number" readonly class="total-prod number" value="' + totalpose + '"/> €</td><td></td></tr>';
 					}
 					$('#list-prods').append(row);
 					calcul();
@@ -1103,14 +1141,17 @@
 		var quote = parseInt($('#quote').val());
 		var description = $('#description').val();
 		var unite = $('#unite').val();
-		var texte = description + '<br>' + note;
+
 		$('#tva_remise').val(tva);
+		$('#tva_protocole').val(tva);
+		
 		var formData = new FormData();
 		formData.append('prix', prix);
 		formData.append('prix_ht', prix_ht);
 		formData.append('qte', qte);
 		formData.append('tva', tva);
-		formData.append('description', texte);
+		formData.append('note', note);
+		formData.append('description', description);
 		formData.append('unite', unite);
 		formData.append('quote', quote);
 		formData.append('image', $('#image')[0].files[0]); // Ajouter l'image
@@ -1136,7 +1177,7 @@
 			success: function(data) {
 				if (data != '') {
 					item_id = data;
-					var row = '<tr class="myproduct product bg-lightgrey tr-prod" id="row-' + item_id + '"><td class="myproducttd"  data-prix="' + prix + '" data-prixht="' + prix_ht + '" data-id="' + item_id + '"  ><b>' + texte + '</b></td><td>' + prix_ht + ' €</td><td><input type="number" step="1" min="1" class="number" value="' + qte + '"  id="qty-' + item_id + '"  onchange="calcul();save_item_qty(this,' + item_id + ',' + prix + ',' + 0 + ')"/></td><td><input  step="0.5" min="5.5" type="number" step="1" min="1" class="number bg-transparent" readonly value="' + tva + '"/> %</td><td><input id="total-' + data + '" type="number" readonly class="total-prod number" value="' + total + '"/> €</td><td><button   class="btn-xs btn-info mr-2" onclick="get_item(' + item_id + ')"><i class="fas fa-pen"  ></i></button><button  class="btn-xs btn-danger" onclick="delete_item(' + item_id + ')"><i class="fas fa-trash "  ></i></button></td></tr>';
+					var row = '<tr class="myproduct product bg-lightgrey tr-prod" id="row-' + item_id + '"><td class="myproducttd"  data-tva="'+tva+'"  data-prix="' + prix + '" data-prixht="' + prix_ht + '" data-id="' + item_id + '"  ><b>' + description + '</b></td><td>' + prix_ht + ' €</td><td><input type="number" step="1" min="1" class="number" value="' + qte + '"  id="qty-' + item_id + '"  onchange="calcul();save_item_qty(this,' + item_id + ',' + prix + ',' + 0 + ')"/></td><td><input  step="0.5" min="5.5" type="number" step="1" min="1" class="number bg-transparent" readonly value="' + tva + '"/> %</td><td><input id="total-' + data + '" type="number" readonly class="total-prod number" value="' + total + '"/> €</td><td><button   class="btn-xs btn-info mr-2" onclick="get_item(' + item_id + ')"><i class="fas fa-pen"  ></i></button><button  class="btn-xs btn-danger" onclick="delete_item(' + item_id + ')"><i class="fas fa-trash "  ></i></button></td></tr>';
 					$('#list-prods').append(row);
 					$('#add-item').modal('hide');
 					calcul();
@@ -1235,28 +1276,35 @@
 		var qte = parseInt($('#qte-i-edit').val());
 		var unite = $('#unite-i-edit').val();
 		var description = $('#description-edit').val();
-		var texte = description + '<br>' + note;
+ 		var image= $('#image-i-edit')[0].files[0] ;
+		//formData.append('image', $('#image-i-edit')[0].files[0]);
+
+		var formData = new FormData();
+		formData.append('item', item);
+		formData.append('prix', prix);
+		formData.append('note', note);
+		formData.append('prix_ht', prix_ht);
+		formData.append('qte', qte);
+		formData.append('tva', tva);
+		formData.append('description', description);
+		formData.append('unite', unite);
+		formData.append('total', total);
+		formData.append('image',image); // Ajouter l'image
+		formData.append('_token', _token);
 
 		$.ajax({
 			url: "{{ route('edit_item_men') }}",
 			method: "POST",
-			async: false,
-			data: {
-				item: item,
-				prix: prix,
-				prix_ht: prix_ht,
-				qte: qte,
-				tva: tva,
-				description: description,
-				note: note,
-				unite: unite,
-				_token: _token
-			},
+			//async: false,
+			processData: false,
+			contentType: false,
+			data: formData,
+			//data: {item: item,	prix: prix,prix_ht: prix_ht,qte: qte,tva: tva,description: description,note: note,unite: unite,image:image,	_token: _token},
 			success: function(data) {
 				if (data != '') {
 
 					item_id = data; //here
-					var row = '<td class="myproducttd itemtd"  data-prix="' + prix + '" data-prixht="' + prix_ht + '" data-id="' + item_id + '"  ><b>' + texte + '</b></td><td>' + prix_ht + ' €</td><td><input type="number" step="1" min="1" class="number" value="' + qte + '" onchange="save_item_qty(this,' + item_id + ',' + prix_ht + ',' + prix + ');"  id="qty-' + item_id + '"/></td><td><input  step="0.5" min="5.5" type="number" step="1" min="1" class="number bg-transparent" readonly value="' + tva + '"/> %</td><td><input id="total-i-' + item_id + '" type="number" readonly class="total-prod number" value="' + total + '"/> €</td><td><button id=""   class="btn-xs btn-info mr-2" onclick="get_item(' + item_id + ')"><i class="fas fa-pen "  ></i></button><button id=""   class="btn-xs btn-danger" onclick="delete_item(' + item_id + ')"><i class="fas fa-trash "  ></i></button></td>';
+					var row = '<td class="myproducttd itemtd" data-tva="'+tva+'"  data-prix="' + prix + '" data-prixht="' + prix_ht + '" data-id="' + item_id + '"  ><b>' + description + '</b></td><td>' + prix_ht + ' €</td><td><input type="number" step="1" min="1" class="number" value="' + qte + '" onchange="save_item_qty(this,' + item_id + ',' + prix_ht + ',' + prix + ');"  id="qty-' + item_id + '"/></td><td><input  step="0.5" min="5.5" type="number" step="1" min="1" class="number bg-transparent" readonly value="' + tva + '"/> %</td><td><input id="total-i-' + item_id + '" type="number" readonly class="total-prod number" value="' + total + '"/> €</td><td><button id=""   class="btn-xs btn-info mr-2" onclick="get_item(' + item_id + ')"><i class="fas fa-pen "  ></i></button><button id=""   class="btn-xs btn-danger" onclick="delete_item(' + item_id + ')"><i class="fas fa-trash "  ></i></button></td>';
 
 					$('#row-' + item_id).html(row);
 					calcul();
@@ -1287,6 +1335,9 @@
 		var aide = $('#aide2').val();
 		var aide_renov = $('#aide_renov').val();
 		var aide_cee = $('#aide_cee').val();
+		var protocole = $('#protocole').val();
+		var total_protocole = $('#total_protocole').val();
+		var tva_protocole = $('#tva_protocole').val();
 		var acompte = $('#acompte').val();
 		var net = $('#net').val();
 
@@ -1307,6 +1358,9 @@
 				aide: aide,
 				aide_renov: aide_renov,
 				aide_cee: aide_cee,
+				protocole:protocole,
+				total_protocole:total_protocole,
+				tva_protocole:tva_protocole,
 				net: net,
 				acompte: acompte,
 				tva_remise: tva_remise,
@@ -1342,7 +1396,16 @@
 			}
 		});
 	}
+	
 
+	function calcul_protocole() {
+		var protocole = $('#total_protocole').val();		
+		//$('#remise2').val(remise);
+		var p_tva_protocole = $('#tva_protocole').val();
+		var protocole_ht = (protocole / (1 + (p_tva_protocole * 0.01))).toFixed(2);
+		$('#protocole').val(protocole_ht);
+		calcul();
+	}
 
 	function calcul_remise() {
 		var remise = $('#total_remise').val();
@@ -1390,6 +1453,12 @@
 
 	});
 
+	var canvas4 = document.getElementById("canvas4");
+	var signaturePad4 = new SignaturePad(canvas4, {
+		backgroundColor: 'rgb(255, 255, 255)',
+
+	});
+
 	function resizeCanvas() {
 		var ratio = Math.max(window.devicePixelRatio || 1, 1);
 		canvas.width = canvas.offsetWidth * ratio;
@@ -1406,6 +1475,11 @@
 		canvas3.height = canvas3.offsetHeight * ratio;
 		canvas3.getContext("2d").scale(ratio, ratio);
 		signaturePad3.clear();
+
+		canvas4.width = canvas4.offsetWidth * ratio;
+		canvas4.height = canvas4.offsetHeight * ratio;
+		canvas4.getContext("2d").scale(ratio, ratio);
+		signaturePad4.clear();
 	}
 
 
@@ -1445,6 +1519,11 @@
 		$('#signature3').val(dataURL);
 	});
 
+	canvas4.addEventListener('click', function() {
+		var dataURL = signaturePad4.toDataURL("image/jpeg");
+		$('#signature4').val(dataURL);
+	});
+
 	canvas1.addEventListener('touchend', function() {
 		var dataURL = signaturePad.toDataURL("image/jpeg");
 		$('#signature1').val(dataURL);
@@ -1457,6 +1536,12 @@
 		var dataURL = signaturePad3.toDataURL("image/jpeg");
 		$('#signature3').val(dataURL);
 	});
+
+	canvas4.addEventListener('touchend', function() {
+		var dataURL = signaturePad4.toDataURL("image/jpeg");
+		$('#signature4').val(dataURL);
+	});
+
 </script>
 
 @endsection

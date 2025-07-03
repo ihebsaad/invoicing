@@ -50,9 +50,9 @@
             <td>{{ $user->name }}</td>
             <td>{{ $user->lastname }}</td>
             <td>{{ $user->email }}</td>
-            <td>{{ $user->user_type=='user' ? 'commercial' : $user->user_type }}</td>
+            <td>@if($user->id==1 ) Super @endif {{ $user->user_type=='user' ? 'commercial' : $user->user_type }}</td>
             <td>
-                @if($user->user_type!='admin' )
+                @if($user->id!=1 )
 			    <a class="btn btn-primary mb-3" href="{{ route('users.edit',$user->id) }}" style="float:left" title="Modifier"><i class="fas fa-edit"></i></a>
 			<!--	    @if($user->status)
                     <a title="Désactiver"   href="{{route('desactiver', ['id'=>$user->id] )}}" class="btn btn-danger mb-3" role="button" data-toggle="tooltip" data-tooltip="tooltip" data-placement="bottom" data-original-title="Désactiver" style="float:left">

@@ -69,7 +69,7 @@
 	   }
 	   .totals{
 		   float:right;
-		   width:180px;
+		   width:200px;
 		   font-weight:bold;
 		   background-color:#f6f6f6;
 		   border:1px solid #f07f32;
@@ -321,7 +321,7 @@
 									$url_img =asset('images/products/' . $item->image) ;
 							?>
 							<tr class="product"  >
-								<td>@if($item->image!='') <img src="{!! $url_img !!}"  width="100" style="max-width:100px"></img>@endif</td><td class="text" >{!! nl2br($item->description) !!}</td>@if($isolation)<td>{!! $unite !!}</td>@endif<td>{{$item->qty}}</td><td  >{{$item->price_ht}} €</td><td>{{ floatval($item->price_ht) * intval($item->qty) }} €</td><td>{{$item->tva}} %</td><td>{{  floatval($item->price_ttc) * intval($item->qty)  }} €</td>
+								<td>@if($item->image!='') <img src="{!! $url_img !!}"  width="100" style="max-width:100px"></img>@endif</td><td class="text" >{!! nl2br($item->description .'<br>'.$item->note) !!}</td>@if($isolation)<td>{!! $unite !!}</td>@endif<td>{{$item->qty}}</td><td  >{{$item->price_ht}} €</td><td>{{ floatval($item->price_ht) * intval($item->qty) }} €</td><td>{{$item->tva}} %</td><td>{{  floatval($item->price_ttc) * intval($item->qty)  }} €</td>
 							</tr>
 						<?php	} ?>
 				   @endforeach
@@ -337,12 +337,16 @@
 				   		<td></td><td>{{$texte_remise}}</td><td style="text-align:center"></td><td ></td>@if($isolation)<td></td>@endif<td> {{$invoice->remise}}  €</td><td> {{ $invoice->tva_remise ?? 0 }} %</td><td>{{$invoice->total_remise ?? 0}} €</td>
 				   </tr>
 			   @endif
-
+			   @if($invoice->protocole>0)
+				   <tr class="product" style="color:#f07f32">
+				   		<td></td><td>PRIME PROTOCOLE SECURITAIRE GROUPE HER ENR</td><td style="text-align:center"></td><td ></td>@if($isolation)<td></td>@endif<td> {{$invoice->protocole}}  €</td><td> {{ $invoice->tva_protocole ?? 0 }} %</td><td>{{$invoice->total_protocole ?? 0}} €</td>
+				   </tr>
+			   @endif
 		   </tbody>
 	   </table>
 
 	   <div style="width:100%;page-break-inside: avoid;">
-		   <div style="width:67%;float:left;font-size:9px">
+		   <div style="width:65%;float:left;font-size:9px">
 		   		@if($invoice->aide_cee>0)
 			   		<div style="font-size:11px">Tout ou partie des travaux relatifs à ce devis ou bon de commande sont éligibles à une prime d'un montant de {{number_format($invoice->aide,0,',',' ')}} euros dont EDF (SIREN 552 081 317) est à l'origine dans le cadre du dispositif des Certificats d'Economies d'Energie. Le montant de cette prime ne pourra être révisé à la baisse qu'en cas de modification du volume de Certificats d'Economies d'Energie attaché à l'opération ou aux opérations d'économies d'énergie ou de la situation de précarité énergétique et ce, de manière proportionnelle. Dans le cadre de la réglementation un contrôle qualité des travaux sur site ou par contact pourra être demandé. Un refus de ce contrôle sur site ou par contact via EDF ou un prestataire d'EDF conduira au refus de cette prime par EDF.</div><br>
 			   	@endif
@@ -385,7 +389,7 @@
 				   @endif
 				</div>
 		   </div>
-		   <div style="width:33%;float:left;">
+		   <div style="width:35%;float:left;">
 			   <table class="totals">
 			   <tr><td colspan="2">Total HT</td><td class="text-right">{{number_format($invoice->total_ht,2,',',' ')}} €</td></tr>
 			   <?php
@@ -433,6 +437,7 @@
 							$lieu=\App\Models\Signature::where('quote',$invoice->id)->first()->lieu ?? '';
 							$date=\App\Models\Signature::where('quote',$invoice->id)->first()->date ?? '';
 							$signature=\App\Models\Signature::where('quote',$invoice->id)->first()->signature ?? '';
+							$signature_her=\App\Models\Signature::where('quote',$invoice->id)->first()->signature_her ?? '';
 						@endphp
 						<table style="width:100%;font-size:10px">
 							<tr rowspan="2"><td>Fait à</td>@if($lieu !='')<img src="{{$lieu}}" width= '130'     height='auto'/>@endif<td></td><td>Le</td>@if($date !='')<td><img src="{{$date}}" width= '130'     height= 'auto'/>@endif</td></tr>
@@ -442,11 +447,24 @@
 						<div style="border:1px solid grey;width:60%;height:110px">
 							@if($signature !='')<img style="margin-left:15px;margin-top:15px;" src="{{$signature}}"  width='200'     height= ''/>@endif
 						</div>
+						<table style="width:100%;font-size:10px;margin-top:20px;">
+							<tr><td>Professionnel:</td></tr>
+							<tr><td>Le groupe HER ENR s'engage à exécuter les travaux dans les conditions indiquées</td></tr>
+						</table>
+						<div style="border:1px solid grey;width:60%;height:110px">
+							@if($signature_her !='')<img style="margin-left:15px;margin-top:15px;" src="{{$signature_her}}"  width='200'     height= ''/>@endif
+						</div>												
 					@else
 						<table style="width:300px;font-size:10px">
 							<tr rowspan="2"><td>Fait à</td><td></td><td>Le</td><td></td></tr>
 							<tr><td colspan="4" style="padding-top:10px;padding-bottom:10px">  <div class="checkboxes">  <label><input type="checkbox"> <span> J'ai lu et j'accepte les Conditions Générales de Ventes</span></label></div></td></tr>
 							<tr><td colspan="4">Signature précédée de la mention "Bon pour accord"</td></tr>
+						</table>
+						<div style="border:1px solid grey;width:60%;height:100px">
+						</div>
+						<table style="width:100%;font-size:10px;margin-top:20px;">
+							<tr ><td>Professionnel:</td></tr>
+							<tr><td >Le groupe HER ENR s'engage à exécuter les travaux dans les conditions indiquées</td></tr>
 						</table>
 						<div style="border:1px solid grey;width:60%;height:100px">
 						</div>

@@ -42,10 +42,10 @@
             @php
                 switch ($quote->menuiserie) {
                 case 1:
-                    $type_devis= "<b>Menuiserie</b>";
+                    $type_devis= "<b>MENUISERIE</b>";
                     break;
                 case 2:
-                    $type_devis= "<i>Volets roulants</i>";
+                    $type_devis= "<i>VOLET ROULANT</i>";
                     break;
                 case -1:
                     $type_devis= "PAC AIR <b>EAU</b>";
@@ -63,25 +63,25 @@
                     $type_devis= "POELE GRANULÉS OU BOIS";
                     break;
                 case -6:
-                    $type_devis= "ISOLATION";
+                    $type_devis= "ISOLATION DU PLANCHER BAS";
                     break;
                 case -60:
-                    $type_devis= "ISOLATION soufflée";
+                    $type_devis= "ISOLATION SOUFFLEE";
                     break;
                 case -61:
-                    $type_devis= "ISOLATION sous rampant";
+                    $type_devis= "ISOLATION SOUS RAMPANT";
                     break;
                     case -62:
-                $type_devis= "ISOLATION extérieur";
+                $type_devis= "ISOLATION PAR L'EXTÉRIEUR";
                     break;
                     case -63:
-                $type_devis= "ISOLATION intérieur";
+                $type_devis= "ISOLATION PAR L'INTÉRIEUR";
                     break;
                 case -7:
                     $type_devis= "BTD";
                     break;
                 case -9:
-                    $type_devis= "KIT TETE THERMOSTATIQUE";
+                    $type_devis= "VMC";
                     break;
                 case -8:
                     $type_devis= "AUTRES";
@@ -99,9 +99,9 @@
             <td>
                 @if($User->user_type=='admin' || $User->id== $quote->par )
                     @if($quote->menuiserie>0)
-                        <a class="btn btn-primary mb-3 mr-2" href="{{ route('quotes.edit_men',$quote->id) }}" style="float:left" title="Modifier"><i class="fas fa-edit"></i></a>
+                        <a class="btn btn-primary mb-3 mr-2" target="_blank"  href="{{ route('quotes.edit_men',$quote->id) }}" style="float:left" title="Modifier"><i class="fas fa-edit"></i></a>
                     @else
-                        <a class="btn btn-primary mb-3 mr-2" href="{{ route('quotes.edit',$quote->id) }}" style="float:left" title="Modifier"><i class="fas fa-edit"></i></a>
+                        <a class="btn btn-primary mb-3 mr-2" target="_blank"  href="{{ route('quotes.edit',$quote->id) }}" style="float:left" title="Modifier"><i class="fas fa-edit"></i></a>
                     @endif
                     <a class="btn btn-success mb-3 mr-2 " target="_blank"  href="{{ route('quotes.show_pdf',$quote->id) }}" style="float:left" title="Ouvrir en PDF"><i class="fas fa-file-pdf"></i></a>
                     <a class="btn btn-secondary mb-3 mr-2 " href="{{ route('quotes.download_pdf',$quote->id) }}" style="float:left" title="Télécharger"><i class="fas fa-download"></i></a>

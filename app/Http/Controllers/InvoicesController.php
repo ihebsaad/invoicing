@@ -309,6 +309,9 @@ class InvoicesController extends Controller
         $aide=$request->get('aide');
         $aide_renov=$request->get('aide_renov');
         $aide_cee=$request->get('aide_cee');
+        $protocole=$request->get('protocole');
+        $total_protocole=$request->get('total_protocole');
+        $tva_protocole=$request->get('tva_protocole');
         $net=$request->get('net');
         $acompte=$request->get('acompte');
         $tva_remise=$request->get('tva_remise');
@@ -325,6 +328,9 @@ class InvoicesController extends Controller
                 'aide'=>$aide,
                 'aide_renov'=>$aide_renov,
                 'aide_cee'=>$aide_cee,
+                'protocole'=>$protocole,
+                'total_protocole'=>$total_protocole,
+                'tva_protocole'=>$tva_protocole,
                 'net'=>$net,
                 'acompte'=>$acompte,
                 'tva_remise'=>$tva_remise,

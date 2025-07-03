@@ -89,6 +89,7 @@
                 <strong>Unité:</strong>
                 <select name="unite" class="form-control">
                     <option></option>
+                    <option value="U">U</option>
                     <option value="ML">ML</option>
                     <option value="m2">㎡</option>
                 </select>

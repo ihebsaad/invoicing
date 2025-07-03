@@ -41,11 +41,13 @@ class SignaturePadController extends Controller
         $lieu = $request->signed;
         $date = $request->signed2;
         $signature = $request->signed3;
+        $signature_her = $request->signed4;
 
         $form_data = array(
            'lieu' => $lieu,
            'date' => $date,
            'signature' => $signature,
+           'signature_her' => $signature_her,
            'quote' => $request->quote_id
         );
         if(Signature::where('quote', $request->quote_id)->exists()){
@@ -55,7 +57,8 @@ class SignaturePadController extends Controller
             Signature::where('quote', $request->quote_id)->update(['date'=>$date]);
             if($signature!= null)
             Signature::where('quote', $request->quote_id)->update(['signature'=>$signature]);
-
+            if($signature_her!= null)
+            Signature::where('quote', $request->quote_id)->update(['signature_her'=>$signature_her]);
         }else{
             Signature::create($form_data);
         }

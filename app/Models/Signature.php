@@ -13,6 +13,7 @@ class Signature extends Model
         'lieu',
         'date',
         'signature',
+        'signature_her',
         'quote',
     ];
 
